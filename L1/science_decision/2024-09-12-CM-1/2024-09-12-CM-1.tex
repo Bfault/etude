@@ -1,0 +1,48 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{12 septembre 2024}
+
+\title{Science Decision | CM: 1}
+\author{Par Lorenzo}
+\date{\today}
+
+\newtheorem{theorem}{Théorème}[section]
+\newtheorem{definition}{Définition}[section]
+\newtheorem{example}{Example}[section]
+
+\newtheorem{_proposition}{Proposition}[section]
+\newenvironment{proposition}[1][]{
+    \begin{_proposition}[#1]~\par
+    \vspace*{0.5em}
+}{%
+    \end{_proposition}%
+}
+
+\newenvironment{rdem}[1][]{
+    \begin{tcolorbox}[colframe=black, colback=white!10, sharp corners]
+        #1
+}{%
+    \end{tcolorbox}
+     
+}
+
+\newtheorem{_demonstration}{Démonstration}[section]
+\newenvironment{demonstration}[1][]{
+    \begin{_demonstration}[#1]~\par
+    \vspace*{0.5em}
+}{%
+    \end{_demonstration}%
+    \qed%
+}
+
+\begin{document}
+
+\maketitle
+
+Arrivé apres le premier CM (cours à venir)
+
+\end{document}

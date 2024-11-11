@@ -1,0 +1,208 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{20 septembre 2024}
+
+\title{Ensemble Complex | CM: 3}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Logique avec quantificateurs}
+
+Quand on utilise des quantificateurs il y a des règles à suivre:
+
+\textbf{Règle numéro 1:} Toute lettre dans un énoncé doit être introduite par un quantificateur.
+
+\textbf{Règle numéro 2:} Cette introduction doit se faire avant la première occurence de la variable.
+
+\textbf{Règle numéro 3:} On doit toujours préciser à quel ensemble appartient la variable.
+
+
+\begin{methode}
+    Quand on veut montrer un énoncé universel ($\forall x \in X, P(x)$)
+
+    \vspace{0.5em}
+
+    \item 1) \textbf{"Soit $x \in X$, montrons P(x)."}
+    \item 2) \textbf{raisonnement profond.}
+    \item 3) \textbf{On montre P(x).}
+\end{methode}
+
+\begin{example}
+    $\forall x \in \R, \dfrac{x}{x^2 + 1} \geq \dfrac{-1}{2}$
+
+    \vspace{1em}
+
+    Soit $x \in \R$
+    \begin{align*}
+        \dfrac{x}{x^2 + 1} \geq -\dfrac{1}{2} &\implies 2x \geq -(x^2 + 1) \\
+        &\implies (x^2 + 2x + 1) \geq 0\\
+        &\implies (x + 1)^2 \geq 0
+    \end{align*}
+\end{example}
+
+Pour donner un nom à une quantité/un objet mathématique, on écrit:
+
+\textbf{Posons A := ...}, \textbf{Notons A le ...} ou \textbf{Soit A := ...}.
+
+\begin{methode}
+    Quand on veut montrer qu'il existe x appartenant à A vérifiant P(x),
+
+    Soit on a en tête un exemple d'élément x dans A vérifiant P(x)
+    \item \textbf{Posons x = ...}
+    \item \textbf{Vérifions $x \in A$}
+    \item \textbf{Vérifions P(x)}
+    
+    Soit on essaye d'utiliser des théorèmes d'existence pour montrer qu'un tel x existe.
+\end{methode}
+
+\begin{remark}
+    Les mêmes quantificateurs peuvent être intervertis mais pas quand ils sont différent (un $\forall$ avec un $\exists$).
+\end{remark}
+
+\section{Méthodes de démonstration 2}
+
+\subsection{Unicité d'un objet}
+
+Nous croiserons régulièrement des énoncés du type: "Il y a au plus un élément $x \in X$ vérifiant P(x)".
+
+\begin{methode}
+    Pour montrer qu'un ensemble X contient au plus un élément vérifiant une propriété P, on peut procédé ainsi.
+
+    \item 1) \textbf{Soient x et x' deux élément de X vérifiant P, montrons x = x'}
+    \item 2) \textbf{Raisonnement profond.}
+    \item 3) \textbf{On en conclut l'unicité d'un élément vérifiant P}.
+\end{methode}
+
+\begin{remark}
+    L'unicité ne veut pas dire qu'on a montré l'existence.
+\end{remark}
+
+
+\begin{example}
+    Soit $n \in \N$ Montrer qu'il existe au plus un multiple de 10 dans $X = \{n, n+1, ..., n+5\}$
+
+    \vspace{1em}
+
+    \begin{demonstration}
+        Soient $k, k' \in [0, 5]$ tel que $10 \mid n+k$ et $10 \mid n+k' \implies \exists p \in \Z, n + k = 10p$ et $\exists p' \in \Z, n + k' = 10p'$
+    
+        Par soustraction $(n + k) - (n + k') = 10m - 10m' \implies (k - k') = 10(m - m')$
+
+        Or $-5 \leq (k - k') \leq 5$ et le seul multiple de 10 dans cette intervalle est 0.
+
+        \begin{rdem}
+            Donc $k = k'$ et $n + k = n + k'$. %TODO: à revoir
+        \end{rdem}
+    \end{demonstration}
+\end{example}
+
+\subsection{Analyse synthèse}
+
+\begin{methode}
+    Pour déterminer l'ensemble des éléments d'un ensemble E vérifiant une propriété P, on peut raisonner par analyse/synthèse.
+
+    \vspace{1em}
+
+    \item \textbf{Analyse:} soit $x \in E$. on suppose que x vérifie P.
+    \item ... on regarde les forme possible de x.
+    \item \textbf{Synthèse:} Posons x = ... les différente formes possibles trouvées.
+    \item Vérifions que x vérifie P (et appartient bien à E).
+\end{methode}
+
+\begin{example}
+    Trouvons les couples de nombres réels non-nuls (x, y), solutions du système
+    \begin{equation*}
+        (S)
+        \begin{cases}
+            xy = 2\\
+            \dfrac{y}{x} = 2
+        \end{cases}
+    \end{equation*}
+
+    \begin{demonstration*}
+        \textbf{Analyse:} Soit $(x, y) \in \R^2$
+
+        $xy \times \dfrac{y}{x} = 2 \times 2 \implies y^2 = 4 \implies y = 2 \lor y = -2$
+
+        La ligne 1 (de S) donne $x = \dfrac{2}{y}$
+
+        Donc les seuls couples possibles pour (x, y) sont (1, 2) et (-1, -2)
+
+        \vspace{0.5em}
+
+        \textbf{Synthèse:} On vérifie les deux couples trouvés.
+
+        $1 \time 2 = 2$ et $\dfrac{2}{1} = 2$
+        puis $-1 \times (-2) = 2$ et $\dfrac{-2}{-1} = 2$
+
+        \begin{rdem}
+            Donc (1, 2) et (-1, -2) sont l'ensemble des couples qui sont solutions de S.
+        \end{rdem}
+    \end{demonstration*}
+\end{example}
+
+\subsection{Définition de $\N$ par récurence}
+
+\begin{definition}
+    $\N$ est l'ensemble construit par
+
+    \vspace{1em}
+
+    \item $\N$ contient un élément noté 0.
+    \item Chaque élément $n \in \N$ admet un unique successeur noté succ(n) = n + 1.
+    \item $\forall x \in \N, [succ(x) \neq 0]$.
+    \item $\forall x, y \in \N, [succ(x) = succ(y) \implies x = y]$.
+    \item $\forall A \subset \N, [(0 \in A \land (n \in A \implies succ(n) \in A)) \implies A = \N]$
+    (important pour la récurence).
+\end{definition}
+
+\begin{remark}
+    Avec cette notation par récurence on peut définir $\sum$ par
+    \begin{equation*}
+        \sum_{i=1}^{n}a_i =
+        \begin{cases}
+            0 &\text{ si } n = 0\\
+            (\sum_{i=1}^{n-1}a_i) + a_n &\text{ si } n \geq 1
+        \end{cases}
+    \end{equation*}
+\end{remark}
+
+\begin{methode}
+    Pour montrer une propriété $P_n$ est vrai pour tout entier $n \geq n_0$.
+
+    \item Donner explicitement la propriété $P_n$.
+    \item \textbf{Initialisation:} On montre $P_{n_0}$.
+    \item \textbf{Hérédité:} Soit $n \in \N, n \geq n_0$, tel que $P_n$ est vraie.
+    \item Montrons que $P_{n+1}$.
+\end{methode}
+
+\begin{remark}
+    Il peut arrivé qu'on ne puisse pas déduire $P_{n+1}$ de $P_n$ mais seulement $P_{n+2}$
+    à partir de $P_{n+1}$ et $P_n$, on fait alors une récurence double.
+\end{remark}
+
+\begin{methode}
+    Si $P_{n_0}$ et $P_{n_0+1}$ sont vraies et si $\forall n \in \N, n \geq n_0, (P_n \land P_{n+1} \implies P_{n+2})$
+    
+    Alors $\forall n \in \N, n \geq n_0, P_n$ est vrai.
+\end{methode}
+
+Il existe aussi une récurence forte.
+
+\begin{methode}
+    Si $P_{n_0}$ est vraie et si $\forall n \in \N, n \geq n_0, (\forall k \in \N, n_0 \leq k \leq n, P_k \implies P_{n+1})$
+    
+    Alors $\forall n \in \N, n \geq n_0, P_n$ est vrai.
+\end{methode}
+
+\end{document}

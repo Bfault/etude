@@ -1,0 +1,125 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{18 octobre 2024}
+
+\title{Ensemble Complex | CM: 7}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Soient E et F deux ensembles arbitraires On dit que E et F ont même cardinal
+    s'il existe une bijection entre E et F.
+
+    Soit E un ensemble. On dit que E est dénombrable s'il existe une injection de E dans~$\N$
+\end{definition}
+
+\begin{proposition}
+    $\N^*, \Z, \N^2, \Q, \N^n$ sont dénombrables.
+
+    $\R, P(\N)$ ne sont pas dénombrables
+
+    $P(\N)$ et $\R$ ont même cardinal.
+
+    %todo
+\end{proposition}
+
+\section{Relation et permutations}
+
+\begin{definition}
+    Soit E un ensemble non vide. Une relation binaire R sur E est la donnée d'une application
+    $E \times E \to {\text{Vrai}, \text{Faux}}$.
+
+    On dit que x est en relation avec y lorsque l'image de (x, y) par l'application
+    est "Vrai" et on note alors xRy
+\end{definition}
+
+\begin{remark}
+    %todo
+\end{remark}
+
+\begin{definition}
+    Soit E un ensemble non vide et R une relation binaire sur E. On dit que R est
+
+    \item \textbf{réflexive} lorsque $\forall x \in E, xRx$
+    \item \textbf{symétrique} lorsque $\forall(x, y) \in E^2, xRy \iff yRx$
+    \item \textbf{antisymétrique} lorsque $\forall (x, y) \in E^2, (xRy \land yRx) \implies x = y$
+    \item \textbf{transitive} lorsque $\forall (x, y, z) \in E^3, xRy \land yRz \implies xRz$
+\end{definition}
+
+\begin{definition}
+    Soit R une relation sur un ensemble E. On dit que R est une relation d'équivalence si elle est
+    réflexive, symétrique et transitive.
+\end{definition}
+
+\begin{definition}
+    Soit $E \neq \emptyset$ un ensemble muni d'une rel. d'équivalence R.
+
+    Soit $x \in E$.
+
+    On appelle classe d'équivalence modulo R de x et on note $\o{x}$ l'ensemble $\{x \in E, xRy\}$.
+\end{definition}
+
+\begin{theorem}
+    L'ensemble des classes d'équivalence de E modulo R forme une partition de E.
+\end{theorem}
+
+\begin{demonstration}
+%todo
+\end{demonstration}
+
+\begin{definition}
+    L'ensemble des classes d'équivalence de E modulo R s'appelle l'ensemble quotient
+    de E par R. On le note E/R.
+\end{definition}
+
+\begin{definition}
+    Soit R une relation sur un ensemble E.
+
+    On dit que R est une relation d'ordre si elle est réflexive, antisymétrique et transitive.
+    Notée souvent $\preccurlyeq$ cursif. On dit que $(E, \preccurlyeq)$ est un ensemble ordonné.
+
+    Relation d'ordre totale lorsque R est complète ($\forall x, y \in E, (xRy \lor yRx)$)
+\end{definition}
+
+\begin{definition}
+    Soit $(E, \preccurlyeq)$ ensemble ordonné. Soit $A \in P(E)$. On dit que
+
+    \item A admet un minimum lorsque
+    
+    $\exists a_0 \in A, \forall A, a_0 \preccurlyeq a$ On note $min(A) := a_0$
+
+    \item A admet un maximum lorsque
+    
+    $\exists a_0 \in A, \forall a \in A, a \preccurlyeq a_0$ On note $max(A) := a_0$
+
+    \item A est minoré lorsque
+    
+    $\exists m \in E, \forall a \in A, m \preccurlyeq a$
+
+    %todo
+\end{definition}
+
+\begin{remark}
+    Si A admet un minimum (resp. un maximum) alors A est minoré (resp. majoré)
+\end{remark}
+
+\begin{remark}
+    Si A admet un minimum (resp. maximum), il est unique.
+\end{remark}
+
+\begin{proposition}
+    Soit E un ensemble muni d'une relation d'ordre totale $\preccurlyeq$.
+    Soit $A \in P(E)$ un ensemble fini non-vide. Alors A admet un minimum et un maximum.
+\end{proposition}
+
+\end{document}

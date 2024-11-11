@@ -1,0 +1,182 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{13 septembre 2024}
+
+\title{Ensemble Complex | CM: 2}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Méthodes de démonstration 1}
+
+\subsection{Implication}
+
+Pour démontrer un énoncé du type $P \implies Q$ (Si P alors Q)
+
+\begin{methode}
+    On suppose P.
+    
+    raisonnement profond.
+
+    on en conclut Q.
+\end{methode}
+
+
+\begin{example}
+    \begin{align*}
+        \text{Démontrons que }x \in \mathbb{R} \implies x + 1 \in \mathbb{R}_+
+    \end{align*}
+    On suppose $x \in \mathbb{R}$
+    \begin{flalign*}
+        &x \geq 0&& \\
+        &x + 1 \geq 0 + 1 \geq 0&&
+    \end{flalign*}
+    Donc $x + 1 \in \mathbb{R}_+$
+\end{example}
+
+\begin{remark}
+    $A \subset B$ ($A, B \subset E$) par définition se traduit par $\forall x \in E, x \in A \implies x \in B$
+\end{remark}
+
+\subsection{Règle d'inférence ("Déduction naturelle")}
+
+Supposons A, B deux formules logiques dépendant d'énoncés élémentaires P, Q, R, ...
+Imaginons que pour chaque ligne de la table de vérité où A est vrai, B l'est également.
+Ainsi lorsqu'on a A on pourra déduire B
+
+\begin{example}
+    Supposons $P \implies P \lor Q$
+
+    Quand P est vrai $P \lor Q$ est vrai.
+\end{example}
+
+\subsection{Disjonction de cas}
+
+De même une tautologie est une règle qui est toujours vraie. Un exemple ($P \lor \neg Q$).
+
+\begin{example}
+    Théorème si $x \in \mathbb{N}$ alors $x(x + 1)$ pair.
+
+    \vspace{1em}
+
+    Si x est pair alors $x = 2k, k \in \mathbb{N}$.
+
+    $x(x + 1) = 2(k(x + 1))$ est pair.
+
+    \vspace{1em}
+
+    Si x est impair $x + 1$ est pair implique $\exists k \in \mathbb{N}, (x + 1) = 2k$.
+
+    $x(x + 1) = x + 2k = 2(kx)$ implique $x(x + 1)$ pair.
+
+    \vspace{1em}
+
+    Conclusion: Dans tous les cas $x(x + 1)$ est pair.
+    
+    C'est un raisonnement par disjonction de cas.
+\end{example}
+
+\begin{methode}
+    Plus généralement si $A \lor B \lor C \lor ...$ est une tautologie alors la méthode de la démonstration
+
+    \vspace{0.5em}
+
+    \item \textbf{1) Suppose A}
+    \item \textbf{raisonnement profond}
+    \item \textbf{conclusion}
+    \item \textbf{2) Suppose B}
+    \item \textbf{raisonnement profond}
+    \item \textbf{même conclusion}
+    \item \textbf{3) \ldots}
+    \item \textbf{Donc la conclusion est vrai dans tous les cas}
+\end{methode}
+
+\begin{remark}
+    Pour trouver des synonyme en regardant toute les valeurs dans une table de vérités, on utilise une disjonction de cas.
+\end{remark}
+
+\begin{example}
+    Soit un entier n, n est impair ou $n^2$ est un multiple de 4.
+
+    \vspace{1em}
+
+    Supposons que n ne soit pas impair.
+
+    Alors n est pair, donc il existe $k \in \Z$ tel que $n = 2k$
+
+    Ainsi $n^2 = (2k)^2 = 4k^2$.
+
+    $n^2$ est un multiple de 4.
+\end{example}
+
+\subsection{La double implication}
+
+Si vous souhaitez montrer que $P \iff Q$, il suffit de montrer $P \implies Q$ et $Q \implies P$.
+
+\begin{example}
+    $x \in \N \iff x + 1 \in \N^*$
+
+    1) Supposons que $x \in \N$, donc $x \geq 0 \implies x + 1 \geq 1$
+
+    Ainsi $x + 1 \in \N^*$
+
+    2) Supposons que $x + 1 \in \N^*$, donc $x + 1 \geq 1 \implies x + 1 - 1 \geq 1 - 1 \implies x \geq 0$.
+
+        La soustraction est stable sur $\Z$, de plus $x \geq 0$ donc $x \in \Z_+ \equiv \N$
+\end{example}
+
+\begin{remark}
+    Régulièrement utilisé pour montre que deux ensembles sont égaux, on montre $A \subset B$ et $B \subset A$.
+    Cela s'appelle la \textbf{double inclusion}.
+\end{remark}
+
+\subsection{Raisonnement par contraposée}
+
+$P \implies Q$ est synonyme à $\neg Q \implies \neg P$, ça se prouve facilement en comparant leurs tables de vérités.
+
+\begin{example}
+    Soit $n \in \N$, montrer que si $n^2$ alors n est pair.
+
+    \vspace{0.5em}
+
+    Supposons que n est impair, alors il existe $k \in \Z, n = 2k + 1$
+
+    Ainsi $n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$ est impair.
+
+    n impair implique $n^2$ impair donc $n^2$ pair implque n pair (la proposition de base).
+\end{example}
+
+\subsection{Raisonnement par l'absurde}
+
+Pour montrer que P est vrai, on peut supposer P faux et arriver à une contradiction.
+
+\begin{example}
+    Montrons que $\sqrt{2}$ est irrationnel.
+
+    \begin{demonstration*}
+        On suppose que $\sqrt{2}$ est rationnel, i.e. on peut écrire $\sqrt{2} = \dfrac{a}{b}$ avec $a \in \Z, b \in \N$ (et $pgcd(a, b) = 1$).
+
+        $\sqrt{2} = \dfrac{a}{b} \implies 2 = \dfrac{a^2}{b^2} \implies 2b^2 = a^2$
+
+        Ainsi $a^2$ est pair et avec le raisonnement précédent a est aussi pair (donc $a = 2k$ avec $k \in \Z$).
+
+        $2b^2 = (2k)^2 \implies 2b^2 = 4k^2 \implies b^2 = 2k^2$
+
+        Ainsi $b^2$ est pair et b aussi.
+
+        \begin{rdem}
+            Absurde a et b sont premiers entre eux, ils ne peuvent pas être tous les deux multiple de 2.
+        \end{rdem}
+    \end{demonstration*}
+\end{example}
+
+\end{document}

@@ -1,0 +1,103 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{13 septembre 2024}
+
+\title{Science Decision | CM: 2}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+
+\section{Relations binaires}
+
+\begin{definition}
+    Une relation binaire R sur un ensemble X est un sous-ensemble de paires ordonnées $(x, y) \in X^2$,
+    on simplifie la notation par $xRy$ (resp. $\neg xRy$) pour $(x, y) \in R$ (resp. $(x, y) \notin R$).
+\end{definition}
+
+\vspace{1em}
+
+\begin{proprietes}
+\item {
+    \textbf{réflexive} si
+    \begin{align*}
+        \forall x \in X, \; xRx
+    \end{align*}
+}
+\item {
+    \textbf{irréflexive} si
+    \begin{align*}
+        \forall x \in X, \; \neg(xRx)
+    \end{align*}
+}
+\item {
+    \textbf{symétrique} si
+    \begin{align*}
+        \forall x, y \in X, \; xRy \implies yRx
+    \end{align*}
+}
+\item {
+    \textbf{asymétrique} si
+    \begin{align*}
+        \forall x, y \in X, \; xRy \implies \neg(yRx)
+    \end{align*}
+}
+\item {
+    \textbf{antisymétrique} si
+    \begin{align*}
+        \forall x, y \in X, \; xRy \land yRx \implies x = y
+    \end{align*}
+}
+\item {
+    \textbf{transitive} si
+    \begin{align*}
+        \forall x, y, z \in X, \; xRy \land yRz \implies xRz
+    \end{align*}
+}
+\item {
+    \textbf{négativement transitive} si
+    \begin{align*}
+        \forall x, y, z \in X, \; \neg(xRy) \land \neg(yRz) \implies \neg(xRz)
+    \end{align*}
+}\item {
+    \textbf{complète (ou totale)} si
+    \begin{align*}
+        \forall x, y \in X, \; xRy \lor yRx
+    \end{align*}
+}
+\end{proprietes}
+
+\begin{remark}
+    la notation $xRy$ peut être remplacé par $(x, y) \in R$, par exemple pour la réflexivité, ($\forall x \in X, \; (x, x) \in R$).
+\end{remark}
+
+\vspace{2em}
+
+Une relation qui satisfait certaines propriétés peut porter un nom.
+
+\begin{ldefinition}
+\item Une \textbf{relation d'équivalence} si elle est réfléxive, symétrique et transitive.
+\item Un \textbf{préordre (ou quasi ordre)} si elle est réflexive et transitive.
+\item Un \textbf{ordre faible (ou préordre total)} si elle est transitive et complète.
+\item Un \textbf{ordre faible strict} si elle est asymétrique et négativement transitive.
+\item Un \textbf{ordre partiel} si elle est réflexive, antisymétrique et transitive.
+\item Un \textbf{ordre partiel (ou ordre, ordre linéaire, chaîne)} si elle est antisymétrique, transitive et complète.
+\end{ldefinition}
+
+\begin{lexample}
+\item $\R$ est totalement ordonnées par $\geq$ et est appelé l'ordre naturel sur $\R$.
+\item $\N$ avec $\gt$ est un ordre faible strict.
+\item Deux entiers relatifs x et y sont congrus modulo $p \in \N$, s'il existe $k \in \N$ tel que $x = y + kp$, ce que l'on note $x \equiv y[p]$.
+    La relation de congruence modulo sur $\Z$ est une relation d'équivalence.
+\end{lexample}
+
+\end{document}

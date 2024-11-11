@@ -1,0 +1,81 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{19 septembre 2024}
+
+\title{Science Decision | CM: 3}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{proposition}
+    Si R est asymétrique alors R est réflexive.
+\end{proposition}
+
+\noindent
+Démontré trivialement par les définitions d'asymétrie et de réflexivité.
+
+\begin{proposition}
+    Si R est irréflexive et transitive alors R est asymétrique.
+\end{proposition}
+
+\begin{demonstration}
+    On suppose que R est irréflexive, transitive et non asymétrique.
+
+    \vspace{0.5em}
+
+    La non asymétrie se traduit par
+    \begin{align*}
+        \neg(\forall x, y \in X, \; xRy \implies \neg(yRx)) \quad \equiv \quad \exists x, y \in X, \; xRy \land yRx 
+    \end{align*}
+
+    Ainsi avec la non asymétrie et la transitivité on arrive à
+    \begin{align*}
+        &\exists x, y \in X, \; xRy \land yRx \quad \land \quad \forall x, y, z \in X, \; xRy \land yRz \implies xRz \\
+        &\equiv \quad \exists x, y \in X, \; xRy \land yRx \implies xRx
+    \end{align*}
+
+    Ce qui est absurde car ça contredit l'irréflexivité !!!
+
+    \begin{rdem}
+        Donc Si R est irréflexive et transitive alors R est asymétrique.
+    \end{rdem}
+\end{demonstration}
+
+\begin{proposition}
+    R est négativement transitive ssi
+    \begin{align*}
+        \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+    \end{align*}
+\end{proposition}
+
+\begin{demonstration}
+    Utilisons la contraposée du négativement transitive \par (Rappel la contraposée de $P \implies Q$ est $\neg Q \implies \neg P$),
+
+    \begin{align*}
+        &\forall x, y, z \in X, \; \neg(\neg(xRz)) \implies \neg(\neg xRy \land \neg yRz) \\
+        &\equiv \quad \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+    \end{align*}
+
+    \begin{rdem}
+        Ainsi R est négativement transitive ssi
+        \begin{align*}
+            \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+        \end{align*}
+    \end{rdem}
+\end{demonstration}
+
+\begin{proposition}
+    Si R est complète alors R est réflexive 
+\end{proposition}
+Démontré facilement par définition en prenant un x et un $y = x$.
+
+\end{document}

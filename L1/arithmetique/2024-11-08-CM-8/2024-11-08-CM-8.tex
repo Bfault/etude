@@ -1,0 +1,117 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{08 novembre 2024}
+
+\title{Arithmetique | CM: 8}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}
+    Soient $n_1, n_2, ..., n_k \in \N^*$, tels que $\forall i, n_i \geq 2$, avec les $n_i$ deux à deux premiers entre eux.
+    Alors pour tous $a_1, ..., a_k \in \Z$, il existe $x \in \Z$, unique modulo
+    $n := \Pi n_i$, tel que
+
+    $$
+        \forall i \in [|1, k|], x \equiv a_i mod n_i
+    $$
+    %todo
+
+    Plus formellement, on a une application bijective,
+
+    $$
+    \{ \Z/n\Z \to (\Z/n_1\Z) \times ... \times (\Z/n_k\Z)
+    \{ x mod n \mapsto (x mod n_1, ..., x mod n_k)
+    $$
+    %todo
+\end{theorem}
+
+\begin{demonstration}
+    Montrons deja que
+
+    $PGCD(\Pi_{i=1}^{k-1} n_i, n_k) = 1$
+
+    Soit p un facteur premier de $\Pi_{i=1}^{k-1} n_i$
+    Alors p divise l'un des $n_i$.
+
+    Comme $n_i$ et $n_k$ sont premier entre eux p ne divise pas nk.
+
+    Donc $\Pi_{i=1}^{k-1} n_i$ et $n_k$ n'ont pas de facteur premier en commun : leurs PGCD est 1.
+
+    De même pour $i \in [|1;k|]$ $PGCD(\Pi_{i\neq j} n_j, n_i) = 1$.
+
+    Ainsi on pose une relation de Bezout
+
+    $$
+        (\Pi_{i\neq j} n_j) u_i + n_i v_i = 1
+    $$
+
+    Soit $x_i := (\Pi_{j \neq i} n_j)u_i$
+
+    Alors $x_i \equiv \{ 0 mod n_j si j \neq i \{ 1 mod n_i$
+    %todo
+
+    On pose $x = \Sigma_{i=1}^k a_i x_i$ alors $x \equiv a_i mod n_i$
+
+    Si $y = x + qn$ alors $y = x + q \Pi_{j=1}^k n_j = x + q(\Pi_{j=1}^k n_j) n_i \equiv x mod n_i \equiv x_i mod n_i$
+
+    En particulier l'application $\phi$ est bien définie
+
+    D'après la première partie, $\phi$ est surjective.
+
+    Il nous reste à démontrer l'injectivité qui est equivalente à l'unicité modulo n.
+
+    Regardons les cardinaux $Card(\Z/n\Z) = n$
+
+    $Card(\Z/n_1\Z \times ... \times \Z/n_k\Z) = n_1 \times ... \times n_k = n$
+
+    Ainsi $\phi$ est injective
+\end{demonstration}
+
+\begin{remark}
+    $\phi$ est un "isomorphisme" d'anneau
+\end{remark}
+
+Pour $k = z$
+
+$$
+\{ x \equiv a_1 mod n_1      \{ x =  a_1 + k_1 n_1
+\{ x \equiv a_2 mod n_2 \iff \{ x = a_2 + k_2 n_2
+$$
+%todo
+% replace also phi by varphi
+
+Alors $a_1 + k_1 n_1 = a_2 + k_2 n_2 \iff k_1 n_1 - k_2 n_2 = a_2 - a_1$
+
+c'est une équation diophotienne qu'on sait résoudre
+
+Ensuite, il suffit de poser $x = a_1 + k_1 n_1$
+
+\section{Polynômes et Fractions rationnelles}
+
+\begin{definition}
+    Un \textbf{polynôme à coefficient dans} $\k$: une suite $A = \xn{a}$
+    telle que $\exists N \in \N, \forall n \gt N, a_n = 0$.
+
+    On écrira souvent $A = a_0 + a_1X + a_2X^2 + ... + a_NX^N = \Sigma_{i=0}^N a_iX^i = \Sigma_{i \in \N} a_iX^i = \Sigma a_iX^i$
+
+    \item $\k[X]$ = \{polynômes à coefficients dans $\k$\}
+    \item \textbf{polynôme nul} : tous les coefficients sont nuls.
+    \item \textbf{polynôme constant} : $\forall i \gt 0, a_i = 0$ ($A = cX^0 = c$ où $c \in \k$)
+    \item \textbf{monôme} : polynôme de la forme %TODO
+\end{definition}
+
+Symbole de Kronecker $\delta_{i,j} = 1$ si i = j sinon 0
+
+%TODO jusqu'a proposition anneau comm unitaire
+
+\end{document}

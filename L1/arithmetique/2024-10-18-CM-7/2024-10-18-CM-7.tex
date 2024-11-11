@@ -1,0 +1,88 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{18 octobre 2024}
+
+\title{Arithmétique | CM: 7}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+%todo
+
+\begin{definition}
+    On note $\Z/n\Z$ l'ensemble des classes de congruences.
+
+    $\Z/n\Z = \{\overline{0}, \overline{1}, ..., \overline{n-1}\}$ est un ensemble fini à n élements.
+\end{definition}
+
+\begin{proposition}
+    Soient a, a', b, b' dans $\Z$ tels que $a \equiv a' [n]$ et $b \equiv b' [n]$
+    Alors $a + b \equiv a' + b' [n]$
+\end{proposition}
+
+\begin{demonstration}
+    $(a - a') = kn$ et $(b - b') = k'n$
+
+    $(a + b) - (a' + b') = a - a' + b - b' = kn + k'n = (k + k')n$
+
+    Donc $a + b \equiv a' + b' [n]$
+\end{demonstration}
+
+\begin{definition}
+    Soient $a, b \in \Z$. On pose dans $\Z/n\Z: \overline{a} + \overline{b} = \overline{a + b}$ et $\overline{a} \times \overline{b} = \overline{a \times b}$
+\end{definition}
+
+\begin{proposition}
+    $(\Z/n\Z, +, \times)$ est un anneau commutatif.
+
+    $\overline{0}$ est l'élement neutre pour l'addition et $\overline{1}$ est l'élement neutre pour la multiplication.
+\end{proposition}
+
+\begin{demonstration}
+    %todo
+\end{demonstration}
+
+On peut faire des tables d'addition et de multiplication dans $\Z/n\Z$
+
+\begin{example}
+    %todo
+\end{example}
+
+\begin{lemme}
+    Soient a et b dans $\Z$ tels que $a \equiv b [n]$.
+
+    Pour tout $p \in \N^*, a^p \equiv b^p [n]$
+\end{lemme}
+
+\begin{demonstration}
+    Dans $\Z/n\Z$ on veut montrer que $\o{a^p} = \o{b^p}$
+
+    Or $\o{a^p} = \o{a \times ... \times a} = \o{a} \times ... \times \o{a} =$
+    %todo
+\end{demonstration}
+
+\begin{remark}
+    En revanche on n'a pas $p \equiv q [n] \implies a^p \equiv a^q [n]$
+\end{remark}
+
+\begin{theorem}
+    $\{\Z/n\Z, +, \times\}$ est un corps si et seulement si n est premier.
+\end{theorem}
+
+\begin{demonstration}
+    Dire que $\o{a}$ est inversible dans $\Z/n\Z$ c'est dire
+    qu'il existe $\o{u}$ tel que $\o{a}\o{u} = \o{1} \iff \exists u \in \Z, \exists k \in \Z, au = 1 + kn \iff \exists u \in \Z, \exists k' \in \Z, au + k'n = 1$
+    Cette équation a des solutions si n et m sont premier entre eux (bezout)
+    %todo
+\end{demonstration}
+
+\end{document}
