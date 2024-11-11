@@ -1,0 +1,168 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{27 septembre 2024}
+
+\title{Ensemble Complex | CM: 4}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Théorie des ensembles}
+
+\subsection{Opérations sur les ensembles}
+
+\begin{definition}
+    Un ensemble est une collection d'éléments. Il est défini par la connaissance de ses éléments.
+
+    Soit A un ensemble $a \in A$ signifie que a appartient à A. On dit alors que a est un élément de A.
+\end{definition}
+
+\begin{remark}
+    La définition d'un ensemble peut se faire des façon suivante:
+
+    \item $\bullet$ liste exaustive ({1, 2, 3})
+    \item $\bullet$ paramétrique ($\{2x + 1 \mid x \in \N\}$)
+    \item $\bullet$ inplicite ($\{x \in \R \mid x(x+1) \gt 0\}$)
+\end{remark}
+
+\begin{remark}
+    Dans un ensemble l'ordre et la répétition n'a pas son importance.
+\end{remark}
+
+\begin{definition}
+    Soient A et B deux ensembles. On dit que A est un sous-ensemble de B lorsque $\forall x \in A, x \in B$, on note plus $A \subset B$.
+
+    Soit A un ensemble fini, le cardinal de A est le nombre d'éléments de A, noté $card A$.
+
+    Un ensemble avec un seul élément est un singleton.
+
+    Un ensemble qui ne contient aucun éléments est appelé l'ensemble vide (noté $\emptyset$ ou \{\}),
+    c'est un sous ensemble de tout les ensembles.
+\end{definition}
+
+\begin{remark}
+    Un quantificateur universelle sur l'ensemble vide est automatiquement vérifié.
+    (e.g. $\forall x \in \emptyset, P(x)$)
+\end{remark}
+
+\begin{definition}
+    Soient A, B des parties d'un ensemble E.
+
+    La réunion de A et de B, notée $A \cup B$ est la partie de E dont les éléments sont éléments de A ou de B.
+
+    $A \cup B = \{x \in E, x \in A \lor x \in B\}$
+\end{definition}
+
+\begin{definition}
+    Soient A, B des parties d'un ensemble E.
+
+    L'intersection de A et de B, notée $A \cap B$ est la partie de E dont les éléments sont éléments de A et de B.
+
+    $A \cap B = \{x \in E, x \in A \land x \in B\}$
+\end{definition}
+
+\begin{remark}
+    La réunion n'est pas un ou exclusive.
+\end{remark}
+
+\begin{remark}
+    $A \cup B$ est le plus petit ensemble contenant A et B
+\end{remark}
+
+\begin{remark}
+    $A \cap B$ est le plus grand ensemble contenu dans A et B
+\end{remark}
+
+\begin{remark}
+    Comme un élement peut seulement être ou ne pas être dans un ensemble, on peut faire une disjonction de cas.
+\end{remark}
+
+\begin{definition}
+    Soient A, B deux sous ensemble d'un ensemble E.
+
+    \item $\bullet$ A et B sont dits disjoints si $A \cap B = \emptyset$
+    \item $\bullet$ Le complémentaire de A dans E est la partie de E dont les éléments sont tous les éléments de E qui ne sont pas dans A.
+    On le note $E\backslash A = \{x \in E \mid x \notin A\}$. Autres notations: $C_E A$ ou $A^C$
+    \item $\bullet$ La différence symétrique de A et B, notée $A \Delta B := (A \backslash B) \cup (B \backslash A)$
+\end{definition}
+
+%todo
+
+\begin{definition}
+    Soit I un ensemble, Soient $(A_i)_{i \in I}$ des sous ensembles d'une ensemble E.
+
+    L'intersection des $A_i$ est $\Cap_{i \in I} A_i := \{x \in E, \forall i \in I, x \in A_i\}$
+    
+    L'union des $A_i$ est $\Cup_{i \in I} A_i := \{x \in E, \exists i \in I, x \in A_i\}$
+
+    Par convention: si  $I = \emptyset$ alors $\Cup_{i \in I} A_i := 0$ et $I = \emptyset$ alors $\Cap_{i \in I} A_i := E$
+\end{definition}
+
+\begin{definition}
+    Soient A, B deux sous ensembles non vides de E.
+
+    A et B sont complémentaires dans E ou forment une partition de E si
+    $E = A \cup B$ et $A \cap B = \emptyset$
+    %todo A_i partition de E
+\end{definition}
+
+\begin{remark}
+    Le non complémentaire vient du fait qu'une autre définition soit $A = E\backslash B \iff B = E\backslash A$
+\end{remark}
+
+Soit E un ensemble. On note $P(E)$ l'ensemble des parties de E.
+
+\begin{remark}
+    Il est équivalent d'écrire $A \subset E$ ou $A \in P(E)$
+\end{remark}
+
+\begin{remark}
+    Pour tout ensemble E, on a $\emptyset \in P(E)$ et $E \in P(E)$
+\end{remark}
+
+\begin{theorem}
+    Lorsque $card(E) = n$ avec $n \in \N$ alors $card(P(E)) = 2^n$
+\end{theorem}
+
+\begin{demonstration}
+\textbf{Initialisation:} $card(E) = 0 \implies E = \emptyset$ alors $P(E) = \{\emptyset\}$ donc $card(P(E)) = 1 = 2^0$ 
+
+\textbf{Hérédité:} Soit E de cardinal $n \geq 1$. Soit $a \in E$, $F = E\backslash \{a\}$
+
+$card(F) = n - 1$
+
+Les parties de E sont les X et les $X \cup \{a\}$ où $X \in P(F)$
+
+Ainsi card(P(E)) = card(P(F)) + card(P(F))
+%todo
+\end{demonstration}
+
+\begin{definition}
+    Soient E et F deux ensembles.
+
+    Le produit cartésien de E par F est l'ensemble $E \times F = \{(x, y) \mid x \in E \land y \in F\}$
+\end{definition}
+
+\begin{remark}
+    Attention ce n'est pas commutatif, $E \times F \neq F \times E$
+\end{remark}
+
+\begin{definition}
+    Soient $E_1, E_2, ..., E_n$ des ensembles.
+
+    $E_1 \times E_2 \times ... \times E_n = \{(x_1, x_2, ..., x_n), \forall i \in \{1, 2, ..., n\}, x_i \in E_i\}$
+
+    $(x_1, x_2, ..., x_n)$ est appelé un n-uplet.
+    %todo E^n
+\end{definition}
+
+\end{document}

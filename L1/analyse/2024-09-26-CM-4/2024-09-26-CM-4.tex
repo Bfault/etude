@@ -1,0 +1,119 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{26 septembre 2024}
+
+\title{Analyse | CM: 4}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Majorants et minorants}
+
+\begin{definition}
+    Soit A une partie non vide de $\R$, un réel M est dit majorant de A si il vérifie $\forall x \in A, \; M \geq x$
+\end{definition}
+
+\begin{definition}
+    Soit A une partie non vide de $\R$, un réel m est dit minorant de A si il vérifie $\forall x \in A, \; m \leq x$
+\end{definition}
+
+\begin{remark}
+    Le majorant et minorant n'appartiennent pas forcément à l'ensemble A.
+\end{remark}
+
+\begin{definition}
+    Si un majorant (resp. minorant) de A existe, on dit que A est majorée (resp. minorée). On dit que A est bornée si A est majorée et minorée.
+\end{definition}
+
+\subsection{Bornes supérieures et bornes inférieures}
+
+\begin{definition}
+    Soit A un partie non vide de $\R$.
+
+    \item \textbf{1.} On dit que M est la borne supérieure de A, si M est un majorant de A et que M est le plus petit des majorants.
+        Si il existe on note M = sup A.
+    \item \textbf{2.} On dit que m est la borne inférieure de A, si m est un minorant de A et que m est le plus grand des minorant.
+        Si il existe on note m = inf A.
+\end{definition}
+
+\begin{remark}
+    sup A et inf A n'appartiennent pas forcément à A. Mais si ils appartiennent à l'ensemble ils deviennent max A et min A respectivement.
+\end{remark}
+
+\begin{example}
+    Posons $A := [0, 1[$,
+
+    $min A = 0$ et $max A$ n'existe pas.
+
+    les minorants de A sont $]-\infty, 0]$ et les majorants de A sont $[1, +\infty[$
+    
+    $inf A = 0$ et $sup A = 1$
+\end{example}
+
+\begin{proposition}
+    Soit A une partie non vide de $\R$ et majorée. La borne supérieure est l'unique réel sup A, tel que
+    
+    \item (i)$\forall x \in A, \; x \leq sup A$ et
+    \item (ii) $\forall y \in \R, \; y \lt sup A \implies (\exists x \in A, y \lt x)$
+\end{proposition}
+
+\begin{demonstration}
+    Montrons que sup A vérifie (i) et (ii).
+
+    \begin{rdem}
+        Comme sup A est un majorant, elle vérifie (i)
+    \end{rdem}
+
+    Posons $y \lt sup A$, comme sup A est le plus petit des majorants, y ne peut pas être un majorant de A.
+    
+    \begin{rdem}
+        Donc $\exists x \in A, \; y < x$
+    \end{rdem}
+
+    Soit M un réel qui vérifie (i) et (ii), supposons que M n'est pas le plus petit des majorants.
+    Il existe un autre majorant y, tel que $y \lt M$.
+
+    \begin{rdem}
+        Mais d'après (ii) $\exists x \in A, \; y < x$, donc y n'est pas un majorant de A.
+    \end{rdem}
+\end{demonstration}
+
+\begin{theorem}
+    Toute partie non vide de $\R$ majorée admet une borne supérieure.
+\end{theorem}
+
+\begin{theorem}
+    Toute partie non vide de $\R$ minorée admet une borne inférieure.
+\end{theorem}
+
+\begin{proposition}
+    Soit A une partie non vide majorée de $\R$. La borne supérieure est l'unique réel sup A, tel que
+
+    \item (i) sup A est un majorant de A
+    \item (ii) il existe une suite $(x_n)_{n \in \N}$ d'éléments de A qui converge vers sup A.
+\end{proposition}
+
+\section{Les suites}
+
+\subsection{Définition d'une suite}
+
+\begin{definition}
+    Une suite est l'application
+    \begin{align*}
+        u: \N &\longrightarrow \R\\
+        n &\longmapsto u(n)
+    \end{align*}
+    Pour $n \in \N$, on note $u(n)$, ou plus souvent $u_n$, le n-ième terme de la suite.
+    On écrit~$(u_n)_{n \in \N}$
+\end{definition}
+
+\end{document}

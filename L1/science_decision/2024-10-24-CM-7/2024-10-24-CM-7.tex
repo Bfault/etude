@@ -1,0 +1,51 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{24 octobre 2024}
+
+\title{Science Decision | CM: 7}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Ordre total, Ordre partiel}
+
+R ordre partiel sur X
+
+Soit $x \in X$, x est:
+
+\begin{itemize}
+    \item un élément maximal si $\forall y \in X\backslash\{x\}, \neg (yRx)$
+    \item le plus grand élément si $\forall y \in X, xRy$
+    \item un élément minimal si $\forall y \in X\backslash\{x\}, \neg (xRy)$
+    \item le plus petit élément si $\forall y \in X, yRx$
+\end{itemize}
+
+\begin{proposition}
+    Il y a au plus un plus grand (resp. petit) élément.
+\end{proposition}
+
+\begin{demonstration}
+    Soit x et x' deux plus grand (resp. petit) éléments avec $x \neq x'$.
+
+    Ainsi $\forall y \in X, xRy \text{ et } x'Ry \implies xRx' \text{ et } x'Rx \implies x = x'$
+
+    Absurde car on a supposé $x \neq x'$
+\end{demonstration}
+
+Construction de diagramme de Hasse
+\begin{itemize}
+    \item si xRy : x au dessus de y
+    \item et si x \textbf{couvre} y : il n'existe pas $z \in X\backslash\{x, y\}$ tel que $xRz \land zRy$
+    \item alors il y a une arête qui relie x et y
+\end{itemize}
+
+\end{document}

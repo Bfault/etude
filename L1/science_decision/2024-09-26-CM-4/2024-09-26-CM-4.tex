@@ -1,0 +1,66 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{26 septembre 2024}
+
+\title{Science Decision | CM: 4}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Opérations sur les relations}
+
+Puisque une relation R sur X est un sous ensemble de $X \times X$, on peut facilement utiliser
+des opérations ensemblistes.
+
+\begin{definition}
+    Étant donné deux relation $R_1$ et $R_2$ sur un ensemble X.
+
+    \item $\bullet$ la relation \textbf{complémentaire} de $R_1$, la relation binaire $R_1^c$ sur X telle que
+    
+    $\forall x, y \in X, \; x R_1^c y \text{ si } \neg(x R_1 y)$
+    \item $\bullet$ la \textbf{réunion} de $R_1$ et $R_2$ est la relation binaire $R_1 \cup R_2$ sur X telle que
+    
+    $\forall x, y \in X, \; x R_1 \cup R_2 y \text{ si } x R_1 y \lor x R_2 y$
+    \item $\bullet$ l'\textbf{intersection} de $R_1$ et $R_2$ est la relation binaire $R_1 \cap R_2$ telle que
+    
+    $\forall x, y \in X, \; x R_1 \cap R_2 y \text{ si } x R_1 y \land x R_2 y$
+    \item $\bullet$ la relation $R_1$ est \textbf{compatible} avec $R_2$ si
+    
+    $\forall x, y \in X, \; x R_1 y \implies x R_2 y$ ou de manière équivalente $R_1 \subset R_2$
+    \item $\bullet$ la relation \textbf{réciproque} (ou duale, inverse) de $R_1$,
+    la relation binaire $R_1^{-1}$ sur X telle que
+    
+    $\forall x, y \in X, \; y R_1^{-1} x \text{ si } x R_1 y$
+    \item $\bullet$ la \textbf{composée} de $R_1$ et $R_2$,
+    la relation binaire $R_1 \circ R_2$ sur X telle que
+
+    $\forall x, y \in X, \; x R_1 \circ R_2 y \text{ si }\exists z \in X, x R_2 z \land z R_1 y$
+\end{definition}
+
+\subsection{Relations d'équivalence}
+
+\begin{proposition}
+    L'intersection $R_1 \cap R_2$ de deux relations d'équivalences $R_1$ et $R_2$ sur un ensemble X est une relation d'équivalence.
+\end{proposition}
+
+\begin{demonstration}
+    \item $\bullet$ \textbf{Réflexive} car $\forall x \in X, \; x R_1 x \land x R_2 x$, ainsi $x R_1 \cap R_2 x$ pour tout $x \in X$.
+    \item $\bullet$ \textbf{Symétrie} car $\forall x, y \in X, \; (x R_1 y \land y R_1 x) \land (x R_2 y \land y R_2 x)$, ainsi $\forall x, y \in X, \; x R_1 y \land x R_2 y$ ce qui implique que $y R_1 x \land y R_2 x$
+    soit $\forall x, y \in X, \; (x R_1 y \land y R_2 x) \land (x R_2 y \land y R_1 x)$.
+    \item $\bullet$ \textbf{Transitive} car $\forall x, y \in X, x R_1 y \land x R_2 y \land y R_1 z \land y R_2 z \implies xR_1z \land xR_2z \implies x R_1 \cap R_2 z$
+    
+    \begin{rdem}
+        $R_1 \cap R_2$ est Réflexive, Symétrique, Transitive donc c'est une relation d'équivalence.
+    \end{rdem}
+\end{demonstration}
+
+\end{document}

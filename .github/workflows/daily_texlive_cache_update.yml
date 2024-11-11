@@ -1,0 +1,42 @@
+name: Update TexLive Cache
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch: {}
+
+jobs:
+  update_cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cache apt packages and lists
+        uses: actions/cache@v3
+        with:
+          path: |
+            /var/cache/apt/archives
+            /var/lib/apt/lists
+          key: ${{ runner.os }}-apt-texlive
+          restore-keys: |
+            ${{ runner.os }}-apt-texlive
+  
+      - name: Update package lists
+        run: |
+          if [[ -f /var/lib/apt/lists/lock ]]; then
+            sudo rm /var/lib/apt/lists/lock
+          fi
+          if [[ -f /var/cache/apt/archives/lock ]]; then
+            sudo rm /var/cache/apt/archives/lock
+          fi
+
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            texlive-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-luatex
+      - name: Fix permissions
+        run: |
+          sudo chown -R runner:docker /var/lib/apt/lists/
+          sudo chown -R runner:docker /var/cache/apt/archives/

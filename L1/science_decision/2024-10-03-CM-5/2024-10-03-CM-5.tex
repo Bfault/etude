@@ -1,0 +1,63 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{03 octobre 2024}
+
+\title{Science Decision | CM: 5}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+Soit $x \in X$ l'ensemble $\{y \in X \mid xRy\}$ est appelé classe d'équivalence
+de x notée $C_x$.
+
+\begin{example}
+    "=" sur $\N$
+
+    \item $\bullet$ $\forall a \in \N, a = a$ (Réflexive)
+    \item $\bullet$ $\forall a, b \in \N, a = b \implies b = a$ (Symétrique)
+    \item $\bullet$ $\forall a, b, c \in \N, a = b \land b = c \implies a = c$ (Transitive)
+
+    "=" est une relation d'équivalence sur $\N$
+
+    $C_2 = \{y \in \N, 2 = y\} = \{2\}$
+\end{example}
+
+$\{C_x \mid x \in X\}$ est l'ensemble quotient de X par R noté X/R.
+
+\begin{proposition}
+    Soit R une relation d'équivalence sur X, X/R forme une partition de X,
+    i.e.
+
+    \item $\bullet$ $\forall x, y \in X, C_x \cap C_y = \emptyset \text{ ou } C_x = C_y$
+    \item $\bullet$ $X = \bigcup_{x \in X} C_x$
+\end{proposition}
+
+\begin{demonstration}
+    Nous allons montrer que
+
+    $\forall x, y \in X, \; xRy \implies C_x = C_y$
+
+    $\forall x, y \in X, \; \neg xRy \implies C_x \cap C_y = \emptyset$
+
+    Soient $x, y \in X$
+
+    so $xRy$ soit $z \in C_x$ alors xRz
+    %todo
+\end{demonstration}
+
+\begin{remark}
+    Pour une relation binaire il est toujours vrai que $\forall x, y \in X, xRy \lor \neg xRy$
+\end{remark}
+
+%todo
+
+\end{document}

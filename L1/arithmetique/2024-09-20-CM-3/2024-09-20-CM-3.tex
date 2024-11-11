@@ -1,0 +1,172 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{20 septembre 2024}
+
+\title{Arithmetique | CM: 3}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Soient $(G, *)$ et $(H, \square)$ deux groupes.
+
+    On appelle morphisme de groupes toute application $f: G \rightarrow H$ vérifiant
+
+    $\forall x, y \in G, f(x * y) = f(x) \square f(y)$
+\end{definition}
+
+\begin{proposition}
+    Si $f: G \rightarrow H$ est un morphisme de groupe, alors $f(e_G) = e_H$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{flalign*}
+        f(e_G)& = f(e_G * e_G) = f(e_G) \square f(e_G)&& \\
+        f(e_G)& = f(e_G) \square e_H&& \\
+        f(e_G)& \square f(e_G) = f(e_G) \square e_H \implies f(e_G) = e_H&&
+    \end{flalign*}
+\end{demonstration}
+
+\begin{proposition}
+    Si $f: G \rightarrow H$ est un morphisme de groupe, alors
+    $\forall x \in G, f(x^{-1}) = f(x)^{-1}$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{flalign*}
+        f(x^{-1}) = f(x^{-1}) \square f(x) \square f(x)^{-1} = f(x^{-1} * x) \square f(x)^{-1} = f(x)^{-1}&&
+    \end{flalign*}
+\end{demonstration}
+
+\section{Anneaux et Corps}
+
+\begin{definition}
+    Un anneau est $(A, +, \times)$ où A est un ensemble, + et x sont deux l.c.i sur A vérifiant les axiomes suivants
+
+    \item $\bullet$ (A, +) est un groupe abélien (on note $0_A$ sont élément neutre)
+
+    \item $\bullet$ $\times$ est associative
+
+    \item $\bullet$ $\times$ est distributive sur +
+\end{definition}
+
+\begin{remark}
+    On dit que $(A, +, \times)$ est un anneau commutatif si, de plus $\times$ est commutative.
+
+    Un élément $x \in A$ est dit inversible dans A lorsqu'il adment un symétrique pour $\times$.
+\end{remark}
+
+\begin{proposition}
+    Soit $(A, +, x)$ un anneau alors
+
+    $\forall x \in A, 0_A \times x = 0_A$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{flalign*}
+        0_A \times x &= (0_A + 0_A) \times x&&\\
+        &= 0_A \times x + 0_A \times x \implies 0_A = 0_A \times x \text{ (par soustraction de $0_A \times x$)}&&
+    \end{flalign*}
+\end{demonstration}
+
+\begin{proposition}
+    Soient $x, y, z \in A$, Si $x \times z = y \times z$ et z est inversible alors x = y
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        x \times z = y \times z &\implies (x \times z) \times z^{-1} = (y \times z) \times z^{-1}\\
+        &\implies x \times (z \times z^{-1}) = y \times (z \times z^{-1})\\
+        &\implies x \times 1_A = y \times 1_A \\
+        &\implies x = y
+    \end{align*}
+\end{demonstration}
+
+\begin{definition}
+    Un corps est la donnée d'un triplet
+    $(\Bbbk, +, \times)$ où $\Bbbk$ est un ensemble, + et $\times$ sont deux l.c.i sur $\Bbbk$ vérifiant les axiomes suivants:
+
+    \item $\bullet$ $(\Bbbk, +, \times)$ est un anneau commutatif
+    \item $\bullet$ $(\Bbbk^*, \times)$ est un groupe abélien (de neutre noté $1_\K$).
+\end{definition}
+
+\begin{remark}
+    De manière équivalente, un corps est un anneau commutatif avec un élément neutre pour $\times$ où tout élément non-nul est inversible.
+\end{remark}
+
+\section{Arithmétique des entiers}
+
+\subsection{Rappels sur $\N$ et $\Z$}
+
+\textcolor{red}{À vérifier, certains théorèmes manque de consistance}
+
+\begin{theorem}
+    (propriétés de + et $\times$ sur $\N$)
+    \item \textbf{(a)} + et $\times$ sont associative et commutative sur $\N$
+
+    \item \textbf{(b)} 0 est élement neutre pour + tandis que 1 est neutre pour $\times$
+
+    \item \textbf{(c)} Il y a une distributivité de $\times$ sur +
+
+    \item \textbf{(d)} $\forall x, y, m \in \N, \; x + m = y + m \implies x = y$
+\end{theorem}
+
+\begin{theorem}
+    (propriétés de $\leq$ sur $\N$)
+
+    \item \textbf{1)} (relation d'ordre total) $\forall m, n, p \in \N$
+    
+    \item \textbf{(a)} $n \leq n$
+    \item \textbf{(b)} $m \leq n \land n \leq m \iff m = n$
+    \item \textbf{(c)} $m \leq n \land n \leq p \implies m \leq p$
+    \item \textbf{(d)} $m \leq n \lor n \leq m$
+    
+    \item \textbf{2)} Les opérations + et $\times$ sont compatibles avec la relation d'ordre
+
+        $\forall n, m, p \in \N, \; n \leq m \implies (n + p \leq m + p) \land (n \times p \leq m \times p)$
+
+    \item \textbf{3)} $\forall n \in \N, \; 0 \leq n$
+    \item \textbf{4)} $\forall n, m \in \N, \forall p \in \N^*, \; n \leq m \implies n \times p \leq m \times p$
+\end{theorem}
+
+\begin{theorem}
+    \item \textbf{1.} Toute partie finie de $\N$ admet un plus grand élément.
+    \item \textbf{2.} Toute partie non vide de $\N$ admet un plus petit élément.
+    \item \textbf{3.} Toute partie non vide et majorée de $\N$ admet un plus grand élément.
+    \item \textbf{4.} $\N$ n'admet pas de plus grand élément.
+\end{theorem}
+
+\begin{theorem}
+    (propriétés de + et $\times$ sur $\Z$)
+    \item \textbf{(a)} + et $\times$ sont associative et commutative sur $\Z$
+
+    \item \textbf{(b)} 0 est élement neutre pour + tandis que 1 est neutre pour $\times$
+
+    \item \textbf{(c)} Il y a une distributivité de $\times$ sur +
+
+    \item \textbf{(d)} Tout $m \in \Z$ admet un symétrique (élément inverse), $-m \in \Z$ pour +
+\end{theorem}
+
+\begin{theorem}
+    (propriétés de $\leq$ sur $\Z$)
+
+    \item \textbf{1)} $\leq$ est une relation d'ordre totale sur $\Z$.
+    
+    \item \textbf{2)} Soient $n, m, p \in \Z$
+    
+    \item \textbf{(a)} $n \leq m \iff n + p \leq m + p$
+    \item \textbf{(b)} $\forall p \in \Z_+^*, n \leq m \iff np \leq mp$
+    \item \textbf{(c)} $\forall p \in \Z_-^*, n \leq m \iff mp \leq np$
+    \item \textbf{(d)} $\forall p \in \Z^*, m = n \iff mp = np$
+\end{theorem}
+
+\end{document}
