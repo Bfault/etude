@@ -1,0 +1,171 @@
+<p>Arrivé apres le premier CM (cours à venir)</p>
+<h1 id="relations-binaires">Relations binaires</h1>
+<p>Une relation binaire R sur un ensemble X est un sous-ensemble de paires ordonnées <span class="math inline">(<em>x</em>, <em>y</em>) ∈ <em>X</em><sup>2</sup></span>, on simplifie la notation par <span class="math inline"><em>x</em><em>R</em><em>y</em></span> (resp. <span class="math inline">¬<em>x</em><em>R</em><em>y</em></span>) pour <span class="math inline">(<em>x</em>, <em>y</em>) ∈ <em>R</em></span> (resp. <span class="math inline">(<em>x</em>, <em>y</em>) ∉ <em>R</em></span>).</p>
+<p><span> <strong>réflexive</strong> si <br /><span class="math display">$$\begin{aligned}
+        \forall x \in X, \; xRx
+    \end{aligned}$$</span><br /> </span></p>
+<p><span> <strong>irréflexive</strong> si <br /><span class="math display">$$\begin{aligned}
+        \forall x \in X, \; \neg(xRx)
+    \end{aligned}$$</span><br /> </span></p>
+<p><span> <strong>symétrique</strong> si <br /><span class="math display">$$\begin{aligned}
+        \forall x, y \in X, \; xRy \implies yRx
+    \end{aligned}$$</span><br /> </span></p>
+<p><span> <strong>asymétrique</strong> si <br /><span class="math display">$$\begin{aligned}
+        \forall x, y \in X, \; xRy \implies \neg(yRx)
+    \end{aligned}$$</span><br /> </span></p>
+<p><span> <strong>antisymétrique</strong> si <br /><span class="math display">$$\begin{aligned}
+        \forall x, y \in X, \; xRy \land yRx \implies x = y
+    \end{aligned}$$</span><br /> </span></p>
+<p><span> <strong>transitive</strong> si <br /><span class="math display">$$\begin{aligned}
+        \forall x, y, z \in X, \; xRy \land yRz \implies xRz
+    \end{aligned}$$</span><br /> </span></p>
+<p><span> <strong>négativement transitive</strong> si <br /><span class="math display">$$\begin{aligned}
+        \forall x, y, z \in X, \; \neg(xRy) \land \neg(yRz) \implies \neg(xRz)
+    \end{aligned}$$</span><br /> </span></p>
+<p><span> <strong>complète (ou totale)</strong> si <br /><span class="math display">$$\begin{aligned}
+        \forall x, y \in X, \; xRy \lor yRx
+    \end{aligned}$$</span><br /> </span></p>
+<p>la notation <span class="math inline"><em>x</em><em>R</em><em>y</em></span> peut être remplacé par <span class="math inline">(<em>x</em>, <em>y</em>) ∈ <em>R</em></span>, par exemple pour la réflexivité, (<span class="math inline">∀<em>x</em> ∈ <em>X</em>, (<em>x</em>, <em>x</em>) ∈ <em>R</em></span>).</p>
+<p>Une relation qui satisfait certaines propriétés peut porter un nom.</p>
+<p>Une <strong>relation d’équivalence</strong> si elle est réfléxive, symétrique et transitive.</p>
+<p>Un <strong>préordre (ou quasi ordre)</strong> si elle est réflexive et transitive.</p>
+<p>Un <strong>ordre faible (ou préordre total)</strong> si elle est transitive et complète.</p>
+<p>Un <strong>ordre faible strict</strong> si elle est asymétrique et négativement transitive.</p>
+<p>Un <strong>ordre partiel</strong> si elle est réflexive, antisymétrique et transitive.</p>
+<p>Un <strong>ordre partiel (ou ordre, ordre linéaire, chaîne)</strong> si elle est antisymétrique, transitive et complète.</p>
+<p><span class="math inline">$\R$</span> est totalement ordonnées par <span class="math inline">≥</span> et est appelé l’ordre naturel sur <span class="math inline">$\R$</span>.</p>
+<p><span class="math inline">$\N$</span> avec <span class="math inline">&gt;</span> est un ordre faible strict.</p>
+<p>Deux entiers relatifs x et y sont congrus modulo <span class="math inline">$p \in \N$</span>, s’il existe <span class="math inline">$k \in \N$</span> tel que <span class="math inline"><em>x</em> = <em>y</em> + <em>k</em><em>p</em></span>, ce que l’on note <span class="math inline"><em>x</em> ≡ <em>y</em>[<em>p</em>]</span>. La relation de congruence modulo sur <span class="math inline">$\Z$</span> est une relation d’équivalence.</p>
+<p>Si R est asymétrique alors R est réflexive.</p>
+<p>Démontré trivialement par les définitions d’asymétrie et de réflexivité.</p>
+<p>Si R est irréflexive et transitive alors R est asymétrique.</p>
+<p>On suppose que R est irréflexive, transitive et non asymétrique.</p>
+<p>La non asymétrie se traduit par <br /><span class="math display">$$\begin{aligned}
+        \neg(\forall x, y \in X, \; xRy \implies \neg(yRx)) \quad \equiv \quad \exists x, y \in X, \; xRy \land yRx 
+    \end{aligned}$$</span><br /></p>
+<p>Ainsi avec la non asymétrie et la transitivité on arrive à <br /><span class="math display">$$\begin{aligned}
+        &amp;\exists x, y \in X, \; xRy \land yRx \quad \land \quad \forall x, y, z \in X, \; xRy \land yRz \implies xRz \\
+        &amp;\equiv \quad \exists x, y \in X, \; xRy \land yRx \implies xRx
+    \end{aligned}$$</span><br /></p>
+<p>Ce qui est absurde car ça contredit l’irréflexivité !!!</p>
+<p>Donc Si R est irréflexive et transitive alors R est asymétrique.</p>
+<p>R est négativement transitive ssi <br /><span class="math display">$$\begin{aligned}
+        \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+    \end{aligned}$$</span><br /></p>
+<p>Utilisons la contraposée du négativement transitive</p>
+<p>(Rappel la contraposée de <span class="math inline"><em>P</em> ⟹ <em>Q</em></span> est <span class="math inline">¬<em>Q</em> ⟹ ¬<em>P</em></span>),</p>
+<p><br /><span class="math display">$$\begin{aligned}
+        &amp;\forall x, y, z \in X, \; \neg(\neg(xRz)) \implies \neg(\neg xRy \land \neg yRz) \\
+        &amp;\equiv \quad \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+    \end{aligned}$$</span><br /></p>
+<p>Ainsi R est négativement transitive ssi <br /><span class="math display">$$\begin{aligned}
+            \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+        \end{aligned}$$</span><br /></p>
+<p>Si R est complète alors R est réflexive</p>
+<p>Démontré facilement par définition en prenant un x et un <span class="math inline"><em>y</em> = <em>x</em></span>.</p>
+<h2 id="opérations-sur-les-relations">Opérations sur les relations</h2>
+<p>Puisque une relation R sur X est un sous ensemble de <span class="math inline"><em>X</em> × <em>X</em></span>, on peut facilement utiliser des opérations ensemblistes.</p>
+<p>Étant donné deux relation <span class="math inline"><em>R</em><sub>1</sub></span> et <span class="math inline"><em>R</em><sub>2</sub></span> sur un ensemble X.</p>
+<p><span class="math inline">•</span> la relation <strong>complémentaire</strong> de <span class="math inline"><em>R</em><sub>1</sub></span>, la relation binaire <span class="math inline"><em>R</em><sub>1</sub><sup><em>c</em></sup></span> sur X telle que</p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>1</sub><sup><em>c</em></sup><em>y</em> si ¬(<em>x</em><em>R</em><sub>1</sub><em>y</em>)</span></p>
+<p><span class="math inline">•</span> la <strong>réunion</strong> de <span class="math inline"><em>R</em><sub>1</sub></span> et <span class="math inline"><em>R</em><sub>2</sub></span> est la relation binaire <span class="math inline"><em>R</em><sub>1</sub> ∪ <em>R</em><sub>2</sub></span> sur X telle que</p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>1</sub> ∪ <em>R</em><sub>2</sub><em>y</em> si <em>x</em><em>R</em><sub>1</sub><em>y</em> ∨ <em>x</em><em>R</em><sub>2</sub><em>y</em></span></p>
+<p><span class="math inline">•</span> l’<strong>intersection</strong> de <span class="math inline"><em>R</em><sub>1</sub></span> et <span class="math inline"><em>R</em><sub>2</sub></span> est la relation binaire <span class="math inline"><em>R</em><sub>1</sub> ∩ <em>R</em><sub>2</sub></span> telle que</p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>1</sub> ∩ <em>R</em><sub>2</sub><em>y</em> si <em>x</em><em>R</em><sub>1</sub><em>y</em> ∧ <em>x</em><em>R</em><sub>2</sub><em>y</em></span></p>
+<p><span class="math inline">•</span> la relation <span class="math inline"><em>R</em><sub>1</sub></span> est <strong>compatible</strong> avec <span class="math inline"><em>R</em><sub>2</sub></span> si</p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>1</sub><em>y</em> ⟹ <em>x</em><em>R</em><sub>2</sub><em>y</em></span> ou de manière équivalente <span class="math inline"><em>R</em><sub>1</sub> ⊂ <em>R</em><sub>2</sub></span></p>
+<p><span class="math inline">•</span> la relation <strong>réciproque</strong> (ou duale, inverse) de <span class="math inline"><em>R</em><sub>1</sub></span>, la relation binaire <span class="math inline"><em>R</em><sub>1</sub><sup> − 1</sup></span> sur X telle que</p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>y</em><em>R</em><sub>1</sub><sup> − 1</sup><em>x</em> si <em>x</em><em>R</em><sub>1</sub><em>y</em></span></p>
+<p><span class="math inline">•</span> la <strong>composée</strong> de <span class="math inline"><em>R</em><sub>1</sub></span> et <span class="math inline"><em>R</em><sub>2</sub></span>, la relation binaire <span class="math inline"><em>R</em><sub>1</sub> ∘ <em>R</em><sub>2</sub></span> sur X telle que</p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>1</sub> ∘ <em>R</em><sub>2</sub><em>y</em> si ∃<em>z</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>2</sub><em>z</em> ∧ <em>z</em><em>R</em><sub>1</sub><em>y</em></span></p>
+<h2 id="relations-déquivalence">Relations d’équivalence</h2>
+<p>L’intersection <span class="math inline"><em>R</em><sub>1</sub> ∩ <em>R</em><sub>2</sub></span> de deux relations d’équivalences <span class="math inline"><em>R</em><sub>1</sub></span> et <span class="math inline"><em>R</em><sub>2</sub></span> sur un ensemble X est une relation d’équivalence.</p>
+<p><span class="math inline">•</span> <strong>Réflexive</strong> car <span class="math inline">∀<em>x</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>1</sub><em>x</em> ∧ <em>x</em><em>R</em><sub>2</sub><em>x</em></span>, ainsi <span class="math inline"><em>x</em><em>R</em><sub>1</sub> ∩ <em>R</em><sub>2</sub><em>x</em></span> pour tout <span class="math inline"><em>x</em> ∈ <em>X</em></span>.</p>
+<p><span class="math inline">•</span> <strong>Symétrie</strong> car <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, (<em>x</em><em>R</em><sub>1</sub><em>y</em> ∧ <em>y</em><em>R</em><sub>1</sub><em>x</em>) ∧ (<em>x</em><em>R</em><sub>2</sub><em>y</em> ∧ <em>y</em><em>R</em><sub>2</sub><em>x</em>)</span>, ainsi <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>1</sub><em>y</em> ∧ <em>x</em><em>R</em><sub>2</sub><em>y</em></span> ce qui implique que <span class="math inline"><em>y</em><em>R</em><sub>1</sub><em>x</em> ∧ <em>y</em><em>R</em><sub>2</sub><em>x</em></span> soit <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, (<em>x</em><em>R</em><sub>1</sub><em>y</em> ∧ <em>y</em><em>R</em><sub>2</sub><em>x</em>) ∧ (<em>x</em><em>R</em><sub>2</sub><em>y</em> ∧ <em>y</em><em>R</em><sub>1</sub><em>x</em>)</span>.</p>
+<p><span class="math inline">•</span> <strong>Transitive</strong> car <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><sub>1</sub><em>y</em> ∧ <em>x</em><em>R</em><sub>2</sub><em>y</em> ∧ <em>y</em><em>R</em><sub>1</sub><em>z</em> ∧ <em>y</em><em>R</em><sub>2</sub><em>z</em> ⟹ <em>x</em><em>R</em><sub>1</sub><em>z</em> ∧ <em>x</em><em>R</em><sub>2</sub><em>z</em> ⟹ <em>x</em><em>R</em><sub>1</sub> ∩ <em>R</em><sub>2</sub><em>z</em></span></p>
+<p><span class="math inline"><em>R</em><sub>1</sub> ∩ <em>R</em><sub>2</sub></span> est Réflexive, Symétrique, Transitive donc c’est une relation d’équivalence.</p>
+<p>Soit <span class="math inline"><em>x</em> ∈ <em>X</em></span> l’ensemble <span class="math inline">{<em>y</em> ∈ <em>X</em> ∣ <em>x</em><em>R</em><em>y</em>}</span> est appelé classe d’équivalence de x notée <span class="math inline"><em>C</em><sub><em>x</em></sub></span>.</p>
+<p>"=" sur <span class="math inline">$\N$</span></p>
+<p><span class="math inline">•</span> <span class="math inline">$\forall a \in \N, a = a$</span> (Réflexive)</p>
+<p><span class="math inline">•</span> <span class="math inline">$\forall a, b \in \N, a = b \implies b = a$</span> (Symétrique)</p>
+<p><span class="math inline">•</span> <span class="math inline">$\forall a, b, c \in \N, a = b \land b = c \implies a = c$</span> (Transitive)</p>
+<p>"=" est une relation d’équivalence sur <span class="math inline">$\N$</span></p>
+<p><span class="math inline">$C_2 = \{y \in \N, 2 = y\} = \{2\}$</span></p>
+<p><span class="math inline">{<em>C</em><sub><em>x</em></sub> ∣ <em>x</em> ∈ <em>X</em>}</span> est l’ensemble quotient de X par R noté X/R.</p>
+<p>Soit R une relation d’équivalence sur X, X/R forme une partition de X, i.e.</p>
+<p><span class="math inline">•</span> <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>C</em><sub><em>x</em></sub> ∩ <em>C</em><sub><em>y</em></sub> = ∅ ou <em>C</em><sub><em>x</em></sub> = <em>C</em><sub><em>y</em></sub></span></p>
+<p><span class="math inline">•</span> <span class="math inline"><em>X</em> = ⋃<sub><em>x</em> ∈ <em>X</em></sub><em>C</em><sub><em>x</em></sub></span></p>
+<p>Nous allons montrer que</p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><em>y</em> ⟹ <em>C</em><sub><em>x</em></sub> = <em>C</em><sub><em>y</em></sub></span></p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, ¬<em>x</em><em>R</em><em>y</em> ⟹ <em>C</em><sub><em>x</em></sub> ∩ <em>C</em><sub><em>y</em></sub> = ∅</span></p>
+<p>Soient <span class="math inline"><em>x</em>, <em>y</em> ∈ <em>X</em></span></p>
+<p>so <span class="math inline"><em>x</em><em>R</em><em>y</em></span> soit <span class="math inline"><em>z</em> ∈ <em>C</em><sub><em>x</em></sub></span> alors xRz</p>
+<p>Pour une relation binaire il est toujours vrai que <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><em>y</em> ∨ ¬<em>x</em><em>R</em><em>y</em></span></p>
+<h2 id="ordre-faible-et-ordre-total">Ordre faible et ordre total</h2>
+<p>Soit R une relation binaire sur l’ensemble X.</p>
+<p>On définit I et S sur X par</p>
+<p><span class="math inline">∀<em>x</em> ∈ <em>X</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>I</em><em>y</em> si <em>x</em><em>R</em><em>y</em> ∧ <em>y</em><em>R</em><em>x</em></span></p>
+<p><span class="math inline">∀<em>x</em> ∈ <em>X</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>S</em><em>y</em> si <em>x</em><em>R</em><em>y</em> ∧ ¬<em>y</em><em>R</em><em>x</em></span></p>
+<p><span class="math inline"><em>A</em> = {<em>a</em>, <em>b</em>, <em>c</em>}</span></p>
+<p><span class="math inline"><em>R</em> = {(<em>a</em>, <em>b</em>), (<em>b</em>, <em>a</em>), (<em>a</em>, <em>c</em>), (<em>b</em>, <em>c</em>)}</span></p>
+<p><span class="math inline"><em>I</em> = {(<em>a</em>, <em>b</em>), (<em>b</em>, <em>a</em>)}</span></p>
+<p><span class="math inline"><em>S</em> = {(<em>a</em>, <em>c</em>), (<em>b</em>, <em>c</em>)}</span></p>
+<p>si R est un ordre faible sur X, alors</p>
+<p><strong>1.</strong> I est une relation d’équivalence</p>
+<p><strong>2.</strong> S est irréflexive et transitive</p>
+<p>I relation d’équivalence:</p>
+<p>I reflexive</p>
+<p>Soit <span class="math inline"><em>x</em> ∈ <em>X</em>, <em>x</em><em>I</em><em>x</em> ⇔ <em>x</em><em>R</em><em>x</em> ∧ <em>x</em><em>R</em><em>X</em> ⇔ <em>x</em><em>R</em><em>x</em></span> vrai car R est complète</p>
+<p>I symétrique</p>
+<p>Soient <span class="math inline"><em>x</em> ∈ <em>X</em>, <em>y</em> ∈ <em>X</em>, <em>x</em><em>I</em><em>y</em> ⟹ <em>x</em><em>R</em><em>y</em> ∧ <em>y</em><em>R</em><em>x</em> ⟹ <em>y</em><em>R</em><em>x</em> ∧ <em>x</em><em>R</em><em>y</em> ⟹ <em>y</em><em>I</em><em>x</em></span></p>
+<p>I transitive</p>
+<p>Soient <span class="math inline"><em>x</em>, <em>y</em>, <em>z</em> ∈ <em>X</em>, <em>x</em><em>I</em><em>y</em> ∧ <em>y</em><em>I</em><em>z</em> ⟹ <em>x</em><em>R</em><em>y</em> ∧ <em>y</em><em>R</em><em>x</em> ∧ <em>y</em><em>R</em><em>z</em> ∧ <em>z</em><em>R</em><em>y</em> ⟹ <em>x</em><em>R</em><em>y</em> ∧ <em>y</em><em>R</em><em>z</em> ∧ <em>z</em><em>R</em><em>y</em> ∧ <em>y</em><em>R</em><em>x</em> ⟹ <em>x</em><em>R</em><em>z</em> ∧ <em>z</em><em>R</em><em>x</em> ⟹ <em>x</em><em>I</em><em>z</em></span></p>
+<p>On définit <span class="math inline"><em>R</em><sup>*</sup></span> sur <span class="math inline"><em>X</em>/<em>I</em></span> par</p>
+<p><span class="math inline">∀<em>C</em><sub><em>x</em></sub> ∈ <em>X</em>/<em>I</em>, <em>C</em><sub><em>y</em></sub> ∈ <em>X</em>/<em>I</em>, <em>C</em><sub><em>x</em></sub><em>R</em><sup>*</sup><em>C</em><sub><em>y</em></sub> lorsque <em>x</em><em>R</em><em>y</em></span></p>
+<p><span class="math inline"><em>R</em><sup>*</sup></span> sur X/I est la réduction (relation quotient) de R sur X</p>
+<p>Si R est un ordre faible alors <span class="math inline"><em>R</em><sup>*</sup></span> est un ordre total sur X/I</p>
+<p><span class="math inline"><em>R</em><sup>*</sup></span> antisymétrique</p>
+<p>Soient <span class="math inline"><em>C</em><sub><em>x</em></sub>, <em>C</em><sub><em>y</em></sub> ∈ <em>X</em>/<em>I</em>, <em>C</em><sub><em>x</em></sub><em>R</em><sup>*</sup><em>C</em><sub><em>y</em></sub> ∧ <em>C</em><sub><em>y</em></sub><em>R</em><sup>*</sup><em>C</em><sub><em>x</em></sub> ⟹ <em>C</em><sub><em>x</em></sub> = <em>C</em><sub><em>y</em></sub> ⟹ <em>x</em><em>I</em><em>y</em> ⟹ <em>y</em> ∈ <em>C</em><sub><em>x</em></sub> ⟹ <em>C</em><sub><em>x</em></sub> = <em>C</em><sub><em>y</em></sub></span></p>
+<p><span class="math inline"><em>R</em><sup>*</sup></span> transitive</p>
+<p>Soient <span class="math inline"><em>C</em><sub><em>x</em></sub>, <em>C</em><sub><em>y</em></sub>, <em>C</em><sub><em>z</em></sub> ∈ <em>X</em>/<em>I</em></span></p>
+<p><span class="math inline"><em>C</em><sub><em>x</em></sub><em>R</em><sup>*</sup><em>C</em><sub><em>y</em></sub> ∧ <em>C</em><sub><em>y</em></sub><em>R</em><sup>*</sup><em>C</em><sub><em>z</em></sub> ⟹ <em>x</em><em>R</em><em>y</em> ∧ <em>y</em><em>R</em><em>z</em> ⟹ <em>x</em><em>R</em><em>z</em> ⟹ <em>C</em><sub><em>x</em></sub><em>R</em><sup>*</sup><em>C</em><sub><em>z</em></sub></span></p>
+<p><span class="math inline"><em>R</em><sup>*</sup></span> complète</p>
+<p><span class="math inline"><em>C</em><sub><em>x</em></sub>, <em>C</em><sub><em>y</em></sub> ∈ <em>X</em>/<em>I</em>, <em>C</em><sub><em>x</em></sub><em>R</em><sup>*</sup><em>C</em><sub><em>y</em></sub> ∨ <em>C</em><sub><em>y</em></sub><em>R</em><sup>*</sup><em>C</em><sub><em>x</em></sub></span> car R complète</p>
+<h3 id="irréflexive-et-transitive">Irréflexive et transitive</h3>
+<p>voir plus tard</p>
+<h2 id="ordre-total-ordre-partiel">Ordre total, Ordre partiel</h2>
+<p>R ordre partiel sur X</p>
+<p>Soit <span class="math inline"><em>x</em> ∈ <em>X</em></span>, x est:</p>
+<ul>
+<li><p>un élément maximal si <span class="math inline">∀<em>y</em> ∈ <em>X</em> ∖ {<em>x</em>}, ¬(<em>y</em><em>R</em><em>x</em>)</span></p></li>
+<li><p>le plus grand élément si <span class="math inline">∀<em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><em>y</em></span></p></li>
+<li><p>un élément minimal si <span class="math inline">∀<em>y</em> ∈ <em>X</em> ∖ {<em>x</em>}, ¬(<em>x</em><em>R</em><em>y</em>)</span></p></li>
+<li><p>le plus petit élément si <span class="math inline">∀<em>y</em> ∈ <em>X</em>, <em>y</em><em>R</em><em>x</em></span></p></li>
+</ul>
+<p>Il y a au plus un plus grand (resp. petit) élément.</p>
+<p>Soit x et x’ deux plus grand (resp. petit) éléments avec <span class="math inline"><em>x</em> ≠ <em>x</em>′</span>.</p>
+<p>Ainsi <span class="math inline">∀<em>y</em> ∈ <em>X</em>, <em>x</em><em>R</em><em>y</em> et <em>x</em>′<em>R</em><em>y</em> ⟹ <em>x</em><em>R</em><em>x</em>′ et <em>x</em>′<em>R</em><em>x</em> ⟹ <em>x</em> = <em>x</em>′</span></p>
+<p>Absurde car on a supposé <span class="math inline"><em>x</em> ≠ <em>x</em>′</span></p>
+<p>Construction de diagramme de Hasse</p>
+<ul>
+<li><p>si xRy : x au dessus de y</p></li>
+<li><p>et si x <strong>couvre</strong> y : il n’existe pas <span class="math inline"><em>z</em> ∈ <em>X</em> ∖ {<em>x</em>, <em>y</em>}</span> tel que <span class="math inline"><em>x</em><em>R</em><em>z</em> ∧ <em>z</em><em>R</em><em>y</em></span></p></li>
+<li><p>alors il y a une arête qui relie x et y</p></li>
+</ul>
+<p>Une <strong>chaîne</strong> est un ensemble d’éléments de X totalement ordonné</p>
+<p>Une <strong>antichaîne</strong> si <span class="math inline">∀<em>x</em>, <em>x</em><em>R</em><em>y</em> ∨ <em>y</em><em>R</em><em>x</em> ⟹ <em>x</em> = <em>y</em></span></p>
+<p>Soit c le nombre minimal de chaînes pour partitionner X</p>
+<p>Soit A une anti-chaîne de cardinal maximal a</p>
+<p>partition avec le plus grand nombre de chaînes : {{a}, {b}, ..., {g}}</p>
+<p>X ensemble partiellement ordonné par R.</p>
+<p>Le nombre d’éléments d’une antichaîne de cardianl maximal (a) est égale au nombre minimum de chaînes pour partitionner X.</p>
+<p>Preuve par récurrence sur <span class="math inline">|<em>x</em>|</span></p>
+<p>Init. <span class="math inline">|<em>x</em>| = 1</span></p>
+<p>X est une chaîne et une antichaîne a = 1</p>
+<p>on partitionne X en 1 chaîne c = a = 1</p>
+<p>here. Suppose que ça marche pour tous jusqu’a n</p>
+<p>2 cas:</p>
+<p>(a) si X contient une antichaîne de cardinal a contenant au moins un element non mimimal et au moins un element maximal</p>
+<p>(b) si X contient une antichaîne de cardinal a contenant que des elements maximaux ou minimaux</p>
+<p>(a) Soient <span class="math inline"><em>H</em> = {<em>x</em> ∈ <em>X</em>|∃<em>z</em> ∈ <em>A</em>, <em>x</em><em>R</em><em>z</em>}</span> et <span class="math inline"><em>B</em> = {<em>x</em> ∈ <em>X</em>|∃<em>z</em> ∈ <em>A</em>, <em>z</em><em>R</em><em>x</em>}</span></p>
+<p>du fait de (a) <span class="math inline">∃<em>w</em> ∈ <em>A</em></span> non maximal implique <span class="math inline">∃<em>y</em> ∈ <em>X</em>, <em>y</em><em>R</em><em>w</em></span> et <span class="math inline"><em>y</em> ∉ <em>B</em></span> donc <span class="math inline">|<em>B</em>| ≤ <em>n</em> − 1</span> donc B peut être partitionné en a chaînes</p>

@@ -1,0 +1,414 @@
+<h1 id="lensemble-des-nombres-rationnels-q">L’ensemble des nombres rationnels <span class="math inline">$\Q$</span></h1>
+<h2 id="ecriture-décimale">Ecriture décimale</h2>
+<p>On definit l’ensemble des nombres rationnels <span class="math inline">$\Q$</span> par <span class="math inline">$\Q = \{\dfrac{p}{q} \mid p \in \Z, q \in \N^*\}$</span>, optionellement <span class="math inline"><em>p</em><em>g</em><em>c</em><em>d</em>(<em>p</em>, <em>q</em>) = 1</span> peut être rajouté dans la définition. Cela ajoute le fait que p et q sont premier entre eux et donc <span class="math inline">$\dfrac{p}{q}$</span> un fraction irréductible. (rappel: <span class="math inline">$\N^*=\N\backslash\{0\}$</span>, i.e. <span class="math inline">$\N$</span> privé de 0).</p>
+<p>Les nombres décimaux sont des nombres de la forme <span class="math inline">$\dfrac{p}{10^n}$</span> avec <span class="math inline">$p \in \Z, n \in \N$</span> (e.g. <span class="math inline">$1.234 = \dfrac{1234}{10^3}$</span>).</p>
+<p>Un nombre est rationnel si et seulement si il admet une écriture décimale finie ou périodique.</p>
+<p>Démontrons que si un nombre à une partie décimale finie ou périodique, alors il est rationnel.</p>
+<p>a) partie décimale finie</p>
+<p>1. Supposons que x soit un nombre réel avec une partie décimale finie. x peut s’écrire sous la forme: <br /><span class="math display">$$\begin{aligned}
+        x = a.b_1b_2...b_n
+    \end{aligned}$$</span><br /> Ou <span class="math inline">$a \in \Z$</span> est la partie entière et <span class="math inline"><em>b</em><sub>1</sub><em>b</em><sub>2</sub>...<em>b</em><sub><em>n</em></sub></span> avec <span class="math inline">$n \in \N$</span> représente les chiffres de la partie décimale finie.</p>
+<p>2. On peut écrire x comme: <br /><span class="math display">$$\begin{aligned}
+        x = a + \dfrac{b_1b_2...b_n}{10^n}
+    \end{aligned}$$</span><br /></p>
+<p>Ici, a est un entier et <span class="math inline">$\dfrac{b_1b_2...b_n}{10^n}$</span> un nombre rationnel.</p>
+<p>La somme d’un entier (nombre rationnel) et d’un nombre rationnel est un nombre rationnel.</p>
+<p>b) partie décimale périodique</p>
+<p>1. Supposons que x soit un nombre réel avec une partie décimale périodique. x peut s’écrire sous la forme: <br /><span class="math display">$$\begin{aligned}
+        x = a.b_1b_2...b_n\overline{c_1c_2...c_m}
+    \end{aligned}$$</span><br /> où <span class="math inline">$a \in \Z$</span> est la partie entière, <span class="math inline"><em>b</em><sub>1</sub><em>b</em><sub>2</sub>...<em>b</em><sub><em>n</em></sub></span> sont les chiffres non répétitifs initiaux, et <span class="math inline">$\overline{c_1c_2...c_m}$</span> est le bloc périodique.</p>
+<p>2. Pour simplifier la démonstration, on peut isoler la partie périodique. Posons: <br /><span class="math display">$$\begin{aligned}
+        y = 0.\overline{c_1c_2...c_m}
+    \end{aligned}$$</span><br /></p>
+<p>3. On multiplie y par <span class="math inline">10<sup><em>m</em></sup></span>, où m est la longeur de la période. <br /><span class="math display">$$\begin{aligned}
+        &amp;10^m y = c_1c_2...c_m + y \\
+        \iff&amp; 10^m y - y = c_1c_2...c_m \\
+        \iff&amp; y(10^m - 1) = c_1c_2...c_m \\
+        \iff&amp; y = \dfrac{c_1c_2...c_m}{10^m - 1} \\
+    \end{aligned}$$</span><br /> y est donc rationnel.</p>
+<p>4. On peut réexprimer x <br /><span class="math display">$$\begin{aligned}
+        x = a + \dfrac{b_1b_2...b_n}{10^n} + y
+    \end{aligned}$$</span><br /></p>
+<p>La somme de nombre rationnel donne un nombre rationnel.</p>
+<p>Ainsi si un nombre à une partie décimale finie ou périodique, alors il est rationnel.</p>
+<p>Démontrons que si un nombre est rationnel, alors sa partie décimale est finie ou périodique.</p>
+<p>Supposons que x est un nombre rationnel ainsi il s’écrit sous la forme <span class="math inline">$x = \dfrac{p}{q}$</span> avec <span class="math inline">$p \in \Z \text{ et } q \in \N^*$</span></p>
+<p>Lorsque qu’on effectue la division euclidienne <span class="math inline">$\dfrac{p}{q}$</span> deux cas se présentent:</p>
+<p>La division se termine par un nombre fini d’étapes.</p>
+<p>La division ne se termine pas et répète une séquence de chiffres.</p>
+<p>Ainsi si un nombre est rationnel, alors sa partie décimale est finie ou périodique.</p>
+<p>Prenons <span class="math inline"><em>x</em> = 12.34202320232023...</span></p>
+<p>Etape 1: faire apparaitre la partie périodique à la virgule. Ici on multiplie par 100</p>
+<p>100x = 1 234.202320232023...&amp;&amp;</p>
+<p>Etape 2: on décale d’une période vers la gauche. Ici la période est de longeur 4 donc on multiplie par 10 000.</p>
+<p>10 000 100x = 12 342 023.20232023...&amp;&amp;</p>
+<p>Etape 3: on soustrait (2) par (1) pour que la partie décimale s’annule.</p>
+<p>&amp;10 000 100x - 100x = 12 342 023 - 1 234&amp;&amp;<br />
+&amp;999 900x = 12 340 789&amp;&amp;<br />
+&amp;x = &amp;&amp;<br />
+</p>
+<h1 id="sqrt2-nest-pas-un-rationnel"><span class="math inline">$\sqrt{2}$</span> n’est pas un rationnel</h1>
+<p>Il existe des nombres qu’on ne peut pas écrire sous la forme d’une fraction de deux entiers, on les nomme les irrationnels. Ils apparaissent naturellement (e.g. La diagonale d’un carré de longeur 1).</p>
+<p><span id="propal" label="propal">[propal]</span> Pour la suite nous avons besoin de démontrer que <br /><span class="math display">$$\begin{aligned}
+        p \in \Z, \; 2 \mid p^2 \implies 2 \mid p
+    \end{aligned}$$</span><br /></p>
+<p>si <span class="math inline"><em>p</em><sup>2</sup></span> est pair alors <span class="math inline"><em>p</em></span> est pair</p>
+<p>Supposons que le carré d’un nombre impair est pair:</p>
+<p><br /><span class="math display">$$\begin{aligned}
+        \forall k \in \Z, \; p = 2k + 1 \quad \iff \quad p^2 =&amp;\; (2k + 1)^2 \\
+         =&amp;\; (2k)^2 + 2*2k*1 + 1^2 \\
+         =&amp;\; 4k^2 + 4k + 1 \\
+         =&amp;\; 2(2k^2 + 2k) + 1
+    \end{aligned}$$</span><br /></p>
+<p>Ici <span class="math inline"><em>p</em><sup>2</sup></span> est impair, Absurde <span class="math inline"><em>p</em><sup>2</sup></span> ne peut pas être à la fois pair et impair!</p>
+<p>Donc si le carré d’un entier relatif <span class="math inline">(<em>p</em><sup>2</sup>)</span> est pair p est aussi pair.</p>
+<p><span class="math inline">$\sqrt{2} \in \R \backslash \Q$</span> (<span class="math inline">$\sqrt{2}$</span> est irrationnel).</p>
+<p>Supposons que <span class="math inline">$\sqrt{2}$</span> est un rationnel, c’est à dire,</p>
+<p><br /><span class="math display">$$\begin{aligned}
+        \exists \; p \in \Z, q \in \N^*, \; pgcd(p, q) = 1, \quad \sqrt{2}=\dfrac{p}{q}
+    \end{aligned}$$</span><br /></p>
+<p>Ici, <span class="math inline"><em>p</em><em>g</em><em>c</em><em>d</em>(<em>p</em>, <em>q</em>) = 1</span> signifie que <span class="math inline"><em>p</em></span> et <span class="math inline"><em>q</em></span> sont premiers entre eux. Cette condition est importante pour assurer que la fraction est irréductible.</p>
+<p><br /><span class="math display">$$\begin{aligned}
+        \sqrt{2} = \dfrac{p}{q} \quad \iff&amp; \quad 2 = \dfrac{p^2}{q^2} \\
+        \iff&amp; \quad p^2 = 2q^2
+    \end{aligned}$$</span><br /></p>
+<p>Ici on peut voir que <span class="math inline"><em>p</em><sup>2</sup></span> est pair et grace à <strong>(la proposition 1.1)</strong> on sait que <span class="math inline"><em>p</em></span> l’est aussi. Donc on peut réecrire <span class="math inline"><em>p</em></span> par <span class="math inline">$\exists k \in \Z, \; 2k = p$</span> et ainsi remplacer <span class="math inline"><em>p</em><sup>2</sup></span>.</p>
+<p><br /><span class="math display">$$\begin{aligned}
+        2q^2 = p^2 \quad \iff&amp; \quad 2q^2 = (2k)^2 \\
+        \iff&amp; \quad q^2 = \dfrac{4p^2}{2} \\
+        \iff&amp; \quad q^2 = 2p^2
+    \end{aligned}$$</span><br /></p>
+<p>Donc <span class="math inline"><em>q</em><sup>2</sup></span> est pair et <span class="math inline"><em>q</em></span> également.</p>
+<p>Finalement 2 divise p et q est absurde car p et q sont premier entre eux, ils ne peuvent pas être tout les deux multiple de 2.</p>
+<p>L’hypothèse de départ <span class="math inline">$\sqrt{2} \in \R \backslash \Q$</span> est fausse, ainsi <span class="math inline">$\sqrt{2}$</span> est irrationnel.</p>
+<h1 id="propriété-de-r">Propriété de <span class="math inline">$\R$</span></h1>
+<p>On nomme <span class="math inline">$\R$</span> l’ensemble des nombres réels, il contient <span class="math inline">$\N$</span>, <span class="math inline">$\Z$</span>, <span class="math inline">$\Q$</span> et <span class="math inline">$\R \backslash \Q$</span>.</p>
+<p><span class="math inline">$\overline{\R} = \R \cup \{-\infty; +\infty\}$</span> (les réels et l’infini)</p>
+<h2 id="règle-de-calcul">Règle de calcul</h2>
+<p>Soient a, b et c des nombres réels quelconques. On note <span class="math inline">+</span> l’addition et <span class="math inline">×</span> la multiplication.</p>
+<p>l’associativité.</p>
+<p>&amp;(a + b) + c = a + (b + c)&amp;&amp;<br />
+&amp;(a b) c = a (b c)&amp;&amp;</p>
+<p>l’élement neutre.</p>
+<p>&amp;e , x , e + x = x + e = x&amp;&amp;<br />
+&amp;e’ , x , e’ x = x e’ = x&amp;&amp;</p>
+<p>Pour l’addition et la multiplication dans <span class="math inline">$\R$</span>, leur élément neutre est 0 et 1 respectivement. e et e’ seront pour la suite, les élements neutres de l’addition et de la multiplication respectivement.</p>
+<p>l’élement inverse.</p>
+<p>&amp;i , x , i + a = a + i = e&amp;&amp;<br />
+&amp;i ^*, x ^*, i a = a i = e’&amp;&amp;</p>
+<p>commutativité.</p>
+<p>&amp;a + b = b + a&amp;&amp;<br />
+&amp;a b = b a&amp;&amp;</p>
+<p>distributivité de la multiplication par rapport à l’addition.</p>
+<p>&amp;(a + b) c = c (a + b) = ac + bc&amp;&amp;<br />
+</p>
+<p><span class="math inline">$(\R, +, *)$</span> est un corps abélien/commutatif</p>
+<h2 id="lordre-sur-r">L’ordre sur <span class="math inline">$\R$</span></h2>
+<p>Soient a, b et c des nombres réels quelconques.</p>
+<p>réfléxivité.</p>
+<p>a a</p>
+<p>l’antisymmétrie.</p>
+<p>a b b a a = b</p>
+<p>transitivité.</p>
+<p>a b b a a = b</p>
+<p>comparabilité</p>
+<p>quelque soit a et b dans <span class="math inline">$\R$</span>, on a toujours <span class="math inline"><em>a</em> ≤ <em>b</em></span> or <span class="math inline"><em>b</em> ≤ <em>a</em></span></p>
+<p>Les propriétés 1, 2 et 3 signifie que <span class="math inline"><em>l</em><em>e</em><em>q</em></span> est une relation d’ordre, ajouté la 4, on parle de relation d’ordre totale.</p>
+<p>On définit la relation d’ordre supérieur ou égale (<span class="math inline">≥</span>) par <span class="math inline"><em>a</em> ≥ <em>b</em> ⇔ <em>b</em> ≤ <em>a</em></span></p>
+<p>On définit la relation d’ordre strictement inférieur (<span class="math inline">&lt;</span>) par <span class="math inline"><em>a</em> &lt; <em>b</em> ⇔ <em>a</em> ≤ <em>b</em> et <em>a</em> ≠ <em>b</em></span></p>
+<p>On définit la relation d’ordre strictement supérieur (<span class="math inline">&gt;</span>) par <span class="math inline"><em>a</em> &gt; <em>b</em> ⇔ <em>a</em> ≥ <em>b</em> et <em>a</em> ≠ <em>b</em></span></p>
+<p><span class="math inline">&lt;</span> et <span class="math inline">&gt;</span> ne vérifient pas 1 et 2, ils ne sont donc pas des relations d’ordres mais des relations d’ordres stricts.</p>
+<p><span class="math inline"><em>a</em> ≤ <em>b</em> ⟹ <em>a</em> + <em>c</em> ≤ <em>b</em> + <em>c</em></span></p>
+<p><span class="math inline"><em>a</em> ≤ <em>b</em> et <em>c</em> ≥ 0 ⟹ <em>a</em><em>c</em> ≤ <em>b</em><em>c</em></span></p>
+<p><span class="math inline"><em>a</em><em>b</em> = 0 ⟹ <em>a</em> = 0 ou <em>b</em> = 0</span></p>
+<p>On définit le maximum entre deux réels comme <br /><span class="math display">$$max(a, b) =
+    \begin{cases}
+        a, &amp; \text{si } b \leq a \\
+        b, &amp; \text{sinon}
+    \end{cases}$$</span><br /></p>
+<h2 id="propriété-darchimède">Propriété d’Archimède</h2>
+<p>L’ensemble <span class="math inline">$\R$</span> est dit archimédien, i.e. <span class="math inline">$\forall x \in \R, \exists n \in \N, \; x \lt n$</span></p>
+<p>Il existe un unique entier dans <span class="math inline">$\Z$</span>, appelé la partie entière E, tel que <span class="math inline"><em>E</em>(<em>x</em>) ≤ <em>E</em>(<em>x</em>) + 1</span></p>
+<p><strong>Existence:</strong> Supposons que <span class="math inline"><em>x</em> ≥ 0</span>. Comme <span class="math inline">$\R$</span> est archimédien il existe un entier <span class="math inline">$n \in \N$</span> tel que <span class="math inline"><em>x</em> &lt; <em>n</em></span>.</p>
+<p>Ainsi on peut trouver un autre entier <span class="math inline">$m \in \N$</span> tel que <span class="math inline"><em>n</em> ≤ <em>x</em></span> et <span class="math inline"><em>m</em> &lt; <em>n</em></span>. Il suffit de choisir m comme le plus grand entier inférieur ou égal à x et tel que <span class="math inline"><em>m</em> ≤ <em>x</em> &lt; <em>m</em> + 1</span></p>
+<p><strong>Unicité:</strong> Supposons qu’il existe 2 entiers tel que <span class="math inline"><em>k</em> ≤ <em>x</em> &lt; <em>k</em> + 1</span> et <span class="math inline"><em>l</em> ≤ <em>x</em> &lt; <em>l</em> + 1</span></p>
+<p>Par transitivité, il vient <span class="math inline"><em>k</em> ≤ <em>x</em> &lt; <em>l</em> + 1</span> et <span class="math inline"><em>k</em> &lt; <em>l</em> + 1</span>,</p>
+<p>de même, <span class="math inline"><em>l</em> ≤ <em>x</em> &lt; <em>k</em> + 1</span> et <span class="math inline"><em>l</em> &lt; <em>k</em> + 1 ⟹ <em>l</em> − 1 &lt; <em>k</em></span></p>
+<p>Finalement <span class="math inline"><em>l</em> − 1 &lt; <em>k</em> &lt; <em>l</em> + 1</span> et comme entre les entiers l’entier l-1 et l+1 il n’y a que l, alors k = l</p>
+<p>x = 3.14, E(x) = 3.</p>
+<p>x = -12.2, E(x) = -13.</p>
+<p>On note parfois <span class="math inline"><em>E</em>(<em>x</em>) = [<em>x</em>] = ⌊<em>x</em>⌋</span></p>
+<p>On note <span class="math inline">{<em>x</em>}</span>, la partie fractionnaire (e.g. <span class="math inline">{3.14} = 0.14</span>)</p>
+<p><img src="images/Entier&amp;fractionaire.png" alt="image" /></p>
+<h2 id="la-valeur-absolue">La valeur absolue</h2>
+<p>Soit x un nombre réel. La valeur absolue de x est le nombre réel positif défini par <br /><span class="math display">$$|x| =
+        \begin{cases}
+            x, &amp; \text{si } x \geq 0 \\
+            -x, &amp; \text{si } x \lt 0
+        \end{cases}$$</span><br /></p>
+<p>Soient <span class="math inline">$a, b, c \in \R$</span></p>
+<p><span class="math inline">|<em>a</em>| ≥ 0,  <em>a</em> ≤ |<em>a</em>|,   − |<em>a</em>| ≤ <em>a</em>,  | − <em>a</em>| = |<em>a</em>|</span></p>
+<p><span class="math inline">$\sqrt{a^2} = |a|$</span></p>
+<p><span class="math inline">|<em>a</em><em>b</em>| = |<em>a</em>||<em>b</em>|</span></p>
+<p><span class="math inline">$\forall n \in \Z, |a^n| = |a|^n$</span></p>
+<p><span class="math inline">$\text{si } a \neq 0, |\dfrac{1}{a}|=\dfrac{1}{|a|} \text{ et } |\dfrac{b}{a}| = \dfrac{|b|}{|a|}$</span></p>
+<p><span class="math inline">Pour <em>b</em> ≥ 0,</span></p>
+<p><span class="math inline">|<em>a</em>| = <em>b</em>,  si et seulement si <em>a</em> = <em>b</em> ou <em>a</em> =  − <em>b</em></span></p>
+<p><span class="math inline">|<em>a</em>| ≤ <em>b</em> si et seulement si  − <em>b</em> ≤ <em>a</em> ≤ <em>b</em></span> (beaucoup utilisé pour passer de <span class="math inline"><em>a</em></span> à <span class="math inline">|<em>a</em>|</span>)</p>
+<p><span class="math inline">|<em>a</em>| ≥ <em>b</em> si et seulement si <em>a</em> ≤  − <em>b</em> ou <em>a</em> ≥ <em>b</em></span></p>
+<p><span class="math inline">|<em>a</em> + <em>b</em>| ≤ |<em>a</em>| + |<em>b</em>|</span> (l’inégalité triangulaire)</p>
+<p><span class="math inline">||<em>a</em>| − |<em>b</em>|| ≤ |<em>a</em> − <em>b</em>|</span> (l’inégalité triangulaire inversée)</p>
+<p>Les propriétés 1 à 6 sont démontrés par la définition de la valeur absolue</p>
+<p>Démontrons la proprétée 7.</p>
+<p>D’après (1) <span class="math inline"> − |<em>a</em>| ≤ <em>a</em> ≤ |<em>a</em>|</span> et <span class="math inline"> − |<em>b</em>| ≤ <em>b</em> ≤ |<em>b</em>|</span></p>
+<p>En additionnant, on obtient <span class="math inline"> − |<em>a</em>| − |<em>b</em>| ≤ <em>a</em> + <em>b</em> ≤ |<em>a</em>| + |<em>b</em>|</span></p>
+<p><span class="math inline"> − (|<em>a</em>| + |<em>b</em>|) ≤ <em>a</em> + <em>b</em> ≤ |<em>a</em>| + |<em>b</em>|</span> avec (6) on arrive à</p>
+<p><span class="math inline">|<em>a</em> + <em>b</em>| ≤ |<em>a</em>| + |<em>b</em>|</span></p>
+<p>Démontrons la propriétée 8.</p>
+<p><span class="math inline"><em>a</em> = <em>a</em> − <em>b</em> + <em>b</em></span> et <span class="math inline">|<em>a</em>| = |<em>a</em> − <em>b</em> + <em>b</em>| ≤ |<em>a</em> − <em>b</em>| + |<em>b</em>|</span> (propriétée 7)</p>
+<p><span class="math inline">|<em>a</em>| ≤ |<em>a</em> − <em>b</em>| + |<em>b</em>| ⟹ |<em>a</em>| − |<em>b</em>| ≤ |<em>a</em> − <em>b</em>|</span></p>
+<p>de même,</p>
+<p><span class="math inline"><em>b</em> = <em>b</em> − <em>a</em> + <em>a</em></span> et <span class="math inline">|<em>b</em>| = |<em>b</em> − <em>a</em> + <em>a</em>| ≤ |<em>b</em> − <em>a</em>| + |<em>a</em>|</span></p>
+<p><span class="math inline">|<em>b</em>| ≤ |<em>b</em> − <em>a</em>| + |<em>a</em>| ⟹ |<em>b</em>| − |<em>a</em>| ≤ |<em>b</em> − <em>a</em>|</span></p>
+<p><span class="math inline">|<em>b</em> − <em>a</em>| = | − (<em>a</em> − <em>b</em>)| = |<em>a</em> − <em>b</em>|</span> et</p>
+<p><span class="math inline">|<em>a</em>| − |<em>b</em>| ≤ |<em>a</em> − <em>b</em>|</span> et <span class="math inline">|<em>b</em>| − |<em>a</em>| =  − (|<em>a</em>| − |<em>b</em>|) ≤ |<em>a</em> − <em>b</em>|</span></p>
+<p>Finalement par définition</p>
+<p><br /><span class="math display">$$||a|-|b|| =
+            \begin{cases}
+                |a| - |b|, &amp; \text{si } |a| - |b| \geq 0 \\
+                -(|a| - |b|), &amp; \text{si } |a| - |b| \lt 0
+            \end{cases}$$</span><br /> Ainsi <span class="math inline">||<em>a</em>| − |<em>b</em>|| ≤ |<em>a</em> − <em>b</em>|</span></p>
+<p>Corollaire: Soit r un réel positif <span class="math inline">$\forall x, a \in \R$</span>, on a <span class="math inline">|<em>x</em> − <em>a</em>| &lt; <em>r</em> ⟹  − <em>r</em> &lt; <em>x</em> − <em>a</em> &lt; <em>r</em> ⟹ <em>a</em> − <em>r</em> &lt; <em>x</em> &lt; <em>a</em> + <em>r</em></span></p>
+<p>La valeur absolue <span class="math inline">|<em>b</em> − <em>a</em>|</span> représent la distance entre a et b</p>
+<p><img src="images/neightborhood.png" alt="image" /></p>
+<h1 id="densité-de-q-dans-r">Densité de <span class="math inline">$\Q$</span> dans <span class="math inline">$\R$</span></h1>
+<h2 id="intervalles-de-r">Intervalles de <span class="math inline">$\R$</span></h2>
+<p>On appelle intervalle de <span class="math inline">$\R$</span>, tout sous-ensemble I de <span class="math inline">$\R$</span> vérifiant <span class="math inline">$\forall a, b \in I, a \leq b \text{ et } x \in \R, a \leq x \leq b \implies x \in I$</span></p>
+<p>Un sous-ensemble ou partie I de <span class="math inline">$\R$</span>, se note <span class="math inline">$I \subset \R$</span></p>
+<p>Soient <span class="math inline">$a, b \in \R, a \leq b$</span></p>
+<p>On appelle intervalle fermé et borné (ou segment) de <span class="math inline">$\R$</span> tout l’ensemble de la forme</p>
+<p><span class="math inline">$[a, b] = \{x \in \R | \; a \leq x \leq b\}$</span></p>
+<p>On appelle intervalle ouvert de <span class="math inline">$\R$</span> tout l’ensemble de la forme</p>
+<p><span class="math inline">$]a, b[ = \{x \in \R | \; a \lt x \lt b\}$</span> ou <span class="math inline">$]a, +\infty[ = \{x \in \R | \; a \lt x\}$</span></p>
+<p>ou <span class="math inline">$]-\infty, b[ = \{x \in \R | \; x \lt b\}$</span></p>
+<p>L’ensemble qui contient aucun élément est l’ensemble vide, noté <span class="math inline">∅</span></p>
+<p>L’ensemble qui contient un seul élément est le singleton, noté <span class="math inline">{<em>a</em>} = [<em>a</em>, <em>a</em>]</span></p>
+<p><span class="math inline"><em>x</em> ∈ [<em>a</em>, <em>b</em>] ≡ ∃<em>t</em> ∈ [0, 1], <em>x</em> = (1 − <em>t</em>)<em>a</em> + <em>t</em><em>b</em></span></p>
+<p>On dit que V est un voisinage de a si <span class="math inline">∃<em>ϵ</em> &gt; 0, [<em>a</em> − <em>ϵ</em>, <em>a</em> + <em>ϵ</em>] ⊂ <em>V</em></span></p>
+<h2 id="densité">Densité</h2>
+<p><span class="math inline">$\Q$</span> est dense dans <span class="math inline">$\R$</span>, tout intervalle ouvert, non vide de <span class="math inline">$\R$</span> contient une infinité de nombres rationnels</p>
+<p><span class="math inline">$\R \backslash \Q$</span> est dense dans <span class="math inline">$\R$</span>, tout intervalle ouvert, non vide de <span class="math inline">$\R$</span> contient une infinité de nombres irrationnels</p>
+<p>On cherche <span class="math inline">$\dfrac{p}{q} \in \Q, p \in \Z, q \in \N^*$</span> tel que <span class="math inline">$a \lt \dfrac{p}{q} \lt b \implies aq \lt p \lt bq$</span></p>
+<p>comme <span class="math inline">$\R$</span> est archimédien, il existe un entier q tel que <span class="math inline">$q \gt \dfrac{1}{b - a} \implies \dfrac{1}{q} \lt b - a$</span></p>
+<p>Prenons <span class="math inline"><em>p</em> = <em>E</em>(<em>a</em><em>q</em>) + 1</span></p>
+<p><span class="math inline"><em>p</em> = <em>E</em>(<em>a</em><em>q</em>) + 1 ⟹ <em>p</em> − 1 = <em>E</em>(<em>a</em><em>q</em>) ≤ <em>a</em><em>q</em> &lt; <em>E</em>(<em>a</em><em>q</em>) + 1 = <em>p</em></span></p>
+<p>On divise par q l’inégalité <span class="math inline"><em>p</em> − 1 ≥ <em>a</em><em>q</em> &lt; <em>p</em> + 1</span></p>
+<p><span class="math inline">$\implies \dfrac{p-1}{q} = \dfrac{p}{q} - \dfrac{1}{q} \leq a \lt \dfrac{p}{q}$</span></p>
+<p>Ainsi <span class="math inline">$\dfrac{p}{q} - \dfrac{1}{q} \leq a \implies \dfrac{p}{q} \leq a + \dfrac{1}{q} \lt a + (b-a) = b$</span></p>
+<p>Finalement <span class="math inline">$a \lt \dfrac{p}{q} \lt b$</span></p>
+<p>Il existe un nombre rationnels <span class="math inline">$\dfrac{p}{q}$</span> compris entre a et b.</p>
+<p>On divise l’intervalle <span class="math inline">]<em>a</em>, <em>b</em>[</span> en N sous-intervalles disjoints 2 à 2</p>
+<p><span class="math inline">$]a, b[ = ]a, a+\dfrac{b-a}{N}[ \cup ]\dfrac{b-a}{N}, a + 2\dfrac{b-a}{N}[$</span></p>
+<p><img src="images/interval.png" alt="image" /></p>
+<p>Donc pour chaque intervalle on peut trouver un rationnels, on peut ensuite faire tendre N vers l’infini pour trouver un infinité de rationnels</p>
+<p>D’apres notre démonstration précédente il existe un infinité de rationnels pour</p>
+<p><span class="math inline">$a - \sqrt{2} \lt \dfrac{p}{q} \lt b - \sqrt{2} \implies a \lt \dfrac{p}{q} + \sqrt{2} \lt b$</span></p>
+<p>On en arrive avec la même logique que la démonstration précédente qu’il existe une infinité d’irrationnels entre deux réels.</p>
+<h1 id="bornes-sur-r">Bornes sur <span class="math inline">$\R$</span></h1>
+<h2 id="maximum-et-minimum">Maximum et minimum</h2>
+<p>Soit A une partie non vide de <span class="math inline">$\R$</span>. Un réel M est le plus grand (resp. le plus petit) élément de A si <span class="math inline"><em>M</em> ∈ <em>A</em></span> et <span class="math inline">∀<em>x</em> ∈ <em>A</em>, <em>x</em> ≤ <em>M</em></span> (resp. <span class="math inline">∀<em>x</em> ∈ <em>A</em>, <em>x</em> ≥ <em>m</em></span>).</p>
+<p>Si il existe, le plus grand élément est unique et on le note max A.</p>
+<p>Si il existe, le plus petit élément est unique et on le note min A.</p>
+<h2 id="majorants-et-minorants">Majorants et minorants</h2>
+<p>Soit A une partie non vide de <span class="math inline">$\R$</span>, un réel M est dit majorant de A si il vérifie <span class="math inline">∀<em>x</em> ∈ <em>A</em>, <em>M</em> ≥ <em>x</em></span></p>
+<p>Soit A une partie non vide de <span class="math inline">$\R$</span>, un réel m est dit minorant de A si il vérifie <span class="math inline">∀<em>x</em> ∈ <em>A</em>, <em>m</em> ≤ <em>x</em></span></p>
+<p>Le majorant et minorant n’appartiennent pas forcément à l’ensemble A.</p>
+<p>Si un majorant (resp. minorant) de A existe, on dit que A est majorée (resp. minorée). On dit que A est bornée si A est majorée et minorée.</p>
+<h2 id="bornes-supérieures-et-bornes-inférieures">Bornes supérieures et bornes inférieures</h2>
+<p>Soit A un partie non vide de <span class="math inline">$\R$</span>.</p>
+<p><strong>1.</strong> On dit que M est la borne supérieure de A, si M est un majorant de A et que M est le plus petit des majorants. Si il existe on note M = sup A.</p>
+<p><strong>2.</strong> On dit que m est la borne inférieure de A, si m est un minorant de A et que m est le plus grand des minorant. Si il existe on note m = inf A.</p>
+<p>sup A et inf A n’appartiennent pas forcément à A. Mais si ils appartiennent à l’ensemble ils deviennent max A et min A respectivement.</p>
+<p>Posons <span class="math inline"><em>A</em> := [0, 1[</span>,</p>
+<p><span class="math inline"><em>m</em><em>i</em><em>n</em><em>A</em> = 0</span> et <span class="math inline"><em>m</em><em>a</em><em>x</em><em>A</em></span> n’existe pas.</p>
+<p>les minorants de A sont <span class="math inline">] − ∞, 0]</span> et les majorants de A sont <span class="math inline">[1,  + ∞[</span></p>
+<p><span class="math inline"><em>i</em><em>n</em><em>f</em><em>A</em> = 0</span> et <span class="math inline"><em>s</em><em>u</em><em>p</em><em>A</em> = 1</span></p>
+<p>Soit A une partie non vide de <span class="math inline">$\R$</span> et majorée. La borne supérieure est l’unique réel sup A, tel que</p>
+<p>(i)<span class="math inline">∀<em>x</em> ∈ <em>A</em>, <em>x</em> ≤ <em>s</em><em>u</em><em>p</em><em>A</em></span> et</p>
+<p>(ii) <span class="math inline">$\forall y \in \R, \; y \lt sup A \implies (\exists x \in A, y \lt x)$</span></p>
+<p>Montrons que sup A vérifie (i) et (ii).</p>
+<p>Comme sup A est un majorant, elle vérifie (i)</p>
+<p>Posons <span class="math inline"><em>y</em> &lt; <em>s</em><em>u</em><em>p</em><em>A</em></span>, comme sup A est le plus petit des majorants, y ne peut pas être un majorant de A.</p>
+<p>Donc <span class="math inline">∃<em>x</em> ∈ <em>A</em>, <em>y</em> &lt; <em>x</em></span></p>
+<p>Soit M un réel qui vérifie (i) et (ii), supposons que M n’est pas le plus petit des majorants. Il existe un autre majorant y, tel que <span class="math inline"><em>y</em> &lt; <em>M</em></span>.</p>
+<p>Mais d’après (ii) <span class="math inline">∃<em>x</em> ∈ <em>A</em>, <em>y</em> &lt; <em>x</em></span>, donc y n’est pas un majorant de A.</p>
+<p>Toute partie non vide de <span class="math inline">$\R$</span> majorée admet une borne supérieure.</p>
+<p>Toute partie non vide de <span class="math inline">$\R$</span> minorée admet une borne inférieure.</p>
+<p>Soit A une partie non vide majorée de <span class="math inline">$\R$</span>. La borne supérieure est l’unique réel sup A, tel que</p>
+<p>(i) sup A est un majorant de A</p>
+<p>(ii) il existe une suite <span class="math inline">$(x_n)_{n \in \N}$</span> d’éléments de A qui converge vers sup A.</p>
+<h1 id="les-suites">Les suites</h1>
+<h2 id="définition-dune-suite">Définition d’une suite</h2>
+<p>Une suite est l’application <br /><span class="math display">$$\begin{aligned}
+        u: \N &amp;\longrightarrow \R\\
+        n &amp;\longmapsto u(n)
+    \end{aligned}$$</span><br /> Pour <span class="math inline">$n \in \N$</span>, on note <span class="math inline"><em>u</em>(<em>n</em>)</span>, ou plus souvent <span class="math inline"><em>u</em><sub><em>n</em></sub></span>, le n-ième terme de la suite. On écrit <span class="math inline">$(u_n)_{n \in \N}$</span></p>
+<p><span class="math inline">•</span> <span class="math inline">$(n)_{n \in \N}$</span> est la suite des entiers.</p>
+<p><span class="math inline">•</span> <span class="math inline">$((-1)^n)_{n \in \N}$</span> est la suite alternant entre 1 et -1.</p>
+<p><span class="math inline">•</span> <span class="math inline">$(F_n)_{n \in \N}$</span> définie par <span class="math inline"><em>F</em><sub>0</sub> = 1, <em>F</em><sub>1</sub> = 1, <em>F</em><sub><em>n</em> + 2</sub> = <em>F</em><sub><em>n</em> + 1</sub> + <em>F</em><sub><em>n</em></sub></span> est la suite de Fibonacci.</p>
+<p>Ne pas confondre la fonction avec une suite (<span class="math inline">$(\sqrt{n})_{n \in \N}$</span> différent de <span class="math inline">$f(x)= \sqrt{x}$</span>)</p>
+<h3 id="suites-majorées-minorées-bornées">Suites majorées, minorées, bornées</h3>
+<p>Soit <span class="math inline">$\un$</span> une suite de nombre réels.</p>
+<p>On dit que la suite <span class="math inline">$\un$</span> est <strong>majorée</strong> si <span class="math inline">$\exists M \in \R, \forall n \in \N, u_n \leq M$</span>.</p>
+<p>On dit que la suite <span class="math inline">$\un$</span> est <strong>minorée</strong> si <span class="math inline">$\exists M \in \R, \forall n \in \N, M \leq u_n$</span>.</p>
+<p>On dit que la suite <span class="math inline">$\un$</span> est <strong>bornée</strong> si la suite <span class="math inline">$\un$</span> est majorée et minorée.</p>
+<p>(i.e. <span class="math inline">$\exists M \in \R, \forall n \in \N, |u_n| \leq M$</span>)</p>
+<p>La suite <span class="math inline">$\un$</span> est <strong>croissante</strong> si <span class="math inline">$\forall n \in \N, u_{n+1} \geq  u_n$</span>.</p>
+<p>La suite <span class="math inline">$\un$</span> est <strong>strictement croissante</strong> si <span class="math inline">$\forall n \in \N, u_{n+1} \gt  u_n$</span>.</p>
+<p>La suite <span class="math inline">$\un$</span> est <strong>décroissante</strong> si <span class="math inline">$\forall n \in \N, u_{n+1} \leq  u_n$</span>.</p>
+<p>La suite <span class="math inline">$\un$</span> est <strong>strictement décroissante</strong> si <span class="math inline">$\forall n \in \N, u_{n+1} \lt  u_n$</span>.</p>
+<p>On dit que la suite est <strong>monotone</strong> si elle est croissante ou décroissante.</p>
+<p>Pour vérifier la monotonie d’une suite:</p>
+<p>Soit <span class="math inline"><em>u</em><sub><em>n</em> + 1</sub> − <em>u</em><sub><em>n</em></sub> ≥ 0⟹</span> croissante</p>
+<p>Soit on calcule (avec <span class="math inline"><em>u</em><sub><em>n</em></sub> ≠ 0</span>) <span class="math inline">$\dfrac{u_{n+1}}{u_n} \geq 1 \implies$</span> croissante</p>
+<p>On préfère la première pour les suites arithmétiques et la deuxième pour les suites géométriques.</p>
+<h2 id="limites">Limites</h2>
+<h3 id="limit-finie-limite-infinie">Limit finie, limite infinie</h3>
+<p>La suite <span class="math inline">$\un$</span> admet pour limite <span class="math inline">$l \in \R$</span> si <br /><span class="math display">$$\forall \varepsilon \gt 0, \exists N \in \N, \forall n \geq N, |u_n - l| \leq \varepsilon$$</span><br /></p>
+<p>On dit que la suite <span class="math inline">$\un$</span> tend vers l quand n tend vers l’infini, ou <br /><span class="math display">lim<sub><em>n</em> → ∞</sub><em>u</em><sub><em>n</em></sub> = <em>l</em></span><br /></p>
+<p><img src="images/limite.png" alt="image" /></p>
+<p>On utilise <span class="math inline"><em>ε</em></span> pour parler d’un nombre très petit.</p>
+<p>La suite <span class="math inline">$\un$</span> tend vers <span class="math inline"> + ∞</span> si elle devient aussi grande que l’on souhaite quand n devient grand, autrement dit</p>
+<p><br /><span class="math display">$$\forall A \gt 0, \exists N \in \N, \forall n \geq N, u_n \geq A$$</span><br /></p>
+<p>La suite <span class="math inline">$\un$</span> tend vers <span class="math inline"> − ∞</span> si elle devient aussi petite que l’on souhaite quand n devient grand, autrement dit</p>
+<p><br /><span class="math display">$$\forall A \gt 0, \exists N \in \N, \forall n \geq N, u_n \leq -A$$</span><br /></p>
+<p><span class="math inline">$\un$</span> <strong>converge</strong> si elle admet une limite finie.</p>
+<p><span class="math inline">$\un$</span> <strong>diverge</strong> si elle admet l’infini comme limite ou si elle n’a pas de limite.</p>
+<p>Si une suite converge, alors sa limite est unique.</p>
+<p>Soit <span class="math inline">$\un$</span> une suite qui admet deux limite, <span class="math inline"><em>l</em><sub>1</sub> ≠ <em>l</em><sub>2</sub></span>.</p>
+<p><br /><span class="math display">$$\lim_{n \to +\infty}u_n = l_1 \implies
+    \forall \varepsilon_1, \exists N_1 \in \N, \forall n \geq N_1, |u_n - l_1| \leq \varepsilon_1$$</span><br /></p>
+<p><br /><span class="math display">$$\lim_{n \to +\infty}u_n = l_2 \implies
+    \forall \varepsilon_2, \exists N_2 \in \N, \forall n \geq N_2, |u_n - l_2| \leq \varepsilon_2$$</span><br /></p>
+<p>Pour <span class="math inline"><em>ε</em><sub>1</sub> = <em>ε</em> = <em>ε</em><sub>2</sub> &gt; 0</span></p>
+<p><span class="math inline">$\exists N = max(N_1, N_2), \forall n \geq \N, |u_n - l_1| \lt \varepsilon \text{ et } |u_n - l_2| \lt \varepsilon$</span></p>
+<p>Donc <span class="math inline">|<em>l</em><sub>1</sub> − <em>l</em><sub>2</sub>| = |<em>l</em><sub>1</sub> − <em>u</em><sub><em>n</em></sub> + <em>u</em><sub><em>n</em></sub> − <em>l</em><sub>2</sub>| = |(<em>l</em><sub>1</sub> − <em>u</em><sub><em>n</em></sub>) + (<em>u</em><sub><em>n</em></sub> − <em>l</em><sub>2</sub>)| ≤ |<em>l</em><sub>1</sub> − <em>u</em><sub><em>n</em></sub>| + |<em>u</em><sub><em>n</em></sub> − <em>l</em><sub>2</sub>| &lt; <em>ε</em> + <em>ε</em> = 2<em>ε</em></span></p>
+<p>Il suffit de prendre <span class="math inline">$\varepsilon \lt \dfrac{|l_1 - l_2|}{2}$</span>, ainsi</p>
+<p><br /><span class="math display">|<em>l</em><sub>1</sub> − <em>l</em><sub>2</sub>| &lt; 2<em>ε</em> ≤ |<em>l</em><sub>1</sub> − <em>l</em><sub>2</sub>|</span><br /></p>
+<p>Ce qui est absurde, Finalement <span class="math inline"><em>l</em><sub>1</sub> = <em>l</em><sub>2</sub></span></p>
+<h3 id="propriétés-des-limites">Propriétés des limites</h3>
+<p><span class="math inline">lim<sub><em>n</em> →  + ∞</sub><em>u</em><sub><em>n</em></sub> = <em>l</em> ⇔ lim<sub><em>n</em> →  + ∞</sub>(<em>u</em><sub><em>n</em></sub> − <em>l</em>) = 0 ⇔ lim<sub><em>n</em> →  + ∞</sub>|<em>u</em><sub><em>n</em></sub> − <em>l</em>| = 0</span></p>
+<p><span class="math inline">lim<sub><em>n</em> →  + ∞</sub><em>u</em><sub><em>n</em></sub> = <em>l</em> ⟹ lim<sub><em>n</em> →  + ∞</sub>|<em>u</em><sub><em>n</em></sub>| = |<em>l</em>|</span></p>
+<p>C’est en général faux dans l’autre sens. Par exemple pour <span class="math inline"><em>u</em><sub><em>n</em></sub> = ( − 1)<sup><em>n</em></sup></span>, <span class="math inline">|<em>u</em><sub><em>n</em></sub>| = 1</span> donc <span class="math inline">lim<sub><em>n</em> → ∞</sub>|<em>u</em><sub><em>n</em></sub>| = 1</span> mais <span class="math inline">$\un$</span> n’a pas de limite (-1, 1, -1, 1, ...).</p>
+<p>Soient <span class="math inline">$\un$</span> et <span class="math inline">$\xn{v}$</span> deux suites convergentes.</p>
+<p><br /><span class="math display">$$\lim_{n \to +\infty} u_n = l \implies \forall \delta \in \R, \lim_{n \to +\infty}(\delta u_n) = \delta l$$</span><br /></p>
+<p><br /><span class="math display">lim<sub><em>n</em> →  + ∞</sub><em>u</em><sub><em>n</em></sub> = <em>l</em> et lim<sub><em>n</em> →  + ∞</sub><em>v</em><sub><em>n</em></sub> = <em>l</em>′ ⟹ lim<sub><em>n</em> →  + ∞</sub>(<em>u</em><sub><em>n</em></sub> + <em>v</em><sub><em>n</em></sub>) = <em>l</em> + <em>l</em>′ et lim<sub><em>n</em> →  + ∞</sub>(<em>u</em><sub><em>n</em></sub> × <em>v</em><sub><em>n</em></sub>) = <em>l</em> × <em>l</em>′</span><br /></p>
+<p><br /><span class="math display">$$\exists N \in \N, \forall n \in \N, n \geq N, l \neq 0 \text{ et } u_n \neq 0 \implies \lim_{n \to +\infty} \dfrac{1}{u_n}=\dfrac{1}{l}$$</span><br /></p>
+<p><br /><span class="math display">$$\begin{aligned}
+        \lim_{n \to +\infty} u_n = l &amp;\implies \forall \varepsilon \gt 0, \exists N \in \N, n \geq N, |u_n - l| \leq \varepsilon \\
+        &amp;\implies \forall \varepsilon \gt 0, \exists N \in \N, n \geq N, |\delta|| u_n - l|  \leq |\delta|\varepsilon \\
+        &amp;\implies \forall \varepsilon' \gt 0, \exists N \in \N, n \geq N, |\delta u_n - \delta l|  \leq |\delta|\varepsilon = \varepsilon' \\
+        &amp;\implies \lim_{n \to +\infty} \delta u_n = \delta l 
+    \end{aligned}$$</span><br /></p>
+<p><br /><span class="math display">$$\begin{aligned}
+        \lim_{n \to +\infty} u_n = l \implies \forall \varepsilon \gt 0, \exists N \in \N, n \geq N, |u_n - l| \leq \varepsilon \\
+        \lim_{n \to +\infty} v_n = l' \implies \forall \varepsilon \gt 0, \exists N \in \N, n \geq N, |v_n - l'| \leq \varepsilon \\
+        |u_n - l| + |v_n - l'| \geq |u_n - l + v_n - l'| = |(u_n + v_n) - (l + l')| \\
+        \implies |(u_n + v_n) - (l + l')| \leq 2 \varepsilon = \varepsilon'
+    \end{aligned}$$</span><br /></p>
+<p>À compléter <br /><span class="math display">$$\begin{aligned}
+        \lim_{n \to +\infty} u_n &amp;= l \implies \forall \varepsilon \gt 0, \exists N \in \N, n \geq N, |u_n - l| \leq \varepsilon \\
+        \lim_{n \to +\infty} v_n &amp;= l' \implies \forall \varepsilon \gt 0, \exists N \in \N, n \geq N, |v_n - l'| \leq \varepsilon \\
+        |u_n \times v_n - l \times l'| &amp;= |u_n \times v_n - l \times v_n + l \times v_n - l \times l'| \\
+        &amp;= |v_n (u_n - l) + l (v_n - l')| \\
+        &amp;\leq |v_n (u_n - l)| + |l (v_n - l')| \\
+        &amp;= |v_n| |u_n - l| + |l| |v_n - l'|\\
+    \end{aligned}$$</span><br /></p>
+<p>À faire <br /><span class="math display">$$\begin{aligned}
+        \lim_{n \to +\infty} u_n = l &amp;\implies \forall \varepsilon \gt 0, \exists N \in \N, n \geq N, |u_n - l| \leq \varepsilon \\
+    \end{aligned}$$</span><br /></p>
+<p>Soient <span class="math inline">$\un$</span> et <span class="math inline">$\xn{v}$</span>, tel que <span class="math inline"><em>l</em><em>i</em><em>m</em><sub><em>n</em> →  + ∞</sub><em>v</em><sub><em>n</em></sub> =  + ∞</span></p>
+<p><br /><span class="math display">$$\lim_{n \to +\infty}\frac{1}{v_n} = 0$$</span><br /></p>
+<p>Si <span class="math inline">$\un$</span> est minorée, alors <br /><span class="math display">lim<sub><em>n</em> →  + ∞</sub>(<em>u</em><sub><em>n</em></sub> + <em>v</em><sub><em>n</em></sub>) =  + ∞</span><br /></p>
+<p>Si <span class="math inline">$\un$</span> est minorée par un réel strictement positif, alors <br /><span class="math display">lim<sub><em>n</em> →  + ∞</sub>(<em>u</em><sub><em>n</em></sub> × <em>v</em><sub><em>n</em></sub>) =  + ∞</span><br /></p>
+<p>Si <span class="math inline">lim<sub><em>n</em> →  + ∞</sub><em>u</em><sub><em>n</em></sub> = 0</span> et <span class="math inline">$\forall n \in \N, u_n \gt 0$</span>, alors <br /><span class="math display">$$\lim_{n \to +\infty}\frac{1}{u_n} = +\infty$$</span><br /></p>
+<p>Toute suite convergente est bornée.</p>
+<p>Soit une suite <span class="math inline">$\un$</span> qui converge vers l.</p>
+<p><br /><span class="math display">$$\lim_{n \to +\infty}u_n = l \iff \forall \varepsilon \gt 0, \exists N \in \N, \forall n \in \N, n \geq N, |u_n - l| \lt \varepsilon$$</span><br /></p>
+<p>On écrit <span class="math inline"><em>u</em><sub><em>n</em></sub> = <em>u</em><sub><em>n</em></sub> − <em>l</em> + <em>l</em></span> ainsi <span class="math inline">|<em>u</em><sub><em>n</em></sub>| = |(<em>u</em><sub><em>n</em></sub> − <em>l</em>) + <em>l</em>| ≤ |<em>u</em><sub><em>n</em></sub> − <em>l</em>| + |<em>l</em>|</span></p>
+<p>En outre <span class="math inline">∀<em>n</em> ≥ <em>N</em>, |<em>u</em><sub><em>n</em></sub>| ≤ <em>ε</em> + |<em>l</em>|</span></p>
+<p>De plus <span class="math inline">∀<em>n</em> &lt; <em>N</em>, |<em>u</em><sub><em>n</em></sub>| ≤ max (<em>u</em><sub>0</sub>, <em>u</em><sub>1</sub>, ..., <em>u</em><sub><em>n</em> − 1</sub>)</span></p>
+<p>Finalement <span class="math inline">$\forall n \in \N, |u_n| \leq \max(u_0, u_1, ..., u_{n-1}, \varepsilon + |l|)$</span></p>
+<p>Si la suite <span class="math inline">$\un$</span> est bornée et <span class="math inline">lim<sub><em>n</em> → ∞</sub><em>v</em><sub><em>n</em></sub> = 0</span> alors <span class="math inline">lim<sub><em>n</em> → ∞</sub>(<em>u</em><sub><em>n</em></sub> × <em>v</em><sub><em>n</em></sub>) = 0</span></p>
+<h3 id="formes-indéterminées">Formes indéterminées</h3>
+<p>On parle de formes indéterminées, lorsque à priori on ne peut rien dire sur la limite.</p>
+<p>Il s’agit de limite de type:</p>
+<ul>
+<li><p><span class="math inline"> + ∞ − ∞</span></p></li>
+<li><p><span class="math inline">0 × ∞</span></p></li>
+<li><p><span class="math inline">$\dfrac{\infty}{\infty}$</span>, <span class="math inline">$\dfrac{0}{0}$</span>, <span class="math inline"><em>a</em><sup>∞</sup></span></p></li>
+</ul>
+<p>Dans ce cas il faut étudier plus précisement la suite.</p>
+<p>Par exemple en utilisant les croissances comparées</p>
+<h3 id="quelques-innégalités">Quelques innégalités</h3>
+<p>Soient <span class="math inline">$\un$</span> et <span class="math inline">$\xn{v}$</span> deux suites convergentes telles que <span class="math inline">$\forall n \in \N, u_n \leq v_n$</span>, <br /><span class="math display">lim<sub><em>n</em> →  + ∞</sub><em>u</em><sub><em>n</em></sub> ≤ lim<sub><em>n</em> →  + ∞</sub><em>v</em><sub><em>n</em></sub></span><br /></p>
+<p>Soient <span class="math inline">$\un$</span> et <span class="math inline">$\xn{v}$</span> telles que <span class="math inline">$\forall n \in \N, u_n \leq v_n$</span>, <br /><span class="math display">lim<sub><em>n</em> →  + ∞</sub><em>u</em><sub><em>n</em></sub> =  + ∞ ⟹ lim<sub><em>n</em> →  + ∞</sub><em>v</em><sub><em>n</em></sub> =  + ∞</span><br /></p>
+<h2 id="suites-adjacentes">Suites adjacentes</h2>
+<p>Soient <span class="math inline">$\un$</span> et <span class="math inline">$\xn{v}$</span> deux suites. Elles sont adjacentes si.</p>
+<p>(i) <span class="math inline">(<em>u</em><sub><em>n</em></sub>)</span> est croissante, <span class="math inline"><em>v</em><sub><em>n</em></sub></span> décroissante</p>
+<p>(ii) <span class="math inline">∀<em>n</em> ∈ <em>N</em>, <em>u</em><sub><em>n</em></sub> ≤ <em>v</em><sub><em>n</em></sub></span></p>
+<p>(iii) <span class="math inline">lim<sub><em>n</em> →  + ∞</sub>(<em>v</em><sub><em>n</em></sub> − <em>u</em><sub><em>n</em></sub>) = 0</span></p>
+<p>Si <span class="math inline">$\un$</span> et <span class="math inline">$\xn{v}$</span> sont deux suites adjacentes, alors elles convergent vers la même limite.</p>
+<p>Une suite <span class="math inline">$\un$</span> croissante et une suite <span class="math inline">$\xn{v}$</span> décroissante.</p>
+<p>Ainsi <span class="math inline">$\un$</span> est majorée par <span class="math inline"><em>v</em><sub>0</sub></span> donc elle converge vers une limite <span class="math inline"><em>l</em><sub>1</sub></span> et <span class="math inline">$\xn{v}$</span> est minorée par <span class="math inline"><em>u</em><sub>0</sub></span> donc elle converge vers une limite <span class="math inline"><em>l</em><sub>2</sub></span></p>
+<p>comme <span class="math inline">lim<sub><em>n</em> →  + ∞</sub>(<em>v</em><sub><em>n</em></sub> − <em>u</em><sub><em>n</em></sub>) = 0 ⟹ <em>l</em><sub>2</sub> − <em>l</em><sub>1</sub> = 0 ⟹ <em>l</em><sub>2</sub> = <em>l</em><sub>1</sub></span></p>
+<h2 id="les-sous-suites">Les Sous-suites</h2>
+<p>Soit <span class="math inline">$\un$</span>. Une sous-suite ou suite extraite est une suite <span class="math inline">$(u_{\phi(n)})_{n \in \N}$</span> où</p>
+<p><br /><span class="math display">$$\phi: \substack{\N \longmapsto \N \\ n \longmapsto \phi(n)}$$</span><br /> est une fonction croissante.</p>
+<p>Si la suite <span class="math inline">$\un$</span> converge vers l, alors toute suite extraite convergent vers l.</p>
+<p><span class="math inline">$\lim_{n \to +\infty}u_n = l \iff \forall \eps \gt 0, \exists N \in \N, \forall n \geq N, |u_n - l| \lt \eps$</span></p>
+<p>Comme <span class="math inline"><em>ϕ</em></span> est croissante, en particulier si <span class="math inline"><em>n</em> ≥ <em>N</em></span> alors <span class="math inline"><em>ϕ</em>(<em>n</em>) ≥ <em>ϕ</em>(<em>N</em>)</span> et <span class="math inline">$|u_{\phi(n)}-l| \lt \eps$</span>.</p>
+<p>Autrement dit, <span class="math inline">lim<sub><em>n</em> →  + ∞</sub><em>u</em><sub><em>ϕ</em>(<em>n</em>)</sub> = <em>l</em></span></p>
+<p>Si il existe une sous-suite qui diverge, ou deux sous-suites qui convergent vers deux limites différentes, alors la suite diverge.</p>
+<p>Le théorème de Bolzano-Weierstrass dit que toute suite bornée admet au moins une sous-suite qui converge.</p>
+<p>On procède par dichotomie. Comme la suite est bornée, on peut supposer qu’elle prend ses valeurs dans l’intervalle [a, b]</p>
+<p>On pose <span class="math inline"><em>a</em><sub>0</sub> = <em>a</em></span>, <span class="math inline"><em>b</em><sub>0</sub> = <em>b</em></span> et <span class="math inline"><em>ϕ</em>(0) = 0</span> La suite <span class="math inline">$\un$</span> a une infinité de valeurs dans <span class="math inline">$[a, \dfrac{a+b}{2}]$</span> ou <span class="math inline">$[\dfrac{a+b}{2}, b]$</span>.</p>
+<p>On note <span class="math inline">[<em>a</em><sub>1</sub>, <em>b</em><sub>1</sub>]</span> cet intervalle <span class="math inline"><em>a</em><sub>0</sub> = <em>a</em><sub>1</sub></span> et</p>
+<p><span class="math inline"><em>a</em><sub>1</sub> = <em>a</em></span> si <span class="math inline">(<em>u</em><sub><em>n</em></sub>)</span> a une infinité de valeurs dans <span class="math inline">$[a_1, \dfrac{a+b}{2}]$</span> sinon <span class="math inline">$a_1 = \dfrac{a+b}{2}$</span></p>
+<p><span class="math inline">$b_1 = \dfrac{a+b}{2}$</span> si <span class="math inline">(<em>u</em><sub><em>n</em></sub>)</span> a une infinité de valeurs dans <span class="math inline">$[\dfrac{a+b}{2}, b_1]$</span> sinon <span class="math inline"><em>b</em><sub>1</sub> = <em>b</em></span></p>
+<p>On peut ensuite construire un intervalle <span class="math inline">[<em>a</em><sub><em>n</em></sub>, <em>b</em><sub><em>n</em></sub>]</span> de longeur <span class="math inline">$\dfrac{b - a}{2^n}$</span> et un entier <span class="math inline"><em>ϕ</em>(<em>n</em>) ≥ <em>ϕ</em>(<em>n</em> − 1)</span> avec <span class="math inline"><em>u</em><sub><em>ϕ</em>(<em>n</em>)</sub> ∈ [<em>a</em><sub><em>n</em></sub>, <em>b</em><sub><em>n</em></sub>]</span>.</p>
+<p>Par construction la suite <span class="math inline">$\xn{a}$</span> est croissante et la suite <span class="math inline">$\xn{b}$</span> est décroissante, et <span class="math inline"><em>a</em><sub><em>n</em></sub> ≤ <em>b</em><sub><em>n</em></sub></span></p>
+<p>De plus <span class="math inline">$\lim_{n \to +\infty}b_n - a_n = \lim_{n \to +\infty} \dfrac{b-a}{2^n} = 0$</span>.</p>
+<p>Donc <span class="math inline"><em>x</em><em>n</em><em>a</em></span> et <span class="math inline"><em>x</em><em>n</em><em>b</em></span> sont adjacentes, elles convergent vers la même limite l.</p>
+<p>Mais <span class="math inline"><em>u</em><sub><em>ϕ</em>(<em>n</em>)</sub> ∈ [<em>a</em><sub><em>n</em></sub>, <em>b</em><sub><em>n</em></sub>]</span>, ou encore <span class="math inline"><em>a</em><sub><em>n</em></sub> ≤ <em>u</em><sub><em>ϕ</em>(<em>n</em>)</sub> ≤ <em>b</em><sub><em>n</em></sub></span></p>
+<p>et d’après le théorème des gendarmes, <span class="math inline">lim<sub><em>n</em> →  + ∞</sub><em>u</em><sub><em>ϕ</em>(<em>n</em>)</sub> = <em>l</em></span></p>
+<h1 id="etude-de-fonctions">Etude de fonctions</h1>
+<h2 id="notion-de-fonction">Notion de fonction</h2>
+<p>Une fonction d’une variable réelle à valeurs réelles est une application <span class="math inline">$f: \substack{U \longmapsto \R \\ x \longmapsto f(x)}$</span> où U est une partie de <span class="math inline">$\R$</span> appelée ensemble de définition de f.</p>
+<p>Le graphe <span class="math inline"><em>Γ</em></span> est la partie du plan <span class="math inline">$\R^2$</span> défini par <span class="math inline"><em>Γ</em> = {(<em>x</em>, <em>f</em>(<em>x</em>)); <em>x</em> ∈ <em>U</em>}</span>. Pour <span class="math inline"><em>x</em> ∈ <em>U</em></span>, f(x) est l’image de x par f.</p>
+<h2 id="opérations-sur-les-fonctions">Opérations sur les fonctions</h2>
+<p>Soient <span class="math inline">$f: U \longmapsto \R$</span> et <span class="math inline">$g: U \longmapsto \R$</span> définies sur le même domaine U.</p>
+<p>On définit la somme de deux fonctions <span class="math inline"><em>h</em> = <em>f</em> + <em>g</em></span> comme <br /><span class="math display">∀<em>x</em> ∈ <em>U</em>, <em>h</em>(<em>x</em>) = (<em>f</em> + <em>g</em>)(<em>x</em>) = <em>f</em>(<em>x</em>) + <em>g</em>(<em>x</em>)</span><br /></p>
+<p>On définit le produit de 2 fonctions <span class="math inline"><em>h</em> = <em>f</em> × <em>g</em></span> comme <br /><span class="math display">∀<em>x</em> ∈ <em>U</em>, <em>h</em>(<em>x</em>) = (<em>f</em> × <em>g</em>)(<em>x</em>) = <em>f</em>(<em>x</em>) × <em>g</em>(<em>x</em>)</span><br /></p>
+<p>La multiplication par un scalaire <span class="math inline">$\lambda \in \R$</span> est définie comme,</p>
+<p><span class="math inline">∀<em>x</em> ∈ <em>U</em>, (<em>λ</em><em>f</em>)(<em>x</em>) = <em>λ</em><em>f</em>(<em>x</em>)</span></p>
+<h2 id="fonction-monotone-bornée">Fonction monotone, bornée</h2>
+<p>Soient <span class="math inline">$f: U \longmapsto \R$</span> et <span class="math inline">$g: U \longmapsto \R$</span></p>
+<p>1. <span class="math inline"><em>f</em> ≤ <em>g</em></span> si <span class="math inline">∀<em>x</em> ∈ <em>U</em>, <em>f</em>(<em>x</em>) ≤ <em>g</em>(<em>x</em>)</span></p>
+<p>2. <span class="math inline"><em>f</em> ≥ 0</span> si <span class="math inline">∀<em>x</em> ∈ <em>U</em>, <em>f</em>(<em>x</em>) ≥ 0</span></p>
+<p>3. f est constante si <span class="math inline">$\exists C \in \R$</span> tel que <span class="math inline">∀<em>x</em> ∈ <em>U</em>, <em>f</em>(<em>x</em>) = <em>C</em></span></p>
+<p>1. la fonction f est croissante si <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>U</em>, <em>x</em> ≤ <em>y</em> ⟹ <em>f</em>(<em>x</em>) ≤ <em>f</em>(<em>y</em>)</span>.</p>
+<p>2. la fonction f est strictement croissante si <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>U</em>, <em>x</em> &lt; <em>y</em> ⟹ <em>f</em>(<em>x</em>) &lt; <em>f</em>(<em>y</em>)</span>.</p>
+<p>3. la fonction f est décroissante si <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>U</em>, <em>x</em> ≤ <em>y</em> ⟹ <em>f</em>(<em>x</em>) ≥ <em>f</em>(<em>y</em>)</span>.</p>
+<p>4. la fonction f est strictement décroissante si <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>U</em>, <em>x</em> &lt; <em>y</em> ⟹ <em>f</em>(<em>x</em>) &gt; <em>f</em>(<em>y</em>)</span>.</p>
+<p>5. f est monotone si elle est croissante ou décroissante.</p>
+<p>1. On dit que f est majorée si <span class="math inline">$\exists M \in \R, \forall x \in U, f(x) \leq M$</span>.</p>
+<p>2. On dit que f est minorée si <span class="math inline">$\exists m \in \R, \forall x \in U, f(x) \geq m$</span>.</p>
+<p>3. On dit que f est bornée si elle est majorée et minorée, ou encore si</p>
+<p><span class="math inline">$\exists M \in \R, \forall x \in U, |f(x)| \leq M$</span></p>
+<h2 id="parité-et-périodicité">Parité et périodicité</h2>
+<p>Soit I un intervalle symétrique par rapport à 0 (<span class="math inline"><em>I</em> = ] − <em>a</em>; <em>a</em>[</span>) et <span class="math inline">$f: I \longmapsto \R$</span>.</p>
+<p>1. On dit que f est paire si <span class="math inline">∀<em>x</em> ∈ <em>I</em>, <em>f</em>( − <em>x</em>) = <em>f</em>(<em>x</em>)</span></p>
+<p>2. On dit que f est impaire si <span class="math inline">∀<em>x</em> ∈ <em>I</em>, <em>f</em>( − <em>x</em>) =  − <em>f</em>(<em>x</em>)</span></p>
+<p>Soient <span class="math inline">$f: \R \longmapsto \R$</span> et T un nombre réel strictement positif.</p>
+<p>La fonction f est périodique de période T si <span class="math inline">$\forall x \in \R, f(x + T) = f(x)$</span></p>

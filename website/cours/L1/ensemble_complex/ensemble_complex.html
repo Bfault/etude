@@ -1,0 +1,258 @@
+<p>Arrivé apres le premier CM (cours à venir)</p>
+<h1 id="méthodes-de-démonstration-1">Méthodes de démonstration 1</h1>
+<h2 id="implication">Implication</h2>
+<p>Pour démontrer un énoncé du type <span class="math inline"><em>P</em> ⟹ <em>Q</em></span> (Si P alors Q)</p>
+<p>On suppose P.</p>
+<p>raisonnement profond.</p>
+<p>on en conclut Q.</p>
+<p><br /><span class="math display">$$\begin{aligned}
+        \text{Démontrons que }x \in \mathbb{R} \implies x + 1 \in \mathbb{R}_+
+    \end{aligned}$$</span><br /> On suppose <span class="math inline"><em>x</em> ∈ ℝ</span></p>
+<p>&amp;x &amp;&amp;<br />
+&amp;x + 1 + 1 &amp;&amp;</p>
+<p>Donc <span class="math inline"><em>x</em> + 1 ∈ ℝ<sub>+</sub></span></p>
+<p><span class="math inline"><em>A</em> ⊂ <em>B</em></span> (<span class="math inline"><em>A</em>, <em>B</em> ⊂ <em>E</em></span>) par définition se traduit par <span class="math inline">∀<em>x</em> ∈ <em>E</em>, <em>x</em> ∈ <em>A</em> ⟹ <em>x</em> ∈ <em>B</em></span></p>
+<h2 id="règle-dinférence-déduction-naturelle">Règle d’inférence ("Déduction naturelle")</h2>
+<p>Supposons A, B deux formules logiques dépendant d’énoncés élémentaires P, Q, R, ... Imaginons que pour chaque ligne de la table de vérité où A est vrai, B l’est également. Ainsi lorsqu’on a A on pourra déduire B</p>
+<p>Supposons <span class="math inline"><em>P</em> ⟹ <em>P</em> ∨ <em>Q</em></span></p>
+<p>Quand P est vrai <span class="math inline"><em>P</em> ∨ <em>Q</em></span> est vrai.</p>
+<h2 id="disjonction-de-cas">Disjonction de cas</h2>
+<p>De même une tautologie est une règle qui est toujours vraie. Un exemple (<span class="math inline"><em>P</em> ∨ ¬<em>Q</em></span>).</p>
+<p>Théorème si <span class="math inline"><em>x</em> ∈ ℕ</span> alors <span class="math inline"><em>x</em>(<em>x</em> + 1)</span> pair.</p>
+<p>Si x est pair alors <span class="math inline"><em>x</em> = 2<em>k</em>, <em>k</em> ∈ ℕ</span>.</p>
+<p><span class="math inline"><em>x</em>(<em>x</em> + 1) = 2(<em>k</em>(<em>x</em> + 1))</span> est pair.</p>
+<p>Si x est impair <span class="math inline"><em>x</em> + 1</span> est pair implique <span class="math inline">∃<em>k</em> ∈ ℕ, (<em>x</em> + 1) = 2<em>k</em></span>.</p>
+<p><span class="math inline"><em>x</em>(<em>x</em> + 1) = <em>x</em> + 2<em>k</em> = 2(<em>k</em><em>x</em>)</span> implique <span class="math inline"><em>x</em>(<em>x</em> + 1)</span> pair.</p>
+<p>Conclusion: Dans tous les cas <span class="math inline"><em>x</em>(<em>x</em> + 1)</span> est pair.</p>
+<p>C’est un raisonnement par disjonction de cas.</p>
+<p>Plus généralement si <span class="math inline"><em>A</em> ∨ <em>B</em> ∨ <em>C</em> ∨ ...</span> est une tautologie alors la méthode de la démonstration</p>
+<p><strong>1) Suppose A</strong></p>
+<p><strong>raisonnement profond</strong></p>
+<p><strong>conclusion</strong></p>
+<p><strong>2) Suppose B</strong></p>
+<p><strong>raisonnement profond</strong></p>
+<p><strong>même conclusion</strong></p>
+<p><strong>3) …</strong></p>
+<p><strong>Donc la conclusion est vrai dans tous les cas</strong></p>
+<p>Pour trouver des synonyme en regardant toute les valeurs dans une table de vérités, on utilise une disjonction de cas.</p>
+<p>Soit un entier n, n est impair ou <span class="math inline"><em>n</em><sup>2</sup></span> est un multiple de 4.</p>
+<p>Supposons que n ne soit pas impair.</p>
+<p>Alors n est pair, donc il existe <span class="math inline">$k \in \Z$</span> tel que <span class="math inline"><em>n</em> = 2<em>k</em></span></p>
+<p>Ainsi <span class="math inline"><em>n</em><sup>2</sup> = (2<em>k</em>)<sup>2</sup> = 4<em>k</em><sup>2</sup></span>.</p>
+<p><span class="math inline"><em>n</em><sup>2</sup></span> est un multiple de 4.</p>
+<h2 id="la-double-implication">La double implication</h2>
+<p>Si vous souhaitez montrer que <span class="math inline"><em>P</em> ⇔ <em>Q</em></span>, il suffit de montrer <span class="math inline"><em>P</em> ⟹ <em>Q</em></span> et <span class="math inline"><em>Q</em> ⟹ <em>P</em></span>.</p>
+<p><span class="math inline">$x \in \N \iff x + 1 \in \N^*$</span></p>
+<p>1) Supposons que <span class="math inline">$x \in \N$</span>, donc <span class="math inline"><em>x</em> ≥ 0 ⟹ <em>x</em> + 1 ≥ 1</span></p>
+<p>Ainsi <span class="math inline">$x + 1 \in \N^*$</span></p>
+<p>2) Supposons que <span class="math inline">$x + 1 \in \N^*$</span>, donc <span class="math inline"><em>x</em> + 1 ≥ 1 ⟹ <em>x</em> + 1 − 1 ≥ 1 − 1 ⟹ <em>x</em> ≥ 0</span>.</p>
+<p>La soustraction est stable sur <span class="math inline">$\Z$</span>, de plus <span class="math inline"><em>x</em> ≥ 0</span> donc <span class="math inline">$x \in \Z_+ \equiv \N$</span></p>
+<p>Régulièrement utilisé pour montre que deux ensembles sont égaux, on montre <span class="math inline"><em>A</em> ⊂ <em>B</em></span> et <span class="math inline"><em>B</em> ⊂ <em>A</em></span>. Cela s’appelle la <strong>double inclusion</strong>.</p>
+<h2 id="raisonnement-par-contraposée">Raisonnement par contraposée</h2>
+<p><span class="math inline"><em>P</em> ⟹ <em>Q</em></span> est synonyme à <span class="math inline">¬<em>Q</em> ⟹ ¬<em>P</em></span>, ça se prouve facilement en comparant leurs tables de vérités.</p>
+<p>Soit <span class="math inline">$n \in \N$</span>, montrer que si <span class="math inline"><em>n</em><sup>2</sup></span> alors n est pair.</p>
+<p>Supposons que n est impair, alors il existe <span class="math inline">$k \in \Z, n = 2k + 1$</span></p>
+<p>Ainsi <span class="math inline"><em>n</em><sup>2</sup> = (2<em>k</em> + 1)<sup>2</sup> = 4<em>k</em><sup>2</sup> + 4<em>k</em> + 1 = 2(2<em>k</em><sup>2</sup> + 2<em>k</em>) + 1</span> est impair.</p>
+<p>n impair implique <span class="math inline"><em>n</em><sup>2</sup></span> impair donc <span class="math inline"><em>n</em><sup>2</sup></span> pair implque n pair (la proposition de base).</p>
+<h2 id="raisonnement-par-labsurde">Raisonnement par l’absurde</h2>
+<p>Pour montrer que P est vrai, on peut supposer P faux et arriver à une contradiction.</p>
+<p>Montrons que <span class="math inline">$\sqrt{2}$</span> est irrationnel.</p>
+<p>On suppose que <span class="math inline">$\sqrt{2}$</span> est rationnel, i.e. on peut écrire <span class="math inline">$\sqrt{2} = \dfrac{a}{b}$</span> avec <span class="math inline">$a \in \Z, b \in \N$</span> (et <span class="math inline"><em>p</em><em>g</em><em>c</em><em>d</em>(<em>a</em>, <em>b</em>) = 1</span>).</p>
+<p><span class="math inline">$\sqrt{2} = \dfrac{a}{b} \implies 2 = \dfrac{a^2}{b^2} \implies 2b^2 = a^2$</span></p>
+<p>Ainsi <span class="math inline"><em>a</em><sup>2</sup></span> est pair et avec le raisonnement précédent a est aussi pair (donc <span class="math inline"><em>a</em> = 2<em>k</em></span> avec <span class="math inline">$k \in \Z$</span>).</p>
+<p><span class="math inline">2<em>b</em><sup>2</sup> = (2<em>k</em>)<sup>2</sup> ⟹ 2<em>b</em><sup>2</sup> = 4<em>k</em><sup>2</sup> ⟹ <em>b</em><sup>2</sup> = 2<em>k</em><sup>2</sup></span></p>
+<p>Ainsi <span class="math inline"><em>b</em><sup>2</sup></span> est pair et b aussi.</p>
+<p>Absurde a et b sont premiers entre eux, ils ne peuvent pas être tous les deux multiple de 2.</p>
+<h1 id="logique-avec-quantificateurs">Logique avec quantificateurs</h1>
+<p>Quand on utilise des quantificateurs il y a des règles à suivre:</p>
+<p><strong>Règle numéro 1:</strong> Toute lettre dans un énoncé doit être introduite par un quantificateur.</p>
+<p><strong>Règle numéro 2:</strong> Cette introduction doit se faire avant la première occurence de la variable.</p>
+<p><strong>Règle numéro 3:</strong> On doit toujours préciser à quel ensemble appartient la variable.</p>
+<p>Quand on veut montrer un énoncé universel (<span class="math inline">∀<em>x</em> ∈ <em>X</em>, <em>P</em>(<em>x</em>)</span>)</p>
+<p>1) <strong>"Soit <span class="math inline"><em>x</em> ∈ <em>X</em></span>, montrons P(x)."</strong></p>
+<p>2) <strong>raisonnement profond.</strong></p>
+<p>3) <strong>On montre P(x).</strong></p>
+<p><span class="math inline">$\forall x \in \R, \dfrac{x}{x^2 + 1} \geq \dfrac{-1}{2}$</span></p>
+<p>Soit <span class="math inline">$x \in \R$</span> <br /><span class="math display">$$\begin{aligned}
+        \dfrac{x}{x^2 + 1} \geq -\dfrac{1}{2} &amp;\implies 2x \geq -(x^2 + 1) \\
+        &amp;\implies (x^2 + 2x + 1) \geq 0\\
+        &amp;\implies (x + 1)^2 \geq 0
+    \end{aligned}$$</span><br /></p>
+<p>Pour donner un nom à une quantité/un objet mathématique, on écrit:</p>
+<p><strong>Posons A := ...</strong>, <strong>Notons A le ...</strong> ou <strong>Soit A := ...</strong>.</p>
+<p>Quand on veut montrer qu’il existe x appartenant à A vérifiant P(x),</p>
+<p>Soit on a en tête un exemple d’élément x dans A vérifiant P(x)</p>
+<p><strong>Posons x = ...</strong></p>
+<p><strong>Vérifions <span class="math inline"><em>x</em> ∈ <em>A</em></span></strong></p>
+<p><strong>Vérifions P(x)</strong></p>
+<p>Soit on essaye d’utiliser des théorèmes d’existence pour montrer qu’un tel x existe.</p>
+<p>Les mêmes quantificateurs peuvent être intervertis mais pas quand ils sont différent (un <span class="math inline">∀</span> avec un <span class="math inline">∃</span>).</p>
+<h1 id="méthodes-de-démonstration-2">Méthodes de démonstration 2</h1>
+<h2 id="unicité-dun-objet">Unicité d’un objet</h2>
+<p>Nous croiserons régulièrement des énoncés du type: "Il y a au plus un élément <span class="math inline"><em>x</em> ∈ <em>X</em></span> vérifiant P(x)".</p>
+<p>Pour montrer qu’un ensemble X contient au plus un élément vérifiant une propriété P, on peut procédé ainsi.</p>
+<p>1) <strong>Soient x et x’ deux élément de X vérifiant P, montrons x = x’</strong></p>
+<p>2) <strong>Raisonnement profond.</strong></p>
+<p>3) <strong>On en conclut l’unicité d’un élément vérifiant P</strong>.</p>
+<p>L’unicité ne veut pas dire qu’on a montré l’existence.</p>
+<p>Soit <span class="math inline">$n \in \N$</span> Montrer qu’il existe au plus un multiple de 10 dans <span class="math inline"><em>X</em> = {<em>n</em>, <em>n</em> + 1, ..., <em>n</em> + 5}</span></p>
+<p>Soient <span class="math inline"><em>k</em>, <em>k</em>′ ∈ [0, 5]</span> tel que <span class="math inline">10 ∣ <em>n</em> + <em>k</em></span> et <span class="math inline">$10 \mid n+k' \implies \exists p \in \Z, n + k = 10p$</span> et <span class="math inline">$\exists p' \in \Z, n + k' = 10p'$</span></p>
+<p>Par soustraction <span class="math inline">(<em>n</em> + <em>k</em>) − (<em>n</em> + <em>k</em>′) = 10<em>m</em> − 10<em>m</em>′ ⟹ (<em>k</em> − <em>k</em>′) = 10(<em>m</em> − <em>m</em>′)</span></p>
+<p>Or <span class="math inline"> − 5 ≤ (<em>k</em> − <em>k</em>′) ≤ 5</span> et le seul multiple de 10 dans cette intervalle est 0.</p>
+<p>Donc <span class="math inline"><em>k</em> = <em>k</em>′</span> et <span class="math inline"><em>n</em> + <em>k</em> = <em>n</em> + <em>k</em>′</span>.</p>
+<h2 id="analyse-synthèse">Analyse synthèse</h2>
+<p>Pour déterminer l’ensemble des éléments d’un ensemble E vérifiant une propriété P, on peut raisonner par analyse/synthèse.</p>
+<p><strong>Analyse:</strong> soit <span class="math inline"><em>x</em> ∈ <em>E</em></span>. on suppose que x vérifie P.</p>
+<p>... on regarde les forme possible de x.</p>
+<p><strong>Synthèse:</strong> Posons x = ... les différente formes possibles trouvées.</p>
+<p>Vérifions que x vérifie P (et appartient bien à E).</p>
+<p>Trouvons les couples de nombres réels non-nuls (x, y), solutions du système <br /><span class="math display">$$(S)
+        \begin{cases}
+            xy = 2\\
+            \dfrac{y}{x} = 2
+        \end{cases}$$</span><br /></p>
+<p><strong>Analyse:</strong> Soit <span class="math inline">$(x, y) \in \R^2$</span></p>
+<p><span class="math inline">$xy \times \dfrac{y}{x} = 2 \times 2 \implies y^2 = 4 \implies y = 2 \lor y = -2$</span></p>
+<p>La ligne 1 (de S) donne <span class="math inline">$x = \dfrac{2}{y}$</span></p>
+<p>Donc les seuls couples possibles pour (x, y) sont (1, 2) et (-1, -2)</p>
+<p><strong>Synthèse:</strong> On vérifie les deux couples trouvés.</p>
+<p><span class="math inline">$1 \time 2 = 2$</span> et <span class="math inline">$\dfrac{2}{1} = 2$</span> puis <span class="math inline"> − 1 × ( − 2) = 2</span> et <span class="math inline">$\dfrac{-2}{-1} = 2$</span></p>
+<p>Donc (1, 2) et (-1, -2) sont l’ensemble des couples qui sont solutions de S.</p>
+<h2 id="définition-de-n-par-récurence">Définition de <span class="math inline">$\N$</span> par récurence</h2>
+<p><span class="math inline">$\N$</span> est l’ensemble construit par</p>
+<p><span class="math inline">$\N$</span> contient un élément noté 0.</p>
+<p>Chaque élément <span class="math inline">$n \in \N$</span> admet un unique successeur noté succ(n) = n + 1.</p>
+<p><span class="math inline">$\forall x \in \N, [succ(x) \neq 0]$</span>.</p>
+<p><span class="math inline">$\forall x, y \in \N, [succ(x) = succ(y) \implies x = y]$</span>.</p>
+<p><span class="math inline">$\forall A \subset \N, [(0 \in A \land (n \in A \implies succ(n) \in A)) \implies A = \N]$</span> (important pour la récurence).</p>
+<p>Avec cette notation par récurence on peut définir <span class="math inline">∑</span> par <br /><span class="math display">$$\sum_{i=1}^{n}a_i =
+        \begin{cases}
+            0 &amp;\text{ si } n = 0\\
+            (\sum_{i=1}^{n-1}a_i) + a_n &amp;\text{ si } n \geq 1
+        \end{cases}$$</span><br /></p>
+<p>Pour montrer une propriété <span class="math inline"><em>P</em><sub><em>n</em></sub></span> est vrai pour tout entier <span class="math inline"><em>n</em> ≥ <em>n</em><sub>0</sub></span>.</p>
+<p>Donner explicitement la propriété <span class="math inline"><em>P</em><sub><em>n</em></sub></span>.</p>
+<p><strong>Initialisation:</strong> On montre <span class="math inline"><em>P</em><sub><em>n</em><sub>0</sub></sub></span>.</p>
+<p><strong>Hérédité:</strong> Soit <span class="math inline">$n \in \N, n \geq n_0$</span>, tel que <span class="math inline"><em>P</em><sub><em>n</em></sub></span> est vraie.</p>
+<p>Montrons que <span class="math inline"><em>P</em><sub><em>n</em> + 1</sub></span>.</p>
+<p>Il peut arrivé qu’on ne puisse pas déduire <span class="math inline"><em>P</em><sub><em>n</em> + 1</sub></span> de <span class="math inline"><em>P</em><sub><em>n</em></sub></span> mais seulement <span class="math inline"><em>P</em><sub><em>n</em> + 2</sub></span> à partir de <span class="math inline"><em>P</em><sub><em>n</em> + 1</sub></span> et <span class="math inline"><em>P</em><sub><em>n</em></sub></span>, on fait alors une récurence double.</p>
+<p>Si <span class="math inline"><em>P</em><sub><em>n</em><sub>0</sub></sub></span> et <span class="math inline"><em>P</em><sub><em>n</em><sub>0</sub> + 1</sub></span> sont vraies et si <span class="math inline">$\forall n \in \N, n \geq n_0, (P_n \land P_{n+1} \implies P_{n+2})$</span></p>
+<p>Alors <span class="math inline">$\forall n \in \N, n \geq n_0, P_n$</span> est vrai.</p>
+<p>Il existe aussi une récurence forte.</p>
+<p>Si <span class="math inline"><em>P</em><sub><em>n</em><sub>0</sub></sub></span> est vraie et si <span class="math inline">$\forall n \in \N, n \geq n_0, (\forall k \in \N, n_0 \leq k \leq n, P_k \implies P_{n+1})$</span></p>
+<p>Alors <span class="math inline">$\forall n \in \N, n \geq n_0, P_n$</span> est vrai.</p>
+<h1 id="théorie-des-ensembles">Théorie des ensembles</h1>
+<h2 id="opérations-sur-les-ensembles">Opérations sur les ensembles</h2>
+<p>Un ensemble est une collection d’éléments. Il est défini par la connaissance de ses éléments.</p>
+<p>Soit A un ensemble <span class="math inline"><em>a</em> ∈ <em>A</em></span> signifie que a appartient à A. On dit alors que a est un élément de A.</p>
+<p>La définition d’un ensemble peut se faire des façon suivante:</p>
+<p><span class="math inline">•</span> liste exaustive (<span>1, 2, 3</span>)</p>
+<p><span class="math inline">•</span> paramétrique (<span class="math inline">$\{2x + 1 \mid x \in \N\}$</span>)</p>
+<p><span class="math inline">•</span> inplicite (<span class="math inline">$\{x \in \R \mid x(x+1) \gt 0\}$</span>)</p>
+<p>Dans un ensemble l’ordre et la répétition n’a pas son importance.</p>
+<p>Soient A et B deux ensembles. On dit que A est un sous-ensemble de B lorsque <span class="math inline">∀<em>x</em> ∈ <em>A</em>, <em>x</em> ∈ <em>B</em></span>, on note plus <span class="math inline"><em>A</em> ⊂ <em>B</em></span>.</p>
+<p>Soit A un ensemble fini, le cardinal de A est le nombre d’éléments de A, noté <span class="math inline"><em>c</em><em>a</em><em>r</em><em>d</em><em>A</em></span>.</p>
+<p>Un ensemble avec un seul élément est un singleton.</p>
+<p>Un ensemble qui ne contient aucun éléments est appelé l’ensemble vide (noté <span class="math inline">∅</span> ou {}), c’est un sous ensemble de tout les ensembles.</p>
+<p>Un quantificateur universelle sur l’ensemble vide est automatiquement vérifié. (e.g. <span class="math inline">∀<em>x</em> ∈ ∅, <em>P</em>(<em>x</em>)</span>)</p>
+<p>Soient A, B des parties d’un ensemble E.</p>
+<p>La réunion de A et de B, notée <span class="math inline"><em>A</em> ∪ <em>B</em></span> est la partie de E dont les éléments sont éléments de A ou de B.</p>
+<p><span class="math inline"><em>A</em> ∪ <em>B</em> = {<em>x</em> ∈ <em>E</em>, <em>x</em> ∈ <em>A</em> ∨ <em>x</em> ∈ <em>B</em>}</span></p>
+<p>Soient A, B des parties d’un ensemble E.</p>
+<p>L’intersection de A et de B, notée <span class="math inline"><em>A</em> ∩ <em>B</em></span> est la partie de E dont les éléments sont éléments de A et de B.</p>
+<p><span class="math inline"><em>A</em> ∩ <em>B</em> = {<em>x</em> ∈ <em>E</em>, <em>x</em> ∈ <em>A</em> ∧ <em>x</em> ∈ <em>B</em>}</span></p>
+<p>La réunion n’est pas un ou exclusive.</p>
+<p><span class="math inline"><em>A</em> ∪ <em>B</em></span> est le plus petit ensemble contenant A et B</p>
+<p><span class="math inline"><em>A</em> ∩ <em>B</em></span> est le plus grand ensemble contenu dans A et B</p>
+<p>Comme un élement peut seulement être ou ne pas être dans un ensemble, on peut faire une disjonction de cas.</p>
+<p>Soient A, B deux sous ensemble d’un ensemble E.</p>
+<p><span class="math inline">•</span> A et B sont dits disjoints si <span class="math inline"><em>A</em> ∩ <em>B</em> = ∅</span></p>
+<p><span class="math inline">•</span> Le complémentaire de A dans E est la partie de E dont les éléments sont tous les éléments de E qui ne sont pas dans A. On le note <span class="math inline"><em>E</em> ∖ <em>A</em> = {<em>x</em> ∈ <em>E</em> ∣ <em>x</em> ∉ <em>A</em>}</span>. Autres notations: <span class="math inline"><em>C</em><sub><em>E</em></sub><em>A</em></span> ou <span class="math inline"><em>A</em><sup><em>C</em></sup></span></p>
+<p><span class="math inline">•</span> La différence symétrique de A et B, notée <span class="math inline"><em>A</em><em>Δ</em><em>B</em> := (<em>A</em> ∖ <em>B</em>) ∪ (<em>B</em> ∖ <em>A</em>)</span></p>
+<p>Soit I un ensemble, Soient <span class="math inline">(<em>A</em><sub><em>i</em></sub>)<sub><em>i</em> ∈ <em>I</em></sub></span> des sous ensembles d’une ensemble E.</p>
+<p>L’intersection des <span class="math inline"><em>A</em><sub><em>i</em></sub></span> est <span class="math inline">⋒<sub><em>i</em> ∈ <em>I</em></sub><em>A</em><sub><em>i</em></sub> := {<em>x</em> ∈ <em>E</em>, ∀<em>i</em> ∈ <em>I</em>, <em>x</em> ∈ <em>A</em><sub><em>i</em></sub>}</span></p>
+<p>L’union des <span class="math inline"><em>A</em><sub><em>i</em></sub></span> est <span class="math inline">⋓<sub><em>i</em> ∈ <em>I</em></sub><em>A</em><sub><em>i</em></sub> := {<em>x</em> ∈ <em>E</em>, ∃<em>i</em> ∈ <em>I</em>, <em>x</em> ∈ <em>A</em><sub><em>i</em></sub>}</span></p>
+<p>Par convention: si <span class="math inline"><em>I</em> = ∅</span> alors <span class="math inline">⋓<sub><em>i</em> ∈ <em>I</em></sub><em>A</em><sub><em>i</em></sub> := 0</span> et <span class="math inline"><em>I</em> = ∅</span> alors <span class="math inline">⋒<sub><em>i</em> ∈ <em>I</em></sub><em>A</em><sub><em>i</em></sub> := <em>E</em></span></p>
+<p>Soient A, B deux sous ensembles non vides de E.</p>
+<p>A et B sont complémentaires dans E ou forment une partition de E si <span class="math inline"><em>E</em> = <em>A</em> ∪ <em>B</em></span> et <span class="math inline"><em>A</em> ∩ <em>B</em> = ∅</span></p>
+<p>Le non complémentaire vient du fait qu’une autre définition soit <span class="math inline"><em>A</em> = <em>E</em> ∖ <em>B</em> ⇔ <em>B</em> = <em>E</em> ∖ <em>A</em></span></p>
+<p>Soit E un ensemble. On note <span class="math inline"><em>P</em>(<em>E</em>)</span> l’ensemble des parties de E.</p>
+<p>Il est équivalent d’écrire <span class="math inline"><em>A</em> ⊂ <em>E</em></span> ou <span class="math inline"><em>A</em> ∈ <em>P</em>(<em>E</em>)</span></p>
+<p>Pour tout ensemble E, on a <span class="math inline">∅ ∈ <em>P</em>(<em>E</em>)</span> et <span class="math inline"><em>E</em> ∈ <em>P</em>(<em>E</em>)</span></p>
+<p>Lorsque <span class="math inline"><em>c</em><em>a</em><em>r</em><em>d</em>(<em>E</em>) = <em>n</em></span> avec <span class="math inline">$n \in \N$</span> alors <span class="math inline"><em>c</em><em>a</em><em>r</em><em>d</em>(<em>P</em>(<em>E</em>)) = 2<sup><em>n</em></sup></span></p>
+<p><strong>Initialisation:</strong> <span class="math inline"><em>c</em><em>a</em><em>r</em><em>d</em>(<em>E</em>) = 0 ⟹ <em>E</em> = ∅</span> alors <span class="math inline"><em>P</em>(<em>E</em>) = {∅}</span> donc <span class="math inline"><em>c</em><em>a</em><em>r</em><em>d</em>(<em>P</em>(<em>E</em>)) = 1 = 2<sup>0</sup></span></p>
+<p><strong>Hérédité:</strong> Soit E de cardinal <span class="math inline"><em>n</em> ≥ 1</span>. Soit <span class="math inline"><em>a</em> ∈ <em>E</em></span>, <span class="math inline"><em>F</em> = <em>E</em> ∖ {<em>a</em>}</span></p>
+<p><span class="math inline"><em>c</em><em>a</em><em>r</em><em>d</em>(<em>F</em>) = <em>n</em> − 1</span></p>
+<p>Les parties de E sont les X et les <span class="math inline"><em>X</em> ∪ {<em>a</em>}</span> où <span class="math inline"><em>X</em> ∈ <em>P</em>(<em>F</em>)</span></p>
+<p>Ainsi card(P(E)) = card(P(F)) + card(P(F))</p>
+<p>Soient E et F deux ensembles.</p>
+<p>Le produit cartésien de E par F est l’ensemble <span class="math inline"><em>E</em> × <em>F</em> = {(<em>x</em>, <em>y</em>) ∣ <em>x</em> ∈ <em>E</em> ∧ <em>y</em> ∈ <em>F</em>}</span></p>
+<p>Attention ce n’est pas commutatif, <span class="math inline"><em>E</em> × <em>F</em> ≠ <em>F</em> × <em>E</em></span></p>
+<p>Soient <span class="math inline"><em>E</em><sub>1</sub>, <em>E</em><sub>2</sub>, ..., <em>E</em><sub><em>n</em></sub></span> des ensembles.</p>
+<p><span class="math inline"><em>E</em><sub>1</sub> × <em>E</em><sub>2</sub> × ... × <em>E</em><sub><em>n</em></sub> = {(<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>, ..., <em>x</em><sub><em>n</em></sub>), ∀<em>i</em> ∈ {1, 2, ..., <em>n</em>}, <em>x</em><sub><em>i</em></sub> ∈ <em>E</em><sub><em>i</em></sub>}</span></p>
+<p><span class="math inline">(<em>x</em><sub>1</sub>, <em>x</em><sub>2</sub>, ..., <em>x</em><sub><em>n</em></sub>)</span> est appelé un n-uplet.</p>
+<p>Soient X, Y deux ensembles.</p>
+<p><span class="math inline">•</span> Une application de X dans Y est la donnée, pour tout point <span class="math inline"><em>x</em> ∈ <em>X</em></span> d’un unique point <span class="math inline"><em>y</em> ∈ <em>Y</em></span> associé à x. On dit que y est l’image de x par l’application.</p>
+<p><span class="math inline">•</span> Soit f est une application de X dans Y.</p>
+<p><span class="math inline">⋄</span> on note f(x) l’image de x par f</p>
+<p><span class="math inline">⋄</span> X est appelé espace de départ de f.</p>
+<p><span class="math inline">⋄</span> Y est appelé espace d’arrivée de f.</p>
+<p>Deux applications f et g sont égales si elles ont même ensemble de départ, même ensemble d’arrivée et si</p>
+<p><span class="math inline">∀<em>x</em> ∈ <em>X</em>, <em>f</em>(<em>x</em>) = <em>g</em>(<em>x</em>)</span></p>
+<p>On ne change pas une application en modifiant la (les) variable(s) muette(s) permettant de la définir. Ainsi les applications suivantes sont égales:</p>
+<p><span class="math inline">$f : \R^2 \to \R (x, y) \to x + y,     g : \R^2 \to \R , (x_1, x_2) \to x_1 + x_2$</span></p>
+<p>Pour toute fonction f, si <span class="math inline"><em>x</em><sub>1</sub> = <em>x</em><sub>2</sub></span> alors <span class="math inline"><em>f</em>(<em>x</em><sub>1</sub>) = <em>f</em>(<em>x</em><sub>2</sub>)</span>, la réciproque est fausse en général.</p>
+<p>Etant donnée une application <span class="math inline"><em>f</em> : <em>X</em> → <em>Y</em><em>x</em> → <em>f</em>(<em>x</em>)</span> et <span class="math inline"><em>X</em>′ ⊂ <em>X</em></span>, on peut créer une application restreinte <span class="math inline"><em>f</em><sub> ∣ <em>X</em>′</sub> : <em>X</em>′ → <em>Y</em><em>x</em> → <em>f</em>(<em>x</em>)</span></p>
+<p>Soient X, Y des ensembles.</p>
+<p><span class="math inline">•</span> On appelle graphe dans <span class="math inline"><em>X</em> × <em>Y</em></span> toute partie G de <span class="math inline"><em>X</em> × <em>Y</em></span> telle que <span class="math inline">∀<em>x</em> ∈ <em>X</em>, ∃!<em>y</em> ∈ <em>Y</em>, (<em>x</em>, <em>y</em>) ∈ <em>G</em></span></p>
+<p><span class="math inline">•</span> Si f est une application de X dans Y, alors le graphe de f est <span class="math inline"><em>G</em><sub><em>f</em></sub> := {(<em>x</em>, <em>y</em>) ∈ <em>X</em> × <em>Y</em> ∣ <em>y</em> = <em>f</em>(<em>x</em>)}</span></p>
+<p>Réciproquement si G est un graph</p>
+<p>Une fonction n’étant pas nécessairement définie sur tout l’ensemble de départ considéré (souvent <span class="math inline">$\R$</span>).</p>
+<p>Soit <span class="math inline"><em>f</em> ∈ <em>Y</em><sup><em>X</em></sup></span></p>
+<p><span class="math inline">•</span> On dit que <span class="math inline"><em>x</em> ∈ <em>X</em></span> est un antécédent de <span class="math inline"><em>y</em> ∈ <em>Y</em></span> par f lorsque <span class="math inline"><em>f</em>(<em>x</em>) = <em>y</em></span>, i.e. lorsque y est l’image de x par f.</p>
+<p><span class="math inline">•</span> Si A est un sous ensemble de X, on appelle image de A l’ensemble <span class="math inline"><em>f</em>(<em>A</em>) := {<em>f</em>(<em>a</em>) ∣ <em>a</em> ∈ <em>A</em>} = {<em>y</em> ∈ <em>Y</em> ∣ ∃<em>a</em> ∈ <em>A</em>, <em>f</em>(<em>a</em>) = <em>y</em>} ⊂ <em>Y</em></span></p>
+<p><span class="math inline">•</span> Si B est un sous ensemble de Y, on appelle image réciproque de B l’ensemble des antécédents d’éléments de B: <span class="math inline"><em>f</em><sup> − 1</sup>(<em>B</em>) := {<em>x</em> ∈ <em>X</em> ∣ <em>f</em>(<em>x</em>) ∈ <em>B</em>} ⊂ <em>X</em></span></p>
+<p>Attention à la notation, f(a) et f(A) ne sont pas de même nature. Pour tout <span class="math inline"><em>x</em> ∈ <em>X</em>, <em>f</em>({<em>x</em>}) = {<em>f</em>(<em>x</em>)}</span></p>
+<p>Soit <span class="math inline"><em>f</em> ∈ <em>Y</em><sup><em>X</em></sup></span></p>
+<p><span class="math inline">•</span> Pour toutes parties A et B de Y on a,</p>
+<p><span class="math inline">⋄</span> <span class="math inline"><em>A</em> ⊂ <em>B</em> ⟹ <em>f</em><sup> − 1</sup>(<em>A</em>) ⊂ <em>f</em><sup> − 1</sup>(<em>B</em>)</span></p>
+<p><span class="math inline">⋄</span> <span class="math inline"><em>f</em><sup> − 1</sup>(<em>A</em> ∪ <em>B</em>) = <em>f</em><sup> − 1</sup>(<em>A</em>) ∪ <em>f</em><sup> − 1</sup>(<em>B</em>)</span></p>
+<p><span class="math inline">⋄</span> <span class="math inline"><em>f</em><sup> − 1</sup>(<em>A</em> ∩ <em>B</em>) = <em>f</em><sup> − 1</sup>(<em>A</em>) ∩ <em>f</em><sup> − 1</sup>(<em>B</em>)</span></p>
+<p><span class="math inline">•</span> Pour toutes parties A et B de X, on a</p>
+<p><span class="math inline">⋄</span> <span class="math inline"><em>A</em> ⊂ <em>B</em> ⟹ <em>f</em>(<em>A</em>) ⊂ <em>f</em>(<em>B</em>)</span></p>
+<p><span class="math inline">⋄</span> <span class="math inline"><em>f</em>(<em>A</em> ∪ <em>B</em>) = <em>f</em>(<em>A</em>) ∪ <em>f</em>(<em>B</em>)</span></p>
+<p><span class="math inline">⋄</span> <span class="math inline"><em>f</em>(<em>A</em> ∩ <em>B</em>) ⊂ <em>f</em>(<em>A</em>) ∩ <em>f</em>(<em>B</em>)</span></p>
+<p>Soient E et F deux ensembles arbitraires On dit que E et F ont même cardinal s’il existe une bijection entre E et F.</p>
+<p>Soit E un ensemble. On dit que E est dénombrable s’il existe une injection de E dans <span class="math inline">$\N$</span></p>
+<p><span class="math inline">$\N^*, \Z, \N^2, \Q, \N^n$</span> sont dénombrables.</p>
+<p><span class="math inline">$\R, P(\N)$</span> ne sont pas dénombrables</p>
+<p><span class="math inline">$P(\N)$</span> et <span class="math inline">$\R$</span> ont même cardinal.</p>
+<h1 id="relation-et-permutations">Relation et permutations</h1>
+<p>Soit E un ensemble non vide. Une relation binaire R sur E est la donnée d’une application <span class="math inline"><em>E</em> × <em>E</em> → Vrai, Faux</span>.</p>
+<p>On dit que x est en relation avec y lorsque l’image de (x, y) par l’application est "Vrai" et on note alors xRy</p>
+<p>Soit E un ensemble non vide et R une relation binaire sur E. On dit que R est</p>
+<p><strong>réflexive</strong> lorsque <span class="math inline">∀<em>x</em> ∈ <em>E</em>, <em>x</em><em>R</em><em>x</em></span></p>
+<p><strong>symétrique</strong> lorsque <span class="math inline">∀(<em>x</em>, <em>y</em>) ∈ <em>E</em><sup>2</sup>, <em>x</em><em>R</em><em>y</em> ⇔ <em>y</em><em>R</em><em>x</em></span></p>
+<p><strong>antisymétrique</strong> lorsque <span class="math inline">∀(<em>x</em>, <em>y</em>) ∈ <em>E</em><sup>2</sup>, (<em>x</em><em>R</em><em>y</em> ∧ <em>y</em><em>R</em><em>x</em>) ⟹ <em>x</em> = <em>y</em></span></p>
+<p><strong>transitive</strong> lorsque <span class="math inline">∀(<em>x</em>, <em>y</em>, <em>z</em>) ∈ <em>E</em><sup>3</sup>, <em>x</em><em>R</em><em>y</em> ∧ <em>y</em><em>R</em><em>z</em> ⟹ <em>x</em><em>R</em><em>z</em></span></p>
+<p>Soit R une relation sur un ensemble E. On dit que R est une relation d’équivalence si elle est réflexive, symétrique et transitive.</p>
+<p>Soit <span class="math inline"><em>E</em> ≠ ∅</span> un ensemble muni d’une rel. d’équivalence R.</p>
+<p>Soit <span class="math inline"><em>x</em> ∈ <em>E</em></span>.</p>
+<p>On appelle classe d’équivalence modulo R de x et on note <span class="math inline">$\o{x}$</span> l’ensemble <span class="math inline">{<em>x</em> ∈ <em>E</em>, <em>x</em><em>R</em><em>y</em>}</span>.</p>
+<p>L’ensemble des classes d’équivalence de E modulo R forme une partition de E.</p>
+<p>L’ensemble des classes d’équivalence de E modulo R s’appelle l’ensemble quotient de E par R. On le note E/R.</p>
+<p>Soit R une relation sur un ensemble E.</p>
+<p>On dit que R est une relation d’ordre si elle est réflexive, antisymétrique et transitive. Notée souvent <span class="math inline">≼</span> cursif. On dit que <span class="math inline">(<em>E</em>,  ≼ )</span> est un ensemble ordonné.</p>
+<p>Relation d’ordre totale lorsque R est complète (<span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>E</em>, (<em>x</em><em>R</em><em>y</em> ∨ <em>y</em><em>R</em><em>x</em>)</span>)</p>
+<p>Soit <span class="math inline">(<em>E</em>,  ≼ )</span> ensemble ordonné. Soit <span class="math inline"><em>A</em> ∈ <em>P</em>(<em>E</em>)</span>. On dit que</p>
+<p>A admet un minimum lorsque</p>
+<p><span class="math inline">∃<em>a</em><sub>0</sub> ∈ <em>A</em>, ∀<em>A</em>, <em>a</em><sub>0</sub> ≼ <em>a</em></span> On note <span class="math inline"><em>m</em><em>i</em><em>n</em>(<em>A</em>) := <em>a</em><sub>0</sub></span></p>
+<p>A admet un maximum lorsque</p>
+<p><span class="math inline">∃<em>a</em><sub>0</sub> ∈ <em>A</em>, ∀<em>a</em> ∈ <em>A</em>, <em>a</em> ≼ <em>a</em><sub>0</sub></span> On note <span class="math inline"><em>m</em><em>a</em><em>x</em>(<em>A</em>) := <em>a</em><sub>0</sub></span></p>
+<p>A est minoré lorsque</p>
+<p><span class="math inline">∃<em>m</em> ∈ <em>E</em>, ∀<em>a</em> ∈ <em>A</em>, <em>m</em> ≼ <em>a</em></span></p>
+<p>Si A admet un minimum (resp. un maximum) alors A est minoré (resp. majoré)</p>
+<p>Si A admet un minimum (resp. maximum), il est unique.</p>
+<p>Soit E un ensemble muni d’une relation d’ordre totale <span class="math inline">≼</span>. Soit <span class="math inline"><em>A</em> ∈ <em>P</em>(<em>E</em>)</span> un ensemble fini non-vide. Alors A admet un minimum et un maximum.</p>
+<h1 id="permutations">Permutations</h1>
+<h1 id="ensemble-et-nombres-complexes">Ensemble et nombres complexes</h1>

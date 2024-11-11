@@ -1,0 +1,231 @@
+<p>Arrivé apres le premier CM (cours à venir)</p>
+<h1 id="structures-algébriques">Structures algébriques</h1>
+<h2 id="lois-de-compositions-internes">Lois de compositions internes</h2>
+<p>Soit E un ensemble. On appelle <strong>loi de composition interne</strong> (l.c.i) sur E une opération binaire.</p>
+<p>On parle d’application <span class="math inline"><em>E</em> × <em>E</em> → <em>E</em></span></p>
+<p>Soit * une l.c.i sur E. On dit *</p>
+<p><span class="math inline">•</span> <strong>associative</strong> si <span class="math inline">∀<em>x</em>, <em>y</em>, <em>z</em> ∈ <em>E</em>, <em>x</em> * (<em>y</em> * <em>z</em>) = (<em>x</em> * <em>y</em>) * <em>z</em></span></p>
+<p><span class="math inline">•</span> <strong>commutative</strong> si <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>E</em>, <em>x</em> * <em>y</em> = <em>x</em> * <em>y</em></span></p>
+<p><span class="math inline">•</span> a un <strong>élement neutre</strong> <span class="math inline"><em>e</em> ∈ <em>E</em></span> vérifiant <span class="math inline">∀<em>x</em> ∈ <em>E</em>, <em>x</em> * <em>e</em> = <em>e</em> * <em>x</em> = <em>x</em></span></p>
+<h2 id="groupes">Groupes</h2>
+<p>Soit G un ensemble et * une l.c.i sur G. On dit que (G, *) est un <strong>groupe</strong> lorsque les axiomes suivants sont vérifiés.</p>
+<p><span class="math inline">•</span> * est associative</p>
+<p><span class="math inline">•</span> * admet un élement neutre <span class="math inline"><em>e</em> ∈ <em>G</em></span></p>
+<p><span class="math inline">•</span> <span class="math inline">∀<em>x</em> ∈ <em>G</em>, ∃<em>x</em>′ ∈ <em>G</em></span> tel que <span class="math inline"><em>x</em> * <em>x</em>′ = <em>x</em>′ * <em>x</em> = <em>e</em></span> (on dit que x’ est l’élement inverse ou symétrique de x pour *)</p>
+<p>Si de plus * est commutative, alors le groupe est dit <strong>abélien</strong> (ou commutatif).</p>
+<p>Si X est un ensemble, notons <span class="math inline"><em>B</em><em>i</em><em>j</em>(<em>X</em>)</span>, l’ensemble des application de X dans X admettant une application réciproque <br /><span class="math display">$$\forall f: X \rightarrow X, \exists g: X \rightarrow X, g \circ f = f \circ g = Id_X:
+        \begin{cases}
+            X &amp;\longrightarrow X \\
+            x &amp;\longmapsto x
+        \end{cases}$$</span><br /> Ainsi <span class="math inline">(<em>B</em><em>i</em><em>j</em>(<em>X</em>),  ∘ )</span> est un groupe.</p>
+<p>Si (G, *) est un groupe alors</p>
+<p><strong>(a)</strong> L’élement neutre de G est unique</p>
+<p><strong>(b)</strong> Chaque <span class="math inline"><em>x</em> ∈ <em>G</em></span> admet un unique élement inverse</p>
+<p><strong>(c)</strong> Si <span class="math inline"><em>x</em>, <em>y</em>, <em>z</em> ∈ <em>G</em></span> tel que <span class="math inline"><em>x</em> * <em>y</em> = <em>z</em> * <em>y</em></span> alors <span class="math inline"><em>x</em> * <em>y</em></span> (indépendament de l’ordre)</p>
+<p><strong>(a)</strong>: Soient e, e’ des élements neutres de G par *, <span class="math inline"><em>e</em> * <em>e</em>′ = <em>e</em>′ * <em>e</em> = <em>e</em> = <em>e</em>′</span></p>
+<p><strong>(b)</strong>: Soient x’, x” des élements inverse de <span class="math inline"><em>x</em> ∈ <em>G</em></span>,</p>
+<p><span class="math inline"><em>x</em>′ = <em>x</em>′ * <em>e</em> = <em>x</em>′ * (<em>x</em> * <em>x</em>″) = (<em>x</em>′ * <em>x</em>) * <em>x</em>″ = <em>e</em> * <em>x</em>″ = <em>x</em>″</span></p>
+<p><strong>(c)</strong>: Posons <span class="math inline"><em>x</em><sup> − 1</sup> * (<em>x</em> * <em>y</em>) = <em>x</em><sup> − 1</sup> * (<em>x</em> * <em>z</em>) ⟹ (<em>x</em><sup> − 1</sup> * <em>x</em>) * <em>y</em> = (<em>x</em><sup> − 1</sup> * <em>x</em>) * <em>z</em> ⟹ <em>e</em> * <em>y</em> = <em>e</em> * <em>z</em> ⟹ <em>y</em> = <em>z</em></span></p>
+<p>Lorsqu’il n’y a pas d’ambiguïtés, l’inverse d’un élement x sera noté <span class="math inline"><em>x</em><sup> − 1</sup></span>. Notons que <span class="math inline">(<em>x</em><sup> − 1</sup>)<sup> − 1</sup> = <em>x</em></span></p>
+<p>Soit (G, *) un groupe. Soit <span class="math inline"><em>H</em> ⊂ <em>G</em></span>, on dit que H est un <strong>sous-groupe</strong> de G lorsque les condtions suivantes sont vérifiées.</p>
+<p><strong>1)</strong> <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>H</em>, <em>x</em> * <em>y</em> ∈ <em>H</em></span>. On dit que H est stable par *</p>
+<p><strong>2)</strong> Muni de *, H est un groupe</p>
+<p>Soit (G, *) un groupe et <span class="math inline"><em>H</em> ⊂ <em>G</em></span>. Les conditions suivantes sont équivalentes.</p>
+<p><strong>(a)</strong>: H est un sous groupe de G</p>
+<p><strong>(b)</strong>: <span class="math inline"><em>H</em> ≠ ∅</span>, H est stable par * et par passage au symétrique (<span class="math inline">∀<em>x</em> ∈ <em>H</em>, <em>x</em><sup> − 1</sup> ∈ <em>H</em></span>)</p>
+<p><strong>(b)</strong>: <span class="math inline"><em>H</em> ≠ ∅</span> et <span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>H</em>, <em>x</em> * <em>y</em><sup> − 1</sup> ∈ <em>H</em></span></p>
+<p><span class="math inline">•</span> Démontrons que <span class="math inline">(<em>a</em>) ⟹ (<em>b</em>)</span>.</p>
+<p><span class="math inline">⋄</span> H est un sous groupe donc doit admettre un élement neutre (<span class="math inline"><em>e</em><sub><em>H</em></sub></span>) donc <span class="math inline"><em>H</em> ≠ ∅</span>. Montrons que <span class="math inline"><em>e</em><sub><em>H</em></sub> = <em>e</em><sub><em>G</em></sub></span>, on a <span class="math inline"><em>e</em><sub><em>H</em></sub> * <em>e</em><sub><em>H</em></sub> = <em>e</em><sub><em>H</em></sub> = <em>e</em><sub><em>G</em></sub> + <em>e</em><sub><em>H</em></sub> = <em>e</em><sub><em>G</em></sub></span>.</p>
+<p><span class="math inline">⋄</span> La stabilité par * fait partie de la définition de sous groupe.</p>
+<p><span class="math inline">⋄</span> Soit <span class="math inline"><em>x</em> ∈ <em>H</em></span>, soit s’ son symétrique dans H. x’ est aussi un symétrique dans G. Dans G par unicité du symétrique <span class="math inline"><em>x</em><sup> − 1</sup> = <em>x</em>′ ∈ <em>H</em></span>.</p>
+<p><span class="math inline">•</span> Démontrons que <span class="math inline">(<em>b</em>) ⟹ (<em>c</em>)</span>.</p>
+<p><span class="math inline">⋄</span> Soient <span class="math inline"><em>x</em>, <em>y</em> ∈ <em>H</em></span>. Alors <span class="math inline"><em>y</em><sup> − 1</sup> ∈ <em>H</em></span> et encore par <span class="math inline"><em>x</em> * <em>x</em><sup> − 1</sup> ∈ <em>H</em></span>.</p>
+<p><span class="math inline">•</span> Démontrons que <span class="math inline">(<em>c</em>) ⟹ (<em>a</em>)</span>.</p>
+<p><span class="math inline">⋄</span> l’associativité est montré par <span class="math inline">∀<em>x</em>, <em>y</em>, <em>z</em> ∈ <em>H</em>, <em>x</em>, <em>y</em>, <em>z</em> ∈ <em>G</em>, <em>x</em> * (<em>y</em> * <em>z</em>) = (<em>x</em> * <em>y</em>) * <em>z</em></span></p>
+<p><span class="math inline">⋄</span> l’élement neutre par <span class="math inline">∃<em>x</em> ∈ <em>H</em>, <em>e</em> = <em>x</em> * <em>x</em><sup> − 1</sup> ∈ <em>G</em></span>, ainsi <span class="math inline">∀<em>x</em> ∈ <em>H</em>, <em>x</em> ∈ <em>G</em></span></p>
+<p><span class="math inline">⋄</span> l’élement inverse par <span class="math inline"><em>x</em> ∈ <em>H</em></span>, prenons <span class="math inline"><em>y</em> = <em>e</em></span>, ainsi <span class="math inline"><em>x</em><sup> − 1</sup> * <em>e</em> = <em>x</em><sup> − 1</sup></span>, ici <span class="math inline"><em>x</em><sup> − 1</sup></span> est le symétrique de x dans H.</p>
+<p><span class="math inline">⋄</span> la stabilité par * dans H par <span class="math inline"><em>x</em>, <em>y</em> ∈ <em>H</em></span>, posons <span class="math inline"><em>z</em> = <em>y</em><sup> − 1</sup></span>, ainsi <span class="math inline"><em>x</em> * <em>y</em> = <em>x</em> * <em>z</em><sup> − 1</sup> ∈ <em>H</em></span>.</p>
+<p>Finalement par implication circulaire nous avons démontré que</p>
+<p><span class="math inline">(<em>a</em>) ⇔ (<em>b</em>) ⇔ (<em>c</em>)</span></p>
+<p>Soient <span class="math inline">(<em>G</em>,  * )</span> et <span class="math inline">(<em>H</em>, ▫)</span> deux groupes.</p>
+<p>On appelle morphisme de groupes toute application <span class="math inline"><em>f</em> : <em>G</em> → <em>H</em></span> vérifiant</p>
+<p><span class="math inline">∀<em>x</em>, <em>y</em> ∈ <em>G</em>, <em>f</em>(<em>x</em> * <em>y</em>) = <em>f</em>(<em>x</em>)▫<em>f</em>(<em>y</em>)</span></p>
+<p>Si <span class="math inline"><em>f</em> : <em>G</em> → <em>H</em></span> est un morphisme de groupe, alors <span class="math inline"><em>f</em>(<em>e</em><sub><em>G</em></sub>) = <em>e</em><sub><em>H</em></sub></span></p>
+<p>Si <span class="math inline"><em>f</em> : <em>G</em> → <em>H</em></span> est un morphisme de groupe, alors <span class="math inline">∀<em>x</em> ∈ <em>G</em>, <em>f</em>(<em>x</em><sup> − 1</sup>) = <em>f</em>(<em>x</em>)<sup> − 1</sup></span></p>
+<p>f(x^<span>-1</span>) = f(x^<span>-1</span>) f(x) f(x)^<span>-1</span> = f(x^<span>-1</span> * x) f(x)^<span>-1</span> = f(x)^<span>-1</span>&amp;&amp;</p>
+<h1 id="anneaux-et-corps">Anneaux et Corps</h1>
+<p>Un anneau est <span class="math inline">(<em>A</em>, +, × )</span> où A est un ensemble, + et x sont deux l.c.i sur A vérifiant les axiomes suivants</p>
+<p><span class="math inline">•</span> (A, +) est un groupe abélien (on note <span class="math inline">0<sub><em>A</em></sub></span> sont élément neutre)</p>
+<p><span class="math inline">•</span> <span class="math inline">×</span> est associative</p>
+<p><span class="math inline">•</span> <span class="math inline">×</span> est distributive sur +</p>
+<p>On dit que <span class="math inline">(<em>A</em>, +, × )</span> est un anneau commutatif si, de plus <span class="math inline">×</span> est commutative.</p>
+<p>Un élément <span class="math inline"><em>x</em> ∈ <em>A</em></span> est dit inversible dans A lorsqu’il adment un symétrique pour <span class="math inline">×</span>.</p>
+<p>Soit <span class="math inline">(<em>A</em>, +,<em>x</em>)</span> un anneau alors</p>
+<p><span class="math inline">∀<em>x</em> ∈ <em>A</em>, 0<sub><em>A</em></sub> × <em>x</em> = 0<sub><em>A</em></sub></span></p>
+<p>Soient <span class="math inline"><em>x</em>, <em>y</em>, <em>z</em> ∈ <em>A</em></span>, Si <span class="math inline"><em>x</em> × <em>z</em> = <em>y</em> × <em>z</em></span> et z est inversible alors x = y</p>
+<p><br /><span class="math display">$$\begin{aligned}
+        x \times z = y \times z &amp;\implies (x \times z) \times z^{-1} = (y \times z) \times z^{-1}\\
+        &amp;\implies x \times (z \times z^{-1}) = y \times (z \times z^{-1})\\
+        &amp;\implies x \times 1_A = y \times 1_A \\
+        &amp;\implies x = y
+    \end{aligned}$$</span><br /></p>
+<p>Un corps est la donnée d’un triplet <span class="math inline">(𝕜, +, × )</span> où <span class="math inline">𝕜</span> est un ensemble, + et <span class="math inline">×</span> sont deux l.c.i sur <span class="math inline">𝕜</span> vérifiant les axiomes suivants:</p>
+<p><span class="math inline">•</span> <span class="math inline">(𝕜, +, × )</span> est un anneau commutatif</p>
+<p><span class="math inline">•</span> <span class="math inline">(𝕜<sup>*</sup>,  × )</span> est un groupe abélien (de neutre noté <span class="math inline">$1_\K$</span>).</p>
+<p>De manière équivalente, un corps est un anneau commutatif avec un élément neutre pour <span class="math inline">×</span> où tout élément non-nul est inversible.</p>
+<h1 id="arithmétique-des-entiers">Arithmétique des entiers</h1>
+<h2 id="rappels-sur-n-et-z">Rappels sur <span class="math inline">$\N$</span> et <span class="math inline">$\Z$</span></h2>
+<p><span style="color: red">À vérifier, certains théorèmes manque de consistance</span></p>
+<p>(propriétés de + et <span class="math inline">×</span> sur <span class="math inline">$\N$</span>)</p>
+<p><strong>(a)</strong> + et <span class="math inline">×</span> sont associative et commutative sur <span class="math inline">$\N$</span></p>
+<p><strong>(b)</strong> 0 est élement neutre pour + tandis que 1 est neutre pour <span class="math inline">×</span></p>
+<p><strong>(c)</strong> Il y a une distributivité de <span class="math inline">×</span> sur +</p>
+<p><strong>(d)</strong> <span class="math inline">$\forall x, y, m \in \N, \; x + m = y + m \implies x = y$</span></p>
+<p>(propriétés de <span class="math inline">≤</span> sur <span class="math inline">$\N$</span>)</p>
+<p><strong>1)</strong> (relation d’ordre total) <span class="math inline">$\forall m, n, p \in \N$</span></p>
+<p><strong>(a)</strong> <span class="math inline"><em>n</em> ≤ <em>n</em></span></p>
+<p><strong>(b)</strong> <span class="math inline"><em>m</em> ≤ <em>n</em> ∧ <em>n</em> ≤ <em>m</em> ⇔ <em>m</em> = <em>n</em></span></p>
+<p><strong>(c)</strong> <span class="math inline"><em>m</em> ≤ <em>n</em> ∧ <em>n</em> ≤ <em>p</em> ⟹ <em>m</em> ≤ <em>p</em></span></p>
+<p><strong>(d)</strong> <span class="math inline"><em>m</em> ≤ <em>n</em> ∨ <em>n</em> ≤ <em>m</em></span></p>
+<p><strong>2)</strong> Les opérations + et <span class="math inline">×</span> sont compatibles avec la relation d’ordre</p>
+<p><span class="math inline">$\forall n, m, p \in \N, \; n \leq m \implies (n + p \leq m + p) \land (n \times p \leq m \times p)$</span></p>
+<p><strong>3)</strong> <span class="math inline">$\forall n \in \N, \; 0 \leq n$</span></p>
+<p><strong>4)</strong> <span class="math inline">$\forall n, m \in \N, \forall p \in \N^*, \; n \leq m \implies n \times p \leq m \times p$</span></p>
+<p><strong>1.</strong> Toute partie finie de <span class="math inline">$\N$</span> admet un plus grand élément.</p>
+<p><strong>2.</strong> Toute partie non vide de <span class="math inline">$\N$</span> admet un plus petit élément.</p>
+<p><strong>3.</strong> Toute partie non vide et majorée de <span class="math inline">$\N$</span> admet un plus grand élément.</p>
+<p><strong>4.</strong> <span class="math inline">$\N$</span> n’admet pas de plus grand élément.</p>
+<p>(propriétés de + et <span class="math inline">×</span> sur <span class="math inline">$\Z$</span>)</p>
+<p><strong>(a)</strong> + et <span class="math inline">×</span> sont associative et commutative sur <span class="math inline">$\Z$</span></p>
+<p><strong>(b)</strong> 0 est élement neutre pour + tandis que 1 est neutre pour <span class="math inline">×</span></p>
+<p><strong>(c)</strong> Il y a une distributivité de <span class="math inline">×</span> sur +</p>
+<p><strong>(d)</strong> Tout <span class="math inline">$m \in \Z$</span> admet un symétrique (élément inverse), <span class="math inline">$-m \in \Z$</span> pour +</p>
+<p>(propriétés de <span class="math inline">≤</span> sur <span class="math inline">$\Z$</span>)</p>
+<p><strong>1)</strong> <span class="math inline">≤</span> est une relation d’ordre totale sur <span class="math inline">$\Z$</span>.</p>
+<p><strong>2)</strong> Soient <span class="math inline">$n, m, p \in \Z$</span></p>
+<p><strong>(a)</strong> <span class="math inline"><em>n</em> ≤ <em>m</em> ⇔ <em>n</em> + <em>p</em> ≤ <em>m</em> + <em>p</em></span></p>
+<p><strong>(b)</strong> <span class="math inline">$\forall p \in \Z_+^*, n \leq m \iff np \leq mp$</span></p>
+<p><strong>(c)</strong> <span class="math inline">$\forall p \in \Z_-^*, n \leq m \iff mp \leq np$</span></p>
+<p><strong>(d)</strong> <span class="math inline">$\forall p \in \Z^*, m = n \iff mp = np$</span></p>
+<h2 id="arithmétique-élémentaire-dans-z">Arithmétique élémentaire dans <span class="math inline">$\Z$</span></h2>
+<p>Soient x et y dans <span class="math inline">$\Z$</span>. On dit que x divise y s’il existe <span class="math inline">$k \in \Z$</span> tel que <span class="math inline"><em>y</em> = <em>k</em><em>x</em></span>. La notation associée est <span class="math inline"><em>x</em> ∣ <em>y</em></span>. x est un diviseur de y ou y est un multiple de x</p>
+<p>tout entier relatif divise 0.</p>
+<p>0 divise uniquement 0.</p>
+<p>si x est un diviseur de y alors (-x) est un diviseur de y</p>
+<p>1 et -1 sont les diviseurs de tout entier relatifs.</p>
+<p>les diviseurs de 1 et -1 sont 1 et -1</p>
+<p><span class="math inline">$\forall x, y \in \N^* \implies (x \mid y \implies x \leq y)$</span></p>
+<p>On dit que <span class="math inline">$p \in \N, \; p \geq 2$</span> est un nombre premier si les seuls diviseurs positifs de p sont 1 et p.</p>
+<p>Une autre définition est tout nombre qui a exactement 2 diviseurs.</p>
+<p>Pour vérifier qu’un nombre est premier, on peut regarde pour chaque <span class="math inline">$\forall k \in \N, k \leq \sqrt{p}$</span> si k divise p.</p>
+<p>Soit <span class="math inline">$n \in \Z^*$</span>, on appelle décomposition en facteurs premiers de n une écriture de la forme</p>
+<p><span class="math inline"><em>n</em> = <em>c</em><em>m</em><em>u</em><em>l</em><em>t</em><em>i</em><em>p</em><sub><em>i</em></sub> = <em>c</em>(<em>p</em><sub>1</sub> × ... × <em>p</em><sub><em>k</em></sub>)</span></p>
+<p>où <span class="math inline">$c \in {+- 1}, k \in \N, p_1,...,p_k$</span> sont premiers</p>
+<p>Tout <span class="math inline">$n \in \Z^*$</span> admet une décomposition en facteurs premier.</p>
+<p>Il suffit de le démontrer pour <span class="math inline">$n \in \N^*$</span> et <span class="math inline"><em>c</em> = 1</span> et pour les négatifs on se ramène à <span class="math inline">$\N^*$</span> en posant <span class="math inline"><em>c</em> =  − 1</span></p>
+<p>Démonstration par récurrence forte.</p>
+<p><strong>Initialisation:</strong> <span class="math inline"><em>n</em> = 1</span>, on pose <span class="math inline"><em>c</em> = 1, <em>k</em> = 0</span>, c’est un produit vide.</p>
+<p><strong>Initialisation:</strong> Soit <span class="math inline">$n \in \N^*, \forall d \leq n$</span>, on ait une telle décomposition. Si n + 1 est premier, on pose <span class="math inline"><em>k</em> = 1  <em>P</em><sub>1</sub> = <em>n</em> + 1</span>. Si n + 1 n’est pas premier il admet un diviseur <span class="math inline"><em>d</em> ∈ [2, <em>n</em>]</span>. Par hypothèse de récurrence <span class="math inline"><em>d</em> = <em>c</em> × <em>p</em><sub>1</sub> × ... × <em>p</em><sub><em>k</em></sub></span>. De même <span class="math inline">$d' = \dfrac{n+1}{d} \in [2; n]$</span> <span class="math inline"><em>d</em>′ = <em>p</em><sub>1</sub>′ × ... × <em>p</em><sub><em>k</em></sub>′</span>.</p>
+<p>Donc <span class="math inline"><em>n</em> + 1 = <em>d</em> × <em>d</em>′ = <em>p</em><sub>1</sub> × ... × <em>p</em><sub><em>k</em></sub> × <em>p</em><sub>1</sub>′ × ... × <em>p</em><sub><em>k</em></sub>′</span></p>
+<p>Corollaire: Tout entier <span class="math inline"><em>n</em> ≥ 2</span> admet au moins un diviseur premier</p>
+<p>L’ensemble des nombre premiers est infini.</p>
+<p>Supposons (par l’absurde) qu’il y ait un nombre fini de nombres premiers <span class="math inline"><em>p</em><sub>1</sub>, ..., <em>p</em><sub><em>m</em></sub></span></p>
+<p>On pose <span class="math inline"><em>N</em> = <em>p</em><sub>1</sub> × ... × <em>p</em><sub><em>m</em></sub> + 1</span></p>
+<p>Alors N admet un diviseur premier <span class="math inline"><em>p</em><sub><em>i</em></sub>(<em>i</em> ∈ [<em>i</em>; <em>m</em>])</span> i.e. <span class="math inline"><em>N</em> = <em>p</em><sub><em>i</em></sub><em>N</em>′ ⟹ <em>N</em> = <em>m</em><em>u</em><em>l</em><em>t</em><em>i</em><em>p</em><sub><em>j</em></sub> + 1 ⟹ <em>p</em><sub><em>i</em></sub><em>N</em>′ − <em>p</em><sub><em>i</em></sub><em>m</em><em>u</em><em>l</em><em>t</em><em>i</em><sub><em>i</em>¬<em>j</em></sub><em>p</em><sub><em>j</em></sub> = 1 ⟹ <em>p</em><sub><em>i</em></sub>(<em>N</em>′ − <em>m</em><em>u</em><em>l</em><em>t</em><em>i</em><sub><em>j</em>¬<em>i</em></sub><em>p</em><sub><em>j</em></sub>) = 1</span></p>
+<p>Soient <span class="math inline">$a \in \Z, b \in \N*$</span>.</p>
+<p>Alors il existe un unique couple <span class="math inline">$(q, r) \in \Z \times \N, a = bq + r$</span> avec <span class="math inline"><em>b</em> &gt; <em>r</em> ≥ 0</span></p>
+<p><strong>Existence:</strong> Pour <span class="math inline">$a \in \N$</span>, raisonnement par récurrence.</p>
+<p><strong>Initialisation:</strong> <span class="math inline"><em>a</em> = 0</span>: On pose <span class="math inline"><em>q</em> = 0 et <em>r</em> = 0 ⟹ 0 = <em>b</em> × 0 + 0</span></p>
+<p><strong>Hérédité:</strong> Si <span class="math inline"><em>a</em> = <em>b</em><em>q</em> + <em>r</em></span> avec <span class="math inline">(<em>b</em> &gt; <em>r</em> ≥ 0)</span></p>
+<p>Alors <span class="math inline"><em>a</em> + 1 = <em>b</em><em>q</em> + (<em>r</em> + 1)</span>, C’est une division euclidienne lorsque <span class="math inline"><em>r</em> + 1 &lt; <em>b</em> ⟹ <em>r</em> &lt; <em>l</em> − 1</span></p>
+<p>Lorsque <span class="math inline"><em>r</em> = <em>b</em> − 1</span></p>
+<p><span class="math inline"><em>a</em> + 1 = <em>b</em><em>q</em> + ((<em>b</em> − 1) + 1) = <em>b</em><em>q</em> + <em>b</em> = <em>b</em>(<em>q</em> + 1) + 0</span>, C’est une division euclidienne.</p>
+<p>Si <span class="math inline"><em>a</em> &lt; 0</span> alors <span class="math inline">( − <em>a</em>) &gt; 0</span> Donc <span class="math inline">$\exists (q, r) \in \Z \times \N, -a = bq + r \implies a = b \times (-q) + (-r)$</span> avec <span class="math inline">(<em>b</em> &gt; <em>r</em> ≥ 0)</span></p>
+<p>Si r = 0, c’est une division euclidienne.</p>
+<p>Sinon <span class="math inline"> − <em>b</em> &lt;  − <em>r</em> &lt; 0 ⟹ 0 &lt;  − <em>r</em> + <em>b</em> &lt; <em>b</em></span></p>
+<p>Donc <span class="math inline"><em>a</em> = <em>b</em> × ( − <em>q</em>) + ( − <em>r</em> + <em>b</em>) − <em>b</em> = <em>b</em> × ( − <em>q</em> − 1) + ( − <em>r</em> + <em>b</em>)</span> C’est un division euclidienne.</p>
+<p><strong>Unicité:</strong> Si <span class="math inline"><em>a</em> = <em>b</em><em>q</em> + <em>r</em></span> et <span class="math inline"><em>a</em> = <em>b</em><em>q</em>′ + <em>r</em>′</span> avec <span class="math inline"><em>b</em> &gt; <em>r</em>, <em>r</em>′ ≥ 0</span></p>
+<p>Par soustraction: <span class="math inline">0 = <em>b</em>(<em>q</em> − <em>q</em>′) + <em>r</em> − <em>r</em>′ ⟹ <em>r</em>′ − <em>r</em> = <em>b</em>(<em>q</em> − <em>q</em>′)</span></p>
+<p><span class="math inline"><em>b</em> − 1 ≥ <em>r</em>′ − <em>r</em> ≥  − <em>b</em> − 1</span> Donc <span class="math inline"><em>r</em>′ − <em>r</em> = 0 ⟹ <em>r</em> = <em>r</em>′</span></p>
+<p>Ainsi <span class="math inline"><em>b</em><em>q</em> + <em>r</em> = <em>b</em><em>q</em>′ + <em>r</em>′ ⟹ <em>b</em><em>q</em> = <em>b</em><em>q</em>′ ⟹ <em>q</em> = <em>q</em>′</span></p>
+<p>le <strong>pgcd</strong> de deux nombres <span class="math inline">$a, b \in \Z^*$</span> est le plus grand diviseur commun à a et b. Il est noté <span class="math inline"><em>P</em><em>G</em><em>C</em><em>D</em>(<em>a</em>, <em>b</em>)</span> (ou encore <span class="math inline"><em>a</em> ∧ <em>b</em></span>)</p>
+<p>On dit que a et b sont <strong>premiers entre eux</strong> si PGCD(a, b) = 1.</p>
+<p>Le <strong>ppcm</strong> de deux nombres <span class="math inline">$a, b \in \Z^*$</span> est le plus petit multiple strictement positif commun à a et b. Il est noté PPCM(a, b) (ou encore <span class="math inline"><em>a</em> ∨ <em>b</em></span>)</p>
+<p><span class="math inline">$\forall a, b \in \Z^*, PGCD(a, b) \times PPCM(a, b) = |ab|$</span></p>
+<p>Si on remplace a et b par leurs valeurs absolues: <span class="math inline">||<em>a</em>||<em>b</em>|| = |<em>a</em><em>b</em>|</span></p>
+<p>Les multiples et les diviseurs de |a| et de a sont les mêmes.</p>
+<p>Donc <span class="math inline"><em>P</em><em>G</em><em>C</em><em>D</em>(<em>a</em>, <em>b</em>) = <em>P</em><em>G</em><em>C</em><em>D</em>(|<em>a</em>|,|<em>b</em>|)</span> et <span class="math inline"><em>P</em><em>P</em><em>C</em><em>M</em>(<em>a</em>, <em>b</em>) = <em>P</em><em>P</em><em>C</em><em>M</em>(|<em>a</em>|,|<em>b</em>|)</span></p>
+<p>Ainsi il suffit de montrer le résultat pour <span class="math inline">$a, b \in \N^*$</span></p>
+<p>On pose <span class="math inline"><em>d</em> = <em>P</em><em>G</em><em>C</em><em>D</em>(<em>a</em>, <em>b</em>)</span></p>
+<p><span class="math inline">$\exists a', b' \in \N^*, a = da' \text{ et } b = db'$</span></p>
+<p><span class="math inline">$\dfrac{ab}{d} = \dfrac{da'b}{d} = a'b$</span> <span class="math inline">$\dfrac{ab}{d} = \dfrac{adb'}{d} = ab'$</span></p>
+<p>L’algorithme d’Euclide:</p>
+<p>Le PGCD peut se calculer avec l’algorithme d’Euclide:</p>
+<p><strong>1.</strong> (Eventuellement) remplacer a et b par <span class="math inline">|<em>a</em>|</span> et <span class="math inline">|<em>b</em>|</span></p>
+<p><strong>2.</strong> De manière récursive:</p>
+<p><strong>2.1</strong> Calculer la division euclidienne de a par b: <span class="math inline"><em>a</em> = <em>b</em><em>q</em> + <em>r</em></span></p>
+<p><strong>2.2</strong> Si <span class="math inline"><em>r</em> ≠ 0</span>: recommencer en remplcaçant (a, b) par (b, r) Sinon sortir de la récursion</p>
+<p><strong>3.</strong> Le pgcd est le dernier reste non-nul calculé.</p>
+<p>Si d est un diviseur commun à a et b alors <span class="math inline"><em>d</em> ∣ <em>P</em><em>G</em><em>C</em><em>D</em>(<em>a</em>, <em>b</em>)</span></p>
+<p>Corollaire:</p>
+<p>Le PGCD est aussi le plus grand diviseur commun au sens de la divisibilité.</p>
+<p>Soient <span class="math inline">$a, b \in \Z^*$</span>. Il existe <span class="math inline">$u, v \in \Z$</span> tels que</p>
+<p><span class="math inline"><em>a</em><em>u</em> + <em>b</em><em>v</em> = <em>P</em><em>G</em><em>C</em><em>D</em>(<em>a</em>, <em>b</em>)</span></p>
+<p>Les sous-groupes de <span class="math inline">$\Z$</span> sont les <span class="math inline">$n\Z := \{nk \mid k \in \Z\}$</span> avec <span class="math inline">$n \in \Z$</span></p>
+<p><strong>1)</strong> <span class="math inline">$\{nk \mid k \in \Z\}$</span> sous groupe de <span class="math inline">$(\Z, +)$</span> (cf TD1)</p>
+<p><strong>2)</strong> Soit H un sous groupe de <span class="math inline">$(\Z, +)$</span> alors <span class="math inline">0 ∈ <em>H</em></span></p>
+<p>si <span class="math inline"><em>H</em> = {0}</span> alors <span class="math inline">$H = 0\Z$</span></p>
+<p>On note <span class="math inline">$\Z/n\Z$</span> l’ensemble des classes de congruences.</p>
+<p><span class="math inline">$\Z/n\Z = \{\overline{0}, \overline{1}, ..., \overline{n-1}\}$</span> est un ensemble fini à n élements.</p>
+<p>Soient a, a’, b, b’ dans <span class="math inline">$\Z$</span> tels que <span class="math inline"><em>a</em> ≡ <em>a</em>′[<em>n</em>]</span> et <span class="math inline"><em>b</em> ≡ <em>b</em>′[<em>n</em>]</span> Alors <span class="math inline"><em>a</em> + <em>b</em> ≡ <em>a</em>′ + <em>b</em>′[<em>n</em>]</span></p>
+<p><span class="math inline">(<em>a</em> − <em>a</em>′) = <em>k</em><em>n</em></span> et <span class="math inline">(<em>b</em> − <em>b</em>′) = <em>k</em>′<em>n</em></span></p>
+<p><span class="math inline">(<em>a</em> + <em>b</em>) − (<em>a</em>′ + <em>b</em>′) = <em>a</em> − <em>a</em>′ + <em>b</em> − <em>b</em>′ = <em>k</em><em>n</em> + <em>k</em>′<em>n</em> = (<em>k</em> + <em>k</em>′)<em>n</em></span></p>
+<p>Donc <span class="math inline"><em>a</em> + <em>b</em> ≡ <em>a</em>′ + <em>b</em>′[<em>n</em>]</span></p>
+<p>Soient <span class="math inline">$a, b \in \Z$</span>. On pose dans <span class="math inline">$\Z/n\Z: \overline{a} + \overline{b} = \overline{a + b}$</span> et <span class="math inline">$\overline{a} \times \overline{b} = \overline{a \times b}$</span></p>
+<p><span class="math inline">$(\Z/n\Z, +, \times)$</span> est un anneau commutatif.</p>
+<p><span class="math inline">$\overline{0}$</span> est l’élement neutre pour l’addition et <span class="math inline">$\overline{1}$</span> est l’élement neutre pour la multiplication.</p>
+<p>On peut faire des tables d’addition et de multiplication dans <span class="math inline">$\Z/n\Z$</span></p>
+<p>Soient a et b dans <span class="math inline">$\Z$</span> tels que <span class="math inline"><em>a</em> ≡ <em>b</em>[<em>n</em>]</span>.</p>
+<p>Pour tout <span class="math inline">$p \in \N^*, a^p \equiv b^p [n]$</span></p>
+<p>Dans <span class="math inline">$\Z/n\Z$</span> on veut montrer que <span class="math inline">$\o{a^p} = \o{b^p}$</span></p>
+<p>Or <span class="math inline">$\o{a^p} = \o{a \times ... \times a} = \o{a} \times ... \times \o{a} =$</span></p>
+<p>En revanche on n’a pas <span class="math inline"><em>p</em> ≡ <em>q</em>[<em>n</em>] ⟹ <em>a</em><sup><em>p</em></sup> ≡ <em>a</em><sup><em>q</em></sup>[<em>n</em>]</span></p>
+<p><span class="math inline">$\{\Z/n\Z, +, \times\}$</span> est un corps si et seulement si n est premier.</p>
+<p>Dire que <span class="math inline">$\o{a}$</span> est inversible dans <span class="math inline">$\Z/n\Z$</span> c’est dire qu’il existe <span class="math inline">$\o{u}$</span> tel que <span class="math inline">$\o{a}\o{u} = \o{1} \iff \exists u \in \Z, \exists k \in \Z, au = 1 + kn \iff \exists u \in \Z, \exists k' \in \Z, au + k'n = 1$</span> Cette équation a des solutions si n et m sont premier entre eux (bezout)</p>
+<p>Soient <span class="math inline">$n_1, n_2, ..., n_k \in \N^*$</span>, tels que <span class="math inline">∀<em>i</em>, <em>n</em><sub><em>i</em></sub> ≥ 2</span>, avec les <span class="math inline"><em>n</em><sub><em>i</em></sub></span> deux à deux premiers entre eux. Alors pour tous <span class="math inline">$a_1, ..., a_k \in \Z$</span>, il existe <span class="math inline">$x \in \Z$</span>, unique modulo <span class="math inline"><em>n</em> := <em>Π</em><em>n</em><sub><em>i</em></sub></span>, tel que</p>
+<p><br /><span class="math display">∀<em>i</em> ∈ [|1, <em>k</em>|], <em>x</em> ≡ <em>a</em><sub><em>i</em></sub><em>m</em><em>o</em><em>d</em><em>n</em><sub><em>i</em></sub></span><br /></p>
+<p>Plus formellement, on a une application bijective,</p>
+<p><br /><span class="math display">$$\{ \Z/n\Z \to (\Z/n_1\Z) \times ... \times (\Z/n_k\Z)
+    \{ x mod n \mapsto (x mod n_1, ..., x mod n_k)$$</span><br /></p>
+<p>Montrons deja que</p>
+<p><span class="math inline"><em>P</em><em>G</em><em>C</em><em>D</em>(<em>Π</em><sub><em>i</em> = 1</sub><sup><em>k</em> − 1</sup><em>n</em><sub><em>i</em></sub>, <em>n</em><sub><em>k</em></sub>) = 1</span></p>
+<p>Soit p un facteur premier de <span class="math inline"><em>Π</em><sub><em>i</em> = 1</sub><sup><em>k</em> − 1</sup><em>n</em><sub><em>i</em></sub></span> Alors p divise l’un des <span class="math inline"><em>n</em><sub><em>i</em></sub></span>.</p>
+<p>Comme <span class="math inline"><em>n</em><sub><em>i</em></sub></span> et <span class="math inline"><em>n</em><sub><em>k</em></sub></span> sont premier entre eux p ne divise pas nk.</p>
+<p>Donc <span class="math inline"><em>Π</em><sub><em>i</em> = 1</sub><sup><em>k</em> − 1</sup><em>n</em><sub><em>i</em></sub></span> et <span class="math inline"><em>n</em><sub><em>k</em></sub></span> n’ont pas de facteur premier en commun : leurs PGCD est 1.</p>
+<p>De même pour <span class="math inline"><em>i</em> ∈ [|1; <em>k</em>|]</span> <span class="math inline"><em>P</em><em>G</em><em>C</em><em>D</em>(<em>Π</em><sub><em>i</em> ≠ <em>j</em></sub><em>n</em><sub><em>j</em></sub>, <em>n</em><sub><em>i</em></sub>) = 1</span>.</p>
+<p>Ainsi on pose une relation de Bezout</p>
+<p><br /><span class="math display">(<em>Π</em><sub><em>i</em> ≠ <em>j</em></sub><em>n</em><sub><em>j</em></sub>)<em>u</em><sub><em>i</em></sub> + <em>n</em><sub><em>i</em></sub><em>v</em><sub><em>i</em></sub> = 1</span><br /></p>
+<p>Soit <span class="math inline"><em>x</em><sub><em>i</em></sub> := (<em>Π</em><sub><em>j</em> ≠ <em>i</em></sub><em>n</em><sub><em>j</em></sub>)<em>u</em><sub><em>i</em></sub></span></p>
+<p>Alors <span class="math inline"><em>x</em><sub><em>i</em></sub> ≡ {0<em>m</em><em>o</em><em>d</em><em>n</em><sub><em>j</em></sub><em>s</em><em>i</em><em>j</em> ≠ <em>i</em>{1<em>m</em><em>o</em><em>d</em><em>n</em><sub><em>i</em></sub></span></p>
+<p>On pose <span class="math inline"><em>x</em> = <em>Σ</em><sub><em>i</em> = 1</sub><sup><em>k</em></sup><em>a</em><sub><em>i</em></sub><em>x</em><sub><em>i</em></sub></span> alors <span class="math inline"><em>x</em> ≡ <em>a</em><sub><em>i</em></sub><em>m</em><em>o</em><em>d</em><em>n</em><sub><em>i</em></sub></span></p>
+<p>Si <span class="math inline"><em>y</em> = <em>x</em> + <em>q</em><em>n</em></span> alors <span class="math inline"><em>y</em> = <em>x</em> + <em>q</em><em>Π</em><sub><em>j</em> = 1</sub><sup><em>k</em></sup><em>n</em><sub><em>j</em></sub> = <em>x</em> + <em>q</em>(<em>Π</em><sub><em>j</em> = 1</sub><sup><em>k</em></sup><em>n</em><sub><em>j</em></sub>)<em>n</em><sub><em>i</em></sub> ≡ <em>x</em><em>m</em><em>o</em><em>d</em><em>n</em><sub><em>i</em></sub> ≡ <em>x</em><sub><em>i</em></sub><em>m</em><em>o</em><em>d</em><em>n</em><sub><em>i</em></sub></span></p>
+<p>En particulier l’application <span class="math inline"><em>ϕ</em></span> est bien définie</p>
+<p>D’après la première partie, <span class="math inline"><em>ϕ</em></span> est surjective.</p>
+<p>Il nous reste à démontrer l’injectivité qui est equivalente à l’unicité modulo n.</p>
+<p>Regardons les cardinaux <span class="math inline">$Card(\Z/n\Z) = n$</span></p>
+<p><span class="math inline">$Card(\Z/n_1\Z \times ... \times \Z/n_k\Z) = n_1 \times ... \times n_k = n$</span></p>
+<p>Ainsi <span class="math inline"><em>ϕ</em></span> est injective</p>
+<p><span class="math inline"><em>ϕ</em></span> est un "isomorphisme" d’anneau</p>
+<p>Pour <span class="math inline"><em>k</em> = <em>z</em></span></p>
+<p><br /><span class="math display">{<em>x</em> ≡ <em>a</em><sub>1</sub><em>m</em><em>o</em><em>d</em><em>n</em><sub>1</sub>{<em>x</em> = <em>a</em><sub>1</sub> + <em>k</em><sub>1</sub><em>n</em><sub>1</sub>{<em>x</em> ≡ <em>a</em><sub>2</sub><em>m</em><em>o</em><em>d</em><em>n</em><sub>2</sub> ⇔ {<em>x</em> = <em>a</em><sub>2</sub> + <em>k</em><sub>2</sub><em>n</em><sub>2</sub></span><br /></p>
+<p>Alors <span class="math inline"><em>a</em><sub>1</sub> + <em>k</em><sub>1</sub><em>n</em><sub>1</sub> = <em>a</em><sub>2</sub> + <em>k</em><sub>2</sub><em>n</em><sub>2</sub> ⇔ <em>k</em><sub>1</sub><em>n</em><sub>1</sub> − <em>k</em><sub>2</sub><em>n</em><sub>2</sub> = <em>a</em><sub>2</sub> − <em>a</em><sub>1</sub></span></p>
+<p>c’est une équation diophotienne qu’on sait résoudre</p>
+<p>Ensuite, il suffit de poser <span class="math inline"><em>x</em> = <em>a</em><sub>1</sub> + <em>k</em><sub>1</sub><em>n</em><sub>1</sub></span></p>
+<h1 id="polynômes-et-fractions-rationnelles">Polynômes et Fractions rationnelles</h1>
+<p>Un <strong>polynôme à coefficient dans</strong> <span class="math inline">$\k$</span>: une suite <span class="math inline">$A = \xn{a}$</span> telle que <span class="math inline">$\exists N \in \N, \forall n \gt N, a_n = 0$</span>.</p>
+<p>On écrira souvent <span class="math inline">$A = a_0 + a_1X + a_2X^2 + ... + a_NX^N = \Sigma_{i=0}^N a_iX^i = \Sigma_{i \in \N} a_iX^i = \Sigma a_iX^i$</span></p>
+<p><span class="math inline">$\k[X]$</span> = {polynômes à coefficients dans <span class="math inline">$\k$</span>}</p>
+<p><strong>polynôme nul</strong> : tous les coefficients sont nuls.</p>
+<p><strong>polynôme constant</strong> : <span class="math inline">∀<em>i</em> &gt; 0, <em>a</em><sub><em>i</em></sub> = 0</span> (<span class="math inline"><em>A</em> = <em>c</em><em>X</em><sup>0</sup> = <em>c</em></span> où <span class="math inline">$c \in \k$</span>)</p>
+<p><strong>monôme</strong> : polynôme de la forme</p>
+<p>Symbole de Kronecker <span class="math inline"><em>δ</em><sub><em>i</em>, <em>j</em></sub> = 1</span> si i = j sinon 0</p>
