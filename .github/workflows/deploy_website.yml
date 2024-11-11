@@ -6,7 +6,7 @@ on:
       specific_file: {}
   push:
     branches:
-      - master
+      - web-staging
 
 jobs:
   build-and-deploy:
@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: 'web-staging'
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -23,6 +25,57 @@ jobs:
 
       - name: Install pnpm
         run: npm install -g pnpm
+
+      - name: Generate structure into json
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+
+          function getDirectoryStructure(startPath) {
+            const result = [];
+
+            function processDirectory(currentPath, currentLevel = '') {
+              const items = fs.readdirSync(currentPath);
+
+              items.forEach(item => {
+                const fullPath = path.join(currentPath, item);
+                const stat = fs.statSync(fullPath);
+                const relativePath = path.relative(startPath, fullPath)
+                                      .replace('/\\/g', '/');
+                
+                if (stat.isDirectory()) {
+                  result.push({
+                    type: 'directory',
+                    name: item,
+                    path: relativePath,
+                    children: []
+                  });
+                  processDirectory(fullPath, relativePath);
+                } else if (path.extname(item).toLowerCase() === '.pdf') {
+                  result.push({
+                    type: 'file',
+                    name: item,
+                    path: relativePath,
+                    size: stat.size,
+                    lastModified: stat.mtime
+                  });
+                }
+              });
+            }
+
+            processDirectory(startPath);
+            return result;
+          }
+
+          const coursPath = './website/cours';
+          const structure = getDirectoryStructure(coursPath);
+
+          fs.writeFileSync(
+            './website/structure.json',
+            JSON.stringify(structure, null, 2)
+          );
+          "
 
       - name: Install Dependencies and Build
         working-directory: ./website

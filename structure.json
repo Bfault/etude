@@ -1,0 +1,493 @@
+[
+  {
+    "type": "directory",
+    "name": "L1",
+    "path": "L1",
+    "children": []
+  },
+  {
+    "type": "directory",
+    "name": "analyse",
+    "path": "L1/analyse",
+    "children": []
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-12-CM-1",
+    "path": "L1/analyse/2024-09-12-CM-1",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-12-CM-1.pdf",
+    "path": "L1/analyse/2024-09-12-CM-1/2024-09-12-CM-1.pdf",
+    "size": 78956,
+    "lastModified": "2024-11-11T02:21:38.121Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-12-CM-2",
+    "path": "L1/analyse/2024-09-12-CM-2",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-12-CM-2.pdf",
+    "path": "L1/analyse/2024-09-12-CM-2/2024-09-12-CM-2.pdf",
+    "size": 126403,
+    "lastModified": "2024-11-11T02:21:38.121Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-19-CM-3",
+    "path": "L1/analyse/2024-09-19-CM-3",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-19-CM-3.pdf",
+    "path": "L1/analyse/2024-09-19-CM-3/2024-09-19-CM-3.pdf",
+    "size": 150906,
+    "lastModified": "2024-11-11T02:21:38.122Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-26-CM-4",
+    "path": "L1/analyse/2024-09-26-CM-4",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-26-CM-4.pdf",
+    "path": "L1/analyse/2024-09-26-CM-4/2024-09-26-CM-4.pdf",
+    "size": 107803,
+    "lastModified": "2024-11-11T02:21:38.122Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-03-CM-5",
+    "path": "L1/analyse/2024-10-03-CM-5",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-03-CM-5.pdf",
+    "path": "L1/analyse/2024-10-03-CM-5/2024-10-03-CM-5.pdf",
+    "size": 97297,
+    "lastModified": "2024-11-11T02:21:38.123Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-10-CM-6",
+    "path": "L1/analyse/2024-10-10-CM-6",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-10-CM-6.pdf",
+    "path": "L1/analyse/2024-10-10-CM-6/2024-10-10-CM-6.pdf",
+    "size": 112232,
+    "lastModified": "2024-11-11T02:21:38.123Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-17-CM-7",
+    "path": "L1/analyse/2024-10-17-CM-7",
+    "children": []
+  },
+  {
+    "type": "directory",
+    "name": "2024-11-07-CM-8",
+    "path": "L1/analyse/2024-11-07-CM-8",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-11-07-CM-8.pdf",
+    "path": "L1/analyse/2024-11-07-CM-8/2024-11-07-CM-8.pdf",
+    "size": 123351,
+    "lastModified": "2024-11-11T02:21:38.124Z"
+  },
+  {
+    "type": "directory",
+    "name": "TD",
+    "path": "L1/analyse/TD",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "TD1.pdf",
+    "path": "L1/analyse/TD/TD1.pdf",
+    "size": 73919,
+    "lastModified": "2024-11-11T02:21:38.124Z"
+  },
+  {
+    "type": "directory",
+    "name": "images",
+    "path": "L1/analyse/images",
+    "children": []
+  },
+  {
+    "type": "directory",
+    "name": "arithmetique",
+    "path": "L1/arithmetique",
+    "children": []
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-12-CM-1",
+    "path": "L1/arithmetique/2024-09-12-CM-1",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-12-CM-1.pdf",
+    "path": "L1/arithmetique/2024-09-12-CM-1/2024-09-12-CM-1.pdf",
+    "size": 24553,
+    "lastModified": "2024-11-11T02:21:38.125Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-13-CM-2",
+    "path": "L1/arithmetique/2024-09-13-CM-2",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-13-CM-2.pdf",
+    "path": "L1/arithmetique/2024-09-13-CM-2/2024-09-13-CM-2.pdf",
+    "size": 129521,
+    "lastModified": "2024-11-11T02:21:38.126Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-20-CM-3",
+    "path": "L1/arithmetique/2024-09-20-CM-3",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-20-CM-3.pdf",
+    "path": "L1/arithmetique/2024-09-20-CM-3/2024-09-20-CM-3.pdf",
+    "size": 130931,
+    "lastModified": "2024-11-11T02:21:38.126Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-27-CM-4",
+    "path": "L1/arithmetique/2024-09-27-CM-4",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-27-CM-4.pdf",
+    "path": "L1/arithmetique/2024-09-27-CM-4/2024-09-27-CM-4.pdf",
+    "size": 132621,
+    "lastModified": "2024-11-11T02:21:38.127Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-04-CM-5",
+    "path": "L1/arithmetique/2024-10-04-CM-5",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-04-CM-5.pdf",
+    "path": "L1/arithmetique/2024-10-04-CM-5/2024-10-04-CM-5.pdf",
+    "size": 88184,
+    "lastModified": "2024-11-11T02:21:38.127Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-18-CM-7",
+    "path": "L1/arithmetique/2024-10-18-CM-7",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-18-CM-7.pdf",
+    "path": "L1/arithmetique/2024-10-18-CM-7/2024-10-18-CM-7.pdf",
+    "size": 96462,
+    "lastModified": "2024-11-11T02:21:38.128Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-11-08-CM-8",
+    "path": "L1/arithmetique/2024-11-08-CM-8",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-11-08-CM-8.pdf",
+    "path": "L1/arithmetique/2024-11-08-CM-8/2024-11-08-CM-8.pdf",
+    "size": 88723,
+    "lastModified": "2024-11-11T02:21:38.128Z"
+  },
+  {
+    "type": "directory",
+    "name": "TD",
+    "path": "L1/arithmetique/TD",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "TD1.pdf",
+    "path": "L1/arithmetique/TD/TD1.pdf",
+    "size": 208418,
+    "lastModified": "2024-11-11T02:21:38.129Z"
+  },
+  {
+    "type": "directory",
+    "name": "ensemble_complex",
+    "path": "L1/ensemble_complex",
+    "children": []
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-12-CM-1",
+    "path": "L1/ensemble_complex/2024-09-12-CM-1",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-12-CM-1.pdf",
+    "path": "L1/ensemble_complex/2024-09-12-CM-1/2024-09-12-CM-1.pdf",
+    "size": 8431,
+    "lastModified": "2024-11-11T02:21:38.129Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-13-CM-2",
+    "path": "L1/ensemble_complex/2024-09-13-CM-2",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-13-CM-2.pdf",
+    "path": "L1/ensemble_complex/2024-09-13-CM-2/2024-09-13-CM-2.pdf",
+    "size": 80991,
+    "lastModified": "2024-11-11T02:21:38.129Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-20-CM-3",
+    "path": "L1/ensemble_complex/2024-09-20-CM-3",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-20-CM-3.pdf",
+    "path": "L1/ensemble_complex/2024-09-20-CM-3/2024-09-20-CM-3.pdf",
+    "size": 109160,
+    "lastModified": "2024-11-11T02:21:38.130Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-27-CM-4",
+    "path": "L1/ensemble_complex/2024-09-27-CM-4",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-27-CM-4.pdf",
+    "path": "L1/ensemble_complex/2024-09-27-CM-4/2024-09-27-CM-4.pdf",
+    "size": 93947,
+    "lastModified": "2024-11-11T02:21:38.130Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-04-CM-5",
+    "path": "L1/ensemble_complex/2024-10-04-CM-5",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-04-CM-5.pdf",
+    "path": "L1/ensemble_complex/2024-10-04-CM-5/2024-10-04-CM-5.pdf",
+    "size": 82080,
+    "lastModified": "2024-11-11T02:21:38.131Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-11-CM-6",
+    "path": "L1/ensemble_complex/2024-10-11-CM-6",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-11-CM-6.pdf",
+    "path": "L1/ensemble_complex/2024-10-11-CM-6/2024-10-11-CM-6.pdf",
+    "size": 7115,
+    "lastModified": "2024-11-11T02:21:38.131Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-18-CM-7",
+    "path": "L1/ensemble_complex/2024-10-18-CM-7",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-18-CM-7.pdf",
+    "path": "L1/ensemble_complex/2024-10-18-CM-7/2024-10-18-CM-7.pdf",
+    "size": 86628,
+    "lastModified": "2024-11-11T02:21:38.131Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-11-08-CM-8",
+    "path": "L1/ensemble_complex/2024-11-08-CM-8",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-11-08-CM-8.pdf",
+    "path": "L1/ensemble_complex/2024-11-08-CM-8/2024-11-08-CM-8.pdf",
+    "size": 10471,
+    "lastModified": "2024-11-11T02:21:38.131Z"
+  },
+  {
+    "type": "directory",
+    "name": "TD",
+    "path": "L1/ensemble_complex/TD",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "TD1.pdf",
+    "path": "L1/ensemble_complex/TD/TD1.pdf",
+    "size": 175485,
+    "lastModified": "2024-11-11T02:21:38.132Z"
+  },
+  {
+    "type": "directory",
+    "name": "science_decision",
+    "path": "L1/science_decision",
+    "children": []
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-12-CM-1",
+    "path": "L1/science_decision/2024-09-12-CM-1",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-12-CM-1.pdf",
+    "path": "L1/science_decision/2024-09-12-CM-1/2024-09-12-CM-1.pdf",
+    "size": 8233,
+    "lastModified": "2024-11-11T02:21:38.132Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-13-CM-2",
+    "path": "L1/science_decision/2024-09-13-CM-2",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-13-CM-2.pdf",
+    "path": "L1/science_decision/2024-09-13-CM-2/2024-09-13-CM-2.pdf",
+    "size": 62168,
+    "lastModified": "2024-11-11T02:21:38.132Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-19-CM-3",
+    "path": "L1/science_decision/2024-09-19-CM-3",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-19-CM-3.pdf",
+    "path": "L1/science_decision/2024-09-19-CM-3/2024-09-19-CM-3.pdf",
+    "size": 45318,
+    "lastModified": "2024-11-11T02:21:38.133Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-09-26-CM-4",
+    "path": "L1/science_decision/2024-09-26-CM-4",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-09-26-CM-4.pdf",
+    "path": "L1/science_decision/2024-09-26-CM-4/2024-09-26-CM-4.pdf",
+    "size": 72834,
+    "lastModified": "2024-11-11T02:21:38.133Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-03-CM-5",
+    "path": "L1/science_decision/2024-10-03-CM-5",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-03-CM-5.pdf",
+    "path": "L1/science_decision/2024-10-03-CM-5/2024-10-03-CM-5.pdf",
+    "size": 78521,
+    "lastModified": "2024-11-11T02:21:38.133Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-17-CM-6",
+    "path": "L1/science_decision/2024-10-17-CM-6",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-17-CM-6.pdf",
+    "path": "L1/science_decision/2024-10-17-CM-6/2024-10-17-CM-6.pdf",
+    "size": 64795,
+    "lastModified": "2024-11-11T02:21:38.134Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-10-24-CM-7",
+    "path": "L1/science_decision/2024-10-24-CM-7",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-10-24-CM-7.pdf",
+    "path": "L1/science_decision/2024-10-24-CM-7/2024-10-24-CM-7.pdf",
+    "size": 50836,
+    "lastModified": "2024-11-11T02:21:38.134Z"
+  },
+  {
+    "type": "directory",
+    "name": "2024-11-07-CM-8",
+    "path": "L1/science_decision/2024-11-07-CM-8",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "2024-11-07-CM-8.pdf",
+    "path": "L1/science_decision/2024-11-07-CM-8/2024-11-07-CM-8.pdf",
+    "size": 48920,
+    "lastModified": "2024-11-11T02:21:38.134Z"
+  },
+  {
+    "type": "directory",
+    "name": "TD",
+    "path": "L1/science_decision/TD",
+    "children": []
+  },
+  {
+    "type": "file",
+    "name": "TD1.pdf",
+    "path": "L1/science_decision/TD/TD1.pdf",
+    "size": 43155,
+    "lastModified": "2024-11-11T02:21:38.135Z"
+  },
+  {
+    "type": "file",
+    "name": "TD2.pdf",
+    "path": "L1/science_decision/TD/TD2.pdf",
+    "size": 31322,
+    "lastModified": "2024-11-11T02:21:38.135Z"
+  }
+]
