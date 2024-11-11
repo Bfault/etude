@@ -1,0 +1,99 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{17 octobre 2024}
+
+\title{Science Decision | CM: 6}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Ordre faible et ordre total}
+
+Soit R une relation binaire sur l'ensemble X.
+
+\vspace{1em}
+
+\noindent
+On définit I et S sur X par
+
+$\forall x \in X, y \in X, xIy \text{ si } xRy \land yRx$
+
+$\forall x \in X, y \in X, xSy \text{ si } xRy \land \neg yRx$
+
+\begin{example}
+    $A = \{a, b, c\}$
+
+    $R = \{(a, b), (b, a), (a, c), (b, c)\}$
+
+    $I = \{(a, b), (b, a)\}$
+
+    $S = \{(a, c), (b, c)\}$
+\end{example}
+
+\begin{proposition}
+    si R est un ordre faible sur X, alors
+
+    \item \textbf{1.} I est une relation d'équivalence
+    \item \textbf{2.} S est irréflexive et transitive
+\end{proposition}
+
+\begin{demonstration}
+    I relation d'équivalence:
+
+    \item I reflexive
+    
+    Soit $x \in X, xIx \iff xRx \land xRX \iff xRx$ vrai car R est complète
+
+    \item I symétrique
+    
+    Soient $x \in X, y \in X, xIy \implies xRy \land yRx \implies yRx \land xRy \implies yIx$
+
+    \item I transitive
+    
+    Soient $x, y, z \in X, xIy \land yIz \implies xRy \land yRx \land yRz \land zRy \implies xRy \land yRz \land zRy \land yRx \implies xRz \land zRx \implies xIz$
+\end{demonstration}
+
+On définit $R^*$ sur $X/I$ par 
+
+$\forall C_x \in X/I, C_y \in X/I, C_xR^*C_y \text{ lorsque } xRy$
+
+$R^*$ sur X/I est la réduction (relation quotient) de R sur X
+
+\begin{proposition}
+    Si R est un ordre faible alors $R^*$ est un ordre total sur X/I
+\end{proposition}
+
+\begin{demonstration}
+    \item $R^*$ antisymétrique
+    
+    Soient $C_x, C_y \in X/I, C_x R^* C_y \land C_y R^* C_x \implies C_x = C_y \implies xIy \implies y \in C_x \implies C_x = C_y$
+
+    \item $R^*$ transitive
+    
+    Soient $C_x, C_y, C_z \in X/I$
+
+    $C_x R^* C_y \land C_y R^* C_z \implies xRy \land yRz \implies xRz \implies C_x R^* C_z$
+
+
+    \item $R^*$ complète
+    
+    $C_x, C_y \in X/I, C_xR^*C_y \lor C_yR^*C_x$
+    car R complète
+\end{demonstration}
+
+\subsubsection{Irréflexive et transitive}
+
+voir plus tard
+
+
+
+\end{document}

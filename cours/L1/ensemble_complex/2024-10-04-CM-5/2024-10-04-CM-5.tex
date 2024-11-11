@@ -1,0 +1,110 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{04 octobre 2024}
+
+\title{Ensemble Complex | CM: 5}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Soient X, Y deux ensembles.
+
+    \item $\bullet$ Une application de X dans Y est la donnée, pour tout point
+    $x \in X$ d'un unique point $y \in Y$ associé à x.
+    On dit que y est l'image de x par l'application.
+
+    \item $\bullet$ Soit f est une application de X dans Y.
+    \item $\diamond$ on note f(x) l'image de x par f
+    \item $\diamond$ X est appelé espace de départ de f.
+    \item $\diamond$ Y est appelé espace d'arrivée de f.
+    \item %todo
+\end{definition}
+
+\begin{remark}
+    Deux applications f et g sont égales si elles ont même ensemble de départ, même ensemble d'arrivée et si
+
+    $\forall x \in X, \; f(x) = g(x)$
+\end{remark}
+
+\begin{remark}
+    On ne change pas une application en modifiant la (les) variable(s) muette(s) permettant de la définir. Ainsi les applications suivantes sont égales:
+
+    $f : \R^2 \to \R (x, y) \to x + y,     g : \R^2 \to \R , (x_1, x_2) \to x_1 + x_2$
+    %todo you know
+\end{remark}
+
+\begin{remark}
+    Pour toute fonction f, si $x_1 = x_2$ alors $f(x_1) = f(x_2)$, la réciproque est fausse en général.
+\end{remark}
+
+\begin{remark}
+    Etant donnée une application $f: X \to Y   x \to f(x)$ et $X' \subset X$, on peut créer une application restreinte $f_{\mid X'}: X' \to Y    x \to f(x)$
+\end{remark}
+
+\begin{definition}
+    Soient X, Y des ensembles.
+
+    \item $\bullet$ On appelle graphe dans $X \times Y$ toute partie G de $X \times Y$
+    telle que $\forall x \in X, \exists! y \in Y, (x, y) \in G$
+
+    \item $\bullet$ Si f est une application de X dans Y, alors le graphe de f est
+    $G_f := \{(x, y) \in X \times Y \mid y = f(x)\}$
+\end{definition}
+
+\begin{remark}
+    Réciproquement si G est un graph %todo
+\end{remark}
+
+\begin{remark}
+    Une fonction n'étant pas nécessairement définie sur tout l'ensemble de départ considéré (souvent $\R$).
+\end{remark}
+
+\begin{definition}
+    Soit $f \in Y^X$
+
+    \item $\bullet$ On dit que $x \in X$ est un antécédent de $y \in Y$ par f lorsque $f(x) = y$, i.e. lorsque y est l'image de x par f.
+    \item $\bullet$ Si A est un sous ensemble de X, on appelle image de A l'ensemble
+    $f(A) := \{f(a) \mid a \in A\} = \{y \in Y \mid \exists a \in A, f(a) = y\} \subset Y$
+    \item $\bullet$ Si B est un sous ensemble de Y, on appelle image réciproque de B l'ensemble des antécédents d'éléments de B:
+    $f^{-1}(B) := \{x \in X \mid f(x) \in B\} \subset X$
+\end{definition}
+
+\begin{remark}
+    Attention à la notation, f(a) et f(A) ne sont pas de même nature.
+    Pour tout $x \in X, f(\{x\}) = \{f(x)\}$
+\end{remark}
+
+\begin{theorem}
+    Soit $f \in Y^X$
+
+    \item $\bullet$ Pour toutes parties A et B de Y on a,
+    
+    \item $\diamond$ $A \subset B \implies f^{-1}(A) \subset f^{-1}(B)$
+
+    \item $\diamond$ $f^{-1}(A \cup B) = f^{-1}(A) \cup f^{-1}(B)$
+    
+    \item $\diamond$ $f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B)$
+    
+    \item $\bullet$ Pour toutes parties A et B de X, on a
+    
+    \item $\diamond$ $A \subset B \implies f(A) \subset f(B)$
+    \item $\diamond$ $f(A \cup B) = f(A) \cup f(B)$
+    \item $\diamond$ $f(A \cap B) \subset f(A) \cap f(B)$
+\end{theorem}
+
+\begin{demonstration}
+    %todo
+\end{demonstration}
+
+
+\end{document}

@@ -1,0 +1,191 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{27 septembre 2024}
+
+\title{Arithmetique | CM: 4}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Arithmétique élémentaire dans $\Z$}
+
+\begin{definition}
+    Soient x et y dans $\Z$. On dit que x divise y s'il existe $k \in \Z$ tel que $y = kx$.
+    La notation associée est $x \mid y$.
+    x est un diviseur de y ou y est un multiple de x
+\end{definition}
+
+\begin{remark}
+    tout entier relatif divise 0.
+
+    0 divise uniquement 0.
+
+    si x est un diviseur de y alors (-x) est un diviseur de y
+
+    1 et -1 sont les diviseurs de tout entier relatifs.
+    
+    les diviseurs de 1 et -1 sont 1 et -1
+
+    $\forall x, y \in \N^* \implies (x \mid y \implies x \leq y)$
+\end{remark}
+
+\begin{definition}
+    On dit que $p \in \N, \; p \geq 2$ est un nombre premier si les seuls diviseurs positifs de p sont 1 et p.
+\end{definition}
+
+\begin{remark}
+    Une autre définition est tout nombre qui a exactement 2 diviseurs.
+\end{remark}
+
+\begin{remark}
+    Pour vérifier qu'un nombre est premier, on peut regarde pour chaque $\forall k \in \N, k \leq \sqrt{p}$ si k divise p.
+\end{remark}
+
+%si motivation parler du crible d'eratosthène
+
+\begin{definition}
+    Soit $n \in \Z^*$, on appelle décomposition en facteurs premiers de n une écriture de la forme
+
+    $n = c multi p_i = c(p_1 \times ... \times p_k)$
+
+    où $c \in {+- 1}, k \in \N, p_1,...,p_k$ sont premiers
+\end{definition}
+
+\begin{proposition}
+    Tout $n \in \Z^*$ admet une décomposition en facteurs premier.
+\end{proposition}
+
+\begin{demonstration}
+    Il suffit de le démontrer pour $n \in \N^*$ et $c = 1$ et pour les négatifs on se ramène à $\N^*$ en posant $c = -1$
+
+    Démonstration par récurrence forte.
+
+    \textbf{Initialisation:} $n = 1$, on pose $c = 1, k = 0$, c'est un produit vide.
+
+    \textbf{Initialisation:} Soit $n \in \N^*, \forall d \leq n$, on ait une telle décomposition.
+    Si n + 1 est premier, on pose $k = 1 \quad P_1 = n + 1$.
+    Si n + 1 n'est pas premier il admet un diviseur $d \in [2, n]$.
+    Par hypothèse de récurrence $d = c \times p_1 \times ... \times p_k$.
+    De même $d' = \dfrac{n+1}{d} \in [2; n]$
+    $d' = p_1' \times ... \times p_k'$.
+
+    Donc $n + 1 = d \times d' = p_1 \times ... \times p_k \times p_1' \times ... \times p_k'$
+\end{demonstration}
+
+Corollaire: Tout entier $n \geq 2$ admet au moins un diviseur premier
+%todo
+
+\begin{proposition}
+    L'ensemble des nombre premiers est infini.
+\end{proposition}
+
+\begin{demonstration}
+    Supposons (par l'absurde) qu'il y ait un nombre fini de nombres premiers $p_1, ..., p_m$
+
+    On pose $N = p_1 \times ... \times p_m + 1$
+
+    Alors N admet un diviseur premier $p_i (i \in [i; m])$
+    i.e. $N = p_i N' \implies N = multi p_j + 1 \implies p_i N' - p_i multi_{i \neg j} p_j = 1 \implies p_i (N' - multi_{j \neg i} p_j) = 1$
+\end{demonstration}
+
+\begin{theorem}
+    Soient $a \in \Z, b \in \N*$.
+    
+    Alors il existe un unique couple $(q, r) \in \Z \times \N, a = bq + r$ avec $b \gt r \geq 0$
+\end{theorem}
+
+\begin{demonstration}
+    \textbf{Existence:} Pour $a \in \N$, raisonnement par récurrence.
+
+    \textbf{Initialisation:} $a = 0$: On pose $q = 0 \text{ et } r = 0 \implies 0 = b \times 0 + 0$
+
+    \textbf{Hérédité:} Si $a = bq + r$ avec $(b \gt r \geq 0)$
+
+    Alors $a + 1 = bq + (r + 1)$, C'est une division euclidienne lorsque $r+1 \lt b \implies r \lt l - 1$
+
+    Lorsque $r = b-1$
+
+    $a + 1 = bq + ((b - 1) + 1) = bq + b = b(q + 1) + 0$,
+    C'est une division euclidienne.
+
+    Si $a \lt 0$ alors $(-a) \gt 0$ Donc $\exists (q, r) \in \Z \times \N, -a = bq + r \implies a = b \times (-q) + (-r)$ avec $(b \gt r \geq 0)$
+
+    Si r = 0, c'est une division euclidienne.
+
+    Sinon $-b \lt -r \lt 0 \implies 0 \lt -r + b \lt b$
+
+    Donc $a = b \times (-q) + (-r + b) - b = b \times (-q - 1) + (-r + b)$
+    C'est un division euclidienne.
+
+    \textbf{Unicité:} Si $a = bq + r$ et $a = bq' + r'$ avec $b \gt r, r' \geq 0$
+
+    Par soustraction: $0 = b(q - q') + r - r' \implies r' - r = b(q - q')$
+
+    $b - 1 \geq r' - r \geq -b - 1$
+    Donc $r' - r = 0 \implies r = r'$
+
+    Ainsi $bq + r = bq' + r' \implies bq = bq' \implies q = q'$
+\end{demonstration}
+
+\begin{definition}
+    le \textbf{pgcd} de deux nombres $a, b \in \Z^*$ est le plus grand diviseur commun à a et b. Il est noté $PGCD(a, b)$ (ou encore $a \land b$)
+
+    On dit que a et b sont \textbf{premiers entre eux} si PGCD(a, b) = 1.
+
+    Le \textbf{ppcm} de deux nombres $a, b \in \Z^*$ est le plus petit multiple strictement positif commun à a et b. Il est noté PPCM(a, b) (ou encore $a \lor b$)
+\end{definition}
+
+\begin{proposition}
+    $\forall a, b \in \Z^*, PGCD(a, b) \times PPCM(a, b) = |ab|$
+\end{proposition}
+
+\begin{demonstration}
+    Si on remplace a et b par leurs valeurs absolues: $||a||b|| = |ab|$
+
+    Les multiples et les diviseurs de |a| et de a sont les mêmes.
+
+    Donc $PGCD(a, b) = PGCD(|a|, |b|)$ et $PPCM(a, b) = PPCM(|a|, |b|)$
+
+    Ainsi il suffit de montrer le résultat pour $a, b \in \N^*$
+
+    On pose $d = PGCD(a, b)$
+
+    $\exists a', b' \in \N^*, a = da' \text{ et } b = db'$
+
+    $\dfrac{ab}{d} = \dfrac{da'b}{d} = a'b$
+    $\dfrac{ab}{d} = \dfrac{adb'}{d} = ab'$
+    %todo
+\end{demonstration}
+
+\begin{methode}
+L'algorithme d'Euclide:
+
+Le PGCD peut se calculer avec l'algorithme d'Euclide:
+
+\item \textbf{1.} (Eventuellement) remplacer a et b par $|a|$ et $|b|$
+\item \textbf{2.} De manière récursive:
+\item \textbf{2.1} Calculer la division euclidienne de a par b: $a = bq + r$
+\item \textbf{2.2} Si $r \neq 0$: recommencer en remplcaçant (a, b) par (b, r) Sinon sortir de la récursion
+\item \textbf{3.} Le pgcd est le dernier reste non-nul calculé.
+\end{methode}
+
+%todo
+
+\begin{proposition}
+    Si d est un diviseur commun à a et b alors $d \mid PGCD(a, b)$
+\end{proposition}
+
+Corollaire:
+
+Le PGCD est aussi le plus grand diviseur commun au sens de la divisibilité.
+
+\end{document}
