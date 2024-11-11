@@ -1,0 +1,134 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{13 septembre 2024}
+
+\title{Arithmetique | CM: 2}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Structures algébriques}
+
+\subsection{Lois de compositions internes}
+
+\begin{definition}
+    Soit E un ensemble. On appelle \textbf{loi de composition interne} (l.c.i) sur E une opération binaire.
+
+    On parle d'application $E \times E \rightarrow E$
+\end{definition}
+
+\begin{definition}
+    Soit * une l.c.i sur E. On dit *
+
+    \item $\bullet$ \textbf{associative} si $\forall x, y, z \in E, \; x * (y * z) = (x * y) * z$
+    \item $\bullet$ \textbf{commutative} si $\forall x, y \in E, \; x * y = x * y$
+    \item $\bullet$ a un \textbf{élement neutre} $e \in E$ vérifiant $\forall x \in E, x * e = e * x = x$ 
+\end{definition}
+
+\subsection{Groupes}
+
+\begin{definition}
+    Soit G un ensemble et * une l.c.i sur G. On dit que (G, *) est un \textbf{groupe} lorsque les axiomes suivants sont vérifiés.
+
+    \item $\bullet$ * est associative
+    \item $\bullet$ * admet un élement neutre $e \in G$
+    \item $\bullet$ $\forall x \in G, \exists x' \in G$ tel que $x * x' = x' * x = e$ (on dit que x' est l'élement inverse ou symétrique de x pour *)
+\end{definition}
+
+\begin{remark}
+    Si de plus * est commutative, alors le groupe est dit \textbf{abélien} (ou commutatif).
+\end{remark}
+
+\begin{example}
+    Si X est un ensemble, notons $Bij(X)$, l'ensemble des application de X dans X admettant une application réciproque
+    \begin{equation*}
+        \forall f: X \rightarrow X, \exists g: X \rightarrow X, g \circ f = f \circ g = Id_X:
+        \begin{cases}
+            X &\longrightarrow X \\
+            x &\longmapsto x
+        \end{cases}
+    \end{equation*}
+    Ainsi $(Bij(X), \circ)$ est un groupe.
+\end{example}
+
+\begin{proposition}
+    Si (G, *) est un groupe alors
+
+    \item \textbf{(a)} L'élement neutre de G est unique
+    \item \textbf{(b)} Chaque $x \in G$ admet un unique élement inverse
+    \item \textbf{(c)} Si $x, y, z \in G$ tel que $x * y = z * y$ alors $x * y$ (indépendament de l'ordre)
+\end{proposition}
+
+\begin{demonstration}
+    \begin{rdem}
+        \textbf{(a)}: Soient e, e' des élements neutres de G par *, $e * e' = e' * e = e = e'$
+    \end{rdem}
+    \begin{rdem}
+        \textbf{(b)}: Soient x', x'' des élements inverse de $x \in G$,\par $x' = x' * e = x' * (x * x'') = (x' * x) * x'' = e * x'' = x''$
+    \end{rdem}
+    \begin{rdem}
+        \textbf{(c)}: Posons $x^{-1} * (x * y) = x^{-1} * (x * z) \implies (x^{-1} * x) * y = (x^{-1} * x) * z \implies e * y = e * z \implies y = z$
+    \end{rdem}
+\end{demonstration}
+
+\begin{remark}
+    Lorsqu'il n'y a pas d'ambiguïtés, l'inverse d'un élement x sera noté $x^{-1}$. Notons que $(x^{-1})^{-1} = x$
+\end{remark}
+
+\begin{definition}
+    Soit (G, *) un groupe. Soit $H \subset G$, on dit que H est un \textbf{sous-groupe} de G lorsque les condtions suivantes sont vérifiées.
+    \item \textbf{1)} $\forall x, y \in H, \; x * y \in H$. On dit que H est stable par *
+    \item \textbf{2)} Muni de *, H est un groupe
+\end{definition}
+
+\begin{proposition}
+    Soit (G, *) un groupe et $H \subset G$. Les conditions suivantes sont équivalentes.
+
+    \item \textbf{(a)}: H est un sous groupe de G
+    \item \textbf{(b)}: $H \neq \emptyset$, H est stable par * et par passage au symétrique ($\forall x \in H, \; x^{-1} \in H$)
+    \item \textbf{(b)}: $H \neq \emptyset$ et $\forall x, y \in H, \; x * y^{-1} \in H$
+\end{proposition}
+
+\begin{demonstration}
+    \item $\bullet$ Démontrons que $(a) \implies (b)$.
+    
+        \item $\diamond$ H est un sous groupe donc doit admettre un élement neutre ($e_H$) donc $H \neq \emptyset$.
+        Montrons que $e_H = e_G$, on a $e_H * e_H = e_H = e_G + e_H = e_G$.
+        
+        \vspace{0.5em}
+        
+        \item $\diamond$ La stabilité par * fait partie de la définition de sous groupe.
+        
+        \vspace{0.5em}
+        
+        \item $\diamond$ Soit $x \in H$, soit s' son symétrique dans H. x' est aussi un symétrique dans G. Dans G par unicité du symétrique $x^{-1} = x' \in H$.
+
+    \item $\bullet$ Démontrons que $(b) \implies (c)$.
+    
+    \item $\diamond$ Soient $x, y \in H$. Alors $y^{-1} \in H$ et encore par $x * x^{-1} \in H$.
+    
+    \item $\bullet$ Démontrons que $(c) \implies (a)$.
+
+    \item $\diamond$ l'associativité est montré par $\forall x, y, z \in H, x, y, z \in G, x * (y * z) = (x * y) * z$
+    \item $\diamond$ l'élement neutre par $\exists x \in H, e = x * x^{-1} \in G$, ainsi $\forall x \in H, x \in G$
+    \item $\diamond$ l'élement inverse par $x \in H$, prenons $y = e$, ainsi $x^{-1} * e = x^{-1}$, ici $x^{-1}$ est le symétrique de x dans H.
+    \item $\diamond$ la stabilité par * dans H par $x, y \in H$, posons $z = y^{-1}$, ainsi $x * y = x * z^{-1} \in H$.
+    
+    \begin{rdem}
+        Finalement par implication circulaire nous avons démontré que
+        
+        $(a) \iff (b) \iff (c)$
+    \end{rdem}
+
+\end{demonstration}
+
+\end{document}

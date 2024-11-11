@@ -1,0 +1,97 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{10 octobre 2024}
+
+\title{Analyse | CM: 6}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{proprietes}
+    Soient $\un$ et $\xn{v}$, tel que $lim_{n \to +\infty}v_n = +\infty$
+    
+    \item $$
+    \lim_{n \to +\infty}\frac{1}{v_n} = 0
+    $$
+
+    \item Si $\un$ est minorée, alors
+    $$
+    \lim_{n \to +\infty}(u_n + v_n) = +\infty
+    $$
+
+    \item Si $\un$ est minorée par un réel strictement positif, alors
+    $$
+    \lim_{n \to +\infty}(u_n \times v_n) = +\infty
+    $$
+
+    \item Si $\lim_{n \to +\infty} u_n = 0$ et $\forall n \in \N, u_n \gt 0$, alors
+    $$
+    \lim_{n \to +\infty}\frac{1}{u_n} = +\infty
+    $$
+\end{proprietes}
+
+\begin{theorem}
+    Toute suite convergente est bornée.
+\end{theorem}
+
+\begin{demonstration}
+    Soit une suite $\un$ qui converge vers l.
+
+    $$
+    \lim_{n \to +\infty}u_n = l \iff \forall \varepsilon \gt 0, \exists N \in \N, \forall n \in \N, n \geq N, |u_n - l| \lt \varepsilon
+    $$
+
+    On écrit $u_n = u_n - l + l$ ainsi $|u_n| = |(u_n - l) + l| \leq |u_n - l| + |l|$
+
+    En outre $\forall n \geq N, |u_n| \leq \varepsilon + |l|$
+
+    De plus $\forall n \lt N, |u_n| \leq \max(u_0, u_1, ..., u_{n-1})$
+
+    \begin{rdem}
+        Finalement $\forall n \in \N, |u_n| \leq \max(u_0, u_1, ..., u_{n-1}, \varepsilon + |l|)$
+    \end{rdem}
+\end{demonstration}
+
+\begin{corollaire}
+    Si la suite $\un$ est bornée et $\lim_{n \to \infty} v_n = 0$ alors $\lim_{n \to \infty} (u_n \times v_n) = 0$
+\end{corollaire}
+
+\subsubsection{Formes indéterminées}
+
+On parle de formes indéterminées, lorsque à priori on ne peut rien dire sur la limite.
+
+Il s'agit de limite de type:
+
+\begin{itemize}
+    \item $+\infty -\infty$
+    \item $0 \times \infty$
+    \item $\dfrac{\infty}{\infty}$, $\dfrac{0}{0}$, $a^\infty$
+\end{itemize}
+
+Dans ce cas il faut étudier plus précisement la suite.
+
+Par exemple en utilisant les croissances comparées
+
+\subsubsection{Quelques innégalités}
+
+\begin{proprietes}
+    \item Soient $\un$ et $\xn{v}$ deux suites convergentes telles que $\forall n \in \N, u_n \leq v_n$,
+    $$
+    \lim_{n \to +\infty}u_n \leq \lim_{n \to +\infty}v_n
+    $$
+    \item Soient $\un$ et $\xn{v}$ telles que $\forall n \in \N, u_n \leq v_n$,
+    $$
+    \lim_{n \to +\infty}u_n = +\infty \implies \lim_{n \to +\infty}v_n = +\infty
+    $$
+\end{proprietes}
+
+\end{document}

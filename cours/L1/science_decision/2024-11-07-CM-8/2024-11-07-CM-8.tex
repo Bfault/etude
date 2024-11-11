@@ -1,0 +1,65 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{07 novembre 2024}
+
+\title{Science Decision | CM: 8}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Une \textbf{chaîne} est un ensemble d'éléments de X totalement ordonné
+\end{definition}
+
+\begin{definition}
+    Une \textbf{antichaîne} si $\forall x, xRy \lor yRx \implies x = y$
+\end{definition}
+
+Soit c le nombre minimal de chaînes pour partitionner X
+
+Soit A une anti-chaîne de cardinal maximal a
+
+\begin{remark}
+    partition avec le plus grand nombre de chaînes : \{\{a\}, \{b\}, ..., \{g\}\}
+\end{remark}
+
+\begin{proposition}
+    X ensemble partiellement ordonné par R.
+
+    Le nombre d'éléments d'une antichaîne de cardianl maximal (a) est
+    égale au nombre minimum de chaînes pour partitionner X.
+\end{proposition}
+
+\begin{demonstration}
+    Preuve par récurrence sur $|x|$
+
+    Init. $|x| = 1$
+
+    X est une chaîne et une antichaîne a = 1
+
+    on partitionne X en 1 chaîne c = a = 1
+
+    here. Suppose que ça marche pour tous jusqu'a n
+
+    2 cas:
+
+    (a) si X contient une antichaîne de cardinal a contenant au moins un element non mimimal et au moins un element maximal
+
+    (b) si X contient une antichaîne de cardinal a contenant que des elements maximaux ou minimaux
+
+    (a) Soient $H = \{x \in X | \exists z \in A, xRz\}$ et $B = \{x \in X | \exists z \in A, zRx\}$
+
+    du fait de (a) $\exists w \in A$ non maximal implique $\exists y \in X, yRw$ et $y \notin B$ donc $|B| \leq n - 1$
+    donc B peut être partitionné en a chaînes
+\end{demonstration}
+
+\end{document}

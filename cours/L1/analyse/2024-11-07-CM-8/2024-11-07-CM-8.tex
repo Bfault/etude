@@ -1,0 +1,171 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{07 novembre 2024}
+
+\title{Analyse | CM: 8}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Suites adjacentes}
+
+\begin{definition}
+    Soient $\un$ et $\xn{v}$ deux suites. Elles sont adjacentes si.
+
+    \item (i) $(u_n)$ est croissante, $v_n$ décroissante
+    \item (ii) $\forall n \in N, u_n \leq v_n$
+    \item (iii) $\lim_{n \to +\infty} (v_n - u_n) = 0$
+\end{definition}
+
+\begin{theorem}
+    Si $\un$ et $\xn{v}$ sont deux suites adjacentes, alors elles convergent vers la même limite.
+\end{theorem}
+
+\begin{demonstration}
+    Une suite $\un$ croissante et une suite $\xn{v}$ décroissante.
+
+    Ainsi $\un$ est majorée par $v_0$ donc elle converge vers une limite $l_1$
+    et $\xn{v}$ est minorée par $u_0$ donc elle converge vers une limite $l_2$
+
+    comme $\lim_{n \to +\infty}(v_n - u_n) = 0 \implies l_2 - l_1 = 0 \implies l_2 = l_1$
+\end{demonstration}
+
+\subsection{Les Sous-suites}
+
+\begin{definition}
+    Soit $\un$. Une sous-suite ou suite extraite est une suite
+    $(u_{\phi(n)})_{n \in \N}$ où
+
+    $$
+    \phi: \substack{\N \longmapsto \N \\ n \longmapsto \phi(n)}
+    $$
+    est une fonction croissante.
+\end{definition}
+
+\begin{proposition}
+    Si la suite $\un$ converge vers l, alors toute suite extraite convergent vers l.
+\end{proposition}
+
+\begin{demonstration}
+    $\lim_{n \to +\infty}u_n = l \iff \forall \eps \gt 0, \exists N \in \N, \forall n \geq N, |u_n - l| \lt \eps$
+
+    Comme $\phi$ est croissante, en particulier si $n \geq N$ alors $\phi(n) \geq \phi(N)$ et $|u_{\phi(n)}-l| \lt \eps$.
+
+    Autrement dit, $\lim_{n \to +\infty} u_{\phi(n)} = l$
+\end{demonstration}
+
+\begin{corollaire}
+    Si il existe une sous-suite qui diverge, ou deux sous-suites qui convergent vers
+    deux limites différentes, alors la suite diverge.
+\end{corollaire}
+
+\begin{theorem}
+    Le théorème de Bolzano-Weierstrass dit que toute suite bornée admet au moins une sous-suite qui converge.
+\end{theorem}
+
+\begin{demonstration}
+    On procède par dichotomie. Comme la suite est bornée, on peut supposer qu'elle
+    prend ses valeurs dans l'intervalle [a, b]
+
+    On pose $a_0 = a$, $b_0 = b$ et $\phi(0) = 0$
+    La suite $\un$ a une infinité de valeurs dans $[a, \dfrac{a+b}{2}]$ ou $[\dfrac{a+b}{2}, b]$.
+
+    On note $[a_1, b_1]$ cet intervalle
+    $a_0 = a_1$ et
+    
+    $a_1 = a$ si $(u_n)$ a une infinité de valeurs dans $[a_1, \dfrac{a+b}{2}]$ sinon $a_1 = \dfrac{a+b}{2}$
+
+    $b_1 = \dfrac{a+b}{2}$ si $(u_n)$ a une infinité de valeurs dans $[\dfrac{a+b}{2}, b_1]$ sinon $b_1 = b$
+
+    On peut ensuite construire un intervalle $[a_n, b_n]$ de longeur $\dfrac{b - a}{2^n}$
+    et un entier $\phi(n) \geq \phi(n-1)$ avec $u_{\phi(n)} \in [a_n, b_n]$.
+
+    Par construction la suite $\xn{a}$ est croissante et la suite $\xn{b}$ est décroissante,
+    et $a_n \leq b_n$
+
+    De plus $\lim_{n \to +\infty}b_n - a_n = \lim_{n \to +\infty} \dfrac{b-a}{2^n} = 0$.
+
+    Donc $xn{a}$ et $xn{b}$ sont adjacentes, elles convergent vers la même limite l.
+
+    Mais $u_{\phi(n)} \in [a_n, b_n]$, ou encore $a_n \leq u_{\phi(n)} \leq b_n$
+
+    et d'après le théorème des gendarmes, $\lim_{n \to +\infty}u_{\phi(n)} = l$
+\end{demonstration}
+
+\section{Etude de fonctions}
+
+\subsection{Notion de fonction}
+
+\begin{definition}
+    Une fonction d'une variable réelle à valeurs réelles est une application $f: \substack{U \longmapsto \R \\ x \longmapsto f(x)}$ où U est une partie de $\R$ appelée ensemble de définition de f.
+\end{definition}
+
+Le graphe $\Gamma$ est la partie du plan $\R^2$ défini par $\Gamma = \{(x, f(x)); x \in U\}$.
+Pour $x \in U$, f(x) est l'image de x par f.
+
+\subsection{Opérations sur les fonctions}
+
+Soient $f: U \longmapsto \R$ et $g: U \longmapsto \R$ définies sur le même domaine U.
+
+On définit la somme de deux fonctions $h = f + g$ comme
+$$
+\forall x \in U, h(x) = (f + g)(x) = f(x) + g(x)
+$$
+
+On définit le produit de 2 fonctions $h = f \times g$ comme
+$$
+\forall x \in U, h(x) = (f \times g)(x) = f(x) \times g(x)
+$$
+
+\begin{remark}
+    La multiplication par un scalaire $\lambda \in \R$ est définie comme,\par $\forall x \in U, (\lambda f)(x) = \lambda f(x)$
+\end{remark}
+
+\subsection{Fonction monotone, bornée}
+
+\begin{definition}
+    Soient $f: U \longmapsto \R$ et $g: U \longmapsto \R$
+
+    \item 1. $f \leq g$ si $\forall x \in U, f(x) \leq g(x)$
+    \item 2. $f \geq 0$ si $\forall x \in U, f(x) \geq 0$
+    \item 3. f est constante si $\exists C \in \R$ tel que $\forall x \in U, f(x) = C$
+\end{definition}
+
+\begin{definition}
+    \item 1. la fonction f est croissante si $\forall x, y \in U, x \leq y \implies f(x) \leq f(y)$.
+    \item 2. la fonction f est strictement croissante si $\forall x, y \in U, x \lt y \implies f(x) \lt f(y)$.
+    \item 3. la fonction f est décroissante si $\forall x, y \in U, x \leq y \implies f(x) \geq f(y)$.
+    \item 4. la fonction f est strictement décroissante si $\forall x, y \in U, x \lt y \implies f(x) \gt f(y)$.
+    \item 5. f est monotone si elle est croissante ou décroissante.
+\end{definition}
+
+\begin{definition}
+    \item 1. On dit que f est majorée si $\exists M \in \R, \forall x \in U, f(x) \leq M$.
+    \item 2. On dit que f est minorée si $\exists m \in \R, \forall x \in U, f(x) \geq m$.
+    \item 3. On dit que f est bornée si elle est majorée et minorée, ou encore si\par\noindent $\exists M \in \R, \forall x \in U, |f(x)| \leq M$
+\end{definition}
+
+\subsection{Parité et périodicité}
+
+\begin{definition}
+    Soit I un intervalle symétrique par rapport à 0 ($I = ]-a; a[$) et $f: I \longmapsto \R$.
+
+    \item 1. On dit que f est paire si $\forall x \in I, f(-x) = f(x)$
+    \item 2. On dit que f est impaire si $\forall x \in I, f(-x) = -f(x)$
+\end{definition}
+
+\begin{definition}
+    Soient $f: \R \longmapsto \R$ et T un nombre réel strictement positif.
+
+    La fonction f est périodique de période T si $\forall x \in \R, f(x + T) = f(x)$
+\end{definition}
+\end{document}
