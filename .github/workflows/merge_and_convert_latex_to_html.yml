@@ -57,20 +57,19 @@ jobs:
       
       - name: Run merge script for each subject
         run: |
-          for dir in L1/*/; do
-            if [ -d "$dir" ]; then
-              echo "Processing $dir"
-              python utils/merge "$dir"
+          for dir in cours/*/; do
+          for subject in $dir/*/; do
+            if [ -d "$subject" ]; then
+              echo "Processing $subject"
+              python utils/merge "$subject"
             fi
           done
       
       - name: Convert .tex files to HTML while preserving structure
         run: |
           mkdir -p output/cours
-          directories=$(find ./cours -mindepth 1 -maxdepth 1 -type d)
-          for dir in $directories; do
-            subjects=$(find $dir -mindepth 1 -maxdepth 1 -type d)
-            for subject in $subjects; do
+          for dir in cours/*/; do
+            for subject in $dir/*/; do
               mkdir -p output/$subject
               ls $subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
