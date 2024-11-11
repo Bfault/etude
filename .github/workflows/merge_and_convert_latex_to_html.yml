@@ -72,6 +72,7 @@ jobs:
             subjects=$(find $dir -mindepth 1 -maxdepth 1 -type d)
             for subject in $subjects; do
               mkdir -p output/$subject
+              ls $subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
               filename=$(basename "$texfile" .tex)
               echo ">> $texfile"
