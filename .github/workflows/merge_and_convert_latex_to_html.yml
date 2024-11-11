@@ -72,11 +72,8 @@ jobs:
           for dir in cours/*/; do
             for subject in $dir/*/; do
               mkdir -p output/$subject
-              ls $subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
               filename=$(basename "$texfile" .tex)
-              echo ">> $texfile"
-              echo ">> output/$subject/$filename.html"
               pandoc "$texfile" -f latex -t html -o "output/$subject/$filename.html"
             done
           done
@@ -85,7 +82,7 @@ jobs:
         run: |
           git config --local user.name "Github Actions"
           git config --local user.email "actions@github.com"
-          gut checkout -B web-staging
+          git checkout -B web-staging
           cp -r output/* website/.
           git add website
           git commit -m "Update HTML files from LaTeX sources"
