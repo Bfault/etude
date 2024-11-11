@@ -1,4 +1,4 @@
-name: Merge TeX files and Convert LaTeX to HTML and Push to Branch
+name: Merge TeX files and Convert LaTeX to PDF and Push to Branch
 
 on:
   workflow_dispatch: {}
@@ -10,7 +10,7 @@ on:
       - '**/images/**'
 
 jobs:
-  merge-and-convert-tex-to-html:
+  merge-and-convert-tex-to-pdf:
     runs-on: ubuntu-latest
 
     steps:
@@ -74,7 +74,7 @@ jobs:
               mkdir -p output/$subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
               filename=$(basename "$texfile" .tex)
-              pandoc "$texfile" -f latex -t html -o "output/$subject/$filename.html"
+              pandoc "$texfile" -f latex -t pdf -o "output/$subject/$filename.pdf"
             done
           done
       
