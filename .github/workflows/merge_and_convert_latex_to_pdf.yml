@@ -68,14 +68,15 @@ jobs:
       
       - name: Convert .tex files to HTML while preserving structure
         run: |
-          pwd
-          tree
           mkdir -p output/cours
+          pwd=pwd
           for dir in cours/*/; do
             for subject in $dir/*/; do
               mkdir -p output/$subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
-              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
+              cd $subject
+              lualatex -interaction=nonstopmode -halt-on-error --output-directory $pwd/output/$subject/ "$texfile"
+              cd -
             done
           done
       
