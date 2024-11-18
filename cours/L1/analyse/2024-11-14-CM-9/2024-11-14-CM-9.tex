@@ -1,0 +1,190 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{14 novembre 2024}
+
+\title{Analyse | CM: 9}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Limites d'une fonction}
+
+\subsubsection{Définition}
+
+\begin{definition}
+    On dit qu'une fonction f admet une limite $l \in \R$ en $x_0$ si $\forall \eps \gt 0, \exists \delta \gt 0, |x - x_0| \lt \delta \implies |f(x) - l| \lt \eps$
+
+    On note $\lim_{x \to x_0} f(x) = l$
+\end{definition}
+
+\begin{remark}
+    \item On peut remplacer $\lt$ par $\leq$
+    \item L'ordre est important, $\delta$ dépend de $\eps$
+\end{remark}
+
+\begin{definition}
+    Soient f définie sur un intervalle I de $\R$, et $x_0 \in \R$ dans I ou aux extrémités de I.
+
+    \item On dit que f admet par limite $+\infty$ en $x_0$ si $\forall M \gt 0, \exists \delta \gt 0, |x - x_0| \lt \delta \implies f(x) \geq M$
+    \item On dit que f admet par limite $-\infty$ en $x_0$ si $\forall M \gt 0, \exists \delta \gt 0, |x - x_0| \lt \delta \implies f(x) \leq -M$
+\end{definition}
+
+\begin{definition}
+    On dit que f admet une limite $l \in \R$ en $+\infty$ si $\forall \eps \gt 0, \exists n \gt 0, x \gt n \implies |f(x) - l| \lt \eps$
+\end{definition}
+
+\begin{definition}
+    f admet une limite en $+\infty$ en $+\infty$ si $\forall M \gt 0, \exists m \gt 0, x \gt m \implies f(x) \gt M$
+\end{definition}
+
+% faire les graphs
+
+\begin{definition}
+    On appelle limite à droite en $x_0$ de f, la limite de f en $x_0$ restreinte aux valeurs $x \gt x_0$ et on note
+    $\lim_{x \to x_0^+} f(x) = \lim_{\substack{x \to x_0 \\ x \gt x_0}}f(x)$
+\end{definition}
+
+\begin{remark}
+    \item Si $x \gt x_0, |x - x_0| = x-x_0$ et $|x - x_0| \lt \delta$ devient $x_0 \lt x \lt x_0 + \delta$
+    \item Si $x \lt x_0, |x - x_0| = -(x-x_0)$ et $|x - x_0| \lt \delta$ devient $x_0-\delta \lt x \lt x_0$
+\end{remark}
+
+\begin{proposition}
+    \item Si f admet une limite en $x_0$ alors f admet une limite en $x_0^+$ et en $x_0^-$ et les limites coincident.
+    \item Si une fonction admet une limite à gauche et une limite à droite en $x_0$ et qu'elles sont égales, alors f admet cette même limite en $x_0$.
+\end{proposition}
+
+\begin{demonstration}
+    À faire (juste les définitions)
+\end{demonstration}
+
+\subsubsection{Propriétés}
+
+\begin{theorem}
+    Si f admet une limite, elle est unique.
+\end{theorem}
+
+\begin{demonstration}
+    Pareil que pour les suite (supposer deux limites différentes puis absurde)
+\end{demonstration}
+
+\begin{corollaire}
+    Si la limite à gauche est différente de la limite à droite, alors f n'admet pas de limite.
+\end{corollaire}
+
+\subsubsection{Règles de calcul}
+
+Notons $\lim_{x \to x_0}f(x) = l, \lim_{x \to x_0}g(x) = l'$
+
+\begin{itemize}
+    \item $\forall \lambda \in \R, \lim_{x \to x_0}\lambda f(x) = \lambda l$
+    \item $\lim_{x \to x_0}(f + g)(x) = l + l'$
+    \item $\lim_{x \to x_0}(f \times g)(x) = l \times l'$
+    \item Si $l \neq 0, \lim_{x \to x_0}\dfrac{g(x)}{f(x)} = \dfrac{l'}{l}$
+    \item Si $f \leq g$ alors $l \leq l'$
+\end{itemize}
+
+\begin{remark}
+    Si $f \lt g$ alors $l \leq l'$
+\end{remark}
+
+\begin{theorem}
+    Théoreme des gendarmes
+
+    Si $f \leq g \leq h$ alors $\lim_{x \to x_0}f(x) \leq \lim_{x \to x_0}g(x) \leq \lim_{x \to x_0}h(x)$
+\end{theorem}
+
+\begin{proprietes}
+    On note $g \circ f$ la composition des fonctions f et g définie par $(g \circ f)(x) = g(f(x))$
+\end{proprietes}
+
+\subsection{Continitué en 1 point}
+
+\begin{definition}
+    On dit que f est continue en $x_0$ si f admet une limite en $x_0$ et cette limite vaut $f(x_0)$ autrement dit $\forall \eps \gt 0, \exists \delta \gt 0, |x - x_0| \lt \delta \implies |f(x) - f(x_0)| \lt \eps$
+\end{definition}
+
+\subsubsection{Règles de calcul}
+
+Soient $f: I \to \R$ et $g: I \to \R$ continue dans $x_0$.
+
+\begin{itemize}
+    \item $\forall \lambda \in \R$, $\lambda f$ est continue en $x_0$
+    \item $f + g$ est continue en $x_0$
+    \item $f \times g$ est continue en $x_0$
+    \item Si $f(x) \neq 0$ alors $\dfrac{g}{f}$ est continue en $x_0$
+\end{itemize}
+
+\begin{proposition}
+    Soient $f: I \to \R$ et $g: J \to \R$ avec $f(I) \subset J$.
+
+    Si f est continue en $x_0$ et g aussi alors $g \circ f$ est continue en $x_0$.
+
+    $\lim_{x \to x_0}(g \circ f)(x) = (g \circ f)(x_0)$
+\end{proposition}
+
+\subsection{Prolongement par continuitué}
+
+\begin{definition}
+    Soit f une fonction définie sur l'intervalle I privé de $x_0$
+    $f: I\\\{x_0\} \rightarrow \R$. On dit que f est prolongeable par continuité par
+    continuité en $x_0$ so f admet une limite finie l en $x_0$.
+
+    On note $\over{~}f: I \rightarrow \R$ le prolongement défini par
+
+    $$
+    \tilde{f} (x) =
+    \begin{cases}
+        f(x) si x \neq x_0 \\
+        l si x = x_0
+    \end{cases}
+    $$
+\end{definition}
+%todo
+
+\subsection{Continuité sur un intervalle}
+
+\begin{definition}
+    Soit $f: I \rightarrow \R$ est dite continue sur l'intervalle I si elle est continue en
+    tout point de I.
+\end{definition}
+
+\subsection{Théoreme des valeurs intermédiaires}
+
+\begin{theorem}
+    Soit $f: [a, b] \rightarrow \R$ une fonction continue sur le segment [a, b].
+
+    Alors pour toute valeurs y comprise entre f(a) et f(b), il existe un $c \in [a, b]$ tel que y = f(c)
+\end{theorem}
+
+\begin{demonstration}
+    Comme f est continue sur [a, b], f est continue en tout point $c \in [a, b]$
+    Autrement dit $\lim_{x \to c}(x) = f(c)$.
+
+    Supposons que $f(a) \leq f(b)$. Alors $y \in [f(a), f(b)]$ signifie $f(a) \leq y \leq f(b) \iff f(a) \leq \lim_{x \to c}f(x) \leq f(b)$
+\end{demonstration}
+
+\begin{corollaire}
+    Si $f: [a, b] \rightarrow \R$ continue et $f(a)f(b) \lt 0$ alors $\exists c \in ]a, b[$ tel que $f(c) = 0$
+\end{corollaire}
+
+\begin{corollaire}
+    Si f est continue sur un intervalle I alors $f(I) = \{y = f(x) | x \in I\}$ est aussi un intervalle.
+\end{corollaire}
+
+\begin{remark}
+    \item c n'est pas forcément unique.
+    \item en général $f([a, b]) \neq [f(a), f(b)]$
+\end{remark}
+
+\end{document}
