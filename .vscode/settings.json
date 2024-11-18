@@ -1,0 +1,5 @@
+{
+    "github-actions.workflows.pinned.workflows": [
+        ".github/workflows/merge_and_convert_latex_to_pdf.yml"
+    ]
+}

@@ -70,8 +70,8 @@ jobs:
         run: |
           mkdir -p output/cours
           pwd=pwd
-          for dir in cours/*/; do
-            for subject in $dir/*/; do
+          for dir in cours/*; do
+            for subject in $dir/*; do
               echo "$dir"
               echo "$subject"
               mkdir -p output/$subject
