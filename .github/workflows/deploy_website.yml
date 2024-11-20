@@ -26,6 +26,7 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
+
       - name: Generate structure file
         working-directory: ./website
         run: pnpm run generate-structure

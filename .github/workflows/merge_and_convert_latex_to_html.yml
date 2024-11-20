@@ -1,4 +1,4 @@
-name: Merge TeX files and Convert LaTeX to PDF and Push to Branch
+name: Merge TeX files and Convert LaTeX to HTML and Push to Branch
 
 on:
   workflow_dispatch: {}
@@ -10,7 +10,7 @@ on:
       - '**/images/**'
 
 jobs:
-  merge-and-convert-tex-to-pdf:
+  merge-and-convert-tex-to-html:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,12 +34,12 @@ jobs:
             sudo apt-get update
           fi
           sudo apt-get install -y --no-install-recommends pandoc
-          sudo apt-get install -y --no-install-recommends \
-            texlive-base \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            texlive-luatex
+      #     sudo apt-get install -y --no-install-recommends \
+      #       texlive-base \
+      #       texlive-latex-recommended \
+      #       texlive-latex-extra \
+      #       texlive-fonts-recommended \
+      #       texlive-luatex
 
       - name: Fix permissions
         run: |
@@ -57,27 +57,24 @@ jobs:
       
       - name: Run merge script for each subject
         run: |
-          for dir in cours/*; do
-            for subject in $dir/*; do
-
-              if [ -d "$subject" ]; then
-                echo "Processing $subject"
-                python utils/merge "$subject"
-              fi
-            done
+          for dir in L1/*/; do
+            if [ -d "$dir" ]; then
+              echo "Processing $dir"
+              python utils/merge "$dir"
+            fi
           done
       
       - name: Convert .tex files to HTML while preserving structure
         run: |
           mkdir -p output/cours
-
-          export TEXINPUTS=/home/runner/work/etude/etude/utils/:$TEXINPUTS
-          for dir in cours/*; do
-            for subject in $dir/*; do
-              export TEXINPUTS=$subject:$TEXINPUTS
+          directories=$(find ./cours -mindepth 1 -maxdepth 1 -type d)
+          for dir in $directories; do
+            subjects=$(find $dir -mindepth 1 -maxdepth 1 -type d)
+            for subject in $subjects; do
               mkdir -p output/$subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
-              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
+              filename=$(basename "$texfile" .tex)
+              pandoc "$texfile" -o "output/$subject/$filename.html"
             done
           done
       
@@ -85,11 +82,8 @@ jobs:
         run: |
           git config --local user.name "Github Actions"
           git config --local user.email "actions@github.com"
-          git checkout -B web-staging
-          
-          mkdir website/public/static
-          cp -r output/* website/public/static
-
+          gut checkout -B web-staging
+          cp -r output/* website/.
           git add website
           git commit -m "Update HTML files from LaTeX sources"
           git push origin web-staging --force
