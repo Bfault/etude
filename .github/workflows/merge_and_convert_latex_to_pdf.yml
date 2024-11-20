@@ -84,7 +84,8 @@ jobs:
           git config --local user.name "Github Actions"
           git config --local user.email "actions@github.com"
           git checkout -B web-staging
-          cp -r output/* website/.
+          mkdir website/public/static
+          cp -r output/* website/public/static
           git add website
           git commit -m "Update HTML files from LaTeX sources"
           git push origin web-staging --force
