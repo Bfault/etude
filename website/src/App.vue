@@ -1,19 +1,19 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <DirDisplay />
+  <PdfViewer />
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
-import DirDisplay from './components/DirDisplay.vue'
+import PdfViewer from './components/PdfViewer.vue';
 
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    DirDisplay,
+    PdfViewer,
   }
 }
 </script>
