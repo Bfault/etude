@@ -34,12 +34,12 @@ jobs:
             sudo apt-get update
           fi
           sudo apt-get install -y --no-install-recommends pandoc
-      #     sudo apt-get install -y --no-install-recommends \
-      #       texlive-base \
-      #       texlive-latex-recommended \
-      #       texlive-latex-extra \
-      #       texlive-fonts-recommended \
-      #       texlive-luatex
+          sudo apt-get install -y --no-install-recommends \
+            texlive-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-luatex
 
       - name: Fix permissions
         run: |
@@ -57,8 +57,9 @@ jobs:
       
       - name: Run merge script for each subject
         run: |
-          for dir in cours/*/; do
-            for subject in $dir/*/; do
+          for dir in cours/*; do
+            for subject in $dir/*; do
+
               if [ -d "$subject" ]; then
                 echo "Processing $subject"
                 python utils/merge "$subject"
@@ -69,12 +70,14 @@ jobs:
       - name: Convert .tex files to HTML while preserving structure
         run: |
           mkdir -p output/cours
-          for dir in cours/*/; do
-            for subject in $dir/*/; do
+
+          export TEXINPUTS=/home/runner/work/etude/etude/utils/:$TEXINPUTS
+          for dir in cours/*; do
+            for subject in $dir/*; do
+              export TEXINPUTS=$subject:$TEXINPUTS
               mkdir -p output/$subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
-              filename=$(basename "$texfile" .tex)
-              pandoc "$texfile" -f latex -t pdf -o "output/$subject/$filename.pdf"
+              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
             done
           done
       
@@ -83,7 +86,10 @@ jobs:
           git config --local user.name "Github Actions"
           git config --local user.email "actions@github.com"
           git checkout -B web-staging
-          cp -r output/* website/.
+          
+          mkdir website/public/static
+          cp -r output/* website/public/static
+
           git add website
           git commit -m "Update HTML files from LaTeX sources"
           git push origin web-staging --force
