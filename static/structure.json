@@ -1,0 +1,52 @@
+[
+  {
+    "type": "directory",
+    "name": "L1",
+    "children": [
+      {
+        "type": "directory",
+        "name": "analyse",
+        "children": [
+          {
+            "type": "pdf",
+            "name": "analyse",
+            "path": "/static/cours/L1/analyse/analyse.pdf"
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "arithmetique",
+        "children": [
+          {
+            "type": "pdf",
+            "name": "arithmetique",
+            "path": "/static/cours/L1/arithmetique/arithmetique.pdf"
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "ensemble_complex",
+        "children": [
+          {
+            "type": "pdf",
+            "name": "ensemble_complex",
+            "path": "/static/cours/L1/ensemble_complex/ensemble_complex.pdf"
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "science_decision",
+        "children": [
+          {
+            "type": "pdf",
+            "name": "science_decision",
+            "path": "/static/cours/L1/science_decision/science_decision.pdf"
+          }
+        ]
+      }
+    ]
+  }
+]
