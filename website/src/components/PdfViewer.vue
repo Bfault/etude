@@ -12,7 +12,6 @@
 
     <div v-else>
       <div v-for="(item, index) in pdfStructure" :key="index">
-        <h1>Test</h1>
         <recursive-structure :item="item" />
       </div>
     </div>
@@ -84,6 +83,7 @@ export default {
       this.error = err.message;
     } finally {
       this.loading = false;
+      console.log(this.pdfStructure)
     }
   }
 };
