@@ -66,12 +66,15 @@ export default {
     return {
       pdfStructure: [],
       loading: true,
-      error: null
+      error: null,
+      basePath: process.env.NODE_ENV === 'production'
+        ? '/etude'
+        : ''
     };
   },
   async created() {
     try {
-      const response = await fetch('/static/structure.json');
+      const response = await fetch(`${this.basePath}/static/structure.json`);
       if (!response.ok) {
         throw new Error('Erreur de chargement de la structure');
       }
