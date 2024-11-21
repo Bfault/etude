@@ -12,14 +12,13 @@
 
     <div v-else>
       <div v-for="(item, index) in pdfStructure" :key="index">
-        <recursive-structure :item="item" :base-path="basePath" />
+        <recursive-structure :item="item" :base-url="baseUrl" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// Composant enfant pour la structure récursive
 const RecursiveStructure = {
   name: 'RecursiveStructure',
   props: {
@@ -27,15 +26,9 @@ const RecursiveStructure = {
       type: Object,
       required: true
     },
-    basePath: {
+    baseUrl: {
       type: String,
       required: true
-    }
-  },
-  methods: {
-    getPdfPath(itemPath) {
-      const path = itemPath.startsWith('/') ? itemPath : `/${itemPath}`;
-      return `${this.basePath}${path}`;
     }
   },
   template: `
@@ -47,7 +40,7 @@ const RecursiveStructure = {
             v-for="(child, index) in item.children"
             :key="index"
             :item="child"
-            :base-path="basePath"
+            :base-url="baseUrl"
           />
         </div>
       </template>
@@ -57,7 +50,7 @@ const RecursiveStructure = {
           <h4 class="text-lg font-semibold mb-2">{{ item.name }}</h4>
           <div class="h-[600px] w-full">
             <iframe
-              :src="getPdfPath(item.path)"
+              :src="getFileUrl(item.path)"
               class="w-full h-full border-0"
               :title="item.name"
             />
@@ -65,7 +58,16 @@ const RecursiveStructure = {
         </div>
       </template>
     </div>
-  `
+  `,
+  methods: {
+    getFileUrl(path) {
+      // Pour les fichiers PDF, on utilise toujours le chemin local en développement
+      if (process.env.NODE_ENV === 'development') {
+        return path;
+      }
+      return this.baseUrl + path;
+    }
+  }
 };
 
 export default {
@@ -78,27 +80,39 @@ export default {
       pdfStructure: [],
       loading: true,
       error: null,
-      basePath: process.env.NODE_ENV === 'production'
-        ? '/etude'
+      baseUrl: process.env.NODE_ENV === 'production' 
+        ? '/<nom-de-votre-repo>' // Remplacez par le nom de votre repo
         : ''
     };
   },
-  async created() {
-    try {
-      const response = await fetch(`${this.basePath}/static/structure.json`);
-      if (!response.ok) {
-        throw new Error('Erreur de chargement de la structure');
+  methods: {
+    async fetchStructure() {
+      try {
+        let structureUrl;
+        
+        if (process.env.NODE_ENV === 'development') {
+          // En développement, on utilise un chemin local statique
+          structureUrl = '/static/structure.json';
+        } else {
+          // En production, on utilise le chemin GitHub Pages
+          structureUrl = `${this.baseUrl}/static/structure.json`;
+        }
+
+        const response = await fetch(structureUrl);
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+        this.pdfStructure = await response.json();
+      } catch (err) {
+        console.error('Erreur détaillée:', err);
+        this.error = 'Erreur de chargement de la structure';
+      } finally {
+        this.loading = false;
       }
-      this.pdfStructure = await response.json();
-    } catch (err) {
-      this.error = err.message;
-    } finally {
-      this.loading = false;
-      console.log(this.pdfStructure)
     }
+  },
+  created() {
+    this.fetchStructure();
   }
 };
 </script>
-
-<style scoped>
-</style>
