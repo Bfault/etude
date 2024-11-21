@@ -75,6 +75,7 @@ export default {
   async created() {
     try {
       const response = await fetch(`${this.basePath}/static/structure.json`);
+      console.log(process.env.NODE_ENV === 'production')
       if (!response.ok) {
         throw new Error('Erreur de chargement de la structure');
       }
