@@ -12,7 +12,7 @@
 
     <div v-else>
       <div v-for="(item, index) in pdfStructure" :key="index">
-        <recursive-structure :item="item" />
+        <recursive-structure :item="item" :base-path="basePath" />
       </div>
     </div>
   </div>
@@ -26,6 +26,16 @@ const RecursiveStructure = {
     item: {
       type: Object,
       required: true
+    },
+    basePath: {
+      type: String,
+      required: true
+    }
+  },
+  methods: {
+    getPdfPath(itemPath) {
+      const path = itemPath.startsWith('/') ? itemPath : `/${itemPath}`;
+      return `${this.basePath}${path}`;
     }
   },
   template: `
@@ -37,6 +47,7 @@ const RecursiveStructure = {
             v-for="(child, index) in item.children"
             :key="index"
             :item="child"
+            :base-path="basePath"
           />
         </div>
       </template>
@@ -46,7 +57,7 @@ const RecursiveStructure = {
           <h4 class="text-lg font-semibold mb-2">{{ item.name }}</h4>
           <div class="h-[600px] w-full">
             <iframe
-              :src="item.path"
+              :src="getPdfPath(item.path)"
               class="w-full h-full border-0"
               :title="item.name"
             />
