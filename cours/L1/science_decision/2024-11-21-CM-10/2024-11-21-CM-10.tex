@@ -1,0 +1,47 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{21 novembre 2024}
+
+\title{Science Decision | CM: 10}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+
+\subsection{Représentation de type $(X, \succeq) \rightarrow (\R, \geq)$: cas fini}
+
+Soit $\succ$ sur X
+
+\begin{proposition}
+    Soit X fini, une codition nécessaire et suffisante (C.N.S) pour qu'existe une fonction
+
+    $\exists f: (X, \succ) \rightarrow (\R, \gt)$ tel que $x \succ y \iff f(x) \gt f(y)$ si et seulement si $\succ$ est un ordre faible stricte.
+\end{proposition}
+
+\begin{demonstration}
+    Preuve condition nécessaire, on montre $\neg Q \implies \neg P \equiv P \implies Q$
+
+    \item Asymétrie: Soient $x, y \in X$ tel que $x \succ y \implies f(x) \lt f(y) \implies \neg f(x) \lt f(y) \implies \neg y \succ x$ donc asymétrique.
+
+    \item Negativement transitive: Soient $x, y, z \in X$ tels que $\neg x \succ y \land \neg y \succ z \implies \neg f(x) \gt f(y) \land \neg (y) \gt f(z) \implies f(x) \leq f(y) \land f(y) \leq f(z) \implies f(x) \leq f(z) \implies \neg (x) \gt f(z) \implies \neg x \succ z$
+    Finalement negativement transitive.
+
+    Preuve condition suffisante, on montre $Q \implies P$, Soit $\succ$ un o.f.s sur X
+
+    Soit $x \in X$ on définit:$\curlyvee x = \{y \in X \mid x \succ y\}$
+    
+    Soit $f(x) = Card(\curlyvee x)$ si $X = \Z$
+\end{demonstration}
+
+
+\end{document}

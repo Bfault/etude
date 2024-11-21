@@ -1,0 +1,155 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{21 novembre 2024}
+
+\title{Analyse | CM: 10}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsubsection{Fonction continue sur un segment}
+
+\begin{theorem}
+    Soit f une fonction continue sur un segment (un intervalle fermé et borné).
+    Alors f est bornée et atteint ses bornes.
+
+    Autrement dit, si $f: [a, b] \rightarrow \R$ alors $f([a, b]) = [m, M]$ avec $m = \min_{x \in [a, b]}f(x)$ et $M = \max_{x \in [a, b]}f(x)$
+\end{theorem}
+
+\begin{demonstration}
+    Par un intervalle I, on sait d'apres le TVI que f(I) est un intervalle. Montrons que $m = inf(f(I))$
+    et $M = sup(f(I))$ puis que m et M appartiennent à f(I).
+
+    Vérifions que f est bornée. Supposons que f n'est pas majorée, c'est à dire
+    $\forall A \gt 0, \exists x_0 \in I, f(x_0) \gt A$, ou $\lim_{x \to x_0}f(x) = +\infty$.
+    Mais f est continue, donc $\lim_{x \to x_0}f(x) = f(x_0) \lt +\infty$, Absurde.
+
+    ** skip du cas minorée.
+
+    Donc f est bornée, l'ensemble f(I) est borné et admet une borne supérieure M et une borne inférieure m.
+
+    Vérifions que $M \in f(I)$. Supposons que $M \notin f(I)$, c'est à dire que $\forall x \in I, f(x) \lt M$.
+
+    On étudie $g(x) = \dfrac{1}{M - f(x)}$ qui est bien définie car $f(x) \neq M$, et g est bornée.
+
+    Par définition de la borne supérieure, il existe une suite $(u_n)_{n \in \N}$ qui converge vers M avec
+    $\forall n \in \N, u_n \in f(I)$, D'apres le TVI, il existe une suite $(c_n)_{n \in \N}$ de I tel que $u_n = f(C_n) \rightarrow_{n \to +\infty} M$.
+
+    Mais $g(c_n) = \dfrac{1}{M - f(c_n)} \rightarrow_{n \to +\infty} + \infty$ ce qui contredit le fait que g est bornée.
+
+    Finalement $M \in f(I)$
+\end{demonstration}
+
+\subsubsection{Suite définie par une fonction}
+
+Soit f une fonction continue. On définit une suite récurrente $(u_n)_{n \in \N}$ par $\begin{cases}u_0 \in \R \\ u_{n+1} = f(u_n)\end{cases}$
+
+c'est à dire $u_1 = f(u_0), u_2 = f(u_1) = f(f(u_0)) = f \circ f(u_0)$
+
+\begin{theorem}
+    Si f est continue, et si la suite $\un$ converge vers l, alors l est le point fixe de f,
+    autrement dit $f(l) = l$
+\end{theorem}
+
+\begin{demonstration}
+    $u_{n+1} = f(u_n)$ qui donne quand $n \to +\infty$ alors $l = f(l)$
+\end{demonstration}
+
+\begin{proprietes}
+    \item Si f est continue et croissante sur [a, b], alors la suite $\un$ est monotone et converge vers $l = f(l)$.
+    \item Si f est continue et décroissante sur [a, b], alors la sous-suite $(u_{2n})$ converge vers une limite $l_1$ solution
+    de $l_1 = f \circ f(l_1)$ et la sous suite $(u_{2n + 1})$ converge vers une limite $l_2$ solution de $l_2 = f \circ f(l_2)$.
+\end{proprietes}
+
+\begin{demonstration}
+    **Voir TD
+\end{demonstration}
+
+\subsection{Théorème de la bijection}
+
+\subsubsection{Injection, surjection et bijection}
+
+\begin{definition}
+    Soit f une fonction de A dans B, deux partie de $\R$, $f: A \subset \R \rightarrow B \subset \R$.
+
+    \item f est \textbf{injective} si $\forall x, x' \in A, f(x) = f(x') \implies x = x'$
+    \item f est \textbf{sujrective} si $\forall y \in B, \exists x \in A, y = f(x)$
+    \item f est \textbf{bijective} si f est injective et sujrective, c'est à dire $\forall y \in B, \exists! x \in A, y = f(x)$
+\end{definition}
+
+\begin{theorem}
+    Si $f: A \rightarrow B$ est bijective, alors il existe une application $g: B \rightarrow A$
+    telle que $f \circ g = Id_B$ et $g \circ f = Id_A$.
+
+    On note $g = f^{-1}$ l'application \textbf{réciproque} de f (qui est aussi une bijection).
+\end{theorem}
+
+\subsubsection{Fonctions monotones}
+
+\begin{theorem}
+    Soit $f: I \rightarrow \R$, où I est un intervalle de $\R$, continue et strictement monotone. Alors
+    \item f est une bijection de l'intervalle I dans l'intervalle f(I).
+    \item La fonction réciproque $f^{-1}: f(I) \rightarrow I$ est continue et strictement monotone avec le
+    même sens de variation que f.
+\end{theorem}
+
+\begin{demonstration}
+    Supposons que f strictement croissante.
+
+    Soit $x \neq x'$ avec $f(x) = f(x')$ alors $\begin{cases}\text{soit } x \lt x' \text{ et } f(x) \lt f(x') \\ \text{soit } x \gt x' \text{ et } f(x) \gt f(x')\end{cases}$
+
+    Car f strictement croissante, ce qui contredit le fait que $f(x) = f(x')$. Finalement $x = x'$
+
+    De plus, il est surjective car l'image d'un intervalle par une fonction continue est un intervalle $f(I) = \{y = f(x); x \in I\}$.
+
+    On conclut que f est injective et sujrective alors elle est bijective.
+\end{demonstration}
+
+\subsection{Fonctions usuelles inverses}
+
+\subsubsection{Logarithme et exponentielle}
+
+\begin{definition}
+    Il existe une unique fonction notée $ln : ]0, +\infty[ \rightarrow \R$ tell que
+    \item $ln(a \times b) = ln(a) + ln(b)$
+    \item $ln(\dfrac{1}{a}) = -ln(a)$
+    \item $ln(a^n) = n\times ln(a)$
+    
+    \item On appelle cette fonction logarithme népérien caractérisée par $ln(e) = 1$.
+    On définit le logarithme de e à base a comme $log_a$ comme $log_a(x) = \dfrac{ln(x)}{ln(a)}$ ou $log(a) = 1$
+\end{definition}
+
+\begin{proprietes}
+    La fonction ln est continue et strictement croissante sur $]0, +\infty[$ avec
+    $\forall x \gt 0, (ln (x))' = \dfrac{1}{x}$, elle définit une bijection de $]0, +\infty[$ dans $\R$
+
+    \item $\lim_{x \to 0^+} ln(x) = - \infty$ et $\lim_{x \to +\infty} ln(x) = +\infty$
+    \item ln(1) = 0
+\end{proprietes}
+
+\begin{definition}
+    La fonction réciproque du logarithme népérien s'appelle exponentielle notée exp(x) ou $e^x: \R \rightarrow ]0, +\infty[$
+\end{definition}
+
+\begin{proprietes}
+    En écrivant $f \circ f^{-1} = Id_{\R}$ et $f^{-1} \circ f = Id_{]0, +\infty[}$, il vient
+    \item $\forall x \in \R, ln(exp(x)) = x$ et $\forall y \in ]0, +\infty[, exp(ln(y))=y$
+    \item $exp(a + b) = exp(a) exp(b)$
+    \item $exp: \R \rightarrow ]0, +\infty[$ est continue et strictement croissante.
+\end{proprietes}
+
+\begin{definition}
+    On appelle la fonction puissance de $a \gt 0$ comme $a^x = exp(x ln(a))$
+\end{definition}
+
+\end{document}
