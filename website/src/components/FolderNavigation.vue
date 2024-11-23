@@ -1,6 +1,5 @@
 <template>
   <div class="folder-container">
-    <!-- Barre de navigation -->
     <div class="nav-bar">
       <n-button 
         v-if="currentPdf !== null || navigationHistory.length > 0" 
@@ -11,16 +10,13 @@
       </n-button>
     </div>
 
-    <!-- Contenu principal -->
     <div class="main-content">
-      <!-- Liste des dossiers/fichiers -->
       <div v-if="currentPdf === null" class="folder-list">
         <div v-for="(item, index) in currentFolder" :key="index" class="folder-item">
           <n-button @click="navigate(item)">{{ item.name }}</n-button>
         </div>
       </div>
 
-      <!-- Affichage PDF -->
       <div v-else class="pdf-content">
         <PdfViewer :pdfUrl="currentPdf.path" :title="currentPdf.name" />
       </div>
@@ -42,7 +38,7 @@
       return {
         currentFolder: [],
         currentPdf: null,
-        navigationHistory: [], // Pour gérer l'historique de navigation
+        navigationHistory: [],
         baseUrl: process.env.NODE_ENV === 'production'
           ? '/etude'
           : ''
@@ -51,6 +47,7 @@
     methods: {
       async fetchStructure() {
         try {
+          console.log(process.env.NODE_ENV)
           let structureUrl = `${this.baseUrl}/static/structure.json`;
           const response = await fetch(structureUrl);
           if (!response.ok) {
