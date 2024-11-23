@@ -87,7 +87,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git checkout -B web-staging
           
-          mkdir website/public/static
+          mkdir -p website/public/static
           cp -r output/* website/public/static
 
           git add website
