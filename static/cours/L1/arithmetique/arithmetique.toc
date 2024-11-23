@@ -1,8 +1,8 @@
-\contentsline {section}{\numberline {1}Structures algébriques}{1}{}%
-\contentsline {subsection}{\numberline {1.1}Lois de compositions internes}{1}{}%
-\contentsline {subsection}{\numberline {1.2}Groupes}{1}{}%
-\contentsline {section}{\numberline {2}Anneaux et Corps}{3}{}%
-\contentsline {section}{\numberline {3}Arithmétique des entiers}{4}{}%
-\contentsline {subsection}{\numberline {3.1}Rappels sur $\mathbb {N}$ et $\mathbb {Z}$}{4}{}%
-\contentsline {subsection}{\numberline {3.2}Arithmétique élémentaire dans $\mathbb {Z}$}{5}{}%
-\contentsline {section}{\numberline {4}Polynômes et Fractions rationnelles}{10}{}%
+\contentsline {section}{\numberline {1}Structures algébriques}{1}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Lois de compositions internes}{1}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Groupes}{1}{subsection.1.2}%
+\contentsline {section}{\numberline {2}Anneaux et Corps}{3}{section.2}%
+\contentsline {section}{\numberline {3}Arithmétique des entiers}{4}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Rappels sur $\mathbb {N}$ et $\mathbb {Z}$}{4}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Arithmétique élémentaire dans $\mathbb {Z}$}{5}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Polynômes et Fractions rationnelles}{10}{section.4}%
