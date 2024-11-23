@@ -1,8 +1,0 @@
-\contentsline {section}{\numberline {1}Structures algébriques}{1}{}%
-\contentsline {subsection}{\numberline {1.1}Lois de compositions internes}{1}{}%
-\contentsline {subsection}{\numberline {1.2}Groupes}{1}{}%
-\contentsline {section}{\numberline {2}Anneaux et Corps}{3}{}%
-\contentsline {section}{\numberline {3}Arithmétique des entiers}{4}{}%
-\contentsline {subsection}{\numberline {3.1}Rappels sur $\mathbb {N}$ et $\mathbb {Z}$}{4}{}%
-\contentsline {subsection}{\numberline {3.2}Arithmétique élémentaire dans $\mathbb {Z}$}{5}{}%
-\contentsline {section}{\numberline {4}Polynômes et Fractions rationnelles}{10}{}%
