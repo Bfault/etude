@@ -18,7 +18,7 @@
       </div>
 
       <div v-else class="pdf-content">
-        <PdfViewer :pdfUrl="currentPdf.path" :title="currentPdf.name" />
+        <PdfViewer :pdfUrl="wrappedCurrentPdfPath" :title="currentPdf.name" />
       </div>
     </div>
   </div>
@@ -44,10 +44,14 @@
           : ''
       }
     },
+    computed: {
+      wrappedCurrentPdfPath() {
+        return `${this.baseUrl}/${this.currentPdf.path}`
+      }
+    },
     methods: {
       async fetchStructure() {
         try {
-          console.log(process.env.NODE_ENV)
           let structureUrl = `${this.baseUrl}/static/structure.json`;
           const response = await fetch(structureUrl);
           if (!response.ok) {
