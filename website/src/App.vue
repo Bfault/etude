@@ -1,30 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
-  <PdfViewer />
+  <FolderNavigation />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import PdfViewer from './components/PdfViewer.vue';
+import FolderNavigation from './components/FolderNavigation.vue';
 
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    PdfViewer,
+    FolderNavigation,
   }
 }
 </script>
 
 <style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+:root {
+  background-color: #eeeeee;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
 }
 </style>
