@@ -78,6 +78,7 @@ jobs:
               mkdir -p output/$subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
               lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
+              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile" # do it again for toc ¯\_(ツ)_/¯
             done
           done
       
