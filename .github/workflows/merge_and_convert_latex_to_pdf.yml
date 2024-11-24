@@ -67,7 +67,7 @@ jobs:
             done
           done
       
-      - name: Convert .tex files to HTML while preserving structure
+      - name: Convert .tex files to PDF while preserving structure
         run: |
           mkdir -p output/cours
 
@@ -78,10 +78,11 @@ jobs:
               mkdir -p output/$subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
               lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
+              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile" # do it again for toc ¯\_(ツ)_/¯
             done
           done
       
-      - name: Commit and push converted HTML files
+      - name: Commit and push converted PDF files
         run: |
           git config --local user.name "Github Actions"
           git config --local user.email "actions@github.com"
@@ -91,5 +92,5 @@ jobs:
           cp -r output/* website/public/static
 
           git add website
-          git commit -m "Update HTML files from LaTeX sources"
+          git commit -m "Update PDF files from LaTeX sources"
           git push origin web-staging --force

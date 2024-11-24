@@ -24,22 +24,24 @@
     x est un diviseur de y ou y est un multiple de x
 \end{definition}
 
-\begin{remark}
-    tout entier relatif divise 0.
-
-    0 divise uniquement 0.
-
-    si x est un diviseur de y alors (-x) est un diviseur de y
-
-    1 et -1 sont les diviseurs de tout entier relatifs.
-    
-    les diviseurs de 1 et -1 sont 1 et -1
-
-    $\forall x, y \in \N^* \implies (x \mid y \implies x \leq y)$
+\begin{remark}\
+    \begin{itemize}
+        \item tout entier relatif divise 0.
+        
+        \item 0 divise uniquement 0.
+        
+        \item si x est un diviseur de y alors (-x) est un diviseur de y
+        
+        \item 1 et -1 sont les diviseurs de tout entier relatifs.
+        
+        \item les diviseurs de 1 et -1 sont 1 et -1
+        
+        \item $\forall x, y \in \N^*,\; x \mid y \implies x \leq y$
+    \end{itemize}
 \end{remark}
 
 \begin{definition}
-    On dit que $p \in \N, \; p \geq 2$ est un nombre premier si les seuls diviseurs positifs de p sont 1 et p.
+    On dit que $p \in \N,\; p \geq 2$ est un nombre premier si les seuls diviseurs positifs de p sont 1 et p.
 \end{definition}
 
 \begin{remark}
@@ -50,14 +52,14 @@
     Pour vérifier qu'un nombre est premier, on peut regarde pour chaque $\forall k \in \N, k \leq \sqrt{p}$ si k divise p.
 \end{remark}
 
-%si motivation parler du crible d'eratosthène
-
 \begin{definition}
     Soit $n \in \Z^*$, on appelle décomposition en facteurs premiers de n une écriture de la forme
 
-    $n = c multi p_i = c(p_1 \times ... \times p_k)$
+    $$
+    n = c \prod_{i=1}^{k} p_i = c(p_1 \times ... \times p_k)
+    $$
 
-    où $c \in {+- 1}, k \in \N, p_1,...,p_k$ sont premiers
+    où $c \in \{\pm 1\}, k \in \N, p_1,...,p_k$ sont premiers
 \end{definition}
 
 \begin{proposition}
@@ -81,8 +83,9 @@
     Donc $n + 1 = d \times d' = p_1 \times ... \times p_k \times p_1' \times ... \times p_k'$
 \end{demonstration}
 
-Corollaire: Tout entier $n \geq 2$ admet au moins un diviseur premier
-%todo
+\begin{corollaire}
+    Tout entier $n \geq 2$ admet au moins un diviseur premier
+\end{corollaire}
 
 \begin{proposition}
     L'ensemble des nombre premiers est infini.
@@ -94,8 +97,10 @@ Corollaire: Tout entier $n \geq 2$ admet au moins un diviseur premier
     On pose $N = p_1 \times ... \times p_m + 1$
 
     Alors N admet un diviseur premier $p_i (i \in [i; m])$
-    i.e. $N = p_i N' \implies N = multi p_j + 1 \implies p_i N' - p_i multi_{i \neg j} p_j = 1 \implies p_i (N' - multi_{j \neg i} p_j) = 1$
+    i.e. $N = p_i N' \implies N = \prod p_j + 1 \implies p_i N' - p_i \prod_{i \neg j} p_j = 1 \implies p_i (N' - multi_{j \neg i} p_j) = 1$
 \end{demonstration}
+
+\subsection{Division euclidienne}
 
 \begin{theorem}
     Soient $a \in \Z, b \in \N*$.
@@ -135,6 +140,8 @@ Corollaire: Tout entier $n \geq 2$ admet au moins un diviseur premier
 
     Ainsi $bq + r = bq' + r' \implies bq = bq' \implies q = q'$
 \end{demonstration}
+
+\subsection{PGCD, PPCM}
 
 \begin{definition}
     le \textbf{pgcd} de deux nombres $a, b \in \Z^*$ est le plus grand diviseur commun à a et b. Il est noté $PGCD(a, b)$ (ou encore $a \land b$)
@@ -178,14 +185,12 @@ Le PGCD peut se calculer avec l'algorithme d'Euclide:
 \item \textbf{3.} Le pgcd est le dernier reste non-nul calculé.
 \end{methode}
 
-%todo
-
 \begin{proposition}
     Si d est un diviseur commun à a et b alors $d \mid PGCD(a, b)$
 \end{proposition}
 
-Corollaire:
-
-Le PGCD est aussi le plus grand diviseur commun au sens de la divisibilité.
+\begin{corollaire}
+    Le PGCD est aussi le plus grand diviseur commun au sens de la divisibilité.
+\end{corollaire}
 
 \end{document}

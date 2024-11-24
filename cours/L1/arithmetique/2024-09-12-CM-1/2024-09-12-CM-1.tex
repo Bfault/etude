@@ -10,39 +10,12 @@
 \author{Par Lorenzo}
 \date{\today}
 
-\newtheorem{theorem}{Théorème}[section]
-\newtheorem{definition}{Définition}[section]
-\newtheorem{example}{Example}[section]
-
-\newtheorem{_proposition}{Proposition}[section]
-\newenvironment{proposition}[1][]{
-    \begin{_proposition}[#1]~\par
-    \vspace*{0.5em}
-}{%
-    \end{_proposition}%
-}
-
-\newenvironment{rdem}[1][]{
-    \begin{tcolorbox}[colframe=black, colback=white!10, sharp corners]
-        #1
-}{%
-    \end{tcolorbox}
-     
-}
-
-\newtheorem{_demonstration}{Démonstration}[section]
-\newenvironment{demonstration}[1][]{
-    \begin{_demonstration}[#1]~\par
-    \vspace*{0.5em}
-}{%
-    \end{_demonstration}%
-    \qed%
-}
+\input{../../../../utils/util.tex}
 
 \begin{document}
 
 \maketitle
 
-Arrivé apres le premier CM (cours à venir)
+% Pas de contenu
 
 \end{document}
