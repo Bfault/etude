@@ -39,6 +39,7 @@ jobs:
             texlive-latex-recommended \
             texlive-latex-extra \
             texlive-fonts-recommended \
+            texlive-science \
             texlive-luatex
 
       - name: Fix permissions
