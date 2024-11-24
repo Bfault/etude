@@ -22,6 +22,12 @@ html, body {
   overflow: hidden;
 }
 
+@media screen and (max-width: 768px) {
+  html, body {
+    overflow: visible;
+  }
+}
+
 :root {
   background-color: #eeeeee;
 }
