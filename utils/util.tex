@@ -38,33 +38,6 @@
     \qed%
 }
 
-\newtheorem*{_demonstration*}{Démonstration}
-\newenvironment{demonstration*}[1][]{
-    \begin{_demonstration*}[#1]~\par
-    \vspace*{0.5em}
-}{%
-    \end{_demonstration*}%
-    \qed%
-}
-
-\newenvironment{ldefinition}{
-    \begin{definition}~\par
-    \vspace*{0.5em}
-    \begin{enumerate}
-}{
-        \end{enumerate}
-        \end{definition}
-}
-
-\newenvironment{lexample}{
-    \begin{example}~\par
-    \vspace*{0.5em}
-    \begin{enumerate}
-}{
-        \end{enumerate}
-        \end{example}
-}
-
 \newtheorem{_methode}{Méthode}[section]
 \newenvironment{methode}{
     \begin{_methode}~\par

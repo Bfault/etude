@@ -67,7 +67,7 @@ jobs:
             done
           done
       
-      - name: Convert .tex files to HTML while preserving structure
+      - name: Convert .tex files to PDF while preserving structure
         run: |
           mkdir -p output/cours
 
@@ -82,7 +82,7 @@ jobs:
             done
           done
       
-      - name: Commit and push converted HTML files
+      - name: Commit and push converted PDF files
         run: |
           git config --local user.name "Github Actions"
           git config --local user.email "actions@github.com"
@@ -92,5 +92,5 @@ jobs:
           cp -r output/* website/public/static
 
           git add website
-          git commit -m "Update HTML files from LaTeX sources"
+          git commit -m "Update PDF files from LaTeX sources"
           git push origin web-staging --force

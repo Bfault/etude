@@ -19,9 +19,11 @@
 \begin{definition}
     Soient $(G, *)$ et $(H, \square)$ deux groupes.
 
-    On appelle morphisme de groupes toute application $f: G \rightarrow H$ vérifiant
+    On appelle \textbf{morphisme de groupes} toute application $f: G \rightarrow H$ vérifiant
 
-    $\forall x, y \in G, f(x * y) = f(x) \square f(y)$
+    $$
+    \forall x, y \in G, f(x * y) = f(x) \square f(y)
+    $$
 \end{definition}
 
 \begin{proposition}
@@ -29,6 +31,7 @@
 \end{proposition}
 
 \begin{demonstration}
+    \vspace{-0.8cm}
     \begin{flalign*}
         f(e_G)& = f(e_G * e_G) = f(e_G) \square f(e_G)&& \\
         f(e_G)& = f(e_G) \square e_H&& \\
@@ -42,21 +45,24 @@
 \end{proposition}
 
 \begin{demonstration}
+    \vspace{-0.8cm}
     \begin{flalign*}
         f(x^{-1}) = f(x^{-1}) \square f(x) \square f(x)^{-1} = f(x^{-1} * x) \square f(x)^{-1} = f(x)^{-1}&&
     \end{flalign*}
 \end{demonstration}
 
-\section{Anneaux et Corps}
+\subsection{Anneaux et Corps}
 
 \begin{definition}
-    Un anneau est $(A, +, \times)$ où A est un ensemble, + et x sont deux l.c.i sur A vérifiant les axiomes suivants
+    Un \textbf{anneau} est $(A, +, \times)$ où A est un ensemble, + et x sont deux l.c.i sur A vérifiant les axiomes suivants
 
-    \item $\bullet$ (A, +) est un groupe abélien (on note $0_A$ sont élément neutre)
-
-    \item $\bullet$ $\times$ est associative
-
-    \item $\bullet$ $\times$ est distributive sur +
+    \begin{itemize}
+        \item $(A, +)$ est un groupe abélien (on note $0_A$ sont élément neutre)
+        
+        \item $\times$ est associative
+        
+        \item $\times$ est distributive sur +
+    \end{itemize}
 \end{definition}
 
 \begin{remark}
@@ -66,12 +72,13 @@
 \end{remark}
 
 \begin{proposition}
-    Soit $(A, +, x)$ un anneau alors
+    Soit $(A, +, \times)$ un anneau alors
 
-    $\forall x \in A, 0_A \times x = 0_A$
+    $\forall x \in A,\; 0_A \times x = 0_A$
 \end{proposition}
 
 \begin{demonstration}
+    \vspace{-0.8cm}
     \begin{flalign*}
         0_A \times x &= (0_A + 0_A) \times x&&\\
         &= 0_A \times x + 0_A \times x \implies 0_A = 0_A \times x \text{ (par soustraction de $0_A \times x$)}&&
@@ -83,20 +90,23 @@
 \end{proposition}
 
 \begin{demonstration}
-    \begin{align*}
-        x \times z = y \times z &\implies (x \times z) \times z^{-1} = (y \times z) \times z^{-1}\\
-        &\implies x \times (z \times z^{-1}) = y \times (z \times z^{-1})\\
-        &\implies x \times 1_A = y \times 1_A \\
-        &\implies x = y
-    \end{align*}
+    \vspace{-0.8cm}
+    \begin{flalign*}
+        x \times z = y \times z &\implies (x \times z) \times z^{-1} = (y \times z) \times z^{-1}&&\\
+        &\implies x \times (z \times z^{-1}) = y \times (z \times z^{-1})&&\\
+        &\implies x \times 1_A = y \times 1_A&&\\
+        &\implies x = y&&
+    \end{flalign*}
 \end{demonstration}
 
 \begin{definition}
-    Un corps est la donnée d'un triplet
-    $(\Bbbk, +, \times)$ où $\Bbbk$ est un ensemble, + et $\times$ sont deux l.c.i sur $\Bbbk$ vérifiant les axiomes suivants:
+    Un \textbf{corps} est la donnée d'un triplet
+    $(\k, +, \times)$ où $\Bbbk$ est un ensemble, $+$ et $\times$ sont deux l.c.i sur $\k$ vérifiant les axiomes suivants:
 
-    \item $\bullet$ $(\Bbbk, +, \times)$ est un anneau commutatif
-    \item $\bullet$ $(\Bbbk^*, \times)$ est un groupe abélien (de neutre noté $1_\K$).
+    \begin{itemize}
+        \item $(\k, +, \times)$ est un anneau commutatif
+        \item $(\k^*, \times)$ est un groupe abélien (de neutre noté $1_\k$).
+    \end{itemize}
 \end{definition}
 
 \begin{remark}
@@ -107,7 +117,7 @@
 
 \subsection{Rappels sur $\N$ et $\Z$}
 
-\textcolor{red}{À vérifier, certains théorèmes manque de consistance}
+\vspace{1cm}
 
 \begin{theorem}
     (propriétés de + et $\times$ sur $\N$)
