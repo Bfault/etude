@@ -16,25 +16,56 @@
 
 \maketitle
 
-%todo
+\section{Arithmétique modulaire : $(\Z/n\Z)$}
+
+\begin{definition}
+    Soient $a, b \in \Z$. On dit que a et b sont \textbf{congrus modulo} n si $a - b \in n\Z$.
+    
+    On note alors $a \equiv b [n]$ ou encore $a \equiv b \mod n$.
+\end{definition}
+
+\begin{proposition}
+    \begin{enumerate}
+        \item On a $a \equiv b [n] \iff \exists k \in \Z, a = b + kn$.
+        
+        On note $\o{b} := \{b + nk \mid k \in \Z\} = \{a \in \Z \mid a \equiv b [n]\}$. On l'appelle la \textbf{classe de congruence}.
+    
+        \item Supposons que $a = nq + r$ soit la division euclidienne de a par n. Alors $\o{a} = \o{r}$.
+        \item Il y a exactement n classes de congruence distinctes : les $\o{r}$, pour $r \in \{0, 1, ..., n-1\}$. Elles sont disjointes 2 à 2.
+    \end{enumerate}
+\end{proposition}
 
 \begin{definition}
     On note $\Z/n\Z$ l'ensemble des classes de congruences.
 
-    $\Z/n\Z = \{\overline{0}, \overline{1}, ..., \overline{n-1}\}$ est un ensemble fini à n élements.
+    $\Z/n\Z = \{\o{0}, \o{1}, ..., \o{n-1}\}$ est un ensemble fini à n élements.
 \end{definition}
 
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\begin{remark}
+    La congruence est un relation d'équivalence ainsi les classes congruences sont les classes d'équivalences pour la relation de congruence.
+
+    Ainsi $\Z/n\Z$ se réinterprète comme $\Z/R$ avec $xRy \iff x \equiv y [n]$
+\end{remark}
+
+\subsection{L'anneau $(\Z/n\Z, +, \times)$}
+
 \begin{proposition}
-    Soient a, a', b, b' dans $\Z$ tels que $a \equiv a' [n]$ et $b \equiv b' [n]$
+    Soient $a, a', b, b' \in \Z$ tels que $a \equiv a' [n]$ et $b \equiv b' [n]$
     Alors $a + b \equiv a' + b' [n]$
 \end{proposition}
 
 \begin{demonstration}
-    $(a - a') = kn$ et $(b - b') = k'n$
+    \item $(a - a') = kn$ et $(b - b') = k'n$ avec $k, k' \in \Z$
 
-    $(a + b) - (a' + b') = a - a' + b - b' = kn + k'n = (k + k')n$
+    \item $(a + b) - (a' + b') = a - a' + b - b' = kn + k'n = (k + k')n$
 
-    Donc $a + b \equiv a' + b' [n]$
+    \begin{rdem}
+        \item Donc $a + b \equiv a' + b' [n]$
+    \end{rdem}
 \end{demonstration}
 
 \begin{definition}
@@ -42,19 +73,28 @@
 \end{definition}
 
 \begin{proposition}
-    $(\Z/n\Z, +, \times)$ est un anneau commutatif.
+    $(\Z/n\Z, +, \times)$ est un anneau commutatif unitaire.
 
-    $\overline{0}$ est l'élement neutre pour l'addition et $\overline{1}$ est l'élement neutre pour la multiplication.
+    $\o{0}$ est l'élement neutre pour l'addition et $\o{1}$ est l'élement neutre pour la multiplication.
 \end{proposition}
 
 \begin{demonstration}
-    %todo
+    À faire
 \end{demonstration}
 
-On peut faire des tables d'addition et de multiplication dans $\Z/n\Z$
 
 \begin{example}
-    %todo
+    On peut faire des tables d'addition et de multiplication dans $\Z/n\Z$.
+    Par exemple la table de multiplication de $\Z/3\Z$
+    \begin{table}[ht]
+        \begin{tabular}{|l|l|l|l|}
+        \hline
+        $\times$  & $\o{0}$ & $\o{1}$ & $\o{2}$ \\
+        $\o{0}$ & $\o{0}$ & $\o{0}$ & $\o{0}$ \\
+        $\o{1}$ & $\o{0}$ & $\o{1}$ & $\o{2}$ \\
+        $\o{2}$ & $\o{0}$ & $\o{2}$ & $\o{1}$ \\ \hline
+        \end{tabular}
+    \end{table}
 \end{example}
 
 \begin{lemme}
@@ -64,10 +104,7 @@ On peut faire des tables d'addition et de multiplication dans $\Z/n\Z$
 \end{lemme}
 
 \begin{demonstration}
-    Dans $\Z/n\Z$ on veut montrer que $\o{a^p} = \o{b^p}$
-
-    Or $\o{a^p} = \o{a \times ... \times a} = \o{a} \times ... \times \o{a} =$
-    %todo
+    À faire
 \end{demonstration}
 
 \begin{remark}
@@ -79,10 +116,7 @@ On peut faire des tables d'addition et de multiplication dans $\Z/n\Z$
 \end{theorem}
 
 \begin{demonstration}
-    Dire que $\o{a}$ est inversible dans $\Z/n\Z$ c'est dire
-    qu'il existe $\o{u}$ tel que $\o{a}\o{u} = \o{1} \iff \exists u \in \Z, \exists k \in \Z, au = 1 + kn \iff \exists u \in \Z, \exists k' \in \Z, au + k'n = 1$
-    Cette équation a des solutions si n et m sont premier entre eux (bezout)
-    %todo
+    À faire
 \end{demonstration}
 
 \end{document}

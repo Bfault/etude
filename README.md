@@ -14,4 +14,8 @@
 
 - refaire la demonstration CM4 arithmétique ens nombre premier infini
 
+- complété la demonstration CM5 arithmétique les sous groupe de Z sont les nZ
+
+- Faire la methode des restau chinois CM8 arithmétique
+
 - where the fck goes the CM #6 of arithmetique ???
