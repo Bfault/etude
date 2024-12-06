@@ -67,7 +67,7 @@ jobs:
 
           find ./output/cours/ -type f -name "*.pdf" -exec cp {} ./ \;
 
-          git add *.pdf
+          git add all
 
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
