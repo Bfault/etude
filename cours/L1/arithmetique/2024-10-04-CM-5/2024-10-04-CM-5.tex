@@ -26,20 +26,115 @@
     $au + bv = PGCD(a, b)$
 \end{proposition}
 
-%todo
+\begin{methode}
+    Pour trouver une relation de Bezout, il suffit de remonter l'algorithme d'Euclide. Que l'on
+    appelle \textbf{l'algorithme d'Euclide étendu}.
+
+    \begin{enumerate}
+        \item Faire l'algorithme d'Euclide
+        \item Réecrire le reste avec les autres valeurs
+    \end{enumerate}
+\end{methode}
 
 \begin{lemme}
     Les sous-groupes de $\Z$ sont les $n\Z := \{nk \mid k \in \Z\}$ avec $n \in \Z$
 \end{lemme}
 
 \begin{demonstration}
-    \item \textbf{1)} $\{nk \mid k \in \Z\}$ sous groupe de $(\Z, +)$ (cf TD1)
-    \item \textbf{2)} Soit H un sous groupe de $(\Z, +)$ alors $0 \in H$
-    
-    si $H = \{0\}$ alors $H = 0\Z$
-    %todo
+    \begin{itemize}
+        \item $n\Z$ sous groupe de $(\Z, +)$ (cf TD1)
+        \item Soit H un sous groupe de $(\Z, +)$ alors $0 \in H$
+        \begin{itemize}
+            \item Si $H = \{0\}$ alors $H = 0\Z$
+            \item Sinon il existe un x non nuls dans H, alors $(-x) \in H$ "A completer"
+        \end{itemize}
+    \end{itemize}
 \end{demonstration}
 
-%todo
+\begin{corollaire}
+    Soient $a, b \in \Z$ alors $a\Z + b\Z = \{au + bv | u, v \in \Z\} = \delta \Z$ où $\delta = \mathrm{PGCD}(a, b)$
+\end{corollaire}
+
+\begin{demonstration}
+    Soient $u, v \in \Z$ et $c = au + bv$. Comme $\delta a$ et $\delta b$ alors $\delta c$.
+
+    Réciproquement, soit $c \in \delta\Z$, il existe un c' dans $\Z$ tel que $c = \delta c'$. Par Bézout, il existe
+    $u', v' \in \Z$ tels que $au' + bv' = \delta$, en multipliant par c' on a $au'c' + bv'c' = \delta c' = c$. Il suffit alors
+    de poser $u = u'c'$ et $v = v'c'$.
+
+    On dit alors que le sous groupe \textbf{engendré par} a et b coïncide avec le sous groupe engendré par leurs PGCD.
+\end{demonstration}
+
+\begin{proposition}[Gauss]
+    Soient $n, a, b \in \Z^*$ tels que $n | ab$ et $\mathrm{PGCD}(n, a) = 1$. Alors $n|b$.
+\end{proposition}
+
+\begin{demonstration}
+    Par Bezout, il existe u et v tels que $nu + av = 1$. Donc $nub + abv = b$. De $ab = nk$ (pour un $k \in \Z$),
+    on déduit $n(ub + kv) = b$. Donc $n | b$.
+\end{demonstration}
+
+\subsection{Unicité de la décomposition en facteurs premiers}
+
+\begin{lemme}\
+    \begin{enumerate}
+        \item Soient $a, b, c \in \Z^*$
+        \begin{equation*}
+            \left.
+            \begin{array}{l}
+            \mathrm{PGCD}(c, a) = 1 \\
+            \mathrm{PGCD}(c, b) = 1
+            \end{array}
+            \right\}
+            \implies \mathrm{PGCD}(c, ab) = 1
+        \end{equation*}
+        \item Soient p un nombre premier et $a, b \in \Z^*$
+        \begin{enumerate}
+            \item On a $\mathrm{PGCD(a, p) = 1}$ ou $p | a$
+            \item On a $[p|ab \implies (p|a ou p|b)]$
+        \end{enumerate}
+    \end{enumerate}
+\end{lemme}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\begin{proposition}
+    Une décomposition en facteurs premier est unique à l'ordre des facteurs près.
+\end{proposition}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\subsection{Résolution des équations diophantiennes}
+
+Soient $a, b \in \Z^*$ et $c \in \Z$.
+
+On cherche à résoudre l'équation suivante d'inconnues entères u, v
+
+$$
+au + bv = c
+$$
+
+\begin{methode}
+    \begin{enumerate}
+        \item Posant $\delta = \mathrm{PGCD(a, b)}$, on a $a = \delta a'$, $b = \delta b'$ et $c = \delta c'$ avec $a', b', c' \in \Z$
+        on a donc
+        
+        $$
+        a'u + b'v = c'
+        $$
+        
+        Soit $d = \mathrm{PGCD(a', b')}$ alors $d\delta$ est un diviseur commun à $a = \delta a'$ et $b = \delta b'$.
+        Par maximalité du diviseur commun $\delta$, on a $d = 1$. Donc a' et b' sont premier entre eux.
+        \item Bézout nous fournit une solution à l'équation $a'u + b'v = 1$, qu'il suffit de multiplier
+        par c' pour avoir une solution particulière $(u_0, v_0)$.
+        \item Soit $(u, v) \in \Z^2$ une solution. $a'u + b'v = c'$ et $a'u_0 + b'v_0 = c'$ donc $a'(u - u_0) + b'(v - v_0) = 0$.
+        On a $\mathrm{PGCD(a', b')}= 1$ donc, d'après Gauss, $a' | (v - v_0)$. Donc $\exists k \in \Z$ tel que $v - v_0 = ka' \implies v = v_0 + ka'$ donc $u = u_0 - b'k$.
+        \item L'ensemble des solutions est donc contenu dans $\{u_0 - b'k, v_0 + a'k \mid k \in \Z\}$
+    \end{enumerate}
+\end{methode}
 
 \end{document}

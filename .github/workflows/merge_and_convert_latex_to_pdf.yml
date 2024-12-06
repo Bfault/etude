@@ -1,50 +1,27 @@
-name: Merge TeX files and Convert LaTeX to PDF and Push to Branch
-
+name: Merge LaTeX, convert to PDF and push to orphan branch
 on:
   workflow_dispatch: {}
   push:
     branches:
       - master
-    paths:
-      - '**.tex'
-      - '**/images/**'
 
 jobs:
-  merge-and-convert-tex-to-pdf:
+  merge-and-convert:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
       
-      - name: Cache TeX Live installation
-        uses: actions/cache@v3
-        with:
-          path: |
-            /var/cache/apt/archives
-            /var/lib/apt/lists
-          key: ${{ runner.os }}-apt-texlive
-          restore-keys: |
-            ${{ runner.os }}-apt-texlive
-
-      - name: Install packages
+      - name: Install TeX Live
         run: |
-          if [ ! -d "/var/cache/apt/archives" ]; then
-            sudo apt-get clean
-            sudo apt-get update
-          fi
-          sudo apt-get install -y --no-install-recommends pandoc
+          sudo apt-get update
           sudo apt-get install -y --no-install-recommends \
             texlive-base \
             texlive-latex-recommended \
             texlive-latex-extra \
             texlive-fonts-recommended \
+            texlive-science \
             texlive-luatex
-
-      - name: Fix permissions
-        run: |
-          sudo chown -R runner:docker /var/lib/apt/lists/
-          sudo chown -R runner:docker /var/cache/apt/archives/
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -55,11 +32,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
       
-      - name: Run merge script for each subject
+      - name: Run merge script
         run: |
           for dir in cours/*; do
             for subject in $dir/*; do
-
               if [ -d "$subject" ]; then
                 echo "Processing $subject"
                 python utils/merge "$subject"
@@ -67,10 +43,13 @@ jobs:
             done
           done
       
+<<<<<<< HEAD
+      - name: Convert to PDF
+=======
       - name: Convert .tex files to PDF while preserving structure
+>>>>>>> master
         run: |
           mkdir -p output/cours
-
           export TEXINPUTS=/home/runner/work/etude/etude/utils/:$TEXINPUTS
           for dir in cours/*; do
             for subject in $dir/*; do
@@ -78,6 +57,30 @@ jobs:
               mkdir -p output/$subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
               lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
+<<<<<<< HEAD
+              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
+            done
+          done
+
+      - name: Push PDF files to pdf-output branch
+        run: |
+          git fetch origin pdf-output || true
+
+          git checkout pdf-output || git checkout --orphan pdf-output
+
+          find . -type f -name "*.pdf" -exec rm -f {} +
+
+          find ./output/cours/ -type f -name "*.pdf" -exec cp {} ./ \;
+
+          git add *.pdf
+
+          git config user.name "Github Actions"
+          git config user.email "actions@github.com"
+
+          git commit -m "Update PDF files" || echo "No changes to commit"
+
+          git push origin pdf-output --force
+=======
               lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile" # do it again for toc ¯\_(ツ)_/¯
             done
           done
@@ -94,3 +97,4 @@ jobs:
           git add website
           git commit -m "Update PDF files from LaTeX sources"
           git push origin web-staging --force
+>>>>>>> master

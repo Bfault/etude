@@ -1,0 +1,179 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{05 décembre 2024}
+
+\title{Analyse | CM: 12}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+%verifier les sections
+\section{Dérivée d'une fonction}
+
+% retrouver sur internet
+equation $y = ax + b = (x - x_0)f'(x_0) + f(x_0) = f'(x_0)x + (f(x_0) - x_0f'(x_0))$
+
+\begin{definition}
+    Soit $f: I \R \R$, où I est un interval ouvert de $\R$.
+    Soit $x_0 \in I$, on dit que f est dérivable en $x_0$ si le taux d'accroissements
+    $\dfrac{f(x)-f(x_0)}{x - x_0}$ admet une limite lorsque x tend vers $x_0$,
+    et on la note $\lim_{x \to x_0}\dfrac{f(x) - f(x_0)}{x - x_0} = f'(x_0)$.
+
+    $$
+    \forall \eps \gt 0, \exists \delta \gt 0 \text{ alors } |\dfrac{f(x) - f(x_0)}{x - x_0} - f'(x_0)| \lt \eps \iff |f(x) - f(x_0) - (x - x_0)f'(x_0)| \lt \eps |x - x_0| \iff |f(x) - (f(x_0) + (x - x_0)f'(x_0))| \lt \eps |x - x_0|
+    $$
+\end{definition}
+
+\begin{definition}
+    La fonction est dérivable sur I si f est dérivable en tout point x de I.
+    On note la fonction $f': \substack{I \R \R \\ x \mapsto f'(x)}$ (parfois $\dfrac{df}{dx}$)
+\end{definition}
+
+\begin{proposition}
+    \begin{enumerate}
+        \item f est dérivable en $x_0$ si et seulement si $\lim_{h \to 0}\dfrac{f(x_0 + h)- f(x_0)}{h}$ existe et est finie.
+        \item f est dérivable en $x_0$ ssi il existe un nombre réel $f'(x_0)$ et une fonction $\eps: I \R \R$ avec
+        $\eps(x) \to 0$ %mettre une petit x tend vers x_0 sous la flèche
+        tel que $f(x) = f(x_0) + f'(x_0)(x - x_0) + \eps(x)(x-x_0)$
+    \end{enumerate}
+\end{proposition}
+%regarder les approximation d'ordre 0, 1 et 2
+
+\begin{demonstration}
+    On pose $x = x_0 + h \Rightarrow x - x_0 = h$
+\end{demonstration}
+
+\begin{definition}
+    La droite qui passe par les points $(x_0, f(x_0))$ et $(x, f(x))$ admet par coefficient directeur $\dfrac{f(x) - f(x_0)}{x - x_0}$.
+
+    A la limite $x \rightarrow x_0$ on trouve le coefficient directeur de la tangente qui vaut $f'(x_0)$ et l'équation de la tangente au point
+    $(x_0, f(x_0))$ est donné par $y = (x - x_0)f'(x_0) + f(x_0)$.
+\end{definition}
+
+\subsection{Dérivabilité et continuité}
+
+\begin{proposition}
+    \begin{enumerate}
+        \item Si f est dérivable en $x_0$, alors f est continue en $x_0$.
+        \item Si f est dérivable sur I, alors f est continue sur I.
+        \item Si f est dérivable et f' est continue, on dit que f est de class $\phi^1$. %check si c'est bien phi
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    Comme f dérivable en $x_0, \exists \eps: I \rightarrow \R$ avec $\eps(x) \to 0$ %pareil x tend vers x_0
+    tel que $f(x) = f(x_0) + (x - x_0)f'(x_0) + \eps(x)(x-x_0)$
+    et on veut montrer que $\lim_{x \to x_0}f(x) = f(x_0)$
+
+    Ici $\lim_{x \to x_0}f(x) = \lim_{x \to x_0}f(x_0)+(x - x_0)f'(x_0) + \eps(x)(x - x_0)$
+\end{demonstration}
+
+\begin{remark}
+    \begin{enumerate}
+        \item Si f n'est pas continue, alors f n'est pas dérivable (contraposée).
+        \item La réciproque est fausse en général (Exemple la fonction $|x|$ en x = 0)
+    \end{enumerate}
+\end{remark}
+
+\subsection{Calcul de dérivée}
+
+\subsubsection{Règle de calcul}
+
+\begin{proprietes}
+    Soient $f: I \rightarrow \R$ et $g: I \rightarrow \R$ dérivable sur I.
+    Alors $\forall x \in I$, on a
+    \begin{enumerate}
+        \item $(f + g)'(x) = f'(x) + g'(x)$
+        \item $\forall \lambda \in \R (\lambda f)'(x) = \lambda f'(x)$
+        \item $(fg)'(x) = f'(x)g(x) + f(x)g'(x)$
+        \item Si $g(x) \neq 0, (\dfrac{f}{g})'(x) = \dfrac{f'(x)g(x) - f(x)g'(x)}{g(x)^2}$
+    \end{enumerate}
+\end{proprietes}
+
+\begin{demonstration}
+    Pour 1 et 2, on utilise la définition de la dérivée.
+    $$
+    \dfrac{(\lambda f + g)(x) - (\lambda f + g)(x_0)}{x - x_0} \\
+    = \dfrac{\lambda f(x) + g(x) - \lambda f(x_0) - g(x_0)}{x - x_0} \\
+    = \dfrac{(\lambda f(x) - \lambda f(x_0)) + (g(x) - g(x_0))}{x - x_0} \\
+    = \lambda (\dfrac{f(x) - f(x_0)}{x - x_0}) + \dfrac{g(x) - g(x_0)}{x - x_0}
+    $$
+    %overfull here
+    
+    Pour 3, on cherche
+    $(fg)'(x_0) = \lim_{x \to x_0}\dfrac{fg(x) - fg(x_0)}{x - x_0}$.
+    
+    $$
+    \dfrac{(fg)(x) - (fg)(x_0)}{x - x_0} = \dfrac{f(x)g(x) - f(x_0)g(x_0) + f(x_0)g(x) - f(x_0)g(x_0)}{x - x_0} \\
+    = %TODO
+    $$
+    
+    Flemme
+\end{demonstration}
+
+\subsubsection{Dérivée de fonctions usuelles}
+
+% A revoir
+\begin{methode}
+    \begin{enumerate}
+        \item $f(x) = x^n \Rightarrow f'(x) = nx^{n-1}$
+        \item $f(x) = \dfrac{1}{x} \Rightarrow f'(x) = -\dfrac{1}{x^2}$
+        \item $f(x) = \sqrt{x} \Rightarrow f'(x) = \dfrac{1}{2\sqrt{x}}$
+        \item $f(x) = e^x \Rightarrow f'(x) = e^x$
+        \item $f(x) = a^x \Rightarrow f'(x) = a^x\ln(a)$
+        \item $f(x) = \ln(x) \Rightarrow f'(x) = \dfrac{1}{x}$
+        \item $f(x) = \log_a(x) \Rightarrow f'(x) = \dfrac{1}{x\ln(a)}$
+        \item $f(x) = \sin(x) \Rightarrow f'(x) = \cos(x)$
+        \item $f(x) = \cos(x) \Rightarrow f'(x) = -\sin(x)$
+        \item $f(x) = \tan(x) \Rightarrow f'(x) = \dfrac{1}{\cos^2(x)}$
+    \end{enumerate}
+\end{methode}
+
+\subsubsection{Composition}
+
+\begin{proposition}
+    Si f dérivable en x et g dérivable en f(x), alors $g \circ f$ est dérivable en x et $(g \circ f)'(x) = g'(f(x))f'(x)$.
+\end{proposition}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\begin{corollaire}
+    $f: I \rightarrow J$ bijective et dérivable et $f^{-1}: J \rightarrow I$ sa réciproque.
+    Si f' ne s'annule pas, alors $f^{-1}$ est dérivable et $(f^{-1})'(x) = \dfrac{1}{f'(f^{-1}(x))}$, $\forall x \in I$
+\end{corollaire}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\subsubsection{Dérivées succesives}
+
+Par récurrence, on définit la dérivée n-ième, notée $f^{(n)}$, comme
+$f^{(0)} = f, f^{(1)} = f', f^{(n+1)} = (f^{(n)})'$.
+
+Si les dérivées jusqu'à l'ordre n sont définies, on dit que f est de classe $\phi^n$.
+
+\begin{definition}[Formule de Leibniz]
+    $(fg)^{(n)}(x) = (f(x)g(x))^{(n)}$
+\end{definition}
+
+\begin{definition}[binome de Newton]
+    $(a + b)^n = \sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^k$
+    À faire
+\end{definition}
+
+
+
+\end{document}
