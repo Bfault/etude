@@ -57,9 +57,17 @@ jobs:
             done
           done
 
+      - name: Remove LaTeX auxiliary files
+        run: |
+          find output/ -type f \( -name "*.aux" -o -name "*.log" -o -name "*.toc" -o -name "*.out" -o -name "*.synctex.gz" \) -delete
+
       - name: Clean up unnecessary files
         run: |
           rm -rf cours
+
+      - name: Remove untracked files
+        run: |
+          git clean -fdx
 
       - name: Push PDF files to pdf-output branch
         run: |
