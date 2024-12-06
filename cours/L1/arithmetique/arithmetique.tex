@@ -1,0 +1,878 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{06 December 2024}
+
+\title{Arithmetique}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{util.tex}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+% Begin of 2024-09-12-CM-1.tex
+
+% Pas de contenu
+
+
+% End of 2024-09-12-CM-1.tex
+
+% Begin of 2024-09-13-CM-2.tex
+
+\section{Structures algébriques}
+
+\subsection{Lois de compositions internes}
+
+\begin{definition}
+    Soit E un ensemble. On appelle \textbf{loi de composition interne} (l.c.i) sur E une opération binaire.
+
+    On parle d'application $E \times E \rightarrow E$
+\end{definition}
+
+\begin{definition}
+    Soit $*$ une l.c.i sur E. On dit que $*$ est
+
+    \item \textbf{associative} si $\forall x, y, z \in E, \; x * (y * z) = (x * y) * z$
+    \item \textbf{commutative} si $\forall x, y \in E, \; x * y = x * y$
+    \item \textbf{identitaire} (a un \textbf{élement neutre} $e \in E$) si $\forall x \in E, x * e = e * x = x$ 
+\end{definition}
+
+\subsection{Groupes}
+
+\begin{definition}
+    Soit G un ensemble et $*$ une l.c.i sur G. On dit que $(G, *)$ est un \textbf{groupe} lorsque les axiomes suivants sont vérifiés.
+
+    \begin{itemize}
+        \item $*$ est associative
+        \item $*$ admet un élement neutre $e \in G$
+        \item $\forall x \in G, \exists x' \in G$ tel que $x * x' = x' * x = e$ (on dit que x' est l'élement inverse ou symétrique de x pour $*$)
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    Si de plus $*$ est commutative, alors le groupe est dit \textbf{abélien} (ou commutatif).
+\end{remark}
+
+\begin{example}
+    Si X est un ensemble, notons $Bij(X)$, l'ensemble des application de X dans X admettant une application réciproque
+    $$
+    \forall\; f\!:\!X \rightarrow X,\; \exists\; g\!:\!X \rightarrow X,\; g \circ f = f \circ g = \mathrm{Id}_{X}:
+    \begin{cases}
+        X\! &\rightarrow X \\
+        x\! &\mapsto x
+    \end{cases}
+    $$
+    Ainsi $(Bij(X), \circ)$ est un groupe.
+\end{example}
+
+\begin{proposition}
+    Si $(G, *)$ est un groupe alors
+
+    \item \textbf{(a)} L'élement neutre de G est unique
+    \item \textbf{(b)} Chaque $x \in G$ admet un unique élement inverse
+    \item \textbf{(c)} Si $x, y, z \in G$ tel que $x * y = z * y$ alors $x * y$ (indépendament de l'ordre)
+\end{proposition}
+
+\begin{demonstration}
+    \begin{rdem}
+        \textbf{(a)} Soient e, e' des élements neutres de G par *, $e * e' = e' * e = e = e'$
+    \end{rdem}
+    \begin{rdem}
+        \textbf{(b)} Soient x', x'' des élements inverse de $x \in G$,\par $x' = x' * e = x' * (x * x'') = (x' * x) * x'' = e * x'' = x''$
+    \end{rdem}
+    \begin{rdem}
+        \textbf{(c)} Posons $x^{-1} * (x * y) = x^{-1} * (x * z) \implies (x^{-1} * x) * y = (x^{-1} * x) * z \implies e * y = e * z \implies y = z$
+    \end{rdem}
+\end{demonstration}
+
+\begin{remark}
+    Lorsqu'il n'y a pas d'ambiguïtés, l'inverse d'un élement x sera noté $x^{-1}$. Notons que $(x^{-1})^{-1} = x$
+\end{remark}
+
+\begin{definition}
+    Soit (G, *) un groupe. Soit $H \subset G$, on dit que H est un \textbf{sous-groupe} de G lorsque les condtions suivantes sont vérifiées.
+    \begin{itemize}
+        \item $\forall x, y \in H, \; x * y \in H$. On dit que H est stable par $*$
+        \item Muni de $*$, H est un groupe
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}
+    Soit (G, $*$) un groupe et $H \subset G$. Les conditions suivantes sont équivalentes.
+
+    \item \textbf{(a)} H est un sous groupe de G
+    \item \textbf{(b)} $H \neq \emptyset$, H est stable par $*$ et par passage au symétrique ($\forall x \in H, \; x^{-1} \in H$)
+    \item \textbf{(b)} $H \neq \emptyset$ et $\forall x, y \in H, \; x * y^{-1} \in H$
+\end{proposition}
+
+\begin{demonstration}
+    \item $\bullet$ Démontrons que $(a) \implies (b)$.
+    
+        \item $\diamond$ H est un sous groupe donc doit admettre un élement neutre ($e_H$) donc $H \neq \emptyset$.
+        Montrons que $e_H = e_G$, on a $e_H * e_H = e_H = e_G + e_H = e_G$.
+        
+        \vspace{0.5em}
+        
+        \item $\diamond$ La stabilité par * fait partie de la définition de sous groupe.
+        
+        \vspace{0.5em}
+        
+        \item $\diamond$ Soit $x \in H$, soit s' son symétrique dans H. x' est aussi un symétrique dans G. Dans G par unicité du symétrique $x^{-1} = x' \in H$.
+
+    \item $\bullet$ Démontrons que $(b) \implies (c)$.
+    
+    \item $\diamond$ Soient $x, y \in H$. Alors $y^{-1} \in H$ et encore par $x * x^{-1} \in H$.
+    
+    \item $\bullet$ Démontrons que $(c) \implies (a)$.
+
+    \item $\diamond$ l'associativité est montré par $\forall x, y, z \in H, x, y, z \in G, x * (y * z) = (x * y) * z$
+    \item $\diamond$ l'élement neutre par $\exists x \in H, e = x * x^{-1} \in G$, ainsi $\forall x \in H, x \in G$
+    \item $\diamond$ l'élement inverse par $x \in H$, prenons $y = e$, ainsi $x^{-1} * e = x^{-1}$, ici $x^{-1}$ est le symétrique de x dans H.
+    \item $\diamond$ la stabilité par * dans H par $x, y \in H$, posons $z = y^{-1}$, ainsi $x * y = x * z^{-1} \in H$.
+    
+    \begin{rdem}
+        Finalement par implication circulaire nous avons démontré que
+        
+        $(a) \iff (b) \iff (c)$
+    \end{rdem}
+
+\end{demonstration}
+
+
+% End of 2024-09-13-CM-2.tex
+
+% Begin of 2024-09-20-CM-3.tex
+
+\begin{definition}
+    Soient $(G, *)$ et $(H, \square)$ deux groupes.
+
+    On appelle \textbf{morphisme de groupes} toute application $f: G \rightarrow H$ vérifiant
+
+    $$
+    \forall x, y \in G, f(x * y) = f(x) \square f(y)
+    $$
+\end{definition}
+
+\begin{proposition}
+    Si $f: G \rightarrow H$ est un morphisme de groupe, alors $f(e_G) = e_H$
+\end{proposition}
+
+\begin{demonstration}
+    \vspace{-0.8cm}
+    \begin{flalign*}
+        f(e_G)& = f(e_G * e_G) = f(e_G) \square f(e_G)&& \\
+        f(e_G)& = f(e_G) \square e_H&& \\
+        f(e_G)& \square f(e_G) = f(e_G) \square e_H \implies f(e_G) = e_H&&
+    \end{flalign*}
+\end{demonstration}
+
+\begin{proposition}
+    Si $f: G \rightarrow H$ est un morphisme de groupe, alors
+    $\forall x \in G, f(x^{-1}) = f(x)^{-1}$
+\end{proposition}
+
+\begin{demonstration}
+    \vspace{-0.8cm}
+    \begin{flalign*}
+        f(x^{-1}) = f(x^{-1}) \square f(x) \square f(x)^{-1} = f(x^{-1} * x) \square f(x)^{-1} = f(x)^{-1}&&
+    \end{flalign*}
+\end{demonstration}
+
+\subsection{Anneaux et Corps}
+
+\begin{definition}
+    Un \textbf{anneau} est $(A, +, \times)$ où A est un ensemble, + et x sont deux l.c.i sur A vérifiant les axiomes suivants
+
+    \begin{itemize}
+        \item $(A, +)$ est un groupe abélien (on note $0_A$ sont élément neutre)
+        
+        \item $\times$ est associative
+        
+        \item $\times$ est distributive sur +
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    On dit que $(A, +, \times)$ est un anneau commutatif si, de plus $\times$ est commutative.
+
+    Un élément $x \in A$ est dit inversible dans A lorsqu'il adment un symétrique pour $\times$.
+\end{remark}
+
+\begin{proposition}
+    Soit $(A, +, \times)$ un anneau alors
+
+    $\forall x \in A,\; 0_A \times x = 0_A$
+\end{proposition}
+
+\begin{demonstration}
+    \vspace{-0.8cm}
+    \begin{flalign*}
+        0_A \times x &= (0_A + 0_A) \times x&&\\
+        &= 0_A \times x + 0_A \times x \implies 0_A = 0_A \times x \text{ (par soustraction de $0_A \times x$)}&&
+    \end{flalign*}
+\end{demonstration}
+
+\begin{proposition}
+    Soient $x, y, z \in A$, Si $x \times z = y \times z$ et z est inversible alors x = y
+\end{proposition}
+
+\begin{demonstration}
+    \vspace{-0.8cm}
+    \begin{flalign*}
+        x \times z = y \times z &\implies (x \times z) \times z^{-1} = (y \times z) \times z^{-1}&&\\
+        &\implies x \times (z \times z^{-1}) = y \times (z \times z^{-1})&&\\
+        &\implies x \times 1_A = y \times 1_A&&\\
+        &\implies x = y&&
+    \end{flalign*}
+\end{demonstration}
+
+\begin{definition}
+    Un \textbf{corps} est la donnée d'un triplet
+    $(\k, +, \times)$ où $\Bbbk$ est un ensemble, $+$ et $\times$ sont deux l.c.i sur $\k$ vérifiant les axiomes suivants:
+
+    \begin{itemize}
+        \item $(\k, +, \times)$ est un anneau commutatif
+        \item $(\k^*, \times)$ est un groupe abélien (de neutre noté $1_\k$).
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    De manière équivalente, un corps est un anneau commutatif avec un élément neutre pour $\times$ où tout élément non-nul est inversible.
+\end{remark}
+
+\section{Arithmétique des entiers}
+
+\subsection{Rappels sur $\N$ et $\Z$}
+
+\vspace{1cm}
+
+\begin{theorem}
+    (propriétés de + et $\times$ sur $\N$)
+    \item \textbf{(a)} + et $\times$ sont associative et commutative sur $\N$
+
+    \item \textbf{(b)} 0 est élement neutre pour + tandis que 1 est neutre pour $\times$
+
+    \item \textbf{(c)} Il y a une distributivité de $\times$ sur +
+
+    \item \textbf{(d)} $\forall x, y, m \in \N, \; x + m = y + m \implies x = y$
+\end{theorem}
+
+\begin{theorem}
+    (propriétés de $\leq$ sur $\N$)
+
+    \item \textbf{1)} (relation d'ordre total) $\forall m, n, p \in \N$
+    
+    \item \textbf{(a)} $n \leq n$
+    \item \textbf{(b)} $m \leq n \land n \leq m \iff m = n$
+    \item \textbf{(c)} $m \leq n \land n \leq p \implies m \leq p$
+    \item \textbf{(d)} $m \leq n \lor n \leq m$
+    
+    \item \textbf{2)} Les opérations + et $\times$ sont compatibles avec la relation d'ordre
+
+        $\forall n, m, p \in \N, \; n \leq m \implies (n + p \leq m + p) \land (n \times p \leq m \times p)$
+
+    \item \textbf{3)} $\forall n \in \N, \; 0 \leq n$
+    \item \textbf{4)} $\forall n, m \in \N, \forall p \in \N^*, \; n \leq m \implies n \times p \leq m \times p$
+\end{theorem}
+
+\begin{theorem}
+    \item \textbf{1.} Toute partie finie de $\N$ admet un plus grand élément.
+    \item \textbf{2.} Toute partie non vide de $\N$ admet un plus petit élément.
+    \item \textbf{3.} Toute partie non vide et majorée de $\N$ admet un plus grand élément.
+    \item \textbf{4.} $\N$ n'admet pas de plus grand élément.
+\end{theorem}
+
+\begin{theorem}
+    (propriétés de + et $\times$ sur $\Z$)
+    \item \textbf{(a)} + et $\times$ sont associative et commutative sur $\Z$
+
+    \item \textbf{(b)} 0 est élement neutre pour + tandis que 1 est neutre pour $\times$
+
+    \item \textbf{(c)} Il y a une distributivité de $\times$ sur +
+
+    \item \textbf{(d)} Tout $m \in \Z$ admet un symétrique (élément inverse), $-m \in \Z$ pour +
+\end{theorem}
+
+\begin{theorem}
+    (propriétés de $\leq$ sur $\Z$)
+
+    \item \textbf{1)} $\leq$ est une relation d'ordre totale sur $\Z$.
+    
+    \item \textbf{2)} Soient $n, m, p \in \Z$
+    
+    \item \textbf{(a)} $n \leq m \iff n + p \leq m + p$
+    \item \textbf{(b)} $\forall p \in \Z_+^*, n \leq m \iff np \leq mp$
+    \item \textbf{(c)} $\forall p \in \Z_-^*, n \leq m \iff mp \leq np$
+    \item \textbf{(d)} $\forall p \in \Z^*, m = n \iff mp = np$
+\end{theorem}
+
+
+% End of 2024-09-20-CM-3.tex
+
+% Begin of 2024-09-27-CM-4.tex
+
+\subsection{Arithmétique élémentaire dans $\Z$}
+
+\begin{definition}
+    Soient x et y dans $\Z$. On dit que x divise y s'il existe $k \in \Z$ tel que $y = kx$.
+    La notation associée est $x \mid y$.
+    x est un diviseur de y ou y est un multiple de x
+\end{definition}
+
+\begin{remark}\
+    \begin{itemize}
+        \item tout entier relatif divise 0.
+        
+        \item 0 divise uniquement 0.
+        
+        \item si x est un diviseur de y alors (-x) est un diviseur de y
+        
+        \item 1 et -1 sont les diviseurs de tout entier relatifs.
+        
+        \item les diviseurs de 1 et -1 sont 1 et -1
+        
+        \item $\forall x, y \in \N^*,\; x \mid y \implies x \leq y$
+    \end{itemize}
+\end{remark}
+
+\begin{definition}
+    On dit que $p \in \N,\; p \geq 2$ est un nombre premier si les seuls diviseurs positifs de p sont 1 et p.
+\end{definition}
+
+\begin{remark}
+    Une autre définition est tout nombre qui a exactement 2 diviseurs.
+\end{remark}
+
+\begin{remark}
+    Pour vérifier qu'un nombre est premier, on peut regarde pour chaque $\forall k \in \N, k \leq \sqrt{p}$ si k divise p.
+\end{remark}
+
+\begin{definition}
+    Soit $n \in \Z^*$, on appelle décomposition en facteurs premiers de n une écriture de la forme
+
+    $$
+    n = c \prod_{i=1}^{k} p_i = c(p_1 \times ... \times p_k)
+    $$
+
+    où $c \in \{\pm 1\}, k \in \N, p_1,...,p_k$ sont premiers
+\end{definition}
+
+\begin{proposition}
+    Tout $n \in \Z^*$ admet une décomposition en facteurs premier.
+\end{proposition}
+
+\begin{demonstration}
+    Il suffit de le démontrer pour $n \in \N^*$ et $c = 1$ et pour les négatifs on se ramène à $\N^*$ en posant $c = -1$
+
+    Démonstration par récurrence forte.
+
+    \textbf{Initialisation:} $n = 1$, on pose $c = 1, k = 0$, c'est un produit vide.
+
+    \textbf{Initialisation:} Soit $n \in \N^*, \forall d \leq n$, on ait une telle décomposition.
+    Si n + 1 est premier, on pose $k = 1 \quad P_1 = n + 1$.
+    Si n + 1 n'est pas premier il admet un diviseur $d \in [2, n]$.
+    Par hypothèse de récurrence $d = c \times p_1 \times ... \times p_k$.
+    De même $d' = \dfrac{n+1}{d} \in [2; n]$
+    $d' = p_1' \times ... \times p_k'$.
+
+    Donc $n + 1 = d \times d' = p_1 \times ... \times p_k \times p_1' \times ... \times p_k'$
+\end{demonstration}
+
+\begin{corollaire}
+    Tout entier $n \geq 2$ admet au moins un diviseur premier
+\end{corollaire}
+
+\begin{proposition}
+    L'ensemble des nombre premiers est infini.
+\end{proposition}
+
+\begin{demonstration}
+    Supposons (par l'absurde) qu'il y ait un nombre fini de nombres premiers $p_1, ..., p_m$
+
+    On pose $N = p_1 \times ... \times p_m + 1$
+
+    Alors N admet un diviseur premier $p_i (i \in [i; m])$
+    i.e. $N = p_i N' \implies N = \prod p_j + 1 \implies p_i N' - p_i \prod_{i \neg j} p_j = 1 \implies p_i (N' - multi_{j \neg i} p_j) = 1$
+\end{demonstration}
+
+\subsection{Division euclidienne}
+
+\begin{theorem}
+    Soient $a \in \Z, b \in \N*$.
+    
+    Alors il existe un unique couple $(q, r) \in \Z \times \N, a = bq + r$ avec $b \gt r \geq 0$
+\end{theorem}
+
+\begin{demonstration}
+    \textbf{Existence:} Pour $a \in \N$, raisonnement par récurrence.
+
+    \textbf{Initialisation:} $a = 0$: On pose $q = 0 \text{ et } r = 0 \implies 0 = b \times 0 + 0$
+
+    \textbf{Hérédité:} Si $a = bq + r$ avec $(b \gt r \geq 0)$
+
+    Alors $a + 1 = bq + (r + 1)$, C'est une division euclidienne lorsque $r+1 \lt b \implies r \lt l - 1$
+
+    Lorsque $r = b-1$
+
+    $a + 1 = bq + ((b - 1) + 1) = bq + b = b(q + 1) + 0$,
+    C'est une division euclidienne.
+
+    Si $a \lt 0$ alors $(-a) \gt 0$ Donc $\exists (q, r) \in \Z \times \N, -a = bq + r \implies a = b \times (-q) + (-r)$ avec $(b \gt r \geq 0)$
+
+    Si r = 0, c'est une division euclidienne.
+
+    Sinon $-b \lt -r \lt 0 \implies 0 \lt -r + b \lt b$
+
+    Donc $a = b \times (-q) + (-r + b) - b = b \times (-q - 1) + (-r + b)$
+    C'est un division euclidienne.
+
+    \textbf{Unicité:} Si $a = bq + r$ et $a = bq' + r'$ avec $b \gt r, r' \geq 0$
+
+    Par soustraction: $0 = b(q - q') + r - r' \implies r' - r = b(q - q')$
+
+    $b - 1 \geq r' - r \geq -b - 1$
+    Donc $r' - r = 0 \implies r = r'$
+
+    Ainsi $bq + r = bq' + r' \implies bq = bq' \implies q = q'$
+\end{demonstration}
+
+\subsection{PGCD, PPCM}
+
+\begin{definition}
+    le \textbf{pgcd} de deux nombres $a, b \in \Z^*$ est le plus grand diviseur commun à a et b. Il est noté $PGCD(a, b)$ (ou encore $a \land b$)
+
+    On dit que a et b sont \textbf{premiers entre eux} si PGCD(a, b) = 1.
+
+    Le \textbf{ppcm} de deux nombres $a, b \in \Z^*$ est le plus petit multiple strictement positif commun à a et b. Il est noté PPCM(a, b) (ou encore $a \lor b$)
+\end{definition}
+
+\begin{proposition}
+    $\forall a, b \in \Z^*, PGCD(a, b) \times PPCM(a, b) = |ab|$
+\end{proposition}
+
+\begin{demonstration}
+    Si on remplace a et b par leurs valeurs absolues: $||a||b|| = |ab|$
+
+    Les multiples et les diviseurs de |a| et de a sont les mêmes.
+
+    Donc $PGCD(a, b) = PGCD(|a|, |b|)$ et $PPCM(a, b) = PPCM(|a|, |b|)$
+
+    Ainsi il suffit de montrer le résultat pour $a, b \in \N^*$
+
+    On pose $d = PGCD(a, b)$
+
+    $\exists a', b' \in \N^*, a = da' \text{ et } b = db'$
+
+    $\dfrac{ab}{d} = \dfrac{da'b}{d} = a'b$
+    $\dfrac{ab}{d} = \dfrac{adb'}{d} = ab'$
+    %todo
+\end{demonstration}
+
+\begin{methode}
+L'algorithme d'Euclide:
+
+Le PGCD peut se calculer avec l'algorithme d'Euclide:
+
+\item \textbf{1.} (Eventuellement) remplacer a et b par $|a|$ et $|b|$
+\item \textbf{2.} De manière récursive:
+\item \textbf{2.1} Calculer la division euclidienne de a par b: $a = bq + r$
+\item \textbf{2.2} Si $r \neq 0$: recommencer en remplcaçant (a, b) par (b, r) Sinon sortir de la récursion
+\item \textbf{3.} Le pgcd est le dernier reste non-nul calculé.
+\end{methode}
+
+\begin{proposition}
+    Si d est un diviseur commun à a et b alors $d \mid PGCD(a, b)$
+\end{proposition}
+
+\begin{corollaire}
+    Le PGCD est aussi le plus grand diviseur commun au sens de la divisibilité.
+\end{corollaire}
+
+
+% End of 2024-09-27-CM-4.tex
+
+% Begin of 2024-10-04-CM-5.tex
+
+\section{Arithmétique avancée dans $\Z$}
+
+\subsection{Bézout, Gauss}
+
+\begin{proposition}[Bézout]
+    Soient $a, b \in \Z^*$. Il existe $u, v \in \Z$ tels que
+
+    $au + bv = PGCD(a, b)$
+\end{proposition}
+
+\begin{methode}
+    Pour trouver une relation de Bezout, il suffit de remonter l'algorithme d'Euclide. Que l'on
+    appelle \textbf{l'algorithme d'Euclide étendu}.
+
+    \begin{enumerate}
+        \item Faire l'algorithme d'Euclide
+        \item Réecrire le reste avec les autres valeurs
+    \end{enumerate}
+\end{methode}
+
+\begin{lemme}
+    Les sous-groupes de $\Z$ sont les $n\Z := \{nk \mid k \in \Z\}$ avec $n \in \Z$
+\end{lemme}
+
+\begin{demonstration}
+    \begin{itemize}
+        \item $n\Z$ sous groupe de $(\Z, +)$ (cf TD1)
+        \item Soit H un sous groupe de $(\Z, +)$ alors $0 \in H$
+        \begin{itemize}
+            \item Si $H = \{0\}$ alors $H = 0\Z$
+            \item Sinon il existe un x non nuls dans H, alors $(-x) \in H$ "A completer"
+        \end{itemize}
+    \end{itemize}
+\end{demonstration}
+
+\begin{corollaire}
+    Soient $a, b \in \Z$ alors $a\Z + b\Z = \{au + bv | u, v \in \Z\} = \delta \Z$ où $\delta = \mathrm{PGCD}(a, b)$
+\end{corollaire}
+
+\begin{demonstration}
+    Soient $u, v \in \Z$ et $c = au + bv$. Comme $\delta a$ et $\delta b$ alors $\delta c$.
+
+    Réciproquement, soit $c \in \delta\Z$, il existe un c' dans $\Z$ tel que $c = \delta c'$. Par Bézout, il existe
+    $u', v' \in \Z$ tels que $au' + bv' = \delta$, en multipliant par c' on a $au'c' + bv'c' = \delta c' = c$. Il suffit alors
+    de poser $u = u'c'$ et $v = v'c'$.
+
+    On dit alors que le sous groupe \textbf{engendré par} a et b coïncide avec le sous groupe engendré par leurs PGCD.
+\end{demonstration}
+
+\begin{proposition}[Gauss]
+    Soient $n, a, b \in \Z^*$ tels que $n | ab$ et $\mathrm{PGCD}(n, a) = 1$. Alors $n|b$.
+\end{proposition}
+
+\begin{demonstration}
+    Par Bezout, il existe u et v tels que $nu + av = 1$. Donc $nub + abv = b$. De $ab = nk$ (pour un $k \in \Z$),
+    on déduit $n(ub + kv) = b$. Donc $n | b$.
+\end{demonstration}
+
+\subsection{Unicité de la décomposition en facteurs premiers}
+
+\begin{lemme}\
+    \begin{enumerate}
+        \item Soient $a, b, c \in \Z^*$
+        \begin{equation*}
+            \left.
+            \begin{array}{l}
+            \mathrm{PGCD}(c, a) = 1 \\
+            \mathrm{PGCD}(c, b) = 1
+            \end{array}
+            \right\}
+            \implies \mathrm{PGCD}(c, ab) = 1
+        \end{equation*}
+        \item Soient p un nombre premier et $a, b \in \Z^*$
+        \begin{enumerate}
+            \item On a $\mathrm{PGCD(a, p) = 1}$ ou $p | a$
+            \item On a $[p|ab \implies (p|a ou p|b)]$
+        \end{enumerate}
+    \end{enumerate}
+\end{lemme}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\begin{proposition}
+    Une décomposition en facteurs premier est unique à l'ordre des facteurs près.
+\end{proposition}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\subsection{Résolution des équations diophantiennes}
+
+Soient $a, b \in \Z^*$ et $c \in \Z$.
+
+On cherche à résoudre l'équation suivante d'inconnues entères u, v
+
+$$
+au + bv = c
+$$
+
+\begin{methode}
+    \begin{enumerate}
+        \item Posant $\delta = \mathrm{PGCD(a, b)}$, on a $a = \delta a'$, $b = \delta b'$ et $c = \delta c'$ avec $a', b', c' \in \Z$
+        on a donc
+        
+        $$
+        a'u + b'v = c'
+        $$
+        
+        Soit $d = \mathrm{PGCD(a', b')}$ alors $d\delta$ est un diviseur commun à $a = \delta a'$ et $b = \delta b'$.
+        Par maximalité du diviseur commun $\delta$, on a $d = 1$. Donc a' et b' sont premier entre eux.
+        \item Bézout nous fournit une solution à l'équation $a'u + b'v = 1$, qu'il suffit de multiplier
+        par c' pour avoir une solution particulière $(u_0, v_0)$.
+        \item Soit $(u, v) \in \Z^2$ une solution. $a'u + b'v = c'$ et $a'u_0 + b'v_0 = c'$ donc $a'(u - u_0) + b'(v - v_0) = 0$.
+        On a $\mathrm{PGCD(a', b')}= 1$ donc, d'après Gauss, $a' | (v - v_0)$. Donc $\exists k \in \Z$ tel que $v - v_0 = ka' \implies v = v_0 + ka'$ donc $u = u_0 - b'k$.
+        \item L'ensemble des solutions est donc contenu dans $\{u_0 - b'k, v_0 + a'k \mid k \in \Z\}$
+    \end{enumerate}
+\end{methode}
+
+
+% End of 2024-10-04-CM-5.tex
+
+% Begin of 2024-10-18-CM-7.tex
+
+\section{Arithmétique modulaire : $(\Z/n\Z)$}
+
+\begin{definition}
+    Soient $a, b \in \Z$. On dit que a et b sont \textbf{congrus modulo} n si $a - b \in n\Z$.
+    
+    On note alors $a \equiv b [n]$ ou encore $a \equiv b \mod n$.
+\end{definition}
+
+\begin{proposition}
+    \begin{enumerate}
+        \item On a $a \equiv b [n] \iff \exists k \in \Z, a = b + kn$.
+        
+        On note $\o{b} := \{b + nk \mid k \in \Z\} = \{a \in \Z \mid a \equiv b [n]\}$. On l'appelle la \textbf{classe de congruence}.
+    
+        \item Supposons que $a = nq + r$ soit la division euclidienne de a par n. Alors $\o{a} = \o{r}$.
+        \item Il y a exactement n classes de congruence distinctes : les $\o{r}$, pour $r \in \{0, 1, ..., n-1\}$. Elles sont disjointes 2 à 2.
+    \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+    On note $\Z/n\Z$ l'ensemble des classes de congruences.
+
+    $\Z/n\Z = \{\o{0}, \o{1}, ..., \o{n-1}\}$ est un ensemble fini à n élements.
+\end{definition}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\begin{remark}
+    La congruence est un relation d'équivalence ainsi les classes congruences sont les classes d'équivalences pour la relation de congruence.
+
+    Ainsi $\Z/n\Z$ se réinterprète comme $\Z/R$ avec $xRy \iff x \equiv y [n]$
+\end{remark}
+
+\subsection{L'anneau $(\Z/n\Z, +, \times)$}
+
+\begin{proposition}
+    Soient $a, a', b, b' \in \Z$ tels que $a \equiv a' [n]$ et $b \equiv b' [n]$
+    Alors $a + b \equiv a' + b' [n]$
+\end{proposition}
+
+\begin{demonstration}
+    \item $(a - a') = kn$ et $(b - b') = k'n$ avec $k, k' \in \Z$
+
+    \item $(a + b) - (a' + b') = a - a' + b - b' = kn + k'n = (k + k')n$
+
+    \begin{rdem}
+        \item Donc $a + b \equiv a' + b' [n]$
+    \end{rdem}
+\end{demonstration}
+
+\begin{definition}
+    Soient $a, b \in \Z$. On pose dans $\Z/n\Z: \overline{a} + \overline{b} = \overline{a + b}$ et $\overline{a} \times \overline{b} = \overline{a \times b}$
+\end{definition}
+
+\begin{proposition}
+    $(\Z/n\Z, +, \times)$ est un anneau commutatif unitaire.
+
+    $\o{0}$ est l'élement neutre pour l'addition et $\o{1}$ est l'élement neutre pour la multiplication.
+\end{proposition}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+
+\begin{example}
+    On peut faire des tables d'addition et de multiplication dans $\Z/n\Z$.
+    Par exemple la table de multiplication de $\Z/3\Z$
+    \begin{table}[ht]
+        \begin{tabular}{|l|l|l|l|}
+        \hline
+        $\times$  & $\o{0}$ & $\o{1}$ & $\o{2}$ \\
+        $\o{0}$ & $\o{0}$ & $\o{0}$ & $\o{0}$ \\
+        $\o{1}$ & $\o{0}$ & $\o{1}$ & $\o{2}$ \\
+        $\o{2}$ & $\o{0}$ & $\o{2}$ & $\o{1}$ \\ \hline
+        \end{tabular}
+    \end{table}
+\end{example}
+
+\begin{lemme}
+    Soient a et b dans $\Z$ tels que $a \equiv b [n]$.
+
+    Pour tout $p \in \N^*, a^p \equiv b^p [n]$
+\end{lemme}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\begin{remark}
+    En revanche on n'a pas $p \equiv q [n] \implies a^p \equiv a^q [n]$
+\end{remark}
+
+\begin{theorem}
+    $\{\Z/n\Z, +, \times\}$ est un corps si et seulement si n est premier.
+\end{theorem}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+
+% End of 2024-10-18-CM-7.tex
+
+% Begin of 2024-11-08-CM-8.tex
+
+\subsection{Restes chinois (aka le restau chinois)}
+
+\begin{theorem}[des restes chinois]\
+
+    Soient $n_1, n_2, ..., n_k \in \N^*$, tels que $\forall i \in \N^*, n_i \geq 2$ et deux à deux premiers entre eux.
+    Alors pour tous $a_1, ..., a_k \in \Z$, il existe $x \in \Z$, unique modulo
+    $n := \prod n_i$, tel que
+
+    $$
+        \forall i \in \llbracket1, k\rrbracket, x \equiv a_i mod n_i
+    $$
+    
+    \vspace{2cm}
+
+    Plus formellement, on a une application bijective,
+
+    $$
+    \varphi :=
+    \begin{cases}
+        \Z/n\Z \to (\Z/n_1\Z) \times ... \times (\Z/n_k\Z) \\
+        x\!\mod n \mapsto (x\!\mod n_1, ..., x\!\mod n_k)
+    \end{cases}
+    $$
+\end{theorem}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+% \begin{demonstration}
+%     Montrons deja que
+
+%     $PGCD(\Pi_{i=1}^{k-1} n_i, n_k) = 1$
+
+%     Soit p un facteur premier de $\Pi_{i=1}^{k-1} n_i$
+%     Alors p divise l'un des $n_i$.
+
+%     Comme $n_i$ et $n_k$ sont premier entre eux p ne divise pas nk.
+
+%     Donc $\Pi_{i=1}^{k-1} n_i$ et $n_k$ n'ont pas de facteur premier en commun : leurs PGCD est 1.
+
+%     De même pour $i \in [|1;k|]$ $PGCD(\Pi_{i\neq j} n_j, n_i) = 1$.
+
+%     Ainsi on pose une relation de Bezout
+
+%     $$
+%         (\Pi_{i\neq j} n_j) u_i + n_i v_i = 1
+%     $$
+
+%     Soit $x_i := (\Pi_{j \neq i} n_j)u_i$
+
+%     Alors $x_i \equiv \{ 0 mod n_j si j \neq i \{ 1 mod n_i$
+%     %todo
+
+%     On pose $x = \Sigma_{i=1}^k a_i x_i$ alors $x \equiv a_i mod n_i$
+
+%     Si $y = x + qn$ alors $y = x + q \Pi_{j=1}^k n_j = x + q(\Pi_{j=1}^k n_j) n_i \equiv x mod n_i \equiv x_i mod n_i$
+
+%     En particulier l'application $\phi$ est bien définie
+
+%     D'après la première partie, $\phi$ est surjective.
+
+%     Il nous reste à démontrer l'injectivité qui est equivalente à l'unicité modulo n.
+
+%     Regardons les cardinaux $Card(\Z/n\Z) = n$
+
+%     $Card(\Z/n_1\Z \times ... \times \Z/n_k\Z) = n_1 \times ... \times n_k = n$
+
+%     Ainsi $\phi$ est injective
+% \end{demonstration}
+
+\begin{remark}
+    $\varphi$ est un isomorphisme d'anneau. (respecte l'addition et la multiplication).
+\end{remark}
+
+\begin{methode}
+    À faire
+\end{methode}
+
+\section{Polynômes et Fractions rationnelles}
+
+\begin{definition}
+    Un \textbf{polynôme à coefficient dans} $\k$: une suite $A = \xn{a}$
+    telle que $\exists N \in \N, \forall n \gt N, a_n = 0$.
+
+    On écrira souvent $A = a_0 + a_1X + a_2X^2 + ... + a_NX^N = \Sigma_{i=0}^N a_iX^i = \Sigma_{i \in \N} a_iX^i = \Sigma a_iX^i$
+
+    \item $\k[X]$ = \{polynômes à coefficients dans $\k$\}
+    \item \textbf{polynôme nul} : tous les coefficients sont nuls.
+    \item \textbf{polynôme constant} : $\forall i \gt 0, a_i = 0$ ($A = cX^0 = c$ où $c \in \k$)
+    \item \textbf{monôme} : polynôme de la forme %TODO
+\end{definition}
+
+Symbole de Kronecker $\delta_{i,j} = 1$ si i = j sinon 0
+
+%TODO jusqu'a proposition anneau comm unitaire
+
+
+% End of 2024-11-08-CM-8.tex
+
+% Begin of 2024-11-15-CM-9.tex
+
+\begin{proprietes}
+\end{proprietes}
+
+\begin{demonstration}
+    Soient $A = \sum(a_i X^i)$ et $B = \sum(b_i X^i)$
+    
+    $C = A + B$ avec $c_i = a_i + b_i$
+
+    Si $i \gt max(degA, degB)$ alors
+\end{demonstration}
+
+% until prop decomposition
+
+
+% End of 2024-11-15-CM-9.tex
+
+% Begin of 2024-11-22-CM-10.tex
+
+% PGCD
+
+% proposition k(X) est un corps
+
+
+% End of 2024-11-22-CM-10.tex
+
+% Begin of 2024-11-29-CM-11.tex
+
+% corps des fraction rationel
+% avec les degree
+
+
+% End of 2024-11-29-CM-11.tex
+
+
+
+\end{document}

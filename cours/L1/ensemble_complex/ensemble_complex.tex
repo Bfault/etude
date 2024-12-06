@@ -1,0 +1,802 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{06 December 2024}
+
+\title{Ensemble Complex}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{util.tex}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+% Begin of 2024-09-12-CM-1.tex
+
+Arrivé apres le premier CM (cours à venir)
+
+
+% End of 2024-09-12-CM-1.tex
+
+% Begin of 2024-09-13-CM-2.tex
+
+\section{Méthodes de démonstration 1}
+
+\subsection{Implication}
+
+Pour démontrer un énoncé du type $P \implies Q$ (Si P alors Q)
+
+\begin{methode}
+    On suppose P.
+    
+    raisonnement profond.
+
+    on en conclut Q.
+\end{methode}
+
+
+\begin{example}
+    \begin{align*}
+        \text{Démontrons que }x \in \mathbb{R} \implies x + 1 \in \mathbb{R}_+
+    \end{align*}
+    On suppose $x \in \mathbb{R}$
+    \begin{flalign*}
+        &x \geq 0&& \\
+        &x + 1 \geq 0 + 1 \geq 0&&
+    \end{flalign*}
+    Donc $x + 1 \in \mathbb{R}_+$
+\end{example}
+
+\begin{remark}
+    $A \subset B$ ($A, B \subset E$) par définition se traduit par $\forall x \in E, x \in A \implies x \in B$
+\end{remark}
+
+\subsection{Règle d'inférence ("Déduction naturelle")}
+
+Supposons A, B deux formules logiques dépendant d'énoncés élémentaires P, Q, R, ...
+Imaginons que pour chaque ligne de la table de vérité où A est vrai, B l'est également.
+Ainsi lorsqu'on a A on pourra déduire B
+
+\begin{example}
+    Supposons $P \implies P \lor Q$
+
+    Quand P est vrai $P \lor Q$ est vrai.
+\end{example}
+
+\subsection{Disjonction de cas}
+
+De même une tautologie est une règle qui est toujours vraie. Un exemple ($P \lor \neg Q$).
+
+\begin{example}
+    Théorème si $x \in \mathbb{N}$ alors $x(x + 1)$ pair.
+
+    \vspace{1em}
+
+    Si x est pair alors $x = 2k, k \in \mathbb{N}$.
+
+    $x(x + 1) = 2(k(x + 1))$ est pair.
+
+    \vspace{1em}
+
+    Si x est impair $x + 1$ est pair implique $\exists k \in \mathbb{N}, (x + 1) = 2k$.
+
+    $x(x + 1) = x + 2k = 2(kx)$ implique $x(x + 1)$ pair.
+
+    \vspace{1em}
+
+    Conclusion: Dans tous les cas $x(x + 1)$ est pair.
+    
+    C'est un raisonnement par disjonction de cas.
+\end{example}
+
+\begin{methode}
+    Plus généralement si $A \lor B \lor C \lor ...$ est une tautologie alors la méthode de la démonstration
+
+    \vspace{0.5em}
+
+    \item \textbf{1) Suppose A}
+    \item \textbf{raisonnement profond}
+    \item \textbf{conclusion}
+    \item \textbf{2) Suppose B}
+    \item \textbf{raisonnement profond}
+    \item \textbf{même conclusion}
+    \item \textbf{3) \ldots}
+    \item \textbf{Donc la conclusion est vrai dans tous les cas}
+\end{methode}
+
+\begin{remark}
+    Pour trouver des synonyme en regardant toute les valeurs dans une table de vérités, on utilise une disjonction de cas.
+\end{remark}
+
+\begin{example}
+    Soit un entier n, n est impair ou $n^2$ est un multiple de 4.
+
+    \vspace{1em}
+
+    Supposons que n ne soit pas impair.
+
+    Alors n est pair, donc il existe $k \in \Z$ tel que $n = 2k$
+
+    Ainsi $n^2 = (2k)^2 = 4k^2$.
+
+    $n^2$ est un multiple de 4.
+\end{example}
+
+\subsection{La double implication}
+
+Si vous souhaitez montrer que $P \iff Q$, il suffit de montrer $P \implies Q$ et $Q \implies P$.
+
+\begin{example}
+    $x \in \N \iff x + 1 \in \N^*$
+
+    1) Supposons que $x \in \N$, donc $x \geq 0 \implies x + 1 \geq 1$
+
+    Ainsi $x + 1 \in \N^*$
+
+    2) Supposons que $x + 1 \in \N^*$, donc $x + 1 \geq 1 \implies x + 1 - 1 \geq 1 - 1 \implies x \geq 0$.
+
+        La soustraction est stable sur $\Z$, de plus $x \geq 0$ donc $x \in \Z_+ \equiv \N$
+\end{example}
+
+\begin{remark}
+    Régulièrement utilisé pour montre que deux ensembles sont égaux, on montre $A \subset B$ et $B \subset A$.
+    Cela s'appelle la \textbf{double inclusion}.
+\end{remark}
+
+\subsection{Raisonnement par contraposée}
+
+$P \implies Q$ est synonyme à $\neg Q \implies \neg P$, ça se prouve facilement en comparant leurs tables de vérités.
+
+\begin{example}
+    Soit $n \in \N$, montrer que si $n^2$ alors n est pair.
+
+    \vspace{0.5em}
+
+    Supposons que n est impair, alors il existe $k \in \Z, n = 2k + 1$
+
+    Ainsi $n^2 = (2k + 1)^2 = 4k^2 + 4k + 1 = 2(2k^2 + 2k) + 1$ est impair.
+
+    n impair implique $n^2$ impair donc $n^2$ pair implque n pair (la proposition de base).
+\end{example}
+
+\subsection{Raisonnement par l'absurde}
+
+Pour montrer que P est vrai, on peut supposer P faux et arriver à une contradiction.
+
+\begin{example}
+    Montrons que $\sqrt{2}$ est irrationnel.
+
+    \begin{demonstration}
+        On suppose que $\sqrt{2}$ est rationnel, i.e. on peut écrire $\sqrt{2} = \dfrac{a}{b}$ avec $a \in \Z, b \in \N$ (et $pgcd(a, b) = 1$).
+
+        $\sqrt{2} = \dfrac{a}{b} \implies 2 = \dfrac{a^2}{b^2} \implies 2b^2 = a^2$
+
+        Ainsi $a^2$ est pair et avec le raisonnement précédent a est aussi pair (donc $a = 2k$ avec $k \in \Z$).
+
+        $2b^2 = (2k)^2 \implies 2b^2 = 4k^2 \implies b^2 = 2k^2$
+
+        Ainsi $b^2$ est pair et b aussi.
+
+        \begin{rdem}
+            Absurde a et b sont premiers entre eux, ils ne peuvent pas être tous les deux multiple de 2.
+        \end{rdem}
+    \end{demonstration}
+\end{example}
+
+
+% End of 2024-09-13-CM-2.tex
+
+% Begin of 2024-09-20-CM-3.tex
+
+\section{Logique avec quantificateurs}
+
+Quand on utilise des quantificateurs il y a des règles à suivre:
+
+\textbf{Règle numéro 1:} Toute lettre dans un énoncé doit être introduite par un quantificateur.
+
+\textbf{Règle numéro 2:} Cette introduction doit se faire avant la première occurence de la variable.
+
+\textbf{Règle numéro 3:} On doit toujours préciser à quel ensemble appartient la variable.
+
+
+\begin{methode}
+    Quand on veut montrer un énoncé universel ($\forall x \in X, P(x)$)
+
+    \vspace{0.5em}
+
+    \item 1) \textbf{"Soit $x \in X$, montrons P(x)."}
+    \item 2) \textbf{raisonnement profond.}
+    \item 3) \textbf{On montre P(x).}
+\end{methode}
+
+\begin{example}
+    $\forall x \in \R, \dfrac{x}{x^2 + 1} \geq \dfrac{-1}{2}$
+
+    \vspace{1em}
+
+    Soit $x \in \R$
+    \begin{align*}
+        \dfrac{x}{x^2 + 1} \geq -\dfrac{1}{2} &\implies 2x \geq -(x^2 + 1) \\
+        &\implies (x^2 + 2x + 1) \geq 0\\
+        &\implies (x + 1)^2 \geq 0
+    \end{align*}
+\end{example}
+
+Pour donner un nom à une quantité/un objet mathématique, on écrit:
+
+\textbf{Posons A := ...}, \textbf{Notons A le ...} ou \textbf{Soit A := ...}.
+
+\begin{methode}
+    Quand on veut montrer qu'il existe x appartenant à A vérifiant P(x),
+
+    Soit on a en tête un exemple d'élément x dans A vérifiant P(x)
+    \item \textbf{Posons x = ...}
+    \item \textbf{Vérifions $x \in A$}
+    \item \textbf{Vérifions P(x)}
+    
+    Soit on essaye d'utiliser des théorèmes d'existence pour montrer qu'un tel x existe.
+\end{methode}
+
+\begin{remark}
+    Les mêmes quantificateurs peuvent être intervertis mais pas quand ils sont différent (un $\forall$ avec un $\exists$).
+\end{remark}
+
+\section{Méthodes de démonstration 2}
+
+\subsection{Unicité d'un objet}
+
+Nous croiserons régulièrement des énoncés du type: "Il y a au plus un élément $x \in X$ vérifiant P(x)".
+
+\begin{methode}
+    Pour montrer qu'un ensemble X contient au plus un élément vérifiant une propriété P, on peut procédé ainsi.
+
+    \item 1) \textbf{Soient x et x' deux élément de X vérifiant P, montrons x = x'}
+    \item 2) \textbf{Raisonnement profond.}
+    \item 3) \textbf{On en conclut l'unicité d'un élément vérifiant P}.
+\end{methode}
+
+\begin{remark}
+    L'unicité ne veut pas dire qu'on a montré l'existence.
+\end{remark}
+
+
+\begin{example}
+    Soit $n \in \N$ Montrer qu'il existe au plus un multiple de 10 dans $X = \{n, n+1, ..., n+5\}$
+
+    \vspace{1em}
+
+    \begin{demonstration}
+        Soient $k, k' \in [0, 5]$ tel que $10 \mid n+k$ et $10 \mid n+k' \implies \exists p \in \Z, n + k = 10p$ et $\exists p' \in \Z, n + k' = 10p'$
+    
+        Par soustraction $(n + k) - (n + k') = 10m - 10m' \implies (k - k') = 10(m - m')$
+
+        Or $-5 \leq (k - k') \leq 5$ et le seul multiple de 10 dans cette intervalle est 0.
+
+        \begin{rdem}
+            Donc $k = k'$ et $n + k = n + k'$. %TODO: à revoir
+        \end{rdem}
+    \end{demonstration}
+\end{example}
+
+\subsection{Analyse synthèse}
+
+\begin{methode}
+    Pour déterminer l'ensemble des éléments d'un ensemble E vérifiant une propriété P, on peut raisonner par analyse/synthèse.
+
+    \vspace{1em}
+
+    \item \textbf{Analyse:} soit $x \in E$. on suppose que x vérifie P.
+    \item ... on regarde les forme possible de x.
+    \item \textbf{Synthèse:} Posons x = ... les différente formes possibles trouvées.
+    \item Vérifions que x vérifie P (et appartient bien à E).
+\end{methode}
+
+\begin{example}
+    Trouvons les couples de nombres réels non-nuls (x, y), solutions du système
+    \begin{equation*}
+        (S)
+        \begin{cases}
+            xy = 2\\
+            \dfrac{y}{x} = 2
+        \end{cases}
+    \end{equation*}
+
+    \begin{demonstration}
+        \textbf{Analyse:} Soit $(x, y) \in \R^2$
+
+        $xy \times \dfrac{y}{x} = 2 \times 2 \implies y^2 = 4 \implies y = 2 \lor y = -2$
+
+        La ligne 1 (de S) donne $x = \dfrac{2}{y}$
+
+        Donc les seuls couples possibles pour (x, y) sont (1, 2) et (-1, -2)
+
+        \vspace{0.5em}
+
+        \textbf{Synthèse:} On vérifie les deux couples trouvés.
+
+        $1 \time 2 = 2$ et $\dfrac{2}{1} = 2$
+        puis $-1 \times (-2) = 2$ et $\dfrac{-2}{-1} = 2$
+
+        \begin{rdem}
+            Donc (1, 2) et (-1, -2) sont l'ensemble des couples qui sont solutions de S.
+        \end{rdem}
+    \end{demonstration}
+\end{example}
+
+\subsection{Définition de $\N$ par récurence}
+
+\begin{definition}
+    $\N$ est l'ensemble construit par
+
+    \vspace{1em}
+
+    \item $\N$ contient un élément noté 0.
+    \item Chaque élément $n \in \N$ admet un unique successeur noté succ(n) = n + 1.
+    \item $\forall x \in \N, [succ(x) \neq 0]$.
+    \item $\forall x, y \in \N, [succ(x) = succ(y) \implies x = y]$.
+    \item $\forall A \subset \N, [(0 \in A \land (n \in A \implies succ(n) \in A)) \implies A = \N]$
+    (important pour la récurence).
+\end{definition}
+
+\begin{remark}
+    Avec cette notation par récurence on peut définir $\sum$ par
+    \begin{equation*}
+        \sum_{i=1}^{n}a_i =
+        \begin{cases}
+            0 &\text{ si } n = 0\\
+            (\sum_{i=1}^{n-1}a_i) + a_n &\text{ si } n \geq 1
+        \end{cases}
+    \end{equation*}
+\end{remark}
+
+\begin{methode}
+    Pour montrer une propriété $P_n$ est vrai pour tout entier $n \geq n_0$.
+
+    \item Donner explicitement la propriété $P_n$.
+    \item \textbf{Initialisation:} On montre $P_{n_0}$.
+    \item \textbf{Hérédité:} Soit $n \in \N, n \geq n_0$, tel que $P_n$ est vraie.
+    \item Montrons que $P_{n+1}$.
+\end{methode}
+
+\begin{remark}
+    Il peut arrivé qu'on ne puisse pas déduire $P_{n+1}$ de $P_n$ mais seulement $P_{n+2}$
+    à partir de $P_{n+1}$ et $P_n$, on fait alors une récurence double.
+\end{remark}
+
+\begin{methode}
+    Si $P_{n_0}$ et $P_{n_0+1}$ sont vraies et si $\forall n \in \N, n \geq n_0, (P_n \land P_{n+1} \implies P_{n+2})$
+    
+    Alors $\forall n \in \N, n \geq n_0, P_n$ est vrai.
+\end{methode}
+
+Il existe aussi une récurence forte.
+
+\begin{methode}
+    Si $P_{n_0}$ est vraie et si $\forall n \in \N, n \geq n_0, (\forall k \in \N, n_0 \leq k \leq n, P_k \implies P_{n+1})$
+    
+    Alors $\forall n \in \N, n \geq n_0, P_n$ est vrai.
+\end{methode}
+
+
+% End of 2024-09-20-CM-3.tex
+
+% Begin of 2024-09-27-CM-4.tex
+
+\section{Théorie des ensembles}
+
+\subsection{Opérations sur les ensembles}
+
+\begin{definition}
+    Un ensemble est une collection d'éléments. Il est défini par la connaissance de ses éléments.
+
+    Soit A un ensemble $a \in A$ signifie que a appartient à A. On dit alors que a est un élément de A.
+\end{definition}
+
+\begin{remark}
+    La définition d'un ensemble peut se faire des façon suivante:
+
+    \item $\bullet$ liste exaustive ({1, 2, 3})
+    \item $\bullet$ paramétrique ($\{2x + 1 \mid x \in \N\}$)
+    \item $\bullet$ inplicite ($\{x \in \R \mid x(x+1) \gt 0\}$)
+\end{remark}
+
+\begin{remark}
+    Dans un ensemble l'ordre et la répétition n'a pas son importance.
+\end{remark}
+
+\begin{definition}
+    Soient A et B deux ensembles. On dit que A est un sous-ensemble de B lorsque $\forall x \in A, x \in B$, on note plus $A \subset B$.
+
+    Soit A un ensemble fini, le cardinal de A est le nombre d'éléments de A, noté $card A$.
+
+    Un ensemble avec un seul élément est un singleton.
+
+    Un ensemble qui ne contient aucun éléments est appelé l'ensemble vide (noté $\emptyset$ ou \{\}),
+    c'est un sous ensemble de tout les ensembles.
+\end{definition}
+
+\begin{remark}
+    Un quantificateur universelle sur l'ensemble vide est automatiquement vérifié.
+    (e.g. $\forall x \in \emptyset, P(x)$)
+\end{remark}
+
+\begin{definition}
+    Soient A, B des parties d'un ensemble E.
+
+    La réunion de A et de B, notée $A \cup B$ est la partie de E dont les éléments sont éléments de A ou de B.
+
+    $A \cup B = \{x \in E, x \in A \lor x \in B\}$
+\end{definition}
+
+\begin{definition}
+    Soient A, B des parties d'un ensemble E.
+
+    L'intersection de A et de B, notée $A \cap B$ est la partie de E dont les éléments sont éléments de A et de B.
+
+    $A \cap B = \{x \in E, x \in A \land x \in B\}$
+\end{definition}
+
+\begin{remark}
+    La réunion n'est pas un ou exclusive.
+\end{remark}
+
+\begin{remark}
+    $A \cup B$ est le plus petit ensemble contenant A et B
+\end{remark}
+
+\begin{remark}
+    $A \cap B$ est le plus grand ensemble contenu dans A et B
+\end{remark}
+
+\begin{remark}
+    Comme un élement peut seulement être ou ne pas être dans un ensemble, on peut faire une disjonction de cas.
+\end{remark}
+
+\begin{definition}
+    Soient A, B deux sous ensemble d'un ensemble E.
+
+    \item $\bullet$ A et B sont dits disjoints si $A \cap B = \emptyset$
+    \item $\bullet$ Le complémentaire de A dans E est la partie de E dont les éléments sont tous les éléments de E qui ne sont pas dans A.
+    On le note $E\backslash A = \{x \in E \mid x \notin A\}$. Autres notations: $C_E A$ ou $A^C$
+    \item $\bullet$ La différence symétrique de A et B, notée $A \Delta B := (A \backslash B) \cup (B \backslash A)$
+\end{definition}
+
+%todo
+
+\begin{definition}
+    Soit I un ensemble, Soient $(A_i)_{i \in I}$ des sous ensembles d'une ensemble E.
+
+    L'intersection des $A_i$ est $\Cap_{i \in I} A_i := \{x \in E, \forall i \in I, x \in A_i\}$
+    
+    L'union des $A_i$ est $\Cup_{i \in I} A_i := \{x \in E, \exists i \in I, x \in A_i\}$
+
+    Par convention: si  $I = \emptyset$ alors $\Cup_{i \in I} A_i := 0$ et $I = \emptyset$ alors $\Cap_{i \in I} A_i := E$
+\end{definition}
+
+\begin{definition}
+    Soient A, B deux sous ensembles non vides de E.
+
+    A et B sont complémentaires dans E ou forment une partition de E si
+    $E = A \cup B$ et $A \cap B = \emptyset$
+    %todo A_i partition de E
+\end{definition}
+
+\begin{remark}
+    Le non complémentaire vient du fait qu'une autre définition soit $A = E\backslash B \iff B = E\backslash A$
+\end{remark}
+
+Soit E un ensemble. On note $P(E)$ l'ensemble des parties de E.
+
+\begin{remark}
+    Il est équivalent d'écrire $A \subset E$ ou $A \in P(E)$
+\end{remark}
+
+\begin{remark}
+    Pour tout ensemble E, on a $\emptyset \in P(E)$ et $E \in P(E)$
+\end{remark}
+
+\begin{theorem}
+    Lorsque $card(E) = n$ avec $n \in \N$ alors $card(P(E)) = 2^n$
+\end{theorem}
+
+\begin{demonstration}
+\textbf{Initialisation:} $card(E) = 0 \implies E = \emptyset$ alors $P(E) = \{\emptyset\}$ donc $card(P(E)) = 1 = 2^0$ 
+
+\textbf{Hérédité:} Soit E de cardinal $n \geq 1$. Soit $a \in E$, $F = E\backslash \{a\}$
+
+$card(F) = n - 1$
+
+Les parties de E sont les X et les $X \cup \{a\}$ où $X \in P(F)$
+
+Ainsi card(P(E)) = card(P(F)) + card(P(F))
+%todo
+\end{demonstration}
+
+\begin{definition}
+    Soient E et F deux ensembles.
+
+    Le produit cartésien de E par F est l'ensemble $E \times F = \{(x, y) \mid x \in E \land y \in F\}$
+\end{definition}
+
+\begin{remark}
+    Attention ce n'est pas commutatif, $E \times F \neq F \times E$
+\end{remark}
+
+\begin{definition}
+    Soient $E_1, E_2, ..., E_n$ des ensembles.
+
+    $E_1 \times E_2 \times ... \times E_n = \{(x_1, x_2, ..., x_n), \forall i \in \{1, 2, ..., n\}, x_i \in E_i\}$
+
+    $(x_1, x_2, ..., x_n)$ est appelé un n-uplet.
+    %todo E^n
+\end{definition}
+
+
+% End of 2024-09-27-CM-4.tex
+
+% Begin of 2024-10-04-CM-5.tex
+
+\begin{definition}
+    Soient X, Y deux ensembles.
+
+    \item $\bullet$ Une application de X dans Y est la donnée, pour tout point
+    $x \in X$ d'un unique point $y \in Y$ associé à x.
+    On dit que y est l'image de x par l'application.
+
+    \item $\bullet$ Soit f est une application de X dans Y.
+    \item $\diamond$ on note f(x) l'image de x par f
+    \item $\diamond$ X est appelé espace de départ de f.
+    \item $\diamond$ Y est appelé espace d'arrivée de f.
+    \item %todo
+\end{definition}
+
+\begin{remark}
+    Deux applications f et g sont égales si elles ont même ensemble de départ, même ensemble d'arrivée et si
+
+    $\forall x \in X, \; f(x) = g(x)$
+\end{remark}
+
+\begin{remark}
+    On ne change pas une application en modifiant la (les) variable(s) muette(s) permettant de la définir. Ainsi les applications suivantes sont égales:
+
+    $f : \R^2 \to \R (x, y) \to x + y,     g : \R^2 \to \R , (x_1, x_2) \to x_1 + x_2$
+    %todo you know
+\end{remark}
+
+\begin{remark}
+    Pour toute fonction f, si $x_1 = x_2$ alors $f(x_1) = f(x_2)$, la réciproque est fausse en général.
+\end{remark}
+
+\begin{remark}
+    Etant donnée une application $f: X \to Y   x \to f(x)$ et $X' \subset X$, on peut créer une application restreinte $f_{\mid X'}: X' \to Y    x \to f(x)$
+\end{remark}
+
+\begin{definition}
+    Soient X, Y des ensembles.
+
+    \item $\bullet$ On appelle graphe dans $X \times Y$ toute partie G de $X \times Y$
+    telle que $\forall x \in X, \exists! y \in Y, (x, y) \in G$
+
+    \item $\bullet$ Si f est une application de X dans Y, alors le graphe de f est
+    $G_f := \{(x, y) \in X \times Y \mid y = f(x)\}$
+\end{definition}
+
+\begin{remark}
+    Réciproquement si G est un graph %todo
+\end{remark}
+
+\begin{remark}
+    Une fonction n'étant pas nécessairement définie sur tout l'ensemble de départ considéré (souvent $\R$).
+\end{remark}
+
+\begin{definition}
+    Soit $f \in Y^X$
+
+    \item $\bullet$ On dit que $x \in X$ est un antécédent de $y \in Y$ par f lorsque $f(x) = y$, i.e. lorsque y est l'image de x par f.
+    \item $\bullet$ Si A est un sous ensemble de X, on appelle image de A l'ensemble
+    $f(A) := \{f(a) \mid a \in A\} = \{y \in Y \mid \exists a \in A, f(a) = y\} \subset Y$
+    \item $\bullet$ Si B est un sous ensemble de Y, on appelle image réciproque de B l'ensemble des antécédents d'éléments de B:
+    $f^{-1}(B) := \{x \in X \mid f(x) \in B\} \subset X$
+\end{definition}
+
+\begin{remark}
+    Attention à la notation, f(a) et f(A) ne sont pas de même nature.
+    Pour tout $x \in X, f(\{x\}) = \{f(x)\}$
+\end{remark}
+
+\begin{theorem}
+    Soit $f \in Y^X$
+
+    \item $\bullet$ Pour toutes parties A et B de Y on a,
+    
+    \item $\diamond$ $A \subset B \implies f^{-1}(A) \subset f^{-1}(B)$
+
+    \item $\diamond$ $f^{-1}(A \cup B) = f^{-1}(A) \cup f^{-1}(B)$
+    
+    \item $\diamond$ $f^{-1}(A \cap B) = f^{-1}(A) \cap f^{-1}(B)$
+    
+    \item $\bullet$ Pour toutes parties A et B de X, on a
+    
+    \item $\diamond$ $A \subset B \implies f(A) \subset f(B)$
+    \item $\diamond$ $f(A \cup B) = f(A) \cup f(B)$
+    \item $\diamond$ $f(A \cap B) \subset f(A) \cap f(B)$
+\end{theorem}
+
+\begin{demonstration}
+    %todo
+\end{demonstration}
+
+
+
+% End of 2024-10-04-CM-5.tex
+
+% Begin of 2024-10-11-CM-6.tex
+
+
+% End of 2024-10-11-CM-6.tex
+
+% Begin of 2024-10-18-CM-7.tex
+
+\begin{definition}
+    Soient E et F deux ensembles arbitraires On dit que E et F ont même cardinal
+    s'il existe une bijection entre E et F.
+
+    Soit E un ensemble. On dit que E est dénombrable s'il existe une injection de E dans~$\N$
+\end{definition}
+
+\begin{proposition}
+    $\N^*, \Z, \N^2, \Q, \N^n$ sont dénombrables.
+
+    $\R, P(\N)$ ne sont pas dénombrables
+
+    $P(\N)$ et $\R$ ont même cardinal.
+
+    %todo
+\end{proposition}
+
+\section{Relation et permutations}
+
+\begin{definition}
+    Soit E un ensemble non vide. Une relation binaire R sur E est la donnée d'une application
+    $E \times E \to {\text{Vrai}, \text{Faux}}$.
+
+    On dit que x est en relation avec y lorsque l'image de (x, y) par l'application
+    est "Vrai" et on note alors xRy
+\end{definition}
+
+\begin{remark}
+    %todo
+\end{remark}
+
+\begin{definition}
+    Soit E un ensemble non vide et R une relation binaire sur E. On dit que R est
+
+    \item \textbf{réflexive} lorsque $\forall x \in E, xRx$
+    \item \textbf{symétrique} lorsque $\forall(x, y) \in E^2, xRy \iff yRx$
+    \item \textbf{antisymétrique} lorsque $\forall (x, y) \in E^2, (xRy \land yRx) \implies x = y$
+    \item \textbf{transitive} lorsque $\forall (x, y, z) \in E^3, xRy \land yRz \implies xRz$
+\end{definition}
+
+\begin{definition}
+    Soit R une relation sur un ensemble E. On dit que R est une relation d'équivalence si elle est
+    réflexive, symétrique et transitive.
+\end{definition}
+
+\begin{definition}
+    Soit $E \neq \emptyset$ un ensemble muni d'une rel. d'équivalence R.
+
+    Soit $x \in E$.
+
+    On appelle classe d'équivalence modulo R de x et on note $\o{x}$ l'ensemble $\{x \in E, xRy\}$.
+\end{definition}
+
+\begin{theorem}
+    L'ensemble des classes d'équivalence de E modulo R forme une partition de E.
+\end{theorem}
+
+\begin{demonstration}
+%todo
+\end{demonstration}
+
+\begin{definition}
+    L'ensemble des classes d'équivalence de E modulo R s'appelle l'ensemble quotient
+    de E par R. On le note E/R.
+\end{definition}
+
+\begin{definition}
+    Soit R une relation sur un ensemble E.
+
+    On dit que R est une relation d'ordre si elle est réflexive, antisymétrique et transitive.
+    Notée souvent $\preccurlyeq$ cursif. On dit que $(E, \preccurlyeq)$ est un ensemble ordonné.
+
+    Relation d'ordre totale lorsque R est complète ($\forall x, y \in E, (xRy \lor yRx)$)
+\end{definition}
+
+\begin{definition}
+    Soit $(E, \preccurlyeq)$ ensemble ordonné. Soit $A \in P(E)$. On dit que
+
+    \item A admet un minimum lorsque
+    
+    $\exists a_0 \in A, \forall A, a_0 \preccurlyeq a$ On note $min(A) := a_0$
+
+    \item A admet un maximum lorsque
+    
+    $\exists a_0 \in A, \forall a \in A, a \preccurlyeq a_0$ On note $max(A) := a_0$
+
+    \item A est minoré lorsque
+    
+    $\exists m \in E, \forall a \in A, m \preccurlyeq a$
+
+    %todo
+\end{definition}
+
+\begin{remark}
+    Si A admet un minimum (resp. un maximum) alors A est minoré (resp. majoré)
+\end{remark}
+
+\begin{remark}
+    Si A admet un minimum (resp. maximum), il est unique.
+\end{remark}
+
+\begin{proposition}
+    Soit E un ensemble muni d'une relation d'ordre totale $\preccurlyeq$.
+    Soit $A \in P(E)$ un ensemble fini non-vide. Alors A admet un minimum et un maximum.
+\end{proposition}
+
+
+% End of 2024-10-18-CM-7.tex
+
+% Begin of 2024-11-08-CM-8.tex
+
+%todo maybe
+
+\section{Permutations}
+
+%S gothique
+
+\section{Ensemble et nombres complexes}
+
+%until demonstration groupe abelien
+
+
+% End of 2024-11-08-CM-8.tex
+
+% Begin of 2024-11-22-CM-9.tex
+
+% C un corps
+
+% coordonées polaires
+
+
+% End of 2024-11-22-CM-9.tex
+
+% Begin of 2024-11-29-CM-10.tex
+
+% Les formes
+
+Dans l'autre sens
+
+$$
+\cos \theta = \dfrac{e^{i\theta} + e^{-i \theta}}{2}
+$$
+$$
+\sin \theta = \dfrac{e^{i\theta} - e^{-i \theta}}{2i}
+$$
+
+
+% End of 2024-11-29-CM-10.tex
+
+
+
+\end{document}

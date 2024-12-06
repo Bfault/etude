@@ -1,0 +1,529 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{tcolorbox}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{06 December 2024}
+
+\title{Science Decision}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{util.tex}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+% Begin of 2024-09-12-CM-1.tex
+
+Arrivé apres le premier CM (cours à venir)
+
+
+% End of 2024-09-12-CM-1.tex
+
+% Begin of 2024-09-13-CM-2.tex
+
+
+\section{Relations binaires}
+
+\begin{definition}
+    Une relation binaire R sur un ensemble X est un sous-ensemble de paires ordonnées $(x, y) \in X^2$,
+    on simplifie la notation par $xRy$ (resp. $\neg xRy$) pour $(x, y) \in R$ (resp. $(x, y) \notin R$).
+\end{definition}
+
+\vspace{1em}
+
+\begin{proprietes}
+\item {
+    \textbf{réflexive} si
+    \begin{align*}
+        \forall x \in X, \; xRx
+    \end{align*}
+}
+\item {
+    \textbf{irréflexive} si
+    \begin{align*}
+        \forall x \in X, \; \neg(xRx)
+    \end{align*}
+}
+\item {
+    \textbf{symétrique} si
+    \begin{align*}
+        \forall x, y \in X, \; xRy \implies yRx
+    \end{align*}
+}
+\item {
+    \textbf{asymétrique} si
+    \begin{align*}
+        \forall x, y \in X, \; xRy \implies \neg(yRx)
+    \end{align*}
+}
+\item {
+    \textbf{antisymétrique} si
+    \begin{align*}
+        \forall x, y \in X, \; xRy \land yRx \implies x = y
+    \end{align*}
+}
+\item {
+    \textbf{transitive} si
+    \begin{align*}
+        \forall x, y, z \in X, \; xRy \land yRz \implies xRz
+    \end{align*}
+}
+\item {
+    \textbf{négativement transitive} si
+    \begin{align*}
+        \forall x, y, z \in X, \; \neg(xRy) \land \neg(yRz) \implies \neg(xRz)
+    \end{align*}
+}\item {
+    \textbf{complète (ou totale)} si
+    \begin{align*}
+        \forall x, y \in X, \; xRy \lor yRx
+    \end{align*}
+}
+\end{proprietes}
+
+\begin{remark}
+    la notation $xRy$ peut être remplacé par $(x, y) \in R$, par exemple pour la réflexivité, ($\forall x \in X, \; (x, x) \in R$).
+\end{remark}
+
+\vspace{2em}
+
+Une relation qui satisfait certaines propriétés peut porter un nom.
+
+\begin{definition}
+\item Une \textbf{relation d'équivalence} si elle est réfléxive, symétrique et transitive.
+\item Un \textbf{préordre (ou quasi ordre)} si elle est réflexive et transitive.
+\item Un \textbf{ordre faible (ou préordre total)} si elle est transitive et complète.
+\item Un \textbf{ordre faible strict} si elle est asymétrique et négativement transitive.
+\item Un \textbf{ordre partiel} si elle est réflexive, antisymétrique et transitive.
+\item Un \textbf{ordre partiel (ou ordre, ordre linéaire, chaîne)} si elle est antisymétrique, transitive et complète.
+\end{definition}
+
+\begin{example}
+\item $\R$ est totalement ordonnées par $\geq$ et est appelé l'ordre naturel sur $\R$.
+\item $\N$ avec $\gt$ est un ordre faible strict.
+\item Deux entiers relatifs x et y sont congrus modulo $p \in \N$, s'il existe $k \in \N$ tel que $x = y + kp$, ce que l'on note $x \equiv y[p]$.
+    La relation de congruence modulo sur $\Z$ est une relation d'équivalence.
+\end{example}
+
+
+% End of 2024-09-13-CM-2.tex
+
+% Begin of 2024-09-19-CM-3.tex
+
+\begin{proposition}
+    Si R est asymétrique alors R est réflexive.
+\end{proposition}
+
+\noindent
+Démontré trivialement par les définitions d'asymétrie et de réflexivité.
+
+\begin{proposition}
+    Si R est irréflexive et transitive alors R est asymétrique.
+\end{proposition}
+
+\begin{demonstration}
+    On suppose que R est irréflexive, transitive et non asymétrique.
+
+    \vspace{0.5em}
+
+    La non asymétrie se traduit par
+    \begin{align*}
+        \neg(\forall x, y \in X, \; xRy \implies \neg(yRx)) \quad \equiv \quad \exists x, y \in X, \; xRy \land yRx 
+    \end{align*}
+
+    Ainsi avec la non asymétrie et la transitivité on arrive à
+    \begin{align*}
+        &\exists x, y \in X, \; xRy \land yRx \quad \land \quad \forall x, y, z \in X, \; xRy \land yRz \implies xRz \\
+        &\equiv \quad \exists x, y \in X, \; xRy \land yRx \implies xRx
+    \end{align*}
+
+    Ce qui est absurde car ça contredit l'irréflexivité !!!
+
+    \begin{rdem}
+        Donc Si R est irréflexive et transitive alors R est asymétrique.
+    \end{rdem}
+\end{demonstration}
+
+\begin{proposition}
+    R est négativement transitive ssi
+    \begin{align*}
+        \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+    \end{align*}
+\end{proposition}
+
+\begin{demonstration}
+    Utilisons la contraposée du négativement transitive \par (Rappel la contraposée de $P \implies Q$ est $\neg Q \implies \neg P$),
+
+    \begin{align*}
+        &\forall x, y, z \in X, \; \neg(\neg(xRz)) \implies \neg(\neg xRy \land \neg yRz) \\
+        &\equiv \quad \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+    \end{align*}
+
+    \begin{rdem}
+        Ainsi R est négativement transitive ssi
+        \begin{align*}
+            \forall x, y, z \in X, \; xRz \implies xRy \lor yRz
+        \end{align*}
+    \end{rdem}
+\end{demonstration}
+
+\begin{proposition}
+    Si R est complète alors R est réflexive 
+\end{proposition}
+Démontré facilement par définition en prenant un x et un $y = x$.
+
+
+% End of 2024-09-19-CM-3.tex
+
+% Begin of 2024-09-26-CM-4.tex
+
+\subsection{Opérations sur les relations}
+
+Puisque une relation R sur X est un sous ensemble de $X \times X$, on peut facilement utiliser
+des opérations ensemblistes.
+
+\begin{definition}
+    Étant donné deux relation $R_1$ et $R_2$ sur un ensemble X.
+
+    \item $\bullet$ la relation \textbf{complémentaire} de $R_1$, la relation binaire $R_1^c$ sur X telle que
+    
+    $\forall x, y \in X, \; x R_1^c y \text{ si } \neg(x R_1 y)$
+    \item $\bullet$ la \textbf{réunion} de $R_1$ et $R_2$ est la relation binaire $R_1 \cup R_2$ sur X telle que
+    
+    $\forall x, y \in X, \; x R_1 \cup R_2 y \text{ si } x R_1 y \lor x R_2 y$
+    \item $\bullet$ l'\textbf{intersection} de $R_1$ et $R_2$ est la relation binaire $R_1 \cap R_2$ telle que
+    
+    $\forall x, y \in X, \; x R_1 \cap R_2 y \text{ si } x R_1 y \land x R_2 y$
+    \item $\bullet$ la relation $R_1$ est \textbf{compatible} avec $R_2$ si
+    
+    $\forall x, y \in X, \; x R_1 y \implies x R_2 y$ ou de manière équivalente $R_1 \subset R_2$
+    \item $\bullet$ la relation \textbf{réciproque} (ou duale, inverse) de $R_1$,
+    la relation binaire $R_1^{-1}$ sur X telle que
+    
+    $\forall x, y \in X, \; y R_1^{-1} x \text{ si } x R_1 y$
+    \item $\bullet$ la \textbf{composée} de $R_1$ et $R_2$,
+    la relation binaire $R_1 \circ R_2$ sur X telle que
+
+    $\forall x, y \in X, \; x R_1 \circ R_2 y \text{ si }\exists z \in X, x R_2 z \land z R_1 y$
+\end{definition}
+
+\subsection{Relations d'équivalence}
+
+\begin{proposition}
+    L'intersection $R_1 \cap R_2$ de deux relations d'équivalences $R_1$ et $R_2$ sur un ensemble X est une relation d'équivalence.
+\end{proposition}
+
+\begin{demonstration}
+    \item $\bullet$ \textbf{Réflexive} car $\forall x \in X, \; x R_1 x \land x R_2 x$, ainsi $x R_1 \cap R_2 x$ pour tout $x \in X$.
+    \item $\bullet$ \textbf{Symétrie} car $\forall x, y \in X, \; (x R_1 y \land y R_1 x) \land (x R_2 y \land y R_2 x)$, ainsi $\forall x, y \in X, \; x R_1 y \land x R_2 y$ ce qui implique que $y R_1 x \land y R_2 x$
+    soit $\forall x, y \in X, \; (x R_1 y \land y R_2 x) \land (x R_2 y \land y R_1 x)$.
+    \item $\bullet$ \textbf{Transitive} car $\forall x, y \in X, x R_1 y \land x R_2 y \land y R_1 z \land y R_2 z \implies xR_1z \land xR_2z \implies x R_1 \cap R_2 z$
+    
+    \begin{rdem}
+        $R_1 \cap R_2$ est Réflexive, Symétrique, Transitive donc c'est une relation d'équivalence.
+    \end{rdem}
+\end{demonstration}
+
+
+% End of 2024-09-26-CM-4.tex
+
+% Begin of 2024-10-03-CM-5.tex
+
+Soit $x \in X$ l'ensemble $\{y \in X \mid xRy\}$ est appelé classe d'équivalence
+de x notée $C_x$.
+
+\begin{example}
+    "=" sur $\N$
+
+    \item $\bullet$ $\forall a \in \N, a = a$ (Réflexive)
+    \item $\bullet$ $\forall a, b \in \N, a = b \implies b = a$ (Symétrique)
+    \item $\bullet$ $\forall a, b, c \in \N, a = b \land b = c \implies a = c$ (Transitive)
+
+    "=" est une relation d'équivalence sur $\N$
+
+    $C_2 = \{y \in \N, 2 = y\} = \{2\}$
+\end{example}
+
+$\{C_x \mid x \in X\}$ est l'ensemble quotient de X par R noté X/R.
+
+\begin{proposition}
+    Soit R une relation d'équivalence sur X, X/R forme une partition de X,
+    i.e.
+
+    \item $\bullet$ $\forall x, y \in X, C_x \cap C_y = \emptyset \text{ ou } C_x = C_y$
+    \item $\bullet$ $X = \bigcup_{x \in X} C_x$
+\end{proposition}
+
+\begin{demonstration}
+    Nous allons montrer que
+
+    $\forall x, y \in X, \; xRy \implies C_x = C_y$
+
+    $\forall x, y \in X, \; \neg xRy \implies C_x \cap C_y = \emptyset$
+
+    Soient $x, y \in X$
+
+    so $xRy$ soit $z \in C_x$ alors xRz
+    %todo
+\end{demonstration}
+
+\begin{remark}
+    Pour une relation binaire il est toujours vrai que $\forall x, y \in X, xRy \lor \neg xRy$
+\end{remark}
+
+%todo
+
+
+% End of 2024-10-03-CM-5.tex
+
+% Begin of 2024-10-17-CM-6.tex
+
+\subsection{Ordre faible et ordre total}
+
+Soit R une relation binaire sur l'ensemble X.
+
+\vspace{1em}
+
+\noindent
+On définit I et S sur X par
+
+$\forall x \in X, y \in X, xIy \text{ si } xRy \land yRx$
+
+$\forall x \in X, y \in X, xSy \text{ si } xRy \land \neg yRx$
+
+\begin{example}
+    $A = \{a, b, c\}$
+
+    $R = \{(a, b), (b, a), (a, c), (b, c)\}$
+
+    $I = \{(a, b), (b, a)\}$
+
+    $S = \{(a, c), (b, c)\}$
+\end{example}
+
+\begin{proposition}
+    si R est un ordre faible sur X, alors
+
+    \item \textbf{1.} I est une relation d'équivalence
+    \item \textbf{2.} S est irréflexive et transitive
+\end{proposition}
+
+\begin{demonstration}
+    I relation d'équivalence:
+
+    \item I reflexive
+    
+    Soit $x \in X, xIx \iff xRx \land xRX \iff xRx$ vrai car R est complète
+
+    \item I symétrique
+    
+    Soient $x \in X, y \in X, xIy \implies xRy \land yRx \implies yRx \land xRy \implies yIx$
+
+    \item I transitive
+    
+    Soient $x, y, z \in X, xIy \land yIz \implies xRy \land yRx \land yRz \land zRy \implies xRy \land yRz \land zRy \land yRx \implies xRz \land zRx \implies xIz$
+\end{demonstration}
+
+On définit $R^*$ sur $X/I$ par 
+
+$\forall C_x \in X/I, C_y \in X/I, C_xR^*C_y \text{ lorsque } xRy$
+
+$R^*$ sur X/I est la réduction (relation quotient) de R sur X
+
+\begin{proposition}
+    Si R est un ordre faible alors $R^*$ est un ordre total sur X/I
+\end{proposition}
+
+\begin{demonstration}
+    \item $R^*$ antisymétrique
+    
+    Soient $C_x, C_y \in X/I, C_x R^* C_y \land C_y R^* C_x \implies C_x = C_y \implies xIy \implies y \in C_x \implies C_x = C_y$
+
+    \item $R^*$ transitive
+    
+    Soient $C_x, C_y, C_z \in X/I$
+
+    $C_x R^* C_y \land C_y R^* C_z \implies xRy \land yRz \implies xRz \implies C_x R^* C_z$
+
+
+    \item $R^*$ complète
+    
+    $C_x, C_y \in X/I, C_xR^*C_y \lor C_yR^*C_x$
+    car R complète
+\end{demonstration}
+
+\subsubsection{Irréflexive et transitive}
+
+voir plus tard
+
+
+
+
+% End of 2024-10-17-CM-6.tex
+
+% Begin of 2024-10-24-CM-7.tex
+
+\subsection{Ordre total, Ordre partiel}
+
+R ordre partiel sur X
+
+Soit $x \in X$, x est:
+
+\begin{itemize}
+    \item un élément maximal si $\forall y \in X\backslash\{x\}, \neg (yRx)$
+    \item le plus grand élément si $\forall y \in X, xRy$
+    \item un élément minimal si $\forall y \in X\backslash\{x\}, \neg (xRy)$
+    \item le plus petit élément si $\forall y \in X, yRx$
+\end{itemize}
+
+\begin{proposition}
+    Il y a au plus un plus grand (resp. petit) élément.
+\end{proposition}
+
+\begin{demonstration}
+    Soit x et x' deux plus grand (resp. petit) éléments avec $x \neq x'$.
+
+    Ainsi $\forall y \in X, xRy \text{ et } x'Ry \implies xRx' \text{ et } x'Rx \implies x = x'$
+
+    Absurde car on a supposé $x \neq x'$
+\end{demonstration}
+
+Construction de diagramme de Hasse
+\begin{itemize}
+    \item si xRy : x au dessus de y
+    \item et si x \textbf{couvre} y : il n'existe pas $z \in X\backslash\{x, y\}$ tel que $xRz \land zRy$
+    \item alors il y a une arête qui relie x et y
+\end{itemize}
+
+
+% End of 2024-10-24-CM-7.tex
+
+% Begin of 2024-11-07-CM-8.tex
+
+\begin{definition}
+    Une \textbf{chaîne} est un ensemble d'éléments de X totalement ordonné
+\end{definition}
+
+\begin{definition}
+    Une \textbf{antichaîne} si $\forall x, xRy \lor yRx \implies x = y$
+\end{definition}
+
+Soit c le nombre minimal de chaînes pour partitionner X
+
+Soit A une anti-chaîne de cardinal maximal a
+
+\begin{remark}
+    partition avec le plus grand nombre de chaînes : \{\{a\}, \{b\}, ..., \{g\}\}
+\end{remark}
+
+\begin{proposition}
+    X ensemble partiellement ordonné par R.
+
+    Le nombre d'éléments d'une antichaîne de cardianl maximal (a) est
+    égale au nombre minimum de chaînes pour partitionner X.
+\end{proposition}
+
+\begin{demonstration}
+    Preuve par récurrence sur $|x|$
+
+    Init. $|x| = 1$
+
+    X est une chaîne et une antichaîne a = 1
+
+    on partitionne X en 1 chaîne c = a = 1
+
+    here. Suppose que ça marche pour tous jusqu'a n
+
+    2 cas:
+
+    (a) si X contient une antichaîne de cardinal a contenant au moins un element non mimimal et au moins un element maximal
+
+    (b) si X contient une antichaîne de cardinal a contenant que des elements maximaux ou minimaux
+
+    (a) Soient $H = \{x \in X | \exists z \in A, xRz\}$ et $B = \{x \in X | \exists z \in A, zRx\}$
+
+    du fait de (a) $\exists w \in A$ non maximal implique $\exists y \in X, yRw$ et $y \notin B$ donc $|B| \leq n - 1$
+    donc B peut être partitionné en a chaînes
+\end{demonstration}
+
+
+% End of 2024-11-07-CM-8.tex
+
+% Begin of 2024-11-14-CM-9.tex
+
+Suite de démonstration
+
+\begin{demonstration}
+
+\end{demonstration}
+
+\section{Préférence et utilité}
+
+\subsection{Définition}
+
+\begin{definition}
+    Soit $(X, \gtrsim)$ une structure de préférence (voir chap 2)
+
+    $\gtrsim$ est une relation binaire sur X
+\end{definition}
+
+On veut une application $f: (X \gtrsim) \rightarrow (\R, \geq)$ telle que $x \gtrsim y \iff f(x) \geq f(y)$
+
+f est une fonction d'utilité.
+
+Soient $f: (X, R_1) \rightarrow (Y, R_2)$, On dira que f est isotone si $\forall x, z \in X, xR_1 z \implies f(x)R_2 f(z)$
+
+Un homomorphisme de $(X, R_1)$ vers $(Y, R_2)$ si $\forall x, z \in X, x R_1 z \iff f(x)R_2 f(z)$
+
+\begin{remark}
+    Homomorphisme implique isotone
+\end{remark}
+
+
+% End of 2024-11-14-CM-9.tex
+
+% Begin of 2024-11-21-CM-10.tex
+
+
+\subsection{Représentation de type $(X, \succeq) \rightarrow (\R, \geq)$: cas fini}
+
+Soit $\succ$ sur X
+
+\begin{proposition}
+    Soit X fini, une codition nécessaire et suffisante (C.N.S) pour qu'existe une fonction
+
+    $\exists f: (X, \succ) \rightarrow (\R, \gt)$ tel que $x \succ y \iff f(x) \gt f(y)$ si et seulement si $\succ$ est un ordre faible stricte.
+\end{proposition}
+
+\begin{demonstration}
+    Preuve condition nécessaire, on montre $\neg Q \implies \neg P \equiv P \implies Q$
+
+    \item Asymétrie: Soient $x, y \in X$ tel que $x \succ y \implies f(x) \lt f(y) \implies \neg f(x) \lt f(y) \implies \neg y \succ x$ donc asymétrique.
+
+    \item Negativement transitive: Soient $x, y, z \in X$ tels que $\neg x \succ y \land \neg y \succ z \implies \neg f(x) \gt f(y) \land \neg (y) \gt f(z) \implies f(x) \leq f(y) \land f(y) \leq f(z) \implies f(x) \leq f(z) \implies \neg (x) \gt f(z) \implies \neg x \succ z$
+    Finalement negativement transitive.
+
+    Preuve condition suffisante, on montre $Q \implies P$, Soit $\succ$ un o.f.s sur X
+
+    Soit $x \in X$ on définit:$\curlyvee x = \{y \in X \mid x \succ y\}$
+    
+    Soit $f(x) = Card(\curlyvee x)$ si $X = \Z$
+\end{demonstration}
+
+
+
+% End of 2024-11-21-CM-10.tex
+
+
+
+\end{document}
