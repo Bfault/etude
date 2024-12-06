@@ -59,19 +59,11 @@ jobs:
 
       - name: Push PDF files to pdf-output branch
         run: |
-          git fetch origin pdf-output || true
-
-          git checkout pdf-output || git checkout --orphan pdf-output
-
-          find . -type f -name "*.pdf" -exec rm -f {} +
-
-          find ./output/cours/ -type f -name "*.pdf" -exec cp {} ./ \;
-
-          git add all
-
+          git fetch origin pdf-output || git checkout --orphan pdf-output
+          git checkout pdf-output
+          find . -type f -name "*.pdf" -exec cp ./output/cours/{} . \;
+          git add .
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
-
           git commit -m "Update PDF files" || echo "No changes to commit"
-
-          git push origin pdf-output --force
+          git push origin pdf-output
