@@ -57,12 +57,17 @@ jobs:
             done
           done
 
+      - name: Clean up unnecessary files
+        run: |
+          rm -rf cours
+
       - name: Push PDF files to pdf-output branch
         run: |
           git fetch origin pdf-output || git checkout --orphan pdf-output
           git checkout pdf-output
-          find . -type f -name "*.pdf" -exec cp ./output/cours/{} . \;
-          git add .
+          rm -rf *
+          cp -r output/cours .
+          git add cours
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
           git commit -m "Update PDF files" || echo "No changes to commit"
