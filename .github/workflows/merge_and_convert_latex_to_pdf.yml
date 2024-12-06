@@ -43,7 +43,11 @@ jobs:
             done
           done
       
+<<<<<<< HEAD
       - name: Convert to PDF
+=======
+      - name: Convert .tex files to PDF while preserving structure
+>>>>>>> master
         run: |
           mkdir -p output/cours
           export TEXINPUTS=/home/runner/work/etude/etude/utils/:$TEXINPUTS
@@ -53,6 +57,7 @@ jobs:
               mkdir -p output/$subject
               texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
               lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
+<<<<<<< HEAD
               lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
             done
           done
@@ -75,3 +80,21 @@ jobs:
           git commit -m "Update PDF files" || echo "No changes to commit"
 
           git push origin pdf-output --force
+=======
+              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile" # do it again for toc ¯\_(ツ)_/¯
+            done
+          done
+      
+      - name: Commit and push converted PDF files
+        run: |
+          git config --local user.name "Github Actions"
+          git config --local user.email "actions@github.com"
+          git checkout -B web-staging
+          
+          mkdir -p website/public/static
+          cp -r output/* website/public/static
+
+          git add website
+          git commit -m "Update PDF files from LaTeX sources"
+          git push origin web-staging --force
+>>>>>>> master
