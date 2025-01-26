@@ -74,7 +74,8 @@ jobs:
           git fetch origin pdf-output || git checkout --orphan pdf-output
           git checkout pdf-output
           rm -rf *
-          cp -r output/cours .
+          mkdir -p cours
+          cp -r output/* cours/
           git add cours
           git config user.name "Github Actions"
           git config user.email "actions@github.com"

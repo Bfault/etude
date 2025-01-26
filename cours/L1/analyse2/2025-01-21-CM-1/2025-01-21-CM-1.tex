@@ -1,0 +1,247 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd, mathrsfs}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{21 janvier 2025}
+
+\title{Analyse2 | CM: 1}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Notion de convexité et application}
+
+\begin{definition}.
+    \begin{itemize}
+        \item Soit $n \in \N^*$. On dit qu'une partie $A \subset \R^n$ est \textbf{convexe} si:
+        $$
+        \forall x, y \in A, \forall \lambda \in [0, 1], \lambda x + (1 - \lambda)y \in A
+        $$
+        \item On dit qu'une fonction $f: I \rightarrow \R$ est \textbf{convexe} si:
+        $$
+        \forall (x, y) \in I, \forall \lambda \in [0, 1], f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y)
+        $$
+        \item On dit qu'une fonction $f: I \rightarrow \R$ est \textbf{strictement convexe} si:
+        $$
+        \forall (x, y) \in I, x \neq y, \forall \lambda \in ]0, 1[, f(\lambda x + (1 - \lambda)y) < \lambda f(x) + (1 - \lambda)f(y)
+        $$
+        \item On dit qu'une fonction $f: I \rightarrow \R$ est \textbf{concave} si $-f$ est convexe.
+        $$
+        \forall (x, y) \in I, \forall \lambda \in [0, 1], f(\lambda x + (1 - \lambda)y) \geq \lambda f(x) + (1 - \lambda)f(y)
+        $$
+        \item On dit qu'une fonction $f: I \rightarrow \R$ est \textbf{strictement concave} si $-f$ est strictement convexe.
+        $$
+        \forall (x, y) \in I, x \neq y, \forall \lambda \in ]0, 1[, f(\lambda x + (1 - \lambda)y) > \lambda f(x) + (1 - \lambda)f(y)
+        $$
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    Les fonctions affines sont convexes et concaves.
+\end{remark}
+
+\begin{proposition}
+    Une partie $A \subset \R$ est convexe si et seulement si $A$ est un intervalle.
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{corollaire}
+    \begin{itemize}
+        \item Soit $x, y \in \R$, $x < y$. Alors $[x, y] = \{\lambda x + (1 - \lambda)y \in \R; \lambda \in [0, 1]\}$.
+        \item Pour tout $n \in \N, n \geq 2, x_1, ..., x_n \in I$ et $\lambda_1, ..., \lambda_n \in \R_+$ tel que $\sum_{i=1}^{n}\lambda_i = 1$, alors $\sum_{i=1}^{n}\lambda_ix_i \in I$.
+    \end{itemize}
+\end{corollaire}
+
+\begin{remark}
+    $\sum_{i=1}^{n}\lambda_i x_i$ est appelé \textbf{une combinaison convexe} d'élements de $I$.
+\end{remark}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{definition}
+    Soit $f: I \rightarrow \R$ une fonction.
+    \begin{itemize}
+        \item On appelle \textbf{graphe} (ou \textbf{courbe représentative}) de la fonction f, l'ensemble de points:
+        $$
+        \mathscr{C}_f = \{(x, f(x)); x \in I\}
+        $$
+        \item L'équation $y = f(x)$ est appelée \text{équation cartésienne} du graphe de f.
+        \item Soit $a, b \in I$ avec $a \lt b$. Soient A le point du plan de coordonnées $(a, f(a))$ et B celui de coordonnées $(b, f(b))$.
+        La droite passant par A et B est appelée \textbf{corde} du graphe de f.
+        La portion de $\mathscr{C}_f$ comprise entre A et B est appelée \textbf{arc} de f entre A et B.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}
+    Soient $f: I \rightarrow \R$ une fonction, $a, b \in I$ avec $a \lt b$.
+    A le point de coordonnées $(a, f(a))$ et B celui de coordonnées $(b, f(b))$ et $\lambda \in [0, 1]$.
+
+    \begin{enumerate}
+        \item L'équation de la corde $[A, B]$ est:
+        $$
+        y = \frac{f(b) - f(a)}{b - a}(x - a) + f(a)
+        $$
+        \item Le point G du segment $[A, B]$ ayant pour abscisse $\lambda a + (1 - \lambda)b$ a pour ordonnée $\lambda f(a) + (1 - \lambda) f(b)$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\textbf{Interprétation graphique de la convexité.}
+Soit $f: I \rightarrow \R$ une fonction convexe, de courbe représentative $\mathscr{C}_f$.
+
+\begin{itemize}
+    \item Soient $a, b \in I$ avec $a \lt b$ et $A$ le point de coordonnées $(a, f(a))$ et $B$ celui de coordonnées $(b, f(b))$.
+    \item Soit G le point du segment [A, B] ayant pour abscisse $\lambda a + (1 - \lambda)b$ et pour ordonnée $\lambda f(a) + (1 - \lambda)f(b)$.
+    \item Le point P de $\mathscr{C}_f$ d'abscisse $\lambda a + (1 - \lambda)b$ a pour ordonnée $f(\lambda a + (1 - \lambda)b)$.
+\end{itemize}
+
+Ainsi la définition de convexité de f exprime que le point G est situé au-dessus de P.
+
+%mettre image si pas flemme
+
+\subsection{Inégalité de Jensen}
+
+\begin{proposition}
+    Soit $f: I \rightarrow \R$ une fonction convexe, $n \in \N^*$, $x_1, ..., x_n \in I$ et $\lambda_1, ..., \lambda_n \in \R_+$ tels que $\sum_{i=1}^{n}\lambda_i = 1$.
+    Alors:
+    $$
+    f(\sum_{i=1}^{n}\lambda_ix_i) \leq \sum_{i=1}^{n}\lambda_if(x_i)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\subsection{Convexité et dérivabilité}
+
+\subsubsection{Inégalité des pentes}
+
+\begin{proposition}
+    Soit $f: I \rightarrow \R$ une fonction définie sur I. f est convexe sur I si et seulement si pour tout $a \in I$, la fonction:
+    $$
+    \funcdef{\tau_a}{I\backslash\{a\}}{\R}{x}{\frac{f(x)-f(a)}{x - a}}
+    $$
+    est croissante.
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{corollaire}
+    Soit $f : I \rightarrow \R$ une fonction. f est convexe si et seulement si, pour tout $x_1, x_2, x_3 \in I$ avec $x_1 \lt x_2 \lt x_3$, on a:
+    $$
+    \frac{f(x_2) - f(x_1)}{x_2 - x_1} \leq \frac{f(x_3) - f(x_2)}{x_3 - x_2}
+    $$
+\end{corollaire}
+
+%pour la suite
+\begin{demonstration}
+    Montrons ($\implies$)
+
+        À faire.
+    
+    Montrons ($\impliedby$)
+
+    Supposons aue $\forall x_1, x_2, x_3 \in I, x_1 \lt x_2 \lt x_3$.
+
+    $$
+    \frac{f(x_2) - f(x_1)}{x_2 - x_1} \leq \frac{f(x_3) - f(x_2)}{x_3 - x_2}
+    $$
+
+    
+    Montrons que f est convexe, c'est à dire
+
+    $\forall x, y \in I, \forall \lambda \in [0, 1], f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda) f(y)$
+
+    Posons $a = \lambda x + (1 - \lambda) y \in [x, y]$ donc $x \lt a \lt y$.
+
+    Par hypothèse, on a:
+
+    $$
+    \frac{f(a) - f(x)}{a - x} \leq \frac{f(y) - f(a)}{y - a}
+    $$
+
+    On a $a - x = \lambda x + (1 - \lambda)y - x = (1 - \lambda)(y - x)$
+    et $y - a = y - \lambda x - (1 - \lambda)y = \lambda(y - x)$.
+
+    On a alors:
+
+    \begin{flalign*}
+        \frac{f(a) - f(x)}{(1 - \lambda)(y - x)} \leq \frac{f(y) - f(a)}{\lambda(y - x)}
+        &\implies \lambda(f(a) - f(x)) \leq (1 - \lambda)(f(y) - f(a)) \\
+        &\implies f(a) \leq \lambda f(x) + (1 - \lambda)f(y) \\
+        &\implies f(\lambda x + (1 - \lambda)y) \leq \lambda f(x) + (1 - \lambda)f(y)
+    \end{flalign*}
+
+    Donc f est convexe.
+\end{demonstration}
+
+\begin{corollaire}[Inégalité des trois pentes]
+    Soit $f: I \rightarrow \R$ une fonction convexe. Alors pour tout $x_1, x_2, x_3 \in I$ avec $x_1 \lt x_2 \lt x_3$, on a:
+    $$
+    \frac{f(x_2) - f(x_1)}{x_2 - x_1} \leq \frac{f(x_3) - f(x_1)}{x_3 - x_1} \leq \frac{f(x_3) - f(x_2)}{x_3 - x_2}
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+%mettre image si pas flemme
+
+\subsubsection{Caractérisation des fonctions convexes dérivables}
+
+\begin{definition}
+    Soit $f: I \rightarrow \R$ une fonction. On dit que $f$ est deux fois dérivable sur I, si $f$ est dérivable et $f'$ est aussi dérivable.
+    On note alors $f''$ la dérivé de $f'$. $f''$ est appelée dérivée seconde de f.
+\end{definition}
+
+\begin{theorem}[Convexité des fonctions dérivables]
+    Soit $f: I \rightarrow \R$ une fonction dérivable. f est convexe si et seulement si sa dérivée est croissante.
+
+    En particulier une fonction deux fois dérivable est convexe si et seulement si sa dérivée seconde est positive sur I.
+\end{theorem}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{definition}
+    Soit $f: I \rightarrow \R$ un fonction. En un point où la dérivée seconde de f s'annule en changeant de signe, la courbe $\mathscr{C}_f$ change de concavité : on dit que c'est \textbf{un point d'inflexion}.
+\end{definition}
+
+\begin{remark}
+    Grâce à ce théorème il est très rapide de déterminer la convexité d'une fonction dérivable deux fois.
+\end{remark}
+
+\subsubsection{Position par rapport à une tangente}
+
+Soit $f: I \rightarrow \R$ une fonction. On suppose que f est dérivable en $a \in I$. Alors la courbe $\mathscr{C}_f$ possède une tangente au point de coordonnées $(a, f(a))$ d'équation $y = f'(a)(x - a) + f(a)$.
+
+\begin{proposition}
+    Soit $f: I \rightarrow \R$ une fonction dérivable sur I. Alors f est convexe si et seulement si elle est au-dessus de chacune de ses tangentes.
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\end{document}

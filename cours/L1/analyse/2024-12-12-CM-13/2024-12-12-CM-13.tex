@@ -1,0 +1,131 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{12 décembre 2024}
+
+\title{Analyse | CM: 13}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Problèmes d'extrema}
+
+\subsubsection{Extremum local}
+
+\begin{definition}
+    Soit $f: I \rightarrow \R$. On dit que f admet un minimum local en $x_0$
+    (respectivement un maxumum) si il existe un intervalle J qui contient $x_0$ (on parle de voisinage)
+    
+    $\forall x \in J \cap I, f(x_0) \leq f(x)$ (resp $f(x_0) \geq f(x)$)
+    
+    On dit que $x_0$ est extremum si c'est un minimum ou un maximum.
+    Si l'inégalité est vrai pour tout x de I, on dit que $x_0$ est un extremum global.
+\end{definition}
+
+% faire dessins si pas flemme
+
+\begin{theorem}
+    Soit I un intervalle ouvert et $f: I \rightarrow \R$ dérivable.
+    Si f admet un extremum local en $x_0$, alors $f'(x_0) = 0$. ($x_0$ est appelé point critique)
+\end{theorem}
+
+\begin{remark}
+    \begin{enumerate}
+        \item La réciproque est fausse.
+        \item Au point critique la tangente à la courbe est une droite horizontale.
+    \end{enumerate}
+\end{remark}
+
+\begin{demonstration}
+    Supposons que $x_0$ est un maximum local de f, c'est-à-dire $\forall x \in I \cap J, f(x) \leq f(x_0)$ Ainsi,
+    pour $x \lt x_0$, $\dfrac{f(x) - f(x_0)}{x - x_0} \geq 0$ et pour $x \gt x_0$, $\dfrac{f(x) - f(x_0)}{x - x_0} \leq 0$.
+    Comme f est dérivable, $\lim_{\substack{x \to x_0 \\ x \lt x_0}} \dfrac{f(x) - f(x_0)}{x - x_0} = \lim_{\substack{x \to x_0 \\ x \gt x_0}} \dfrac{f(x) - f(x_0)}{x - x_0} = f'(x_0)$
+    Donc $f'(x_0) = 0$.
+\end{demonstration}
+
+\begin{theorem}[de Kolle]
+    Soit $f: [a, b] \rightarrow \R$ continue sur $[a, b]$ et dérivable sur $]a, b[$.
+    telle que $f(a) = f(b)$. Alors il existe $c \in ]a, b[$ tel que $f'(c) = 0$.
+\end{theorem}
+
+\begin{demonstration}
+    On cherche $c \in ]a, b[$ extremmum local de f.
+    Si f est constante, alors $f'(x) = 0$ pour tout $x \in ]a, b[$.
+    Sinon, f n'est pas constante $\exists x_0 \in ]a, b[, f(x_0) \neq f(a) \neq f(b)$, f est continue sur $[a, b]$ donc f est bornée et admet un maximum en un point $c \in [a, b]$.
+    Par définition du maximum, $f(c) \geq f(x_0) \gt f(a) = f(b)$.
+    Et par continuité de f, $c \neq a \text{ et } b$.
+    %A revoir
+\end{demonstration}
+
+\subsubsection{Accroissements finis}
+
+\begin{theorem}[des accroissements finis (TAF)]
+    Soit $f: [a, b] \rightarrow \R$ continue et dérivable sur $]a, b[$.
+    Il existe $c \in ]a, b[$ tel que $f(b) - f(a) = f'(c)(b - a)$.
+\end{theorem}
+
+\begin{remark}
+    $\lim_{b \to a} \dfrac{f(b) - f(a)}{b - a} = f'(a)$ (Pas le TAF)
+\end{remark}
+
+\begin{demonstration}
+    On applique le théorème de Rolle à la fonction $g(x) = f(x) - \dfrac{f(b) - f(a)}{b - a}(x - a)$.
+
+    On a $g(a) = f(a)$ et $g(b) = f(a)$, donc $g(a) = g(b)$ et g continue sur $[a, b]$ et dérivable sur $]a, b[$
+    comme somme de fonctions continues et dérivables.
+
+    Donc d'après le théorème de Rolle, il existe $c \in ]a, b[$ tel que \par $g'(c) = f'(c) - \dfrac{f(b) - f(a)}{b - a} = 0$.
+\end{demonstration}
+
+\begin{corollaire}
+    \begin{enumerate}
+        \item $\forall x \in ]a, b[, f'(x) \geq 0$ alors f est croissante.
+        \item $\forall x \in ]a, b[, f'(x) \leq 0$ alors f est décroissante.
+        \item $\forall x \in ]a, b[, f'(x) = 0$ alors f est constante.
+        \item $\forall x \in ]a, b[, f'(x) \gt 0$ alors f est strictement croissante.
+        \item $\forall x \in ]a, b[, f'(x) \lt 0$ alors f est strictement décroissante.
+    \end{enumerate}
+\end{corollaire}
+
+\begin{demonstration}
+    Soient $x, y \in ]a, b[, x \leq y$ alors d'après le TAF, $\exists c \in ]x, y[$ tel que $f(x) - f(y) = f'(c)(x - y) \leq 0$.
+    Donc $f(x) \leq f(y)$, f est croissante.
+\end{demonstration}
+
+\begin{corollaire}[inégalité des accroissements finis]
+    Soit $f: I \rightarrow \R$ dérivable sur l'intervalle I ouvert. Si il existe une constante
+    $M \gt 0$ telle que $\forall x \in I, |f'(x)| \leq M$, alors $\forall x, y \in I, |f(x) - f(y)| \leq M|x - y|$.
+\end{corollaire}
+
+\begin{demonstration}
+    Soient $x, y \in I, x \leq y$ alors d'après le TAF, $\exists c \in ]x, y[$ tel que $f(x) - f(y) = f'(c)(x - y)$.
+    Donc $|f(x) - f(y)| = |f'(c)||x - y| \leq M|x - y|$.
+\end{demonstration}
+
+\begin{corollaire}[règle de l'Hospital]
+    Soit $f, g: I \rightarrow \R$ dérivables en $x_0 \in I$. On suppose que 
+    \begin{enumerate}
+        \item $f(x_0) = g(x_0) = 0$
+        \item $\forall x \in I$ et $x \neq x_0, g(x) \neq 0$
+    \end{enumerate}
+    Si $\lim_{x \to x_0} \dfrac{f'(x)}{g'(x)} = l$ alors $\lim_{x \to x_0} \dfrac{f(x)}{g(x)} = l$.
+\end{corollaire}
+
+\begin{demonstration}
+    On applique le théorème de Rolle à la fonction $h(x) = g(a)f(x) - f(a)g(x)$.
+    Pour $a \in I, a \lt x_0$
+    $h'(x) = g(a)f'(x) - f(a)g'(x)$ et $h(a) = h(x_0) = 0$.
+    Ainsi $\exists c \in ]a, x_0[$ tel que $h'(c) = 0$.
+    $g(a)f'(c) - f(a)g'(c) = 0 \iff g(a)f'(c) = f(a)g'(c) \iff \dfrac{f(a)}{g(a)} = \dfrac{f'(c)}{g'(c)}$.
+    En faisant $a \to x_0$ on a aussi $c \to x_0$ car $c \in ]a, x_0[$.
+\end{demonstration}
+\end{document}
