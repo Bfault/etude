@@ -29,6 +29,13 @@
     \end{aligned}%
 }
 
+% \seriedef{term}{start_index}
+% term: General term of the series (e.g. u_n)
+% start_index: Starting index of the series (e.g. 0)
+\newcommand{\seriedef}[2]{%
+    \left(\sum\limits_{n=#2}^{+\infty} #1\right)
+}
+
 \newcommand{\lt}{\ensuremath <}
 \newcommand{\gt}{\ensuremath >}
 

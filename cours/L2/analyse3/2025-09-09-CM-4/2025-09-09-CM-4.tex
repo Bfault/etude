@@ -11,10 +11,11 @@
 \subsection{Critères de d'Alembert et de Cauchy}
 
 \begin{proposition}{Critère de d'Alembert}{}
-    Soit $\left( \sum\limits_{n=0}^{+\infty}u_n \right)$ une série atp telle que $\dfrac{u_{n+1}}{u_n} \rightarrow l$:
+    Soit $\seriedef{u_n}{0}$ une série atp telle que $\dfrac{u_{n+1}}{u_n} \rightarrow l$:
     \begin{enumerate}
         \item Si $l \lt 1$ la série converge.
         \item Si $l \gt 1$ la série diverge.
+        \item Si $l = 1$ le critère est non concluant.
     \end{enumerate}
 \end{proposition}
 
@@ -44,21 +45,46 @@
     converge (c'est une série géométrique convergente), d'après la proposition de comparaison ci-dessus
     la série de terme général $u_n$ converge également
     \begin{hotwarn}
-        à revoir
+        démonstration à revoir
     \end{hotwarn}
 \end{demonstration}
 
-\begin{hotwarn}
-    faire des exemples
-\end{hotwarn}
+\begin{exemple}
+    Étudier la convergence de la série $\seriedef{\binom{2n}{n}}{0}$.
+    On a $\dfrac{u_{n+1}}{u_n} = \dfrac{\binom{2(n+1)}{n+1}}{\binom{2n}{n}} = \dfrac{(2n+2)(2n+1)}{(n+1)^2} \sim 4$
+    donc la série diverge.
+\end{exemple}
 
-\begin{hotwarn}
-    Faire la même avec critère de Cauchy
-\end{hotwarn}
+\begin{proposition}{Critère de Cauchy}{}
+    Soit $\seriedef{u_n}{0}$ une série atp telle que $\sqrt[n]{u_n} \rightarrow l$:
+    \begin{enumerate}
+        \item Si $l \lt 1$ la série converge.
+        \item Si $l \gt 1$ la série diverge.
+        \item Si $l = 1$ le critère est non concluant.
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{exemple}
+    Étudier la convergence de la série $\seriedef{\left(1 - \dfrac{1}{n}\right)^{n^2}}{1}$.
+    On a $\sqrt[n]{u_n} = \left(1 - \dfrac{1}{n}\right)^n \rightarrow \dfrac{1}{e} \lt 1$
+    donc la série converge.
+\end{exemple}
 
 \begin{proposition}{}{}
-    Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ série numérique atp et telle que $u_n \gt 0$ pour $n$ assez grand.
-    $\exists L \in [0, +\infty[, \left( \dfrac{u_{n+1}}{u_n} \right) \rightarrow L \implies \left( \sqrt[n]{u_n} \right)$...
+    Soit $\seriedef{u_n}{0}$ série numérique à terme \textbf{strictement} positif à partir d'un certain rang.\n
+    $\exists L \in [0, +\infty[, \left( \dfrac{u_{n+1}}{u_n} \right) \rightarrow L \implies \left( \sqrt[n]{u_n} \right) \rightarrow L$
 \end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        à faire
+    \end{hotwarn}
+\end{demonstration}
 
 \end{document}

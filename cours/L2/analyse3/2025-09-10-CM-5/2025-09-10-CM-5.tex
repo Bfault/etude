@@ -10,14 +10,14 @@
 
 \subsection{Série à termes de signe non fixé}
 
-\begin{definition}
-    Soit $\sum\limits_{n=0}^{+\infty} u_n$ une série. On dit qu'elle converge
-    \textbf{absolument} si la série $\sum\limits_{n=0}^{+\infty} |u_n|$ converge.
+\begin{definition}[(Convergence absolue)]
+    Soit $\seriedef{u_n}{0}$ une série.
+
+    On dit qu'elle converge \textbf{absolument} si la série $\seriedef{|u_n|}{0}$ converge.
 \end{definition}
 
 \begin{proposition}{}{}
-    Soit $\sum\limits_{n=0}^{+\infty} u_n$ une série qui converge absolument. Alors
-    elle converge.
+    Soit $\seriedef{u_n}{0}$ une série qui converge absolument, alors elle converge.
 \end{proposition}
 
 \begin{demonstration}
@@ -38,14 +38,28 @@
     \]
     Ainsi, la suite $(S_n)_{n \in \mathbb{N}}$ est de Cauchy et donc converge. Par
     conséquent, la série $\sum\limits_{n=0}^{+\infty} u_n$ converge.
+    \begin{hotwarn}
+        À vérifier
+    \end{hotwarn}
 \end{demonstration}
 
 \begin{definition}
-    Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ une série est dite alternée si pour tout $n, u_n \times u_{n+1} \leq 0$.
+    On dit qu'une série $\seriedef{u_n}{0}$ est alternée si
+    $$
+    \exists N \in \N, \forall n \geq N, u_n u_{n+1} \leq 0
+    $$
 \end{definition}
 
-\begin{theoreme}{}{}
-
+\begin{theoreme}{Critère de Leibniz}{}
+    Soit $\seriedef{u_n}{0}$ une série alternée telle que
+    \begin{itemize}
+        \item $u_n \rightarrow 0$
+        \item $|u_n|$ décroissante
+    \end{itemize}
+    Alors la série $\seriedef{u_n}{0}$ converge et si $S$ est sa somme, on a
+    $$
+    |S - S_n| \leq |u_{n+1}|
+    $$
 \end{theoreme}
 
 \begin{demonstration}
@@ -63,10 +77,18 @@
     Donc la suite des sommes partielles converge, et la série converge.
 
     On a alors $S_{2n + 1} \leq S \leq S_{2n}$ et donc $|S - S_n| \leq a_{n+1} = |u_{n+1}|$.
+    \begin{hotwarn}
+        À vérifier
+    \end{hotwarn}
 \end{demonstration}
 
 \begin{exemple}
-    La série $\left( \sum\limits_{n=1}^{+\infty}\dfrac{(-1)^n}{\sqrt{n}} \right)$ converge
+    Étudier la convergence de la série $\seriedef{\dfrac{(-1)^n}{\sqrt{n}}}{1}$.
+    \begin{itemize}
+        \item La série est alternée et $|u_n| = \dfrac{1}{\sqrt{n}} \rightarrow 0$
+        \item $|u_n|' = -\dfrac{1}{2n^{3/2}} < 0$ donc $|u_n|$ est décroissante pour $n \geq 1$
+    \end{itemize}
+    Donc la série converge.
 \end{exemple}
 
 \end{document}

@@ -88,7 +88,7 @@
 \end{exemple}
 
 \begin{methode}
-    Pour trouver la somme d'une série, la décomposition en éléments simples est souvent utile.
+    La décomposition en éléments simples est souvent utile.
     On a la formule:
     $$
     \dfrac{1}{(n + a)(n + b)} = \dfrac{1}{b - a}\left(\dfrac{1}{n + a} - \dfrac{1}{n + b}\right)
@@ -105,6 +105,11 @@
 \begin{proposition}{}{}
     Pour tout $\alpha \gt 2$, la série $(\sum\limits_{n=1}^{+\infty}\dfrac{1}{n^\alpha})$ converge.
 \end{proposition}
+
+\begin{remarque}
+    On verra par la suite que ce type de série s'appelle une \textbf{série de Riemann} et que la série converge aussi pour $\alpha \gt 1$.
+    Mais la démonstration est plus simple pour $\alpha \gt 2$.
+\end{remarque}
 
 \begin{demonstration}
     Soit $\alpha \geq 2$.\n
@@ -136,16 +141,18 @@
     Si une série converge, alors son terme général tend vers 0.
 \end{proposition}
 
+\begin{methode}
+    C'est la contraposée qui est utile\n
+    $u_n \not\rightarrow 0 \implies \left(\sum\limits_{n=0}^{+\infty} u_n\right) \text{ diverge}$.
+
+    C'est le premier critère qu'on utilise pour étudier la nature d'une série.
+\end{methode}
+
 \begin{demonstration}
     Si la série $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ converge,
     alors la suite des sommes partielles $(S_n)$ converge donc est de Cauchy.\n
     D'où $S_{n+1} - S_n = u_{n+1} \rightarrow 0$.
 \end{demonstration}
-
-\begin{remarque}
-    La contraposée est utile pour montrer qu'une série diverge.\n
-    Si le terme général ne tend pas vers 0, alors la série diverge.
-\end{remarque}
 
 \begin{remarque}
     La réciproque est fausse.\n
