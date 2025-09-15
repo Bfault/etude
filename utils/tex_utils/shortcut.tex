@@ -1,0 +1,35 @@
+\RequirePackage{amssymb}
+\RequirePackage{mathrsfs}
+\RequirePackage{amsmath}
+\RequirePackage{stmaryrd}
+
+\def\N{\mathbb{N}}
+\def\Z{\mathbb{Z}}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\C{\mathbb{C}}
+\def\K{\mathbb{K}}
+\def\k{\Bbbk}
+
+\def\xn#1{(#1_n)_{n \in \N}}
+
+\def\eps{\varepsilon}
+\def\Erond{\mathscr{E}}
+
+% \funcdef{name}{domain}{codomain}{variable}{expression}
+% name: Name of the function (e.g. f)
+% domain: Domain of the function (e.g. \mathbb{R})
+% codomain: Codomain of the function (e.g. \mathbb{R})
+% variable: Variables of the function (e.g. x)
+% expression: Expression of the function (e.g. x^2)
+\newcommand{\funcdef}[5]{%
+    \begin{aligned}[t]
+        #1\colon #2 &\to #3\\
+        #4 &\mapsto #5
+    \end{aligned}%
+}
+
+\newcommand{\lt}{\ensuremath <}
+\newcommand{\gt}{\ensuremath >}
+
+\def\n{~\par}

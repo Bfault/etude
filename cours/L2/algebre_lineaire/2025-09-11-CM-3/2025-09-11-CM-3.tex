@@ -1,0 +1,30 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{11 septembre 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire}{CM: 3}{\today}
+
+\begin{theoreme}{}{}
+    Soit $n \geq 2$ et $\sigma \in S_n$, avec $\sigma \neq Id$. Il existe une
+    famille finie unique (aux commutations près) de cycles à supports disjoints $(c_i)_{1 \leq i \leq p}$ tels que
+    $$
+    \sigma = \Pi_{i=1}^p c_i = c_1 \circ \cdots \circ c_p
+    $$
+\end{theoreme}
+
+\begin{lemme}{}{}
+    On a 
+\end{lemme}
+
+\begin{definition}
+    Pour tout $\sigma \in S_n$ on appelle signature de $\sigma$, notée $\eps(\sigma)$ le nombre
+    $$
+    \Pi_{1 \leq i \lt j \leq n} \text{sgn}(\sigma(j) - \sigma(i))
+    $$
+\end{definition}
+
+\end{document}

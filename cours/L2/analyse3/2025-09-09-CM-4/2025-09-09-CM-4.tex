@@ -1,0 +1,64 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{09 septembre 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM: 4}{\today}
+
+\subsection{Critères de d'Alembert et de Cauchy}
+
+\begin{proposition}{Critère de d'Alembert}{}
+    Soit $\left( \sum\limits_{n=0}^{+\infty}u_n \right)$ une série atp telle que $\dfrac{u_{n+1}}{u_n} \rightarrow l$:
+    \begin{enumerate}
+        \item Si $l \lt 1$ la série converge.
+        \item Si $l \gt 1$ la série diverge.
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}(Pour 2)\n
+    $\exists M, n \geq M, \dfrac{u_{n+1}}{u_n} \geq 1$ ainsi $u_{n+1} \geq u_n$
+    donc $(u_n)$ ne converge pas vers 0, la série diverge.
+
+    (Pour 1)\n
+    Par la définition de la limite,
+    $$
+    \forall \eps \gt 0, \exists M \geq N, n \geq M \implies l - \eps \lt \dfrac{u_{n+1}}{u_n} \lt \eps + l
+    $$
+    en particulier pour $\eps = \dfrac{1 - l}{2} \gt 0$
+    $$
+    \exists M, n \geq M \implies \dfrac{u_{n+1}}{u_n} \lt \dfrac{l + 1}{2}
+    $$
+    Sans perte de généralité puisqu'on ne change pas la convergence en changeant un nombre
+    fini de termes $M = 0$ et donc
+    $$
+    \forall n, u_{n+1} \lt \dfrac{l + 1}{2}u_n
+    $$
+    puis par récurence
+    $$
+    \forall n, u_n \lt \left( \dfrac{l + 1}{2} \right)^n u_0
+    $$
+    Comme $\dfrac{l+1}{2} \in [0, 1[$ la série de terme général $\left( \dfrac{l+1}{2} \right)^n u_0$
+    converge (c'est une série géométrique convergente), d'après la proposition de comparaison ci-dessus
+    la série de terme général $u_n$ converge également
+    \begin{hotwarn}
+        à revoir
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{hotwarn}
+    faire des exemples
+\end{hotwarn}
+
+\begin{hotwarn}
+    Faire la même avec critère de Cauchy
+\end{hotwarn}
+
+\begin{proposition}{}{}
+    Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ série numérique atp et telle que $u_n \gt 0$ pour $n$ assez grand.
+    $\exists L \in [0, +\infty[, \left( \dfrac{u_{n+1}}{u_n} \right) \rightarrow L \implies \left( \sqrt[n]{u_n} \right)$...
+\end{proposition}
+
+\end{document}

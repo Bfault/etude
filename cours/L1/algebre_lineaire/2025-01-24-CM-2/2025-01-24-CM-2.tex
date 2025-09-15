@@ -17,35 +17,76 @@
 
 \maketitle
 
-%todo
-
-\begin{remark}
-    \begin{itemize}.
-        \item Le produit de deux matrices n'est pas commutatif.
-        \item On peut multiplier deux matrices non nulls et obtenir une matrice nulle.
-    \end{itemize}
-    Ainsi on dit que l'ensemble $\mathcal{M}(\K)$ possède des diviseurs de zéro.
-\end{remark}
-
 \subsection{Partitionnement par blocs}
 
 \begin{definition}
     Les sous matrices permettent un partitionnement par blocs.
-    Soit $A \in \mathcal{M}_{m,n}(\K)$, on peut écrire $A$ sous la forme:
+    Soit $A \in \mathcal{M}_{n,p}(\K)$, on peut écrire $A$ sous la forme:
     $$
     A = \left(
     \begin{array}{c|c|c}
-        A_{1,1} & \cdots & A_{1,p} \\
+        A_{1,1} & \cdots & A_{1,m} \\
         \hline
         \vdots & \ddots & \vdots \\
         \hline
-        A_{q,1} & \cdots & A_{q,p}
+        A_{r,1} & \cdots & A_{r,m}
     \end{array}
     \right)
     $$
-    où pour chaque $i \in \{1, \cdots r\}$, les matrice $A_{ik}$ ont le même nombre de lignes pour tout $k \in \{1, \cdots m\}$.
-    %todo
+    où pour chaque $i \in \{1, \cdots r\}$, les matrice $A_{ik}$ ont le même nombre de lignes pour tout $k \in \{1, \cdots r\}$,
+    et où pour chaque $j \in \{1, \cdots, m\}$, les matrices $A_{kj}$ ont le même nombre de colonnes pour tout $k \in \{1, \cdots r\}$.
 \end{definition}
+
+\begin{definition}
+    On peut faire un \textbf{produit par blocs}.
+
+    Soit
+    $$
+    A = \left(
+    \begin{array}{c|c|c}
+        A_{1,1} & \cdots & A_{1,m} \\
+        \hline
+        \vdots & \ddots & \vdots \\
+        \hline
+        A_{r,1} & \cdots & A_{r,m}
+    \end{array}
+    \right)
+    \in \mathcal{M}_{n,p}(\K)
+    $$
+    et
+    $$
+    B = \left(
+    \begin{array}{c|c|c}
+        B_{1,1} & \cdots & B_{1,s} \\
+        \hline
+        \vdots & \ddots & \vdots \\
+        \hline
+        B_{m,1} & \cdots & B_{m,s}
+    \end{array}
+    \right)
+    \in \mathcal{M}_{p,q}(\K)
+    $$
+    Avec le nombre de colonnes de $A_{i,k}$ égal au nombre de lignes de $B_{k,j}$ pour tout
+    $i \in \{1, \cdots, r\}, j \in \{1, \cdots, s\}, k \in \{1, \cdots, m\}$ Alors 
+    $$
+    AB = \left(
+    \begin{array}{c|c|c}
+        \sum_{k=1}^{m}A_{1,k}B_{k,1} & \cdots & \sum_{k=1}^{m}A_{1,k}B_{k,s} \\
+        \hline
+        \vdots & \ddots & \vdots \\
+        \hline
+        \sum_{k=1}^{m}A_{r,k}B_{k,1} & \cdots & \sum_{k=1}^{m}A_{r,k}B_{k,s}
+    \end{array}
+    \right)
+    $$
+\end{definition}
+
+\begin{remark}
+    Avec $A \in \mathcal{M}_{n,p}(\K)$ partitionnée par lignes et $B \in \mathcal{M}_{p,q}(\K)$ partitionnée par colonnes, alors on a:
+
+    $r = n, m = 1$ et $s = q$.
+    ainsi $AB = (c_{i,j})$ avec $c_{i,j} = A_{i,1}B_{1,j} = l_i(A)c_j(B)$ pour $i \in \{1, \cdots, n\}$ et $j \in \{1, \cdots, q\}$.
+\end{remark}
 
 \subsection{Inverse et puissance}
 
@@ -54,12 +95,11 @@
 \end{definition}
 
 \begin{proprietes}
-    Soit $A \in \mathcal{M}_n(\K)$ et $k \in \N^*$, alors $A^k = A \times A \times \cdots \times A$ ($k$ fois). où le facteur A intervient k fois.
+    Soit $A \in \mathcal{M}_n(\K)$ et $k \in \N^*$, alors $A^k = A \times A \times \cdots \times A$ ($k$ fois).
 \end{proprietes}
 
 \begin{definition}
     Soit $A \in \mathcal{M}_n(\K)$, on dit que $A$ est inversible s'il existe $B \in \mathcal{M}_n(\K)$ tel que $AB = BA = Id_n$.
-    Dans ce cas, on note $B = A^{-1}$.
     On note $\mathcal{GL}_n(\K)$ l'ensemble des matrices inversibles de $\mathcal{M}_n(\K)$.
 \end{definition}
 
@@ -95,6 +135,9 @@
 
 \begin{demonstration}
     $AX = B \implies A^{-1}(AX) = A^{-1}B \implies (A^{-1}A)X = A^{-1}B \implies X = A^{-1}B$
+    
+    et réciproquement
+    $X = A^{-1}B \implies A(A^{-1}B) = B \implies (AA^{-1})B = B$
 \end{demonstration}
 
 \subsection{Système linéaire}
@@ -113,9 +156,25 @@
     Les coefficients $x_1, \cdots, x_p$ sont les inconnues du système.
 
     On appelle solution du système linéaire tout $p$-uplet $(x_1, \cdots, x_p) \in \K^p$ tel que les équations du système sont vérifiées.
+    $(b_1, \cdots, b_n)$ s'appelle le second membre du système linéaire.
+    On note $S(L1)$ l'ensemble des solutions du système linéaire $L1$.
+    Lorsque $b_i = 0$ pour tout $i \in \{1, \cdots, n\}$, le système linéaire est dit homogène.
 \end{definition}
 
-%TODO
+\begin{definition}
+    On appelle matrice augmentée la matrice
+    $$
+    (A|B) = \left(
+    \begin{array}{cccc|c}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,p} & b_1 \\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,p} & b_2 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        a_{n,1} & a_{n,2} & \cdots & a_{n,p} & b_n \\
+    \end{array}
+    \right)
+    \in \mathcal{M}_{n,p+1}(\K)
+    $$
+\end{definition}
 
 \begin{definition}
     Un système linéaire de n équations à n équations est régulier ou de Cramer, s'il possède une unique solution.

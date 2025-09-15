@@ -1,0 +1,17 @@
+{
+  "name": "TeX Live",
+  "image": "texlive/texlive:latest",
+  "overrideCommand": true,
+  "runArgs": ["--init"],
+  "remoteUser": "root",
+  "postCreateCommand": "tlmgr update --self && tlmgr install latexmk biber && mkdir -p /root/texmf/tex/latex/utils && cp -f tex_utils/utils.sty tex_utils/hotwrite.tex /root/texmf/tex/latex/utils/ 2>/dev/null || true && mktexlsr /root/texmf",
+  "customizations": {
+    "vscode": {
+      "extensions": ["James-Yu.latex-workshop"],
+      "settings": {
+        "latex-workshop.latex.recipe.default": "latexmk (lualatex)",
+        "latex-workshop.latex.outDir": "%DIR%/build"
+      }
+    }
+  }
+}

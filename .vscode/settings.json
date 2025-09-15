@@ -1,0 +1,39 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk-lualatex",
+            "command": "latexmk",
+            "args": [
+                "-synctex=-1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-lualatex",
+                "-outdir=%OUTDIR%",
+                "-r", "%WORKSPACE_FOLDER%/.latexmkrc",
+                "%DOC%",
+            ],
+            "env": {
+                "TEXINPUTS": "%WORKSPACE_FOLDER%/utils/tex_utils//:",
+                "PATH": "/usr/local/texlive/2025/bin/x86_64-linux:/usr/bin:/bin:${env:PATH}",
+                "LUA_INIT": "",
+                "LUA_INIT_5_3": "",
+                "LUA_INIT_5_4": "",
+                "LUA_PATH": "",
+                "LUA_CPATH": "",
+                "LUAOTFLOAD_CONF": "",
+                "TEXMFCNF": "",
+            }
+        },
+    ],
+    "latex-workshop.latex.recipes": [
+        { "name": "latexmk (lualatex)", "tools": ["latexmk-lualatex"] },
+    ],
+
+    "latex-workshop.latex.recipe.default": "latexmk (lualatex)",
+    "latex-workshop.latex.outDir": "%DIR%/build",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.autoClean.run": "onSucceeded",
+    "latex-workshop.view.pdf.viewer": "tab",
+    // "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.latex.clean.fileTypes": ["*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.fls", "*.log", "*.fdb_latexmk", "*.snm", "*.synctex(busy)", "*.synctex.gz(busy)", "*.nav", "*.vrb"],
+}

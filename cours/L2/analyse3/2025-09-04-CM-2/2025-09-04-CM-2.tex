@@ -1,0 +1,61 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{04 septembre 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM: 2}{\today}
+
+\subsection{Séries de Taylor et de Riemann}
+
+On peut fabriquer des séries à partir des formules de Taylor.\n
+
+\begin{exemple}
+    La série $(\sum\limits_{n=0}^{+\infty}\dfrac{1}{n!})$ converge et $\sum\limits_{n=0}^{+\infty}\dfrac{1}{n!} = e$.\n
+    On écrit la formule de Taylor Lagrange entre 0 et 1 à l'ordre $n \in \N$ pour la fonction $x \mapsto e^x$:
+    \begin{align*}
+        e^1 &= \sum\limits_{k=0}^{n} \dfrac{e^0}{k!}(1 - 0)^k + \dfrac{e^c}{(n+1)!}(1 - 0)^{n+1}\\
+        &= \sum\limits_{k=0}^{n} \dfrac{1}{k!} + \dfrac{e^c}{(n+1)!}
+    \end{align*}
+    où $c \in ]0, 1[$ et
+    $|e - \sum\limits_{k=0}^{n} \dfrac{1}{k!}| = \dfrac{e^c}{(n+1)!} \leq \dfrac{e}{(n+1)!} \rightarrow 0$
+    Donc par le théorème des gendarmes $e - \sum\limits_{k=0}^{n} \dfrac{1}{k!} \rightarrow 0 \implies \sum\limits_{k=0}^{n} \dfrac{1}{k!} \rightarrow e$.
+\end{exemple}
+
+\begin{definition}[Série de Riemann]
+    Pour $\alpha \in \R$, on appelle \textbf{série de Riemann} la série $\sum\limits_{n=1}^{+\infty}\dfrac{1}{n^\alpha}$.
+\end{definition}
+
+\begin{proposition}{Convergence des séries de Riemann}{}
+    La série de Riemann converge si et seulement si $\alpha > 1$.
+\end{proposition}
+
+\begin{hotwarn}
+    mettre un label vers le cas déjà fait dans CM1
+\end{hotwarn}
+
+\begin{demonstration}
+    Pour $\alpha >= 2$ c'est déjà fait.\n
+    Soit $\alpha \in ]1, 2[$.\n
+    Soit $f_\alpha : x \mapsto \dfrac{x^{1 - \alpha}}{1 - \alpha}$.\n
+    En appliquant le théorème des accroissements finis entre $n$ et $n+1$ pour $n \geq 1$:
+    $$
+    f_\alpha(n+1) - f_\alpha(n) = f'_\alpha(c_n)
+    $$
+    c'est à dire:
+    \begin{align*}
+        \dfrac{(n+1)^{1-\alpha} - n^{1-\alpha}}{1 - \alpha} &= \dfrac{1}{c_n^\alpha}\\
+        \dfrac{1}{1 - \alpha}(\dfrac{1}{(n+1)^{\alpha -1}} -\dfrac{1}{n^{\alpha -1}}) &= \dfrac{1}{c_n^\alpha} \geq \dfrac{1}{(n+1)^\alpha}
+    \end{align*}
+    où $c_n \in ]n, n+1[$ puis en sommant (avec téléscopage à gauche) on a:
+    $$
+    \dfrac{1}{1 - \alpha}(\dfrac{1}{(N+1)^{\alpha -1}} - 1) \geq \sum\limits_{n=1}^{N}\dfrac{1}{(n+1)^\alpha}
+    $$
+    \begin{hotwarn}
+        À continuer
+    \end{hotwarn}
+\end{demonstration}
+
+\end{document}

@@ -1,0 +1,196 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+\usepackage{pgfplots}
+
+\renewcommand*{\today}{04 septembre 2025}
+
+\begin{document}
+
+\hotbox{Fonction à plusieurs variables}{CM: 2}{\today}
+
+\begin{definition}[(Caractérisation séquentielle de la limite)]
+    Soient $A \subset E$, $f : A \to F$,\n
+    $a \in \overline{A}$ et $l \in F$.
+
+    $$
+    \lim_{x \to a}f(x) = l \iff \left(\, \forall (x_n) \in A^\N,\, x_n \rightarrow a \implies f(x_n) \rightarrow l \right)
+    $$
+\end{definition}
+
+\begin{definition}[(Caractérisation de la limite avec la norme)]
+    Soient $A \subset E$ et $V \subset F$, $f: A \rightarrow B$.\n
+    Soient $a \in \overline{A}$ et $l \in V$.
+
+    \begin{align*}
+        &\lim_{x \to a}f(x) = l\\
+        &\iff \forall \eps \gt 0,\, \exists \delta \gt 0,\, \forall x \in A,\, ||x - a||_E \lt \delta \implies ||f(x) - l||_F \lt \eps\\
+        &\iff \forall \eps \gt 0,\, \exists \delta \gt 0,\, \forall x \in (B(a, \delta) \cap A) \implies f(x) \in B(l, \eps)
+    \end{align*}
+
+    \begin{hotwarn}
+        Mettre le dessin
+    \end{hotwarn}
+\end{definition}
+
+\begin{hotwarn}
+    à faire d'ici
+\end{hotwarn}
+Equivalence:
+
+si $\lim_{x\to a}f(x)=b$, soit $(x_n)_n$ une suite de $U$ convergeant vers $a$.
+
+Soit $\eps > 0, \exists \delta \gt 0, x \in B(a, \delta) \implies f(x) \in B(b, \eps)$.
+
+Soit $n_0, \forall n \geq n_0, ||x_n - a|| \lt \delta$
+
+On a alors $||f(x_n) - b|| \leq \eps$.
+
+On a deduit que $\lim_{n \to +\infty}||f(x_n) - b|| = 0 \implies \lim_{n \to +\infty}f(x_n)=b$
+
+\begin{remarque}
+    Et c'est vrai pour n'importe quel suite $(x_n)_n$ avec $\lim_{n \to +\infty}x_n = 0$.
+\end{remarque}
+
+Contraposition:
+
+Supposons que $\lim_{x \to a}f(x) = b$ soit faux.
+Alors $\exists \eps \gt 0, \forall \delta \gt 0, \exists x \in B(a, \delta), f(x) \in B(b, \eps)$.
+
+Soit $\eps \gt 0$ une telle quantité $\forall n \exists x_n \in B(a, \frac{1}{n})$ ne converge pas sur 0 (minorée par $\eps$).
+Donc $(f(x_n))_n$ ne converge pas vers $b$.
+
+\begin{definition}
+    (Théorème des gendarmes)
+
+    Soit $(E, ||.||_E)$ un espace vectoriel normé.
+    Soient $f,g,h: V \to \R$ avec $V \subset E$.
+    Soit $a \in \text{adh}(V)$.
+    S'il existe $\delta \gt 0, \forall x \in V \cap B(a, \delta)$ on a $f(x) \leq g(x) \leq h(x)$ et
+    $\lim_{x \to a}f(x) = \lim_{x \to a}h(x) = b$ alors $\lim_{x \to a}g(x) = b$.
+\end{definition}
+
+\begin{demonstration}
+    Soit $(x_n)_n$ un suite de $V$ convergeant vers $a$.
+    Pour n suffisamment grand, $f(x_n) \leq g(x_n) \leq h(x_n)$.
+    et $\lim_{n \to +\infty}f(x_n) = \lim_{n \to +\infty}h(x_n) = b$.
+    Donc par le théorème des gendarmes pour les suites, on a $\lim_{n \to +\infty}g(x_n)=b$. ???
+    $\lim_{x \to a}g(x) = b$.
+\end{demonstration}
+
+Exemples:
+
+\begin{enumerate}
+    \item $E = (\R^2, ||.||_2)$, $f(x,y) = (x+y, x-y)$.
+    Montrons que: $\lim_{(x,y) \to (a,b)}f(x,y) = (a,b)$.
+
+    Soit $((x_n, y_n))_n$ convergeant vers $(a,b)$.
+    $||f(x_n, y_n) - f(a, b)|| = ||x_n + y_n - (a - b) || = || (x_n - a, -(y_n - b) + (y_n - b, x_n - a))|| \leq ||(x_n - a, (y_n - b))|| + ||(y_n -b, x_n - a)||$.
+
+    Or $||(x, v)|| = || (x, -v)|| = ||(v, x)|| \implies 0 \leq ||f(x_n, y_n) - f(a, b)|| \leq 2||(x_n - a, y_n - b)|| = 2|| (x_n, y_n) - (a, b)|| \implies \lim_{n \to +\infty}||f(x_n, y_n) - f(a,b)|| = 0 \implies \lim_{n \to +\infty}f(x_n, y_n)=f(a, b)$.
+    Donc Voila ref to montrons
+    \item $E = (\R^2, ||.||_2)$, $F=(\R, |.|)$, $f: \R^2\\\{(0,0)\} \rightarrow \R$
+    $f(x, y) = \frac{xy}{x^2 + y^2}$.
+
+    Montrons que $\nexists \lim_{(x,y) \to (0,0)}f(x,y)$.
+
+    Supposons que $\lim_{(x,y) \to (0,0)}f(x,y) = b$.
+    $(x_n) := (\frac{1}{n}, 0)$, $\lim_{n \to +\infty}x_n = (0,0)$.
+    $b = \lim_{n \to +\infty}f(\frac{1}{n}, 0) = \lim_{n \to +\infty}\frac{\frac{1}{n} \cdot 0}{(\frac{1}{n})^2 + 0^2} = 0$.
+    $(y_n) := (\frac{1}{n}, \frac{1}{n})$, $\lim_{n \to +\infty}y_n = (0,0)$.
+    $b = \lim_{n \to +\infty}f(\frac{1}{n}, \frac{1}{n}) = \lim_{n \to +\infty}\frac{\frac{1}{n} \cdot \frac{1}{n}}{(\frac{1}{n})^2 + (\frac{1}{n})^2} = \frac{1}{2}$.
+    Absurde $\frac{1}{2} \neq 0$.
+    Donc $f$ n'admet pas de limite en $(0,0)$.
+\end{enumerate}
+
+\begin{definition}
+    Soient $E, F$ deux espaces vectoriels normés.
+    $A \subset E$, $f: A \rightarrow F$, $a \in \text{adh}(A)$, $B \subset E$.
+
+    Soit $b \in F$ (ou éventuellement) $b \in \{-\infty, +\infty, d^+, d^-\}$ si $F = \R, d \in \R$.
+
+    On considère $f|_{A \cap B}: \{ A \cap F \rightarrow F \text{???} x \to f(x)$
+    On dit que $\lim_{x \to a, x \in B}f(x) = b$ si $\lim_{x \to a, x \in B}f|_{A \cap B} = b$.
+\end{definition}
+
+\begin{remarque}
+    Si $A = B \cup C$, $\lim_{x \to a, x \in B}f(x)= b$ et $\lim_{x \to a, x \in C}f(x) = b$
+    alors $\lim_{x \to a}f(x) = b$.
+
+    Si $\lim_{x \to a, x \in V}f(x) = b$ pour $V$ ouvert contenant $a$ alors $\lim_{x \to a}f(x) = b$
+\end{remarque}
+
+\begin{definition}
+    Soient $(E, ||.||_E)$, $(F, ||.||_F)$ deux EVNs.
+    $U \subset E$, $V \subset F$, $f:U \rightarrow V$
+    Pour $a \in U$ on dit que $f$ est continue en $a$ si $\lim_{x \to a}f(x) = f(a)$ 
+\end{definition}
+
+\begin{remarque}
+    Pour le montrer il suffit de démontrer que $\lim_{x \to a, x \neq a}f(x) = f(a)$
+\end{remarque}
+
+Soit $U \subset A$ un ouvert de $E$, $f: A \rightarrow F$. $f$ est continue en tout point de $V$ si et seulement si
+$f|_V$ est continue en tout point.
+
+\begin{demonstration}
+    Pour $a \in V$, $f(a) = \lim_{x \to a}f(x) \iff f(a)=\lim_{x \to a, x \in U}f(x)$.
+\end{demonstration}
+
+Exemples:
+
+\begin{enumerate}
+    \item $f(x) = ||x||_E$, $F = \R$, $||.||_F = |.|$
+    $f$ est continue en tout point de $E$
+    en effet: $\forall x, a \in E, 0 \leq |||x|| - ||a||| \leq ||x - a||$ Soit $(x_n)_n \rightarrow_{n \to +\infty} a$
+    $0 \leq |||x_n|| - ||a||| \leq ||x_n - a|| \implies \lim_{n \to +\infty}||x_n|| = ||a||$.
+\end{enumerate}
+
+\begin{proposition}{Composition des limites}{}
+    $(E, ||.||_E)$, $(F, ||.||_F)$, $(G, ||.||_G)$ EVNs.
+    $f: U \rightarrow V$, $g: V \rightarrow W$ avec $U \subset E$, $V \subset F$, $W \subset G$.
+    Soient $a \in \text{adh}(U), b \in \text{adh}(V), c \in \text{adh}(W)$.
+    Si $\lim_{x \to a}f(x) = b$ et $\lim_{y \to b}g(x) = c$
+    alors $\lim_{x \to a}g(f(x)) = c$.
+    En partie si $f$ est continue en $a$, $g$ en $b=f(a)$ alors $g \circ f$ est continue en $a$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $(x_n)$ une suite de $U$ convergeant vers $a$ alors $(f(x_n))$ est un suite de $V$ convergeant
+    vers $b = f(x)$ alors $(g(f(x_n)))_n$ est une suite de $W$ convergeant vers $c$
+    cela implique $\lim_{x \to a}f(x) = c$.
+\end{demonstration}
+
+Exemple
+
+$f: \{ (\R^2, ||.||_2) \rightarrow (\R, |.|) \text{???} (x, y) \to \{ \frac{x^y}{x^2 + y^2} \text{si} (x, y) \neq (0, 0) 0 \text{sinon}$
+
+Montrons que $f$ est continue en $(0,0)$
+Soit $(x, y) \neq (0, 0)$, $0 \leq |f(x, y) - f(0, 0)| = |\frac{x^y}{x^2 + y^2} = \frac{x^y}{||(x, y)||^2_2} \leq \frac{||(x, y)||_2}{||(x, y||^2_2)} = ||(x, y)||^2_2$
+
+Or $\lim_{(x, y) \to (0, 0) \text{et} (x, y) \neq (0, 0)}|f(x, y)- f(0,0)| = 0$
+donc $f$ est continue en $(0,0)$.
+
+\begin{definition}
+    (Prolongement et prolongement par continuité)
+    
+    Soient $(E, ||.||_E), (F, ||.||_F)$ deux EVNs, $U \subset E, V \subset F$ et $f: U \rightarrow F$.
+
+    On dit que $g: V \rightarrow F$ est un prolongement de $f$ si $\forall x \in U, g(x) = f(x)$
+    c'est un prolongement par continuité sur $V$ de $f$ si $V \subset \text{adh}(U)$ et $\forall a \in V\backslash U, \lim_{x \to a}f(x) = g(a)$
+\end{definition}
+
+\begin{remarque}
+    Si $g$ est un prolongement par continuité alors $g$ est continue en tout point de $V\backslash U$
+    en effet: Soit $a \in V\backslash U, (x_n)_n \in V^\N$ convergeant vers $a$.
+
+    Soit $n \in \N$ si $x_n \in V$ on pose $y_n := x_n$
+    Sinon on rend $g_n \in V$ tel que $y_n \in B(x_n, \frac{1}{n})$
+    On a défini $(g_n)_n \in V^\N$ tel que $\lim_{n \to +\infty} $//todo voir les 4 photos
+\end{remarque}
+
+\begin{hotwarn}
+    à faire jusqu'à compacité
+\end{hotwarn}
+
+\end{document}

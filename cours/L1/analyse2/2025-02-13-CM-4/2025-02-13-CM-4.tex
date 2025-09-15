@@ -1,0 +1,52 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{13 février 2025}
+
+\title{Analyse2 | CM: 4}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Relations de comparaisons de fonctions}
+
+\dots
+
+\begin{demonstration}
+    \begin{itemize}
+        \item Le resultat est immédiat par le fait qu'une fonction ayant une limite finie en a est bornée au voisinage de a.
+        \item Soient V, W deux voisinages de a et $\varepsilon_0, B$ deux fonctions telles que:
+        \begin{itemize}
+            \item $\lim_{x \to a}\varepsilon_0(x) = 0$
+            \item B est bornée sur V
+        \end{itemize}
+        Soient $f, g, h$ trois fonctions telles que:
+        \begin{itemize}
+            \item $f(x) = B(x)g(x)$ pour tout $x \in I \cap V$
+            \item $g(x) = \varepsilon_0(x)h(x)$ pour tout $x \in I \cap W$
+        \end{itemize}
+
+        Ainsi pour tout $x \in I \cap (V \cap W)$ on a $f(x) = B(x)\varepsilon_0(x)h(x)$, d'où le résultat avec $\varepsilon = B \times \varepsilon_0 \underset{a}{\rightarrow} 0$.
+
+        Finalement on a $f(x) = h(x)\varepsilon \iff f(x) \underset{x \to a}{=} o(h(x))$.
+    \end{itemize}
+\end{demonstration}
+
+\dots
+
+\begin{demonstration}
+    On a $f(x) \underset{x \to a}{\sim} g(x) \iff f(x) \underset{x \to a}{=} g(x) + o(g(x))$
+
+    i.e. il existe une fonction $\varepsilon$ définie sur un voisinage V de a tel que $\lim_{x \to a}\varepsilon(x) = 0$ et $f(x) = g(x) + \varepsilon(x)g(x) \forall x \in I \cap V$ ou encore $f(x) = (1 + \varepsilon(x))g(x) \forall x \in I \cap V$. Prendre $\theta = 1 + \varepsilon$.
+\end{demonstration}
+
+\end{document}

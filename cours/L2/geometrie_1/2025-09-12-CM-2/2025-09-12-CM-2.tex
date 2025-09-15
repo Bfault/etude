@@ -1,0 +1,91 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{12 septembre 2025}
+
+\begin{document}
+
+\hotbox{Géométrie 1}{CM 2}{\today}
+
+\begin{demonstration}
+    Soit $F$ un sev de $E$ et $m_0 \in \mathscr{E}$.
+
+    On pose $\mathscr{F} = \{ m \in \mathscr{E} \mid \vec{m_0 m} \in F\}$
+    c'est à dire $\mathscr{F}$ est le sous-espace affine passant par $m_0$ et de direction $F$.
+
+    Montrons que $\mathscr{F}$ est un espace affine de direction $F$.
+
+    Soit $\theta'$ la restriction de $\theta: \mathscr{E} \times \mathscr{E} \rightarrow E$ à $\mathscr{F} \times \mathscr{F}$.
+    c'est-à-dire $\funcdef{\theta'}{\mathscr{F} \times \mathscr{F}}{E}{(m, m')}{\theta(m, m') = \vec{mm'}}$.
+
+    Montrons que: $\forall (m, m') \in \mathscr{F} \times \mathscr{F}, \theta'(m, m') \in F$.
+
+    Soit $(m, m') \in \mathscr{F} \times \mathscr{F}$.
+
+    \begin{align*}
+        \vec{mm'} = \vec{m, m_0} + \vec{m_0, m'} \in F\\
+        &= -\vec{m_0, m} + \vec{m_0, m'} \in F \text{ car $F$ est un sev de $E$}\\
+    \end{align*}
+
+    D'où $\funcdef{\theta'}{\mathscr{F} \times \mathscr{F}}{F}{(m, m')}{\theta'(m, m') = \vec{mm'}}$ est une application et
+    vérifie la relation de Chasles car $\theta$ la vérifie.
+
+    Soit $a \in \mathscr{F}$\n
+    On a $\funcdef{\theta'_a}{\mathscr{F}}{F}{m}{\theta'(a, m) = \vec{am}}$
+
+    Montrons que $\theta'_a$ est bijective.
+
+    Soit $\vec{v} \in F$, donc $\vec{v} \in E$.
+
+    Comme $\theta_a$ est bijective, il existe un unique $m \in \mathscr{E}$ tel que $\theta_a(m) = \vec{v}$.
+
+    Reste à montrer que $m \in \mathscr{F}$.
+
+    En utilisant Chasles, on a:
+    
+    $$
+    \vec{m_0 m} = \vec{m_0 a} + \vec{am} = \vec{m_0 a} + \theta_a(m) = \vec{m_0 a} + \vec{v} \in F
+    $$
+\end{demonstration}
+
+\begin{demonstration}
+    Avec $\mathscr{F} = \{m \in \mathscr{E} \mid \vec{m_0 m} \in F\}$
+
+    Soit $m_1 \in \mathscr{F}$.
+
+    Montrons que $\mathscr{F} = \{m \in \mathscr{E} \mid \vec{m_1 m} \in F\}$
+
+    Soit $m \in \mathscr{F}$
+
+    \begin{align*}
+        \vec{m_1 m} &= \vec{m_1 m_0} + \vec{m_0 m} \in F\\
+        &= -\vec{m_0 m_1} + \vec{m_0 m} \in F \text{ car $F$ est un sev de $E$}
+    \end{align*}
+
+    Donc $\mathscr{F} \subset \{m \in \mathscr{E} \mid \vec{m_1 m} \in F\}$
+
+    Réciproquement, soit $m \in \mathscr{E}$ tel que $\vec{m_1 m} \in F$.
+
+    \begin{align*}
+        \vec{m_0 m} &= \vec{m_0 m_1} + \vec{m_1 m} \in F\\
+        &= \vec{m_0 m_1} + \vec{m_1 m} \in F \text{ car $F$ est un sev de $E$}
+    \end{align*}
+
+    Ainsi $\mathscr{F} = \{m \in \mathscr{E} \mid \vec{m_1 m} \in F\}$
+\end{demonstration}
+
+\begin{demonstration}
+    Soient $m_0 \in \mathscr{E}$, $F$ un sev de $E$.
+
+    Soit $\mathscr{F} = \{m \in \mathscr{E} \mid \vec{m_0 m} \in F\}$
+
+    Alors $\mathscr{F}$ est un sous espace de $\mathscr{E}$ de direction $F$ passant par $m_0$.
+    d'où l'existence.
+
+    Pour l'unicité, si $\mathscr{F'}$ est un sous-espace affine de $\mathscr{E}$ de direction $F$ passant par $m_0$.
+
+    Ainsi $\mathscr{F'} = m_0 + F = \mathscr{F}$
+\end{demonstration}
+
+\end{document}

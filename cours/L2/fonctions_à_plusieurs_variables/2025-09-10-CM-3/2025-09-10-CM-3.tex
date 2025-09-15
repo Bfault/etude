@@ -1,0 +1,75 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 septembre 2025}
+
+\begin{document}
+
+\hotbox{Fonctions à plusieurs variables}{CM 3}{\today}
+
+\subsection{Compacité et équivalence des normes en dimension finie}
+
+Dans la suite on considère les evn $(E, ||.||), (F, ||.||')$.
+
+\vspace{3mm}
+\noindent
+En essayant de généraliser le théorème des borns atteintes, c'est à dire
+
+Soit $f: [a, b] \rightarrow \R$ continue, alors $f$ est bornée et atteint ses bornes.
+
+\noindent
+On peut définir la notion suivante
+
+\begin{definition}
+    Soit $K \subset E$.
+
+    On dit que $K$ est \textbf{compacte} si
+    $$
+    \forall (x_n) \in K^\N, \exists \phi: \N \to \N, \phi \text{ strictement croissante}, \lim_{n \to +\infty}x_{\phi(n)} \in K
+    $$
+    C'est à dire que toute suite à valeur dans $K$ admet une sous-suite convergente vers un élément de $K$.
+\end{definition}
+
+\begin{remarque}
+    Une reformulation plus simple est:
+
+    Une partie $K$ de $E$ est \textbf{compacte} si toute suite d'éléments de $K$ possède au moins une valeur d'adhérence dans $K$.
+\end{remarque}
+
+\begin{definition}
+    Une partie $V \subset E$ est \textbf{bornée} si $\exists M \gt 0, \forall x \in V, ||x|| \leq M$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Si $K$ est une partie compacte de $\R$, alors $\exists a, b \in K, a = \inf K, b = \sup K$.
+
+    On peut donc écrire $a = \min K, b = \max K$.
+\end{proposition}
+
+\begin{hotwarn}
+    Démonstration à faire
+\end{hotwarn}
+
+\begin{proposition}
+    Soient $U \subset E, V \subset F$ et $f: U \rightarrow V$ continue.
+    Si $K \subset U$ est compacte, alors $f(K)$ est compacte.
+\end{proposition}
+
+\begin{hotwarn}
+    Démonstration à faire
+\end{hotwarn}
+
+\begin{proposition}{}{}
+    Un ensemble compacte $K$ d'un env est fermé et borné.
+\end{proposition}
+
+\begin{theoreme}{Bolzano-Weierstrass}{}
+    Soit $V$ une partie fermée et bornée de $(\R, \|.\|)$ alors $V$ est compacte.
+\end{theoreme}
+
+\begin{exemple}
+    $\xn{x} \text{ avec } x_n := \dfrac{1}{n} + (-1)^n$ suite dans $[-2, 2]$
+\end{exemple}
+
+\end{document}

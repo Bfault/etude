@@ -1,0 +1,72 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 septembre 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 5}{\today}
+
+\subsection{Série à termes de signe non fixé}
+
+\begin{definition}
+    Soit $\sum\limits_{n=0}^{+\infty} u_n$ une série. On dit qu'elle converge
+    \textbf{absolument} si la série $\sum\limits_{n=0}^{+\infty} |u_n|$ converge.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $\sum\limits_{n=0}^{+\infty} u_n$ une série qui converge absolument. Alors
+    elle converge.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $S_n = \sum\limits_{k=0}^{n} u_k$ et $S_n' = \sum\limits_{k=0}^{n} |u_k|$.
+    Comme $\sum\limits_{n=0}^{+\infty} |u_n|$ converge, la suite $(S_n')_{n \in
+    \mathbb{N}}$ est de Cauchy. Donc, pour tout $\epsilon > 0$, il existe $N \in
+    \mathbb{N}$ tel que pour tous $m,n \geq N$, on a
+    \[
+        |S_n' - S_m'| = \sum_{k=m+1}^{n} |u_k| < \epsilon.
+    \]
+    Or, par inégalité triangulaire, on a
+    \[
+        |S_n - S_m| = \left|\sum_{k=m+1}^{n} u_k\right| \leq \sum_{k=m+1}^{n} |u_k| = |S_n' - S_m'|.
+    \]
+    Donc, pour tous $m,n \geq N$, on a
+    \[
+        |S_n - S_m| < \epsilon.
+    \]
+    Ainsi, la suite $(S_n)_{n \in \mathbb{N}}$ est de Cauchy et donc converge. Par
+    conséquent, la série $\sum\limits_{n=0}^{+\infty} u_n$ converge.
+\end{demonstration}
+
+\begin{definition}
+    Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ une série est dite alternée si pour tout $n, u_n \times u_{n+1} \leq 0$.
+\end{definition}
+
+\begin{theoreme}{}{}
+
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $S_n$ la suite des sommes partielles. On va démontrer que $(S_{2n}, S_{2n+1})$ sont adjacentes.
+
+    Sans perte de généralité la série $\sum\limits_{n=0}^{+\infty} (-1)^n a_n$ avec $a_n \geq 0$ et $u_n = (-1)^n a_n$.
+
+    Pour tout $n \in \N$ on a
+    \begin{align*}  
+        S_{2n + 1} - S_{2n} = a_{2n+1} \rightarrow 0\\
+        S_{2n + 2} - S_{2n} = a_{2n+1} - a_{2n+2} \geq 0\\
+        S_{2n + 3} - S_{2n+1} = a_{2n+2} - a_{2n+3} \geq 0
+    \end{align*}
+    Ce qui démontre que les deux suites sont effectivement adjacentes.
+    Donc la suite des sommes partielles converge, et la série converge.
+
+    On a alors $S_{2n + 1} \leq S \leq S_{2n}$ et donc $|S - S_n| \leq a_{n+1} = |u_{n+1}|$.
+\end{demonstration}
+
+\begin{exemple}
+    La série $\left( \sum\limits_{n=1}^{+\infty}\dfrac{(-1)^n}{\sqrt{n}} \right)$ converge
+\end{exemple}
+
+\end{document}

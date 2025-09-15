@@ -1,0 +1,150 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{25 février 2025}
+
+\title{Discrete Et Geometrique | CM: 5}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{proposition}
+    Soit $A, B \subset \Omega$ alors $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+\end{proposition}
+
+\begin{demonstration}
+    $A \cup B = (A\backslash B) \cup (B\backslash A) \cup (A \cap B)$
+    
+    et $(A\backslash B) \cap (B\backslash A) = \emptyset$
+    
+    Ainsi (d'après la proposition d'union disjointe)
+    $P(A \cup B) = P(A\backslash B) + P((B\backslash A) \cup (A \cap B))$
+
+
+    D'autre part $A = (A\backslash B) \cup (A \cap B)$ \quad (1)
+
+    donc $P(A) = P(A\backslash B) + P(A \cap B)$ \quad (2)
+
+    de même $P(B) = P(B\backslash A) + P(A \cap B)$ \quad (3)
+\end{demonstration}
+
+\begin{proposition}
+    Soit $A_1, A_2, \ldots, A_n \subset \Omega$ et $k \neq j \implies A_k \cap A_j = \emptyset$
+
+    Alors
+    \begin{align*}
+        P(\bigcup_{k=1}^n A_k) = \sum_{k=1}^n P(A_k)
+    \end{align*}
+\end{proposition}
+
+\begin{demonstration}
+    Par récurrence:
+
+        si $n=2$, c'est la proposition précédente.
+
+        Supposons $P\left(\bigcup\limits_{k=1}^{n} A_k\right) = \sum_{k=1}^{n} P(A_k)$.
+
+        si $k \neq j \implies A_k \cap A_j = \emptyset$
+
+        Soit $A_{n+1} \subset \Omega$ tel que $A_{n+1} \cap A_k = \emptyset$ pour tout $k \in \{1, \dots, n\}$
+
+        Alors
+        \begin{align*}
+            P\left(\bigcup_{k=1}^{n+1} A_k\right) &= P\left(\left(\bigcup_{k=1}^{n} A_k\right) \cup A_{n+1}\right) \\
+            &= \sum_{k=1}^{n} P(A_k) + P(A_{n+1}) \\
+            &= \sum_{k=1}^{n+1} P(A_k)
+        \end{align*}
+\end{demonstration}
+
+\begin{corollaire}
+    Soit $A \subset \Omega$ alors $P(A) = \sum\limits_{w \in A} P(\{w\})$
+\end{corollaire}
+
+\begin{remark}
+    pour connaitre $P(A)$ pour tout $A \subset \Omega$, il suffit de connaître $P(\{w\}))$ pour tout $w \in \Omega$.
+\end{remark}
+
+\begin{definition}
+    D'où viennent les valeurs de $P$
+
+    \begin{enumerate}
+        \item Peut être donné
+        \item Hypothèse d'équiprobabilité
+        
+            Les probabilités de tout les singletons de l'univers sont égales.
+            
+            D'autre part, $\sum\limits_{k=1}^n P(\{w_k\}) = 1$ donc $P(\{w_k\}) = \frac{1}{n}$.
+    \end{enumerate}
+\end{definition}
+
+\section{Probabilité conditionnelle}
+
+\begin{definition}
+    Soit un univers $\Omega$ et une probabilité $P: \mathcal{P}(\Omega) \to [0, 1]$.
+
+    Soit $A \subset \Omega$ un événement de probabilité non nulle.
+
+    Par tout événement $B \subset \Omega$ introduisons $P_A(B)$ - probabilité conditionnelle de $B$ sachant $A$.
+
+    $P_A(B) = \frac{P(A \cap B)}{P(A)}$
+\end{definition}
+
+\begin{remark}
+    La notation $P(B | A)$ est aussi acceptée, mais ne sera pas utilisée pour éviter de penser que $B | A$ est un événement.
+\end{remark}
+
+\begin{proposition}
+    Dans les condition de la définition avec $A \neq \emptyset$, on a:
+    \begin{enumerate}
+        \item $P_A(\Omega) = 1$
+        \item $P_A(B_1 \cup B_2) = P_A(B_1) + P_A(B_2)$ si $B_1 \cap B_2 = \emptyset$
+        \item $P_A(\bigcup\limits_{k=1}^n B_k) = \sum\limits_{k=1}^n P_A(B_k)$ si $k \neq j \implies B_k \cap B_j = \emptyset$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item $P_A(\Omega) = \frac{P(A \cap \Omega)}{P(A)} = \frac{P(A)}{P(A)} = 1$
+        \item $P_A(B_1 \cup B_2) = \frac{P(A \cap (B_1 \cup B_2))}{P(A)} = \frac{P((A \cap B_1) \cup (A \cap B_2))}{P(A)} = \frac{P(A \cap B_1) + P(A \cap B_2)}{P(A)} = \frac{P(A \cap B_1)}{P(A)} + \frac{P(A \cap B_2)}{P(A)} = P_A(B_1) + P_A(B_2)$
+        \item Par récurrence:
+        
+            si $n=2$, c'est la proposition précédente.
+
+            Supposons $P_A\left(\bigcup\limits_{k=1}^{n} B_k\right) = \sum_{k=1}^{n} P_A(B_k)$.
+
+            \begin{align*}
+                P_A\left(\bigcup_{k=1}^{n+1} B_k\right) &= P_A\left(\left(\bigcup_{k=1}^{n} B_k\right) \cup B_{n+1}\right) \\
+                &= P_A\left(\bigcup_{k=1}^{n} B_k\right) + P_A(B_{n+1}) \\
+                &= \sum_{k=1}^{n} P_A(B_k) + P_A(B_{n+1}) \\
+                &= \sum_{k=1}^{n+1} P_A(B_k)
+            \end{align*}
+    \end{enumerate}
+\end{demonstration}
+
+\begin{theorem}[formule des probabilités totales]
+    Soit l'univers $\Omega$ et la probabilité $P: \mathcal{P}(\Omega) \to [0, 1]$.
+
+    Soit $A_1, A_2, \ldots, A_n \subset \Omega$ tels que $k \neq j \implies A_k \cap A_j = \emptyset$ et $\bigcup\limits_{k=1}^n A_k = \Omega$ (partition de $\Omega$).
+    Soit $B$ un événement.
+
+    Alors $P(B) = \sum\limits_{k=1}^n P_{A_k}(B)P(A_k)$
+\end{theorem}
+
+\begin{demonstration}
+    $B = \bigcup\limits_{k=1}^n (B \cap A_k)$
+
+    Alors
+
+    $P(B) = \sum\limits_{k=1}^n P(B \cap A_k) = \sum\limits_{k=1}^n P_{A_k}(B)P(A_k)$
+\end{demonstration}
+
+\end{document}

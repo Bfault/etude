@@ -1,0 +1,84 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{18 février 2025}
+
+\title{Discrete Et Geometrique | CM: 4}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Fondement de la théorie des probabilités - cas de l'univers fini}
+
+La théorie des probabilités est une science appliquée, qui doit être modélisé et se servir d'appareil mathématique.
+
+Un modèle probabiliste introduit:
+\begin{itemize}
+    \item $\Omega$ - l'univers
+    \item événements
+    \item probabilité
+\end{itemize}
+
+\begin{definition}
+    $\Omega$ "l'univers" est l'ensemble des résultats possibles d'une expérience aléatoire.
+\end{definition}
+
+\begin{remark}
+    L'introduction de $\Omega$ est un choix du modélisateur.
+\end{remark}
+
+\begin{example}
+    \begin{enumerate}
+        \item On lance un dé: $\Omega = \{1, 2, 3, 4, 5, 6\}$.
+        \item On lance deux dés distinguables: $\Omega = \{(1, 1), (1, 2), \ldots, (6, 6)\}$.
+    \end{enumerate}
+\end{example}
+
+\begin{definition}
+    Un événement est un sous-ensemble de $\Omega$. On note $\mathcal{P}(\Omega)$ l'ensemble des parties de $\Omega$.
+\end{definition}
+
+\begin{remark}
+    \begin{itemize}
+        \item $\Omega \subset \Omega$ est appelé l'événement certain.
+        \item $\emptyset \subset \Omega$ est appelé l'événement impossible.
+    \end{itemize}
+\end{remark}
+
+\begin{example}
+    \begin{itemize}
+        \item On lance un dé: $\Omega = \{1, 2, 3, 4, 5, 6\}$.
+        $A = \{2, 4, 6\} \subset \Omega$ est la modélisation est "le dé a montré un nombre pair de points".
+        \item On lance deux dés distinguables: $\Omega = \{(1, 1), (1, 2), \ldots, (6, 6)\}$.
+        $A = \{(1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1)\} \subset \Omega$ est la modélisation est "la somme des points est égale à 7".
+        $B = \{(2, 1), (2, 2), \dots (4, 1), (4, 2), \dots, (6, 1), (6, 2)\} \subset \Omega$ est la modélisation est "le premier dé a montré un nombre pair de points".
+    \end{itemize}
+\end{example}
+
+\begin{definition}
+    Une probabilité est une fonction $P: \mathcal{P}(\Omega) \to [0, 1]$ telle que:
+    \begin{enumerate}
+        \item $P(\Omega) = 1$
+        \item $\forall (A, B) \subset \Omega^2, A \cap B = \emptyset \implies P(A \cup B) = P(A) + P(B)$
+        \item $A \neq \emptyset \implies P(A) \neq 0$
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    Dans les conditions de la définition $P(\emptyset) = 0$.
+\end{proposition}
+
+\begin{demonstration}
+    Posons $A = \Omega$ et $B = \emptyset$ alors $A, B \subset \Omega, A \cap B = \emptyset$. Donc $P(\Omega \cup \emptyset) = P(\Omega) + P(\emptyset) = 1 + 0 = 1$. Donc $P(\emptyset) = 0$.
+\end{demonstration}
+
+\end{document}

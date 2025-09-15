@@ -1,0 +1,47 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{08 avril 2025}
+
+\title{Discrete Et Geometrique | CM: 8}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{proposition}
+    Soit $X$ une variable aléatoire et $f: \R \to \R$.
+
+    Posons $Y(\omega) = f(X(\omega))$.
+    Alors $Y: \Omega \to \R$.
+
+    Supposons que nous connaissons $P_X$ et que nous voulons calculer $P_Y$.
+
+    \begin{itemize}
+        \item Cas facile:
+        
+        $f: X(\Omega) = \R$ est injective.
+        
+        Alors $Y(\Omega) = \{f(x) \mid x \in X(\Omega)\}$ \\et $P(\{Y = y\}) = P(\{X = f^{-1}(y)\}) = P_X(\{f^{-1}(y)\})$.
+    
+        \item Cas général:
+        
+        $f: X(\Omega) = \R$ n'est pas forcément injective.
+
+        On peut écrire $P(\{Y = y\}) = P(\{X \in f^{-1}(\{y\})\}) = \sum_{x \in f^{-1}(\{y\})}$ (on différencie bien $f^{-1}(y)$ avec celui du cas injectif, ici c'est l'image réciproque et non la fonction réciproque).
+    \end{itemize}
+\end{proposition}
+
+esperance
+variance
+variablea aléatoire indépendante
+loi de probabilité
+\end{document}

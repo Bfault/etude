@@ -1,0 +1,135 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{04 février 2025}
+
+\title{Discrete Et Geometrique | CM: 2}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{definition}
+    Le nombre de combinaisons de $m$ parmi $n$ ($n \in \N, m \in \Z$) noté $\binom{n}{m}$ (ou $C^m_n$) est le nombre de sous-ensembles de $m$ éléments d'un ensemble à $n$ éléments.
+\end{definition}
+
+\begin{remark}
+    \begin{itemize}.
+        \item $C^m_n = 0 \text{ si } m \lt 0 \text{ ou } m \gt n$.
+        \item $C^0_n = 1$.
+        \item $C^n_n = n$.
+        \item $C^2_n = \frac{n(n-1)}{2}$ (si $n \geq 2$).
+    \end{itemize}
+\end{remark}
+
+\begin{proposition}
+    Soit $n \in \N, m \in \Z$. Alors $C^m_n = 0$ si $m \lt 0$ ou $m \gt n$.
+    Et $C^m_n = \frac{n!}{m!(n-m)!}$ si $0 \leq m \leq n$.    
+\end{proposition}
+
+\begin{demonstration}
+    Supposons $0 \lt m \lt n$ (sinon le résultat est évident).
+
+    $A^m_n$ est le nombre de façons de choisir $m$ éléments parmi $n$ éléments.
+
+    et aussi $A^m_n =$ (nombre de façons de choisir un sous-ensemble de $m$ éléments dans $\{1, \cdots, n$\}) $\times$ (nombre de façons d'ordonner $m$ éléments).
+
+    Donc $A^m_n = C^m_n \times m!$. Donc $C^m_n = \frac{A^m_n}{m!}$.
+\end{demonstration}
+
+\begin{remark}
+    à $m = 0$
+
+    $C^0_n = \frac{n!}{0!(n-0)!} = \frac{n!}{n!} = 1$.
+\end{remark}
+
+\begin{remark}
+    à $m = n$
+
+    $C^n_n = \frac{n!}{n!(n-n)!} = \frac{n!}{n!} = 1$.
+\end{remark}
+
+\begin{proposition}
+    Soit $n \in \N, m \in \Z$. Alors $C^m_n = C^{n-m}_n$.
+\end{proposition}
+
+\begin{demonstration}[1]
+    $C^m_n = \frac{n!}{m!(n-m)!}$ et $C^{n-m}_n = \frac{n!}{(n-m)!(n-(n-m))!} = \frac{n!}{(n-m)!m!}$.
+
+    Donc $C^m_n = C^{n-m}_n$.
+\end{demonstration}
+
+\begin{demonstration}[2]
+    $C^m_n =$ nombre de façons de choisir $m$ éléments parmi $n$ = nombre de façons de choisir les $n - m$ éléments à laisser = $C^{n-m}_n$.
+\end{demonstration}
+
+\begin{proposition}[identité de Pascal]
+    Soit $n \in \N, n \geq 1$ et $0 \leq m \leq n$.
+    Alors $C^m_{n+1} = C^{m-1}_{n} + C^m_{n}$. 
+\end{proposition}
+
+\begin{remark}
+    Le triangle de Pascal est une représentation graphique des coefficients binomiaux. Chaque nombre est la somme des deux nombres situés au-dessus de lui.
+    \begin{center}
+    \begin{tikzpicture}[every node/.style={font=\footnotesize}]
+        % Ligne 0
+        \node at (0,0) {$C^{0}_{0}$};
+        % Ligne 1
+        \node at (-1,-1) {$C^{0}_{1}$};
+        \node at (1,-1) {$C^{1}_{1}$};
+        % Ligne 2
+        \node at (-2,-2) {$C^{0}_{2}$};
+        \node at (0,-2) {$C^{1}_{2}$};
+        \node at (2,-2) {$C^{2}_{2}$};
+        % Ligne 3
+        \node at (-3,-3) {$C^{0}_{3}$};
+        \node at (-1,-3) {$C^{1}_{3}$};
+        \node at (1,-3) {$C^{2}_{3}$};
+        \node at (3,-3) {$C^{3}_{3}$};
+    \end{tikzpicture}
+    \end{center}
+\end{remark}
+
+\begin{demonstration}[1]
+    \begin{align*}    
+        C^m_n + C^{m - 1}_n &= \frac{n!}{m!(n-m)!} + \frac{n!}{(m-1)!(n-m+1)!} \\
+        &= \frac{n!}{m(m - 1)!(n - m)!} + \frac{n!}{(m - 1)!(n - m + 1)(n - m)!} \\
+        &= \frac{n!}{(m - 1)!(n - m)!} \left( \frac{1}{m} + \frac{1}{n - m + 1} \right) \\
+        &= \frac{n!}{(m - 1)!(n - m)!} \left( \frac{n + 1}{n(n - m + 1)} \right) \\
+        &= \frac{n!(n+1)}{(m - 1)!(n - m)!m(n - m + 1)} \\
+        &= \frac{(n + 1)!}{m!((n + 1) - m)!} = C^m_{n+1}
+    \end{align*}
+\end{demonstration}
+
+\begin{demonstration}[2]
+    $C^m_{n+1} =$ nombre de façons de choisir $m$ éléments dans $\{1, \cdots, n+1\} =$ Nombre de façons de sous ensembles contenant l'éléments $n + 1$ + Nombre de façons de sous ensembles ne contenant pas l'éléments $n + 1$ = \#dfc $m-1$ éléments parmi $\{1, \cdots, n\}$ = $C^{m-1}_n + C^m_n$.
+\end{demonstration}
+
+
+\begin{theorem}[Binôme de Newton]\
+
+    $\forall n \in \N^*, \forall x, y \in \mathbb{C}, (x + y)^n = \sum_{k = 0}^{n} C^k_n x^k y^{n-k}$.
+\end{theorem}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{proposition}
+    Soit $n \in \N^*$
+    Alors le nombre de tous les sous-ensembles de $\{1, \cdots, n\}$ noté $B_n$ est $2^n$.
+\end{proposition}
+
+\begin{demonstration}[1]
+    $B_n = C^0_n + C^1_n + \cdots + C^n_n = \sum_{k = 0}^{n} C^k_n = (1 + 1)^n = 2^n$.
+\end{demonstration}
+
+\end{document}
