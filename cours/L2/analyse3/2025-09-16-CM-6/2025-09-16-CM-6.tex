@@ -1,0 +1,69 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{16 septembre 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 6}{\today}
+
+\section{Continuité uniforme}
+
+\begin{definition}
+    Soit $f; I \subset \R \rightarrow \R$. On dit que $f$ est \emph{uniformément continue} sur $I$ si
+    $$
+    \forall \eps \gt 0, \exists \delta \gt 0, \forall x, y \in I, |x - y| \lt \delta \implies |f(x) - f(y)| \lt \eps.
+    $$
+    La différence avec la continuité simple est que $\delta$ ne dépend pas de $x$ (c'est le même pour tous les $x$).
+\end{definition}
+
+\begin{exemple}
+    $f(x) = x^2$ est continue sur $\R$ mais pas uniformément continue. En effet, si on prend $\eps = 1$, pour tout $\delta \gt 0$, on peut choisir $y = x + \dfrac{1}{x}$
+    avec $x \gt \dfrac{1}{\delta}$, alors $|x - y| = \dfrac{1}{x} \lt \delta$ mais
+    $$
+    |f(x) - f(y)| = |x^2 - (x + \dfrac{1}{x})^2| = |-\dfrac{2}{x} - \dfrac{1}{x^2}| \geq 1.
+    $$
+    \begin{hotwarn}
+        À vérif
+    \end{hotwarn}
+\end{exemple}
+
+\begin{proposition}{}{}
+    L'ensemble des fonctions uniformément continues sur un intervalle $I$ est un espace vectoriel.
+\end{proposition}
+
+\begin{proposition}{}{}
+    La composition de deux fonctions uniformément continues est uniformément continue.
+\end{proposition}
+
+\begin{proposition}{Caractérisation séquentielle de la continuité uniforme}{}
+    Soit $f : I \subset \R \rightarrow \R$. Alors $f$ est uniformément continue sur $I$ si et seulement si pour toutes suites $(x_n)$ et $(y_n)$ dans $I$ telles que
+    $$
+    |x_n - y_n| \rightarrow 0 \implies |f(x_n) - f(y_n)| \rightarrow 0
+    $$
+    \begin{hotwarn}
+        Se questionner sur les valeurs abs ici
+    \end{hotwarn}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
+\end{demonstration}
+
+\subsection{Théorème de Heine}
+
+\begin{theoreme}{Heine}{}
+    Toute fonction continue sur un segment est uniformément continue.
+\end{theoreme}
+
+\begin{demonstration}
+    Par l'absurde
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
+\end{demonstration}
+
+\end{document}
