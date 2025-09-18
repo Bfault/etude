@@ -68,11 +68,7 @@ jobs:
               else
                 echo "Échec de la compilation pour $texfile, génération d'un PDF vierge."
                 tmpdir=$(mktemp -d)
-                cat <<'EOF' > "$tmpdir/empty.tex"
-                  \documentclass{article}
-                  \begin{document}
-                  \end{document}
-                  EOF
+                printf '\\documentclass{article}\n\\begin{document}\n\\end{document}\n' > "$tmpdir/empty.tex"
                 if lualatex -interaction=nonstopmode -halt-on-error --output-directory "$tmpdir" "$tmpdir/empty.tex"; then
                   pdfname=$(basename "$texfile" .tex).pdf
                   cp "$tmpdir/empty.pdf" "output/$subject/$pdfname"
