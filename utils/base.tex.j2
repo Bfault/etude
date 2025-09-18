@@ -1,0 +1,11 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{{ '{' ~ today ~ '}' }}
+
+\begin{document}
+
+\hotbox{{ '{' ~ subject | tex ~ '}' }}{{ '{' ~ session ~ '}' }}{\today}
+
+\end{document}

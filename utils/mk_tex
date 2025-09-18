@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+
+from __future__ import annotations
+import argparse, re
+import json
+from pathlib import Path
+from datetime import date
+from jinja2 import Environment, FileSystemLoader, StrictUndefined
+
+PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}-(CM|TD|TP)-(\d+)$")
+
+LATEX_ESCAPE_MAP = {
+    "\\": r"\textbackslash{}",
+    "{": r"\{",
+    "}": r"\}",
+    "$": r"\$",
+    "&": r"\&",
+    "#": r"\#",
+    "_": r"\_",
+    "%": r"\%",
+    "~": r"\textasciitilde{}",
+    "^": r"\textasciicircum{}",
+}
+
+script_dir = Path(__file__).resolve().parent
+
+SAFE_RE = re.compile(r'^[a-z0-9_/-]+$')
+
+def load_lectures(json_path: Path):
+    data = json.loads(json_path.read_text(encoding='utf-8'))
+    if "lectures" not in data or not isinstance(data["lectures"], list):
+        raise ValueError("JSON invalide: clé 'lectures' manquante ou non-liste.")
+    lectures = {}
+    for i, c in enumerate(data["lectures"], 1):
+        fn = c.get("filename"); subj = c.get("subject")
+        if not isinstance(fn, str) or not isinstance(subj, str):
+            raise ValueError(f"lectures[{i}] doit avoir 'filename' (str) et 'subject' (str).")
+        if not SAFE_RE.match(fn):
+            raise ValueError(f"filename invalide: '{fn}' (autorisé: [a-z0-9_/-]).")
+        lectures[fn] = subj
+    return lectures
+
+def latex_escape(s: str) -> str:
+    out = []
+    for ch in s:
+        out.append(LATEX_ESCAPE_MAP.get(ch, ch))
+    return "".join(out)
+
+def next_number(dir_path: Path, session_type: str) -> int:
+    max_n = 0
+    for p in dir_path.iterdir():
+        if p.is_dir():
+            m = PATTERN.match(p.name)
+            if m and m.group(1) == session_type:
+                n = int(m.group(2))
+                if n > max_n:
+                    max_n = n
+    return max_n + 1
+
+def render_template(template_dir: Path, template_name: str, **vars) -> str:
+    env = Environment(
+        loader=FileSystemLoader(str(template_dir)),
+        undefined=StrictUndefined,
+        autoescape=False,
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+    env.filters["tex"] = latex_escape
+    tpl = env.get_template(template_name)
+    return tpl.render(**vars)
+
+def main():
+    ap = argparse.ArgumentParser(description="Créer une séance LaTeX (CM/TD/TP).")
+    ap.add_argument("dir", type=Path, help="Dossier de la matière (ex: ./algebre_lineaire)")
+    ap.add_argument("--type", choices=["CM","TD","TP"], default="CM", dest="session_type")
+    ap.add_argument("--template-dir", type=Path, default=script_dir, help="Dossier des templates")
+    ap.add_argument("--template", default="base.tex.j2", help="Nom du template Jinja2")
+    ap.add_argument("--lectures-json", type=Path, default=script_dir / "lectures.json",
+                    help="Fichier JSON des cours")
+    args = ap.parse_args()
+
+    if not args.dir.is_dir():
+        raise SystemExit(f"Dossier introuvable: {args.dir}")
+
+    today_iso = date.today().strftime("%Y-%m-%d")
+    lectures = load_lectures(args.lectures_json)
+    n = next_number(args.dir, args.session_type)
+    new_item = f"{today_iso}-{args.session_type}-{n}"
+    new_dir = args.dir / new_item
+    new_dir.mkdir(parents=True, exist_ok=False)
+
+    subject = lectures[args.dir.name]
+
+    vars = {
+        "today": date.today().strftime("%d %B %Y"),
+        "session": f"{args.session_type} {n}",
+        "subject": subject,
+    }
+
+    tex_content = render_template(args.template_dir, args.template, **vars)
+    out_tex = new_dir / f"{new_item}.tex"
+    out_tex.write_text(tex_content, encoding="utf-8")
+
+    print(f"Créé: {out_tex}")
+
+if __name__ == "__main__":
+    main()

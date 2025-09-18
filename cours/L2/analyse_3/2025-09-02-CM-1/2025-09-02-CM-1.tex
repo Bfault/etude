@@ -1,0 +1,219 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{utils}
+
+\renewcommand*{\today}{02 septembre 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 1}{\today}
+
+\section{Rappels}
+
+\begin{definition}
+    Soit $\xn{u}$ une suite réelle (ou complexe).\n
+    $(u_n)$ est une \textbf{suite de Cauchy} si:
+    $$
+    \forall \epsilon > 0, \exists N \in \N, \forall p, q \geq N, |u_p - u_q| < \eps
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Dans $\R$ (ou $\C$), une suite converge si et seulement si elle est de Cauchy.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{itemize}
+        \item $(\implies)$\n
+            Si $\xn{u}$ converge vers $l \in \R$ (ou $\C$), alors:
+            $$
+            \forall \eps > 0, \exists N \in \N, \forall n \geq N, |u_n - l| < \eps
+            $$
+            Soit $\eta \geq 0$ on pose $\eps = \dfrac{\eta}{2}$, on a $|u_n - l| \lt \dfrac{\eta}{2}$\n
+            Donc pour $p, q \geq N$:
+            $$
+            |u_p - u_q| = |u_p - l + l - u_q| \leq |u_p - l| + |u_q - l| < \dfrac{\eta}{2} + \dfrac{\eta}{2} = \eta
+            $$
+
+        \item
+            \begin{hotwarn}
+                Ce sens est plus compliqué à démontrer.
+            \end{hotwarn}
+    \end{itemize}
+\end{demonstration}
+
+\section{Chapitre 1 - Série numériques et complexes}
+
+\subsection{Définitions et premières propriétés}
+
+\begin{definition}
+    On appelle série numérique (ou complexe) la donnée de deux suite réelles (ou complexes)
+    $(u_n, S_n)_{n \in \N}$ telles que $S_n = \sum\limits_{k=0}^{n}u_k$.\n
+    On dit que la série converge si il existe $S \in \R$ (ou $\mathbb{C}$) tel que $S_n \rightarrow S$.\n
+    Sinon la série est dite divergente.
+
+    La suite $(S_n)$ est appelée \textbf{suite des sommes partielles}.\n
+    $u_n$ le \textbf{terme général}.\n
+    En cas de convergence $S$ est appelée \textbf{somme de la série}.\n
+    $(S - S_n)_{n \in \N}$ est appelée \textbf{suite des restes}.
+\end{definition}
+
+\begin{remarque}
+    On note $(\sum\limits_{k=0}^{+\infty} u_k)$ la série (convergente ou non) et $\sum\limits_{k=0}^{+\infty} u_k$ la somme de la série (uniquement si la série converge).
+\end{remarque}
+
+\begin{remarque}
+    Comme une série est définie par une suite, on ne peut pas commuter un nombre infini de termes
+    (mais commuter un nombre fini de termes ne change pas la nature convergente de la série).
+\end{remarque}
+
+\begin{exemple}
+    $(\sum\limits_{n=0}^{+\infty}n)$\n
+    On a $S_n = \dfrac{n(n+1)}{2} \rightarrow +\infty$ donc la série diverge.
+\end{exemple}
+
+\begin{exemple}
+    $(\sum\limits_{n=0}^{+\infty}(-1)^n)$\n
+    On a $S_n = 1$ si $n$ est pair et $S_n = 0$ si $n$ est impair donc la série diverge.
+\end{exemple}
+
+\begin{exemple}
+    $(\sum\limits_{n=0}^{+\infty}\dfrac{1}{n(n-1)})$\n
+    On a $\dfrac{1}{n(n-1)} = \dfrac{1}{n-1} - \dfrac{1}{n}$ (par décomposition en éléments simples)\n
+    ainsi
+    \begin{align*}
+        S_n &= \sum\limits_{n=2}^{N}\dfrac{1}{n(n-1)} = \sum\limits_{n=2}^{N}\dfrac{1}{n-1} - \sum\limits_{n=2}^{N}\dfrac{1}{n}\\
+        &= \sum\limits_{n=1}^{N-1}\dfrac{1}{n} - \sum\limits_{n=2}^{N}\dfrac{1}{n} = 1 - \dfrac{1}{N} \rightarrow 1
+    \end{align*}
+    Donc la série converge.
+\end{exemple}
+
+\begin{methode}
+    La décomposition en éléments simples est souvent utile.
+    On a la formule:
+    $$
+    \dfrac{1}{(n + a)(n + b)} = \dfrac{1}{b - a}\left(\dfrac{1}{n + a} - \dfrac{1}{n + b}\right)
+    $$
+\end{methode}
+
+\begin{exemple}
+    La \textbf{série harmonique} $(\sum\limits_{n=1}^{+\infty}\dfrac{1}{n})$\n
+    $S_{2N} - S_N = \sum\limits_{n=N+1}^{2N}\dfrac{1}{n} \geq N \times \dfrac{1}{2N} = \dfrac{1}{2}$\n
+    (La minoration est obtenue en prenant le plus petit terme de la somme $\dfrac{1}{2N}$ et en le multipliant par le nombre de termes $N$)\n
+    Donc la suite des sommes partielles n'est pas de Cauchy et la série diverge.
+\end{exemple}
+
+\begin{proposition}{}{}
+    Pour tout $\alpha \gt 2$, la série $(\sum\limits_{n=1}^{+\infty}\dfrac{1}{n^\alpha})$ converge.
+\end{proposition}
+
+\begin{remarque}
+    On verra par la suite que ce type de série s'appelle une \textbf{série de Riemann} et que la série converge aussi pour $\alpha \gt 1$.
+    Mais la démonstration est plus simple pour $\alpha \gt 2$.
+\end{remarque}
+
+\begin{demonstration}
+    Soit $\alpha \geq 2$.\n
+    On a:
+    $$
+    \forall N \geq 2, S_N = \sum\limits_{n=2}^{N}\dfrac{1}{n^\alpha} \leq \sum\limits_{n=2}^{N}\dfrac{1}{n(n-1)} \leq 1
+    $$
+    Aussi
+    \begin{align*}
+    S_{N+1} - S_N &= \sum\limits_{n=2}^{N+1}\dfrac{1}{n^\alpha} - \sum\limits_{n=2}^{N}\dfrac{1}{n^\alpha}\\
+    &= \sum\limits_{n=N+1}^{N+1}\dfrac{1}{n^\alpha}\\
+    &= \dfrac{1}{(N+1)^\alpha} \gt 0
+    \end{align*}
+    Ainsi $(S_N)$ est croissante et majorée par 1, donc elle converge.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Pour tout $\alpha \in [0, 1]$, la série $(\sum\limits_{n=1}^{+\infty}\dfrac{1}{n^\alpha})$ diverge.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\alpha \in [0, 1]$.\n
+    On a pour tout $n$: $\dfrac{1}{n^\alpha} \geq \dfrac{1}{n}$.\n
+    Ainsi pour tout $N$: $S_N^\alpha \geq S_N^1$.\n
+    Or on a vu que la série harmonique diverge (vers $+\infty$) et est croissante, donc $S_N^\alpha \rightarrow +\infty$.\n
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Si une série converge, alors son terme général tend vers 0.
+\end{proposition}
+
+\begin{methode}
+    C'est la contraposée qui est utile\n
+    $u_n \not\rightarrow 0 \implies \left(\sum\limits_{n=0}^{+\infty} u_n\right) \text{ diverge}$.
+
+    C'est le premier critère qu'on utilise pour étudier la nature d'une série.
+\end{methode}
+
+\begin{demonstration}
+    Si la série $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ converge,
+    alors la suite des sommes partielles $(S_n)$ converge donc est de Cauchy.\n
+    D'où $S_{n+1} - S_n = u_{n+1} \rightarrow 0$.
+\end{demonstration}
+
+\begin{remarque}
+    La réciproque est fausse.\n
+    Par exemple la série harmonique a un terme général qui tend vers 0 mais diverge.
+\end{remarque}
+
+\begin{exemple}
+    On peut maintenant étudier la série $(\sum\limits_{n=0}^{+\infty}(-1)^n)$.\n
+    Le terme général $u_n = (-1)^n$ est soit 1 soit -1, donc ne tend pas vers 0.\n
+    Ainsi la série diverge.
+\end{exemple}
+
+\subsection{Série géométrique et produit dérivés}
+
+On connait : pour tout $x \in \C, x \neq 1$ et tout $n \in \N$:
+$$
+\sum\limits_{k=0}^{n} x^k = \dfrac{1 - x^{n+1}}{1 - x} = \dfrac{1}{1 - x} - \dfrac{x^{n+1}}{1 - x}
+$$
+
+Si $|x| \geq 1$, alors $x^{n+1} \not\rightarrow 0$ donc la série diverge.\n
+Si $|x| \lt 1$, alors $x^{n+1} \rightarrow 0$ donc la série converge et $\sum\limits_{n=0}^{N} = \dfrac{1}{1 - x}$.
+
+\begin{proposition}{Série géométrique dérivée}{}
+    La série $(\sum\limits_{n=0}^{+\infty} nx^n)$ converge pour $|x| \lt 1$ et sa somme est
+    $$
+    \sum\limits_{n=0}^{+\infty}nx^n = \dfrac{x}{(1 - x)^2}
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    En dérivant la somme de la série géométrique, on trouve:
+    \begin{align*}
+        \sum\limits_{n=1}^{+\infty}nx^{n-1} &= \dfrac{1}{(1 - x)^2} - \dfrac{(n+1)x^n(1 - x) + x^{n + 1}}{(1 - x)^2}\\
+        &= \dfrac{1}{(1 - x)^2} - \dfrac{(n+1)x^n}{1 - x} - \dfrac{x^{n + 1}}{(1 - x)^2}\\
+        \implies \sum\limits_{n=1}^{+\infty}nx^{n} &= \dfrac{x}{(1 - x)^2} - \dfrac{(n+1)x^{n+1}}{1 - x} - \dfrac{x^{n + 2}}{(1 - x)^2}
+    \end{align*}
+    Si $|x| \lt 1$, alors $x^{n+1} \rightarrow 0$ et $x^{n+2} \rightarrow 0$ donc la série converge et
+    $$
+    \sum\limits_{n=1}^{+\infty}nx^{n} = \dfrac{x}{(1 - x)^2}
+    $$
+    Dans l'autre cas ($|x| \geq 1$), la série diverge.
+\end{demonstration}
+
+\begin{proposition}{Primitive de série géométrique}{}
+    La série $(\sum\limits_{n=1}^{+\infty}\dfrac{1}{n}x^n)$ converge pour $|x| \in [-1, 1[$ et sa somme est
+    $$
+    \sum\limits_{n=1}^{+\infty}\dfrac{1}{n}x^n = -\ln(1 - x)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    En intégrant la somme de la série géométrique, on trouve:
+    \begin{align*}
+        \sum\limits_{n=0}^{+\infty}\dfrac{1}{n+1}x^{n+1} &= -\ln(1 - x) - \dfrac{x^{n+1}}{n+1}\dfrac{1}{1 - x}\\
+        = \sum\limits_{n=1}^{+\infty}\dfrac{1}{n}x^{n} &= -\ln(1 - x) - \dfrac{x^{n+1}}{n+1}\dfrac{1}{1 - x}
+    \end{align*}
+    Si $|x| \in [-1, 1[$, alors $\dfrac{x^n}{n} \rightarrow 0$ donc la série converge et
+    $$
+    \sum\limits_{n=1}^{+\infty}\dfrac{1}{n}x^{n} = -\ln(1 - x)
+    $$
+    Dans l'autre cas, la série diverge.
+\end{demonstration}
+
+\end{document}

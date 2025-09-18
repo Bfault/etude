@@ -1,0 +1,9 @@
+{
+    "lectures": [
+        { "filename": "analyse_3", "subject": "Analyse 3" },
+        { "filename": "algebre_lineaire_2", "subject": "Algèbre linéaire 2" },
+        { "filename": "fpv", "subject": "Fonctions à plusieurs variables" },
+        { "filename": "geometrie_1", "subject": "Géometrie 1" },
+        { "filename": "cryptologie", "subject": "Cryptologie" }
+    ]
+}

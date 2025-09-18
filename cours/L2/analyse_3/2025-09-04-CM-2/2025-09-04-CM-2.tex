@@ -1,0 +1,110 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{04 septembre 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 2}{\today}
+
+\subsection{Séries de Taylor et de Riemann}
+
+On peut fabriquer des séries à partir des formules de Taylor.\n
+
+\begin{exemple}
+    La série $(\sum\limits_{n=0}^{+\infty}\dfrac{1}{n!})$ converge et $\sum\limits_{n=0}^{+\infty}\dfrac{1}{n!} = e$.\n
+    On écrit la formule de Taylor Lagrange entre 0 et 1 à l'ordre $n \in \N$ pour la fonction $x \mapsto e^x$:
+    \begin{align*}
+        e^1 &= \sum\limits_{k=0}^{n} \dfrac{e^0}{k!}(1 - 0)^k + \dfrac{e^c}{(n+1)!}(1 - 0)^{n+1}\\
+        &= \sum\limits_{k=0}^{n} \dfrac{1}{k!} + \dfrac{e^c}{(n+1)!}
+    \end{align*}
+    où $c \in ]0, 1[$ et
+    $|e - \sum\limits_{k=0}^{n} \dfrac{1}{k!}| = \dfrac{e^c}{(n+1)!} \leq \dfrac{e}{(n+1)!} \rightarrow 0$
+    Donc par le théorème des gendarmes $e - \sum\limits_{k=0}^{n} \dfrac{1}{k!} \rightarrow 0 \implies \sum\limits_{k=0}^{n} \dfrac{1}{k!} \rightarrow e$.
+\end{exemple}
+
+\begin{definition}[Série de Riemann]
+    Pour $\alpha \in \R$, on appelle \textbf{série de Riemann} la série $\sum\limits_{n=1}^{+\infty}\dfrac{1}{n^\alpha}$.
+\end{definition}
+
+\begin{proposition}{Convergence des séries de Riemann}{}
+    La série de Riemann converge si et seulement si $\alpha > 1$.
+\end{proposition}
+
+\begin{demonstration}
+    Pour $\alpha \geq 2$ c'est déjà fait.\n
+    Pour $\alpha \in ]1, 2[$, poseons $f_\alpha : x \mapsto \dfrac{x^{1 - \alpha}}{1 - \alpha}$ (donc $f'_\alpha(x) = \dfrac{1}{x^\alpha}$).
+
+    En utilisant le théorème des accroissements finis sur $[n, n+1]$.
+
+    $$
+    \exists c_n \in ]n, n+1[, f_\alpha(n+1) - f_\alpha(n) = f'_\alpha(c_n)(n+1 - n) = \dfrac{1}{c_n^\alpha}
+    $$
+    
+    Comme $c_n \lt n+1 \implies c_n^\alpha \lt (n+1)^\alpha$ et que la fonction $x \mapsto \dfrac{1}{x^\alpha}$ est décroissante sur $\R_+^*$, on a:
+
+    $$
+    f_\alpha(n+1) - f_\alpha(n) = \dfrac{1}{c_n^\alpha} \gt \dfrac{1}{(n+1)^\alpha}
+    $$
+
+    En sommant pour $n$ allant de 1 à $N$:
+
+    \begin{align*}
+        \sum\limits_{n=1}^{N} \dfrac{1}{(n+1)^\alpha} &\lt \sum\limits_{n=1}^{N} \left(f_\alpha(n+1) - f_\alpha(n)\right)\\
+        &= f_\alpha(N+1) - f_\alpha(1) \text{ (par télescopage)}
+    \end{align*}
+
+    Autrement dit:
+
+    \begin{align*}
+        \sum\limits_{n=2}^{N+1} \dfrac{1}{n^\alpha} &\lt \dfrac{(n+1)^{1 - \alpha}}{1 - \alpha} - \dfrac{1}{1 - \alpha}\\
+        &\lt \dfrac{1}{\alpha - 1} \left(1 - \dfrac{1}{(N+1)^{\alpha - 1}}\right)
+    \end{align*}
+
+    On décale l'indice de sommation:
+
+    \begin{align*}
+        S_N = \sum\limits_{n=1}^{N} \dfrac{1}{n^\alpha} &= 1 + \sum\limits_{n=2}^{N} \dfrac{1}{n^\alpha}\\
+        &= 1 + \sum\limits_{n=1}^{N-1} \dfrac{1}{(n+1)^\alpha}\\
+        &\lt 1 + \sum\limits_{n=1}^{N} \dfrac{1}{(n+1)^\alpha}
+    \end{align*}
+
+    Ainsi
+
+    \begin{align*}
+        S_N &\lt 1 + \sum\limits_{n=1}^{N} \dfrac{1}{(n+1)^\alpha}\\
+        &\lt 1 + \dfrac{1}{\alpha - 1} \left(1 - \dfrac{1}{(N+1)^{\alpha - 1}}\right)\\
+        &\lt 1 + \dfrac{1}{\alpha - 1}
+    \end{align*}
+
+    la suite $(S_N)$ est croissante et majorée donc elle converge.
+\end{demonstration}
+
+\begin{definition}
+    On définit la somme de deux séries $(\sum\limits_{n=0}^{+\infty} u_n)$ et $(\sum\limits_{n=0}^{+\infty} v_n)$ par:
+    $$
+    \left(\sum\limits_{n=0}^{+\infty} u_n\right) + \left(\sum\limits_{n=0}^{+\infty} v_n\right) = \left(\sum\limits_{n=0}^{+\infty} (u_n + v_n)\right)
+    $$
+
+    On définit la multiplication par un scalaire $\lambda \in \K$ par:
+    $$
+    \lambda \left(\sum\limits_{n=0}^{+\infty} u_n\right) = \left(\sum\limits_{n=0}^{+\infty} \lambda u_n\right)
+    $$
+\end{definition}
+
+\begin{proposition}{Espace vectoriel des séries numériques convergentes}{}
+    Soit $E = \left\{ \left(\sum\limits_{n=0}^{+\infty} u_n\right) | u_n \in \K, \left(\sum\limits_{n=0}^{+\infty} u_n\right) \text{ converge} \right\}$.
+
+    alors $E$ est un $\K$-espace vectoriel (pour $\K = \R$ ou $\C$) et
+    $$
+    L: E \rightarrow \K, \left(\sum\limits_{n=0}^{+\infty} u_n\right) \mapsto \sum\limits_{n=0}^{+\infty} u_n
+    $$
+    est linéaire.
+\end{proposition}
+
+\begin{hotwarn}
+    Démonstration à faire, mais c'est facile.
+\end{hotwarn}
+
+\end{document}
