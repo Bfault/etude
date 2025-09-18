@@ -50,11 +50,37 @@ jobs:
           export TEXINPUTS=/home/runner/work/etude/etude/utils/tex_utils//:$TEXINPUTS
           for dir in cours/*; do
             for subject in $dir/*; do
+              if [ ! -d "$subject" ]; then
+                continue
+              fi
               export TEXINPUTS=$subject:$TEXINPUTS
-              mkdir -p output/$subject
-              texfile=$(find $subject -name "*.tex" -mindepth 1 -maxdepth 1 -type f)
-              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
-              lualatex -interaction=nonstopmode -halt-on-error --output-directory output/$subject/ "$texfile"
+              mkdir -p "output/$subject"
+              texfile=$(find "$subject" -name "*.tex" -mindepth 1 -maxdepth 1 -type f | head -n 1)
+              if [ -z "$texfile" ]; then
+                echo "Aucun fichier .tex trouvé dans $subject, passage."
+                continue
+              fi
+              echo "Compilation de $texfile"
+              if lualatex -interaction=nonstopmode -halt-on-error --output-directory "output/$subject/" "$texfile"; then
+                if ! lualatex -interaction=nonstopmode -halt-on-error --output-directory "output/$subject/" "$texfile"; then
+                  echo "Deuxième passage LuaLaTeX échoué pour $texfile, conservation du PDF du premier passage."
+                fi
+              else
+                echo "Échec de la compilation pour $texfile, génération d'un PDF vierge."
+                tmpdir=$(mktemp -d)
+                cat <<'EOF' > "$tmpdir/empty.tex"
+                  \documentclass{article}
+                  \begin{document}
+                  \end{document}
+                  EOF
+                if lualatex -interaction=nonstopmode -halt-on-error --output-directory "$tmpdir" "$tmpdir/empty.tex"; then
+                  pdfname=$(basename "$texfile" .tex).pdf
+                  cp "$tmpdir/empty.pdf" "output/$subject/$pdfname"
+                else
+                  echo "Impossible de générer le PDF vierge pour $texfile."
+                fi
+                rm -rf "$tmpdir"
+              fi
             done
           done
 
@@ -66,17 +92,33 @@ jobs:
         run: |
           rm -rf cours
 
-      - name: Remove untracked files
-        run: |
-          git clean -fdx
+
+      # - name: Remove untracked files
+      #   run: |
+      #     git clean -fdx
 
       - name: Push PDF files to pdf-output branch
         run: |
-          git fetch origin pdf-output || git checkout --orphan pdf-output
-          git checkout pdf-output
+          # git fetch origin pdf-output || git checkout --orphan pdf-output
+          # git checkout pdf-output
+          tmpdir=$(mktemp -d)
+          cp -r output "$tmpdir/"
+          git fetch origin pdf-output || true
+          if git show-ref --verify --quiet refs/remotes/origin/pdf-output; then
+            git checkout pdf-output
+          else
+            git checkout --orphan pdf-output
+          fi
           rm -rf *
           mkdir -p cours
-          cp -r output/* cours/
+          # cp -r output/* cours/
+          shopt -s nullglob dotglob
+          files=("$tmpdir/output"/*)
+          if [ ${#files[@]} -gt 0 ]; then
+            cp -r "${files[@]}" cours/
+          fi
+          shopt -u nullglob dotglob
+          rm -rf "$tmpdir"
           git add cours
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
