@@ -6,3 +6,5 @@
 *.auxlock
 node_modules
 *.synctex
+build/
+*.pdf
