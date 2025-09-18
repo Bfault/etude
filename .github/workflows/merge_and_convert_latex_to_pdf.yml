@@ -47,7 +47,7 @@ jobs:
       - name: Convert to PDF
         run: |
           mkdir -p output/cours
-          export TEXINPUTS=/home/runner/work/etude/etude/utils/:$TEXINPUTS
+          export TEXINPUTS=/home/runner/work/etude/etude/utils/tex_utils//:$TEXINPUTS
           for dir in cours/*; do
             for subject in $dir/*; do
               export TEXINPUTS=$subject:$TEXINPUTS
