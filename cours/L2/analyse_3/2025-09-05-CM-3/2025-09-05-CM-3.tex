@@ -1,0 +1,89 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{05 septembre 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 3}{\today}
+
+\subsection{Séries à termes positifs}
+
+\begin{definition}[Série à termes positifs (atp)]
+    On appelle série à termes positifs (atp) toute série numérique 
+    dont les termes sont positifs à partir d'un certain rang, c'est-à-dire
+
+    Soit $\left(\sum\limits_{n=0}^{+\infty} u_n \right)$, on dit que c'est une série atp si
+    $$
+    \exists N \in \mathbb{N}, \forall n \geq N, u_n \geq 0
+    $$
+\end{definition}
+
+\begin{remarque}
+    Comme on l'a vu l'ensemble des séries convergentes est un espace vectoriel,
+    donc en multipliant par -1 une série à termes négatifs on obtient une série à termes positifs.
+\end{remarque}
+
+\begin{proposition}{Critère de comparaison pour les séries atp}{}
+    Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ et $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ deux séries atp telles que
+    $$
+    \exists N \in \mathbb{N}, \forall n \geq N, u_n \leq v_n
+    $$
+    Alors
+    \begin{enumerate}
+        \item Si $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ converge alors $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ converge.
+        \item Si $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ diverge alors $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ diverge.
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    On a par hypothèse $\forall n \in \N, u_n \leq v_n$ (en négligeant les premiers termes).
+    \begin{enumerate}
+        \item Si $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ converge alors $\left( S_n(v) \right)$ converge et est majorée par sa limite (car c'est une suite croissante).
+        Comme $\left( S_n(u) \right)$ est croissante et majorée par $\left( S_n(v) \right)$, elle converge également.
+        \item Si $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ diverge alors $\left( S_n(u) \right)$ diverge vers $+\infty$ (car c'est une suite croissante).
+        Comme $\left( S_n(v) \right)$ est croissante et minorée par $\left( S_n(u) \right)$, elle diverge également vers $+\infty$.
+    \end{enumerate}
+\end{demonstration}
+
+\begin{exemple}
+    Étudier la convergence de la série $\left(\sum\limits_{n=1}^{+\infty} \dfrac{1}{n^2 + n + 1}\right)$.
+    \newline
+    On a $0 \leq \dfrac{1}{n^2 + n + 1} \leq \dfrac{1}{n^2}$
+    Or la série $\sum\limits_{n=1}^{+\infty} \dfrac{1}{n^2}$ est une série de Riemann convergente (car $2 \gt 1$).
+    Donc par le critère de comparaison, la série $\sum\limits_{n=1}^{+\infty} \dfrac{1}{n^2 + n + 1}$ converge également.
+\end{exemple}
+
+\begin{remarque}
+    Le critère ne nous dit rien sur la somme de la série, ça nous dit juste si elle converge ou diverge.
+\end{remarque}
+
+\begin{definition}
+    Deux suites $\left( u_n \right)$ et $\left( v_n \right)$ sont dites équivalentes si
+    $$
+    \exists \left( w_n \right) \in \R^{\N}, w_n \rightarrow 1, u_n = v_n w_n
+    $$
+\end{definition}
+
+\begin{proposition}{Critère par équivalents pour les séries atp}{}
+    Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ et $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ deux séries atp telles que
+    $$
+    u_n \sim v_n
+    $$
+    Alors les deux séries sont de même nature (convergentes ou divergentes en même temps).
+\end{proposition}
+
+\begin{hotwarn}
+    Démonstration à faire
+\end{hotwarn}
+
+\begin{exemple}
+    Étudier la convergence de la série $\left( \sum\limits_{n=1}^{+\infty} \ln\left( \dfrac{n+1}{n} \right) \right)$.
+    \newline
+    On a $\ln\left( \dfrac{n+1}{n} \right) = \ln\left( 1 + \dfrac{1}{n} \right) \sim \dfrac{1}{n}$.
+    Or la série $\left(\sum\limits_{n=1}^{+\infty} \dfrac{1}{n}\right)$ est la série harmonique qui est divergente.
+    Donc par le critère par équivalents, la série $\sum\limits_{n=1}^{+\infty} \ln\left( \dfrac{n+1}{n} \right)$ diverge également.
+\end{exemple}
+
+\end{document}

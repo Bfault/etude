@@ -1,0 +1,51 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 septembre 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 2}{CM 2}{\today}
+
+\section{Permutations}
+
+\begin{definition}
+    Soit $n \in \N^*$, on note $S_n$ l'ensemble des bijections de $\llbracket 1, n \rrbracket$ dans lui-même.
+    On appelle les éléments de $S_n$ des \textbf{permutations}.    
+\end{definition}
+
+\begin{theoreme}{}{}
+    Pour $n \geq 3$, le groupe $(S_n, \circ)$ n'est pas commutatif.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $n \gt 3$, soit les permutations $\tau_1 = \left( \sigma_1 | ... \right)$
+
+    $\forall i \gt 3, \tau_1 \circ \tau_2 (i) = \tau_1(i) = i = \tau_2 \circ \tau_1 (i)$
+
+    $\forall i \geq 3, \tau_1 \circ \tau_2 (i), \tau_2 \circ \tau_1 = $
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $n \geq 2$, toute permutation $\sigma \in S_n$ peuut s'écrire comme composition
+    finir de transpositions $\tau_1 \circ \cdots \circ \tau_p$.
+
+    On dit que $S_n$ est engendré par les transpositions $\langle \tau_1, \cdots, \tau_p \rangle$.
+\end{theoreme}
+
+\begin{demonstration}
+    Par récurrence
+\end{demonstration}
+
+\begin{remarque}
+    soit $\sigma \in S_n$, décomposer en $\sigma = \tau_1 \circ \cdots \circ \tau_p$ où les $\tau_i$ sont des transpositions.
+    Comme $(\tau_k)^{-1} = \tau_k$, pour tout $k$, on a $\sigma^{-1} = \tau_p \circ \cdots \circ \tau_1$.
+\end{remarque}
+
+\begin{remarque}
+    $e_n$ l'identité de $S_n$ s'écrit comme produit de n'importe quel transposition avec elle-même.
+    $e_n = \tau_{ij} \circ \tau_{ij}$ avec $1 \leq i \lt j \leq n$.
+\end{remarque}
+
+\end{document}

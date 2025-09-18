@@ -1,0 +1,105 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{11 février 2025}
+
+\title{Discrete Et Geometrique | CM: 3}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{theorem}[Formule du binôme de Newton]\
+
+    Soit $x, y \in \C, n \in \N^*$.
+
+    $(x + y)^n = \sum_{k=0}^n C^k_n x^k y^{n-k}$.
+\end{theorem}
+
+\begin{demonstration}
+    Par récurrence.
+    Soit $P_n: (x + y)^n = \sum_{k=0}^n C^k_n x^k y^{n-k}$.
+
+    \noindent\underline{Initialisation} : $n = 1$.
+
+    $C_1^0x^0y^1 + C_1^1x^1y^1 = x + y = (x + y)^1$.
+
+    \noindent\underline{Hérédité} : Supposons $P_n$ vraie pour un certain $n \in \N^*$. Montrons $P_{n+1}$.
+
+    \begin{align*}
+        (x + y)^{n+1} &= (x + y)(x + y)^n \\
+        &= (x + y)\sum_{k=0}^n C^k_n x^k y^{n-k} \\
+        &= \sum_{k=0}^n C^k_n x^{k+1} y^{n-k} + \sum_{k=0}^n C^k_n x^k y^{n-k+1} \\
+        &= \sum_{k=1}^{n+1} C^{k-1}_n x^k y^{n-k+1} + \sum_{k=0}^n C^k_n x^k y^{n-k+1} \\
+        &= \sum_{k=1}^{n} C^{k-1}_n x^k y^{n-k+1} + C^n_n x^{n+1} y^{0} + \sum_{k=1}^{n} C^k_n x^k y^{n-k+1} + C^0_n x^0 y^{n+1} \\
+        &= \sum_{k=1}^{n} C^{k-1}_n x^k y^{n-k+1} + x^{n+1} + \sum_{k=1}^{n} C^k_n x^k y^{n-k+1} + y^{n+1} \\
+        &= x^{n+1} + y^{n+1} + \sum_{k=1}^n [(C^{k-1}_n + C^k_n) x^k y^{(n+1)-k}] \\
+        &= x^{n+1} + y^{n+1} + \sum_{k=1}^n C^{k}_{n+1} x^k y^{(n+1)-k} \\
+        &= \sum_{k=0}^{n+1} C^k_{n+1} x^k y^{(n+1)-k}
+    \end{align*}
+
+    Donc $P_{n+1}$ est vraie.
+
+    Par le principe de récurrence, $P_n$ est vraie pour tout $n \in \N^*$.
+
+\end{demonstration}
+
+\begin{remark}
+    Idée de la démonstration combinatorienne:
+    \begin{itemize}
+        \item $(x + y)^n$ il y a $2^n$ termes.
+        \item $x^n + x^{n-1}y \times \text{ nombre de façon de choisir y} = C^1_n = x^{n-2}y^{2} \times \text{ nombre de façon de choisir 2 y} = C^2_n \cdots$
+    \end{itemize}
+\end{remark}
+
+\begin{corollaire}
+    \begin{itemize}
+        \item $\sum^n_{k=0} C^k_n = 2^n$
+        \item $\sum^n_{k=0} (-1)^k C^k_n = 0$
+    \end{itemize}
+\end{corollaire}
+
+\begin{demonstration}
+    $0 = (-1 +1)^n = \sum^n_{k=0}C^k_n(-1)^k1^{n-k}$
+\end{demonstration}
+
+\begin{example}
+    Calculons $\sum^n_{k=0} k C^k_n =: S_n$
+
+    \begin{align*}
+        S_n = \sum^n_{k=0} k C^k_n &= \sum^n_{k=1} k C^k_n \\
+        &= \sum^n_{k=1} k \frac{n!}{k!(n-k)!} \\
+        &= \sum^n_{k=1} \frac{n!}{(k-1)!(n-k)!} \\
+        &= \sum^n_{k=1} \frac{n!}{((n-1)-(k-1))!(k-1)!} \\
+        &= \sum^n_{k=1} \frac{n(n-1)!}{((n-1)-(k-1))!(k-1)!} \\
+        &= n \sum^n_{k=1} C^{k-1}_{n-1} \\
+        &= n \times 2^{n-1}
+    \end{align*}
+\end{example}
+
+\begin{example}
+    \begin{align*}
+        ((x + 1)^n)' = (\sum_{k=0}^n x^k)' \\
+        &= (C^0_n x^0)' + (\sum_{k=1}^n C^k_n x^k)' \\
+        &= 0 + \sum_{k=1}^n k C^k_n x^{k-1} \\
+    \end{align*}
+\end{example}
+
+DM calculer $\sum^n_{k=0} k^2 C^k_n$
+Indication: $k^2 = k(k-1) + k$
+
+\begin{example}
+    Packet de 32 cartes, nombres ($N$) de mains de 5 cartes contenant un roi et un carreau.
+
+    $N = C^4_21 + C^1_3 \times C^1_7 \times C^3_21$
+\end{example}
+
+\end{document}

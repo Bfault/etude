@@ -1,0 +1,38 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{03 septembre 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 2}{CM 1}{\today}
+
+\section{Chapitre 1 - Groupes (rappel)}
+
+\begin{hotwarn}
+    Flemme c'est des rappels
+\end{hotwarn}
+
+\begin{demonstration}
+
+$\implies$
+
+$f$ injective et $f(e_G) = e_H$ alors $e_G$ est l'unique antécédant de $e_H$ par $f$.
+
+\quad
+
+$\impliedby$
+
+$\ker f = \{e_G\}$
+
+Soit $y \in H$ tel qu'il existe $x$ et $x'$ tel que $f(x) = f(x') = y$
+On a $y^{-1} = f(x)^{-1} = f(x^{-1})$
+et
+$f(x^{-1} \star x') = f(x^{-1}) \star f(x') = y^{-1} \star y = e_H$
+c'est à dire $x^{-1} \star x' \in \ker f$
+c'est à dire $x^{-1} = x'^{-1}$ d'où $x = x'$
+
+\end{demonstration}
+
+\end{document}

@@ -1,0 +1,18 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{utils}
+
+{% if subject %}
+\title{ {{ subject | tex }} }
+\date{\today}
+{% endif %}
+
+\begin{document}
+{% if subject %}
+\maketitle
+{% endif %}
+\tableofcontents
+\clearpage
+
+{{ body }}
+
+\end{document}

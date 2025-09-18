@@ -5,3 +5,6 @@
 *.synctex.gz
 *.auxlock
 node_modules
+*.synctex
+build/
+*.pdf

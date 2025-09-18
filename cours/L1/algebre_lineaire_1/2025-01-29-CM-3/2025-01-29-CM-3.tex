@@ -1,0 +1,73 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{29 janvier 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 1}{CM 3}{\today}
+
+\begin{definition}
+    Une matrice $A \in \mathcal{M}_{n,p}(\K)$ est dite sous forme échelonnée si:
+    \begin{enumerate}
+        \item toutes ses lignes non identiquement nulles sont situées au dessus de ses lignes identiquement nulles.
+        \item chaque élément de tête d'une ligne (élément non nul le plus ç gauche d'une ligne non identiquement nulle) se trouve dans une colonne à droite de l'élément de tête de la ligne précédente.
+    \end{enumerate}
+\end{definition}
+
+\begin{remarque}
+    La condition (2) implique que tous les éléments en dessous d'un élément de tête sont nuls.
+\end{remarque}
+
+\begin{definition}[Échelonnement d'une matrice]
+    Soit $A \in \mathcal{M}_{n,p}(\K)$. Il existe une matrice $E \in \mathcal{M}_{n}(\K)$, produit de matrice élémentaires, telle que la matrice $E \times A$ est échelonnée.
+    Autrement dit, toute matrice est équivalente par rapport aux lignes à une matrice échelonnée.
+\end{definition}
+
+\begin{lemme}
+    Soit $A \in \mathcal{M}_{n,1}(\K), n \geq 2$ et $i \in \{1, \cdots, n-1\}$, tels que l'un des coefficients $a_j$ pour indice $j \in \{i, \cdots, n\}$ soit non nul, alors
+    il existe $E_A \in \mathcal{M}_n(\K)$ produit de matrice élémentaires.
+    $a \in \K, a \neq 0$ tel que si:
+    $$
+    A = \left(
+        \begin{array}{c}
+            a_1 \\
+            \vdots \\
+            a_{i-1} \\
+            a_i \\
+            a_{i+1} \\
+            \vdots \\
+            a_n
+        \end{array}
+    \right)
+    $$
+    alors 
+    $$
+    E_A \times A = \left(
+        \begin{array}{c}
+            a_1 \\
+            \vdots \\
+            a_{i-1} \\
+            a_i \\
+            0 \\
+            \vdots \\
+            0
+        \end{array}
+    \right)
+    $$
+
+    %TODO
+\end{lemme}
+
+\begin{demonstration}
+    Quitte à échanger la ligne i avec une ligne j en dessius (ce qui revient à faire le produit $E_{i,j} \times A$),
+    on se ramène au cas $a = a_i \neq 0$, on fait les opérations:
+    $I_j \leftarrow I_j - \frac{a_j}{a_i}I_i, j \in \{i + 1, \cdots, n\}$.
+
+    %TODO
+\end{demonstration}
+
+%TODO jusqu'au rang
+
+\end{document}

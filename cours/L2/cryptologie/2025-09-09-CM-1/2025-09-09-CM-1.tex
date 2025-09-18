@@ -1,0 +1,193 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{09 septembre 2025}
+
+\begin{document}
+
+\hotbox{Cryptologie}{CM: 1}{\today}
+
+\subsection{Références}
+
+\begin{itemize}
+    \item Wikipédia
+    \item Le livre "Handbook of Applied Cryptography" de Menezes
+\end{itemize}
+
+\section{Histoire et contexte}
+
+\subsection{Schéma d'une situation cryptographie}
+
+Alice veut envoyer un message m "en clair" à Bob.
+Elle doit utiliser un canal non sécurisé.
+Elle utilise un algorithme de chiffrement E pour chiffrer son message m en m'.
+Elle envoie m' à Bob.
+Souvent un clef k peut être utilisée.
+Sur le canal non sécurisé, Eve peut intercepter m' voire le modifier.
+Eve peut aussi essayer de retrouver m à partir de m'.
+
+\begin{definition}
+    La \textbf{cryptographie} est l'étude des techniques mathématiques liée à la sécurité de l'information.
+    Les buts sont:
+    \begin{enumerate}
+        \item Inaccessibilité de l'information à un tiers.
+        \item Authentification de l'origine du message.
+        \item Inaltération du message.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    La \textbf{cryptanalyse} est l'étude des techniques mathématiques mettant en défaut les techniques de cryptographie.
+\end{definition}
+
+\begin{remarque}
+    L'ensemble des techniques de cryptographie et de cryptanalyse est appelé la \textbf{cryptologie}.
+\end{remarque}
+
+\begin{exemple}
+    \begin{enumerate}
+        \item (X - VII siècle avant JC) Scytale (bâton roulé)
+        \item (V siècle avant JC) Passage de la bible en hébreu
+        \item (-50 avant JC) César (décalage de 3 dans l'alphabet)
+    \end{enumerate}
+\end{exemple}
+
+Contextes d'utilisation historique pré-informatique:
+\begin{itemize}
+    \item Guerres (communication entre les troupes)
+    \item Association de personnes suceptible d'être menacée
+    \item Diplomatie (négociation)
+    \item Commerce (négociation)
+    \item Infidélité (lettres)
+\end{itemize}
+
+Les cannaux de communication:
+\begin{itemize}
+    \item Messager
+    \item Pigeon voyageur
+    \item Journeaux
+    \item Internet
+    \item Télégraphe
+    \item Radio
+\end{itemize}
+
+\subsection{Techniques cryptographie (avec date)}
+
+\begin{itemize}
+    \item (-200 avant JC) Substitution monoalphabétique (ex: César)\n
+    cassé en 800
+    \item (1585) Vigenère (substitution polyalphabétique)\n
+    cassé en 1863 par Kasiski
+    \item (1919) Enigma (utilisé pour la seconde guerre mondiale par l'armée allemande)\n
+    cassé en 1941 par Alan Turing
+\end{itemize}
+
+\subsection{Rupture du numérique}
+
+\begin{itemize}
+    \item Explosion de la puissance de calcul
+    \item Automatisation du cryptage et du décryptage
+    \item Nécessité d'échanger des clefs à distance (sur le canal non sécurisé)
+    \item Systèmes plus global (beaucoup de Eve)
+    \item Facilité de dupliquer l'information
+\end{itemize}
+
+utilisations modernes:
+
+\begin{itemize}
+    \item Messages privés (sms, mail, whatsapp, telegram, signal)
+    \item Authentification (mdp, carte bancaire, biométrie)
+    \item Signature électronique (contrat, logiciel)
+\end{itemize}
+
+Futur:
+\begin{itemize}
+    \item Développement de l'informatique quantique
+    il y a donc un besoin de nouveaux systèmes cryptographiques "post-quantique"
+\end{itemize}
+
+\section{Formalisation de la cryptographie}
+
+\begin{definition}
+    Un \textbf{alphabet} est un ensemble fini de symboles.
+\end{definition}
+
+\begin{definition}
+    Un \textbf{message} dans un alphabet A est une suite finie à valeurs dans A.\n
+    noté $m = m_1 m_2 \cdots m_n$ où $m_i \in A$ et l'ensemble des messages est noté $\mathscr{L}(A) = \bigcup\limits_{n \in \N} A^n$.
+\end{definition}
+
+\begin{definition}
+    Soient deux messages $m = m_1 \cdots m_n, m' = m'_1 \cdots m'_p \in \mathscr{L}(a)$\n
+    La concaténation de $m$ et $m'$ est définie par $m'' = m \| m' = m_1 \cdots m_n m'_1 \cdots m'_p$
+\end{definition}
+
+\begin{definition}
+    Une fonction de chiffrement est une fonction $E: \mathscr{M} \rightarrow \mathscr{C}$
+    où $\mathscr{M}, \mathscr{C} \subset \mathscr{L}(A)$
+    \begin{itemize}
+        \item $\mathscr{M}$ est l'ensemble des messages pouvant être crypté
+        \item $\mathscr{C}$ est l'ensemble des messages cryptés
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Une fonction de déchiffrement pour $E$ est une fonction $D: \mathscr{C} \rightarrow \mathscr{M}$
+    tel que $\forall m \in \mathscr{M}, D(E(m)) = m$ i.e. $D \circ E = Id$
+\end{definition}
+
+\begin{proposition}{}{}
+    $E$ est injective
+\end{proposition}
+
+\begin{demonstration}
+    Soient $m, m' \in \mathscr{M}$\n
+    $E(m) = E(m') \implies D(E(m)) = D(E(m')) \implies m = m'$
+\end{demonstration}
+
+\begin{proposition}{}{}
+    $D$ est surjective
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{definition}
+    Un \textbf{cryptosystème} est un quadruplet $(\mathscr{M}, \mathscr{C}, \mathscr{K}, (E_e, D_d)_{(e, d) \in \mathscr{K}}$
+    où $\mathscr{M}, \mathscr{C} \in \mathscr{L}(A)$,
+    $\mathscr{K}$ est un ensemble de paires de ("clef de cryptage", "clef de décriptage").\n
+    Pour chaque $(e, d) \in \mathscr{K}$ on a $E_e: \mathscr{M} \rightarrow \mathscr{C}$
+    est une fonction de cryptage ayant $D_d: \mathscr{C} \rightarrow \mathscr{M}$ pour une fonction
+    de décryptage.
+\end{definition}
+
+Soit $A = \{A, \cdots, 0\} \simeq \llbracket 0, 25 \rrbracket$
+
+\begin{exemple}[César]
+    $\mathscr{M} = \mathscr{C} = \mathscr{L}(A)$\n
+    \begin{align*}
+        \mathscr{K}&=\{(e, d) | e \in \llbracket 0, 25 \rrbracket \text{ et } d = -e\}
+        &=\{(e, -e) | e \in \llbracket 0, 25 \rrbracket\}
+    \end{align*}
+
+    $D_\alpha = E_\alpha$\n
+    $\forall m_i \in A, D_\alpha(m_i) = m_i + \alpha \mod 26$
+\end{exemple}
+
+\begin{exemple}[Par permutation]
+    Soit $l$: longueur des permutations considérées.
+
+    $\mathscr{M} = \mathscr{C} = \bigcup\limits_{n \in \N}A^{nl}$
+
+    $\mathscr{K} = \{(\sigma, \sigma^{-1}) | \sigma \in \mathfrak{S}_l\}$
+
+    Si $m = m_1 \cdots m_l$ est de longueur $l$\n
+    $E_\sigma(m) = m_{\sigma(1) \cdots m_{\sigma(l)}}$
+    et $D_\tau = E_\tau$
+\end{exemple}
+
+\end{document}

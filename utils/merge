@@ -1,67 +1,183 @@
 #!/usr/bin/env python3
 
-import os
+from __future__ import annotations
+
+import argparse
+import json
 import re
-import sys
-from datetime import datetime
+from pathlib import Path
+from typing import Iterable, Optional
 
-def adjust_paths(content):
-    return re.sub(r'(\\includegraphics(?:\[.*\])?{)\.\./(.*})', r'\1\2', content)
+from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
-def extract_content(file_path, start_marker, end_marker):
-    extracting = False
-    content = []
-    with open(file_path, 'r') as file:
-        for line in file:
-            if start_marker in line:
-                extracting = True
-                continue
-            if end_marker in line:
-                extracting = False
-            if extracting:
-                content.append(line)
-    return ''.join(content)
+SESSION_DIR_RE = re.compile(r"^\d{4}-\d{2}-\d{2}-")
+BEGIN_DOC_RE = re.compile(r"\\begin\{document\}")
+END_DOC_RE = re.compile(r"\\end\{document\}")
+HOTWARN_BLOCK_RE = re.compile(r"\\begin\{hotwarn\}.*?\\end\{hotwarn\}", re.DOTALL)
+HOTBOX_RE = re.compile(r"\\hotbox\{([^}]*)\}\{([^}]*)\}\{([^}]*)\}")
+SAFE_RE = re.compile(r"^[a-z0-9_/-]+$")
 
-def main(input_dir, start_marker, end_marker):
-    if not os.path.isdir(input_dir):
-        print(f"{input_dir} does not exist.")
-        return
+SCRIPT_DIR = Path(__file__).resolve().parent
+DEFAULT_TEMPLATE = "merge_template.tex.j2"
 
-    subject_name = os.path.basename(input_dir.rstrip('/'))
-    output_file = os.path.join(input_dir, f"{subject_name}.tex")
+def load_lectures(json_path: Path) -> dict[str, str]:
+    data = json.loads(json_path.read_text(encoding="utf-8"))
+    if "lectures" not in data or not isinstance(data["lectures"], list):
+        raise ValueError("JSON invalide: clé 'lectures' manquante ou non-liste.")
+    lectures: dict[str, str] = {}
+    for i, course in enumerate(data["lectures"], 1):
+        fn = course.get("filename")
+        subj = course.get("subject")
+        if not isinstance(fn, str) or not isinstance(subj, str):
+            raise ValueError(
+                f"Entrée lectures[{i}] invalide: 'filename' et 'subject' doivent être des chaînes."
+            )
+        if not SAFE_RE.match(fn):
+            raise ValueError(
+                f"Nom de fichier invalide dans lectures[{i}]: '{fn}' (attendu: [a-z0-9_/-])."
+            )
+        lectures[fn] = subj
+    return lectures
 
-    with open('./utils/template_merge.tex', 'r') as template_file:
-        template_content = template_file.read()
-        template_content = template_content.replace('DATE_PLACEHOLDER', datetime.now().strftime('%d %B %Y'))
-        template_content = template_content.replace('TITLE_PLACEHOLDER', subject_name.replace('_', ' ').title())
+LATEX_ESCAPE_MAP = {
+    "\\": r"\textbackslash{}",
+    "{": r"\{",
+    "}": r"\}",
+    "$": r"\$",
+    "&": r"\&",
+    "#": r"\#",
+    "_": r"\_",
+    "%": r"\%",
+    "~": r"\textasciitilde{}",
+    "^": r"\textasciicircum{}",
+}
 
-    with open(output_file, 'w') as output:
-        header, _, footer = template_content.partition(r'%TEXT')
-        output.write(header)
+def latex_escape(text: str) -> str:
+    return "".join(LATEX_ESCAPE_MAP.get(ch, ch) for ch in text)
 
-        for subdir in sorted([d for d in os.listdir(input_dir) if os.path.isdir(os.path.join(input_dir, d))]):
-            tex_file = next((f for f in os.listdir(os.path.join(input_dir, subdir)) if f.endswith('.tex')), None)
-            if tex_file:
-                tex_path = os.path.join(input_dir, subdir, tex_file)
-                
-                content = extract_content(tex_path, start_marker, end_marker)
-                adjusted_content = adjust_paths(content)
-                
-                output.write(f"\n% Begin of {tex_file}\n")
-                output.write(adjusted_content)
-                output.write(f"\n% End of {tex_file}\n")
-        
-        output.write('\n' + footer)
 
-    print(f"Generated file : {output_file}")
+def iter_session_tex(course_dir: Path) -> Iterable[Path]:
+    for child in sorted(course_dir.iterdir()):
+        if not child.is_dir() or not SESSION_DIR_RE.match(child.name):
+            continue
+        for tex_file in sorted(child.glob("*.tex")):
+            if tex_file.is_file():
+                yield tex_file
+
+
+def extract_document_body(tex_content: str, source: Path) -> str:
+    begin_match = BEGIN_DOC_RE.search(tex_content)
+    end_match = END_DOC_RE.search(tex_content)
+    if not begin_match or not end_match or begin_match.end() > end_match.start():
+        raise ValueError(f"Structure LaTeX inattendue dans {source}")
+    body = tex_content[begin_match.end():end_match.start()]
+    body = HOTWARN_BLOCK_RE.sub("", body)
+    lines = []
+    for line in body.splitlines():
+        if "\\hotbox{" in line:
+            continue
+        lines.append(line)
+    return "\n".join(lines).strip()
+
+
+def find_subject(
+    lectures: dict[str, str], course_dir: Path, tex_content: str, current_subject: Optional[str]
+) -> Optional[str]:
+    if current_subject:
+        return current_subject
+
+    dir_name = course_dir.name
+    lookup_keys = [dir_name, dir_name.replace("-", "_")]
+    if re.match(r"^[a-z0-9]+\d$", dir_name):
+        lookup_keys.append(re.sub(r"(\D+)(\d)$", r"\1_\2", dir_name))
+    for key in lookup_keys:
+        if key in lectures:
+            return lectures[key]
+
+    hotbox_match = HOTBOX_RE.search(tex_content)
+    if hotbox_match:
+        return hotbox_match.group(1)
+    return None
+
+
+def build_environment(template_dir: Path) -> Environment:
+    env = Environment(
+        loader=FileSystemLoader(str(template_dir)),
+        undefined=StrictUndefined,
+        autoescape=False,
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+    env.filters["tex"] = latex_escape
+    return env
+
+
+def render_output(template: str, template_dir: Path, *, subject: Optional[str], body: str) -> str:
+    env = build_environment(template_dir)
+    tpl = env.get_template(template)
+    return tpl.render(subject=subject, body=body)
+
+
+def merge_course(
+    course_dir: Path,
+    *,
+    template: str = DEFAULT_TEMPLATE,
+    template_dir: Path = SCRIPT_DIR,
+    lectures_json: Path = SCRIPT_DIR / "lectures.json",
+) -> Path:
+    if not course_dir.is_dir():
+        raise SystemExit(f"Dossier introuvable: {course_dir}")
+
+    lectures = load_lectures(lectures_json)
+
+    collected_parts: list[str] = []
+    subject: Optional[str] = None
+
+    for tex_file in iter_session_tex(course_dir):
+        tex_content = tex_file.read_text(encoding="utf-8")
+        subject = find_subject(lectures, course_dir, tex_content, subject)
+        body = extract_document_body(tex_content, tex_file)
+        if body:
+            collected_parts.append(body)
+
+    if not collected_parts:
+        raise SystemExit(f"Aucun contenu LaTeX trouvé dans {course_dir}")
+
+    merged_body = "\n\n\\clearpage\n\n".join(collected_parts)
+
+    output_text = render_output(
+        template,
+        template_dir,
+        subject=subject,
+        body=merged_body,
+    )
+
+    output_path = course_dir / f"{course_dir.name}.tex"
+    output_path.write_text(output_text, encoding="utf-8")
+    return output_path
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Fusionner les séances d'une matière en un seul document LaTeX.")
+    parser.add_argument("course_dir", type=Path, help="Dossier de la matière (ex: cours/L1/analyse)")
+    parser.add_argument("--template", default=DEFAULT_TEMPLATE, help="Template Jinja2 à utiliser")
+    parser.add_argument(
+        "--template-dir", type=Path, default=SCRIPT_DIR, help="Dossier contenant le template")
+    parser.add_argument(
+        "--lectures-json", type=Path, default=SCRIPT_DIR / "lectures.json", help="Fichier JSON des matières")
+    return parser.parse_args()
+
+
+def main() -> None:
+    args = parse_args()
+    output_path = merge_course(
+        args.course_dir,
+        template=args.template,
+        template_dir=args.template_dir,
+        lectures_json=args.lectures_json,
+    )
+    print(f"Document généré: {output_path}")
+
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python script.py <input_dir> [start_marker] [end_marker]")
-        sys.exit(1)
-    
-    input_dir = sys.argv[1]
-    start_marker = sys.argv[2] if len(sys.argv) > 2 else R"\maketitle"
-    end_marker = sys.argv[3] if len(sys.argv) > 3 else R"\end{document}"
-    
-    main(input_dir, start_marker, end_marker)
+    main()

@@ -1,0 +1,191 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{24 janvier 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 1}{CM 2}{\today}
+
+\subsection{Partitionnement par blocs}
+
+\begin{definition}
+    Les sous matrices permettent un partitionnement par blocs.
+    Soit $A \in \mathcal{M}_{n,p}(\K)$, on peut écrire $A$ sous la forme:
+    $$
+    A = \left(
+    \begin{array}{c|c|c}
+        A_{1,1} & \cdots & A_{1,m} \\
+        \hline
+        \vdots & \ddots & \vdots \\
+        \hline
+        A_{r,1} & \cdots & A_{r,m}
+    \end{array}
+    \right)
+    $$
+    où pour chaque $i \in \{1, \cdots r\}$, les matrice $A_{ik}$ ont le même nombre de lignes pour tout $k \in \{1, \cdots r\}$,
+    et où pour chaque $j \in \{1, \cdots, m\}$, les matrices $A_{kj}$ ont le même nombre de colonnes pour tout $k \in \{1, \cdots r\}$.
+\end{definition}
+
+\begin{definition}
+    On peut faire un \textbf{produit par blocs}.
+
+    Soit
+    $$
+    A = \left(
+    \begin{array}{c|c|c}
+        A_{1,1} & \cdots & A_{1,m} \\
+        \hline
+        \vdots & \ddots & \vdots \\
+        \hline
+        A_{r,1} & \cdots & A_{r,m}
+    \end{array}
+    \right)
+    \in \mathcal{M}_{n,p}(\K)
+    $$
+    et
+    $$
+    B = \left(
+    \begin{array}{c|c|c}
+        B_{1,1} & \cdots & B_{1,s} \\
+        \hline
+        \vdots & \ddots & \vdots \\
+        \hline
+        B_{m,1} & \cdots & B_{m,s}
+    \end{array}
+    \right)
+    \in \mathcal{M}_{p,q}(\K)
+    $$
+    Avec le nombre de colonnes de $A_{i,k}$ égal au nombre de lignes de $B_{k,j}$ pour tout
+    $i \in \{1, \cdots, r\}, j \in \{1, \cdots, s\}, k \in \{1, \cdots, m\}$ Alors 
+    $$
+    AB = \left(
+    \begin{array}{c|c|c}
+        \sum_{k=1}^{m}A_{1,k}B_{k,1} & \cdots & \sum_{k=1}^{m}A_{1,k}B_{k,s} \\
+        \hline
+        \vdots & \ddots & \vdots \\
+        \hline
+        \sum_{k=1}^{m}A_{r,k}B_{k,1} & \cdots & \sum_{k=1}^{m}A_{r,k}B_{k,s}
+    \end{array}
+    \right)
+    $$
+\end{definition}
+
+\begin{remarque}
+    Avec $A \in \mathcal{M}_{n,p}(\K)$ partitionnée par lignes et $B \in \mathcal{M}_{p,q}(\K)$ partitionnée par colonnes, alors on a:
+
+    $r = n, m = 1$ et $s = q$.
+    ainsi $AB = (c_{i,j})$ avec $c_{i,j} = A_{i,1}B_{1,j} = l_i(A)c_j(B)$ pour $i \in \{1, \cdots, n\}$ et $j \in \{1, \cdots, q\}$.
+\end{remarque}
+
+\subsection{Inverse et puissance}
+
+\begin{definition}
+    Soit $A \in \mathcal{M}_n(\K)$, on note $A^0 = Id_n$ et pour $k \in \N^*$, $A^k$ est défini par récurrence par : $A^k = AA^{k-1}$
+\end{definition}
+
+\begin{propriete}{}{}
+    Soit $A \in \mathcal{M}_n(\K)$ et $k \in \N^*$, alors $A^k = A \times A \times \cdots \times A$ ($k$ fois).
+\end{propriete}
+
+\begin{definition}
+    Soit $A \in \mathcal{M}_n(\K)$, on dit que $A$ est inversible s'il existe $B \in \mathcal{M}_n(\K)$ tel que $AB = BA = Id_n$.
+    On note $\mathcal{GL}_n(\K)$ l'ensemble des matrices inversibles de $\mathcal{M}_n(\K)$.
+\end{definition}
+
+\begin{remarque}
+    La notation $\mathcal{GL}$ veut dire "Groupe Linéaire" et provient du fait que l'ensemble des matrices inversibles muni de la multiplication des matrices est un groupe.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $A \in \mathcal{M}_n(\K)$, si $A$ est inversible, il existe une unique matrice $B \in \mathcal{M}_n(\K)$ telle que $AB = BA = Id_n$.
+    Cette matrice s'appelle l'inverse de $A$ et est notée $A^{-1}$.
+\end{proposition}
+
+\begin{demonstration}
+    S'il existe deux matrices $B$ et $B'$ telles que $AB = BA = Id_n = AB' = B'A$ alors $B' = B'Id_n = B'(AB) = (B'A)B = Id_nB = B$
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $A \in \mathcal{M}_n(\K)$, s'il existe une matrice $B \in \mathcal{M}_n(\K)$ telle que $AB = Id_n$, alors $A$ est inversible et $B = A^{-1}$.
+    Il suffit donc de vérifier le produit d'un seul coté.
+\end{proposition}
+
+\begin{proposition}{}{}
+    Soit $A, B \in \mathcal{M}_n(\K)$, si $AB$ est inversible alors $(AB)^{-1} = B^{-1}A^{-1}$.
+\end{proposition}
+
+\begin{demonstration}
+    $(AB)(B^{-1}A^{-1}) = A(BB^{-1}A^{-1}) = AId_nA^{-1} = AA^{-1} = Id_n$
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $A \in \mathcal{M}_n(\K), B \in \mathcal{M}_{n,p}(\K)$ possède une unique solution $X = A^{-1}B$
+\end{proposition}
+
+\begin{demonstration}
+    $AX = B \implies A^{-1}(AX) = A^{-1}B \implies (A^{-1}A)X = A^{-1}B \implies X = A^{-1}B$
+    
+    et réciproquement
+    $X = A^{-1}B \implies A(A^{-1}B) = B \implies (AA^{-1})B = B$
+\end{demonstration}
+
+\subsection{Système linéaire}
+
+\begin{definition}
+    Soit $n, p \in \N^*$. Un système linéaire de $n$ équations linéaire à $p$ inconnues (à coefficients dans $\K$) s'écrit:
+    $$
+    \begin{cases}
+        a_{1,1}x_1 + a_{1,2}x_2 + \cdots + a_{1,p}x_p = b_1 \\
+        a_{2,1}x_1 + a_{2,2}x_2 + \cdots + a_{2,p}x_p = b_2 \\
+        \vdots \\
+        a_{n,1}x_1 + a_{n,2}x_2 + \cdots + a_{n,p}x_p = b_n \\
+    \end{cases}
+    $$
+    Les coefficients $a_{i,j}$ et $b_i$ pour $i \in \{1, \cdots, n\}$ et $j \in \{1, \cdots, p\}$ sont des éléments de $\K$.
+    Les coefficients $x_1, \cdots, x_p$ sont les inconnues du système.
+
+    On appelle solution du système linéaire tout $p$-uplet $(x_1, \cdots, x_p) \in \K^p$ tel que les équations du système sont vérifiées.
+    $(b_1, \cdots, b_n)$ s'appelle le second membre du système linéaire.
+    On note $S(L1)$ l'ensemble des solutions du système linéaire $L1$.
+    Lorsque $b_i = 0$ pour tout $i \in \{1, \cdots, n\}$, le système linéaire est dit homogène.
+\end{definition}
+
+\begin{definition}
+    On appelle matrice augmentée la matrice
+    $$
+    (A|B) = \left(
+    \begin{array}{cccc|c}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,p} & b_1 \\
+        a_{2,1} & a_{2,2} & \cdots & a_{2,p} & b_2 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        a_{n,1} & a_{n,2} & \cdots & a_{n,p} & b_n \\
+    \end{array}
+    \right)
+    \in \mathcal{M}_{n,p+1}(\K)
+    $$
+\end{definition}
+
+\begin{definition}
+    Un système linéaire de n équations à n équations est régulier ou de Cramer, s'il possède une unique solution.
+    Un système linéaire de n équations linéaires à p inconnues est dit compatible quand il a au moins une solution.
+\end{definition}
+
+\begin{definition}
+    Deux système linéaire (L1) et (L2) à p inconnues $x_1, \cdots, x_p$ sont équivalents si $S(L1) = S(L2)$.
+\end{definition}
+
+\begin{definition}
+    Soit $n, p \in \N^*$, $A \in \mathcal{M}_{n,p}(\K)$ et $\alpha, \lambda \in \K, \alpha \neq 0$
+    \begin{enumerate}
+        \item Notons A' la matrice obtenue à partir de A en multipliant par la $\alpha$ la qième ligne de A, $q \in \{1, \cdots, n\}$. Les autres lignes restant inchangées.
+        \item Notons A'' (resp A''') la matrice obtenue à partir de A en échangeant les lignes q et k de A (resp. en ajotant à la qième ligne de A le produit de $\lambda$ de la kième ligne de A).
+        $q, k \in \{1, \cdots, n\}$, $q \neq k, n \geq 2$, les autres lignes restant inchangées.
+        On dit que les matrices A', A'', A''' se déduisent de A par opération élémentaire sur les lignes.
+    \end{enumerate}
+\end{definition}
+
+%TODO
+
+\end{document}

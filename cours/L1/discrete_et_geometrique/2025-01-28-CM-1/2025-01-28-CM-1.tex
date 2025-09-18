@@ -1,0 +1,94 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{28 janvier 2025}
+
+\title{Discrete Et Geometrique | CM: 1}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\section{Maths discrètes}
+
+\subsection{Dénombrement}
+
+\begin{definition}
+    Soit $A$ un ensemble de $N$ éléments ($N \in \N$).
+    Une permutation de $A$ est une application bijective entre $A$ et $A$.
+\end{definition}
+
+\begin{remark}
+    Ici $N$ sert à que $A$ soit fini.
+\end{remark}
+
+%Rappel
+\begin{definition}
+    Soit $A, B$ deux ensembles.
+    $f$ est une fonction de $A$ dans $B$ si et seulement si:
+    \begin{itemize}
+        \item $f \subset A \times B$
+        \item $(a, b) \in f \land (a, b') \in f \implies b = b'$
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}
+    Soit $A$ un ensemble de $N$ éléments.
+    Soit $f: A \to A$ une application alors,
+    $f$ est bijective si et seulement si $f$ injective si et seulement si $f$ surjective.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{itemize}
+        \item \textbf{$f$ bijective $\implies$ $f$ injective.} Par définition de la bijection.
+        \item \textbf{$f$ surjective $\implies$ $f$ injective.} On suppose $f$ n'est pas injective.
+        Alors $\exists a, a' \in A, f(a) = f(a') \text{ et } a \neq a'$
+        On sépare A en deux parties: $\{a, a'\}$ et $A \setminus \{a, a'\}$
+        On a $f(A) = f(\{a, a'\}) \cup f(A \setminus \{a, a'\}) = f(a) \cup f(A \setminus \{a, a'\})$.
+        Or $f(\{a, a'\})$ contient exactement un élément et $f(A \setminus \{a, a'\})$ contient au plus $N - 2$ éléments.
+        Ainsi $f(A)$ contient au plus $N - 1$ éléments. Donc $f$ n'est pas surjective.
+        Donc $f$ est injective.
+        \item \textbf{$f$ injective $\implies$ $f$ bijective.} \color{red}À faire DM.\color{black} 
+        \item \textbf{$f$ injective $\implies$ $f$ bijective.} $f$ est injective donc $f$ est surjective ainsi par definition $f$ est bijective.
+    \end{itemize}
+\end{demonstration}
+
+\begin{proposition}
+    Soit $N \in \N^*$ et $A$ un ensemble de $N$ éléments.
+    L'ensemble de toutes les permutation de $A$ contient $N!$ éléments.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $A = \{1, \cdots N\}$ et $f: A \mapsto A$ une permutation.
+    Le nombre de façon de choisir $f(1)$ est $N$, puis $f(2)$ est $N - 1$ et ainsi de suite. \color{red}Remplacer par une récurence.\color{black}
+\end{demonstration}
+
+\begin{remark}
+    Une permutation peut être vu comme une relation d'order total.
+\end{remark}
+
+\begin{definition}
+    Soit $n, m \in \N^*$. Le nombre d'arrangements de $m$ parmi $n$, noté $A^m_n$.
+    Le nombre d'application injective $f: \{1, \cdots, m\} \to \{1, \cdots, n\}$
+\end{definition}
+
+\begin{proposition}
+    \begin{itemize}
+        \item Si $m \gt n$ alors $A^m_n = 0$.
+        \item Si $m = n$ alors $A^m_n = n! = m!$.
+    \end{itemize}
+\end{proposition}
+
+\begin{proposition}
+    Si $n \geq m$ alors $A^m_n = n(n-1)(n-2)\cdots(n-m+1) = \dfrac{n!}{(n - m)!}$.
+\end{proposition}
+
+\end{document}

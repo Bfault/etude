@@ -1,0 +1,13 @@
+\RequirePackage{tikz}
+% \RequirePackage{pgfplots}
+
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing,calc}
+
+\newcommand{\ballGraph}{%
+    \fill (0,0) circle(1.4pt);
+    \draw[->] (-2,0)--(2,0);
+    \draw[->] (0,-2)--(0,2);
+    % \draw (1, 0) node[above=1pt] {1};
+    % \draw (0, 1) node[right=1pt] {1};
+}

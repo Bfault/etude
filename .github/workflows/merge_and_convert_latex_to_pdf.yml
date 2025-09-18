@@ -57,21 +57,27 @@ jobs:
             done
           done
 
+      - name: Remove LaTeX auxiliary files
+        run: |
+          find output/ -type f \( -name "*.aux" -o -name "*.log" -o -name "*.toc" -o -name "*.out" -o -name "*.synctex.gz" \) -delete
+
+      - name: Clean up unnecessary files
+        run: |
+          rm -rf cours
+
+      - name: Remove untracked files
+        run: |
+          git clean -fdx
+
       - name: Push PDF files to pdf-output branch
         run: |
-          git fetch origin pdf-output || true
-
-          git checkout pdf-output || git checkout --orphan pdf-output
-
-          find . -type f -name "*.pdf" -exec rm -f {} +
-
-          find ./output/cours/ -type f -name "*.pdf" -exec cp {} ./ \;
-
-          git add *.pdf
-
+          git fetch origin pdf-output || git checkout --orphan pdf-output
+          git checkout pdf-output
+          rm -rf *
+          mkdir -p cours
+          cp -r output/* cours/
+          git add cours
           git config user.name "Github Actions"
           git config user.email "actions@github.com"
-
           git commit -m "Update PDF files" || echo "No changes to commit"
-
-          git push origin pdf-output --force
+          git push origin pdf-output

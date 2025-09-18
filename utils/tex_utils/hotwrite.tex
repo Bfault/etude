@@ -1,0 +1,51 @@
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{tikz}
+
+\usetikzlibrary{calc}
+\tcbuselibrary{skins}
+
+\newlength{\hotboxMinWidth}     \setlength{\hotboxMinWidth}{0.35\textwidth}
+\newlength{\hotboxMaxWidth}     \setlength{\hotboxMaxWidth}{0.90\textwidth}
+\newlength{\hotboxRightMargin}  \setlength{\hotboxRightMargin}{5mm}
+\newlength{\hotboxTopMargin}    \setlength{\hotboxTopMargin}{5mm}
+
+\newlength{\hotboxTitleWidth}
+\newlength{\hotboxWidth}
+
+\newcommand{\hotbox}[3]{%
+    \begingroup
+    \sbox0{\bfseries #1\hfill\colorbox{red!55!black}{#2}}%
+    \setlength{\hotboxTitleWidth}{\wd0}%
+    \setlength{\hotboxWidth}{\hotboxTitleWidth}%
+    \addtolength{\hotboxWidth}{3cm}%
+    \ifdim\hotboxWidth<\hotboxMinWidth \setlength{\hotboxWidth}{\hotboxMinWidth}\fi
+    \ifdim\hotboxWidth>\hotboxMaxWidth \setlength{\hotboxWidth}{\hotboxMaxWidth}\fi
+    \begin{tikzpicture}[remember picture,overlay]
+        \node[anchor=north east] at
+            ($(current page.north east)+(-\hotboxRightMargin,-\hotboxTopMargin)$)
+        {%
+            \begin{tcolorbox}[
+                enhanced,
+                colframe=red!75!black,
+                colback=red!5!white,
+                fonttitle=\bfseries,
+                title={#1},
+                after title={\hfill\colorbox{red!55!black}{#2}},
+                width=\hotboxWidth,
+            ]
+                \hfill #3
+            \end{tcolorbox}
+        };
+    \end{tikzpicture}%
+    \endgroup
+}
+
+\newenvironment{hotwarn}{%
+    \begin{tcolorbox}[
+        colback=red!5!white,
+        colframe=red!75!black,
+        fonttitle=\bfseries,
+    ]
+}{%
+    \end{tcolorbox}%
+}

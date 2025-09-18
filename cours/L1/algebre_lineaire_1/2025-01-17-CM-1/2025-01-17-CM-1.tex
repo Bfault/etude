@@ -1,0 +1,197 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{17 janvier 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 1}{CM 1}{\today}
+
+\section{Matrices}
+
+\begin{definition}
+    Soit $\K$ un corps. Soit $n, p \in \N^*$.
+    Une matrice de taille $n \times p$ à coefficients dans $\K$ est une famille
+    d'éléments de $\K$ indexée par $I = \{1, ..., n\} \times \{1, ..., p\}$.
+    On la représente par un tableau rectangulaire :
+    $$
+        A = \begin{pmatrix}
+            a_{1, 1} & \cdots & a_{1, p} \\
+            \vdots & \ddots & \vdots \\
+            a_{n, 1} & \cdots & a_{n, p}
+        \end{pmatrix}
+    $$
+\end{definition}
+
+\begin{definition}
+    On note $\mathcal{M}_{n, p}(\K)$ l'ensemble des matrices de taille $n \times p$ à coefficients dans $\K$.
+    ou encore $\mathcal{M}_{n}(\K)$ si $n = p$.
+\end{definition}
+
+\begin{definition}
+    Une matrice A de $\mathcal{M}_{n}(\K)$ est dite carrée d'ordre $n$.
+    \begin{enumerate}
+        \item les termes $a_{i, i}$ sont les éléments diagonaux de A.
+        \item A est dite diagonale si $a_{i, j} = 0$ pour $i \neq j$.
+        \item A est dite triangulaire supérieure si $a_{i, j} = 0$ pour $i > j$.
+        \item A est dite triangulaire inférieure si $a_{i, j} = 0$ pour $i < j$.
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    La matrice nulle de taille $n \times p$ est la matrice dont tous les coefficients sont nuls.
+\end{definition}
+
+\begin{definition}
+    La matrice identité de taille $n \times n$ est la matrice diagonale dont les éléments diagonaux sont tous égaux à 1.
+    $$
+        Id_n = \begin{pmatrix}
+            1 & 0 & \cdots & 0 \\
+            0 & 1 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & 1
+        \end{pmatrix}
+    $$
+\end{definition}
+
+\begin{definition}
+    La matrice transposée de A est la matrice obtenue en échangeant les lignes et les colonnes de A.
+    $$
+        A = \begin{pmatrix}
+            a_{1, 1} & \cdots & a_{1, p} \\
+            \vdots & \ddots & \vdots \\
+            a_{n, 1} & \cdots & a_{n, p}
+        \end{pmatrix}
+        \quad \text{et} \quad
+        ^tA = \begin{pmatrix}
+            a_{1, 1} & \cdots & a_{n, 1} \\
+            \vdots & \ddots & \vdots \\
+            a_{1, p} & \cdots & a_{n, p}
+        \end{pmatrix}
+    $$
+    Notée aussi $A^t$ ou $^tA$.
+\end{definition}
+
+\begin{definition}
+    Une matrice $\mathcal{M}_{n}(\K)$ est dite symétrique si $A = ^tA$.
+\end{definition}
+
+\begin{remarque}
+    Soit $A \in \mathcal{M}_{n, p}(\K)$.
+    \begin{enumerate}
+        \item $^t(^tA) = A$.
+        \item $^t(A + B) = ^tA + ^tB$.
+        \item $^t(\lambda A) = \lambda ^tA$.
+        \item $^t(AB) = ^tB \cdot ^tA$.
+    \end{enumerate}
+\end{remarque}
+
+\begin{definition} On a les opérations
+    \begin{enumerate}
+        \item 
+        Deux matrice $A, B \in \mathcal{M}_{n, p}(\K)$ sont égales si elles ont les mêmes coefficients.
+        $A = B \iff \forall i \in \{1, ..., n\}, \forall j \in \{1, ..., p\}, a_{i, j} = b_{i, j}$
+        \item Si $\lambda \in \K$, on note $\lambda A$ la matrice obtenue en multipliant chaque coefficient de A par $\lambda$.
+        \item Si $A, B \in \mathcal{M}_{n, p}(\K)$, on note $A + B$ la matrice obtenue en additionnant les coefficients correspondants.
+        $A + B = (a_{i, j} + b_{i, j})$
+    \end{enumerate}
+\end{definition}
+
+\begin{propriete}{}{}
+    Soit $\lambda, \mu \in \K$ et $A, B, C \in \mathcal{M}_{n, p}(\K)$.
+    \begin{enumerate}
+        \item A + (B + C) = (A + B) + C
+        \item A + B = B + A
+        \item A + 0 = A
+        \item A + (-A) = 0
+        \item $\lambda(A + B) = \lambda A + \lambda B$ et $(\lambda + \mu)A = \lambda A + \mu A$
+        \item $\lambda(\mu A) = (\lambda \mu)A$
+    \end{enumerate}
+\end{propriete}
+
+\begin{definition}
+    Soit $m$ matrices $A_1, ..., A_m \in \mathcal{M}_{n, p}(\K)$,
+    soit $\lambda_1, ..., \lambda_m \in \K$.
+    On appelle combinaison linéaire de $A_1, ..., A_m$ pondérée par $\lambda_1, ..., \lambda_m$ la matrice
+    $\lambda_1 A_1 + ... + \lambda_m A_m$.
+\end{definition}
+
+\begin{definition}
+    Soit $A, B \in \mathcal{M}_{n, p}(\K)$.
+    Le produit de A par B est la matrice $C \in \mathcal{M}_{n, p}(\K)$ définie par
+    $$
+        c_{i, j} = \sum_{k = 1}^{p} a_{i, k} b_{k, j}
+    $$
+\end{definition}
+
+\begin{remarque}
+    On peut utilise l'aide mémoire suivante pour se rappeler de la formule du produit de deux matrices.
+    $$
+    \begin{array}{ccc}
+        & \begin{matrix}
+            b_{1, 1} & \cdots & b_{1, q} \\
+            \vdots & \ddots & \vdots \\
+            b_{p, 1} & \cdots & b_{p, q}
+        \end{matrix} & \\
+        \begin{matrix}
+            a_{1, 1} & \cdots & a_{1, p} \\
+            \vdots & \ddots & \vdots \\
+            a_{n, 1} & \cdots & a_{n, p}
+        \end{matrix} &
+        \begin{matrix}
+            c_{1, 1} & \cdots & c_{1, q} \\
+            \vdots & \ddots & \vdots \\
+            c_{n, 1} & \cdots & c_{n, q}
+        \end{matrix} &
+    \end{array}
+    $$
+\end{remarque}
+
+\begin{definition}
+    On appelle sous-matrice de A la matrice obtenue en supprimant une ou plusieurs lignes et/ou colonnes de A.
+    Ainsi on peut décomposer A en blocs.
+    Soit en lignes :
+    $$
+        A = \begin{pmatrix}
+            A_1 \\
+            \vdots \\
+            A_p
+        \end{pmatrix}
+    $$
+    Soit en colonnes :
+    $$
+        A = \begin{pmatrix}
+            A_1 & \cdots & A_p
+        \end{pmatrix}
+    $$
+\end{definition}
+
+\begin{propriete}{}{}
+    Pour toute matrice $A \in \mathcal{M}_{n, p}(\K)$, on a
+    $A \times Id_p = A$ et $Id_n \times A = A$.
+\end{propriete}
+
+\begin{remarque}
+    On voit que l'identité n'est pas unique si $n \neq p$ (la matrice n'est pas carrée).
+\end{remarque}
+
+\begin{propriete}{}{}
+    Soit $\lambda \in \K$ et $A, B \in \mathcal{M}_{n, p}(\K)$.
+    \begin{enumerate}
+        \item \lambda(AB) = (\lambda A)B = A(\lambda B)
+        \item $A(B + C) = AB + AC$ et $(A + B)C = AC + BC$
+        \item $AB \neq BA$ en général
+        \item $A(BC) = (AB)C$
+    \end{enumerate}
+\end{propriete}
+
+\begin{remarque}
+    \begin{itemize}.
+        \item Le produit de deux matrices n'est pas commutatif.
+        \item On peut multiplier deux matrices non nulls et obtenir une matrice nulle.
+    \end{itemize}
+    Ainsi on dit que l'ensemble $\mathcal{M}(\K)$ possède des diviseurs de zéro.
+\end{remarque}
+
+\end{document}

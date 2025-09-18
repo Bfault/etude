@@ -1,0 +1,128 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{18 mars 2025}
+
+\title{Discrete Et Geometrique | CM: 6}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+Soient $A, B_1, B_2 \subset \Omega$ tels que $B_1 \cap B_2 = \emptyset$. On a
+
+\begin{align*}
+    P_A(B_1 \cup B_2) = P_A(B_1) + P_A(B_2)
+\end{align*}
+
+\begin{proposition}[formule de Bayes]
+Soient $\{A_1, \dots, A_N\} \subset \Omega$ (une partition de $\Omega$) et $B \subset \Omega$ tels que $P(B) > 0$. On a
+
+Alors $\forall j \in \llbracket 1, N \rrbracket$,
+
+$P_B(A_j) = \dfrac{P_{A_j}P(A_j)}{\sum_{k=1}^{N}P_{A_k}(B)P(A_k)}$
+    
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        P_B(A_j) = \frac{P(A_j \cap B)}{P(B)} = \frac{P_{A_j}(B)P(A_j)}{P(B)} = \frac{P_{A_j}(B)P(A_j)}{P(B)} = \dfrac{P_{A_j}P(A_j)}{\sum_{k=1}^{N}P_{A_k}(B)P(A_k)}
+    \end{align*}
+\end{demonstration}
+
+\subsection{Evénements indépendants}
+
+\begin{definition}
+    Soit $A, B \subset \Omega$.
+    
+    On dit que $A$ et $B$ sont indépendants si $P(A \cap B) = P(A)P(B)$.
+\end{definition}
+
+\begin{remark}
+    Si $P(A) \neq 0$ alors $A$ et $B$ sont indépendants si et seulement si $P_{A}(B) = P(B)$.
+\end{remark}
+
+\begin{proposition}
+    Soit $A \subset \Omega$.
+    \begin{itemize}
+        \item $A$ et $\Omega$ sont indépendants.
+        \item $A$ et $\emptyset$ sont indépendants.
+    \end{itemize}
+\end{proposition}
+
+\begin{demonstration}
+    Je laisse la démonstration à faire par le lecteur.
+\end{demonstration}
+
+\begin{proposition}
+    Soit $A \subset \Omega$.
+
+    Alors $A$ et $A$ sont indépendants si et seulement si $P(A) = 0$ ou $P(A) = 1$.
+    C'est-à-dire si et seulement si $A$ est un événement certain ($\Omega$) ou un événement impossible ($\emptyset$).
+\end{proposition}
+
+\begin{proposition}
+    Soit $A, B \subset \Omega$ et $A \subset B$.
+
+    Alors $P(A) \leq P(B)$.
+\end{proposition}
+
+\begin{demonstration}
+    On peut définir $B = A \cup (B\backslash A)$, ainsi
+
+    $P(B) = P(A) + P(B\backslash A)$ (on voit que $P(B\backslash A) \geq 0$).
+
+    Donc $P(B) \geq P(A)$
+\end{demonstration}
+
+\begin{proposition}
+    Soient $A, B \subset \Omega$ et $A \subset B$
+
+    Alors $A$ et $B$ indépendants si et seulement si $A = \emptyset$ ou $B = \Omega$
+\end{proposition}
+
+\begin{demonstration}
+    $\impliedby$: est déjà connu.
+
+    $\implies$: $P(A \cap B) = P(A)P(B) \iff P(A) = P(A)P(B) \iff P(A) = 0 \lor P(B) = 1$
+\end{demonstration}
+
+\begin{definition}(cas de 3 événements)
+    Soient $A, B, C \subset \Omega$
+
+    $A, B, C$ sont indépendants si et seulement si
+    \begin{itemize}
+        \item $A, B$ sont indépendants
+        \item $B, C$ sont indépendants
+        \item $A, C$ sont indépendants
+        \item $P(A \cap B \cap C) = P(A)P(B)P(C)$
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    En général la dernière n'est pas impliqué par les autres.
+\end{remark}
+
+\begin{definition}(cas d'un nombre fini d'événement)
+    Soient $A_1, \dots, A_N \subset \Omega$.
+
+    $A_1, \dots, A_N$ indépendants si et seulement si
+    \begin{enumerate}
+        \item si $N = 2$: $P(A_1 \cap A_2) = P(A_1)P(A_2)$
+        \item si $N \gt 2$:
+            $\forall k \in \{1, \dots, N\}$
+            $\{A_j | j \in \{1, \dots, N\}\backslash\{k\}\}$ sont indépendants
+
+            et $P(\Cap_{k=1}^N A_k = \prod_{k=1}^NP(A_k))$
+    \end{enumerate}
+\end{definition}
+
+\end{document}

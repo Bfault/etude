@@ -1,0 +1,49 @@
+{
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk-lualatex",
+            "command": "latexmk",
+            "args": [
+                "-synctex=-1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-lualatex",
+                "-outdir=%OUTDIR%",
+                "-r", "%WORKSPACE_FOLDER%/.latexmkrc",
+                "%DOC%",
+            ],
+            "env": {
+                "TEXINPUTS": "%WORKSPACE_FOLDER%/utils/tex_utils//:",
+                "PATH": "/usr/local/texlive/2025/bin/x86_64-linux:/usr/bin:/bin:${env:PATH}",
+            }
+        },
+        {
+            "name": "latexmk-pdflatex-fast",
+            "command": "latexmk",
+            "args": [
+              "-pdf",
+              "-pdflatex=pdflatex -synctex=0 -interaction=batchmode -file-line-error",
+              "-silent",
+              "-outdir=%OUTDIR%",
+              "-r", "%WORKSPACE_FOLDER%/.latexmkrc",
+              "%DOC%"
+            ],
+            "env": {
+                "TEXINPUTS": "%WORKSPACE_FOLDER%/utils/tex_utils//:",
+                "PATH": "/usr/local/texlive/2025/bin/x86_64-linux:/usr/bin:/bin:${env:PATH}",
+            }
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        { "name": "latexmk (lualatex)", "tools": ["latexmk-lualatex"] },
+        { "name": "latexmk (pdflatex, fast)", "tools": ["latexmk-pdflatex-fast"] }
+    ],
+
+    "latex-workshop.latex.recipe.default": "latexmk (pdflatex, fast)",
+    "latex-workshop.latex.outDir": "%DIR%/build",
+    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.latex.autoClean.run": "never",
+    "latex-workshop.view.pdf.viewer": "tab",
+    // "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.latex.clean.fileTypes": ["*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.fls", "*.log", "*.fdb_latexmk", "*.snm", "*.synctex(busy)", "*.synctex.gz(busy)", "*.nav", "*.vrb"],
+}

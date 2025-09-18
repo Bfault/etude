@@ -1,0 +1,32 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{16 septembre 2025}
+
+\begin{document}
+
+\hotbox{Cryptologie}{CM 2}{\today}
+
+\begin{definition}[(Principe de Kerckhoffs)]
+  Un système de chiffrement doit être sécurisé même si tout est connu, sauf la clé.
+\end{definition}
+
+\begin{remarque}
+    Cela signifie que la sécurité ne doit pas reposer sur le secret de l'algorithme, mais uniquement sur la clé.
+\end{remarque}
+
+L'espace des clés doit être suffisamment grand pour résister aux attaques par force brute.
+
+On dit qu'un cryptosystème est \textbf{cassé} si un attaquant peut retrouver la clé (ou le texte clair) en un temps raisonnable.
+
+\subsection{Différents cadres d'attaques à considérer}
+
+\begin{itemize}
+    \item Un texte crypté connu
+    \item Un texte clair connu
+    \item Un texte clair choisi (accés à la machine de chiffrement)
+    \item Un texte crypté choisi (accés à la machine de déchiffrement)
+\end{itemize}
+
+\end{document}

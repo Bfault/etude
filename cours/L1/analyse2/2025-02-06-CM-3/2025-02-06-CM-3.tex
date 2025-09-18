@@ -1,0 +1,57 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{06 février 2025}
+
+\title{Analyse2 | CM: 3}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{demonstration}
+    Si $f: I \rightarrow f(I)$ est continue et bijective, alors elle est stricement monotone.
+
+    L'application $f: I \rightarrow f(I)$ est surjective par définition, il suffit de montrer que $f$ est injective.
+
+    Par l'absurde on suppose qu'il existe $x_1, x_2 \in I$ vérifiant $f(x_1) = f(x_2)$ et $x_1 \neq x_2$.
+
+    Ainsi $x_1 < x_2 \lor x_2 < x_1$ qui veut dire $\exists c \in ]x_1, x_2[, f'(c) = 0$ par le théorème de Rolle mais par hypothèse $f'$ ne s'annule pas sur $\stackrel{\circ}{I}$.
+    Il y a donc contradiction, D'ou $f$ est injective.
+
+    \begin{rdem}
+        Donc $f$ est bijective.
+    \end{rdem}
+\end{demonstration}
+
+\begin{demonstration}
+    Si $f$ est constante, il est clair que $f$ est dérivable de dérivée nulle.
+
+    Maintenant supposons que $f$ est de dérivée nulle. Par l'inégalité des accroissements finis avec $k = 0$,
+    on a pour tout $x, y \in I, |f(x) - f(y)| \leq 0 \times |x - y| = 0$ et donc $f(x) = f(y)$.
+
+    D'où $f$ est constante sur $I$.
+\end{demonstration}
+
+\begin{demonstration}
+    Supposons que $f: I \rightarrow \R$ est k-lipschitzienne pour $k \geq 0$.
+
+    \begin{itemize}
+        \item Si $k = 0$ alors $f$ est constante donc continue.
+        \item Supposons que $k \gt 0$.
+        
+        Soit $a \in I$, on va montrer que $f$ est continue en a:
+
+        Soit $\varepsilon \gt 0$. En posant $\eta = \frac{\varepsilon}{k}$ on a pour tout $x \in I: |x - a| \lt \eta \implies |f(x) - f(a)| \leq k|x - a| \leq k \eta = k \frac{\varepsilon}{k} = \varepsilon$.
+    \end{itemize}
+\end{demonstration}
+
+\end{document}

@@ -1,0 +1,130 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{23 janvier 2025}
+
+\title{Analyse2 | CM: 2}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Quelques applications}
+
+\subsubsection{Comparaison de moyennes}
+
+Soit $n \in \N^*$ et $x_1, x_2, \ldots, x_n \gt 0$.
+
+On définit leurs moyennes:
+
+\begin{itemize}
+    \item arithmétique : $m_a = \dfrac{1}{n} \sum_{i=1}^{n}x_i$
+    \item harmonique : $m_h = \dfrac{n}{\sum_{i=1}^{n}\frac{1}{x_i}}$
+    \item géométrique : $m_g = (\Pi_{i=1}^{n}x_i)^{\frac{1}{n}}$
+    \item quadratique : $m_q = \sqrt{\dfrac{1}{n} \sum_{i=1}^{n}x_i^2}$
+\end{itemize}
+
+\begin{proprietes}
+    On a les inégalités: $m_h \leq m_g \leq m_a \leq m_q$.
+\end{proprietes}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item Montrons que $m_h \leq m_g$.
+        
+            Comme la fonction $x \mapsto \ln x$ est concave sur $]0, +\infty[$ et par l'inégalité de Jensen, %mettre une ref
+            on a
+            \begin{flalign*}
+                \ln \frac{1}{m_h} &= \ln(\frac{1}{n} \sum_{i=1}^{n}\frac{1}{x_i}) \\
+                &\geq \frac{1}{n} \sum_{i=1}^{n} \ln \frac{1}{x_i}
+            \end{flalign*}
+            Ainsi
+            \begin{flalign*}
+                \ln(m_h) &\leq \frac{1}{n}\sum_{i=1}^{n}\ln x_i \\
+                &= \frac{1}{n} \ln (\Pi_{i=1}^{n}x_i) \\
+                &= \ln((\Pi_{i=1}^{n}x_i)^{\frac{1}{n}}) \\
+                &= \ln(m_g)
+            \end{flalign*}
+        
+        \item Montrons que $m_g \leq m_a$.
+        
+            Par la concavité de la fonction $x \mapsto \ln(x)$ et l'inégalité de Jensen, %mettre une ref
+            on a
+
+            \begin{flalign*}
+                \ln(m_a) &= \ln(\frac{1}{n} \sum_{i=1}^{n}x_i) \\
+                &\geq \frac{1}{n} \sum_{i=1}^{n} \ln x_i \\
+                &= \ln(m_g)
+            \end{flalign*}
+
+            Par croissance de la fonction $x \mapsto \ln(x)$ on a $m_g \leq m_a$.
+        
+        \item Montrons que $m_a \leq m_q$
+        
+            Par la convexité de la fonction $x \mapsto x^2$ et l'inégalité de Jensen, %mettre une ref
+            \begin{flalign*}
+                m_a^2 &= (\frac{1}{n} \sum_{i=1}^{n}x_i)^2 \\
+                &\leq \frac{1}{n} \sum_{i=1}^{n}x_i^2 \\
+                &= m_q
+            \end{flalign*}
+
+            En prenant les racines carrées, on obtient $m_a \leq m_q$.
+    \end{enumerate}
+\end{demonstration}
+
+\begin{proprietes}
+    $\forall a \geq 1, \forall x_1, x_2 \gt 0, (x_1 + x_2)^\alpha \geq 2^{\alpha - 1}(x_1^{\alpha} + x_2^{\alpha})$.
+\end{proprietes}
+
+\begin{demonstration}
+    Soit $\alpha \geq 1$. La fonction $\funcdef{}{]0, +\infty[}{\R}{x}{x^\alpha}$ est deux fois dérivable
+    $f'(x) = \alpha x^{\alpha - 1}$ et $f''(x) = \alpha(\alpha - 1)x^{\alpha - 2}$ est positive sur $I = ]0, +\infty[$.
+
+    Donc f est convexe et pour $\lambda = \frac{1}{2}$, on a pour tout $x_1, x_2 \gt 0$
+
+    \begin{flalign*}
+        (\frac{x_1 + x_2}{2})^\alpha &= f(\frac{1}{2} x_1 + \frac{1}{2} x_2) \\
+        &\leq \frac{1}{2} f(x_1) + \frac{1}{2} f(x_2) \\
+        &\leq \frac{1}{2} x_1^\alpha + \frac{1}{2} x_2^\alpha \\
+        &= \frac{x_1^\alpha + x_2^\alpha}{2}
+    \end{flalign*}
+
+    Donc $(x_1 + x_2)^\alpha \leq 2^{1 - \alpha}(x_1^\alpha + x_2^\alpha)$.
+\end{demonstration}
+
+\subsubsection{Inégalité de Hölder}
+
+\begin{proposition}[Inégalité de Young]
+    Soient $p, q \in ]1, +\infty[$ tels que $\frac{1}{p} + \frac{1}{q} = 1$ et $a, b \gt 0$, on a
+    $$
+    ab \leq \frac{a^p}{p} + \frac{b^q}{q}
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{proposition}[Inégalité de Hölder]
+    Soient $p, q \in ]1, +\infty[$ tels que $\frac{1}{p} + \frac{1}{q} = 1$. Pour tout $n \in \N^*, x_1, x_2, \ldots, x_n, y_1, y_2, \ldots, y_n \in \R$, on a
+    $$
+    \sum_{i=1}^{n}|x_iy_i| \leq (\sum_{i=1}^{n}|x_i|^p)^{\frac{1}{p}}(\sum_{i=1}^{n}|y_i|^q)^{\frac{1}{q}}
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\section{Complément sur la dérivation}
+
+
+\end{document}

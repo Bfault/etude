@@ -1,0 +1,59 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{20 février 2025}
+
+\title{Analyse2 | CM: 5}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+% propo 3.3.2
+
+\begin{demonstration}
+    Comme $g$ ne s'annule pas sur $(I \cap V)\backslash\{a\}$, par la proposition 3.1.1, on a:
+    \begin{align*}
+        f(x) \underset{x \to a}{\sim} g(x) &\iff f(x) - g(x) \underset{x \to a}{\sim} o(g(x)) \\
+        &\iff \lim\limits_{x \to a}\frac{f(x) - g(x)}{g(x)} = 0 \\
+        &\iff \lim\limits_{x \to a}\frac{f(x)}{g(x)} - 1 = 0 \\
+        &\iff \lim\limits_{x \to a}\frac{f(x)}{g(x)} = 1
+    \end{align*}
+\end{demonstration}
+
+\begin{example}
+    \begin{enumerate}
+        \item On veut calculer $\lim\limits_{x \to 0}\frac{\sin(x\ln(x))}{x}$\\
+        Comme $\lim\limits_{x \to 0}x\ln(x) = 0$ et $\sin(x) \underset{x \to 0}{\sim} x$, on a:
+        $\sin(x\ln(x)) \underset{x \to 0}{\sim} x\ln(x)$
+
+        Ainsi 
+        \begin{align*}
+            \frac{\sin(x\ln(x))}{x} &\underset{x \to 0}{\sim} \ln(x)
+        \end{align*}
+        D'où:
+        \begin{align*}
+            \lim\limits_{x \to 0}\frac{\sin(x\ln(x))}{x} &= \lim\limits_{x \to 0}\ln(x) = -\infty
+        \end{align*}
+        
+        \item On veut calculer $\lim\limits_{x \to 0}\frac{\ln(1 + 2\tan(x))}{\sin(x)}$\\
+        Comme $\lim\limits_{x \to 0}\tan(x) = 0$, $\ln(1 + x) \underset{x \to 0}{\sim} x$, $\sin(x) \underset{x \to 0}{\sim} x$ et $\tan(x) \underset{x \to 0}{\sim} x$, on a:
+        
+        \begin{align*}
+            \frac{\ln(1 + 2\tan(x))}{\sin(x)} &\underset{x \to 0}{\sim} \frac{2\tan(x)}{\sin(x)} \\
+            &\underset{x \to 0}{\sim} \frac{2x}{x} \\
+            &\underset{x \to 0}{\sim} 2
+        \end{align*}
+        D'où $\lim_{x \to 0}\dfrac{1 + 2\tan(x)}{\sin(x)} = 2$
+    \end{enumerate}
+\end{example}
+
+\end{document}

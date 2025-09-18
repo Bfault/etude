@@ -1,0 +1,71 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{27 février 2025}
+
+\title{Analyse2 | CM: 6}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\begin{proposition}[Unicité d'un développement limité]
+    Soient $n \in \N$, $f$ une fonction définie sur $I$ et $a \in I$.
+
+    Si $f$ admet un $DL_n(a)$, alors ce DL est unique. Autrement dit:
+
+    \begin{align*}
+        f(x) = \sum_{k=0}^{n} c_k(x-a)^k + o((x-a)^n) = \sum_{k=0}^{n} b_k(x-a)^k + o((x-a)^n) \implies \forall k \in \llbracket 0, n \rrbracket, a_k = b_k
+    \end{align*}
+\end{proposition}
+
+\begin{demonstration}
+    Par l'absurde, supposons que $a_k \neq b_k$ pour un certain $k \in \llbracket 0, n \rrbracket$. Soit $k$ le plus petit tel que $a_k \neq b_k$.
+
+    On a alors:
+
+    \begin{align*}
+        f(x) &= \sum_{k=0}^{n} a_k(x-a)^k + o((x-a)^n) \\
+        &= \sum_{k=0}^{n} b_k(x-a)^k + o((x-a)^n)
+    \end{align*}
+
+    En prenant le plus petit $k_0$ dans $\llbracket 0, n \rrbracket$ tel que $a_{k_0} \neq b_{k_0}$, on a:
+
+    \begin{align*}
+        f(x) &= c_{k_0}(x-a)^k_0 + o((x-a)^{k_0}) \\
+        &= b_{k_0}(x-a)^k_0 + o((x-a)^{k_0}) \\
+        &\implies (c_{k_0} - b_{k_0})(x - a)^{k_0} \underset{x \to a}{=} o((x - a)^{k_0})
+    \end{align*}
+
+    Ainsi on a $c_{k_0} - b_{k_0} \underset{x \to a}{=} o(1) \implies c_{k_0} - b_{k_0} = 0 \implies a_{k_0} = b_{k_0}$, ce qui est absurde.
+
+\end{demonstration}
+
+\begin{proposition}
+\end{proposition}
+
+\begin{demonstration}
+    Soit $f$ une fonction paire admettant un $DL_n(0)$ tel qu'au voisinage de 0,
+
+    $f(x) = c_0 + c_1x + \ldots + c_nx^n + o(x^n)$ alors au voisinage de 0,
+
+    $f(-x) = c_0 - c_1x + \ldots + (-1)^nc_nx^n + o(x^n)$
+
+    Ainsi par la parité de $f$ et l'unicité d'un DL on peut identifier les coefficients correspondants:
+
+    $c_1 = -c1, c_3 = -c_3, \ldots, c_n = (-1)^nc_n$ ou encore $c_1 = c_3 = \ldots = c_n = 0$.
+
+    Ainsi tous les coefficients impairs du DL de $f$ sont nuls. D'où la partie principale est paire.
+
+    Faire le même raisonnement pour une fonction impaire.
+\end{demonstration}
+
+\end{document}

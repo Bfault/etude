@@ -1,0 +1,33 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{31 janvier 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 1}{CM 4}{\today}
+
+\begin{theoreme}
+    Soit $A \in \mathcal{M}_n(\K)$. Les conditions suivantes sont équivalentes:
+    \begin{enumerate}
+        \item $A$ est inversible.
+        \item Pour toute matrice colonne $B \in \mathcal{M}_{n, 1}(\K)$, l'équation $AX = B$ admet une unique solution.
+        \item Le système $AX = 0_{n,1}$ possède comme unique solution $0_{n,1}$ dans $\mathcal{M}_{n, 1}(\K)$.
+        \item La forme échelonée réduite de $A$ est $Id_n$
+        \item $A$ est un produit de matrices élémentaires.
+    \end{enumerate}
+\end{theoreme}
+
+%TODO
+
+\subsection{Système linéaire: resultats généraux}
+
+\begin{definition}
+    Dans un système linéaire échelonée, les variables qui correspondent au colonne de la matrice où il y a des positions pivots sont dites
+    liées ou principales, les autres variables sont dites libres ou secondaires.
+\end{definition}
+
+%TODO
+
+\end{document}

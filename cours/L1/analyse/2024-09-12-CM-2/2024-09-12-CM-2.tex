@@ -1,27 +1,19 @@
 \documentclass[a4paper, 12pt]{article}
-\usepackage{amsmath, amssymb, amsthm}
-\usepackage{geometry}
-\usepackage{tcolorbox}
-\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\usepackage{utils}
 
 \renewcommand*{\today}{12 septembre 2024}
 
-\title{Analyse | CM: 2}
-\author{Par Lorenzo}
-\date{\today}
-
-\input{../../../../utils/util.tex}
-
 \begin{document}
 
-\maketitle
+\hotbox{Analyse 1}{CM 2}{\today}
 
 \section{$\sqrt{2}$ n'est pas un rationnel}
 
 Il existe des nombres qu'on ne peut pas écrire sous la forme d'une fraction de deux entiers, on les nomme les irrationnels.
 Ils apparaissent naturellement (e.g. La diagonale d'un carré de longeur 1).
 
-\begin{proposition} \label{propal}
+\begin{proposition}{}{propal}
     Pour la suite nous avons besoin de démontrer que 
     \begin{align*}
         p \in \Z, \; 2 \mid p^2 \implies 2 \mid p
@@ -43,13 +35,11 @@ Ils apparaissent naturellement (e.g. La diagonale d'un carré de longeur 1).
 
     
     Ici $p^2$ est impair, Absurde $p^2$ ne peut pas être à la fois pair et impair!
-    \begin{rdem}
-        Donc si le carré d'un entier relatif $(p^2)$ est pair p est aussi pair.
-    \end{rdem}
 
+    Donc si le carré d'un entier relatif $(p^2)$ est pair p est aussi pair.
 \end{demonstration}
 
-\begin{proposition}
+\begin{proposition}{}{}
     $\sqrt{2} \in \R \backslash \Q$ ($\sqrt{2}$ est irrationnel).
 \end{proposition}
 
@@ -85,11 +75,8 @@ Ils apparaissent naturellement (e.g. La diagonale d'un carré de longeur 1).
     Donc $q^2$ est pair et $q$ également.
 
     Finalement 2 divise p et q est absurde car p et q sont premier entre eux, ils ne peuvent pas être tout les deux multiple de 2.
-    
-    \begin{rdem}
-        L'hypothèse de départ $\sqrt{2} \in \R \backslash \Q$ est fausse, ainsi $\sqrt{2}$ est irrationnel.
-    \end{rdem}
 
+    L'hypothèse de départ $\sqrt{2} \in \R \backslash \Q$ est fausse, ainsi $\sqrt{2}$ est irrationnel.
 \end{demonstration}
 
 \section{Propriété de $\R$}
@@ -105,86 +92,92 @@ On note $+$ l'addition et $\times$ la multiplication.
 
 \vspace*{1em}
 
-\begin{proprietes}
-    \item l'associativité.
+\begin{propriete}{}{}
+    \begin{enumerate}
+        \item l'associativité.
         \begin{flalign*}
             &(a + b) + c = a + (b + c)&& \\
             &(a \times b) \times c = a \times (b \times c)&&
         \end{flalign*}
-    \item l'élement neutre.
+        \item l'élement neutre.
         \begin{flalign*}
             &\exists e \in \R, \forall x \in \R, \; e + x = x + e = x&& \\
             &\exists e' \in \R, \forall x \in \R, \; e' \times x = x \times e' = x&&
         \end{flalign*}
         Pour l'addition et la multiplication dans $\R$, leur élément neutre est 0 et 1 respectivement.
         e et e' seront pour la suite, les élements neutres de l'addition et de la multiplication respectivement.
-    \item l'élement inverse.
+        \item l'élement inverse.
         \begin{flalign*}
             &\exists i \in \R, \forall x \in \R, \; i + a = a + i = e&& \\
             &\exists i \in \R^*, \forall x \in \R^*, \; i \times a = a \times i = e'&&
         \end{flalign*}
-    \item commutativité.
+        \item commutativité.
         \begin{flalign*}
             &a + b = b + a&& \\
             &a \times b = b \times a&&
         \end{flalign*}
-    \item distributivité de la multiplication par rapport à l'addition.
-    \begin{flalign*}
-        &(a + b) \times c = c \times (a + b) = ac + bc&& \\
-    \end{flalign*}
-\end{proprietes}
+        \item distributivité de la multiplication par rapport à l'addition.
+        \begin{flalign*}
+            &(a + b) \times c = c \times (a + b) = ac + bc&& \\
+        \end{flalign*}
+    \end{enumerate}
+\end{propriete}
 
-\begin{remark}
+\begin{remarque}
     $(\R, +, *)$ est un corps abélien/commutatif
-\end{remark}
+\end{remarque}
 
 \subsection{L'ordre sur $\R$}
 
 Soient a, b et c des nombres réels quelconques.
 
-\begin{proprietes}
-    \item réfléxivité.
+\begin{propriete}{}{}
+    \begin{enumerate}
+        \item réfléxivité.
         \begin{flalign*}
             a \leq a
         \end{flalign*}
-    \item l'antisymmétrie.
+        \item l'antisymmétrie.
         \begin{flalign*}
             a \leq b \text{ et } b \leq a \implies a = b
         \end{flalign*}
-    \item transitivité.
+        \item transitivité.
         \begin{flalign*}
             a \leq b \text{ et } b \leq a \implies a = b
         \end{flalign*}
-    \item comparabilité
-    
+        \item comparabilité
+        
         quelque soit a et b dans $\R$, on a toujours $a \leq b$ or $b \leq a$
-\end{proprietes}
-
+    \end{enumerate}
+\end{propriete}
+    
 \noindent
 Les propriétés 1, 2 et 3 signifie que $leq$ est une relation d'ordre,
 ajouté la 4, on parle de relation d'ordre totale.
 
-\begin{remark}
+\begin{remarque}
     On définit la relation d'ordre supérieur ou égale ($\geq$) par \break $a \geq b \iff b \leq a$
-\end{remark}
+\end{remarque}
 
-\begin{remark}
+\begin{remarque}
     On définit la relation d'ordre strictement inférieur ($\lt$) par \break $a \lt b \iff a \leq b \text{ et } a \neq b$
-\end{remark}
+\end{remarque}
 
-\begin{remark}
+\begin{remarque}
     On définit la relation d'ordre strictement supérieur ($\gt$) par \break $a \gt b \iff a \geq b \text{ et } a \neq b$
-\end{remark}
+\end{remarque}
 
-\begin{remark}
+\begin{remarque}
     $\lt$ et $\gt$ ne vérifient pas 1 et 2, ils ne sont donc pas des relations d'ordres mais des relations d'ordres stricts.
-\end{remark}
+\end{remarque}
 
-\begin{proprietes}
-    \item $a \leq b \implies a + c \leq b + c$
-    \item $a \leq b \text{ et } c \geq 0 \implies ac \leq bc$
-    \item $ab = 0 \implies a = 0 \text{ ou } b = 0$
-\end{proprietes}
+\begin{propriete}{}{}
+    \begin{enumerate}
+        \item $a \leq b \implies a + c \leq b + c$
+        \item $a \leq b \text{ et } c \geq 0 \implies ac \leq bc$
+        \item $ab = 0 \implies a = 0 \text{ ou } b = 0$
+    \end{enumerate}
+\end{propriete}
 
 On définit le maximum entre deux réels comme
 \begin{equation*}

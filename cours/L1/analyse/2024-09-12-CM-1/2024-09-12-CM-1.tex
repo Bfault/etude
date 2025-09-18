@@ -1,20 +1,12 @@
 \documentclass[a4paper, 12pt]{article}
-\usepackage{amsmath, amssymb, amsthm}
-\usepackage{geometry}
-\usepackage{tcolorbox}
-\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\usepackage{utils}
 
 \renewcommand*{\today}{12 septembre 2024}
 
-\title{Analyse | CM: 1}
-\author{Par Lorenzo}
-\date{\today}
-
-\input{../../../../utils/util.tex}
-
 \begin{document}
 
-\maketitle
+\hotbox{Analyse 1}{CM 1}{\today}
 
 \section{L'ensemble des nombres rationnels $\Q$}
 
@@ -28,12 +20,12 @@
     (rappel: $\N^*=\N\backslash\{0\}$, i.e. $\N$ privé de 0).
 \end{definition}
 
-\begin{remark}
+\begin{remarque}
     Les nombres décimaux sont des nombres de la forme \break $\dfrac{p}{10^n}$ avec $p \in \Z, n \in \N$
     (e.g. $1.234 = \dfrac{1234}{10^3}$).
-\end{remark}
+\end{remarque}
 
-\begin{proposition}
+\begin{proposition}{}{}
     Un nombre est rationnel si et seulement si il admet une écriture décimale finie ou périodique.
 \end{proposition}
 
@@ -62,9 +54,7 @@
 
     Ici, a est un entier et $\dfrac{b_1b_2...b_n}{10^n}$ un nombre rationnel.
 
-    \begin{rdem}
-        La somme d'un entier (nombre rationnel) et d'un nombre rationnel est un nombre rationnel.
-    \end{rdem}
+    La somme d'un entier (nombre rationnel) et d'un nombre rationnel est un nombre rationnel.
 
     \vspace{1em}
 
@@ -104,13 +94,9 @@
         x = a + \dfrac{b_1b_2...b_n}{10^n} + y
     \end{align*}
 
-    \begin{rdem}
-        La somme de nombre rationnel donne un nombre rationnel.
-    \end{rdem}
+    La somme de nombre rationnel donne un nombre rationnel.
     
-    \begin{rdem}
-        Ainsi si un nombre à une partie décimale finie ou périodique, alors il est rationnel.
-    \end{rdem}
+    Ainsi si un nombre à une partie décimale finie ou périodique, alors il est rationnel.
 
 
 \end{demonstration}
@@ -127,13 +113,11 @@
 
     La division ne se termine pas et répète une séquence de chiffres.
 
-    \begin{rdem}
-        Ainsi si un nombre est rationnel, alors sa partie décimale est finie ou périodique.
-    \end{rdem}
+    Ainsi si un nombre est rationnel, alors sa partie décimale est finie ou périodique.
 
 \end{demonstration}
 
-\begin{example}
+\begin{exemple}
     Prenons $x = 12.34202320232023...$
 
     \vspace{1em}
@@ -154,6 +138,6 @@
         \iff &999\,900x = 12\,340\,789&& \\
         \iff &x = \dfrac{12\,340\,789}{999\,900}&& \\
     \end{flalign}
-\end{example}
+\end{exemple}
 
 \end{document}

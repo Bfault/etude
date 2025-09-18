@@ -1,0 +1,124 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{amsmath, amssymb, amsthm, stmaryrd}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{pgfplots}
+\usepackage{tcolorbox}
+\geometry{hmargin=2.5cm, vmargin=2.5cm}
+
+\renewcommand*{\today}{25 mars 2025}
+
+\title{Discrete Et Geometrique | CM: 7}
+\author{Par Lorenzo}
+\date{\today}
+
+\input{../../../../utils/util.tex}
+
+\begin{document}
+
+\maketitle
+
+\subsection{Variables aléatoires}
+
+\begin{definition}
+    $X$ une variable aléatoire réelle c'est à dire $X: \Omega \mapsto \R$
+\end{definition}
+
+\begin{definition}
+    Soient $X$ une variable aléatoire et $A$ un événement en termes de $X$.
+    C'est à dire de forme $\{ w \in \Omega | X(w) \in S\}$ avec $S \subset \R$.
+
+    Notation correcte:
+    \begin{itemize}
+        \item $\{X \in S\} = \{w \in \Omega | X(w) \in S\}$
+        \item $\{X = 3\} = \{w \in \Omega | X(w) \in \{3\}\}$
+        \item $\{X \geq 7\} = \{w \in \Omega | X(w) \in [7, +\infty[\}$
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    Tout ensemble d'événements résultant d'une variable aléatoire est d'ordre multiplie de quelque chose (dans un lancé de dé, des multiple de 6)
+\end{remark}
+
+\begin{remark}
+    Premières questions à se poser:
+    \begin{itemize}
+        \item $P(X  \in S) = ?$
+    \end{itemize}
+\end{remark}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire. La loi de $X$ (notée $P_X$)
+    est une fonction $P_X: \mathscr{P}(\R) \to [0, 1]$
+
+    définie par $P_X(S) = P(\{X \in S\})$ avec $S \subset \R$
+\end{definition}
+
+\begin{proposition}
+    Etant donné une variable aléatoire $X$ d'un univers fini $\Omega$.
+    Soit $S, S' \subset \Omega$.
+
+    Supposons $S \cap X(\Omega) = S' \cap X(\Omega)$ alors $P_X(S) = P_X(S')$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        P_X(S) = P(\{X \in S\}) &= P(\{w \in \Omega | X(w) \in S\}) \\
+        &= P(\{w \in \Omega | X(w) \in S \cap X(\Omega)\}) \\
+        &= P(\{w \in \Omega | X(w) \in S' \cap X(\Omega)\}) \\
+        &= \dots = P_X(S')
+    \end{align*}
+\end{demonstration}
+
+\begin{proposition}
+    Soit $X$ une variable aléatoire d'un univers fini $\Omega$.
+    Soit $S \subset \R$.
+
+    Alors $P_X(S) = \sum\limits_{x \in S \cap X(\Omega)} P_X(\{x\})$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        P_X(S) &= P(\{w \in \Omega | X(w) \in S\}) \\
+        &= P(\{w \in \Omega | X(w) \in S \cap X(\Omega)\}) \\
+        &= P(\bigcup\limits_{x \in S \cap X(\Omega)} \{w \in \Omega | X(w) = x\}) \\
+        &= \sum\limits_{x \in S \cap X(\Omega)} P(\{w \in \Omega | X(w) = x\}) \\
+    \end{align*}
+\end{demonstration}
+
+\begin{remark}
+    Pour définir la loi d'une variable aléatoire, il suffit de donner $P(\{X = x\}) = P_X(\{x\})$ pour tout $x \in X(\Omega)$
+\end{remark}
+
+\begin{proposition}
+    Soit $X$ une variable aléatoire d'un univers fini $\Omega$.
+
+    $\sum\limits_{x \in X(\Omega)} P_X(\{x\}) = 1$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        \sum\limits_{x \in X(\Omega)} P_X(\{x\}) &= \sum\limits_{x \in X(\Omega) \cap \R} P(\{x\}) \\
+        &= P_X(\R) \\
+        &= P(\{X \in \R\}) \\
+        &= P(\Omega) = 1
+    \end{align*}
+\end{demonstration}
+
+\begin{proposition}
+    Soit $X$ une variable aléatoire.
+
+    Soit $S, S' \subset \R$ tels que $S \cap S' = \emptyset$.
+
+    $P_X(S \cup S') = P_X(S) + P_X(S')$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        P_X(S \cup S') &= P(\{w \in \Omega | X(w) \in S\} \cup\{w \in \Omega | X(w) \in S\}) \\
+        &= P(\{w \in \Omega | X(w) \in S\}) + P(\{w \in \Omega | X(w) \in S'\}) \\
+        &= P_X(S) + P_X(S')
+    \end{align*}
+\end{demonstration}
+
+\end{document}

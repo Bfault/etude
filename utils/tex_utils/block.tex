@@ -1,0 +1,84 @@
+\RequirePackage{amsthm}
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{tcolorbox}
+
+\tcbuselibrary{theorems,skins,breakable}
+
+
+\newtheorem{_definition}{Définition}[section]
+\newenvironment{definition}[1][]{
+    \begin{tcolorbox}[
+        sharp corners,
+        colback=white,
+        colframe=black,
+        leftrule=1mm,
+        toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
+        top=0mm, left=1mm
+    ]
+    \begin{_definition}#1~\par
+}{%
+    \end{_definition}%
+    \end{tcolorbox}
+}
+
+\newtcbtheorem[number within=section]{propriete}{Propriétés}%
+{
+    enhanced,
+    colframe=black,
+    coltitle=black, fonttitle=\bfseries,
+    top=5mm,
+    attach boxed title to top left={yshift=-3mm, xshift=6mm},
+    boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
+}{propri}
+
+\newtcbtheorem[number within=section]{proposition}{Proposition}%
+{
+    enhanced,
+    colframe=black,
+    coltitle=black, fonttitle=\bfseries,
+    top=5mm,
+    attach boxed title to top left={yshift=-3mm, xshift=6mm},
+    boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
+}{propal}
+
+\newtcbtheorem[number within=section]{lemme}{Lemme}%
+{
+    enhanced,
+    colframe=black,
+    coltitle=black, fonttitle=\bfseries,
+    top=5mm,
+    attach boxed title to top left={yshift=-3mm, xshift=6mm},
+    boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
+}{lemme}
+
+\newtcbtheorem[number within=section]{theoreme}{Théorème}%
+{
+    enhanced,
+    colframe=black,
+    coltitle=black, fonttitle=\bfseries,
+    top=5mm,
+    attach boxed title to top left={yshift=-3mm, xshift=6mm},
+    boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
+}{theoreme}
+
+\newtheorem{_demonstration}{Démonstration}[section]
+\newenvironment{demonstration}[1][]{
+    \begin{_demonstration}[#1]~\par
+}{%
+    \end{_demonstration}%
+    \qed%
+}
+
+\newtheorem{exemple}{Exemple}[section]
+
+\newtheorem{remarque}{Remarque}[section]
+
+\newenvironment{methode}[1][]{
+    \begin{tcolorbox}[
+        leftrule=-1mm, toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
+    ]
+    \textbf{Point méthode.}\space
+}{
+    \end{tcolorbox}
+}
