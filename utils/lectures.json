@@ -1,5 +1,12 @@
 {
     "lectures": [
+        { "filename": "analyse_1", "subject": "Analyse 1"},
+        { "filename": "analyse_2", "subject": "Analyse 2"},
+        { "filename": "algebre_lineaire_1", "subject": "Algèbre linéaire 1"},
+        { "filename": "arithmetique", "subject": "Arithmétique"},
+        { "filename": "enc", "subject": "Ensemble et nombres complexes"},
+        { "filename": "mdg", "subject": "Maths discrètes et géométriques"},
+        { "filename": "sdld", "subject": "Science de la décision"},
         { "filename": "analyse_3", "subject": "Analyse 3" },
         { "filename": "algebre_lineaire_2", "subject": "Algèbre linéaire 2" },
         { "filename": "fpv", "subject": "Fonctions à plusieurs variables" },

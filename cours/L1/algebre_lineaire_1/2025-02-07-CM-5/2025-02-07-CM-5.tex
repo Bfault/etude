@@ -1,0 +1,47 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{07 février 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 1}{CM 5}{\today}
+
+\section{Espaces vectoriels}
+
+\subsection{Espace vectoriel}
+
+\begin{definition}
+    Étant donné deux ensembles $E$ et $\K$, toute application de $\K \times E$ dans $E$ s'appelle loi de composition externe sur $E$ (à domaine opérateur $\K$).
+\end{definition}
+
+\begin{definition}
+    On dit qu'un ensemble $E$ est un espace vectoriel sur un corps $\K$ s'il est muni d'une loi interne notée $+$
+    et d'une loi externe notée $\bullet$ de $\K \times E$ dans $E$.
+    
+    $(\lambda, u) \mapsto \lambda \cdot u$ telles que:
+    
+    \begin{enumerate}
+        \item $(E, +)$ est un groupe commutatif.
+        \item $\forall (\lambda, \mu) \in \K^2, \forall (u, v) \in E^2$, on a:
+        \begin{enumerate}
+            \item $(\lambda + \mu) \bullet u = \lambda \bullet u + \mu u$
+            \item $\lambda \bullet (u + v) = \lambda \bullet u + \lambda \bullet v$
+            \item $\lambda \bullet (\mu \bullet u) = (\lambda \mu) \bullet u$
+            \item $1 \bullet u = u$ ($1 \in \K$)
+        \end{enumerate}
+    \end{enumerate}
+
+    Les éléments de $E$ sont appelés vecteurs et les éléments de $\K$ sont appelés scalaires.
+    E est $\K$-espace vectoriel.
+\end{definition}
+
+\begin{definition}
+    \begin{enumerate}
+        \item La commutativé de $(E, +)$ découle des autres axiomes d'espace vectoriel.
+        \item L'espace vectoriel nul est $E = \{0_e\}$.
+    \end{enumerate}
+\end{definition}
+
+\end{document}
