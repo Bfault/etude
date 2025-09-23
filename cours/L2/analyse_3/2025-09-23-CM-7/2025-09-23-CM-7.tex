@@ -1,0 +1,95 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{23 September 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 7}{\today}
+
+\section{Intégrale de Riemann}
+
+\subsection{Intégrale de Riemann de fonctions en escalier}
+
+\begin{definition}
+    On appelle \textbf{subdivision} de $[a,b]$ toute suite finie $(x_0, x_1, \ldots, x_n)$ telle que
+    $$
+    a = x_0 < x_1 < \cdots < x_n = b.
+    $$
+    \begin{itemize}
+        \item On appelle \textbf{pas de la subdivision} la quantité
+        $$
+        \max_{1 \leq k \leq n} (x_k - x_{k-1})
+        $$
+        \item On dit que la subdivision est \textbf{régulière} si tous les intervalles sont de même longueur, c'est-à-dire si
+        $$
+        x_k - x_{k-1} = \frac{b-a}{n} \quad \text{pour tout } k \in \{1, \ldots, n\}.
+        $$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Soient $\sigma_1 = (x_0, x_1, \ldots, x_n)$ et $\sigma_2 = (y_0, y_1, \ldots, y_m)$ deux subdivisions de $[a,b]$.
+    On dit que $\sigma_2$ est \textbf{plus fine} que $\sigma_1$ si
+    $$
+    \{x_0, x_1, \ldots, x_n\} \subset \{y_0, y_1, \ldots, y_m\}
+    $$
+\end{definition}
+
+\begin{remarque}
+    \textbf{"Plus fine que"} est une relation d'ordre non totale (deux subdivisions peuvent ne pas être comparables).
+\end{remarque}
+
+\begin{definition}
+    On appelle \textbf{union} de deux subdivisions $\sigma_1$ et $\sigma_2$ la plus petite, c'est à dire
+\end{definition}
+
+\begin{definition}
+    On appelle \textbf{concaténation} de deux subdivisions $\sigma_1$ et $\sigma_2$ la subdivision obtenue en ordonnant les points de $\sigma_1$ et $\sigma_2$.
+    On la note $\sigma_1 \wedge \sigma_2$.
+\end{definition}
+
+\begin{definition}
+    Soient $[a, b] \subset \R, a \lt b$ et $f : [a, b] \to \R$.
+
+    On dit que $f$ est une \textbf{fonction en escalier} s'il existe une subdivision $\sigma = (x_0, x_1, \ldots, x_n)$ de $[a,b]$ telle que
+    $f$ soit constante sur chaque intervalle ouvert $]x_{k-1}, x_k[$ pour $k \in \{1, \ldots, n\}$.
+\end{definition}
+
+\begin{definition}
+    Une subdivision $\sigma = (x_0, x_1, \ldots, x_n)$ de $[a,b]$ est \textbf{adaptée, compatible, associée} à une fonction en escalier $f : [a,b] \to \R$
+    si $f$ est constante sur chaque intervalle ouvert $]x_{k-1}, x_k[$ pour $k \in \{1, \ldots, n\}$.
+\end{definition}
+
+\begin{proposition}{Espace vectoriel des fonctions en escalier}{}
+    L'ensemble des fonctions en escalier $\mathcal{E}([a,b], \R)$ est un espace vectoriel, donc stable par combinaison linéaire.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À faire.
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{definition}[(Intégrale de Riemann de fonctions en escalier)]
+    Soient $[a,b] \subset \R, a \lt b$ et $f : [a,b] \to \R$ une fonction en escalier.
+    Soit $\sigma = (x_0, x_1, \ldots, x_n)$ une subdivision adaptée à $f$.
+    Pour chaque $k \in \{1, \ldots, n\}$, soit $c_k$ la valeur de $f$ sur l'intervalle ouvert $]x_{k-1}, x_k[$.
+
+    On appelle \textbf{intégrale de Riemann} de $f$ sur $[a,b]$ la quantité
+    $$
+    I(f, \sigma) = \sum_{k=1}^n c_k (x_k - x_{k-1})
+    $$
+
+    Cette quantité ne dépend pas du choix de la subdivision adaptée.\n
+    On la note $\int_a^b f(x) \, dx$.
+\end{definition}
+
+\begin{proposition}{}{}
+\end{proposition}
+
+\begin{proposition}{}{}    
+\end{proposition}
+
+\end{document}
