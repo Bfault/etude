@@ -1,0 +1,103 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 October 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 10}{\today}
+
+\subsection{Parties positives, négatives, valeurs absolue, inf, sup}
+
+\begin{proposition}{}{}
+    Soit $f \in \mathcal{R}(a,b)$ avec $a < b$. Alors $f^+, f^⁻ \in \mathcal{R}(a, b)$
+\end{proposition}
+
+\begin{demonstration}
+    Il suffit de démontrer que $f^+ \in \mathcal{R}(a, b)$ et alors $f^- = f^+ - f \in \mathcal{R}(a, b)$ puisque c'est un EV.
+    On utilise le critère.
+
+    Soit $\sigma = (x_i)_{0 \leq i \leq n} \in \sum(a, b)$. On note $M_i$ et $m_i$ comme d'habitude, et
+    $M_i^+$ et $m_i^+$ de même pour $f^+$.
+
+    Pour tout $i \in \llbracket 1, n \rrbracket$ on a
+
+    \begin{itemize}
+        \item si $M_i \geq m_i \geq 0$ alors $M_i = M_i^+$ et $m_i = m_i^+$
+        et donc $M_i^+ - m_i^+ = M_i - m_i \leq M_i - m_i$
+        \item Si $m_i \geq M_i \geq 0$ alors $M_i^+ - m_i^+ = 0 - 0 = 0 \leq M_i - m_i$
+        \item Si $m_i < 0 \leq M_i$ alors $M_i^+ = M_i$ alors $m_i^+ = 0$ et donc $M_i^+ - m_i^+ = M_i \leq M_i - m_i$
+    \end{itemize}
+
+    En résumé, pour tout $i$,
+    $$
+    M_i^+ - m_i^+ = M_i \leq M_i - m_i
+    $$
+    En multipliant par $x_i - x_{i-1} \geq 0$ et en sommant sur $i$, il vient
+    $$
+    (S - s)(f^+, \sigma) \leq (S - s)(f, \sigma)
+    $$
+    Et le résulat avec le critère.
+\end{demonstration}
+
+\begin{demonstration}
+    On connait
+    $$
+    \sup\{f, g\} = \dfrac{f + g + |f - g|}{2}
+    $$
+    Comme $\mathcal{R}(a, b)$ est un EV $f - g \in \mathcal{R}(a, b)$ et donc d'après le corollaire 1,
+    $|f - g| \in \mathcal{R}(a, b)$ et donc $\sup\{f, g\} \in \mathcal{R}(a, b)$ puisque c'est un EV.
+\end{demonstration}
+
+\begin{demonstration}
+    Si $f \geq 0$ pour tout $\sigma \in \sum(a, b), s(f, \sigma) \geq 0$ et comme
+    $\int_a^b f(x)dx \geq s(f, \sigma)$ le résultat suit.
+\end{demonstration}
+
+\begin{demonstration}
+    En effet $f - g \geq 0$ d'après la proposition précédente
+    \begin{hotwarn}
+        à faire.
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{demonstration}
+    En effet
+    $$
+    f \leq |f| \text{ et } -f \leq |f|
+    $$
+    D'où avec le corollaire précédent
+    \begin{align*}
+        \int_a^bf(x)dx \leq \int_a^b |f(x)|dx \\
+        \int_a^bf(x)dx \leq
+    \end{align*}
+    \begin{hotwarn}
+        À faire.
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{demonstration}
+    C'est vrai pour tout $s(f, \sigma)$ et $S(f, \sigma)$ (voir propriétés des sommes de Darboux)
+\end{demonstration}
+
+\begin{demonstration}
+    Par définition de la continuité en $x_0$
+    $$
+    \forall \varepsilon > 0, \exists \delta > 0, |x_0 - x| < \delta \Rightarrow |f(x_0) - f(x)| < \varepsilon
+    $$
+    En particulier avec $\varepsilon = f(\dfrac{x_0}{2})$
+    $$
+    \exists \delta > 0, |x_0 - x| < \delta, x \in [a, b] \implies f(x) > \dfrac{1}{2}f(x_0)
+    $$
+    Soit $[c, d] = [a, b] \cap [x - \delta, x + \delta]$ on a donc $f(x) > \dfrac{1}{2}f(x_0)$ Soit $g$ la fonction
+    en escalier définie par
+    $$
+    g(x) = \begin{cases}
+    \dfrac{1}{2} f(x_0) \text{ si } x \in [c, d] \\
+    0 \text{ sinon}
+    \end{cases}
+    $$
+\end{demonstration}
+
+\end{document}

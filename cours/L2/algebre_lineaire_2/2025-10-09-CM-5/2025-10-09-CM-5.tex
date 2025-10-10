@@ -1,0 +1,136 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{09 October 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 2}{CM 5}{\today}
+
+\begin{demonstration}
+    Soit $\varphi$ une forme p-linéaire alternée sur $E$, et
+    $\sigma \in S_p$ une permutation.
+
+    D'après le théorème [2.4], il existe $k \geq 1$ transpositions
+    $\tau_1, \ldots, \tau_k$ telles que $\sigma = \tau_1 \circ \ldots \circ \tau_k$.
+
+    On procède par récurrence sur $k$.
+
+    \begin{itemize}
+        \item Si $k=1$, alors on applique le théorème [3.5], on a
+        $\sigma^\star(\varphi) = -\varphi = \varepsilon(\sigma) \varphi$ car une transposition
+        est de signature $-1$.
+        \item Soit $k \geq 1$ telle que la propriété est vraie au rang $k$.
+        $\forall \tau_1, \ldots, \tau_k$ transpositions, on a
+        $$
+        (\tau_1 \circ \ldots \circ \tau_k)^\star(\varphi) = (-1)^k \varphi
+        $$
+        car $\varepsilon(\tau_1 \circ \ldots \circ \tau_k) = (-1)^k$.
+        
+        Soit alors une permutation $\sigma$ qui se décompose en $\sigma = \tau_1 \circ \ldots \circ \tau_k \circ \tau_{k+1}$
+        et $\varepsilon(\sigma) = (-1)^{k+1}$.
+        On a
+        \begin{align*}
+            \sigma^\star(\varphi) &= (\tau_1 \circ \ldots \circ \tau_{k+1})^\star(\varphi) \\
+            &= ((\tau_1 \circ \ldots \circ \tau_k) \circ \tau_{k+1})^\star(\varphi) \\
+            &= \tau_{k+1}^\star((\tau_1 \circ \ldots \circ \tau_k)^\star(\varphi)) \\
+            &= - ((\tau_1 \circ \ldots \circ \tau_k)^\star (\varphi)) \\
+            &= -(-1)^k \varphi = (-1)^{k+1} \varphi \text{ par hypothèse de récurrence.}
+        \end{align*}
+    \end{itemize}
+\end{demonstration}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item Soit $(x_1, \ldots, x_k)$ une famille de vecteurs liée de $E$.
+        Il existe $i \in \llbracket 1, k \rrbracket$ et $(\alpha_1, \ldots, \alpha_{i-1}, \alpha_{i+1}, \ldots, \alpha_k) \in \K^{k-1}$ non tous nuls
+        tels que $x_i = \sum\limits_{j \neq i}\alpha_j x_j$
+
+        L'application $\varphi$ étant k-linéaire, on a:
+
+        \begin{align*}
+            \varphi(x_1, \ldots, x_i, \ldots, x_k) &= \varphi(x_1, \ldots, x_{i-1}, \sum\limits_{j \neq i}\alpha_j x_j, x_{i+1}, \ldots, x_k) \\
+            &= \sum\limits_{j \neq i} \alpha_j \varphi(x_1, \ldots, x_{i-1}, x_j, x_{i+1}, \ldots, x_k) = 0
+        \end{align*}
+        \item Soit $(\alpha_1, \ldots, \alpha_{i-1}, \alpha_{i+1}, \ldots, \alpha_k) \in \K^{k-1}$ non tous nuls.
+        \begin{align*}
+            &\varphi(x_1, \ldots, x_{i-1}, \sum\limits_{j \neq i}\alpha_j x_j, x_{i+1}, \ldots, x_k) \\
+            &= \varphi(x_1, \ldots, x_k) + \varphi(x_1, \ldots, x_{i-1}, \sum\limits_{j \neq i}\alpha_j x_j, x_{i+1}, \ldots, x_k) \\
+            &= \varphi(x_1, \ldots, x_k)
+        \end{align*}
+    \end{enumerate}
+\end{demonstration}
+
+\begin{demonstration}
+    Si $dim E = n$ et $k > n$, alors toute famille $(x_1, \ldots, x_k)$ de vecteurs de $E$ est liée, d'où le résultat.
+\end{demonstration}
+
+\begin{demonstration}
+    On procède en trois étapes:
+    \begin{enumerate}
+        \item on vérifie que $\delta(e_1, \ldots, e_n) = 1$;
+        \item on vérifie que $\delta \in \wedge^{\star n} E$;
+        \item on vérifie que $\forall k \varphi \in \wedge^{\star n}(E), \exists \alpha \in \K, \varphi = \alpha \delta$
+    \end{enumerate}
+
+    \begin{enumerate}
+        \item On peut écrire
+        $\forall j \in \llbracket 1, n \rrbracket, e_j = \sum\limits_{i=1}^n \delta_{i,j} e_i, \delta_{i, j} = 1 \text{ si } i=j, 0 \text{ sinon}$.
+
+        $\delta(e_1, \ldots, e_n) = \sum\limits_{\sigma \in S_n}\varepsilon(\sigma) \delta_{\sigma(1), 1} \ldots \delta_{\sigma(n), n} = \varepsilon(Id) \times 1 \times \ldots \times 1 = 1$
+        \item $\sum\limits_{\sigma \in S_n} \varepsilon(\sigma)a_{\sigma(1),1} \ldots a_{\sigma(n), n} = \sum\limits_{k_1 = 1}^n\sum\limits_{k_2 = 1}^n \ldots \sum\limits_{k_n = 1}^n a_{k_1, 1} a_{k_2, 2} \ldots a_{k_n, n} \times ?$
+        c'est bien une forme n-linéaire.
+        Alternance: montrons que si $(x_i, \ldots, x_n)$ est une famille de n vecteurs avec
+        $x_i = x_j$, pour $i < j$ données, alors $\delta(x_1, \ldots, x_n) = 0$
+
+        On peut écrire $\delta(x_1, \ldots, x_n) = \sum\limits_{\sigma \in A_n} \varepsilon(\sigma) a_{\sigma(1), 1} \cdots a_{\sigma(n), n} + \sum\limits_{\sigma \in S_n \backslash A_n}\varepsilon(\sigma)a_{\sigma(1), 1} ?$
+        $\delta(x_1, \ldots, x_n) = \sum\limits_{\sigma \in A_n}a_{\sigma(1), 1} \ldots a_{\sigma(n),n} - S$
+        avec $S = \sum\limits_{\sigma \in S_n \setminus A_n} a_{\sigma(1), 1} \ldots a_{\sigma(n), n}$
+
+        On construit une bijection de $F: A_n \to S_n \setminus A_n$
+
+        Soit $i < j$, $\sigma \in A_n$ (i.e $\varepsilon(\sigma) = 1$) on pose
+        $F(\sigma) = \sigma \circ \tau_{i,j} \in S_n \setminus A_n$ car $\varepsilon(\sigma \circ \tau_{i, j}) = 1$
+
+        On a $\forall \sigma \in A_n, \sigma \circ \tau_{i,j} \circ \tau_{i,j} = \sigma$
+        et l'application réciproque de $F$ est $\funcdef{F^{-1}}{S_n \setminus A_n}{A_n}{\sigma}{\sigma \circ \tau_{i,j}}$
+
+        On a donc $S = \sum\limits_{\sigma \in A_n} a_{\sigma \circ \tau_{i,j}(1), 1} \ldots a_{\sigma \circ \tau_{i,j}(n), n}$
+
+        Or
+        
+        $$
+        \forall \sigma \in A_n, \begin{cases}
+            \sigma \circ \tau_{i,j}(l) = l, & \text{ si } l \neq i, j \\
+            \sigma \circ \tau_{i,j}(i) = \sigma(j) \\
+            \sigma \circ \tau_{i,j}(j) = \sigma(i)
+        \end{cases}
+        $$
+
+        $S = \sum\limits_{\sigma \in A_n} a_{\sigma(1), 1} \ldots a_{\sigma(i-1), i-1} a_{\sigma(j), i} a_{\sigma(i+1), i} \ldots a_{\sigma(j-1), j-1} a_{\sigma(i), j} a_{\sigma(j+1), j+1} \ldots a_{\sigma(n), n}$
+    
+        \item Montrons que $\wedge^{\star n}(E) = \K \Delta$, $dim E = n$.
+        
+        Soit $\varphi \in \wedge^{\star n}(E)$, et $(e_1, \ldots, e_n)$ une base de $E$.
+        Soit $(x_1, \ldots, x_n) \in E^n$, on peut écrire $x_j = \sum\limits_{i=1}^n a_{i,j} e_i$.
+
+        On reprend la décomposition [3.2] $\varphi(x_1, \ldots, x_n) = \sum\limits_{(i_1, \ldots, i_n) \in \llbracket 1, n \rrbracket^n} a_{i_1, 1} a_{i_2, 2} \ldots a_{i_n, n} \varphi(e_{i_1}, e_{i_2}, \ldots, e_{i_n})$
+
+        $= \sum\limits_{\sigma \in S_n} a_{\sigma(1), 1} \ldots a_{\sigma(n), n} \varphi(e_{\sigma(1), 1}, \ldots, e_{\sigma(n),n})$
+
+        Car $\varphi(e_{i_1}, \ldots, e_{i_n}) = 0$ dés lors qu'il existe $k$ et $l$ tels que $i_k = i_l$
+
+        D'où
+        \begin{align*}
+            \varphi(e_1, \ldots, e_n) &= \sum\limits_{\sigma \in S_n}a_{\sigma(1), 1} \ldots a_{\sigma(n), n} \sigma^{\star}(\varphi)(e_1, \ldots, e_n) \\
+            &= \sum\limits_{\sigma \in S_n} a_{\sigma(1), 1} \times \ldots \times a_{\sigma(n), n} \varepsilon(\sigma) \varphi(e_1, \ldots, e_n) \\
+            &= \varphi(e_1, \ldots, e_n) \times \sum\limits_{\sigma \in S_n} \varepsilon(\sigma)a_{\sigma(1), 1} \ldots a_{\sigma(n), n} \\
+            &= \alpha \Delta(x_1, \ldots, x_n)
+        \end{align*}
+        avec $\alpha = \varphi(e_1, \ldots, e_n)$
+
+    \end{enumerate}
+\end{demonstration}
+
+\end{document}

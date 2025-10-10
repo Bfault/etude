@@ -1,0 +1,101 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\usepackage{pgf}
+\usepackage{lmodern}
+\usepackage{import}
+\usepackage{graphicx}
+
+\renewcommand*{\today}{24 September 2025}
+
+\begin{document}
+
+\hotbox{Fonctions à plusieurs variables}{CM 4}{\today}
+
+\section{Dérivée directionnelle et différentiabilité}
+
+Dans tout ce chapitre, $E$ et $F$ désignent deux EVN et $A$ un ouvert de $E$
+quand rien d'autre n'est précisé.
+
+\subsection{Graphe d'une fonction}
+
+\begin{definition}
+    Soient $E, F$ deux EV et $A \subset E$ ainsi que $f: A \rightarrow F$ une application.
+
+    On appelle graphe de $f$ le sous-ensemble de $E \times F$ défini par
+    $$
+    \Gamma_f = \{(x, f(x)), x \in A\}
+    $$
+    On appelle \textbf{ensemble de niveau $\alpha$} l'ensemble
+    $$
+    f^{-1}(\{\alpha\}) = \{x \in A, f(x) = \alpha\}
+    $$
+\end{definition}
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/3d_square_function.png}
+        \caption{Graphe de la fonction carrée}
+    \end{minipage}
+    \hspace{1.2em}
+    \begin{minipage}{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{img/layers_of_square_function.png}
+        \caption{Ensembles de niveaux de la fonction carrée}
+    \end{minipage}
+\end{figure}
+
+\subsection{Dérivée directionnelle}
+
+\begin{definition}
+    Soient $a \in A$, $v \in E$ et $f: A \to F$ une application.
+    
+    La \textbf{dérivée de $f$ en $a$ selon le vecteur $v$}, notée $D_v f(a)$,
+    est, si elle existe, la dérivée en 0 de la fonction $t \mapsto f(a + tv)$.
+\end{definition}
+    
+\begin{explication}
+    Comme $A$ est ouvert, $\exists \eps \gt 0, B(a, \eps) \subset A$ et donc
+    pour tout $|t| < \dfrac{\eps}{\max(1, \norm{v})}$
+    on a $a + tv \in B(a, \eps) \subset A$.
+
+    Ainsi $f(a + tv)$ est bien définie pour $t$ proche de 0.
+
+    Dans ce cas on peut étudier la limite $\lim\limits_{t \to 0, t \neq 0} \dfrac{f(a + tv) - f(a)}{t}$
+    qui est la définition de $D_v f(a)$.
+    
+\end{explication}
+
+\begin{remarque}
+    Le $\max(1, \norm{v})$ est là dans le cas où $v = 0$.
+\end{remarque}
+
+\begin{hotwarn}
+    Mettre images représentatifes
+\end{hotwarn}
+
+\begin{definition}
+    Soient $A$ un ouvert de $R^n, \funcdef{f}{U}{\R^m}{(x_1, \ldots, x_n)}{f(x_1, \ldots, x_n)}$.
+
+    La dérivée selon le vecteur $e_i$ (dont les composantes sont toutes nulles sauf la $i^{ème}$ qui vaut 1) est appelée
+    \textbf{dérivée partielle par rapport à la variable $x_i$ en $(a_1, \ldots, a_n)$} et est notée $\dfrac{\partial f}{\partial x_i}((a_1, \ldots, a_n)) = D_{e_i}f((a_1, \ldots, a_n))$.
+\end{definition}
+
+\subsection{Différentiabilité}
+
+\begin{definition}
+    Soient $A$ un ouvert de $E$, $\funcdef{f}{A}{\R^m}{x = (x_1, \ldots, x_n)}{f(x) = f(x_1, \ldots, x_n)}$.
+
+    On identifie $\R^n$ et $M_{n,1}(\R)$ ainsi que $\R^m$ et $M_{m,1}(\R)$.
+
+    On dit que $f$ est \textbf{différentiable en $a \in A$} s'il existe une application linéaire $L \in \mathcal{L}(E, F)$ telle que
+    $$
+    \lim\limits_{h \to 0, h \neq 0} \frac{\norm{f(a + h) - f(a) - L(h)}}{\norm{h}} = 0
+    $$
+    Dans ce cas, $L$ est unique et s'appelle la \textbf{différentielle, jacobienne} de $f$ en $a$ et se note $df(a)$.
+\end{definition}
+
+\end{document}

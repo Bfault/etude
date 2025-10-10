@@ -1,0 +1,74 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{02 October 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 2}{CM 4}{\today}
+
+\section{Multi-linéarité}
+
+\begin{hotwarn}
+    À faire
+\end{hotwarn}
+
+\begin{demonstration}
+    Soit $\varphi \in \mathcal{L}_p(E)$ et $\sigma \in \mathcal{S}_p, p \geq 1$
+
+    $\forall \lambda \in \K, \forall (x, x') \in E^2$, on note $\sigma(i) = j, i \in \llbracket 1, n \rrbracket \text{ fixé}$
+
+    $\sigma^\star (\varphi)(x_1, \ldots, x_{i-1}, \lambda x + x', x_{i+1}, \ldots, x_p) = \varphi(x_{\sigma(1)}, \ldots, x_{\sigma(i-1)}, \lambda x + x', x_{\sigma(i+1)}, \ldots, x_{\sigma(p)})$
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{definition}
+    Soit $E$ un EV et $\varphi \in \mathcal{L}_p(E, \K)$. On dit que $\varphi$ est
+    \begin{itemize}
+        \item \textbf{symétrique} si, pour tout $\sigma \in \mathcal{S}_p$ on a $\sigma^\star(\varphi) = \varphi$
+        \item \textbf{alternée} si, $\exists i \neq j \text{ avec } x_i = x_j \implies \varphi(x_1, \ldots, x_p) = 0$
+    \end{itemize}
+
+    On note $\wedge^{\star p}(E)$ l'ensemble des formes alternées de $\mathcal{L}_p(E, \K)$
+\end{definition}
+
+\begin{remarque}
+    Si $\varphi \wedge^{\star 2}(E)$ est une forme 
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Si $\varphi$ est une forme p-linéaire alternée, alors pour tout transposition $\tau \in \mathcal{S}_p$, on a
+    $$
+        \tau^\star(\varphi) = -\varphi
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $\varphi \in \wedge^{\star p}(E)$ une forme alternée et $\sigma = \tau_{i, j}$
+    une transposition : tel que $\sigma(i) = j, \sigma(j) = i$ et $\forall k \neq i, j, \sigma(k) = k$
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
+    Soit $(x_1, \ldots, x_p) \in E^p$,\n on a $\sigma^\star(\varphi)(x_1, \ldots, x_p) = \varphi(x_1, \ldots, x_{i-1}, x_j, x_{i+1}, \ldots, x_{j-1}, x_i, x_{j+1}, \ldots, x_p)$
+    On ajoute $\varphi(x_1, \ldots, x_p)$ et $\sigma^\star(\varphi)(x_1, \ldots, x_p)$
+    \begin{align*}
+        & \varphi(x_1, \ldots, x_{i-1}, x_j, x_{i+1}, \ldots, x_{j-1}, x_i, x_{j+1}, \ldots, x_p) + \varphi(x_1, \ldots, x_p) \\
+        = & \varphi(x_1, \ldots, x_{i-1}, x_j + x_i, x_{i+1}, \ldots, x_{j-1}, x_i, x_{j+1}, \ldots, x_p) \\
+        = & 0 \text{ car } x_i \text{ et } x_j + x_i \text{ sont égaux}
+    \end{align*}
+    Donc $\sigma^\star(\varphi)(x_1, \ldots, x_p) = -\varphi(x_1, \ldots, x_p)$
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Si $\varphi$ est une forme p-linéaire alternée de $E$, pour toute permutation $\sigma \in \mathcal{S}_p$, on a
+    $$
+        \sigma^\star(\varphi) = \eps(\sigma) \varphi
+    $$
+
+    En particulier
+\end{corollaire}
+
+\end{document}

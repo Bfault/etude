@@ -52,6 +52,16 @@
     boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
 }{lemme}
 
+\newtcbtheorem[number within=section]{corollaire}{Corollaire}%
+{
+    enhanced,
+    colframe=black,
+    coltitle=black, fonttitle=\bfseries,
+    top=5mm,
+    attach boxed title to top left={yshift=-3mm, xshift=6mm},
+    boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
+}{corollaire}
+
 \newtcbtheorem[number within=section]{theoreme}{Théorème}%
 {
     enhanced,
@@ -79,6 +89,15 @@
         leftrule=-1mm, toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
     ]
     \textbf{Point méthode.}\space
+}{
+    \end{tcolorbox}
+}
+
+\newenvironment{explication}[1][]{
+    \begin{tcolorbox}[
+        leftrule=-1mm, toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
+    ]
+    \textbf{Explication.}\space
 }{
     \end{tcolorbox}
 }

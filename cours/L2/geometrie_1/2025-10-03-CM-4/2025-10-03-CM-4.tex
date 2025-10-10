@@ -1,0 +1,181 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{03 October 2025}
+
+\begin{document}
+
+\hotbox{Géometrie 1}{CM 4}{\today}
+
+Dans un espace affine de dimension 2
+
+Si $\mathcal{D}: ax + by + c = 0$ avec $(a, b) \neq (0, 0)$, alors
+$\mathcal{D}$ est une droite affine de vecteur directeur $\vec{u}(-b, a)$.
+
+\begin{demonstration}
+    Soit $\Erond$ un espace affine de dimension 3 muni d'une repaire cartésien
+    $\mathcal{R} = (o, \vec{e_1}, \vec{e_2}, \vec{e_3})$.
+
+    Soit $\mathcal{F} = m_0 + Vect(\vec{u})$ où $m_0(x_0, y_0, z_0) \in \Erond$ et
+    $\vec{u} = (\alpha, \beta, \gamma) \in \E \backslash \{ \vec{0} \}$.
+
+    Soit $m(x, y, z) \in \Erond$.
+
+    $$
+    m \in \mathcal{F} \iff \exists \lambda \in \R, \begin{cases}
+        x = x_0 + \lambda \alpha \\
+        y = y_0 + \lambda \beta \\
+        z = z_0 + \lambda \gamma
+    \end{cases}
+    $$
+
+    Comme $(\alpha, \beta, \gamma) \neq (0, 0, 0)$, on peut supposer que $\alpha \neq 0$ donc
+
+    $$
+    m \in \mathcal{F} \iff \exists \lambda \in \R, \begin{cases}
+        \lambda = \frac{x - x_0}{\alpha} \\
+        y = y_0 + \beta \frac{x - x_0}{\alpha} \\
+        z = z_0 + \gamma \frac{x - x_0}{\alpha}
+    \end{cases}
+    $$
+
+    d'où
+    $$
+    m \in \mathcal{F} \iff \begin{cases}
+        \beta(x - x_0) - \alpha(y - y_0) = 0 \\
+        \gamma(x - x_0) - \alpha(z - z_0) =
+    \end{cases}
+    $$
+
+    On pose $a = \beta, b = -\alpha, c = 0, d = \alpha y_0 - \beta x_0$ et
+    $a' = \gamma, b' = 0, c' = -\alpha, d' = \alpha z_0 - \gamma x_0$.
+\end{demonstration}
+
+\begin{demonstration}
+    (Réciproque)
+
+    Soit $\mathcal{F} = \begin{cases}
+        ax + by + cz + d = 0 \\
+        a'x + b'y + c'z + d' = 0
+    \end{cases}$
+
+    avec $ab' - a'b \neq 0$ ou $ac' - a'c \neq 0$ ou $bc' - b'c \neq 0$.
+
+    Supposons que $ab' - a'b \neq 0$.
+    \begin{align*}
+        m \in \mathcal{F} &\iff \begin{cases}
+            ax + by = -cz - d \\
+            a'x + b'y = -c'z - d'
+        \end{cases}\\
+        &\iff \begin{cases}
+            (a'b - ab')y = (ac' - a'c)z + (ad' - a'd) \\
+            (a'b - ab')x = (bc' - b'c)z + (bd' - b'd)
+        \end{cases}
+    \end{align*}
+
+    $m \in \mathcal{F} \iff \begin{cases}
+        x = \frac{(bc' - b'c)}{(ab' - a'b)}z + \frac{(bd' - b'd)}{(ab' - a'b)} \\
+        y = \frac{(ac' - a'c)}{(a'b - ab')}z + \frac{(ad' - a'd)}{(a'b - ab')} \\
+        z = 1 \cdot z + 0
+    \end{cases}$
+
+    Soit $\vec{u}(\frac{(bc' - b'c)}{(ab' - a'b)}, \frac{(ac' - a'c)}{(a'b - ab')}, 1)$
+    
+    $\vec{u} \neq \vec{0}$ et soit $m_0(\frac{(bd' - b'd)}{(ab' - a'b)}, \frac{(ad' - a'd)}{(a'b - ab')}, 0)$.
+    alors $m \in \mathcal{F} \iff \overline{m_0 m} = z \vec{u}$.
+    Donc $\mathcal{F} = m_0 + Vect(\vec{u})$ et comme $\vec{u} \neq \vec{0}$,
+    $\mathcal{F}$ est une droite affine de $\Erond$.
+\end{demonstration}
+
+\subsection{Intersection et sous-espaces affines}
+
+\begin{proposition}{}{}
+    
+\end{proposition}
+
+\begin{demonstration}
+    $\mathcal{F}_i = m_i + E_i$ où $m_i \in \Erond$ et $E_i$ sous-espace vectoriel de $\E$.
+
+    On sait que $\cap_{i \in I}F_i$ est toujours un SEV de $E$.
+
+    Soit $\mathcal{F} = \cap_{i \in I} \mathcal{F}_i$.
+    Supposons que $\mathcal{F} \neq \emptyset$ ainsi il existe $m \in \mathcal{F}$ donc $m \in \mathcal{F}_i$ pour tout $i \in I$.
+
+    Donc $\forall i \in I, \mathcal{F}_i = m + E_i$.
+
+    Montrons que $\mathcal{F} = m + \cap_{i \in I} F_i$.
+
+    (Sens $\subset$)
+    Soit $p \in \mathcal{F}$ donc $p \in \mathcal{F}_i$ pour tout $i \in I$.
+    d'où $\overline{mp} \in F_i$ pour tout $i \in I$ donc $\overline{mp} \in \cap_{i \in I} F_i$.
+    C'est à dire $p \in m + \cap_{i \in I} F_i$ et donc $\mathcal{F} \subset m + \cap_{i \in I} F_i$.
+
+    (Sens $\supset$)
+    Soit $p \in m + \cap_{i \in I} F_i$ c'est à dire $\overline{mp} \in \cap_{i \in I} F_i$.
+    D'où $\forall i \in I, \overline{mp} \in F_i$ donc $\forall i \in I, p \in m + F_i = \mathcal{F}_i$.
+    C'est à dire $p \in \mathcal{F}$ et donc $m + \cap_{i \in I} F_i \subset \mathcal{F}$.
+
+    Finalement $\mathcal{F} = m + \cap_{i \in I} F_i$.
+\end{demonstration}
+
+\begin{demonstration}
+    Supposons que $\mathcal{F}_1 \cap \mathcal{F}_2 \neq \emptyset$.
+    Alors il existe $m_0 \in \mathcal{F}_1 \cap \mathcal{F}_2$.
+    Et $\overline{m_0 m_0} = \vec{0} \in F_1 + F_2$
+
+    Réciproquement, supposons qu'il existe $a_1 \in \mathcal{F}_1$ et $a_2 \in \mathcal{F}_2$ tels que
+    $\overline{a_1 a_2} \in F_1 + F_2 = \{ \vec{u} + \vec{v} | \vec{u} \in F_1, \vec{v} \in F_2 \}$.
+    Donc il existe $\vec{u} \in F_1$ et $\vec{v} \in F_2$ tels que $\overline{a_1 a_2} = \vec{u} + \vec{v}$.
+    Donc pour $\vec{u}: \exists! m \in \Erond, \vec{u} = \overline{a_1 m} \in F_1$ 
+    d'où $m \in \mathcal{F}_1 = a_1 + F_1$.
+    Donc $\overline{a_1 a_2} = \overline{a_1 m} + \vec{v}$
+    d'où $\vec{v} = \overline{a1 a2} - \overline{a_1 m} = \overline{m a2} \in F_2$ (Par Chasles)
+    D'où $\overline{a_2 m} = -\vec{v} \in F_2$ donc $m \in \mathcal{F}_2 = a_2 + F_2$.
+    Donc $m \in \mathcal{F}_1 \cap \mathcal{F}_2$
+\end{demonstration}
+
+\begin{demonstration}
+    Supposons que $E = \mathcal{F_1} \oplus \mathcal{F_2}$.
+    Alors $E = F_1 + F_2$, or $\mathcal{F}_1 = a_1 + F_1$ et $\mathcal{F}_2 = a_2 + F_2$.
+    Donc $\overline{a_1 a_2} \in E = F_1 + F_2$.
+    Donc $\mathcal{F}_1 \cap \mathcal{F}_2 \neq \emptyset$.
+
+    Comme $\mathcal{F}_1 \cap \mathcal{F}_2 \neq \emptyset$, on sait que $\mathcal{F}_1 \cap \mathcal{F}_2$ est un sous-espace affine de $\Erond$,
+    de direction $F_1 \cap F_2$.
+    Or $F_1 \cap F_2 = \{ \vec{0} \}$ donc $\mathcal{F}_1 \cap \mathcal{F}_2$ est un singleton.
+\end{demonstration}
+
+\begin{demonstration}
+    Soit $i, j \in I$
+
+    $F_i = Vect(\overline{a_i a_k}, k \in I)$ et $F_j = Vect(\overline{a_j a_k}, k \in I)$.
+
+    Montrons que $F_i = F_j$.
+
+    Soit $\vec{u} \in F_i$ ainsi il existe $J \subset I$ fini tel que
+    $\vec{u} = \sum\limits_{k \in J} \lambda_k \overline{a_i a_k}$ avec $\lambda_k \in \R, \forall k \in J$.
+
+    Donc $\vec{u} = \sum\limits_{k \in J} \lambda_k (\overline{a_i a_j} + \overline{a_j a_k})$ (Par Chasles)
+
+    $\vec{u} = (-\sum\limits_{k \in J} \lambda_k)\overline{a_j a_i} + \sum\limits_{k \in J} \lambda_k \overline{a_j a_k} \in F_j$.
+    d'où $\vec{u} \in F_j \implies F_i \subset F_j$ et en intervertissant les rôles de $i$ et $j$, on a $F_j \subset F_i$.
+    Donc $F_i = F_j$.
+
+    Posons $\mathcal{H} = Aff((a_i)_{i \in I})$
+
+    $\mathcal{H}$ est un sous-espace affine de direction $H$
+
+    Soit $i_0 \in I$, $\mathcal{H} = a_i_0 + H$
+
+    Comme $\forall k \in I, a_k \in \mathcal{H}$ on a $\overline{a_i_0 a_k} \in H$
+    Donc $Vect(\overline{a_i_0 a_k}, k \in I) \subset H$
+    D'où $F_i_0 \subset H$ d'où $a_i_° + F_i_0 \subset a_i_0 + H = \mathcal{H}$
+
+    De plus $\forall k \in I, a_k \in a_i_0 + F_i_0$ (car $\overline{a_i_0 a_k} \in F_i_0$)
+
+    Donc $\mathcal{H} = Aff(a_k, k \in I) \subset a_i_0 + F_i_0$
+    d'où $\mathcal{H} = a_i_0 + F_i_0$ c'est à dire $H = F_i_0$
+\end{demonstration}
+
+\end{document}

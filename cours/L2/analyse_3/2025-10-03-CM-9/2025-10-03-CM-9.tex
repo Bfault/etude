@@ -1,0 +1,34 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{03 October 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 9}{\today}
+
+\begin{proposition}{}{}
+    Soit $f: [a, b] \to \R, a < b$ Si $f$ est continue, alors $f \in \mathcal{R}(a, b)$
+\end{proposition}
+
+\subsection{Fonctions bornées localement R-intégrables}
+
+\begin{proposition}{}{}
+    Soient $a, b \in \R, a < b$ et $f: [a, b] \to \R$ bornée, telle que $\forall [c,d] \subset ]a,b[$
+\end{proposition}
+
+\begin{demonstration}
+    Soient $c > 0$ tel que $a + c < b - c$ et $\hat{\sigma} \in \sum(a + c, b - c)$
+
+    Soit $\sigma = (a, a + c) \wedge \hat{\sigma} \wedge (b - c, b)$ alors
+
+    \begin{align*}
+        (S - s)(f, \sigma) &= (M_a - m_a)c + (S - s)(f|_{[a+c, b-c]}, \hat{\sigma}) + (M_b - m_b)c \\
+        &\leq 4Mc + (S - s)(f|_{[a+c, b-c]}, \hat{\sigma})
+    \end{align*}
+
+    où $M_a = \sup\{f(x), x \in [a, a + c]\}$ et $m_a = \inf\{f(x), x \in [a, a + c]\}$
+\end{demonstration}
+
+\end{document}
