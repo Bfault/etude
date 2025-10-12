@@ -8,23 +8,156 @@
 
 \hotbox{Algèbre linéaire 2}{CM 3}{\today}
 
+\begin{definition}
+    Soit $n \geq 2$. On appelle \textbf{orbite} d'un élément $a \in \llbracket 1, n \rrbracket$ par $\sigma \in S_n$ l'ensemble
+    des images itérées de $a$ par $\sigma$, c'est-à-dire
+    $$
+    \mathcal{O}_\sigma(a) = \{a, \sigma(a), \sigma^2(a), \ldots\}
+    $$
+    Lorsque $\mathcal{O}_\sigma(a) = \{a\}$ on dit que $a$ est un point fixe de $\sigma$.
+\end{definition}
+
+\begin{definition}
+    On appelle \textbf{cycle} un élément $\sigma \in S_n$ de la forme
+    $$
+    \begin{pmatrix}
+        a_1 & a_2 & \cdots & a_k \\
+        a_2 & a_3 & \cdots & a_1
+    \end{pmatrix}
+    $$
+    où $k \geq 2$
+
+    On note ce cycle $(a_1\;\; a_2\;\; \cdots\;\; a_k)$.
+\end{definition}
+
+\begin{definition}
+    On appelle \textbf{support} du cycle $\sigma = (a_1\; a_2\; \cdots\; a_k)$ l'ensemble
+    $\{a_1, a_2, \ldots, a_k\}$.
+\end{definition}
+
+\begin{definition}
+    Deux cycles sont dits \textbf{disjoints} si leurs supports sont disjoints.
+\end{definition}
+
+\begin{definition}
+    On appelle \textbf{longueur} d'un cycle le nombre d'éléments de son support.
+\end{definition}
+
+\begin{definition}
+    Soit $n \geq 2$ et $\sigma \in \S_n$. On appelle \textbf{support} de $\sigma$ l'ensemble de
+    $\llbracket 1, n \rrbracket$ qui n'est pas invariant par $\sigma$, on le note $supp(\sigma)$, c'est-à-dire
+\end{definition}
+
+\begin{remarque}
+    C'est une généralisation de la notion de support d'un cycle.
+\end{remarque}
+
+\begin{lemme}{}{orbite-finite}
+    Soit $\sigma \in \S_n$ pour $n \geq 2$ une permutation non triviale et $a \in supp(\sigma)$.
+    Alors il existe $p \in \N^*$ tel que
+    $$
+    \mathcal{O}_\sigma(a) = \{a, \sigma(a), \ldots, \sigma^{p-1}(a)\},\quad \sigma^p(a) = a
+    $$
+
+    C'est-à-dire que l'orbite de $a$ est finie.
+\end{lemme}
+
+\begin{demonstration}
+    Soit $\sigma \in \S_n$ pour $n \geq 2$ une permutation non triviale et $a \in supp(\sigma)$.
+
+    On sait que $\mathcal{O}_\sigma(a) \subset \llbracket 1, n \rrbracket$ est un ensemble fini.
+    Donc il existe $k < l$ tels que
+    \begin{align*}
+        \sigma^k(a) = \sigma^l(a) &\implies \sigma^{k} \circ \sigma^{-k}(a) = \sigma^{l} \circ \sigma^{-k}(a) \\
+        &\implies Id(a) = \sigma^{l-k}(a) \\
+        &\implies a = \sigma^{l-k}(a)
+    \end{align*}
+
+    D'où l'ensemble $\{r \in \N^* \mid \sigma^r(a) = a\}$ est non vide, il admet donc un plus petit élément $p \in \N^*$
+    (et même $p \geq 2$ car $\sigma(a) \neq a$).
+
+    Donc $\mathcal{O}_\sigma(a) = \{a, \sigma(a), \ldots, \sigma^{p-1}(a)\}$ car $\sigma^p(a) = a$.
+\end{demonstration}
+
+\begin{lemme}{}{}
+    Soient $\sigma \in S_n$ pour $n \geq 2$ une permutation non triviale et $a, b \in supp(\sigma)$ tels que $a \neq b$.
+    Alors on se retrouve dans l'un des deux cas suivants :
+    \begin{itemize}
+        \item $\mathcal{O}_\sigma(a) = \mathcal{O}_\sigma(b)$
+        \item $\mathcal{O}_\sigma(a) \cap \mathcal{O}_\sigma(b) = \emptyset$
+    \end{itemize}
+
+    Autrement dit, $\mathcal{O}_\sigma(a) \cap \mathcal{O}_\sigma(b) \neq \emptyset \iff \mathcal{O}_\sigma(a) = \mathcal{O}_\sigma(b)$.
+\end{lemme}
+
+\begin{demonstration}
+    Sens $\impliedby$
+    \vspace{4mm}
+
+    C'est évident.
+
+    \vspace{4mm}
+    Sens $\implies$
+    \vspace{4mm}
+    Soit $c \in \mathcal{O}_\sigma(a) \cap \mathcal{O}_\sigma(b)$. Alors il existe $k, l \in \N$ tels que
+    $$
+    c = \sigma^k(a) = \sigma^l(b)
+    $$
+    Il existe $p \geq l$ tel que $\sigma^p(b) = b$ (d'après le lemme~\ref{lemme:orbite-finite}).
+    Donc
+    \begin{align*}
+        &\sigma^{p-l}(c) = \sigma^{p - l} \circ \sigma^l(b) = \sigma^{p - k} \circ \sigma^k(a) \\
+        \implies &\sigma^p(b) = \sigma^{p - k + l}(a) \\
+        \implies &b = \sigma^{p - k + l}(a) \\
+        \implies &b \in \mathcal{O}_\sigma(a)
+    \end{align*}
+
+    On fait de même pour $a$ et on conclut que $\mathcal{O}_\sigma(a) = \mathcal{O}_\sigma(b)$.
+\end{demonstration}
+
 \begin{theoreme}{}{}
     Soit $n \geq 2$ et $\sigma \in S_n$, avec $\sigma \neq Id$. Il existe une
-    famille finie unique (aux commutations près) de cycles à supports disjoints $(c_i)_{1 \leq i \leq p}$ tels que
+    famille finie unique (aux commutations près) de cycles $(c_i)_{1 \leq i \leq p}$ à supports disjoints tels que
     $$
-    \sigma = \Pi_{i=1}^p c_i = c_1 \circ \cdots \circ c_p
+    \sigma = \prod\limits_{i=1}^p c_i = c_1 \circ \cdots \circ c_p
     $$
 \end{theoreme}
 
 \begin{lemme}{}{}
-    On a 
+    On a $(a_1\; \cdots\; a_p) = \tau_1 \circ \cdots \circ \tau_{p-1}$ où $\tau_i = (a_i\; a_{i+1})$.
 \end{lemme}
 
 \begin{definition}
-    Pour tout $\sigma \in S_n$ on appelle signature de $\sigma$, notée $\eps(\sigma)$ le nombre
+    Pour tout $\sigma \in \S_n$ on appelle signature de $\sigma$, notée $\varepsilon(\sigma)$ le nombre
     $$
-    \Pi_{1 \leq i \lt j \leq n} \text{sgn}(\sigma(j) - \sigma(i))
+    \prod_{1 \leq i \lt j \leq n} \text{sgn}(\sigma(j) - \sigma(i))
     $$
+
+    $\sigma$ est dite paire si $\varepsilon(\sigma) = 1$ et impaire si $\varepsilon(\sigma) = -1$.
 \end{definition}
+
+\begin{proposition}{}{}
+    Toute transposition est impaire.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Si $\sigma_1, \sigma_2 \in \S_n$ alors $\varepsilon(\sigma_1 \circ \sigma_2) = \varepsilon(\sigma_1) \varepsilon(\sigma_2)$.
+\end{theoreme}
+
+\begin{theoreme}{}{}
+    Si $\sigma = \tau_1 \circ \cdots \circ \tau_p$ où chaque $\tau_i$ est une transposition, alors
+    $\varepsilon(\sigma) = (-1)^p$.
+\end{theoreme}
+
+On note $A_n = \{\sigma \in \S_n \mid \varepsilon(\sigma) = 1\}$.
+C'est-à-dire l'ensemble des permutations paires.
+
+\begin{proposition}{}{}
+    Si $\rho \in \S_n \setminus A_n$ alors $\rho$ induit une bijection $\funcdef{}{\S_n \setminus A_n}{A_n}{\sigma}{\sigma \circ \rho}$
+\end{proposition}
+
+\begin{remarque}
+    $A_n$ est un groupe, qu'on appelle le groupe alterné sur $n$ éléments.
+\end{remarque}
 
 \end{document}
