@@ -1,0 +1,66 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{14 October 2025}
+
+\begin{document}
+
+\hotbox{Cryptologie}{CM 6}{\today}
+
+\begin{definition}
+    Un polynôme P est dit irréductible si:
+    \begin{itemize}
+        \item P n'est pas inversible (degré non nul)
+        \item $P = QP \implies Q$ ou $R$ est inversible
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $P \in \k[X]$, $deg P \geq 1$. Soit $Q \in \k[X] \setminus \{0\}$
+    \begin{enumerate}
+        \item $\overline{Q}$ est inversible dans $\k[X]/(P)$ si et seulement si $Q \wedge P = 1$
+        \item $\k[X]/(P)$ est un corps si et seulement si $P$ est irréductible
+    \end{enumerate}
+\end{proposition}
+
+\section{Cryptographie à clé publique}
+
+\subsection{RSA (Rivest, Shamir, Adleman, 1977)}
+
+\begin{definition}
+    Si $A$ est un anneau, On note $A^\times$ l'ensemble des éléments inversibles de $A$.
+\end{definition}
+
+\begin{proposition}{}{}
+    $(A^\times, \times)$ est un groupe.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{itemize}
+        \item L'associativité de l'anneau est conservée.
+        \item L'éléments neutre est son propre inverse donc il est dans $A^\times$.
+        \item Si $x \in A^\times$, il existe $y \in A$ tel que $xy = 1$. Donc $y \in A^\times$, ainsi tous les éléments sont inversibles.
+        \item Soit $x, y \in A^\times$, on a $xy \times y^{-1}x^{-1} = 1$, ainsi $xy$ est inversible et dans $A^\times$.
+    \end{itemize}
+\end{demonstration}
+
+\begin{definition}
+    Soit $n \geq 2$. On pose
+    \begin{align*}
+        \phi(n) &= card((\Z/n\Z)^\times) \\
+        &= card(\{k \in \llbracket 1, n \rrbracket | k \wedge n = 1\})
+    \end{align*}
+
+    La fonction $\phi$ est appelée fonction indicatrice d'Euler.
+\end{definition}
+
+\begin{proposition}{}{}
+    \begin{enumerate}
+        \item Si $p$ est premier et $a \in \N^*$ alors $\phi(p^a) = p^a - p^{a-1}$
+        \item Si $m_1, m_2$ sont tels que $m_1 \wedge m_2 = 1$ alors $\phi(m_1m_2) = \phi(m_1)\phi(m_2)$
+        \item Si $n$ a une décomposition en facteurs premiers $n = \prod_{i=1}^k p_i^{a_i}$ alors $\phi(n) = n \prod_{i=1}^k \left( p_i^{\alpha_i} - p_i^{\alpha_i - 1} \right) = n \prod_{i=1}^k \left( 1 - \frac{1}{p_i} \right)$
+    \end{enumerate}
+\end{proposition}
+
+\end{document}
