@@ -1,0 +1,54 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{22 October 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 2}{CM 7}{\today}
+
+\begin{proposition}{}{}
+    Pour tout n-uplet $(x_1, \cdots, x_n)$ et tout $\varphi \in \wedge^{*n}(E)$, on a
+    $$
+    \forall u \in \mathcal{L}(E), \quad \varphi(u(x_1), \cdots, u(x_n)) = \det(u) \varphi(x_1, \cdots, x_n).
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    On a nécessairement $\varphi = \lambda \Delta, k \in \K$ d'après le chapitre précédent.
+
+    On a alors $\varphi(u(x_1), \cdots, u(x_n)) = \lambda \Delta(u(x_1), \cdots, u(x_n))$.
+
+    Il suffit de démontrer la propriété pour $\varphi = \Delta$.
+
+    Dans la base canonique, on a
+    $$
+    \forall j \in \llbracket 1, n \rrbracket, \quad x_j = \sum\limits_{i = 1}^n x_{i,j} e^i
+    $$
+
+    $X$ est la matrice des coordonnées de la famille $(x_1, \cdots, x_n)$ dans la base canonique.
+    De même, $U = Mat_{Bcan}(u)$
+
+    \begin{hotwarn}
+        à finir
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Le déterminant de l'application identité vaut 1.
+\end{proposition}
+
+\begin{hotwarn}
+    à finir
+\end{hotwarn}
+
+\section{Réduction des endomorphismes}
+
+\begin{definition}
+    \begin{hotwarn}
+        Def de valeur propre
+    \end{hotwarn}
+\end{definition}
+
+\end{document}

@@ -1,0 +1,96 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{21 October 2025}
+
+\begin{document}
+
+\hotbox{Cryptologie}{CM 7}{\today}
+
+\begin{theoreme}{Théorème d'Euler}{}
+    Soit $a \in (\Z /n\Z)^\times$ alors $a^{\phi(n)} = 1_{\Z/n\Z}$
+\end{theoreme}
+
+\begin{demonstration}
+    $((\Z/n\Z)^\times, \times)$ est un groupe de cardinal $\phi(n)$
+\end{demonstration}
+
+\begin{theoreme}{Petit théorème de Fermat}{}
+    Soit $p$ un nombre premier et $a$ non-multiple de $p$ alors $a^{p-1} \equiv 1 [p]$
+\end{theoreme}
+
+\begin{demonstration}
+    On applique le théorème d'Euler avec $n = p$ et $\overline{a}^{p-1} = \overline{1}$ dans $\Z/p\Z$
+    c'est-à-dire $a^{p-1} \equiv 1 [p]$
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Si $r, s \in \N^*$ vérifient $r \equiv s [p-1]$ alors pour tout $a \in \Z$ on a $a^r \equiv a^s [p]$
+\end{theoreme}
+
+\begin{demonstration}
+    Supposons $r \geq s$ c'est-à-dire $r = s + k(p - 1)$ avec $k \in \N$
+    
+    Si $a$ est non multiple de $p$ alors
+    \begin{align*}
+        a^r &= a^{s + k(p-1)} \\
+        &= (a^{p-1})^k \times a^s \\
+        &\equiv 1^k \times a^s [p] \\
+        &\equiv a^s [p]
+    \end{align*}
+
+    Si $a$ est multiple de $p$ alors $a^r$ et $a^s$ sont multiples de $p$ donc $a^r \equiv a^s [p]$
+\end{demonstration}
+
+\subsection{Le système RSA}
+
+\begin{definition}[Primitive RSA]
+    Soient $p, q$ deux nombres premiers distincts. On pose $n = p \times q$ et on a $\phi = \phi(n) = (p-1)(q-1)$.
+
+    On prend $e \in \llbracket 1, \phi - 1 \rrbracket$ tel que $e \wedge \phi = 1$.
+
+    On définit alors
+    $$
+    \funcdef{RSA_{(n, e)}}{\Z/n\Z}{\Z/n\Z}{m}{m^e}
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soient $p, q, n, \phi, e$ comme ci-dessus.
+
+    Soit $d \in \llbracket 1, \phi - 1 \rrbracket$ tel que $ed \equiv 1 [\phi]$
+    
+    Alors $RSA_{n,d} \circ RSA_{n, e} = Id_{\Z/n\Z}$ et $RSA_{n, e} \circ RSA_{n, d} = Id_{\Z/n\Z}$
+\end{proposition}
+
+\begin{demonstration}
+    Par le théorème précédent, pour $x \in \Z$
+
+    On a $x^{ed} \equiv x [p]$ et de même $x^{ed} \equiv x [q]$
+
+    Or $p, q$ sont premiers entre eux donc $x^{ed} \equiv x [pq]$
+
+    Or $RSA_{n, d} \circ RSA_{n, e} (\overline{x}) = (\overline{x}^e)^d = \overline{x}^{ed} = \overline{x}$
+    De même pour $RSA_{n,e} \circ RSA_{n, d}$
+\end{demonstration}
+
+\begin{definition}[Cryptosystème RSA]
+    $\mathcal{M} = \mathcal{E} = \mathcal{L}(\mathcal{A})$ où $\mathcal{K} = \{((n, e), (n, d))\}$ avec $n = p \times q$ avec $p, q$ deux nombres premiers distincts,
+    $e \in \llbracket 1, \phi(n) - 1 \rrbracket$ tel que $e \wedge \phi(n) = 1$ et $d \in \llbracket 1, \phi(n) - 1 \rrbracket$ tel que $ed \equiv 1 [\phi(n)]$.
+
+    On définit des fonctions de conversions
+    $$
+    \mathcal{L}(\mathcal{A}) \underset{\psi_2}{\overset{\psi_1}{\rightleftarrows}} \mathcal{L}(\mathcal{B})
+    $$
+
+    On pose alors $E_{(n, e)} = \psi_2 \circ RSA_{(n, e)} \circ \psi_1$ et avec d'autres fonctions de conversions
+
+    $$
+    \mathcal{L}(\mathcal{A}) \underset{\psi_2'}{\overset{\psi_1'}{\rightleftarrows}} \mathcal{L}(\mathcal{B})
+    $$
+
+    tels que $\psi_1' \circ \psi_1 = Id_{\mathcal{L}(\mathcal{A})}$ et $\psi_2' \circ \psi_2 = Id_{\mathcal{L}(\mathcal{B})}$ on pose $D_{(n, d)} = \psi_1' \circ RSA_{(n, d)} \circ \psi_2'$
+\end{definition}
+
+\end{document}
