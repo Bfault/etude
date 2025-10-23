@@ -46,9 +46,56 @@
 \section{Réduction des endomorphismes}
 
 \begin{definition}
-    \begin{hotwarn}
-        Def de valeur propre
-    \end{hotwarn}
+    Soit $u \in \L(E)$ et $\lambda \in \K$. On pose
+    $$
+    E_\lambda = \{x \in E \mid u(x) = \lambda x\}
+    $$
+
+    $\lambda$ est dit \textbf{valeur propre} de $u$ si $E_\lambda \neq \{0_E\}$.\n
+    $E_\lambda$ est appelé \textbf{espace propre} associé à $\lambda$.\n
+    Les éléments de $E_\lambda \backslash \{0_E\}$ sont appelés \textbf{vecteurs propres} associés à $\lambda$.
 \end{definition}
+
+\begin{proposition}{}{}
+    Soit $u \in \L(E)$ et $\lambda \in \K$. On a
+    $$
+    E_\lambda = \ker(u - \lambda Id_E)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    D'après la définition de $E_\lambda$, on a
+    \begin{align*}
+        E_\lambda & = \{x \in E \mid u(x) = \lambda x\} \\
+                  & = \{x \in E \mid u(x) - \lambda x = 0_E\} \\
+                  & = \{x \in E \mid (u - \lambda Id_E)(x) = 0_E\} \\
+                  & = \ker(u - \lambda Id_E)
+    \end{align*}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    $E_\lambda$ est un sous-espace vectoriel de $E$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $x, y \in E_\lambda$ et $\alpha, \beta \in \K$
+
+    On a $u(x) = \lambda x$ et $u(y) = \lambda y$
+
+    Donc
+    \begin{align*}
+        u(\alpha x + \beta y) & = \alpha u(x) + \beta u(y) \\
+                              & = \alpha \lambda x + \beta \lambda y \\
+                              & = \lambda (\alpha x + \beta y)
+    \end{align*}
+
+    Donc $\alpha x + \beta y \in E_\lambda$
+
+    Ainsi, $E_\lambda$ est un sous-espace vectoriel de $E$.
+\end{demonstration}
+
+\begin{remarque}
+    $0 \in E_\lambda$ donc $E_\lambda$ est non vide.
+\end{remarque}
 
 \end{document}
