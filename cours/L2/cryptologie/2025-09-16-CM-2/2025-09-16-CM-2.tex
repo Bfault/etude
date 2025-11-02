@@ -8,17 +8,16 @@
 
 \hotbox{Cryptologie}{CM 2}{\today}
 
-\begin{definition}[(Principe de Kerckhoffs)]
+\begin{definition}[(Principe de Kerckoffs)]
   Un système de chiffrement doit être sécurisé même si tout est connu, sauf la clé.
 \end{definition}
 
-\begin{remarque}
-    Cela signifie que la sécurité ne doit pas reposer sur le secret de l'algorithme, mais uniquement sur la clé.
-\end{remarque}
-
+\noindent Cela signifie que la sécurité ne doit pas reposer sur le secret de l'algorithme, mais uniquement sur la clé.
 L'espace des clés doit être suffisamment grand pour résister aux attaques par force brute.
 
-On dit qu'un cryptosystème est \textbf{cassé} si un attaquant peut retrouver la clé (ou le texte clair) en un temps raisonnable.
+\begin{definition}
+  On dit qu'un cryptosystème est \textbf{cassé} si un attaquant peut retrouver la clé (ou le texte clair) en un temps raisonnable.
+\end{definition}
 
 \subsection{Différents cadres d'attaques à considérer}
 
@@ -28,5 +27,41 @@ On dit qu'un cryptosystème est \textbf{cassé} si un attaquant peut retrouver l
     \item Un texte clair choisi (accés à la machine de chiffrement)
     \item Un texte crypté choisi (accés à la machine de déchiffrement)
 \end{itemize}
+
+\subsection{Exemples d'attaques}
+
+\begin{methode}
+  Méthode de Kasiski.\n
+  Pour retrouver la longueur de la clé dans un chiffrement polyalphabétique
+  \begin{enumerate}
+    \item Chercher des séquences de lettres répétées dans le texte crypté.
+    \item Noter les positions de ces séquences et calculer les distances entre leurs occurrences.
+    \item Trouver les facteurs communs de ces distances pour estimer la longueur probable de la clé.
+  \end{enumerate}
+  la longueur de la clé doit diviser ces distances.
+\end{methode}
+
+\begin{remarque}
+  Plus la séquence répétée est longue, plus c'est fiable.
+  Ainsi on privilégie les plus longues répétitions.
+\end{remarque}
+
+\begin{enumerate}
+  \item Exemple à texte clair connu
+    \begin{itemize}
+      \item \textbf{Monoalphabétique}\n
+        Comme on a à la fois le texte clair et le texte crypté, on peut faire des paires de correspondance entre les lettres du texte clair et celles du texte crypté.
+        On est limité par la présence des lettres dans le texte clair.
+      \item \textbf{Polyalphabétique}\n
+        Ici, on peut utiliser la méthode de Kasiski pour retrouver la longueur de la clé, puis procéder comme dans le cas monoalphabétique pour chaque sous-blocs.
+    \end{itemize}
+  \item Exemple à texte crypté connu
+    \begin{itemize}
+      \item \textbf{Monoalphabétique}\n
+        On peut utiliser l'analyse de fréquence des lettres (bigrammes et trigrammes) pour deviner les correspondances entre les lettres du texte crypté et celles du texte clair puis faire des hypothèses.
+      \item \textbf{Polyalphabétique}\n
+        On peut utiliser la méthode de Kasiski pour retrouver la longueur de la clé, puis procéder comme dans le cas monoalphabétique pour chaque sous-blocs.
+    \end{itemize}
+\end{enumerate}
 
 \end{document}
