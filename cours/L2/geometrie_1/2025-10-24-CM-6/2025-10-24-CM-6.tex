@@ -1,0 +1,35 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{24 October 2025}
+
+\begin{document}
+
+\hotbox{Géometrie 1}{CM 6}{\today}
+
+\section{Applications affines}
+
+\begin{hotwarn}
+    unicité
+\end{hotwarn}
+
+\begin{demonstration}
+Soit $a \in \E$ et $\funcdef{\theta_a}{\E}{E}{m}{\overline{am}}$ une bijection.
+    
+Donc si $\vec{u} \in E, \exists! m \in \E, \vec{u} = \overline{am}$ et
+$\vec{f}(\vec{u}) = \vec{f}(\overline{am}) = \overline{f(a)f(m)}$ qui est unique
+dans $E$ donc $\vec{f}: E \to F$ est unique.
+
+De plus soit $b \in \E$
+
+\begin{align*}
+    \vec{f}(\overline{bm}) &= \vec{f}(\overline{ba} + \overline{am}) \\
+    &= \vec{f}(\overline{am} - \overline{ba}) \\
+    &= \vec{f}(\overline{am}) - \vec{f}(\overline{ba}) \\
+    &= \overline{f(a)f(m)} - \overline{f(a)f(b)} \\
+    &= \overline{f(b)f(m)}
+\end{align*}
+\end{demonstration}
+
+\end{document}

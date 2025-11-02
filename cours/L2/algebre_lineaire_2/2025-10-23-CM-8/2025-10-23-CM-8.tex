@@ -1,0 +1,41 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{23 October 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 2}{CM 8}{\today}
+
+\begin{proposition}{}{}
+    Un vecteur propre ne peut être associé qu'à une seule valeur propre.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $u \in \L(E)$, $\lambda, \mu \in \K$ et $x \in E \backslash \{0_E\}$ tels que $u(x) = \lambda x$ et $u(x) = \mu x$.
+
+    On a alors $(\lambda - \mu)x = 0_E$.
+
+    Comme $x \neq 0_E$, on en déduit que $\lambda - \mu = 0_\K$, donc $\lambda = \mu$.
+\end{demonstration}
+
+\begin{remarque}
+    Par la correspondance entre matrices et endomorphismes, on définit les mêmes notions pour les matrices carrées.
+\end{remarque}
+
+\begin{lemme}{}{}
+    Soit $\lambda$ une valeur propre de $u \in \L(E)$ si et seulement si $\det(u - \lambda id_E) = 0_\K$.
+\end{lemme}
+
+\begin{demonstration}
+    Soit $\lambda \in \K$.
+
+    On a $\det(u - \lambda id_E) = 0_\K$ si et seulement si $u - \lambda id_E$ n'est pas un isomorphisme,
+    c'est-à-dire que $u - \lambda id_E$ n'est pas bijectif.
+
+    Or si $\exists x \in E \backslash \{0_E\}, u(x) = \lambda x$, alors $x \in \ker(u - \lambda id_E)$, donc $u - \lambda id_E$ n'est pas injectif (car sont noyau n'est pas trivial),
+    et donc n'est pas bijectif.
+\end{demonstration}
+
+\end{document}
