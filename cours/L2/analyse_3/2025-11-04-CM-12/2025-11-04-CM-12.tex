@@ -1,0 +1,38 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{04 November 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 12}{\today}
+\begin{theoreme}
+    Soit $f: [a, b] \to \R$ de classe $\mathcal{C}^1$. Alors
+    $$
+    f(b) = \sum\limits_{k=0}^{n}\dfrac{1}{k!}f^{(k)}(a)(b-a)^k + \dfrac{1}{n!}\int_{a}^{b}(b-t)^n f^{(n+1)}(t)dt
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    On procède par récurrence sur $n$.
+
+    Pour $n=0$, on a
+    $$
+    f(b) = f(a) + \int_{a}^{b}f'(t)dt
+    $$
+    ce qui est vrai.
+
+    Supposons la formule vraie au rang $n$.
+
+    Alors, en intégrant par parties l'intégrale, on a
+    \begin{align*}
+        \int_{a}^{b}(b-t)^n f^{(n+1)}(t)dt &= \left[ (b-t)^n \dfrac{f^{(n)}(t)}{n!} \right]_{t=a}^{t=b} + \dfrac{1}{n!}\int_{a}^{b} n(b-t)^{n-1} f^{(n)}(t) dt \\
+        &= 0 - (b-a)^n \dfrac{f^{(n)}(a)}{n!} + \dfrac{n}{n!}\int_{a}^{b}(b-t)^{n-1} f^{(n)}(t) dt \\
+        &= - (b-a)^n \dfrac{f^{(n)}(a)}{n!} + \dfrac{1}{(n-1)!}\int_{a}^{b}(b-t)^{n-1} f^{(n)}(t) dt
+    \end{align*}
+
+    En remplaçant dans l'hypothèse de récurrence, on obtient bien la formule au rang $n+1$.
+\end{demonstration}
+
+\end{document}

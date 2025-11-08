@@ -1,0 +1,31 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{04 November 2025}
+
+\begin{document}
+
+\hotbox{Cryptologie}{CM 8}{\today}
+
+\begin{proposition}
+    La connaissance de $\phi$ et $n$ permet de retrouver $p$ et $q$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        n - \phi + 1 &= pq - (p-1)(q-1) + 1 \\
+        &= pq - (pq - p - q + 1) + 1 \\
+        &= p + q
+    \end{align*}
+
+    On a aussi $n = pq$.
+
+    On peut donc retrouver $p$ et $q$ comme racines de l'équation
+    $$
+    (X - p)(X - q) = X^2 - (p + q)X + pq
+    $$
+    
+\end{demonstration}
+
+\end{document}
