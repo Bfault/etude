@@ -217,11 +217,10 @@ Dans tout ce qui suit, $\K$ désigne un corps commutatif.
         On pose $\alpha = \tau_1 \circ \tau_2 \circ \cdots \circ \tau_r$.
         \begin{align*}
             \sigma^\star(\varphi) &= (\tau_{r+1} \circ \alpha)^\star(\varphi) \\
-            &= \tau_{r+1}^\star(\alpha^\star(\varphi)) \\
-            &= \tau_{r+1}^\star(\eps(\alpha) \varphi) \quad \text{(par hypothèse de récurrence)} \\
-            &= -\eps(\alpha) \varphi \quad \text{(par le théorème \ref{theoreme:transposition_alternee})} \\
-            &= - (-1)^r \varphi \\
-            &= (-1)^{r+1} \varphi \\
+            &= \alpha^\star(\tau_{r+1}^\star(\varphi)) \\
+            &= \alpha^\star(-\varphi) \\
+            &= -\alpha^\star(\varphi) \\
+            &= -\eps(\alpha) \varphi \quad \text{(par hypothèse de récurrence)} \\
             &= \eps(\sigma) \varphi
         \end{align*}
     \end{itemize}
