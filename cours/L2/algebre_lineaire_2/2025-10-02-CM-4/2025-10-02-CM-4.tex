@@ -8,39 +8,162 @@
 
 \hotbox{Algèbre linéaire 2}{CM 4}{\today}
 
-\section{Multi-linéarité}
+\section{Application Multilinéaire}
 
-\begin{hotwarn}
-    À faire
-\end{hotwarn}
+Dans tout ce qui suit, $\K$ désigne un corps commutatif.
+
+\begin{definition}
+    Soient $E_1, E_2, \ldots, E_p$ et $F$ des EV sur $\K$. Une application
+    $$
+        \funcdef{\varphi}{E_1 \times E_2 \times \cdots \times E_p}{F}{(x_1, x_2, \ldots, x_p)}{\varphi(x_1, x_2, \ldots, x_p)}
+    $$
+    est dite \textbf{p-linéaire} si, pour tout $i \in \llbracket 1, p \rrbracket$, pour tout
+    $(p-1)$-uplet $(c_j)_{j \neq i}$ avec $c_j \in E_j$, l'application
+    $$
+        \funcdef{\varphi_i}{E_i}{F}{x}{\varphi(c_1, \ldots, c_{i-1}, x, c_{i+1}, \ldots, c_p)}
+    $$
+    est linéaire.
+\end{definition}
+
+\begin{definition}
+    On note $\L_p(E_1, E_2, \ldots, E_p; F)$ l'ensemble des applications p-linéaires de $E_1 \times E_2 \times \cdots \times E_p$ dans $F$.
+    Si $E_1 = E_2 = \cdots = E_p = E$ et $F = \K$, on note simplement $\L_p(E)$ l'ensemble des formes p-linéaires sur $E$.
+\end{definition}
+
+\begin{lemme}{}{}
+    Soit $E = E_1 \times \cdots \times E_p$, $\varphi \in \L_p(E; F)$ et $(x_1, x_2, \ldots, x_p) \in E$.
+    Alors on a
+    $$
+        \exists i, x_i = 0 \implies \varphi(x_1, x_2, \ldots, x_p) = 0
+    $$
+\end{lemme}
 
 \begin{demonstration}
-    Soit $\varphi \in \mathcal{L}_p(E)$ et $\sigma \in \mathcal{S}_p, p \geq 1$
+    Soit $i \in \llbracket 1, p \rrbracket$ tel que $x_i = 0$
 
-    $\forall \lambda \in \K, \forall (x, x') \in E^2$, on note $\sigma(i) = j, i \in \llbracket 1, n \rrbracket \text{ fixé}$
+    On fixe $(c_j)_{j \neq i}$ avec $c_j = x_j$
 
-    $\sigma^\star (\varphi)(x_1, \ldots, x_{i-1}, \lambda x + x', x_{i+1}, \ldots, x_p) = \varphi(x_{\sigma(1)}, \ldots, x_{\sigma(i-1)}, \lambda x + x', x_{\sigma(i+1)}, \ldots, x_{\sigma(p)})$
-    \begin{hotwarn}
-        À faire
-    \end{hotwarn}
+    On considère l'application linéaire
+    $$
+        \funcdef{\varphi_i}{E_i}{F}{x}{\varphi(c_1, \ldots, c_{i-1}, x, c_{i+1}, \ldots, c_p)}
+    $$
+
+    Ainsi $\varphi_i(0) = 0$, donc $\varphi(x_1, \ldots, x_{i-1}, 0, x_{i+1}, \ldots, x_p) = 0$
+\end{demonstration}
+
+\begin{proposition}{}{}
+    $\L_p(E; F)$ est un SEV de l'EV $F^{E^p}$
+\end{proposition}
+
+\begin{demonstration}
+    Soient $\varphi, \psi \in \L_p(E; F)$ et $\lambda \in \K$
+
+    On montre que $\lambda \varphi + \psi \in \L_p(E; F)$
+    Soit $i \in \llbracket 1, p \rrbracket$ et $(c_j)_{j \neq i}$ avec $c_j \in E$
+    On considère l'application $\theta = \lambda \varphi + \psi$ et on définit
+    $$
+    \funcdef{\theta_i}{E_i}{F}{x}{\theta(c_1, \ldots, c_{i-1}, x, c_{i+1}, \ldots, c_p)}
+    $$
+    avec $(c_j)_{j \neq i}$ fixé et $\theta_i(x) = \lambda \varphi_i(x) + \psi_i(x)$
+    Par combinaison linéaire d'applications linéaires, $\theta_i$ est linéaire.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $E = E_1 \times \cdots \times E_p$ de dimensions finies tels que $\dim E_j = r_j \geq 1$ et $\psi \in \L_p(E)$. Alors
+    $$
+    \psi(e^1_{i_1}, \ldots, e^p_{i_p}) = A_{i_1, \ldots, i_p}
+    $$ où
+    pour tout p-uplet $(i_1, \ldots, i_p)$ avec $1 \leq i_j \leq r_j$
+\end{proposition}
+
+\begin{demonstration}
+    Soit $(e^j_1, e^j_2, \ldots, e^j_{r_j})$ une base de $E_j$ pour tout $j \in \llbracket 1, p \rrbracket$
+
+    Soit $(x_1, x_2, \ldots, x_p) \in E$, on écrit
+    $$
+        x_j = \sum_{i=1}^{r_j} x_{j, i} e^j_i
+    $$
+
+    Par p-linéarité de $\psi$, on a
+    \begin{align*}
+        \psi(x_1, x_2, \ldots, x_p) & = \psi\left(\sum_{i_1=1}^{r_1} x_{1, i_1} e^1_{i_1}, \sum_{i_2=1}^{r_2} x_{2, i_2} e^2_{i_2}, \ldots, \sum_{i_p=1}^{r_p} x_{p, i_p} e^p_{i_p}\right) \\
+        & = \sum_{i_1=1}^{r_1} \sum_{i_2=1}^{r_2} \cdots \sum_{i_p=1}^{r_p} x_{1, i_1} x_{2, i_2} \cdots x_{p, i_p} \psi(e^1_{i_1}, e^2_{i_2}, \ldots, e^p_{i_p})
+    \end{align*}
+
+    On pose $A_{i_1, i_2, \ldots, i_p} = \psi(e^1_{i_1}, e^2_{i_2}, \ldots, e^p_{i_p})$
+
+    Ainsi on a
+    $$
+        \psi(x_1, x_2, \ldots, x_p) = \sum_{i_1=1}^{r_1} \cdots \sum_{i_p=1}^{r_p} x_{1, i_1} \cdots x_{p, i_p} A_{i_1, \ldots, i_p}
+    $$
 \end{demonstration}
 
 \begin{definition}
-    Soit $E$ un EV et $\varphi \in \mathcal{L}_p(E, \K)$. On dit que $\varphi$ est
-    \begin{itemize}
-        \item \textbf{symétrique} si, pour tout $\sigma \in \mathcal{S}_p$ on a $\sigma^\star(\varphi) = \varphi$
-        \item \textbf{alternée} si, $\exists i \neq j \text{ avec } x_i = x_j \implies \varphi(x_1, \ldots, x_p) = 0$
-    \end{itemize}
+    Soit $E$ un EV, $\varphi \in \L_p(E)$ avec $p \geq 2$ et $\sigma \in \S_p$.
 
-    On note $\wedge^{\star p}(E)$ l'ensemble des formes alternées de $\mathcal{L}_p(E, \K)$
+    On note $\sigma^\star(\varphi)$ l'application définie par
+    $$
+        \sigma^\star(\varphi)(x_1, \ldots, x_p) = \varphi(x_{\sigma(1)}, \ldots, x_{\sigma(p)})
+    $$
 \end{definition}
 
 \begin{remarque}
-    Si $\varphi \wedge^{\star 2}(E)$ est une forme 
+    On a $E_1 = E_2 = \cdots = E_p = E$ pour pouvoir permuter les $x_i$.
 \end{remarque}
 
-\begin{theoreme}{}{}
-    Si $\varphi$ est une forme p-linéaire alternée, alors pour tout transposition $\tau \in \mathcal{S}_p$, on a
+\begin{proposition}{}{}
+    Soit $E$ un EV, $\varphi \in \L_p(E)$ et $\sigma \in \S_p, p \geq 1$.
+    Alors $\sigma^\star(\varphi) \in \L_p(E)$, c'est-à-dire que l'application $\sigma^\star$ reste p-linéaire.
+
+    De plus, on a
+    \begin{enumerate}
+        \item $\rho^\star \circ \sigma^\star = (\rho \circ \sigma)^\star$
+        \item $e_{p}^\star = Id_{\L_p(E)}$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\varphi \in \L_p(E)$ et $\sigma \in \S_p, p \geq 1$
+    
+    $\forall \lambda \in \K,\; \forall (x, x') \in E^2$, on note $\sigma(i) = j$ avec $i \in \llbracket 1, n \rrbracket \text{ fixé}$
+    \begin{align*}
+        &\sigma^\star (\varphi)(x_1, \ldots, x_{i-1}, \lambda x + x', x_{i+1}, \ldots, x_p) \\
+        &= \varphi(x_{\sigma(1)}, \ldots, \lambda x + x', \ldots, x_{\sigma(p)}) \\
+        &= \lambda \varphi(x_{\sigma(1)}, \ldots, x, \ldots, x_{\sigma(p)}) + \varphi(x_{\sigma(1)}, \ldots, x', \ldots, x_{\sigma(p)}) \\
+        &= \lambda \sigma^\star(\varphi)(x_1, \ldots, x_{i-1}, x, x_{i+1}, \ldots, x_p) + \sigma^\star(\varphi)(x_1, \ldots, x_{i-1}, x', x_{i+1}, \ldots, x_p)
+    \end{align*}
+    Donc $\sigma^\star(\varphi)$ est linéaire par rapport à la i-ème variable,
+    en répétant ce raisonnement pour tout $i \in \llbracket 1, p \rrbracket$, on a bien $\sigma^\star(\varphi) \in \L_p(E)$
+    \begin{enumerate}
+        \item
+        \begin{align*}
+            \rho^\star(\sigma^\star(\varphi)) &= \rho^\star(\varphi(x_{\sigma(1)}, \ldots, x_{\sigma(p)})) \\
+            &= \varphi(x_{\sigma(\rho(1))}, \ldots, x_{\sigma(\rho(p))}) \\
+            &= (\rho \circ \sigma)^\star(\varphi)
+        \end{align*}
+        \item Immédiat
+    \end{enumerate}
+\end{demonstration}
+
+\begin{definition}
+    Soit $E$ un EV et $\varphi \in \L_p(E)$. On dit que $\varphi$ est
+    \begin{itemize}
+        \item \textbf{symétrique} si, pour tout $\sigma \in \S_p$ on a $\sigma^\star(\varphi) = \varphi$
+        \item \textbf{alternée} si, $\exists i \neq j \text{ avec } x_i = x_j \implies \varphi(x_1, \ldots, x_p) = 0$
+    \end{itemize}
+
+    On note $\wedge^{\star p}(E)$ l'ensemble des formes alternées de $\L_p(E)$
+\end{definition}
+
+\begin{remarque}
+    Si $\varphi \wedge^{\star 2}(E)$ est une forme alternée et $\K = \R$ ou $\C$, alors
+    $$
+        \forall (x, y) \in E^2, \quad \varphi(x, y) = -\varphi(y, x)
+    $$
+\end{remarque}
+
+\begin{theoreme}{}{transposition_alternee}
+    Si $\varphi$ est une forme p-linéaire alternée, alors pour tout transposition $\tau \in \S_p$, on a
     $$
         \tau^\star(\varphi) = -\varphi
     $$
@@ -48,27 +171,60 @@
 
 \begin{demonstration}
     Soit $\varphi \in \wedge^{\star p}(E)$ une forme alternée et $\sigma = \tau_{i, j}$
-    une transposition : tel que $\sigma(i) = j, \sigma(j) = i$ et $\forall k \neq i, j, \sigma(k) = k$
-    \begin{hotwarn}
-        À faire
-    \end{hotwarn}
-    Soit $(x_1, \ldots, x_p) \in E^p$,\n on a $\sigma^\star(\varphi)(x_1, \ldots, x_p) = \varphi(x_1, \ldots, x_{i-1}, x_j, x_{i+1}, \ldots, x_{j-1}, x_i, x_{j+1}, \ldots, x_p)$
-    On ajoute $\varphi(x_1, \ldots, x_p)$ et $\sigma^\star(\varphi)(x_1, \ldots, x_p)$
+    une transposition tel que
+    $$
+    \begin{cases}
+        \sigma(k) = k & \text{si } k \neq i, j \\
+        \sigma(i) = j \\
+        \sigma(j) = i \\
+    \end{cases}
+    $$
+    Soit $(x_1, \ldots, x_p) \in E^p$,\n on a 
     \begin{align*}
-        & \varphi(x_1, \ldots, x_{i-1}, x_j, x_{i+1}, \ldots, x_{j-1}, x_i, x_{j+1}, \ldots, x_p) + \varphi(x_1, \ldots, x_p) \\
-        = & \varphi(x_1, \ldots, x_{i-1}, x_j + x_i, x_{i+1}, \ldots, x_{j-1}, x_i, x_{j+1}, \ldots, x_p) \\
-        = & 0 \text{ car } x_i \text{ et } x_j + x_i \text{ sont égaux}
+        &\varphi(x_1, \ldots, x_p) + \sigma^\star(\varphi)(x_1, \ldots, x_p) \\
+        &= \varphi(x_1, \ldots, x_{i-1}, x_i, x_{i+1}, \ldots, x_{j-1}, x_j, x_{j+1}, \ldots, x_p) \\
+        &\quad +\varphi(x_1, \ldots, x_{i-1}, x_j, x_{i+1}, \ldots, x_{j-1}, x_i, x_{j+1}, \ldots, x_p) \\
+        &= \varphi(x_1, \ldots, x_{i-1}, x_i + x_j, x_{i+1}, \ldots, x_{j-1}, x_i + x_j, x_{j+1}, \ldots, x_p) \\
+        &= 0 \quad \text{(car } \varphi \text{ est alternée et } x_i + x_j \text{ est répété)}
     \end{align*}
-    Donc $\sigma^\star(\varphi)(x_1, \ldots, x_p) = -\varphi(x_1, \ldots, x_p)$
+    d'où $\sigma^\star(\varphi)(x_1, \ldots, x_p) = -\varphi(x_1, \ldots, x_p)$
 \end{demonstration}
 
 \begin{corollaire}{}{}
-    Si $\varphi$ est une forme p-linéaire alternée de $E$, pour toute permutation $\sigma \in \mathcal{S}_p$, on a
+    Si $\varphi$ est une forme p-linéaire alternée de $E$, pour toute permutation $\sigma \in \S_p$, on a
     $$
         \sigma^\star(\varphi) = \eps(\sigma) \varphi
     $$
 
-    En particulier
+    En particulier, une forme p-linéaire alternée est gardée invariante par le groupe alterné d'ordre $p$.
 \end{corollaire}
+
+\begin{demonstration}
+    Soit $\varphi \in \wedge^{\star p}(E)$ et $\sigma \in \S_p$
+    
+    On écrit $\sigma$ comme produit de transpositions, c'est-à-dire
+    $$
+        \sigma = \tau_1 \circ \tau_2 \circ \cdots \circ \tau_r
+    $$
+    avec chaque $\tau_i$ une transposition.
+
+    On procède par récurrence sur $r$.
+    \begin{itemize}
+        \item Si $r = 1$, alors on applique le théorème \ref{theoreme:transposition_alternee} et on a
+        $\sigma^\star(\varphi) = -\varphi = \eps(\sigma) \varphi$.
+        \item Supposons le résultat vrai au rang $r$, montrons-le au rang $r + 1$.
+        Soit $\sigma = \tau_1 \circ \tau_2 \circ \cdots \circ \tau_{r+1}$.
+        On pose $\alpha = \tau_1 \circ \tau_2 \circ \cdots \circ \tau_r$.
+        \begin{align*}
+            \sigma^\star(\varphi) &= (\tau_{r+1} \circ \alpha)^\star(\varphi) \\
+            &= \tau_{r+1}^\star(\alpha^\star(\varphi)) \\
+            &= \tau_{r+1}^\star(\eps(\alpha) \varphi) \quad \text{(par hypothèse de récurrence)} \\
+            &= -\eps(\alpha) \varphi \quad \text{(par le théorème \ref{theoreme:transposition_alternee})} \\
+            &= - (-1)^r \varphi \\
+            &= (-1)^{r+1} \varphi \\
+            &= \eps(\sigma) \varphi
+        \end{align*}
+    \end{itemize}
+\end{demonstration}
 
 \end{document}
