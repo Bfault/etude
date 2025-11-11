@@ -28,19 +28,54 @@
     $$
 
     $X$ est la matrice des coordonnées de la famille $(x_1, \cdots, x_n)$ dans la base canonique.
-    De même, $U = Mat_{Bcan}(u)$
-
-    \begin{hotwarn}
-        à finir
-    \end{hotwarn}
+    De même, $U = Mat_{Can}(u)$.
+    On a alors
+    $$
+    y_j = U \begin{pmatrix}
+        x_{1,j} \\
+        \vdots  \\
+        x_{n,j}
+    \end{pmatrix}
+    $$
+    La matrice des coordonnées de la famille $(u(x_1), \cdots, u(x_n))$ dans la base canonique est donc $Y = UX$.
+    On a donc
+    $$
+        \det(Y) = \det(U) \det(X)
+    $$
 \end{demonstration}
 
-\begin{proposition}{}{}
-    Le déterminant de l'application identité vaut 1.
-\end{proposition}
+\begin{theoreme}{}{}
+    \begin{enumerate}
+        \item Le déterminant de l'application identité vaut 1.
+        \item Si $u, v \in \L(E)$, alors $\det(u \circ v) = \det(u) \det(v)$.
+        \item Un endomorphisme $u \in \L(E)$ est un isomorphisme si et seulement si $\det(u) \neq 0$. Dans ce cas, on a
+        $$
+        \det(u^{-1}) = \frac{1}{\det(u)}
+        $$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    Il suffit de démontrer les propriétés dans une base quelconque et d'utiliser les matrices associées.
+\end{demonstration}
+
+\begin{definition}
+    Soit $A = (a_{i,j}) \in M_n(\K)$.
+    \begin{enumerate}
+        \item Le terme $(-1)^{i+j} \Delta_{i,j}$ est appelé \textbf{cofacteur} de $a_{i,j}$ on le note $A_{i,j}$.
+        \item On appelle \textbf{comatrice} de $A$ la matrice des cofacteurs. On la note $com(A)$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $A \in M_n(\K)$. On a
+    $$
+    A \times com(A)^T = \det(A) Id_n = com(A)^T \times A
+    $$
+\end{theoreme}
 
 \begin{hotwarn}
-    à finir
+    À finir
 \end{hotwarn}
 
 \section{Réduction des endomorphismes}

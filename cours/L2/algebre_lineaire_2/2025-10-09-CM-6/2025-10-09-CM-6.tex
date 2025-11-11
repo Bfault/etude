@@ -10,10 +10,180 @@
 
 \section{Déterminant}
 
-\begin{lemme}{}{}
-    \begin{hotwarn}
-        4.2
-    \end{hotwarn}
+\begin{definition}
+    Soit $(e^1, \cdots, e^n)$ une base de $E$. La forme n-linéaire alternée $\Delta$ telle que
+    $$
+    \Delta(e^1, \cdots, e^n) = 1
+    $$
+    est appelée \textbf{déterminant} relatif à la base $(e^1, \cdots, e^n)$.
+    Une famille $(x_1, \cdots, x_n)$ de n vecteurs de $E$  a son déterminant relatif à la base $(e^1, \cdots, e^n)$ défini par
+    $$
+    \Delta(x_1, \cdots, x_n) \in \K
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $(e^1, \cdots, e^n)$ une base de $E$ et $\Delta$ le déterminant relatif à cette base.
+
+    Soit $(x_1, \cdots, x_n)$ une famille de n vecteurs de $E$.
+    $$
+    \Delta(x_1, \cdots, x_n) \neq 0 \iff (x_1, \cdots, x_n) \text{ est une base de E}
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    $(\implies)$ Si $\Delta(x_1, \cdots, x_n) \neq 0$, alors la famille $(x_1, \cdots, x_n)$ est libre (car $\Delta$ est alternée) et toute famille de n vecteurs libres dans un espace de dimension n est une base.
+
+    $(\impliedby)$ Si $(x_1, \cdots, x_n)$ est une base de $E$, alors il existe une unique forme n-linéaire alternée $\varphi$ telle que $\varphi(x_1, \cdots, x_n) = 1$.
+    Par le théorème \ref{theoreme:determinant}, il existe $k \in \K$ tel que $\Delta = k \varphi$.
+    On a donc
+    $$
+    1 = \Delta(e^1, \cdots, e^n) = k \varphi(e^1, \cdots, e^n) \implies k \neq 0
+    $$
+    puis
+    $$
+    \Delta(x_1, \cdots, x_n) = k \varphi(x_1, \cdots, x_n) = k \neq 0 \quad \text{ car } \varphi(x_1, \cdots, x_n) = 1
+    $$
+\end{demonstration}
+
+\begin{definition}
+    Soit $A = (a_{i,j}) \in M_n(\K)$. Le \textbf{déterminant} de $A$ est défini par
+    $$
+    \det(A) = \sum\limits_{\sigma \in S_n} \varepsilon(\sigma)a_{\sigma(1), 1} \ldots a_{\sigma(n), n}
+    $$
+    On notera aussi
+    $$
+    \det(A) = \begin{vmatrix}
+        a_{1,1} & \cdots & a_{1,n} \\
+        \vdots  & \ddots & \vdots  \\
+        a_{n,1} & \cdots & a_{n,n}
+    \end{vmatrix}
+    $$
+\end{definition}
+
+\begin{lemme}{}{determinant_invariant}
+    Soit $A \in M_n(\K)$ on a
+    \begin{enumerate}
+        \item Si on effectue une permutation $\sigma \in \S_n$, alors $\det(A) = \varepsilon(\sigma) \det(A')$ où $A'$ est la matrice avant permutation,
+        en particulier échanger deux colonnes change le signe du déterminant.
+        \item $\det$ est linéaire par rapport à chaque colonne.
+        \item $\det(Id_n) = 1$.
+        \item $\det(A)$ ne change pas si on ajoute à une colonne une combinaison linéaire des autres colonnes.
+        \item Pour tout $\lambda \in \K$ on a $\det(\lambda A) = \lambda^n \det(A)$.
+        \item $A$ est inversible si et seulement si $\det(A) \neq 0$.
+    \end{enumerate}
 \end{lemme}
+
+\begin{hotwarn}
+    démonstration à faire
+\end{hotwarn}
+
+\begin{theoreme}{}{}
+    Soient $A, B \in M_n(\K)$. On a
+    \begin{enumerate}
+        \item $\det(AB) = \det(A) \det(B)$
+        \item $\det(A^T) = \det(A)$
+        \item Si $A$ est inversible, alors $\det(A^{-1}) = \frac{1}{\det(A)}$.
+    \end{enumerate}
+\end{theoreme}
+
+\begin{hotwarn}
+    démonstration à faire
+\end{hotwarn}
+
+\begin{remarque}{}{}
+    La propriété $\det(A^T) = \det(A)$ signifie que le lemme \ref{lemme:determinant_invariant} s'applique aussi aux lignes.
+\end{remarque}
+
+\begin{lemme}{}{}
+    Soit $A = (a_{i,j}) \in M_n(\K)$ une matrice triangulaire (supérieure ou inférieure).
+    Alors,
+    $$
+    \det(A) = \prod\limits_{i = 1}^n a_{i,i}
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    Soit $A$ une matrice triangulaire supérieure.
+
+    On a
+    $$
+    \det(A) = \sum\limits_{\sigma \in S_n} \varepsilon(\sigma)a_{\sigma(1), 1} \ldots a_{\sigma(n), n}
+    $$
+    Or, $\sigma(i) > i \implies a_{\sigma(i), i} = 0$ car $A$ est triangulaire supérieure.
+    Donc, pour que le produit $a_{\sigma(1), 1} \ldots a_{\sigma(n), n}$ soit non nul, il faut que $\sigma(i) \leqq i$ pour tout $i \in \llbracket 1, n \rrbracket$.
+    La seule permutation vérifiant cette propriété est la permutation identité.
+    Donc,
+    $$
+    \det(A) = \varepsilon(Id) a_{1,1} \ldots a_{n,n} = \prod\limits_{i = 1}^n a_{i,i}
+    $$
+    Pour une matrice triangulaire inférieure on utilise $\det(A^T) = \det(A)$.
+\end{demonstration}
+
+\begin{lemme}{}{}
+    Soit $A \in M_n(\K)$ une matrice de la forme
+    $$
+    A = \begin{pmatrix}
+        a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+        0 & \\
+        \vdots & & \tilde{A} \\
+        0 &
+    \end{pmatrix}
+    $$
+    avec $\tilde{A} \in M_{n-1}(\K)$.
+    Alors,
+    $$
+    \det(A) = a_{1,1} \det(\tilde{A})
+    $$
+\end{lemme}
+
+\begin{hotwarn}
+    démonstration à faire
+\end{hotwarn}
+
+\begin{definition}
+    Soit $A = (a_{i,j}) \in M_n(\K)$. On appelle \textbf{mineur} relatif au coefficient $a_{i,j}$ le determinant (noté $\Delta_{i,j}$) de la matrice $M_{n-1}(\K)$
+    obtenue en supprimant la i-ème ligne et la j-ème colonne de $A$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $A = (a_{i,j}) \in M_n(\K)$. on a pour tous $i, j \in \llbracket 1, n \rrbracket$,
+    $$
+    \det(A) = \sum\limits_{k = 1}^n (-1)^{k+j} a_{k,j} \Delta_{k,j} = \sum\limits_{k = 1}^n (-1)^{i+k} a_{i,k} \Delta_{i,k}
+    $$
+\end{theoreme}
+
+\begin{hotwarn}
+    démonstration à faire
+\end{hotwarn}
+
+\begin{definition}
+    Le \textbf{déterminant} d'un endomorphisme $u \in \L(E)$ est défini par
+    $$
+    \det(u) = \det(Mat_{B}(u))
+    $$
+    où $B$ est une base quelconque de $E$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Le déterminant d'un endomorphisme ne dépend pas de la base choisie.
+\end{proposition}
+
+\begin{demonstration}
+    Soient $B$ et $B'$ deux bases de $E$.
+    On a
+    $$
+    Mat_{B'}(u) = P^{-1} Mat_{B}(u) P
+    $$
+    où $P = Mat_{B'}(Id_E)$ est la matrice de passage de $B$ à $B'$.
+
+    Donc,
+    \begin{align*}
+        \det(Mat_{B'}(u)) & = \det(P^{-1} Mat_{B}(u) P) \\
+        & = \det(P^{-1}) \det(Mat_{B}(u)) \det(P) \\
+        & = \frac{1}{\det(P)} \det(Mat_{B}(u)) \det(P) \\
+        & = \det(Mat_{B}(u))
+    \end{align*}
+\end{demonstration}
 
 \end{document}
