@@ -11,27 +11,161 @@
 \section{Permutations}
 
 \begin{definition}
-    Soit $n \in \N^*$, on note $S_n$ l'ensemble des bijections de $\llbracket 1, n \rrbracket$ dans lui-même.
-    On appelle les éléments de $S_n$ des \textbf{permutations}.    
+    Soit $n \in \N^*$.
+    On note $\S_n$ l'ensemble des bijections de $\llbracket 1, n \rrbracket$ dans lui-même.\n
+    On appelle les éléments de $\S_n$ des \textbf{permutations}.    
 \end{definition}
 
-\begin{theoreme}{}{}
-    Pour $n \geq 3$, le groupe $(S_n, \circ)$ n'est pas commutatif.
-\end{theoreme}
+\begin{remarque}
+    On retrouve aussi souvent $\mathfrak{S}_n$ (S gothique).
+\end{remarque}
+
+\noindent Il existe plusieurs façons de représenter une permutation.
+
+$$
+\sigma := 
+\begin{pmatrix}
+    1 & 2 & 3 & 4 & 5\\
+    \sigma(1) & \sigma(2) & \sigma(3) & \sigma(4) & \sigma(5)
+\end{pmatrix}
+$$
+
+\begin{exemple}
+    Soit $n = 5$ et la permutation $\sigma \in \S_5$ définie par
+    $$
+    \sigma := 
+    \begin{pmatrix}
+        1 & 2 & 3 & 4 & 5\\
+        3 & 5 & 4 & 2 & 1
+    \end{pmatrix}
+    $$
+    C'est à dire que $\sigma(1) = 3, \sigma(2) = 5, \sigma(3) = 4, \sigma(4) = 2, \sigma(5) = 1$.
+\end{exemple}
+
+\begin{remarque}
+    L'identité de $\S_n$ est notée $Id$ ou $e_n$
+
+    $$
+    e_n := 
+    \begin{pmatrix}
+        1 & 2 & \cdots & n\\
+        1 & 2 & \cdots & n
+    \end{pmatrix}
+    $$
+\end{remarque}
+
+\noindent On peut aussi représenter une permutation par une matrice de permutation définie par
+$$
+    p_{ij} =
+    \begin{cases}
+        1 & \text{si } j = \sigma(i)\\
+        0 & \text{sinon}
+    \end{cases}
+$$
+
+\begin{exemple}
+    $$
+    M_\sigma = 
+    \begin{pmatrix}
+        0 & 0 & 1 & 0 & 0\\
+        0 & 0 & 0 & 0 & 1\\
+        0 & 0 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0 & 0\\
+        1 & 0 & 0 & 0 & 0
+    \end{pmatrix}
+    $$
+    c'est à dire que $\sigma(1) = 5, \sigma(2) = 4, \sigma(3) = 1, \sigma(4) = 3, \sigma(5) = 2$.
+\end{exemple}
+
+\begin{proposition}{}{}
+    $\S_n$ est un ensemble fini de cardinal $n!$.
+\end{proposition}
 
 \begin{demonstration}
-    Soit $n \gt 3$, soit les permutations $\tau_1 = \left( \sigma_1 | ... \right)$
-
-    $\forall i \gt 3, \tau_1 \circ \tau_2 (i) = \tau_1(i) = i = \tau_2 \circ \tau_1 (i)$
-
-    $\forall i \geq 3, \tau_1 \circ \tau_2 (i), \tau_2 \circ \tau_1 = $
+    Il y a $n$ choix pour $\sigma(1)$, $n-1$ choix pour $\sigma(2)$, ..., $1$ choix pour $\sigma(n)$.
+    Donc il y a $n \times (n-1) \times \cdots \times 1 = n!$ permutations dans $\S_n$.
 \end{demonstration}
 
-\begin{theoreme}{}{}
-    Soit $n \geq 2$, toute permutation $\sigma \in S_n$ peuut s'écrire comme composition
-    finir de transpositions $\tau_1 \circ \cdots \circ \tau_p$.
+\begin{proposition}{}{}
+    $(\S_n, \circ)$ est un groupe.
+\end{proposition}
 
-    On dit que $S_n$ est engendré par les transpositions $\langle \tau_1, \cdots, \tau_p \rangle$.
+\begin{proposition}{}{}
+    Pour $n \geq 3$, le groupe $(\S_n, \circ)$ n'est pas commutatif.
+\end{proposition}
+
+\begin{demonstration}
+    Pour $n = 3$, on considère les permutations
+    $$
+    \sigma_1 = 
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        2 & 3 & 1
+    \end{pmatrix}
+    \quad\text{et}\quad
+    \sigma_2 = 
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        1 & 3 & 2
+    \end{pmatrix}
+    $$
+    On a
+    $$
+    \sigma_1 \circ \sigma_2 =
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        2 & 1 & 3
+    \end{pmatrix}
+    \quad\text{et}\quad
+    \sigma_2 \circ \sigma_1 =
+    \begin{pmatrix}
+        1 & 2 & 3\\
+        3 & 2 & 1
+    \end{pmatrix}
+    $$
+    Donc $\sigma_1 \circ \sigma_2 \neq \sigma_2 \circ \sigma_1$.
+
+    \noindent Soient $n > 3$, les permutations
+    $$
+    \tau_1 = \left( \sigma_1 \quad\bigg| \begin{array}{ccc}
+        4 & \cdots & n\\
+        4 & \cdots & n
+    \end{array} \right)
+    \quad\text{et}\quad
+    \tau_2 = \left( \sigma_2 \quad\bigg| \begin{array}{ccc}
+        4 & \cdots & n\\
+        4 & \cdots & n
+    \end{array} \right)
+    $$
+
+    \begin{align*}
+        &\forall i > 3,\quad \tau_1 \circ \tau_2 (i) = \tau_1(i) = i = \tau_2 \circ \tau_1 (i)\\
+        &\forall i \leq 3,\quad \tau_1 \circ \tau_2 (i) = \sigma_1 \circ \sigma_2 (i) \quad\text{ et }\quad \tau_2 \circ \tau_1 (i) = \sigma_2 \circ \sigma_1 (i)
+    \end{align*}
+
+    Donc $\tau_1 \circ \tau_2 \neq \tau_2 \circ \tau_1$, et $(\S_n, \circ)$ n'est pas commutatif.
+\end{demonstration}
+
+\begin{definition}
+    Soient $0 < i < j \leq n$. On appelle \textbf{transposition} la permutation $\tau_{ij} \in \S_n$ définie par
+    $$
+    \tau_{ij} :=
+    \begin{pmatrix}
+        1 & \cdots & i & \cdots & j & \cdots & n\\
+        1 & \cdots & j & \cdots & i & \cdots & n
+    \end{pmatrix}
+    $$
+\end{definition}
+
+\begin{remarque}
+    $e_n = \tau_{ij} \circ \tau_{ij}$ avec $1 \leq i \lt j \leq n$.
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Soit $n \geq 2$, toute permutation $\sigma \in S_n$ peut s'écrire comme composition
+    finie de transpositions $\tau_1 \circ \cdots \circ \tau_p$.
+
+    On dit que $\S_n$ est engendré par les transpositions $\langle \tau_1, \cdots, \tau_p \rangle$.
 \end{theoreme}
 
 \begin{demonstration}
@@ -39,13 +173,12 @@
 \end{demonstration}
 
 \begin{remarque}
-    soit $\sigma \in S_n$, décomposer en $\sigma = \tau_1 \circ \cdots \circ \tau_p$ où les $\tau_i$ sont des transpositions.
-    Comme $(\tau_k)^{-1} = \tau_k$, pour tout $k$, on a $\sigma^{-1} = \tau_p \circ \cdots \circ \tau_1$.
+    La décomposition en transpositions n'est pas unique.
 \end{remarque}
 
 \begin{remarque}
-    $e_n$ l'identité de $S_n$ s'écrit comme produit de n'importe quel transposition avec elle-même.
-    $e_n = \tau_{ij} \circ \tau_{ij}$ avec $1 \leq i \lt j \leq n$.
+    soit $\sigma \in S_n$, décomposer en $\sigma = \tau_1 \circ \cdots \circ \tau_p$ où les $\tau_i$ sont des transpositions.
+    Comme $(\tau_k)^{-1} = \tau_k$, pour tout $k$, on a $\sigma^{-1} = \tau_p \circ \cdots \circ \tau_1$.
 \end{remarque}
 
 \end{document}

@@ -2,7 +2,7 @@ $pdf_mode = 4;
 $recorder = 1;
 $max_repeat = 3;
 $bibtex_use = 2;
-$diagnostics = 0;
+# $diagnostics = 0;
 # $out_dir = '';
 $aux_dir = 'build';
 

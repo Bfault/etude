@@ -52,6 +52,16 @@
     boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
 }{lemme}
 
+\newtcbtheorem[number within=section]{corollaire}{Corollaire}%
+{
+    enhanced,
+    colframe=black,
+    coltitle=black, fonttitle=\bfseries,
+    top=5mm,
+    attach boxed title to top left={yshift=-3mm, xshift=6mm},
+    boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
+}{corollaire}
+
 \newtcbtheorem[number within=section]{theoreme}{Théorème}%
 {
     enhanced,
@@ -70,15 +80,52 @@
     \qed%
 }
 
-\newtheorem{exemple}{Exemple}[section]
+\newtheoremstyle{exemplecompact}  % nom du style
+  {0pt}    % espace au-dessus (avant)
+  {3pt}    % espace au-dessous (après)
+  {}        % corps de texte (police normale)
+  {}        % indentation
+  {\bfseries} % style du titre
+  {.}       % ponctuation après le titre
+  {0.5em}   % espace après le titre
+  {}        % en-tête du théorème
 
-\newtheorem{remarque}{Remarque}[section]
+\theoremstyle{exemplecompact}
+\newtheorem{_exemple}{Exemple}[section]
+\newenvironment{exemple}
+  {\begin{quote}\begin{_exemple}}
+  {\end{_exemple}\end{quote}}
+
+\newtheoremstyle{remarquecompact}  % nom du style
+  {0pt}    % espace au-dessus (avant)
+  {3pt}    % espace au-dessous (après)
+  {}        % corps de texte (police normale)
+  {}        % indentation
+  {\bfseries} % style du titre
+  {.}       % ponctuation après le titre
+  {0.5em}   % espace après le titre
+  {}        % en-tête du théorème
+
+\theoremstyle{remarquecompact}
+\newtheorem{_remarque}{Remarque}[section]
+\newenvironment{remarque}
+  {\begin{quote}\begin{_remarque}}
+  {\end{_remarque}\end{quote}}
 
 \newenvironment{methode}[1][]{
     \begin{tcolorbox}[
         leftrule=-1mm, toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
     ]
     \textbf{Point méthode.}\space
+}{
+    \end{tcolorbox}
+}
+
+\newenvironment{explication}[1][]{
+    \begin{tcolorbox}[
+        leftrule=-1mm, toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
+    ]
+    \textbf{Explication.}\space
 }{
     \end{tcolorbox}
 }

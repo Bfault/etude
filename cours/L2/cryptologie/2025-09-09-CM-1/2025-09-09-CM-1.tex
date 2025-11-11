@@ -19,22 +19,25 @@
 
 \subsection{Schéma d'une situation cryptographie}
 
-Alice veut envoyer un message m "en clair" à Bob.
-Elle doit utiliser un canal non sécurisé.
-Elle utilise un algorithme de chiffrement E pour chiffrer son message m en m'.
-Elle envoie m' à Bob.
-Souvent un clef k peut être utilisée.
-Sur le canal non sécurisé, Eve peut intercepter m' voire le modifier.
-Eve peut aussi essayer de retrouver m à partir de m'.
+Alice veut envoyer un message \textit{m} en clair à Bob sur un canal \textbf{non sécurisé}.
+\vspace{2mm}
+
+Elle utilise un algorithme de chiffrement E pour chiffrer son message $m' = E(m)$.
+Elle envoie \textit{m'} à Bob qui utilise un algorithme de déchiffrement D pour retrouver le message initial $m = D(m')$.
+\vspace{2mm}
+
+Un attaquant, Eve, peut intercepter \textit{m'} voire le modifier et peut aussi essayer de retrouver \textit{m} à partir de \textit{m'}.
+
+\vspace{3mm}
 
 \begin{definition}
     La \textbf{cryptographie} est l'étude des techniques mathématiques liée à la sécurité de l'information.
-    Les buts sont:
-    \begin{enumerate}
+    Les buts sont
+    \begin{itemize}
         \item Inaccessibilité de l'information à un tiers.
         \item Authentification de l'origine du message.
         \item Inaltération du message.
-    \end{enumerate}
+    \end{itemize}
 \end{definition}
 
 \begin{definition}
@@ -45,66 +48,12 @@ Eve peut aussi essayer de retrouver m à partir de m'.
     L'ensemble des techniques de cryptographie et de cryptanalyse est appelé la \textbf{cryptologie}.
 \end{remarque}
 
-\begin{exemple}
-    \begin{enumerate}
-        \item (X - VII siècle avant JC) Scytale (bâton roulé)
-        \item (V siècle avant JC) Passage de la bible en hébreu
-        \item (-50 avant JC) César (décalage de 3 dans l'alphabet)
-    \end{enumerate}
-\end{exemple}
-
-Contextes d'utilisation historique pré-informatique:
-\begin{itemize}
-    \item Guerres (communication entre les troupes)
-    \item Association de personnes suceptible d'être menacée
-    \item Diplomatie (négociation)
-    \item Commerce (négociation)
-    \item Infidélité (lettres)
-\end{itemize}
-
-Les cannaux de communication:
-\begin{itemize}
-    \item Messager
-    \item Pigeon voyageur
-    \item Journeaux
-    \item Internet
-    \item Télégraphe
-    \item Radio
-\end{itemize}
-
 \subsection{Techniques cryptographie (avec date)}
 
 \begin{itemize}
-    \item (-200 avant JC) Substitution monoalphabétique (ex: César)\n
-    cassé en 800
-    \item (1585) Vigenère (substitution polyalphabétique)\n
-    cassé en 1863 par Kasiski
-    \item (1919) Enigma (utilisé pour la seconde guerre mondiale par l'armée allemande)\n
-    cassé en 1941 par Alan Turing
-\end{itemize}
-
-\subsection{Rupture du numérique}
-
-\begin{itemize}
-    \item Explosion de la puissance de calcul
-    \item Automatisation du cryptage et du décryptage
-    \item Nécessité d'échanger des clefs à distance (sur le canal non sécurisé)
-    \item Systèmes plus global (beaucoup de Eve)
-    \item Facilité de dupliquer l'information
-\end{itemize}
-
-utilisations modernes:
-
-\begin{itemize}
-    \item Messages privés (sms, mail, whatsapp, telegram, signal)
-    \item Authentification (mdp, carte bancaire, biométrie)
-    \item Signature électronique (contrat, logiciel)
-\end{itemize}
-
-Futur:
-\begin{itemize}
-    \item Développement de l'informatique quantique
-    il y a donc un besoin de nouveaux systèmes cryptographiques "post-quantique"
+    \item (-200 avant JC) Substitution monoalphabétique (ex: César)
+    \item (1585) Vigenère (substitution polyalphabétique)
+    \item (1919) Enigma (utilisé pour la seconde guerre mondiale par l'armée allemande)
 \end{itemize}
 
 \section{Formalisation de la cryptographie}
@@ -113,36 +62,57 @@ Futur:
     Un \textbf{alphabet} est un ensemble fini de symboles.
 \end{definition}
 
+\begin{exemple}
+    $\mathcal{A} = \{A, B, C, \ldots, Z\}$ est un alphabet de 26 symboles.
+\end{exemple}
+
+\begin{exemple}
+    $\mathcal{A} = \{\heartsuit, \spadesuit, \diamondsuit, \clubsuit\}$ est un alphabet de 4 symboles.
+\end{exemple}
+
 \begin{definition}
-    Un \textbf{message} dans un alphabet A est une suite finie à valeurs dans A.\n
-    noté $m = m_1 m_2 \cdots m_n$ où $m_i \in A$ et l'ensemble des messages est noté $\mathscr{L}(A) = \bigcup\limits_{n \in \N} A^n$.
+    Un \textbf{message} dans un alphabet $\mathcal{A}$ est une suite finie à valeurs dans $\mathcal{A}$.\n
+    noté $m = m_1 m_2 \ldots m_n$ où $m_i \in \mathcal{A}$ et l'ensemble des messages est noté
+    $$
+    \mathcal{L}(\mathcal{A}) = \bigcup\limits_{n \in \N} \mathcal{A}^n
+    $$
 \end{definition}
 
 \begin{definition}
-    Soient deux messages $m = m_1 \cdots m_n, m' = m'_1 \cdots m'_p \in \mathscr{L}(a)$\n
-    La concaténation de $m$ et $m'$ est définie par $m'' = m \| m' = m_1 \cdots m_n m'_1 \cdots m'_p$
+    Soient deux messages $m = m_1 \ldots m_n, m' = m'_1 \ldots m'_p \in \mathcal{L}(\mathcal{A})$\n
+    La concaténation de $m$ et $m'$ est définie par
+    $$
+    m'' = m \| m' = m_1'' \ldots m_{n+p}'' \text{ où } \begin{cases}
+        m_i'' = m_i & \text{si } i \leq n\\
+        m_i'' = m'_{i-n} & \text{si } i > n
+    \end{cases}
+    $$
 \end{definition}
 
 \begin{definition}
-    Une fonction de chiffrement est une fonction $E: \mathscr{M} \rightarrow \mathscr{C}$
-    où $\mathscr{M}, \mathscr{C} \subset \mathscr{L}(A)$
+    Un chiffrement est une fonction $E: \mathcal{M} \rightarrow \mathcal{C}$
+    où $\mathcal{M}, \mathcal{C} \subset \mathcal{L}(\mathcal{A})$
     \begin{itemize}
-        \item $\mathscr{M}$ est l'ensemble des messages pouvant être crypté
-        \item $\mathscr{C}$ est l'ensemble des messages cryptés
+        \item $\mathcal{M}$ est l'ensemble des messages admissibles (pouvant être cryptés)
+        \item $\mathcal{C}$ est l'ensemble des messages cryptés
     \end{itemize}
 \end{definition}
 
 \begin{definition}
-    Une fonction de déchiffrement pour $E$ est une fonction $D: \mathscr{C} \rightarrow \mathscr{M}$
-    tel que $\forall m \in \mathscr{M}, D(E(m)) = m$ i.e. $D \circ E = Id$
+    Un déchiffrement pour $E$ est une fonction $D: \mathcal{C} \rightarrow \mathcal{M}$
+    tel que $D \circ E = Id_\mathcal{M}$
 \end{definition}
+
+\begin{remarque}
+    Dans la plupart des cas, on a $\mathcal{M} = \mathcal{C} = \mathcal{L}(\mathcal{A})$
+\end{remarque}
 
 \begin{proposition}{}{}
     $E$ est injective
 \end{proposition}
 
 \begin{demonstration}
-    Soient $m, m' \in \mathscr{M}$\n
+    Soient $m, m' \in \mathcal{M}$\n
     $E(m) = E(m') \implies D(E(m)) = D(E(m')) \implies m = m'$
 \end{demonstration}
 
@@ -151,43 +121,101 @@ Futur:
 \end{proposition}
 
 \begin{demonstration}
-    \begin{hotwarn}
-        à faire
-    \end{hotwarn}
+    Soit $m \in \mathcal{M}$\n
+    $E(m) \in \mathcal{C}$ et $D(E(m)) = m$
 \end{demonstration}
 
 \begin{definition}
-    Un \textbf{cryptosystème} est un quadruplet $(\mathscr{M}, \mathscr{C}, \mathscr{K}, (E_e, D_d)_{(e, d) \in \mathscr{K}}$
-    où $\mathscr{M}, \mathscr{C} \in \mathscr{L}(A)$,
-    $\mathscr{K}$ est un ensemble de paires de ("clef de cryptage", "clef de décriptage").\n
-    Pour chaque $(e, d) \in \mathscr{K}$ on a $E_e: \mathscr{M} \rightarrow \mathscr{C}$
-    est une fonction de cryptage ayant $D_d: \mathscr{C} \rightarrow \mathscr{M}$ pour une fonction
-    de décryptage.
+    Un \textbf{cryptosystème} est un quadruplet $(\mathcal{M}, \mathcal{C}, \mathcal{K}, (E_e, D_d)_{(e, d) \in \mathcal{K}})$
+    où 
+    \begin{itemize}
+        \item $\mathcal{M}, \mathcal{C} \subset \mathcal{L}(A)$
+        \item $\mathcal{K}$ est un ensemble appelé l'espace des clefs. Il est constitué de paires de clefs $(e, d)$
+        où $e$ est la clef de cryptage et $d$ la clef de décryptage.
+        \item Pour $(e, d) \in \mathcal{K}$, $E_e: \mathcal{M} \rightarrow \mathcal{C}$
+        est une fonction de cryptage et $D_d: \mathcal{C} \rightarrow \mathcal{M}$ pour fonction
+        de décryptage de $E_e$.
+    \end{itemize}
 \end{definition}
 
-Soit $A = \{A, \cdots, 0\} \simeq \llbracket 0, 25 \rrbracket$
+\noindent Soit $A = \{A, \ldots, 0\} \simeq \llbracket 0, 25 \rrbracket$
 
 \begin{exemple}[César]
-    $\mathscr{M} = \mathscr{C} = \mathscr{L}(A)$\n
     \begin{align*}
-        \mathscr{K}&=\{(e, d) | e \in \llbracket 0, 25 \rrbracket \text{ et } d = -e\}
-        &=\{(e, -e) | e \in \llbracket 0, 25 \rrbracket\}
+        \mathcal{M} &= \mathcal{C} = \mathcal{L}(A) \\
+        \mathcal{K} &=\{(e, d) \mid e \in \llbracket 0, 25 \rrbracket \text{ et } d = -e\} \\
+        &=\{(e, -e) \mid e \in \llbracket 0, 25 \rrbracket\} \\
+        E_\alpha &= \begin{cases}
+            E_\alpha(m_i) = m_i + \alpha \mod 26\\
+            E_\alpha(m_1 \ldots m_n) = E_\alpha(m_1) \ldots E_\alpha(m_n)
+        \end{cases} \\
+        D_\alpha &= E_\alpha \\
     \end{align*}
-
-    $D_\alpha = E_\alpha$\n
-    $\forall m_i \in A, D_\alpha(m_i) = m_i + \alpha \mod 26$
 \end{exemple}
 
-\begin{exemple}[Par permutation]
-    Soit $l$: longueur des permutations considérées.
-
-    $\mathscr{M} = \mathscr{C} = \bigcup\limits_{n \in \N}A^{nl}$
-
-    $\mathscr{K} = \{(\sigma, \sigma^{-1}) | \sigma \in \mathfrak{S}_l\}$
-
-    Si $m = m_1 \cdots m_l$ est de longueur $l$\n
-    $E_\sigma(m) = m_{\sigma(1) \cdots m_{\sigma(l)}}$
-    et $D_\tau = E_\tau$
+\begin{exemple}[Par permutation]\n
+    Soit $\ell$: longueur de la permutation.
+    \begin{align*}
+        \mathcal{M} &= \mathcal{C} = \bigcup\limits_{n \in \N} A^{n\ell} \\
+        \mathcal{K} &= \{(\sigma, \sigma^{-1}) | \sigma \in \mathfrak{S}_\ell\} \\
+        E_\sigma &= \begin{cases}
+            E_\sigma(m_1 \ldots m_\ell) = m_{\sigma(1)} \ldots m_{\sigma(\ell)} \\
+            E_\sigma(M_1 || \ldots || M_k) = E_\sigma(M_1) || \ldots || E_\sigma(M_k) \text{ où } M_i \in A^\ell \\
+        \end{cases} \\
+        D_\tau &= E_\tau \\
+    \end{align*}
 \end{exemple}
+
+\begin{exemple}[\textbf{monoalphabétique}]
+    \begin{align*}
+        \mathcal{M} &= \mathcal{C} = \mathcal{L}(A) \\
+        \mathcal{K} &= \{(\sigma, \sigma^{-1}) | \sigma \in \mathfrak{S}(\mathcal{A}) \cong \mathfrak{S}_{26}\} \\
+        E_\sigma &= \begin{cases}
+            E_\sigma(m_i) = \sigma(m_i) \\
+            E_\sigma(m_1 \ldots m_n) = E_\sigma(m_1) \ldots E_\sigma(m_n)
+        \end{cases} \\
+        D_\sigma &= E_{\sigma^{-1}} \\
+    \end{align*}
+\end{exemple}
+
+\begin{remarque}
+    César et la permutation sont des cas particuliers de la monoalphabétique.
+\end{remarque}
+
+\begin{exemple}[Vigenère]\n
+    Soit $\ell$: longueur de la clef.
+    \begin{align*}
+        \mathcal{M} &= \mathcal{C} = \mathcal{L}(A) \\
+        \mathcal{K} &= \{(k = k_0 \ldots k_{\ell-1}, k) | k_i \in A\} \\
+        E_k &= \begin{cases}
+            E_k(m_i) = m_i + k_{i \mod \ell} \mod 26 \\
+            E_k(m_0 \ldots m_{n-1}) = E_k(m_0) \ldots E_k(m_{n-1})
+        \end{cases} \\
+        D_k &= \begin{cases}
+            D_k(c_i) = c_i - k_{i \mod \ell} \mod 26 \\
+            D_k(c_0 \ldots c_{n-1}) = D_k(c_0) \ldots D_k(c_{n-1})
+        \end{cases} \\
+    \end{align*}
+\end{exemple}
+
+\begin{exemple}[\textbf{polyalphabétique}]\n
+    Soit $\ell$: longueur de la clef.
+    \begin{align*}
+        \mathcal{M} &= \mathcal{C} = \mathcal{L}(A) \\
+        \mathcal{K} &= \{(f: \llbracket 0, \ell-1 \rrbracket \rightarrow \mathfrak{S}(A), f^{-1})\} \\
+        E_f &= \begin{cases}
+            E_f(m_i) = f(i \mod \ell)(m_i) \\
+            E_f(m_0 \ldots m_{n-1}) = E_f(m_0) \ldots E_f(m_{n-1})
+        \end{cases} \\
+        D_f &= \begin{cases}
+            D_f(c_i) = f^{-1}(i \mod \ell)(c_i) \\
+            D_f(c_0 \ldots c_{n-1}) = D_f(c_0) \ldots D_f(c_{n-1})
+        \end{cases} \\
+    \end{align*}
+\end{exemple}
+
+\begin{remarque}
+    Vigenère est un cas particulier de la polyalphabétique.
+\end{remarque}
 
 \end{document}

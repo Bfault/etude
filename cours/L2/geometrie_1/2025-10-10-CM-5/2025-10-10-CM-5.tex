@@ -1,0 +1,59 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 October 2025}
+
+\begin{document}
+
+\hotbox{Géometrie 1}{CM 5}{\today}
+
+\begin{demonstration}
+    On se place dans le plan affine $\P$ (de dimension 2)
+    et soient $\D$ et $\D'$ deux droites affines de $\P$.
+
+    $\D = a + Vect(\vec{u})$ avec $a \in \P$ et $\vec{u} \in \P\setminus \{\vec{0}\}$
+
+    $\D' = a' + Vect(\vec{u}')$ avec $a' \in \P$ et $\vec{u}' \in \P\setminus \{\vec{0}\}$
+    
+    On a les possibilités suivantes :
+
+    \begin{itemize}
+        \item $\D // \D'$ et alors $\D \cap \D' = \emptyset$ ou $\D = \D'$
+        \item $\D \not // \D'$ et alors $Vect(\vec{u}) \oplus Vect(\vec{u'}) = P$
+        et d'après une propriété précédente, $\D$ et $\D'$ ont un unique point commun.
+    \end{itemize}
+\end{demonstration}
+
+\begin{demonstration}
+    $\mathcal{E}$ est un espace affine de dimension 3, de direction $E$.
+
+    $\P = a + Vect(\vec{u}, \vec{v})$ avec $a \in \mathcal{E}$ et ($\vec{u}, \vec{v}) \in E^2$ libre.
+
+    $\P' = a' + Vect(\vec{u'}, \vec{v'})$ avec $a' \in \mathcal{E}$ et ($\vec{u'}, \vec{v'}) \in E^2$ libre.
+
+    On a les possibilités suivantes :
+
+    \begin{itemize}
+        \item $\P \not // \P'$ et alors $Vect(\vec{u}, \vec{v}) \neq Vect(\vec{u'}, \vec{v'})$
+        Alors $dim Vect(\vec{u}, \vec{v}) \cap Vect(\vec{u'}, \vec{v'}) = 1$
+
+        En effet $dim P \cap P' \leq 2$ (car $P \cap P' \subset P$)
+        \begin{itemize}
+            \item Si $dim P \cap P' = 2$ alors $P = P'$ impossible (car $P \neq P'$ par hypothèse)
+            \item Si $dim P \cap P' = 0$ alors $P + P' = P \oplus P' \subset E$ impossible (car $dim(P + P') = 4 > dim E = 3$)
+        \end{itemize}
+        Donc $dim P \cap P' = 1$ et $E = P + P'$ ($dim(P + P') = dim P + dim P' - dim(P \cap P') = 3$)
+
+        $\P = a + P$
+
+        $\P' = a' + P'$
+
+        et $\overline{aa'} \in E = P + P' \implies \P \cap \P' \neq \emptyset$
+
+        Comme $\P \cap \P' \neq \emptyset$, on sait que $\P \cap \P'$ est un sous-espace affine de $\mathcal{E}$
+        de direction $P \cap P'$ qui est une droite vectorielle donc
+        $\P \cap \P$ est une droite affine de $\mathcal{E}$.
+\end{demonstration}
+
+\end{document}

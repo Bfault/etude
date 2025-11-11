@@ -1,0 +1,93 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{30 September 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 8}{\today}
+
+\subsection{Critère d'intégrabilité}
+
+\begin{proposition}{}{}
+    Soient $a, b \in \R, a < b$ et $f: [a, b] \to \R$ telle que $f \in \mathcal{R}(a, b)$
+
+    $$
+    \forall \eps > 0, \exists \sigma(\eps) \in \sum(a, b), 0 \leq S(f, \sigma) - s(f, \sigma) \leq \eps
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    Si $f \in \mathcal{R}(a, b)$, soit $\eps > 0$.
+    Par caractérisation de la borne inférieure,
+    \begin{align}
+        \exists \sigma(\eps), S(f) \leq S(f, \sigma) \leq S(f) + \dfrac{\eps}{2}
+    \end{align}
+
+    De même
+    \begin{align}
+        \exists \sigma'(\eps), s(f) + \dfrac{\eps}{2} \leq s(f, \sigma'(\eps)) \leq s(f)
+    \end{align}
+
+    Soit $\sigma''(\eps) = \sigma(\eps) \cup \sigma'(\eps)$, (1) reste vraie avec $\sigma''(\eps)$ au lieu de $\sigma(\eps)$ car $\sigma''(\eps)$ est plus fine.
+
+    De même (2) reste vraie avec $\sigma''(\eps)$ au lieu de $\sigma'(\eps)$.
+
+    D'où en soustrayant (1) - (2)
+    \begin{align*}
+        S(f) - s(f) &\leq (S - s)(f, \sigma(\eps))\\
+        &\leq S(f) - s(f) + \eps
+    \end{align*}
+
+    Comme $f \in \mathcal{R}(a, b)$, $S(f) - s(f) = 0$ d'où le résultat.
+
+    Supposons \begin{hotwarn}
+        FLEMME
+    \end{hotwarn}
+\end{demonstration}
+
+\subsection{Exemples fondamentaux}
+
+\begin{remarque}
+    Monotone sur un segment implique bornée.
+\end{remarque}
+
+\begin{lemme}{}{}
+    Soient $a, b \in \R, a < b$ et $f: [a, b] \to \R$.
+
+    $f \in \mathcal{R}(a, b) \iff -f \in \mathcal{R}(a, b)$ et alors
+    $\int_a^b -f(x)dx = -\int_a^b f(x)dx$
+\end{lemme}
+
+\begin{demonstration}
+    $A \subset \R, A \neq \emptyset$, $sup(-A) = -inf(A) \text{ et } inf(-A) = -sup(A)$
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soient $a, b \in \R, a < b$ et $f: [a, b] \to \R$ on a
+
+    $$
+    f \text{ monotone } \implies f \in \mathcal{R}(a, b)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    D'après le lemme, il suffit de faire $f$ croissant, on utilise le critère
+    $$
+    \forall \sigma \in \sum(a, b), S(f, \sigma) - s(f, \sigma) = \sum\limits_{k=1}^n (M_k - m_k)(x_k - x_{k-1}) \leq 
+    $$
+    \begin{hotwarn}
+        FLEMME
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soient $a, b \in \R, a < b$ et $f: [a, b] \to \R$ continue. Alors
+
+    $$
+    f \in \mathcal{R}(a, b)
+    $$
+\end{proposition}
+
+\end{document}

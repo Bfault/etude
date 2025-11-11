@@ -1,0 +1,147 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{09 October 2025}
+
+\begin{document}
+
+\hotbox{Algèbre linéaire 2}{CM 5}{\today}
+
+\begin{lemme}{}{}
+    Soit $\varphi \in \L_p(E)$ une forme p-linéaire alternée et $(x_1, \ldots, x_p)$ une famille de vecteurs de $E$.
+    \begin{enumerate}
+        \item Si la famille $(x_1, \ldots, x_p)$ est liée, alors $\varphi(x_1, \ldots, x_p) = 0$
+        \item
+        $$
+        \varphi(x_1, \ldots, x_{i-1}, \sum\limits_{j \neq i}\lambda_j x_j, x_{i+1}, \ldots, x_p)
+            = \varphi(x_1, \ldots, x_p)
+        $$
+        pour tous $i \in \llbracket 1, p \rrbracket$ et $(\lambda_j)_{j \neq i} \in \K^{p-1}$
+    \end{enumerate}
+\end{lemme}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item Soit $(x_1, \ldots, x_k)$ une famille de vecteurs liée de $E$.
+        Il existe $i \in \llbracket 1, k \rrbracket$ et $(\alpha_1, \ldots, \alpha_{i-1}, \alpha_{i+1}, \ldots, \alpha_k) \in \K^{k-1}$ non tous nuls
+        tels que $x_i = \sum\limits_{j \neq i}\alpha_j x_j$
+
+        L'application $\varphi$ étant k-linéaire, on a:
+
+        \begin{align*}
+            \varphi(x_1, \ldots, x_i, \ldots, x_k) &= \varphi(x_1, \ldots, x_{i-1}, \sum\limits_{j \neq i}\alpha_j x_j, x_{i+1}, \ldots, x_k) \\
+            &= \sum\limits_{j \neq i} \alpha_j \varphi(x_1, \ldots, x_{i-1}, x_j, x_{i+1}, \ldots, x_k) = 0
+        \end{align*}
+        \item Soit $(\alpha_1, \ldots, \alpha_{i-1}, \alpha_{i+1}, \ldots, \alpha_k) \in \K^{k-1}$ non tous nuls.
+        \begin{align*}
+            &\varphi(x_1, \ldots, x_{i-1}, \sum\limits_{j \neq i}\alpha_j x_j, x_{i+1}, \ldots, x_k) \\
+            &= \varphi(x_1, \ldots, x_k) + \varphi(x_1, \ldots, x_{i-1}, \sum\limits_{j \neq i}\alpha_j x_j, x_{i+1}, \ldots, x_k) \\
+            &= \varphi(x_1, \ldots, x_k)
+        \end{align*}
+    \end{enumerate}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $E$ un EV de base $(e_1, \ldots, e_n)$.
+    Alors, pour tout $k > n$, $\wedge^{\star k}(E) = \{0\}$
+\end{corollaire}
+
+\begin{demonstration}
+    Si $dim E = n$ et $k > n$, alors toute famille $(x_1, \ldots, x_k)$ de vecteurs de $E$ est liée, d'où le résultat.
+\end{demonstration}
+
+\begin{theoreme}{}{determinant}
+    Soit $E$ un EV et $(e_1, \ldots, e_n)$ une base de $E$.
+    Alors, il existe une unique forme n-linéaire alternée $\Delta$ telle que
+    $$\Delta(e_1, \ldots, e_n) = 1
+    $$
+    Elle est définie par:
+    $$\Delta(x_1, \ldots, x_n) = \sum\limits_{\sigma \in S_n} \varepsilon(\sigma)a_{\sigma(1), 1} \ldots a_{\sigma(n), n}
+    $$
+    On a $\wedge^{\star n}(E) = \K \Delta$, donc $dim(\wedge^{\star n}(E)) = 1$
+\end{theoreme}
+
+\begin{remarque}{}{}
+    La forme n-linéaire alternée $\Delta$ est appelée \textbf{déterminant} associé à la base $(e_1, \ldots, e_n)$
+\end{remarque}
+
+\begin{demonstration}
+    On procède en 3 étapes:
+    \begin{enumerate}
+        \item on vérifie que $\Delta(e_1, \ldots, e_n) = 1$;
+        \item on vérifie que $\Delta \in \wedge^{\star n} (E)$;
+        \item on vérifie que $\forall \varphi \in \wedge^{\star n}(E), \exists \alpha \in \K, \varphi = \alpha \Delta$
+    \end{enumerate}
+
+    \hrule
+
+    \begin{enumerate}
+        \item On peut écrire
+        $\forall j \in \llbracket 1, n \rrbracket, e_j = \sum\limits_{i=1}^n \delta_{i,j} e_i$ avec $\delta_{i,j}$ le symbole de Kronecker.
+
+        $\Delta(e_1, \ldots, e_n) = \sum\limits_{\sigma \in S_n}\varepsilon(\sigma) \delta_{\sigma(1), 1} \ldots \delta_{\sigma(n), n} = \varepsilon(Id) \times 1 \times \ldots \times 1 = 1$
+        \item $\sum\limits_{\sigma \in S_n} \varepsilon(\sigma)a_{\sigma(1),1} \ldots a_{\sigma(n), n}$
+        c'est bien une forme n-linéaire.
+        
+        Alternance: montrons que si $(x_i, \ldots, x_n)$ est une famille de n vecteurs avec
+        $x_i = x_j$, pour $i < j$ données, alors $\Delta(x_1, \ldots, x_n) = 0$
+        On peut écrire
+        \begin{align*}
+            \Delta(x_1, \ldots, x_n) &= \sum\limits_{\sigma \in A_n} \varepsilon(\sigma) a_{\sigma(1), 1} \cdots a_{\sigma(n), n} + \sum\limits_{\sigma \in S_n \backslash A_n}\varepsilon(\sigma)a_{\sigma(1), 1} \\
+            & = \sum\limits_{\sigma \in A_n} a_{\sigma(1), 1} \ldots a_{\sigma(n), n} - S
+        \end{align*}
+        avec $S = \sum\limits_{\sigma \in S_n \setminus A_n} a_{\sigma(1), 1} \ldots a_{\sigma(n), n}$
+
+        On construit une bijection de $F: A_n \to S_n \setminus A_n$
+
+        Soit $i < j$, $\sigma \in A_n$ (i.e $\varepsilon(\sigma) = 1$) on pose
+        $F(\sigma) = \sigma \circ \tau_{i,j} \in S_n \setminus A_n$ car $\varepsilon(\sigma \circ \tau_{i, j}) = 1$
+
+        On a $\forall \sigma \in A_n, \sigma \circ \tau_{i,j} \circ \tau_{i,j} = \sigma$
+        et l'application réciproque de $F$ est $\funcdef{F^{-1}}{S_n \setminus A_n}{A_n}{\sigma}{\sigma \circ \tau_{i,j}}$
+
+        On a donc $S = \sum\limits_{\sigma \in A_n} a_{\sigma \circ \tau_{i,j}(1), 1} \ldots a_{\sigma \circ \tau_{i,j}(n), n}$
+
+        Or
+        
+        $$
+        \forall \sigma \in A_n, \begin{cases}
+            \sigma \circ \tau_{i,j}(l) = l, & \text{ si } l \neq i, j \\
+            \sigma \circ \tau_{i,j}(i) = \sigma(j) \\
+            \sigma \circ \tau_{i,j}(j) = \sigma(i)
+        \end{cases}
+        $$
+
+        $S = \sum\limits_{\sigma \in A_n} a_{\sigma(1), 1} \ldots a_{\sigma(i-1), i-1} a_{\sigma(j), i} a_{\sigma(i+1), i} \ldots a_{\sigma(j-1), j-1} a_{\sigma(i), j} a_{\sigma(j+1), j+1} \ldots a_{\sigma(n), n}$
+    
+        Comme $x_i = x_j$, on a $a_{k, i} = a_{k, j}$ pour tout $k \in \llbracket 1, n \rrbracket$
+        
+        Donc $S = \sum\limits_{\sigma \in A_n} a_{\sigma(1), 1} \ldots a_{\sigma(n), n}$
+        d'où $\Delta(x_1, \ldots, x_n) = 0$
+
+        \item Montrons que $\wedge^{\star n}(E) = \K \Delta$, $dim E = n$.
+        
+        Soit $\varphi \in \wedge^{\star n}(E)$, et $(e_1, \ldots, e_n)$ une base de $E$.
+        Soit $(x_1, \ldots, x_n) \in E^n$, on peut écrire $x_j = \sum\limits_{i=1}^n a_{i,j} e_i$.
+
+        \begin{align*}
+            \varphi(x_1, \ldots, x_n) &= \sum\limits_{(i_1, \ldots, i_n) \in \llbracket 1, n \rrbracket^n} a_{i_1, 1} a_{i_2, 2} \ldots a_{i_n, n} \varphi(e_{i_1}, e_{i_2}, \ldots, e_{i_n}) \\
+            &= \sum\limits_{\sigma \in S_n} a_{\sigma(1), 1} \ldots a_{\sigma(n), n} \varphi(e_{\sigma(1), 1}, \ldots, e_{\sigma(n),n})
+        \end{align*}
+
+        Car $\varphi(e_{i_1}, \ldots, e_{i_n}) = 0$ dés lors qu'il existe $k$ et $l$ tels que $i_k = i_l$
+
+        D'où
+        \begin{align*}
+            \varphi(e_1, \ldots, e_n) &= \sum\limits_{\sigma \in S_n}a_{\sigma(1), 1} \ldots a_{\sigma(n), n} \sigma^{\star}(\varphi)(e_1, \ldots, e_n) \\
+            &= \sum\limits_{\sigma \in S_n} a_{\sigma(1), 1} \times \ldots \times a_{\sigma(n), n} \varepsilon(\sigma) \varphi(e_1, \ldots, e_n) \\
+            &= \varphi(e_1, \ldots, e_n) \times \sum\limits_{\sigma \in S_n} \varepsilon(\sigma)a_{\sigma(1), 1} \ldots a_{\sigma(n), n} \\
+            &= \alpha \Delta(x_1, \ldots, x_n)
+        \end{align*}
+        avec $\alpha = \varphi(e_1, \ldots, e_n)$
+
+    \end{enumerate}
+\end{demonstration}
+
+\end{document}

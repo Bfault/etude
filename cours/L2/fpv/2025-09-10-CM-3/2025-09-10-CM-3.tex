@@ -10,10 +10,6 @@
 
 \subsection{Compacité et équivalence des normes en dimension finie}
 
-Dans la suite on considère les evn $(E, ||.||), (F, ||.||')$.
-
-\vspace{3mm}
-\noindent
 En essayant de généraliser le théorème des borns atteintes, c'est à dire
 
 Soit $f: [a, b] \rightarrow \R$ continue, alors $f$ est bornée et atteint ses bornes.
@@ -21,7 +17,7 @@ Soit $f: [a, b] \rightarrow \R$ continue, alors $f$ est bornée et atteint ses b
 \noindent
 On peut définir la notion suivante
 
-\begin{definition}
+\begin{definition}[(Définition séquentielle de la compacité)]
     Soit $K \subset E$.
 
     On dit que $K$ est \textbf{compacte} si
@@ -38,7 +34,7 @@ On peut définir la notion suivante
 \end{remarque}
 
 \begin{definition}
-    Une partie $V \subset E$ est \textbf{bornée} si $\exists M \gt 0, \forall x \in V, ||x|| \leq M$.
+    Une partie $V \subset E$ est \textbf{bornée} si $\exists M \gt 0, \forall x \in V, \|x\| \leq M$.
 \end{definition}
 
 \begin{proposition}{}{}
@@ -51,7 +47,7 @@ On peut définir la notion suivante
     Démonstration à faire
 \end{hotwarn}
 
-\begin{proposition}
+\begin{proposition}{}{}
     Soient $U \subset E, V \subset F$ et $f: U \rightarrow V$ continue.
     Si $K \subset U$ est compacte, alors $f(K)$ est compacte.
 \end{proposition}
@@ -61,15 +57,146 @@ On peut définir la notion suivante
 \end{hotwarn}
 
 \begin{proposition}{}{}
-    Un ensemble compacte $K$ d'un env est fermé et borné.
+    Un ensemble compact $K$ d'un env est fermé et borné.
 \end{proposition}
+
+\begin{remarque}
+    La réciproque est fausse en dimension infinie mais utile en dimension finie.
+\end{remarque}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
 
 \begin{theoreme}{Bolzano-Weierstrass}{}
     Soit $V$ une partie fermée et bornée de $(\R, \|.\|)$ alors $V$ est compacte.
 \end{theoreme}
 
-\begin{exemple}
-    $\xn{x} \text{ avec } x_n := \dfrac{1}{n} + (-1)^n$ suite dans $[-2, 2]$
-\end{exemple}
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{lemme}{}{}
+    Soient $n \in \N^*$ et $A$ une partie fermée bornée de $\R^n$ munie de la norme $l^\infty$.
+    Alors $A$ est compacte.
+\end{lemme}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{definition}
+    Soient $N_1$ et $N_2$ deux normes sur $E$. On dit que $N_1$ et $N_2$ sont \textbf{équivalentes}
+    si et seulement si il existe $\alpha, \beta \gt 0$ tels que
+    $$
+    \forall x \in E, \alpha N_1(x) \leq N_2(x) \leq \beta N_1(x)
+    $$
+\end{definition}
+
+\begin{remarque}
+    L'équivalence des normes est une relation d'équivalence.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soient $N_1$ et $N_2$ deux normes équivalentes sur $E$.
+    Alors une suite $(x_n) \in E^\N$ converge pour $N_1$ si et seulement si elle converge pour $N_2$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soient $N_1$ et $N_2$ deux normes équivalentes sur $E$.
+    Si $(x_n) \in E^\N$ telle que $(x_n)$ converge pour $N_1$ vers $l \in E$, alors $(x_n)$ converge pour $N_2$ vers $l$.
+\end{corollaire}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}
+    Soit $N$ une norme sur $\R^n$.
+    Alors $N$ est équivalente à la norme $l^\infty$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}
+    Soient $N_1$ et $N_2$ deux normes sur un ev de dimension finie $E$.
+    Alors $N_1$ et $N_2$ sont équivalentes.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soient $N$ une norme sur $R^n$ et $((x_{i,k})_{1 \leq i \leq n})_k \in (\R^n)^\N$ une suite.
+    On a $\lim\limits_{k \to +\infty} (x_{i,k})_{1 \leq i \leq n} = (l_i)_{1 \leq i \leq n}$ si et seulement si
+    $$
+    \forall i \in \llbracket 1, n \rrbracket, \lim\limits_{k \to +\infty} x_{i,k} = l_i
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soient $A \subset E, a \in \overline{A}$ et $f_1, f_2, \ldots, f_n: A \rightarrow F$ des fonctions.
+
+    La fonction $\funcdef{g}{A}{\R^n}{x}{(f_1(x), f_2(x), \ldots, f_n(x))}$ converge vers $l = (l_1, l_2, \ldots, l_n) \in F^n$ en $a$ si et seulement si
+    $$
+    \forall i \in \llbracket 1, n \rrbracket, \lim\limits_{x \to a} f_i(x) = l_i
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        Démonstration à faire
+    \end{hotwarn}
+\end{demonstration}
+
+\subsection{Norme matricielle}
+
+On note $\mathcal{L}_c(E, F)$ l'ensemble des applications linéaires continues de $E$ dans $F$.
+
+\begin{definition}
+    Soit $u \in \mathcal{L}_c(E, F)$.
+    L'ensemble des réels $C \geq 0$ tels que
+    $$
+    \forall x \in E, \norm{u(x)} \leq C \norm{x}
+    $$
+    admet un plus petit élément, appelé \textbf{norme subordonnée} de $u$ et notée $\mnorm{u}$.
+    On a de plus
+    $$
+    \mnorm{u} = \sup\limits_{x \neq 0} \frac{\norm{u(x)}}{\norm{x}} = \sup\limits_{\norm{x} \leq 1} \norm{u(x)} = \sup\limits_{\norm{x} = 1} \norm{u(x)}
+    $$
+\end{definition}
+
+\begin{definition}
+    Soient $N_n$ et $N_m$ deux normes sur $\K^n$ et $\K^m$ respectivement.
+    Étant donné $A \in \mathcal{M}_{m,n}(\K)$, on définit la \textbf{norme subordonnée} de $A$,
+    et l'on note $\mnorm{A}$ la norme subordonnée de l'application linéaire canonique associée à $A$.
+\end{definition}
 
 \end{document}

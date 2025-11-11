@@ -1,0 +1,91 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{23 September 2025}
+
+\begin{document}
+
+\hotbox{Cryptologie}{CM 3}{\today}
+
+\section{Algèbre pour la cryptographie}
+
+\subsection{Structures: Groupes/Anneaux/Corps}
+
+\begin{definition}
+    Un groupe est la donnée d'une paire $(G, \star)$ où $G$
+    est un ensemble et $\star$ est une LCI (application: $G \times G \rightarrow G$) telle que:
+    \begin{itemize}
+        \item $\star$ est associative
+        \item $\star$ admet un élément neure $e_G$
+        \item Tout élément admet un symétrique pour $\star$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Si $x$ est un élément d'un groupe $G$, on appelle ordre de $x$ le plus petit
+    entier $i \in \N^*$ (s'il existe) tel que $x^i = e$, on le note $ord_G(x)$
+\end{definition}
+
+\begin{theoreme}{Théorème de Lagrange}{}
+    Si $G$ est un groupe fini, alors pour tout $x \in G$ $ord_G(x)$ existe et divise le cardinal de $G$.
+\end{theoreme}
+
+\begin{definition}
+    Un anneau est un triplet $(A, +, \times)$ où $A$ est un ensemble muni de deux LCI
+    $+$ et $\times$ telles que:
+    \begin{itemize}
+        \item $(A, +)$ est un groupe abélien de neutre noté $0_A$
+        \item $\times$ est associative
+        \item $\times$ est distributive sur $+$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Un corps est un triplet $(\K, +, \times)$ tel que
+    \begin{itemize}
+        \item $(\K, +, \times)$ est un anneau commutatif unitaire
+        \item Tout élément $x \in \K\setminus \{0\}$ admet un symétrique pour $\times$
+    \end{itemize}
+\end{definition}
+
+\subsection{Polynômes}
+
+\begin{definition}
+    Soit $A$ un anneau commutatif
+    \begin{itemize}
+        \item Un polynôme à coeeficients dans $A$ est une suite presque nulle d'éléments de A
+        \begin{itemize}
+            \item $A[X]$ est l'ensemble des polynômes à coefficients dans $A$
+            \item Polynôme nul: tous les coefficients sont nuls
+            \item Polynôme constant: tous les coefficients sont nuls sauf le premier
+            \item Monôme: tous les coefficients sont nuls sauf un (de forme $q_nX^n$)
+        \end{itemize}
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    \begin{itemize}
+        \item Si $N$ est tel que $q_N \neq 0$ et $\forall n \gt N, q_n = 0$, alors $N$ est appelé le degré
+        du polynôme $Q$
+        \begin{itemize}
+            \item Notation: $\deg(Q) = N$
+            \item $\deg(0) = -\infty$
+        \end{itemize}
+        \item Si $Q \neq 0$ et si $N = \deg(Q)$, $q_NX^N$ est le terme dominant de $Q$
+        \begin{itemize}
+            \item Le coefficient $q_N$ est appelé le coefficient dominant de $Q$
+            \item Lorsque $q_N = 1$, on dit que $Q$ est un polynôme unitaire
+        \end{itemize}
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{}
+    \begin{enumerate}
+        \item $(A[X], +, \times)$ est un anneau commutatif
+        \item $\deg(P + Q) \leq \max(\deg(P), \deg(Q))$
+        \item $\deg(P \times Q) \leq \deg(P) + \deg(Q)$
+    \end{enumerate}
+\end{proposition}
+
+\end{document}

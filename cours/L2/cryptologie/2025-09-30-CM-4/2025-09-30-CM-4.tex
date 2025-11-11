@@ -1,0 +1,70 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{30 September 2025}
+
+\begin{document}
+
+\hotbox{Cryptologie}{CM 4}{\today}
+
+\begin{definition}
+    Un élément $a \in A$ est appelé racine d'un polynôme $P \in A[X]$ si $P(a) = 0$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soient $a \in \Z$ et $b \in \Z$. Il existe un unique couple $(q, r) \in \Z^2$ tel que
+    $$
+    b = aq + r \quad \text{et} \quad 0 \leq r < |a|
+    $$
+\end{proposition}
+
+\begin{proposition}{}{}
+    Soient $A \in \k[X]$ et $B \in \k[X]\backslash\{0\}$. Il existe un unique couple $(Q, R) \in \k[X]^2$ tel que
+    $$
+    A = BQ + R \quad \text{et} \quad \deg(R) < \deg(B)
+    $$
+\end{proposition}
+
+\begin{proposition}{}{}
+    Soit $P \in \k[X]$ et $a \in \k$. Alors $a$ est racine de $P$ si et seulement si $(X - a)$ divise $P$.
+\end{proposition}
+
+\begin{definition}
+    Soit $E$ un ensemble. Une relation binaire $\mathcal{R}$ sur $E$ est la donnée d'une fonction $E \times E \to \{\text{Vrai}, \text{Faux}\}$.
+
+    On écrit $x \mathcal{R} y$ lorsque l'image de $(x, y)$ par $\mathcal{R}$ est Vrai.
+
+    On dit que $\mathcal{R}$ est une relation d'équivalence si elle vérifie les propriétés suivantes :
+    \begin{itemize}
+        \item Réflexivité : pour tout $x \in E$, $x \mathcal{R} x$.
+        \item Symétrie : pour tout $x, y \in E$, si $x \mathcal{R} y$ alors $y \mathcal{R} x$.
+        \item Transitivité : pour tout $x, y, z \in E$, si $x \mathcal{R} y$ et $y \mathcal{R} z$ alors $x \mathcal{R} z$.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Si $\mathcal{R}$ est une relation d'équivalence sur $E$, on définit la \textbf{classe d'équivalence} de $x \in E$ comme l'ensemble
+    $$
+    \overline{x} = \{y \in E \mid x \mathcal{R} y\}
+    $$
+    L'ensemble des classes d'équivalence est noté $E/\mathcal{R}$.
+\end{definition}
+
+\begin{proposition}
+    Soit $E = \Z$ (resp. $E = \k[X]$).
+    Soit $n \in \N, n \geq 2$ (resp. $P \in \k[X], deg P \geq 1$).
+    Alors
+    \begin{itemize}
+        \item On a une relation d'équivalence $\mathcal{R}$ sur $E$ définie par
+        $$
+        x\mathcal{R} y \iff x - y \in n\Z \quad (\text{resp. } x - y \in (P))
+        $$
+        \item Les quotients $E/\mathcal{R}$ sont notés $\Z/n\Z$ (resp. $\k[X]/(P)$) et appelés anneaux des entiers modulo $n$ (resp. anneau des polynômes modulo $P$).
+        \item Si $\overline{x_1} = \overline{x_2}$ et $\overline{y_1} = \overline{y_2}$, alors
+        $\overline{x_1 + y_1} = \overline{x_2 + y_2}$ et $\overline{x_1 y_1} = \overline{x_2 y_2}$.
+        \item Munis de ces opérations $(\Z/n\Z, +, \times)$ et $(\k[X]/(P), +, \times)$ sont des anneaux commutatifs.
+    \end{itemize}
+\end{proposition}
+
+\end{document}
