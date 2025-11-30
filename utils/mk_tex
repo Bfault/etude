@@ -72,7 +72,7 @@ def render_template(template_dir: Path, template_name: str, **vars) -> str:
 def main():
     ap = argparse.ArgumentParser(description="Créer une séance LaTeX (CM/TD/TP).")
     ap.add_argument("dir", type=Path, help="Dossier de la matière (ex: ./algebre_lineaire)")
-    ap.add_argument("--type", choices=["CM","TD","TP"], default="CM", dest="session_type")
+    ap.add_argument("--type", choices=["CM","TD","TP", "DM"], default="CM", dest="session_type")
     ap.add_argument("--template-dir", type=Path, default=script_dir, help="Dossier des templates")
     ap.add_argument("--template", default="base.tex.j2", help="Nom du template Jinja2")
     ap.add_argument("--lectures-json", type=Path, default=script_dir / "lectures.json",

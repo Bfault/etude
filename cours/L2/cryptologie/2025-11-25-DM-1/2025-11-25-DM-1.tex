@@ -1,0 +1,361 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{utils}
+\usepackage{enumitem}
+\usepackage{changepage}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=true,
+  frame=single,
+  columns=fullflexible,
+}
+\allowdisplaybreaks
+
+\renewcommand*{\today}{25 November 2025}
+
+\begin{document}
+
+\begin{titlepage}
+\thispagestyle{empty}
+
+\begin{center}
+
+% Titre encadré par des traits
+\rule{\linewidth}{0.4pt}\\[0.6cm]
+{\huge \textbf{DM de cryptographie}}\\[0.3cm]
+{\Large Vers un cryptosystème moderne: l'AES (ou Rijndael)}\\[0.6cm]
+\rule{\linewidth}{0.4pt}\\[2cm]
+
+% Infos matière / enseignant
+{\large UE : Cryptologie}\\[0.3cm]
+{\large Enseignant : M. Bulois}\\[3cm]
+
+\end{center}
+
+% Bloc auteur / date en bas à droite
+\vfill
+\begin{flushright}
+\begin{tabular}{l}
+\textbf{Étudiant :} Lorenzo Carrascosa \\
+\textbf{Année :} 2024--2025 \\
+\end{tabular}
+\end{flushright}
+
+\end{titlepage}
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\section{Corps Rijndael}
+
+\begin{enumerate}[label=\textbf{Question \arabic*.}, leftmargin=*]
+
+    \item\label{q:1} \textcolor{red}{Non fait, on admet le résultat pour la suite.}
+
+    \item $\mathbb{F}_2 = \Z/2\Z$ est un corps car 2 est premier.
+    
+    $P = X^8 + X^4 + X^3 + X + 1 \in \mathbb{F}_2[X]$, d'après \ref{q:1}
+    $\mathbb{F}_{2^8} = \mathbb{F}_2[X]/(P)$ est un $\mathbb{F}_2$-espace vectoriel de dimension 8
+(car $P$ est un polynôme de degré 8) et $(1, x, x^2, \ldots, x^7)$ est une de ses bases.
+
+Ainsi tout élément $x \in \mathbb{F}_{2^8}$ peut donc s'écrire de manière unique sous la forme
+$$
+x = \sum\limits_{i=0}^7 a_i x^i \quad \text{avec } a_i \in \mathbb{F}_2.
+$$
+Pour chaque coefficient ($a_i$) il y a deux choix possibles (0 ou 1) et il y a 8 coefficients, donc il y a $2^8 = 256$ éléments dans $\mathbb{F}_{2^8}$.
+
+    \item\label{q:3} Nous allons faire les calculs dans sagemath avec le code suivant:
+\begin{lstlisting}[language=Python]
+    F2 = IntegerModRing(2)
+    F.<x> = PolynomialRing(F2)
+    P = x^8 + x^4 + x^3 + x + 1
+    F28.<x_bar> = F.quotient_ring(P)
+    print(x_bar*(x_bar^7 + x_bar^3 + x_bar^2 + 1))
+    # Affiche 1
+    print((x_bar^4 + x_bar^3 + x_bar^2 + x_bar + 1)*(x_bar^7 + x_bar^5 + x_bar^4 + x_bar))
+    # Affiche 1
+\end{lstlisting}
+Ainsi on a 
+$$x(x^7 + x^3 + x^2 + 1) = 1$$
+et
+$$(x^4 + x^3 + x^2 + x + 1)(x^7 + x^5 + x^4 + x) = 1$$
+dans $\mathbb{F}_{2^8}$.
+
+    \item D'après \ref{q:3} $x$ est inversible et son inverse est \text{$(x^7 + x^3 + x^2 + 1)$} de même
+\text{$(x^4 + x^3 + x^2 + x + 1)$} est inversible et son inverse est \text{$(x^7 + x^5 + x^4 + x)$} car leurs produits donnent 1.
+
+    \item\label{q:5}
+\[
+\begin{aligned}
+(a+b)^2 &= (a+b)(a+b) \\
+        &= a^2 + ab + ba + b^2 \\
+        &= a^2 + ab + ab + b^2
+        && \text{par commutativité de la multiplication} \\
+        &= a^2 + b^2
+        && \text{car } ab + ab = 2ab = 0ab = 0 \text{ dans } \mathbb{F}_2.
+\end{aligned}
+\]
+
+\item On rappelle qu'étant dans $\mathbb{F}_{2}$, on a $x^i + x^i = 0$ pour tout $i$.
+Nous allons nous servir des valeurs suivantes :
+
+\begin{adjustwidth}{-3cm}{0cm}
+\[
+\begin{aligned}
+    &\quad \phantom{\text{d'où }} x^8 = x^4 + x^3 + x + 1 \\
+\begin{array}{r|l}
+  x^{12} & x^8 + x^4 + x^3 + x + 1 \\
+  \cline{2-2}
+  - (x^{12} + x^8 + x^7 + x^5 + x^4) & x^4 \\
+  \cline{1-1}
+    x^8 + x^7 + x^5 + x^4 & \\
+\end{array}
+  &\quad \text{d'où } x^{12} = x^8 + x^7 + x^5 + x^4, \\[2em]
+\begin{array}{r|l}
+  x^{14} & x^8 + x^4 + x^3 + x + 1 \\
+  \cline{2-2}
+  - (x^{14} + x^{10} + x^9 + x^7 + x^6) & x^6 \\
+  \cline{1-1}
+    x^{10} + x^9 + x^7 + x^6 & \\
+\end{array}
+  &\quad \text{d'où } x^{14} = x^{10} + x^9 + x^7 + x^6, \\[2em]
+\begin{array}{r|l}
+  x^{9} & x^8 + x^4 + x^3 + x + 1 \\
+  \cline{2-2}
+  - (x^9 + x^5 + x^4 + x^2 + x) & x \\
+  \cline{1-1}
+    x^5 + x^4 + x^2 + x & \\
+\end{array}
+  &\quad \text{d'où } x^{9} = x^5 + x^4 + x^2 + x.
+\end{aligned}
+\]
+\end{adjustwidth}
+
+Ainsi on a :
+
+\begin{align*}
+    x^8 &= x^4 + x^3 + x + 1 \\
+    \\
+    x^{16} &= (x^8)^2 \\
+    &= (x^4 + x^3 + x + 1)^2 \\
+    &= (x^4 + x^3)^2 + (x + 1)^2 \qquad \text{d'après \ref{q:5} appliqué récursivement} \\
+    &= x^8 + x^6 + x^2 + 1 \\
+    &= (x^4 + x^3 + x + 1) + x^6 + x^2 + 1 \\
+    &= x^6 + x^4 + x^3 + x^2 + x \\
+    \\
+    x^{32} &= (x^{16})^2 \\
+    &= (x^6 + x^4 + x^3 + x^2 + x)^2 \\
+    &= x^{12} + x^8 + x^6 + x^4 + x^2 \\
+    &= (x^8 + x^7 + x^5 + x^4) + x^8 + x^6 + x^4 + x^2 \\
+    &= x^7 + x^6 + x^5 + x^2 \\
+    \\
+    x^{64} &= (x^{32})^2 \\
+    &= (x^7 + x^6 + x^5 + x^2)^2 \\
+    &= x^{14} + x^{12} + x^{10} + x^4 \\
+    &= (x^{10} + x^9 + x^7 + x^6) + (x^8 + x^7 + x^5 + x^4) + x^{10} + x^4 \\
+    &= x^9 + x^8 + x^6 + x^5 \\
+    &= (x^5 + x^4 + x^2 + x) + (x^4 + x^3 + x + 1) + x^6 + x^5 \\
+    &= x^6 + x^3 + x^2 + 1 \\
+    \\
+    x^{128} &= (x^{64})^2 \\
+    &= (x^6 + x^3 + x^2 + 1)^2 \\
+    &= x^{12} + x^6 + x^4 + 1 \\
+    &= (x^8 + x^7 + x^5 + x^4) + x^6 + x^4 + 1 \\
+    &= (x^4 + x^3 + x + 1) + x^7 + x^6 + x^5 + 1 \\
+    &= x^7 + x^6 + x^5 + x^4 + x^3 + x \\
+    \\
+    x^{256} &= (x^{128})^2 \\
+    &= (x^7 + x^6 + x^5 + x^4 + x^3 + x)^2 \\
+    &= x^{14} + x^{12} + x^{10} + x^8 + x^6 + x^2 \\
+    &= (x^{10} + x^9 + x^7 + x^6) + (x^8 + x^7 + x^5 + x^4) + x^{10} + x^8 + x^6 + x^2 \\
+    &= x^9 + x^5 + x^4 + x^2 \\
+    &= (x^5 + x^4 + x^2 + x) + x^5 + x^4 + x^2 \\
+    &= x
+\end{align*}
+
+Ainsi on a $x^{256} = x$ dans $\mathbb{F}_{2^8}$.
+
+Donc $x^{255} = x^{256}x^{-1} = x x^{-1} = 1$
+
+    \item\label{q:7} Soit $m$ le plus petit entier tel que $x^m = 1$, on a donc $m \mid 255$.
+
+En décomposant 255 en facteurs premiers on a $255 = 3 \times 5 \times 17$ et on trouve
+tous les diviseurs de 255 : 1, 3, 5, 15, 17, 51, 85 et 255.
+
+Il est dit que pour $i \in \{1, 3, 5, 15, 17, 51, 85, 255\}$ on a $x^i \neq 1$.
+
+Donc le plus petit entier $m$ tel que $x^m = 1$ est $m = 255$.
+
+Soit $0 \leq i < j < 255$,.
+
+On suppose que $x^i = x^j$ on a
+\begin{align*}
+    &\phantom{\rightarrow} x^i = x^j \\
+    &\Rightarrow x^i x^{-i} = x^j x^{-i} = x^{j-i} \\
+    &\Rightarrow 1 = x^{j-i}
+\end{align*}
+
+Or $0 < j-i < 255$, c'est absurde car 255 est le plus petit entier tel que $x^m = 1$.
+
+Ainsi pour tout $0 \leq i < j < 255$ on a $x^i \neq x^j$.
+
+    \item\label{q:8} D'après \ref{q:7} il y a 255 éléments distincts qui s'écrivent sous la forme $x^i$ avec $0 \leq i < 255$.
+En ajoutant l'élément 0 on obtient bien les 256 éléments de $\mathbb{F}_{2^8}$.
+
+Pour chaque élément non nul $x^i$ de $\mathbb{F}_{2^8}$, on a
+$$
+x^i x^{255-i} = x^{255} = 1
+$$
+d'où l'inverse de $x^i$ est $x^{255-i}$.
+
+Donc $(\mathbb{F}_{2^8}^*, \times)$ est un groupe.
+
+Ainsi $\mathbb{F}_{2^8}$ est un corps.
+
+    \item\label{q:9} \textcolor{red}{Non fait, on admet le résultat pour la suite.}
+
+\end{enumerate}
+
+\section{Un anneau à coefficient dans $\mathbb{F}_{2^8}$}
+
+\begin{enumerate}[label=\textbf{Question \arabic*.}, leftmargin=*]
+
+    \item\label{q:21} Nous allons faire les calculs dans sagemath avec le code suivant:
+\begin{lstlisting}[language=Python]
+    F2 = IntegerModRing(2)
+    F.<x> = PolynomialRing(F2)
+    P = x^8 + x^4 + x^3 + x + 1
+    F28.<x_bar> = F.quotient_ring(P)
+    A.<y> = PolynomialRing(F28)
+    Q = y^4 + 1
+    A_bar.<y_bar> = A.quotient_ring(Q)
+
+    print((y_bar^3 + y_bar^2 + y_bar + 1)*(y_bar + 1))
+    # Affiche 0
+\end{lstlisting}
+
+Ainsi on a
+$$(y^3 + y^2 + y + 1)(y + 1) = 0$$
+dans $\mathbb{F}_{2^8}[y]/(y^4 + 1)$.
+
+    \item Dans un corps tout élément non nul est inversible.
+Supposons que $y+1$ est inversible dans $A$, alors
+\begin{align*}
+    &(y^3 + y^2 + y + 1)(y + 1) = 0 \quad \text{D'après \ref{q:21}} \\
+    &\Rightarrow (y^3 + y^2 + y + 1)(y + 1)(y + 1)^{-1} = 0(y + 1)^{-1} \\
+    &\Rightarrow y^3 + y^2 + y + 1 = 0
+\end{align*}
+Ce qui est absurde.
+Donc $y + 1$ n'est pas inversible dans $A$.
+D'où $A$ n'est pas un corps.
+
+    \item $\mathbb{F}_{2^8}$ est un corps \ref{q:8} et $y^4 + 1 \in \mathbb{F}_{2^8}[y]$ donc
+d'après \ref{q:1} de la section 1. $\mathbb{F}_{2^8}[y]/(y^4 + 1)$ est un espace vectoriel de dimension 4
+et une de ses bases est $(1, y, y^2, y^3)$.
+
+    \item Comme $\mathbb{F}_{2^8}$ est un espace vectoriel et $(1, y, y^2, y^3)$ est une de ses bases,
+tout élément $x \in \mathbb{F}_{2^8}[y]/(y^4 + 1)$ peut s'écrire de manière unique sous la forme
+$$
+x = \sum\limits_{i=0}^3 a_i y^i \quad \text{avec } a_i \in \mathbb{F}_{2^8}.
+$$
+Pour chaque $a_i$ il y a $256$ choix possibles (car il y a 256 éléments dans $\mathbb{F}_{2^8}$) et il y a 4 coefficients,
+donc il y a $256^4 = (2^8)^4 = 2^{32}$ éléments dans $\mathbb{F}_{2^8}[y]/(y^4 + 1)$.
+
+    \item Nous allons faire les calculs dans sagemath avec le code suivant:
+\begin{lstlisting}[language=Python]
+    F2 = IntegerModRing(2)
+    F.<x> = PolynomialRing(F2)
+    P = x^8 + x^4 + x^3 + x + 1
+    F28.<x_bar> = F.quotient_ring(P)
+    A.<y> = PolynomialRing(F28)
+    Q = y^4 + 1
+    A_bar.<y_bar> = A.quotient_ring(Q)
+
+    Q1 = (x_bar + 1)*y_bar^3 + y_bar^2 + y_bar + x_bar
+    Q2 = (x_bar^3 + x_bar + 1)*y_bar^3 + (x_bar^3 + x_bar^2 + 1)*y_bar^2 + (x_bar^3 + 1)*y_bar +(x^3 + x^2 + x)
+
+    print(Q1 * Q2)
+    # Affiche 1
+\end{lstlisting}
+Ainsi $Q_1 Q_2 = 1$ dans $\mathbb{F}_{2^8}[y]/(y^4 + 1)$.
+
+    \item\label{q:26} On pose 
+$\funcdef{M_{Q_2}}{A}{A}{m}{Q_2 m}$
+on a
+
+\begin{adjustwidth}{-3cm}{0cm}
+\[
+\begin{aligned}
+    M \circ M_{Q_2}(m) &= M(Q_2 m) \\
+    &= Q_1 (Q_2 m) \\
+    &= (Q_1 Q_2) m \\
+    &= 1 \cdot m \\
+    &= m
+    &\quad \text{d'où } M \circ M_{Q_2} = Id_A \\[2em]
+    M_{Q_2} \circ M(m) &= M_{Q_2}(Q_1 m) \\
+    &= Q_2 (Q_1 m) \\
+    &= (Q_2 Q_1) m \\
+    &= 1 \cdot m \\
+    &= m
+    &\quad \text{d'où } M_{Q_2} \circ M = Id_A \\[2em]
+\end{aligned}
+\]
+\end{adjustwidth}
+
+Ainsi $M$ est bijective et sa réciproque est $M_{Q_2}$.
+
+\end{enumerate}
+\section{Une permutation}
+
+\begin{enumerate}[label=\textbf{Question \arabic*.}, leftmargin=*]
+
+    \item $A$ est un espace vectoriel de dimension 4, donc $A^4$ est un espace vectoriel de dimension $4 + 4 + 4 + 4 = 16$.
+car $dim(E \times F) = dim(E) + dim(F)$ pour deux espaces vectoriels $E$ et $F$ de dimension finie.
+
+    \item Comme le cardinal de $A$ est $2^{32}$, le cardinal de $A^4$ est \text{$(2^{32})^4 = 2^{128}$}.
+
+    \item \textcolor{red}{Non fait}
+
+    \item\label{q:34}
+
+$$\funcdef{P^{-1}}{B}{B}{\begin{pmatrix}
+    a_1^1 + 1_1^2y + 1_1^3y^2 + a_1^4y^3 \\
+    a_2^1 + 1_2^2y + 1_2^3y^2 + a_2^4y^3 \\
+    a_3^1 + 1_3^2y + 1_3^3y^2 + a_3^4y^3 \\
+    a_4^1 + 1_4^2y + 1_4^3y^2 + a_4^4y^3
+\end{pmatrix}}{\begin{pmatrix}
+    a_1^1 + 1_4^2y + 1_3^3y^2 + a_2^4y^3 \\
+    a_2^1 + 1_1^2y + 1_4^3y^2 + a_3^4y^3 \\
+    a_3^1 + 1_2^2y + 1_1^3y^2 + a_4^4y^3 \\
+    a_4^1 + 1_3^2y + 1_2^3y^2 + a_1^4y^3
+\end{pmatrix}}$$
+est la fonction réciproque de $P$.
+\end{enumerate}
+\section{Une ronde}
+
+\begin{enumerate}[label=\textbf{Question \arabic*.}, leftmargin=*]
+
+    \item \begin{itemize}
+        \item $S$ est bijective d'après \ref{q:9} ainsi \text{$d_j^i = S(c_j^i) \in \mathbb{F}_{2^8}$}.
+        \item Comme $M$ est bijective d'après \ref{q:26}, ainsi \text{$e_i = M(d_i) \in A$}.
+        \item Comme $P$ a une fonction réciproque d'après \ref{q:34}, $P$ est bijective, ainsi \text{$f = P(e) \in B$}.
+        \item Enfin comme l'addition dans $B$ est une loi de composition interne, \text{$g = f + k \in B$}.
+    \end{itemize}
+    \item \begin{enumerate}[label=\arabic*.]
+        \item Connaissant $g$ et $k$, on peut calculer $f = g - k$.
+        \item avec \ref{q:34} de la section 3. on peut calculer \text{$(e_1, e_2, e_3, e_4) = P^{-1}(f)$}.
+        \item avec \ref{q:26} de la section 2. on peut retrouver $d_i^1, d_i^2, d_i^3, d_i^4$ avec
+        $d_i = M^{-1}(e_i)$ puis en décomposant chaque $e_i$ dans la base $(1, y, y^2, y^3)$ on retrouve chaque $d_i^j$.
+        \item enfin avec \ref{q:9} de la section 1. on peut retrouver chaque $c_i^j$ avec $c_i^j = S^{-1}(d_i^j)$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}
