@@ -1,0 +1,47 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{25 November 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 16}{\today}
+
+\section{Séries numériques 2}
+
+\begin{theoreme}{comparaison séries-intégrales}{}
+    Soit $a \in \R, f: [a, +\infty[ \to \R, f \geq 0$, $f$ est décroissante et localement intégrable.
+    Alors pour $n_0 \geq a$
+
+    $$
+    \left(\sum\limits_{n=n_0}^{+\infty} f(n) \right) \text{ converge }\iff \int_a^{+\infty} f(t) dt \text{ converge }
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Pour faire simple $a = 0$. On a alors pour tout $n \in \N$
+    $$
+    \forall t \in [n, n+1], f(n+1) \leq f(t) \leq f(n)
+    $$
+    et donc
+    $$
+    f(n+1) \leq \int_n^{n+1} f(t) dt \leq f(n)
+    $$
+    et donc, par relation de Chasles pour tout $N \in \N$
+    $$
+    \sum\limits_{n=0}^{N} f(n) \leq \int_0^{N+1} f(t) dt \leq \sum\limits_{n=1}^{N+1} f(n)
+    $$
+    Donc si $\int_0^{+\infty} f(t) dt$ converge, comme $f \geq 0$ on a
+    $$
+    \forall N \in \N, \sum\limits_{n=0}^{N} f(n) \leq \int_0^{+\infty} f(t) dt
+    $$
+    et donc la suite des sommes partielles est croissante (car $f \geq 0$) et majorée, donc convergente.
+    Réciproquement, si la série converge, s'agissant d'une série atp, on a alors
+    $$
+    \forall N \in \N, \int_0^{N+1} f(t) dt \leq \sum\limits_{n=1}^{+\infty} f(n)
+    $$
+    Soit $A > 0$, soit $N = \lfloor A \rfloor + 1$, on a donc
+\end{demonstration}
+
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{14 November 2025}
+
+\begin{document}
+
+\hotbox{Géometrie 1}{CM 8}{\today}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item \dots
+        \item Soit $f: \E \to \mathcal{F}$ une application affine. Montrons que $f^{-1}: \mathcal{F} \to \E$ existe,
+        $f^{-1}$ est affine et que $\vec{f^{-1}} = \vec{f}^{-1}$.
+
+        Soit $b \in \mathcal{F}$. L'application $(\vec{f^{-1}})_b$ associée à $f^{-1}$ et au point $b$ est définie par :
+        $$
+        (\vec{f^{-1}})_b (\vec{bn}) = \vec{f^{-1}(b) f^{-1}(n)}
+        $$
+        Soit $a \in \E$ et $m \in \E$ tels que $b = f(a)$ et $n = f(m)$. D'où $(\vec{f^{-1}})_b (\vec{bn}) = \vec{am}$.
+        Or, $\vec{f}(\vec{am}) = \vec{f(a)f(m)} = \vec{bn}$ donc comme $\vec{f}$ est bijective
+        $\vec{am} = (\vec{f})^{-1}(\vec{bn})$.
+        D'où $(\vec{f^{-1}})_b (\vec{bn}) = (\vec{f})^{-1}(\vec{bn})$ d'où $(\vec{f^{-1}})_b = (\vec{f})^{-1}$.
+
+        Or $f$ étant affine et bijective, $\vec{f}$ est linéaire et bijective et sa réciproque $(\vec{f})^{-1}$ est aussi linéaire.
+        Donc $f^{-1}$ est affine d'application linéaire associée $(\vec{f})^{-1} = \vec{f^{-1}}$.
+        \item Supposons que $f: \E \to \E$ avec $\dim(\E) < +\infty$
+        Si $f$ est bijective, alors $f$ est injective et surjective.
+        Réciproquement, si $f$ est injective alors $f$ est bijective car $f \text{ injective } \implies \vec{f} \text{ injective } \implies \vec{f} \text{ bijective } \implies f \text{ bijective }$.
+    \end{enumerate}
+\end{demonstration}
+
+\begin{definition}
+    Une application affine bijective est appelée un \textbf{isomorphisme affine}.
+\end{definition}
+
+\begin{demonstration}
+    $f: \E \to \mathcal{F}$ une application affine et $\vec{f}: E \to F$ linéaire.
+
+    Soit $\E' = a + E'$ un sous-espace affine de $\E$. Montrons que $f(\E')$ est un sous-espace affine de $\mathcal{F}$ passant par $f(a)$ et de direction $\vec{f}(E')$.
+
+    C'est-à-dire $f(\E') = \{ m \in \mathcal{F} \mid \vec{f(a)m} \in \vec{f}(E')\}$
+
+    Par double inclusion :
+    Soit $m \in f(\E')$ alors $\exists m \in \E'$ tel que $m = f(m)$
+    Or $m \in \E'$ donc $\vec{am} \in E'$
+    d'où $\vec{f(a)m} \in \vec{f}(E')$ d'où l'inclusion $f(\E') \subset \{m \in \mathcal{F} \mid \vec{f(a)m} \in \vec{f}(E')\}$
+    
+    Réciproquement: soit $m \in \mathcal{F}$ tel que $\vec{f(a)m} \in \vec{f}(E')$
+    Donc $\exists \vec{u} \in E'$ tel que $\vec{f(a)m} = \vec{f}(\vec{u})$
+    Par la bijection $\funcdef{\theta_a}{\E}{E}{m}{\vec{am}}$,
+
+    $\exists! m \in \E, \vec{u} = \vec{am}$ donc $\vec{f(a)m} = \vec{f}(\vec{am})$
+    De plus $\vec{am} \in E' \implies m \in \E'$ donc $\vec{f(a)m} = \vec{f(a)f(m)} \implies m = f(m) \in f(\E')$
+    \begin{hotwarn}
+    À corriger
+    \end{hotwarn}
+\end{demonstration}
+
+\end{document}

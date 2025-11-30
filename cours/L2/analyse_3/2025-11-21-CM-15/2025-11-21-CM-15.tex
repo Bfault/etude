@@ -1,0 +1,81 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{21 November 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 15}{\today}
+
+\subsection{Fonctions de signe non défini : convergence absolue}
+
+\begin{lemme}{Critère de Cauchy}{}
+    Soit $F: [a, b[, a \in \R, b \in ]a, +\infty]$, $F$ admet une limite finie en $b$ si et seulement si
+    pour tout $\varepsilon > 0$, il existe $V(\varepsilon)$ voisinage de $b$ tel que pour tous $x, y \in [a, b] \cap V(\varepsilon)$.
+    $$
+    |F(y) - F(x)| \leq \varepsilon
+    $$
+    ici un voisinage de $b$ c'est un intervalle de la forme $[b - \eta, b + \eta]$ si $b \in \R$
+    et de la forme $[c, b[$ si $b = +\infty$.
+\end{lemme}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item Supposons que la limite existe. Notons la $l$ alors par définition
+        $$
+        \forall \varepsilon > 0, \exists V_b(\varepsilon), \forall x \in [a, b] \cap V_b(\varepsilon), |F(x) - l| \leq \frac{\varepsilon}{2}
+        $$
+        d'où le résultat grâce à l'inégalité triangulaire.
+        $$
+        |F(y) - F(x)| \leq |F(y) - l| + |l - F(x)|
+        $$
+        \item Réciproquement, On utilise la caractérisation séquentielle : on va démontrer qu'il existe $l \in \R$
+        tel que pour toute suite de $[a, b], (x_n) \to b$ alors $F(x_n) \to l$.
+        Soit une telle suite, soit $\varepsilon > 0$. Comme $x_n \to b$, il existe $N(\varepsilon)$ tel que $n \geq N \implies x_n \in V_b(\varepsilon)$
+        et donc $n \geq N$ et $p \in \N$,
+        $$
+        |F(x_{n+p}) - F(x_n)| \leq \varepsilon
+        $$
+        ce qui est précisément la définition de $(F(x_n))$ est de Cauchy. Comme dans $\R$ toute suite de Cauchy
+        converge il existe $l \in \R$ tel que $F(x_n) \to l$.
+
+        Il reste à démontrer que pour toute suite $(x_n)$ telle que $x_n \to b$ la limite de $(F(x_n))$ est la même.
+        Soient $(x_n), (y_n)$ deux suites telles que $x_n \to b$ et $y_n \to b$ et $l_x, l_y$ les limites de $(F(x_n))$ et $(F(y_n))$ respectivement.
+        Soit la suite $(z_n)$ la suite définie par $z_n = x_n$ si $n$ est pair et $z_n = y_n$ si $n$ est impair.
+        On a alors $z_n \to b$. Soit $l_z$ la limite de $(F(z_n))$. La sous-suite $(z_{2n}) = (x_{2n})$ converge donc à la fois
+        vers $l_x$ et vers $l_z$ donc $l_x = l_z$. De même pour la sous-suite $(z_{2n+1})$ on a $l_y = l_z$. Ainsi $l_x = l_y$.
+    \end{enumerate}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $f: [a, b[ \to \R, a \in \R, b \in ]a, +\infty]$ une application localement intégrable. Alors $\int_a^bf(t)dt$ converge
+    si et seulement si
+    $$
+    \forall \varepsilon > 0, \exists V_b(\varepsilon), \forall x, y \in V_b(\varepsilon) \cap [a, b[, x \leq y |\int_x^yf(t)dt| \leq \varepsilon
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    Il suffit d'appliquer le critère de Cauchy au fonction $F: [a, b[ \to \R, F(x) = \int_a^xf(t)dt$.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $f: [a, b[ \to \R, a \in \R, b \in ]a, +\infty]$ localement intégrable. Si $\int_a^bf(x)dx$ converge absolument alors elle converge.
+\end{proposition}
+
+\begin{demonstration}
+    En application la proposition précédente, on en déduit que si il y a 
+    \begin{hotwarn}
+    à finir
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{remarque}
+    La réciproque est fausse en général. Par exemple la fonction $f: [1, +\infty[ \to \R, f(t) = \frac{\sin(t)}{t}$
+    est intégrable sur $[1, +\infty[$ mais pas absolument intégrable.
+\end{remarque}
+
+
+
+\end{document}

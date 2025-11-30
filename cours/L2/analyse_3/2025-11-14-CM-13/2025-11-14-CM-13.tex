@@ -1,0 +1,42 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{14 November 2025}
+
+\begin{document}
+
+\hotbox{Analyse 3}{CM 13}{\today}
+
+\section{Intégrales généralisées}
+
+Dans ce chapitre, on considère $a \in \R$ et $b \in ]a, +\infty]$.
+
+\begin{definition}
+    Soit $f : [a, b[ \to \R$ telle que $f$ est localement intégrable,
+    c'est-à-dire que pour tout $c \in [a, b[$, $f$ est intégrable sur $[a, c]$ (autrement dit, $\lim_{c \to b} \int_a^c f(x) \, dx$ existe et est fini).
+
+    On dit que l'intégrale généralisée $\int_a^b f(x) \, dx$ converge et sa limite est appelée \textbf{somme} de l'intégrale.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $f : [a, b[ \to \R$ localement intégrable. Alors pour tout $c \in ]a, b[$
+    $$
+    \int_a^b f(x) \, dx \text{ converge } \iff \int_c^b f(x) \, dx \text{ converge.}
+    $$
+    en cas de convergence on a la relation de Chasles généralisée
+    $$
+    \int_a^b f(x) \, dx = \int_a^c f(x) \, dx + \int_c^b f(x) \, dx.
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    On a pour tout $d \in ]a, b[$
+    $$
+    \int_a^d f(x) \, dx = \int_a^c f(x) \, dx + \int_c^d f(x) \, dx.
+    $$
+    et donc $\lim\limits_{d \to b}f(x) \, dx$ existe si et seulement si $\lim\limits_{d \to b} \int_c^d f(x) \, dx$ existe.
+    En cas de convergence, on obtient la relation de Chasles en passant à la limite.
+\end{demonstration}
+
+\end{document}
