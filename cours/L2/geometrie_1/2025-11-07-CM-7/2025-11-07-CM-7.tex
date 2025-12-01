@@ -7,5 +7,74 @@
 \begin{document}
 
 \hotbox{Géometrie 1}{CM 7}{\today}
+\def\F{\mathscr{F}}
+
+\begin{proposition}{}{}
+    Soit $f: \E \to \F$ une application affine et $\E'$ un sous-espace affine de $\E$.
+    Alors $f(\E')$ est un sous-espace affine de $\F$ et
+    $$
+    \E' = a + E' \implies f(\E') = f(a) + \vec{f}(E')
+    $$
+    avec $E'$ la direction de $\E'$ et $a \in \E'$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $a \in \E'$, on a
+    \begin{align*}
+        f(\E') &= \{ f(m) \mid m \in \E' \} \\
+        &= \{ f(a) + \vec{f}(\overrightarrow{am}) \mid m \in \E' \} \\
+        &= f(a) + \vec{f}(\{ \overrightarrow{am} \mid m \in \E' \}) \\
+        &= f(a) + \vec{f}(E')
+    \end{align*}
+    Donc $f(\E')$ est un sous-espace affine de direction $\vec{f}(E')$.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Une application affine conserve
+    \begin{enumerate}
+        \item les milieux
+        \item l'alignement des points
+        \item le parallélisme
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item Soient $a, b \in \E$ et $i$ le milieu de $(a, b)$, on a
+        $$\overrightarrow{f(a)f(i)} = \vec{f}(\overrightarrow{ai}) = \vec{f}\left(\frac{1}{2} \overrightarrow{ab}\right) = \frac{1}{2} \vec{f}(\overrightarrow{ab}) = \frac{1}{2} \overrightarrow{f(a)f(b)}$$
+        donc $f(i)$ est le milieu de $(f(a), f(b))$.
+        \item Soient $a, b, c \in \E$ alignés, il existe $\lambda \in \mathbb{R}$ tel que $\overrightarrow{ab} = \lambda \overrightarrow{ac}$.
+        On a alors
+        $$\overrightarrow{f(a)f(b)} = \vec{f}(\overrightarrow{ab}) = \vec{f}(\lambda \overrightarrow{ac}) = \lambda \vec{f}(\overrightarrow{ac}) = \lambda \overrightarrow{f(a)f(c)}$$
+        donc $f(a), f(b), f(c)$ sont alignés.
+        \item Soient $\E_1$ et $\E_2$ deux sous-espaces affines parallèles de $\E$.
+        Il existe un vecteur $\vec{u} \in E$ tel que $E_2 = E_1 + \vec{u}$.
+        On a alors
+        \begin{align*}
+            \vec{f}(E_2) &= \vec{f}(E_1 + \vec{u}) \\
+            &= \vec{f}(E_1) + \vec{f}(\vec{u}) \\
+            &= \vec{f}(E_1) + \vec{v}
+        \end{align*}
+        avec $\vec{v} = \vec{f}(\vec{u})$.
+        Donc $f(\E_2) = f(\E_1) + \vec{v}$, ce qui montre que $f(\E_1)$ et $f(\E_2)$ sont parallèles.
+        \begin{hotwarn}
+            A revoir
+        \end{hotwarn}
+    \end{enumerate}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $f: \E \to \F$ une application affine et $\mathscr{G}$ un sous-espace affine de $\E$ de dimension $n$.
+    Alors $\dim f(\mathscr{G}) \leq n$.
+\end{proposition}
+
+\begin{demonstration}
+    On a $\dim f{\mathscr{G}}(\mathscr{G}) = \dim \vec{f}(G)$ avec $G$ la direction de $\mathscr{G}$.
+    Par le théorème du rang, on a
+    $$
+    \dim Im(\vec{f}|_G) = \dim G - \dim \ker(\vec{f}|_G) \leq \dim G = n
+    $$
+    Donc $\dim f(\mathscr{G}) \leq n$.
+\end{demonstration}
 
 \end{document}
