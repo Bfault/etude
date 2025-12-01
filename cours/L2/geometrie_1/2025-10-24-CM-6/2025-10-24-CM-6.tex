@@ -7,29 +7,226 @@
 \begin{document}
 
 \hotbox{Géometrie 1}{CM 6}{\today}
-
+\def\F{\mathscr{F}}
 \section{Applications affines}
 
-\begin{hotwarn}
-    unicité
-\end{hotwarn}
+\begin{definition}
+    Soit $\E$ et $\F$ deux espaces affines de directions respectives $E$ et $F$.
+    Une application $f: \E \to \F$ est dit \textbf{affine} s'il existe une application linéaire
+    $\vec{f}: E \to F$ et un point $a \in \E$ tels que
+    $$
+    \forall m \in \E, \quad \overrightarrow{f(a)f(m)} = \vec{f}(\overrightarrow{am})
+    $$
+\end{definition}
+
+\begin{remarque}
+    On note aussi $L(f)$ l'application linéaire $\vec{f}$ associée à l'application affine $f$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    L'application linéaire $\vec{f}: E \to F$ associée à une application affine $f: \E \to \F$
+    est unique.
+\end{proposition}
+    
+\begin{demonstration}
+    Soient $\vec{f_1}, \vec{f_2}: E \to F$ deux applications linéaires associées à l'application affine $f: \E \to \F$.
+
+    Soit $a \in \E$, pour tout $m \in \E$ on a
+    $$
+    \vec{f_1}(\overrightarrow{am}) = \overrightarrow{f(a)f(m)} = \vec{f_2}(\overrightarrow{am})
+    $$
+    Avec la bijection $\funcdef{\theta_a}{\E}{E}{m}{\overrightarrow{am}}$ on a 
+    $$
+    \forall \vec{u} \in E, \exists! m \in \E, \quad \vec{u} = \overrightarrow{am} 
+    $$
+    d'où
+    $$
+    \vec{f_1}(\vec{u}) = \vec{f_1}(\overrightarrow{am}) = \overrightarrow{f(a)f(m)} = \vec{f_2}(\overrightarrow{am}) = \vec{f_2}(\vec{u})
+    $$
+    Donc $\vec{f_1} = \vec{f_2}$.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Pour tout point $b \in \E$, on a
+    $$
+    \overrightarrow{f(b)f(m)} = \vec{f}(\overrightarrow{bm})
+    $$
+\end{proposition}
 
 \begin{demonstration}
-Soit $a \in \E$ et $\funcdef{\theta_a}{\E}{E}{m}{\overline{am}}$ une bijection.
-    
-Donc si $\vec{u} \in E, \exists! m \in \E, \vec{u} = \overline{am}$ et
-$\vec{f}(\vec{u}) = \vec{f}(\overline{am}) = \overline{f(a)f(m)}$ qui est unique
-dans $E$ donc $\vec{f}: E \to F$ est unique.
-
-De plus soit $b \in \E$
-
-\begin{align*}
-    \vec{f}(\overline{bm}) &= \vec{f}(\overline{ba} + \overline{am}) \\
-    &= \vec{f}(\overline{am} - \overline{ba}) \\
-    &= \vec{f}(\overline{am}) - \vec{f}(\overline{ba}) \\
-    &= \overline{f(a)f(m)} - \overline{f(a)f(b)} \\
-    &= \overline{f(b)f(m)}
-\end{align*}
+    \begin{align*}
+        \overrightarrow{f(b)f(m)} &= \overrightarrow{f(b)f(a)} + \overrightarrow{f(a)f(m)} \\
+        &= -\overrightarrow{f(a)f(b)} + \vec{f}(\overrightarrow{am}) \\
+        &= -\vec{f}(\overrightarrow{ab}) + \vec{f}(\overrightarrow{am}) \\
+        &= \vec{f}(\overrightarrow{am} - \overrightarrow{ab}) \\
+        &= \vec{f}(\overrightarrow{bm})
+    \end{align*}
 \end{demonstration}
+
+\begin{remarque}
+    Pour démontrer qu'une application $f: \E \to \F$ est affine, il suffit de trouver un point $a \in \E$
+    et une application linéaire $\funcdef{\vec{f_a}}{E}{F}{\vec{u} = \overrightarrow{am}}{\overrightarrow{f(a)f(m)}}$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $a \in \E$, $b \in \F$ et $\vec{f}: E \to F$ une application linéaire.
+    Il existe une unique application affine $f: \E \to \F$ associée à $\vec{f}$ telle que
+    $f(a) = b$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}[leftmargin=!,labelwidth=2.5cm]
+        
+
+    \item[\textbf{Existence:}]
+        Considérons les bijections $\funcdef{\theta_a}{\E}{E}{m}{\overrightarrow{am}}$ et
+        $\funcdef{\theta_b}{\F}{F}{m}{\overrightarrow{bm}}$.
+        
+        On définit l'application affine $f: \E \to \F$ associée à $\vec{f}$ par $f = \theta_b^{-1} \circ \vec{f} \circ \theta_a$.
+
+        Appliquée à $a$, on a
+        $$
+        f(a) = \theta_b^{-1} \circ \vec{f} \circ \theta_a (a) = \theta_b^{-1} \circ \vec{f} (0_E) = \theta_b^{-1}(0_F) = b
+        $$
+
+        Pour tout $m \in \E$, on a
+        $$
+            \overrightarrow{f(a) f(m)} = \overrightarrow{b f(m)} = \theta_b(f(m)) = \vec{f} \circ \theta_a (m) = \vec{f}(\overrightarrow{am})
+        $$
+    Donc $f$ est bien une application affine associée à $\vec{f}$ telle que $f(a) = b$.
+
+    \item[\textbf{Unicité:}] Soit $f_1, f_2: \E \to \F$ deux applications affines associées à $\vec{f}$
+    telles que $f_1(a) = b$ et $f_2(a) = b$.
+
+    Pour tout $m \in \E$, on a
+    $$
+    \overrightarrow{b f_1(m)} = \overrightarrow{f_1(a) f_1(m)} = \vec{f}(\overrightarrow{am}) = \overrightarrow{f_2(a) f_2(m)} = \overrightarrow{b f_2(m)}
+    $$
+    donc $f_1(m) = f_2(m)$ et $f_1 = f_2$.
+    \end{description}
+\end{demonstration}
+
+\begin{exemple}{}{}
+    Une application constante $f: \E \to \F$, $f(m) = b$ pour un $b \in \F$ fixé, est une application affine
+    associée à l'application linéaire nulle.
+\end{exemple}
+
+\begin{proposition}{}{}
+    Soit $f: \E \to \F$ et $g: \F \to \mathscr{G}$ deux applications affines.
+    Alors
+    \begin{enumerate}
+        \item l'application composée $g \circ f$ est affine
+        \item $L(g \circ f) = L(g) \circ L(f)$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item Soit $a \in \E$, pour tout $m \in \E$ on a
+        \begin{align*}
+            \overrightarrow{g(f(a)) g(f(m))} &= L(g)(\overrightarrow{f(a) f(m)}) \\
+            &= L(g)(L(f)(\overrightarrow{am})) \\
+            &= (L(g) \circ L(f))(\overrightarrow{am})
+        \end{align*}
+        Donc $g \circ f$ est affine.
+        \item On a
+        \begin{align*}
+            L(g \circ f)(\overrightarrow{am}) &= \overrightarrow{g(f(a)) g(f(m))} \\
+            &= (L(g) \circ L(f))(\overrightarrow{am})
+        \end{align*}
+        donc $L(g \circ f) = L(g) \circ L(f)$.
+    \end{enumerate}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $f: \E \to \F$ une application affine.
+    $L(f)$ est injective (resp. surjective) si et seulement si $f$ est injective (resp. surjective).
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}[leftmargin=!,labelwidth=2.5cm]
+        \item[\textbf{Injectivité:}] Supposons que $L(f)$ est injective.
+        Soient $m_1, m_2 \in \E$ tels que $f(m_1) = f(m_2)$.
+        On a
+        $$
+        0_F = \overrightarrow{f(m_1) f(m_2)} = L(f)(\overrightarrow{m_1 m_2})
+        $$
+        Donc $\overrightarrow{m_1 m_2} = 0_E$ et $m_1 = m_2$.
+
+        \item[\textbf{Surjectivité:}] Supposons que $L(f)$ est surjective.
+        Soit $n \in \F$, il existe $\vec{v} \in F$ tel que $\vec{v} = \overrightarrow{f(a) n}$ pour un $a \in \E$ fixé.
+        Comme $L(f)$ est surjective, il existe $\vec{u} \in E$ tel que $L(f)(\vec{u}) = \vec{v}$.
+        Soit $m \in \E$ tel que $\overrightarrow{a m} = \vec{u}$, on a
+        $$
+        \overrightarrow{f(a) f(m)} = L(f)(\overrightarrow{a m}) = L(f)(\vec{u}) = \vec{v} = \overrightarrow{f(a) n}
+        $$
+        donc $f(m) = n$.
+        \item[\textbf{Injectivité réciproque:}] Supposons que $L(f)(\vec{u}) = \vec{0}$ pour un $\vec{u} \in E$.
+        Soient $a, m \in \E$ tels que $\vec{u} = \overrightarrow{a m}$.
+        On a
+        $$
+        \overrightarrow{f(a) f(m)} = L(f)(\overrightarrow{a m}) = L(f)(\vec{u}) = \vec{0}
+        $$
+        donc $f(a) = f(m)$ et par injectivité de $f$, on a $a = m$ et $\vec{u} = \overrightarrow{a m} = \vec{0}$.
+        Ainsi $\ker(L(f)) = \{\vec{0}\}$ et $L(f)$ est injective.
+        \item[\textbf{Surjectivité réciproque:}] Soit $n \in \F$.
+        Par surjectivité de $f$, il existe $m \in \E$ tel que $f(m) = n$.
+        Soient $a \in \E$ et $\vec{v} = \overrightarrow{f(a) n}$.
+        On a
+        $$
+        \vec{v} = \overrightarrow{f(a) f(m)} = L(f)(\overrightarrow{a m})
+        $$
+        donc $L(f)$ est surjective.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $f: \E \to \F$ une application affine bijective.
+    Alors l'application réciproque $f^{-1}: \F \to \E$ est affine et
+    $$
+    L(f^{-1}) = (L(f))^{-1}
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    Comme $f$ est bijective, on a $L(f)$ bijective d'après la proposition précédente.
+    d'où l'existence de l'application linéaire $(L(f))^{-1}: F \to E$.
+
+    Soient $m_1, m_2 \in \E$ et $n_1, n_2 \in \F$ tels que $f(m_1) = n_1$ et $f(m_2) = n_2$.
+    On a
+    \begin{align*}
+        &\overrightarrow{n_1 n_2} = \overrightarrow{f(m_1) f(m_2)} = L(f)(\overrightarrow{m_1 m_2}) \\
+        &\Rightarrow L(f)^{-1}(\overrightarrow{n_1 n_2}) = \overrightarrow{m_1 m_2} = \overrightarrow{f^{-1}(n_1)f^{-1}(n_2)} \\
+    \end{align*}
+    Donc $f^{-1}$ est affine et $L(f^{-1}) = (L(f))^{-1}$.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $f: \E \to \F$ une application affine.
+    Si $\F = \E$ et $\E$ est de dimension finie, alors les assertions suivantes sont équivalentes:
+    \begin{enumerate}
+        \item $f$ est bijective
+        \item $f$ est injective
+        \item $f$ est surjective
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}[leftmargin=!,labelwidth=2.5cm]
+        \item[\textbf{(1) $\Rightarrow$ (2) et (3):}] Trivial.
+        \item[\textbf{(2) $\Rightarrow$ (1):}] Si $f$ est injective, alors $L(f)$ est injective.
+        Comme $E$ est de dimension finie, on a $\dim(\mathrm{Im}(L(f))) = \dim(E) = \dim(F)$.
+        Donc $L(f)$ est bijective.
+        D'après la proposition précédente, $f$ est bijective.
+        \item[\textbf{(3) $\Rightarrow$ (1):}] Si $f$ est surjective, alors $L(f)$ est surjective.
+        Comme $E$ est de dimension finie, on a $\dim(\ker(L(f))) = \dim(E) - \dim(\mathrm{Im}(L(f))) = \dim(E) - \dim(F) = 0$.
+        Donc $L(f)$ est bijective.
+        D'après la proposition précédente, $f$ est bijective.
+    \end{description}
+\end{demonstration}
+
+\begin{definition}
+    Une application affine bijective est appelée un \textbf{isomorphisme affine}.
+\end{definition}
 
 \end{document}
