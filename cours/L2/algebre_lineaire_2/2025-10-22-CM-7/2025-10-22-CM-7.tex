@@ -78,59 +78,64 @@
     À finir
 \end{hotwarn}
 
+\newpage
 \section{Réduction des endomorphismes}
 
-\begin{definition}
-    Soit $u \in \L(E)$ et $\lambda \in \K$. On pose
-    $$
-    E_\lambda = \{x \in E \mid u(x) = \lambda x\}
-    $$
+Le but de la \textbf{réduction des endomorphismes} est de simplifier la représentation matricielle d'un endomorphisme en choisissant une base adaptée.\n
+\vspace{1cm}
 
-    $\lambda$ est dit \textbf{valeur propre} de $u$ si $E_\lambda \neq \{0_E\}$.\n
-    $E_\lambda$ est appelé \textbf{espace propre} associé à $\lambda$.\n
-    Les éléments de $E_\lambda \backslash \{0_E\}$ sont appelés \textbf{vecteurs propres} associés à $\lambda$.
+\begin{definition}
+    Soit $u \in \L(E)$. On dit que $u$ est \textbf{diagonalisable} s'il existe une base de $E$ telle que la matrice de $u$ dans cette base est une matrice diagonale.
 \end{definition}
 
-\begin{proposition}{}{}
-    Soit $u \in \L(E)$ et $\lambda \in \K$. On a
+\begin{definition}
+    Soit $u \in \L(E)$ et $v \in E\setminus\{0_E\}$. On dit que $v$ est un \textbf{vecteur propre} de $u$ s'il existe $\lambda \in \K$ tel que
     $$
-    E_\lambda = \ker(u - \lambda Id_E)
+    u(v) = \lambda v
     $$
-\end{proposition}
-
-\begin{demonstration}
-    D'après la définition de $E_\lambda$, on a
-    \begin{align*}
-        E_\lambda & = \{x \in E \mid u(x) = \lambda x\} \\
-                  & = \{x \in E \mid u(x) - \lambda x = 0_E\} \\
-                  & = \{x \in E \mid (u - \lambda Id_E)(x) = 0_E\} \\
-                  & = \ker(u - \lambda Id_E)
-    \end{align*}
-\end{demonstration}
-
-\begin{proposition}{}{}
-    $E_\lambda$ est un sous-espace vectoriel de $E$.
-\end{proposition}
-
-\begin{demonstration}
-    Soit $x, y \in E_\lambda$ et $\alpha, \beta \in \K$
-
-    On a $u(x) = \lambda x$ et $u(y) = \lambda y$
-
-    Donc
-    \begin{align*}
-        u(\alpha x + \beta y) & = \alpha u(x) + \beta u(y) \\
-                              & = \alpha \lambda x + \beta \lambda y \\
-                              & = \lambda (\alpha x + \beta y)
-    \end{align*}
-
-    Donc $\alpha x + \beta y \in E_\lambda$
-
-    Ainsi, $E_\lambda$ est un sous-espace vectoriel de $E$.
-\end{demonstration}
+    Dans ce cas, on dit que $\lambda$ est une \textbf{valeur propre} de $u$ associée à $v$.
+\end{definition}
 
 \begin{remarque}
-    $0 \in E_\lambda$ donc $E_\lambda$ est non vide.
+    Ainsi les vecteurs propres sont :
+    \begin{itemize}
+        \item des vecteurs de $\ker u$ associés à la valeur propre $0$ (s'ils existent)
+        \item des vecteurs $v$ tels que $u(v)$ est colinéaire à $v$ (c'est-à-dire qui ne changent pas de direction par l'application de $u$)
+    \end{itemize}
 \end{remarque}
+
+\begin{theoreme}{}{}
+    $u \in \L(E)$ est diagonalisable si et seulement si il existe une base de $E$ constituée de vecteurs propres de $u$. 
+\end{theoreme}
+
+\begin{demonstration}
+    $(\Rightarrow)$ Soit $\mathcal{B}$ une base de $E$ dans laquelle la matrice de $u$ est diagonale.
+    
+    ainsi la matrice de $u$ dans la base $\mathcal{B}$ est de la forme
+    $$
+    Mat_{\mathcal{B}}(u) = \begin{pmatrix}
+        a_{11} & 0 & \cdots & 0 \\
+        0 & a_{22} & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & a_{nn}
+    \end{pmatrix}
+    $$
+    où $a_{11}, \cdots, a_{nn} \in \K$.
+    On a donc $u(e_i) = a_{ii} e_i$ pour tout $i \in \llbracket 1, n \rrbracket$.
+    Ainsi, chaque vecteur de la base $\mathcal{B}$ est un vecteur propre de $u$.
+
+    $(\Leftarrow)$ Réciproquement, soit $\mathcal{B} = (e_1, \cdots, e_n)$ une base de $E$ constituée de vecteurs propres de $u$.
+    Pour tout $i \in \llbracket 1, n \rrbracket$, il existe $\lambda_i \in \K$ tel que $u(e_i) = \lambda_i e_i$.
+    Ainsi, la matrice de $u$ dans la base $\mathcal{B}$ est de la forme
+    $$
+    Mat_{\mathcal{B}}(u) = \begin{pmatrix}
+        \lambda_1 & 0 & \cdots & 0 \\
+        0 & \lambda_2 & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & \lambda_n
+    \end{pmatrix}
+    $$
+    Ainsi, $u$ est diagonalisable.
+\end{demonstration}
 
 \end{document}
