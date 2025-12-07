@@ -8,10 +8,157 @@
 
 \hotbox{Algèbre linéaire 2}{CM 10}{\today}
 
-% Theoreme 10
+\begin{definition}
+    Soit $u \in \L(E)$. On dit que $u$ est \textbf{trigonalisable} s'il existe une base de $E$
+    telle que la matrice de $u$ dans cette base est triangulaire supérieure.
+\end{definition}
+
+\begin{remarque}
+    Peu importe si la matrice est triangulaire supérieure ou inférieure, on peut toujours passer
+    de l'une à l'autre par une permutation de base.
+\end{remarque}
 
 \begin{theoreme}{}{}
-    Soit $E$ un $\K$-espace vectoriel de dimension $n$
+    Soit $u \in \L(E)$. $u$ est trigonalisable dans $\K$ si et seulement si $P_u$ est scindé.
 \end{theoreme}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        A faire
+    \end{hotwarn}
+\end{demonstration}
+
+\subsection{Polynômes annulateurs et minimal}
+
+Pour voir si un endomorphisme est diagonalisable on étudie les dimensions de ses espaces propres,
+ce qui peut être fastidieux. On va donc introduire des polynômes particuliers qui vont nous
+permettre d'étudier plus facilement les endomorphismes.
+
+\noindent Soit $Q \in \K[X]$ défini par $Q(X) = a_n X^n + a_{n-1} X^{n-1} + \cdots + a_1 X + a_0$.
+Soit $u \in \L(E)$. On note $Q(u)$ l'endomorphisme de $E$ défini par
+\[
+    Q(u) = a_n u^n + a_{n-1} u^{n-1} + \cdots + a_1 u + a_0 id_E.
+\]
+
+\begin{proposition}{}{}
+    Pour tout couple de polynômes $P, Q \in \K[X]$ et pour tout endomorphisme $u \in \L(E)$
+    on a bien la commutation $P(u) \circ Q(u) = Q(u) \circ P(u)$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        P(u) \circ Q(u)
+        &= \left( \sum_{i=0}^m a_i u^i \right) \circ \left( \sum_{j=0}^n b_j u^j \right) \\
+        &= \sum_{i=0}^m \sum_{j=0}^n a_i b_j u^{i+j} \\
+        &= \sum_{j=0}^n \sum_{i=0}^m b_j a_i u^{j+i} \\
+        &= \left( \sum_{j=0}^n b_j u^j \right) \circ \left( \sum_{i=0}^m a_i u^i \right) \\
+        &= Q(u) \circ P(u).
+    \end{align*}
+\end{demonstration}
+
+\begin{definition}
+    Soit $u \in \L(E)$. Un polynôme $Q \in \K[X]$ est dit \textbf{annulateur} de $u$ si
+    $Q(u) = 0$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $u \in \L(E)$ et $Q \in \K[X]$ un polynôme annulateur de $u$. Alors
+    les valeurs propres de $u$ sont parmi les racines de $Q$.
+    c'est-à-dire \text{$\text{Sp}_\K(u) \subset \text{Rac}(Q)$}.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        A faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Tout endomorphisme admet au moins un polynôme annulateur.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        A faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{theoreme}{Cayley-Hamilton}{}
+    Soit $u \in \L(E)$. Alors $P_u$ est un polynôme annulateur de $u$.
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        A faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{lemme}{Lemme des noyaux}{}
+    Soit $u \in \L(E)$ et $Q(X) = Q_1(X) \cdots Q_p(X) \in \K[X]$ un polynôme factorisé en polynômes deux à deux premiers entre eux.
+    \n Si $Q(u) = 0$, alors
+    \[
+        E = \ker Q_1(u) \oplus \cdots \oplus \ker Q_p(u).
+    \]
+\end{lemme}
+
+\begin{demonstration}
+    Par récurrence sur $p$.
+\end{demonstration}
+
+\begin{theoreme}{Théorème des polynômes annulateurs}{}
+    Soit $u \in \L(E)$. Alors $u$ est diagonalisable si et seulement s'il existe un polynôme annulateur de $u$ scindé à racines simples.
+\end{theoreme}
+
+\subsection{Recherche des polynômes annulateurs}
+
+\begin{definition}
+    Soit $u \in \L(E)$. Le \textbf{polynôme minimal} de $u$ est le polynôme unitaire
+    de plus bas degré qui annule $u$. On le note $m_u(X)$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Le polynôme minimal de $u$ est unique.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        A faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Les polynômes annulateurs de $u$ sont de la forme $Q(X) = A(X) m_u(X)$ avec $A(X) \in \K[X]$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        A faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $u \in \L(E)$. Alors les racines de $m_u(X)$ sont les racines de $P_u(X)$ à la multiplicité près, c'est-à-dire les valeurs propres de $u$.
+    Pour
+    \[
+    \begin{aligned}
+        &P_u(X) = (-1)^n (X - \lambda_1)^{\alpha_1} \cdots (X - \lambda_p)^{\alpha_p} \quad &\text{avec } \lambda_i \neq \lambda_j \\
+        &&\text{ et } \alpha_1 + \ldots + \alpha_p = n \\
+        &m_u(X) = (X - \lambda_1)^{\beta_1} \cdots (X - \lambda_p)^{\beta_p} \quad &\text{avec } 1 \leq \beta_i \leq \alpha_i
+    \end{aligned}
+    \]
+\end{proposition}
+
+\begin{demonstration}
+    On sait que $P_u(X) = A(X) m_u(X)$ avec $A(X) \in \K[X]$. Donc les racines de $m_u(X)$ sont parmi celles de $P_u(X)$.
+    \n Réciproquement, soit $\lambda$ une racine de $P_u$, donc une valeur propre de $u$. Alors $\lambda$ est racine de $m_u(X)$ car $m_u$ annule $u$.
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $u \in \L(E)$. Alors $u$ est diagonalisable si et seulement si $m_u(X)$ est scindé à racines simples.
+\end{theoreme}
+
+\begin{demonstration}
+    Résulte du théorème des polynômes annulateurs et de la proposition précédente.
+\end{demonstration}
 
 \end{document}

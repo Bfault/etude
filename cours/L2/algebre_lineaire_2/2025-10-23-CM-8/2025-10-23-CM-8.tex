@@ -8,6 +8,141 @@
 
 \hotbox{Algèbre linéaire 2}{CM 8}{\today}
 
+\subsection{Recherche des valeurs propres}
+
+Soit $\lambda \in \K$ une valeur propre de $u \in \L(E)$ et $v \in E \backslash \{0_E\}$.
+$v$ est un vecteur propre si $u(v) = \lambda v$, c'est-à-dire si $(u - \lambda id_E)(v) = 0_E$.
+Ainsi, $v \in \ker(u - \lambda id_E)$ et comme $v \neq 0_E$, on en déduit que $\ker(u - \lambda id_E) \neq \{0_E\}$.
+Donc, $u - \lambda id_E$ n'est pas injectif, et donc $\det(u - \lambda id_E) = 0_\K$.
+
+Par la définition du déterminant ($det(A) = \sum\limits_{\sigma \in S_n} \epsilon(\sigma) a_{1,\sigma(1)} \cdots a_{n,\sigma(n)}$) en développant
+\begin{align*}
+    \det(u - \lambda id_E) = \begin{vmatrix}
+        a_{11} - \lambda & a_{12} & \cdots & a_{1n} \\
+        a_{21} & a_{22} - \lambda & \cdots & a_{2n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        a_{n1} & a_{n2} & \cdots & a_{nn} - \lambda
+    \end{vmatrix} = 0 \\
+    \implies a_n \lambda^n + a_{n-1} \lambda^{n-1} + \cdots + a_1 \lambda + a_0 = 0
+\end{align*}
+On a un polynôme de degré $n$ où les racines sont les valeurs propres de $u$.
+
+On peut retrouver certaines valeurs
+\begin{align*}
+    a_n &= (-1)^n \\
+    a_0 &= \det(u) \\
+    a_{n-1} &= (-1)^{n-1} Tr(u)
+\end{align*}
+\vspace{1cm}
+
+\begin{definition}
+    Soit $u \in \L(E)$. On appelle \textbf{polynôme caractéristique} de $u$ le polynôme
+    $$
+    P_u(X) = \det(u - X id_E) \in \K[X]
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    La dimension de $E$ étant $n$, le polynôme caractéristique de $u$ est un polynôme unitaire de degré $n$.
+\end{proposition}
+
+\begin{proposition}{}{}
+    Soit $u \in \L(E)$. Les valeurs propres de $u$ sont les racines du polynôme caractéristique $P_u$.
+\end{proposition}
+
+\begin{definition}
+    Soit $u \in \L(E)$. L'ensemble des valeurs propres de $u$ est appelé \textbf{spectre} de $u$ et est noté $Sp_\K(u)$.
+\end{definition}
+
+\begin{remarque}
+    Le spectre de $u$ dépend du corps $\K$ (par exemple, $(X^2 + 1)$ n'a pas de racine dans $\R$ mais en a deux dans $\C$).
+\end{remarque}
+
+\begin{proposition}{}{}
+    Le polynôme caractéristique est invariant par changement de base.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\mathcal{B}$ et $\mathcal{C}$ deux bases de $E$.
+    Soit $u \in \L(E)$.
+
+    Soit $A_\mathcal{B} = Mat_{\mathcal{B}}(u)$ et $A_{\mathcal{C}} = Mat_{\mathcal{C}}(u)$.
+    
+    On sait qu'il existe une matrice inversible $P$ telle que $A_{\mathcal{B'}} = P^{-1} A_\mathcal{B} P$.
+    
+    Donc,
+    \begin{align*}
+        \det(A_\mathcal{C} - X Id_n) &= \det(P^{-1} A_{\mathcal{B}} P - X Id_n) \\
+        &= \det(P^{-1} A_{\mathcal{B}} P - X P^{-1} Id_n P) \\
+        &= \det(P^{-1} (A_{\mathcal{B}} - X Id_n) P) \\
+        &= \det(P^{-1}) \det(A_{\mathcal{B}} - X Id_n) \det(P) \\
+        &= \det(A_{\mathcal{B}} - X Id_n)
+    \end{align*}
+    
+    Ainsi, le polynôme caractéristique est invariant par changement de base.
+\end{demonstration}
+
+\begin{definition}
+    Un corps $\K$ est dit \textbf{algébriquement clos} si tout polynôme non constant à coefficients dans $\K$ admet au moins une racine dans $\K$.
+\end{definition}
+
+\begin{theoreme}{Théorème de D'Alembert}{}
+    Le corps $\C$ est algébriquement clos.
+\end{theoreme}
+
+\subsection{Recherche des vecteurs propres}
+
+\begin{definition}
+    Soit $u \in \L(E)$ et $\lambda \in \K$. On pose
+    $$
+    E_\lambda = \{x \in E \mid u(x) = \lambda x\}
+    $$
+
+    $E_\lambda$ est appelé \textbf{espace propre} associé à $\lambda$.\n
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $u \in \L(E)$ et $\lambda \in \K$. On a
+    $$
+    E_\lambda = \ker(u - \lambda Id_E)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    D'après la définition de $E_\lambda$, on a
+    \begin{align*}
+        E_\lambda & = \{x \in E \mid u(x) = \lambda x\} \\
+                  & = \{x \in E \mid u(x) - \lambda x = 0_E\} \\
+                  & = \{x \in E \mid (u - \lambda Id_E)(x) = 0_E\} \\
+                  & = \ker(u - \lambda Id_E)
+    \end{align*}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    $E_\lambda$ est un sous-espace vectoriel de $E$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $x, y \in E_\lambda$ et $\alpha, \beta \in \K$
+
+    On a $u(x) = \lambda x$ et $u(y) = \lambda y$
+
+    Donc
+    \begin{align*}
+        u(\alpha x + \beta y) & = \alpha u(x) + \beta u(y) \\
+                              & = \alpha \lambda x + \beta \lambda y \\
+                              & = \lambda (\alpha x + \beta y)
+    \end{align*}
+
+    Donc $\alpha x + \beta y \in E_\lambda$
+
+    Ainsi, $E_\lambda$ est un sous-espace vectoriel de $E$.
+\end{demonstration}
+
+\begin{remarque}
+    $0 \in E_\lambda$ donc $E_\lambda$ est non vide.
+\end{remarque}
+
 \begin{proposition}{}{}
     Un vecteur propre ne peut être associé qu'à une seule valeur propre.
 \end{proposition}
@@ -20,22 +155,16 @@
     Comme $x \neq 0_E$, on en déduit que $\lambda - \mu = 0_\K$, donc $\lambda = \mu$.
 \end{demonstration}
 
-\begin{remarque}
-    Par la correspondance entre matrices et endomorphismes, on définit les mêmes notions pour les matrices carrées.
-\end{remarque}
-
-\begin{lemme}{}{}
-    Soit $\lambda$ une valeur propre de $u \in \L(E)$ si et seulement si $\det(u - \lambda id_E) = 0_\K$.
-\end{lemme}
+\begin{proposition}{}{}
+    Soient $u \in \L(E)$ et $\lambda_1, \ldots, \lambda_p \in \K$ telles que $\lambda_i \neq \lambda_j$ pour $i \neq j$.
+    Alors, les sous-espaces propres $E_{\lambda_1}, \ldots, E_{\lambda_p}$ sont en somme directe et
+    $$
+    E_{\lambda_1} \oplus E_{\lambda_2} \oplus \cdots \oplus E_{\lambda_p} \subseteq E
+    $$
+\end{proposition}
 
 \begin{demonstration}
-    Soit $\lambda \in \K$.
-
-    On a $\det(u - \lambda id_E) = 0_\K$ si et seulement si $u - \lambda id_E$ n'est pas un isomorphisme,
-    c'est-à-dire que $u - \lambda id_E$ n'est pas bijectif.
-
-    Or si $\exists x \in E \backslash \{0_E\}, u(x) = \lambda x$, alors $x \in \ker(u - \lambda id_E)$, donc $u - \lambda id_E$ n'est pas injectif (car sont noyau n'est pas trivial),
-    et donc n'est pas bijectif.
+    Par récurrence sur $p$.
 \end{demonstration}
 
 \end{document}

@@ -8,6 +8,137 @@
 
 \hotbox{Algèbre linéaire 2}{CM 9}{\today}
 
-\subsection{Application: Calcul de puissance}
+\begin{theoreme}{}{}
+    Soient $u \in \L(E)$ et $\lambda_1, \cdots, \lambda_p$ les valeurs propres de $u$.
+    Alors les propriétés suivantes sont équivalentes :
+    \begin{enumerate}
+        \item $u$ est diagonalisable.
+        \item $E$ est somme directe des espaces propres.
+        \item $\dim(E) = \sum\limits_{i=1}^p \dim(E_{\lambda_i})$.
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À finir
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Si $u \in \L(E)$ possède $n :=\dim(E)$ valeurs propres distinctes, alors $u$ est diagonalisable.
+\end{corollaire}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À finir
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $u \in \L(E)$ et $\lambda$ une valeur propre de $u$ de multiplicité $\alpha$.
+    Alors $1 \leq \dim(E_\lambda) \leq \alpha$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À finir
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $u \in \L(E)$.
+    Alors $u$ est diagonalisable si et seulement si
+    \begin{enumerate}
+        \item $P_u(X)$ est scindé sur $\K$.
+        \item Pour toute valeur propre $\lambda$ de $u$, la multiplicité de $\lambda$ est égale à la dimension de l'espace propre $E_\lambda$.
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À finir
+    \end{hotwarn}
+\end{demonstration}
+
+\subsection{Application}
+
+\begin{description}[leftmargin=!,labelwidth=2.5cm]
+    \item[Calcul de puissances]
+    Soit $u \in \L(E)$ diagonalisable et $A = Mat_{\mathcal{B}}(u)$ dans une base $\mathcal{B}$ de $E$.
+    Il existe une base $\mathcal{B}'$ de $E$ dans laquelle la matrice de $u$ est diagonale, notée $D$.
+    Soit $P = P_{\mathcal{B} \to \mathcal{B}'}$ la matrice de passage de $\mathcal{B}$ à $\mathcal{B}'$.
+    On a alors $A = P D P^{-1}$ et donc pour tout $k \in \N$,
+    \begin{align*}
+        A^k &= (P D P^{-1})^k \\
+            &= P D P^{-1} P D P^{-1} \cdots P D P^{-1} \\
+            &= P D (P^{-1} P) D (P^{-1} P) \cdots D P^{-1} \\
+            &= P D^k P^{-1}
+    \end{align*}
+    où $D^k$ est facile à calculer car $D$ est diagonale
+    \item[Exponentielle de matrices] 
+    L'exponentielle d'une matrice $A \in M_n(\K)$ est définie par
+    $$
+    e^A = \sum\limits_{k=0}^{+\infty} \frac{1}{k!}A^k
+    $$
+    Si $A$ est diagonalisable, on peut utiliser la même méthode que pour le calcul des puissances pour calculer $e^A$.
+    \item[Résolution de systèmes de suites récurrentes]
+    Soit $(u_n)_{n \in \N}$ et $(v_n)_{n \in \N}$ deux suites définies par
+    $$
+    \begin{cases}
+        u_{n+1} = a u_n + b v_n \\
+        v_{n+1} = c u_n + d v_n
+    \end{cases}
+    $$
+    avec des conditions initiales $u_0$ et $v_0$ données.
+    On peut écrire ce système sous forme matricielle :
+    $$
+    \begin{pmatrix}
+        u_{n+1} \\
+        v_{n+1}
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix}
+    \begin{pmatrix}
+        u_n \\
+        v_n
+    \end{pmatrix}
+    $$
+    Soit $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$.
+    Alors,
+    $$
+    \begin{pmatrix}
+        u_n \\
+        v_n
+    \end{pmatrix}
+    = A^n
+    \begin{pmatrix}
+        u_0 \\
+        v_0
+    \end{pmatrix}
+    $$
+    Si $A$ est diagonalisable, on peut utiliser la méthode du calcul des puissances pour trouver une expression explicite de $u_n$ et $v_n$ en fonction de $n$.
+    \item[Systèmes différentiels linéaires à coefficients constants]
+    Considérons le système différentiel linéaire suivant :
+    $$
+    \begin{cases}
+        \dfrac{dx_1}{dt} = a_{11} x_1 + \cdots + a_{1n} x_n \\
+        \vdots \\
+        \dfrac{dx_n}{dt} = a_{n1} x_1 + \cdots + a_{nn} x_n
+    \end{cases}
+    $$
+    On peut écrire ce système sous forme matricielle :
+    $$
+    \dfrac{dX}{dt} = A X
+    $$
+    où $X(t) = \begin{pmatrix} x_1(t) \\ \vdots \\ x_n(t) \end{pmatrix}$ et $A = (a_{ij})$.
+    La solution générale de ce système est donnée par
+    $$
+    X(t) = e^{At} X(0)
+    $$
+    Si $A$ est diagonalisable, on peut utiliser la méthode du calcul de l'exponentielle de matrices pour trouver une expression explicite de la solution $X(t)$.
+\end{description}
 
 \end{document}
