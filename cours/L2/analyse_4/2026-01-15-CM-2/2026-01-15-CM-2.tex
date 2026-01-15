@@ -1,0 +1,114 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{15 January 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 2}{\today}
+
+\begin{proposition}{}{}
+    $(f_n)$ et $(g_n)$ deux suites de fonctions définit sur $I$ à valeurs dans $\K$
+
+    $(f_n)$ (resp. $(g_n)$) converge uniformément vers $f$ (resp. $g$) sur $I$
+    alors $(\alpha f_n + \beta g_n)$ converge uniformément vers $\alpha f + \beta g$ sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+    À faire à la maison
+    \end{hotwarn}
+\end{demonstration}
+
+\subsection{Continuité}
+
+\begin{theoreme}{}{}
+    Soit $x_0 \in I, \forall n \in \N, f_n$ continue en $x_0$ alors $f$ sera continue en $x_0$.
+
+    C'est-à-dire $\lim\limits_{n \to +\infty} (\lim\limits_{x \to x_0} f_n(x)) = \lim\limits_{x \to x_0} (\lim\limits_{n \to +\infty} f_n(x))$
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $x_0 \in I et \varepsilon > 0$, on cherche un $\eta > 0$ tel que $\forall x \in I, |x - x_0| < \eta \implies |f(x) - f(x_0)| < \varepsilon$.
+    
+    On sait $\exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| < \frac{\varepsilon}{3}$ (convergence uniforme).
+    
+    De plus, $f_N$ est continue en $x_0$ donc $\exists \eta > 0, \forall x \in I, |x - x_0| < \eta \implies |f_N(x) - f_N(x_0)| < \frac{\varepsilon}{3}$.
+    
+    Ainsi, pour $|x - x_0| < \eta$,
+    
+    \begin{align*}
+        |f(x) - f(x_0)| &\leq |f(x) - f_N(x)| + |f_N(x) - f_N(x_0)| + |f_N(x_0) - f(x_0)| \\
+        &\leq \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon
+    \end{align*}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    $\forall x_0 \in I, f_n$ continue sur $I \implies f$ continue sur $I$.
+\end{corollaire}
+
+\begin{remarque}
+    La contraposée est très utile pour prouver qu'une convergence n'est pas uniforme.
+\end{remarque}
+
+\begin{proposition}{}{}
+    $(f_n)$ suite de fonctions continues sur $I$.
+    On suppose que $f_n$ converge uniformément vers $f$ sur tout intervalle $J \subset I$.
+    Alors $f$ est continue sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    $\forall x_0 \in I, \exists J \subset I$ un intervalle tel que $x_0 \in J$. et comme $(f_n)$ converge
+    uniformément sur $J$, $f$ est continue en $x_0$ d'après le théorème précédent.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    $(f_n)$ une suite de fonctions définies sur $]a, b[$ à valeurs dans $\K$ avec $-\infty \leq a < b \leq +\infty$
+    et $f_n$ converge uniformément vers $f$ sur $I$.
+    On suppose que $\forall n \in \N \lim\limits_{n \to a}f_n(x) = l_n$ (pareil pour $b$) alors
+    \begin{enumerate}
+        \item La suite numétique $(l_n)$ converge vers $l$ quand $n$ tend vers $+\infty$.
+        \item $f$ admet $l$ comme limite $x \to a$
+    \end{enumerate}
+\end{corollaire}
+
+\begin{demonstration}
+    Canevas de la demonstration
+    \begin{enumerate}
+        \item On montre que $(l_n)$ est de Cauchy.
+        \item Dans le cas où $a$ est fini, on prolonge par continuité $f_n$ en a par $l_n$ soit $\tilde{f_n}$ ce prolongement.
+        \item On montre que $\tilde{f_n}$ converge uniformément vers $\tilde{f}$ qui coincide avec $f$ sur $]a, b[$ et qui vaut $l$ en $a$ et grâce à
+        un théorème, on conclut que $g$ est continue en $a$.
+        \item si $a = -\infty$, on définit $\funcdef{g_n}{] 0, \dfrac{1}{b}[}{\R}{x}{f_n(\dfrac{1}{x})}$ si $b > 0$
+        sinon $\funcdef{g_n}{]\dfrac{1}{b}, 0[}{\R}{x}{f_n(\dfrac{1}{x})}$ et on est ramené au cas précédent.
+    \end{enumerate}
+\end{demonstration}
+
+\subsection{Intégrales, primitives}
+
+\begin{theoreme}{Permutation limite intégrale}{}
+    Soit $I = [a, b]$ et $(f_n)$ une suite de fonctions continues sur $I$ telles que $f_n$ converge uniformément vers $f$ sur $I$.
+
+    On pose $\forall n \in \N, \funcdef{F_n}{I}{\R}{x}{\int_a^x f_n(t) dt}$ et $\funcdef{F}{I}{\R}{x}{\int_a^x f(t) dt}$.
+
+    Alors $F_n$ converge uniformément vers $F$ sur $I$.
+\end{theoreme}
+
+\begin{demonstration}
+    On regarde
+    \begin{align*}
+        |F_n(x) - F(x)| &= |\int_a^x f_n(t) dt - \int_a^x f(t) dt| \\
+        &= |\int_a^x (f_n(t) - f(t)) dt| \\
+        &\leq \int_a^x |f_n(t) - f(t)| dt \\
+        &\leq \int_a^b \norm{f_n - f}_{\infty, [a, b]} dt \\
+        &\leq \norm{f_n - f}_{\infty, [a, b]} \int_a^b dt \\
+        &= (x - a) \norm{f_n - f}_{\infty, [a, b]} \\
+        &\leq (b - a) \norm{f_n - f}_{\infty, [a, b]}
+    \end{align*}
+    Comme $f_n$ converge uniformément vers $f$ sur $[a, b]$, il existe $N \in \N$ tel que $\forall n \geq N, \norm{f_n - f}_{\infty, [a, b]} < \dfrac{\varepsilon}{b - a}$.
+
+    Donc pour $n \geq N$, $\forall x \in [a, b], |F_n(x) - F(x)| < \varepsilon$.
+\end{demonstration}
+
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass[tikz,border=10pt]{standalone}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\begin{document}
+
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = middle,
+        xlabel = $x$,
+        ylabel = $y$,
+        ymin = -0.5, ymax = 5.5,
+        xmin = -1.5, xmax = 2.5,
+        ticks = none,
+        width = 10cm, height = 7cm,
+        legend pos = north east,
+        legend style = {draw=none}
+    ]
+        \def\limitfunc{sin(deg(x)) + 0.5*x}
+        \def\epsilon{0.4}
+
+        \addplot[
+            name path=upper,
+            draw=none,
+            domain=0:5,
+            samples=100
+        ] {\limitfunc + \epsilon};
+
+        \addplot[
+            name path=lower,
+            draw=none,
+            domain=0:5,
+            samples=100
+        ] {\limitfunc - \epsilon};
+
+        \addplot[
+            fill=blue!20,
+            opacity=0.5
+        ] fill between[
+            of=upper and lower,
+        ];
+
+        \addplot[
+            domain=0:5,
+            samples=100,
+            color=black,
+            very thick
+        ] {\limitfunc};
+        \addlegendentry{$f(x)$}
+
+        \addplot[
+            domain=0:5,
+            samples=100,
+            color=blue,
+            thick,
+            dashed
+        ] {\limitfunc + 0.3*cos(deg(5*x))};
+        \addlegendentry{$f_n(x)$}
+    \end{axis}
+\end{tikzpicture}
+\end{document}

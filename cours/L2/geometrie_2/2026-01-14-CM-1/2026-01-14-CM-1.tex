@@ -1,0 +1,150 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{14 January 2026}
+
+\begin{document}
+
+\hotbox{Géometrie 2}{CM 1}{\today}
+
+\section{Théorèmes classiques + barycentre}
+
+\subsection{Les barycentres}
+
+Dans cette section $\E$ est un espace affine réel et $\vec{\E}$ l'espace vectoriel associé.
+
+\vspace{1em}
+On rappelle la définition d'un espace affine.
+
+On a $\funcdef{\theta}{\vec{\E} \times \E}{\E}{(\vec{v}, A)}{A + \vec{v}}$
+une application telle que
+
+\begin{itemize}
+    \item $\forall A, B \in \E, \exists! \vec{v} \in \vec{\E}, B = A + \vec{v}$
+    \item $\forall A \in \E, \forall \vec{u}, \vec{v} \in \vec{\E}, (A + \vec{u}) + \vec{v} = A + (\vec{u} + \vec{v})$
+\end{itemize}
+
+Une application $f: \E \to \F$ est affine s'il existe $\vec{f}: \vec{\E} \to \vec{\F}$ une application linéaire
+et un point $O \in \E$ tels que $\forall \vec{v} \in \vec{\E}, f(O + \vec{v}) = f(O) + \vec{f}(\vec{v})$.
+
+\vspace{1em}
+
+\begin{definition}
+    On considère les systèmes finis de points pondérés de $\E$
+
+    $\mathcal{A} = ((A_1, \lambda_1), (A_2, \lambda_2), \ldots, (A_n, \lambda_n))$
+    avec $(A_i, \lambda_i) \in \E \times \R$
+
+    $\lambda = \sum_{i=1}^n \lambda_i$ est appelé \textbf{le poids total} de $\mathcal{A}$.
+
+    On définit l'application
+    $$\funcdef{\L}{\E}{\vec{\E}}{M}{\sum_{i=1}^n \lambda_i \overrightarrow{M A_i}}$$
+    où $\overrightarrow{M A_i}$ est le vecteur tel que $A_i = M + \overrightarrow{M A_i}$
+
+    Cette fonction s'appelle \textbf{la fonction de Leibniz}.
+\end{definition}
+
+\begin{theoreme}{}{}
+    \begin{enumerate}
+        \item $\lambda = 0 \implies \L$ est constant
+        \item $\lambda \neq 0 \implies \L$ est bijective.
+    \end{enumerate}
+\end{theoreme}
+\break
+\begin{demonstration}
+    \begin{enumerate}
+        \item On calcule pour N et M dans $\E$
+        \begin{align*}
+            \L(M) - \L(N) &= \sum_{i=1}^n \lambda_i \overrightarrow{M A_i} - \sum_{i=1}^n \lambda_i \overrightarrow{N A_i} \\
+            &= \sum_{i=1}^n \lambda_i \overrightarrow{MN} \\
+            &= \lambda \overrightarrow{MN}
+        \end{align*}
+
+        Si $\lambda = 0$ alors $\L$ est constante.
+
+        \item On a de même pour $\lambda \neq 0$
+
+        \begin{align*}
+            \L(M) = \L(N) &\iff \L(M) - \L(N) = \vec{0} \\
+            &\iff \lambda \overrightarrow{MN} = \vec{0} \\
+            &\iff \overrightarrow{MN} = \vec{0} \\
+            &\iff M = N
+        \end{align*}
+
+        Il reste à montrer que $\L$ est surjective.
+
+        Soit $\vec{v} \in \vec{\E}$
+        Soit $O \in \E$ un point quelconque tel que $\L(O) = \vec{v_0}$
+        On cherche $M \in \E$ tel que $\L(M) = \vec{v}$
+        On a
+        \begin{align*}
+            \L(M) - \L(O) = \lambda \overrightarrow{MO} &\iff \vec{v} - \vec{v_0} = \lambda \overrightarrow{MO} \\
+            &\iff \overrightarrow{MO} = \frac{1}{\lambda} (\vec{v} - \vec{v_0}) \\
+            &\iff \overrightarrow{OM} = \frac{1}{\lambda} (\vec{v_0} - \vec{v}) \\
+            &\iff M = O + \frac{1}{\lambda} (\vec{v_0} - \vec{v})
+        \end{align*}
+    \end{enumerate}
+\end{demonstration}
+
+Le point $G$ tel que $\L(G) = \vec{0}$ est unique et s'appelle le barycentre de $\mathcal{A} = ((A_1, \lambda_1), \ldots, (A_n, \lambda_n))$
+On le note $G = bar(\mathcal{A})$
+
+Ainsi on a
+\begin{align*}
+    G = bar(\mathcal{A}) &\iff \sum_{i=1}^n \lambda_i \overrightarrow{G A_i} = \vec{0} \\
+    &\iff \forall M \in \E, \sum_{i=1}^n \lambda_i (\overrightarrow{G M} + \overrightarrow{M A_i}) = \vec{0} \\
+    &\iff \lambda \overrightarrow{G M} + \sum_{i=1}^n \lambda_i \overrightarrow{M A_i} = \vec{0} \\
+    &\iff \lambda \overrightarrow{M G} = \sum_{i=1}^n \lambda_i \overrightarrow{M A_i} \\
+    &\iff \overrightarrow{MG} = \frac{1}{\lambda} \sum_{i=1}^n \lambda_i \overrightarrow{MA_i}
+\end{align*}
+
+\begin{remarque}
+    On peut écrire tous les points comme barycentres de $((A, \lambda), (B, \mu))$ pour $\lambda, \mu \in \R$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $\mathscr{A} = ((A_1, \lambda_1), \ldots, (A_n, \lambda_n)), \lambda \neq 0$
+    et $G = bar(\mathscr{A})$
+    \begin{enumerate}
+        \item Si on change l'ordre des points pondérés le barycentre ne change pas.
+        \item Si on retire les points à poids nuls on ne change pas le barycentre.
+        \item Si on multiplie tous les poids par $\alpha \neq 0$ alors le barycentre ne change pas et le poids total est $\alpha \lambda$.
+        \item Pour $1 \leq k \leq n$ et $\mu = \sum_{i=1}^k \lambda_i \neq 0$ on note $H = Bar((A_1, \lambda_1), \ldots, (A_k, \lambda_k))$ alors $G = Bar((H, \mu), (A_{k+1}, \lambda_{k+1}), \ldots, (A_n, \lambda_n))$ c'est l'associativité du barycentre
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        1, 2 et 3 à faire
+    \end{hotwarn}
+    4.
+    On note $G' = bar((H, \mu), (A_{k+1}, \lambda_{k+1}), \ldots, (A_n, \lambda_n))$
+    alors
+    $$
+    \mu \overrightarrow{G'H} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0}
+    $$
+    d'où
+    $$
+    \mu \overrightarrow{G'H} + \sum_{i=1}^k \lambda_i \overrightarrow{HA_i} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0}
+    $$
+    d'où
+    $$
+    \sum_{i=1}^k \lambda_i \overrightarrow{G'H} + \sum_{i=1}^k \lambda_i \overrightarrow{HA_i} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0}
+    $$
+    d'où
+    $$
+    \sum_{i=1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0}
+    $$
+    Or $G$ est l'unique point qui vérifie cette équation, donc $G' = G$.
+\end{demonstration}
+
+\begin{remarque}
+    Si $\lambda \neq 0$ on peut supposer que $\lambda = \sum_{i=1}^n \lambda_i = 1$
+\end{remarque}
+
+\begin{definition}
+    Si tous les poids sont égaux le barycentre s'appelle l'isobarycentre.
+\end{definition}
+
+\end{document}
