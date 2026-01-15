@@ -2,11 +2,6 @@ $pdf_mode = 4;
 $recorder = 1;
 $max_repeat = 3;
 $bibtex_use = 2;
-# $diagnostics = 0;
-# $out_dir = '';
-$aux_dir = 'build';
-
-$latex = 'lualatex -synctex=1 -interaction=nonstopmode -file-line-error %O %S';
 
 $clean_ext = join(' ',
     qw(
@@ -18,4 +13,4 @@ $clean_ext = join(' ',
     )
 );
 
-warn "=== LaTeXMKRC settings load ===\n";
+warn "=== LaTeXMKRC settings loaded ===\n";

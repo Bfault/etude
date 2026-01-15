@@ -1,16 +1,58 @@
 {
-  "name": "TeX Live",
-  "image": "texlive/texlive:latest",
-  "overrideCommand": true,
-  "runArgs": ["--init"],
+  "name": "Debian LaTeX Optimized",
+  "build": { "dockerfile": "Dockerfile" },
   "remoteUser": "root",
-  "postCreateCommand": "tlmgr update --self && tlmgr install latexmk biber && mkdir -p /root/texmf/tex/latex/utils && cp -f tex_utils/utils.sty tex_utils/hotwrite.tex /root/texmf/tex/latex/utils/ 2>/dev/null || true && mktexlsr /root/texmf",
+
+  "containerEnv": {
+    "TEXINPUTS": ".:${containerWorkspaceFolder}/utils/tex_utils//:"
+  },
+
   "customizations": {
     "vscode": {
       "extensions": ["James-Yu.latex-workshop"],
       "settings": {
+        "latex-workshop.latex.outDir": "%DIR%/build",
         "latex-workshop.latex.recipe.default": "latexmk (lualatex)",
-        "latex-workshop.latex.outDir": "%DIR%/build"
+        
+        "latex-workshop.latex.tools": [
+            {
+                "name": "latexmk-lualatex",
+                "command": "latexmk",
+                "args": [
+                    "-synctex=1",
+                    "-interaction=nonstopmode",
+                    "-file-line-error",
+                    "-lualatex",
+                    "-outdir=%OUTDIR%",
+                    "-r", "%WORKSPACE_FOLDER%/.latexmkrc",
+                    "%DOC%"
+                ],
+                "env": {
+                    "TEXINPUTS": "%WORKSPACE_FOLDER%/utils/tex_utils//:" 
+                }
+            },
+            {
+                "name": "latexmk-pdflatex-draft", 
+                "command": "latexmk",
+                "args": [
+                    "-pdf",
+                    "-pdflatex=pdflatex %O -draftmode %S",
+                    "-synctex=1",
+                    "-interaction=batchmode",
+                    "-file-line-error",
+                    "-outdir=%OUTDIR%",
+                    "-r", "%WORKSPACE_FOLDER%/.latexmkrc",
+                    "%DOC%"
+                ],
+                "env": {
+                    "TEXINPUTS": "%WORKSPACE_FOLDER%/utils/tex_utils//:"
+                }
+            }
+        ],
+        "latex-workshop.latex.recipes": [
+            { "name": "latexmk (lualatex)", "tools": ["latexmk-lualatex"] },
+            { "name": "latexmk (pdflatex draft)", "tools": ["latexmk-pdflatex-draft"] }
+        ]
       }
     }
   }
