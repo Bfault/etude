@@ -3,9 +3,33 @@
 \ProvidesPackage{utils}[2025/09/03 Local utils]
 \typeout{*** utils.sty LOADED ***}
 
+\RequirePackage{amsthm, amsmath, amssymb}
+\RequirePackage{mathrsfs}
+\RequirePackage{stmaryrd}
+\RequirePackage{tcolorbox}
+\RequirePackage{enumitem}
+\RequirePackage{standalone}
+\RequirePackage{tikz}
+\RequirePackage{pgfplots}
+\RequirePackage{float}
+
+\pgfplotsset{compat=1.18}
 \setlength{\parindent}{0pt}
+\tcbuselibrary{theorems, skins, breakable}
+\usetikzlibrary{calc, arrows.meta}
+\usepgfplotslibrary{fillbetween}
+
+\usetikzlibrary{external}
+\directlua{
+  local function ensure_dir(dir)
+    os.execute("mkdir -p " .. dir)
+  end
+
+  ensure_dir("build/cache")
+}
+\tikzexternalize[prefix=cache/]
+\tikzexternaldisable
 
 \input{hotwrite.tex}
 \input{shortcut.tex}
 \input{block.tex}
-\input{draw.tex}

@@ -12,108 +12,149 @@
 
 \subsection{Suites de fonctions}
 
-Dans cette section $\K = \R$ ou $\C$.
+Dans cette section on peut remplacer $\R$ par $\C$.
+Dans la suite $I$ sera un intervalle de $\R$.
 
 \begin{definition}
-    Une suite de fonctions $(f_n)_{n \in \N}$ est définie
-    avec $n_0 \in \N$ fixé, \text{où $\forall n \geq n_0,\quad \funcdef{f_n}{I}{\K}{x}{f_n(x)}$}.
+    Une \textbf{suite de fonctions} $(f_n)_{n \in \N}$ est définie
+    avec $n_0 \in \N$ fixé, \text{où $\forall n \geq n_0,\quad \funcdef{f_n}{I}{\R}{x}{f_n(x)}$}.
 \end{definition}
 
-Dans la suite $I$ sera un intervalle de $\R$ et $(f_n)_{n \in \N}$ une suite de fonctions de $I$ dans $\R$ et $f$ une fonction de $I$ dans $\R$.
-
 \begin{definition}[(convergence simple et uniforme)]
-    Soit $(f_n)_n$ une suite de fonctions de $I$ dans $\K$ et $f$ une fonction de $I$ dans $\K$.
+    Soit $(f_n)_n$ une suite de fonctions de $I$ dans $\R$ et $f$ une fonction de $I$ \text{dans $\R$.}
 
     \begin{itemize}[label=--]
-        \item On dit que $f_n$ converge simplement vers $f$ sur $I$ si et seulement si
+        \item $f_n$ \textbf{converge simplement} vers $f$ sur $I$ si et seulement si
         $$
         \forall \varepsilon > 0, \forall x \in I, \exists N \in \N, \forall n \geq N, |f_n(x) - f(x)| \leq \varepsilon
         $$
-        \item On dit que $f_n$ converge uniformément vers $f$ sur $I$ si et seulement si
+        \item $f_n$ \textbf{converge uniformément} vers $f$ sur $I$ si et seulement si
         $$
-        \forall \varepsilon > 0, \exists N \in \N, \forall n \geq N, \forall x \in A, |f_n(x) - f(x)| \leq \varepsilon
+        \forall \varepsilon > 0, \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| \leq \varepsilon
         $$
     \end{itemize}
 \end{definition}
 
 \begin{remarque}
-    Si $\forall n \in \N, f_n \text{ et } f$ sont bornées
+    L'inégalité locale (valable pour un $x \in I$) équivaut à une inégalité globale, c'est-à-dire
     $$
-    \forall x \in A, |f_n(x) - f(x)| \leq \varepsilon
+    \forall x \in I, |f_n(x) - f(x)| \leq \varepsilon \iff \sup_{x \in I}|f_n(x) - f(x)| \leq \varepsilon
     $$
-    peut être réécris pas
-    $$
-    \sup_{x \in A}|f_n(x) - f(x)| \leq \varepsilon
-    $$
-    grâce à l'équivalence des normes $\norm{}_\infty$ et $\norm{}_1$.
 \end{remarque}
 
-% \input{}
-
-\begin{hotwarn}
-    mettre un exemple qui ne marche pas
-    $\funcdef{f_n}{[0, 1]}{[0, 1]}{x}{x^n}$
-\end{hotwarn}
-
-\begin{hotwarn}
-    mettre un exemple qui marche
-    $\funcdef{f_n}{\R}{\R}{x}{x^2 -x + \dfrac{\sin(\pi x)\cos(x)}{n}}$
-\end{hotwarn}
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \input{figures/L2/analyse_4/convergence_uniforme.tikz}
+    \caption{Visualisation de la convergence uniforme. Pour n assez grand (ici $f_8$), la courbe reste entièrement confinée dans le "tube" de largeur 2$\varepsilon$ centré sur la limite f.}
+\end{figure}
+\tikzexternaldisable
 
 \begin{proposition}{}{}
+    Soit $(f_n)$ une suite de fonctions de $I$ dans $\R$ et $f$ une fonction de $I$ dans $\R$.
+
     Si $(f_n)$ converge uniformément vers $f$ sur $I$ alors $(f_n)$ converge simplement vers $f$ sur $I$.
 \end{proposition}
 
-\begin{definition}[caractérisation de la convergence uniforme sur I]
-    $(f_n)$ converge uniformément vers $f$ sur $I$ ssi
+\begin{demonstration}
+    Soit $\varepsilon > 0$
+
+    Comme $(f_n)$ converge uniformément vers $f$ sur $I$ alors
     $$
-    \sup_{x \in I}|f_n(x) - f(x)| \leq M_n
+    \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| \leq \varepsilon
     $$
-    où $M_n \to 0$ et $M_n$ ne dépend pas de $x$.
+
+    En particulier pour un $x$ fixé dans $I$ on a
+    $$
+    \exists N \in \N, \forall n \geq N, |f_n(x) - f(x)| \leq \varepsilon
+    $$
+
+    Donc $(f_n)$ converge simplement vers $f$ sur $I$.
+\end{demonstration}
+
+\begin{definition}[(Norme de la convergence uniforme)]
+    On note $\mathcal{B}(I, \R)$ l'ensemble des fonctions bornées de $I$ dans $\R$.
+    
+    Pour $f \in \mathcal{B}(I, \R)$, on définit la \textbf{norme uniforme} par
+    $$
+    \norm{f}_{\infty, I} = \sup_{x \in I} |f(x)|
+    $$
 \end{definition}
 
-\begin{definition}[Suite de Cauchy uniforme]
-    $(f_n)$ est uniformément de Cauchy sur $I$ ssi
+\begin{definition}[(caractérisation de la convergence uniforme sur I)]
+    Soit $(f_n)$ une suite de fonctions de $I$ dans $\R$ et $f$ une fonction de $I$ dans $\R$.
+
+    $(f_n)$ converge uniformément vers $f$ sur $I$ si et seulement si
+    $$
+    \lim\limits_{n \to +\infty} \norm{f_n - f}_{\infty, I} = 0
+    $$
+\end{definition}
+
+\vspace{0.5cm}
+
+\begin{methode}
+    Pour montrer la convergence uniforme d'une suite de fonctions $(f_n)$ vers une fonction $f$ sur $I$ :
+    \begin{itemize}[label=--]
+        \item On cherche à majorer $|f_n(x) - f(x)|$ par une expression $M_n$ qui ne dépend pas de $x$.
+        \item On montre que $M_n \to 0$ quand $n \to +\infty$.
+    \end{itemize}
+\end{methode}
+
+\vspace{0.5cm}
+
+\begin{definition}[(Suite de Cauchy uniforme)]
+    Soit $(f_n)$ une suite de fonctions de $I$ dans $\R$.
+
+    $(f_n)$ est \textbf{uniformément de Cauchy} sur $I$ si et seulement si
     $$
     \forall \varepsilon > 0, \exists N \in \N, \forall x \in I, \forall n, m \geq N, |f_n(x) - f_m(x)| \leq \varepsilon
     $$
 \end{definition}
 
 \begin{theoreme}{}{}
-    $(f_n)$ converge uniformément sur $I$ ssi $(f_n)$ est uniformément de Cauchy sur $I$.
+    Soit $(f_n)$ une suite de fonctions de $I$ dans $\R$.
+
+    $(f_n)$ converge uniformément sur $I$ si et seulement si $(f_n)$ est uniformément de Cauchy sur $I$.
 \end{theoreme}
 
 \begin{demonstration}
-    On suppose $f_n$ est uniformément convergente sur I ssi
-    $$
-    \forall \varepsilon > 0, \exists N \in \N, \forall n \geq N, \text{ on a } \forall x \in I, |f_n(x) - f(x)| \leq \dfrac{\varepsilon}{2}
-    $$
-    $$
-    |f_p(x) - f_q(x)| = |f_p(x) - f(x) + f(x) - f_q(x)| \leq |f_p(x) - f(x)| + |f_q(x) - f(x)| \leq \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon
-    $$
+    \begin{description}
+        \item[Condition nécessaire à la convergence uniforme.]~\par
+        On suppose $f_n$ est uniformément convergente sur I, c'est-à-dire
+        $$
+        \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| \leq \dfrac{\varepsilon}{2}
+        $$
+        Soit $p, q \geq N$ et $x \in I$, on a
+        \begin{align*}
+            |f_p(x) - f_q(x)| & = |f_p(x) - f(x) + f(x) - f_q(x)| \\
+            & \leq |f_p(x) - f(x)| + |f_q(x) - f(x)| \\
+            & \leq \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon
+        \end{align*}
+        
+        Donc $(f_n)$ est uniformément de Cauchy sur $I$.
 
-    (sens $\impliedby$)
+        \item[Condition suffisante.]~\par
+        On suppose que $(f_n)$ est uniformément de Cauchy sur $I$, c'est-à-dire
+        $$
+        \forall \varepsilon > 0, \exists N \in \N, \forall p, q \geq N, \forall x \in I, |f_p(x) - f_q(x)| \leq \varepsilon
+        $$
+        Pour un $x$ dans $I$ et un $p \geq N$ fixés, en prenant la limite en $q$ on a
+        $$
+        \lim\limits_{q \to +\infty} |f_p(x) - f_q(x)| = |f_p(x) - f(x)| \leq \varepsilon
+        $$
+        où $f(x)$ est la limite de la suite numérique $(f_n(x))$, l'existence de $f(x)$ découle du fait que la suite $(f_n(x))$ est de Cauchy dans $\R$.
 
-    $\forall \varepsilon > 0, \exists N \in \N, \forall p \geq N$ dés que $q \geq n$
-
-    $\forall x \in I, |f_p(x) - f_q(x)| \leq \varepsilon$
-
-    $\sup_{x \in I}|f_p(x) - f_q(x)| \leq \varepsilon$
-
-    Soit $x \in I$ comme on a $\forall \varepsilon > 0, \exists N \in \N, \forall p, q \geq N, \forall y \in I, |f_p(y) - f_q(y)| \geq \varepsilon$
-    c'est vrai pour $y = x$
-
-    $\forall \varepsilon > 0$ si $p, q \geq N, |f_p(x) - f_q(x)| \leq \varepsilon$ comme $x$ est fixé alors $(f_n(x))$ est une suite numérique donc
-    $(f_n(x))$ est une suite numérique de Cauchy.
-
-    quite à extraire une sous suite $(f_n(x))$ est convergente, soit $f(x)$ sa limite.
-
-    $(f_n)$ converge simplement vers $f$ ainsi construite
-
-    En passant à la limite si $|f_p(y) - f_q(y)| \leq \varepsilon, p, q \geq N$ alors
-    $\lim\limits_{p \to +\infty}|f_p(y) - f_q(y)| = |f(y)-f_q(y)|$
-
-    C'est la définition de la convergence uniforme de $(f_n)$ vers sa limite simple sur $I$
+        Comme $x$ et $p$ sont arbitraires on a
+        $$
+        \forall \varepsilon > 0, \exists N \in \N, \forall p \geq N, \forall x \in I, |f_p(x) - f(x)| \leq \varepsilon
+        $$
+        Donc $(f_n)$ converge uniformément vers $f$ sur $I$.
+        
+    \end{description}
 \end{demonstration}
+
+\begin{remarque}
+    Ce résultat nous est très pratique pour montrer la convergence uniforme d'une suite de fonctions sans connaître la fonction limite.
+\end{remarque}
 
 \end{document}

@@ -7,13 +7,14 @@
                 "-synctex=1",
                 "-interaction=scrollmode",
                 "-file-line-error",
+                "-shell-escape",
                 "-lualatex",
                 "-outdir=%OUTDIR%",
                 "-r", "%WORKSPACE_FOLDER%/.latexmkrc",
                 "%DOC%",
             ],
             "env": {
-                "TEXINPUTS": "%WORKSPACE_FOLDER%/utils/tex_utils//:",
+                "TEXINPUTS": ".:%WORKSPACE_FOLDER%/utils/tex_utils//:%WORKSPACE_FOLDER%//:",
             }
         },
         {
@@ -25,13 +26,14 @@
                 "-synctex=1",
                 "-interaction=batchmode",
                 "-file-line-error",
+                "-shell-escape",
                 "-silent",
                 "-outdir=%OUTDIR%",
                 "-r", "%WORKSPACE_FOLDER%/.latexmkrc",
                 "%DOC%"
             ],
             "env": {
-                "TEXINPUTS": "%WORKSPACE_FOLDER%/utils/tex_utils//:",
+                "TEXINPUTS": ".:%WORKSPACE_FOLDER%/utils/tex_utils//:%WORKSPACE_FOLDER%//:",
             }
         }
     ],

@@ -1,8 +1,8 @@
-\documentclass[tikz,border=10pt]{standalone}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
+% \documentclass[tikz,border=10pt]{standalone}
+% \usepackage{pgfplots}
+% \pgfplotsset{compat=1.18}
 
-\begin{document}
+% \begin{document}
 
 \begin{tikzpicture}
     \begin{axis}[
@@ -10,18 +10,23 @@
         xlabel = $x$,
         ylabel = $y$,
         ymin = -0.5, ymax = 5.5,
-        xmin = -1.5, xmax = 2.5,
+        xmin = -0.5, xmax = 2.5,
         ticks = none,
         width = 10cm, height = 7cm,
         legend pos = north east,
-        legend style = {draw=none}
+        legend style = {
+            draw=none,
+            fill=white,
+            fill opacity=0.8
+        }
     ]
-        \def\limitfunc{sin(deg(x)) + 0.5*x}
-        \def\epsilon{0.4}
+        \def\limitfunc{0.5*x^2}
+        \def\epsilon{0.6}
 
         \addplot[
             name path=upper,
             draw=none,
+            forget plot,
             domain=0:5,
             samples=100
         ] {\limitfunc + \epsilon};
@@ -29,12 +34,14 @@
         \addplot[
             name path=lower,
             draw=none,
+            forget plot,
             domain=0:5,
             samples=100
         ] {\limitfunc - \epsilon};
 
         \addplot[
-            fill=blue!20,
+            fill=red!20,
+            forget plot,
             opacity=0.5
         ] fill between[
             of=upper and lower,
@@ -54,8 +61,18 @@
             color=blue,
             thick,
             dashed
-        ] {\limitfunc + 0.3*cos(deg(5*x))};
-        \addlegendentry{$f_n(x)$}
+        ] {\limitfunc + 5*sin(deg(10*x))/4};
+        \addlegendentry{$f_4(x)$}
+
+        \addplot[
+            domain=0:5,
+            samples=100,
+            color=red,
+            thick,
+            dashed
+        ] {\limitfunc + 5*sin(deg(10*x))/8};
+        \addlegendentry{$f_8(x)$}
+
     \end{axis}
 \end{tikzpicture}
-\end{document}
+% \end{document}
