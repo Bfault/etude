@@ -9,43 +9,76 @@
 \hotbox{Analyse 4}{CM 2}{\today}
 
 \begin{proposition}{}{}
-    $(f_n)$ et $(g_n)$ deux suites de fonctions définit sur $I$ à valeurs dans $\K$
+    Soient $(f_n)$ et $(g_n)$ deux suites de fonctions définies sur $I$ dans $\R$ et $\alpha, \beta \in \R$.
+    
+    \vspace{0.4cm}
+    On suppose que $(f_n)$ et $(g_n)$ convergent uniformément vers $f$ et $g$ respectivement sur $I$.
 
-    $(f_n)$ (resp. $(g_n)$) converge uniformément vers $f$ (resp. $g$) sur $I$
-    alors $(\alpha f_n + \beta g_n)$ converge uniformément vers $\alpha f + \beta g$ sur $I$.
+    Alors $(\alpha f_n + \beta g_n)$ converge uniformément vers $\alpha f + \beta g$ sur $I$.
 \end{proposition}
 
 \begin{demonstration}
-    \begin{hotwarn}
-    À faire à la maison
-    \end{hotwarn}
+    Soit $\varepsilon > 0$, il existe $N_1 \in \N$ tel que
+    $$
+    \forall n \geq N_1, \forall x \in I, |f_n(x) - f(x)| < \dfrac{\varepsilon}{2 \max(|\alpha|, 1)}
+    $$
+    et $N_2 \in \N$ tel que
+    $$
+    \forall n \geq N_2, \forall x \in I, |g_n(x) - g(x)| < \dfrac{\varepsilon}{2 \max(|\beta|, 1)}
+    $$
+    On pose $N = \max(N_1, N_2)$.
+    Pour $n \geq N$ et $x \in I$,
+    \begin{align*}
+        |(\alpha f_n + \beta g_n)(x) - (\alpha f + \beta g)(x)| &\leq |\alpha| |f_n(x) - f(x)| + |\beta| |g_n(x) - g(x)| \\
+        &\leq |\alpha| \dfrac{\varepsilon}{2 \max(|\alpha|, 1)} + |\beta| \dfrac{\varepsilon}{2 \max(|\beta|, 1)} \leq \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon
+    \end{align*}
 \end{demonstration}
 
 \subsection{Continuité}
 
-\begin{theoreme}{}{}
-    Soit $x_0 \in I, \forall n \in \N, f_n$ continue en $x_0$ alors $f$ sera continue en $x_0$.
+\begin{theoreme}{}{continuite}
+    Soit $(f_n)$ une suite de fonctions définies sur $I$ dans $\R$ telles que
 
-    C'est-à-dire $\lim\limits_{n \to +\infty} (\lim\limits_{x \to x_0} f_n(x)) = \lim\limits_{x \to x_0} (\lim\limits_{n \to +\infty} f_n(x))$
+    \begin{itemize}[label=--]
+        \item $f_n$ converge uniformément vers $f$ sur $I$,
+        \item pour tout $n \in \N$, $f_n$ est continue en $x_0 \in I$.
+    \end{itemize}
+    Alors $f$ est continue en $x_0$.
 \end{theoreme}
 
 \begin{demonstration}
-    Soit $x_0 \in I et \varepsilon > 0$, on cherche un $\eta > 0$ tel que $\forall x \in I, |x - x_0| < \eta \implies |f(x) - f(x_0)| < \varepsilon$.
-    
-    On sait $\exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| < \frac{\varepsilon}{3}$ (convergence uniforme).
-    
-    De plus, $f_N$ est continue en $x_0$ donc $\exists \eta > 0, \forall x \in I, |x - x_0| < \eta \implies |f_N(x) - f_N(x_0)| < \frac{\varepsilon}{3}$.
-    
-    Ainsi, pour $|x - x_0| < \eta$,
-    
+    Soit $x_0 \in I$ et $\varepsilon > 0$, comme $(f_n)$ converge uniformément vers $f$ sur $I$, on a
+    $$
+    \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| < \dfrac{\varepsilon}{3}
+    $$
+    De plus, $f_N$ est continue en $x_0$ donc
+    $$
+    \exists \delta > 0, \forall x \in I, |x - x_0| < \delta \implies |f_N(x) - f_N(x_0)| < \dfrac{\varepsilon}{3}
+    $$
+    Ainsi, pour tout $x$ tel que $|x - x_0| < \delta$, on obtient
     \begin{align*}
-        |f(x) - f(x_0)| &\leq |f(x) - f_N(x)| + |f_N(x) - f_N(x_0)| + |f_N(x_0) - f(x_0)| \\
-        &\leq \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon
+        |f(x) - f(x_0)| &= |f(x) - f_N(x) + f_N(x) - f_N(x_0) + f_N(x_0) - f(x_0)| \\
+        &\leq |f(x) - f_N(x)| + |f_N(x) - f_N(x_0)| + |f_N(x_0) - f(x_0)| \\
+        &< \dfrac{\varepsilon}{3} + \dfrac{\varepsilon}{3} + \dfrac{\varepsilon}{3} = \varepsilon
     \end{align*}
+    Donc $f$ est continue en $x_0$.
 \end{demonstration}
 
+\begin{remarque}
+    On peut interpréter ce théorème comme une permutation des limites, c'est-à-dire
+    $$
+    \lim\limits_{n \to +\infty} (\lim\limits_{x \to x_0} f_n(x)) = \lim\limits_{x \to x_0} (\lim\limits_{n \to +\infty} f_n(x))
+    $$
+\end{remarque}
+
 \begin{corollaire}{}{}
-    $\forall x_0 \in I, f_n$ continue sur $I \implies f$ continue sur $I$.
+    Soit $(f_n)$ une suite de fonctions définies sur $I$ dans $\R$ telles que
+
+    \begin{itemize}[label=--]
+        \item $f_n$ converge uniformément vers $f$ sur $I$,
+        \item pour tout $n \in \N$, $f_n$ est continue sur $I$.
+    \end{itemize}
+    Alors $f$ est continue sur $I$.
 \end{corollaire}
 
 \begin{remarque}
@@ -53,41 +86,99 @@
 \end{remarque}
 
 \begin{proposition}{}{}
-    $(f_n)$ suite de fonctions continues sur $I$.
-    On suppose que $f_n$ converge uniformément vers $f$ sur tout intervalle $J \subset I$.
+    Soit $(f_n)$ une suite de fonctions définies sur $I$ dans $\R$ telles que
+
+    \begin{itemize}[label=--]
+        \item pour tout $n \in \N$, $f_n$ est continue sur $I$,
+        \item $f_n$ converge uniformément vers $f$ sur tout intervalle $J \subsetneq I$ fermé borné.
+    \end{itemize}
     Alors $f$ est continue sur $I$.
 \end{proposition}
 
 \begin{demonstration}
-    $\forall x_0 \in I, \exists J \subset I$ un intervalle tel que $x_0 \in J$. et comme $(f_n)$ converge
-    uniformément sur $J$, $f$ est continue en $x_0$ d'après le théorème précédent.
+    Pour tout $x_0 \in I$ il existe un intervalle $J \subsetneq I$ fermé borné tel que $x_0 \in J$. Comme $(f_n)$ converge
+    uniformément sur $J$ et par le théorème \ref{theoreme:continuite}, $f$ est continue en $x_0$.
+    Ainsi $f$ est continue pour tout $x_0 \in I$ donc sur $I$.
 \end{demonstration}
 
 \begin{corollaire}{}{}
-    $(f_n)$ une suite de fonctions définies sur $]a, b[$ à valeurs dans $\K$ avec $-\infty \leq a < b \leq +\infty$
-    et $f_n$ converge uniformément vers $f$ sur $I$.
-    On suppose que $\forall n \in \N \lim\limits_{n \to a}f_n(x) = l_n$ (pareil pour $b$) alors
+    Soit $(f_n)$ une suite de fonctions définies sur $I := ]a, b[$ dans $\R$ avec \text{$-\infty \leq a < b \leq +\infty$.}
+    
+    On suppose que
+    \begin{itemize}[label=--]
+        \item $(f_n)$ converge uniformément vers $f$ sur $I$
+        \item Pour tout $n \in \N$, $f_n$ admet une limite finie $l_n$ en $a$ (resp. en $b$)
+    \end{itemize}
+    Alors on a
     \begin{enumerate}
-        \item La suite numétique $(l_n)$ converge vers $l$ quand $n$ tend vers $+\infty$.
-        \item $f$ admet $l$ comme limite $x \to a$
+        \item La suite numétique $(l_n)$ converge vers $l$
+        \item $f$ admet $l$ comme limite en $a$ (resp. en $b$)
     \end{enumerate}
 \end{corollaire}
 
 \begin{demonstration}
-    Canevas de la demonstration
-    \begin{enumerate}
-        \item On montre que $(l_n)$ est de Cauchy.
-        \item Dans le cas où $a$ est fini, on prolonge par continuité $f_n$ en a par $l_n$ soit $\tilde{f_n}$ ce prolongement.
-        \item On montre que $\tilde{f_n}$ converge uniformément vers $\tilde{f}$ qui coincide avec $f$ sur $]a, b[$ et qui vaut $l$ en $a$ et grâce à
-        un théorème, on conclut que $g$ est continue en $a$.
-        \item si $a = -\infty$, on définit $\funcdef{g_n}{] 0, \dfrac{1}{b}[}{\R}{x}{f_n(\dfrac{1}{x})}$ si $b > 0$
+    \begin{description}
+        \item[On montre que $(l_n)$ est de Cauchy]~\par
+        Soit $\varepsilon > 0$, comme $(f_n)$ converge uniformément vers $f$ sur $I$, on a
+        $$
+        \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| < \dfrac{\varepsilon}{4}
+        $$
+        Soit $p, q \geq N$, par définition de la limite en $a$, on a
+        $$
+        \exists \delta_p > 0, \forall x \in I, |x - a| < \delta_p \implies |f_p(x) - l_p| < \dfrac{\varepsilon}{4}
+        $$
+        de même pour $q$,
+        $$
+        \exists \delta_q > 0, \forall x \in I, |x - a| < \delta_q \implies |f_q(x) - l_q| < \dfrac{\varepsilon}{4}
+        $$
+        On pose $\delta = \min(\delta_p, \delta_q)$.
+        Ainsi, pour tout $x$ tel que $|x - a| < \delta$, on obtient
+        \begin{align*}
+            |l_p - l_q| &= |l_p - f_p(x) + f_p(x) - f(x) + f(x) - f_q(x) + f_q(x) - l_q| \\
+            &\leq |l_p - f_p(x)| + |f_p(x) - f(x)| + |f(x) - f_q(x)| + |f_q(x) - l_q| \\
+            &< \dfrac{\varepsilon}{4} + \dfrac{\varepsilon}{4} + \dfrac{\varepsilon}{4} + \dfrac{\varepsilon}{4} = \varepsilon
+        \end{align*}
+        Donc $(l_n)$ est de Cauchy.
+        
+        \item[Le cas de $a$ fini]~\par
+        Soit $\tilde{f_n}$ le prolongement par continuité de $f_n$ en $a$ défini par $\tilde{f_n}(a) = l_n$.
+
+        Comme $(l_n)$ est de Cauchy, elle converge vers une limite $l$.
+        De plus, on a $\lim\limits_{n \to +\infty} \tilde{f_n}(a) = \lim\limits_{n \to +\infty} l_n = l$.
+
+        Pour un $\varepsilon > 0$ et en prenant $N$ suffisamment grand (qui fonctionne à la fois pour la convergence uniforme de $f_n$ vers $f$ et pour la convergence de $l_n$ vers $l$), on a pour tout $n \geq N$,
+        \begin{align*}
+            \sup_{x \in [a, b[} |\tilde{f_n}(x) - \tilde{f}(x)| &= \max \left( \sup_{x \in ]a, b[} |f_n(x) - f(x)|, |l_n - l| \right) \\
+            &\leq \max \left( \varepsilon, \varepsilon \right) = \varepsilon
+        \end{align*}
+            
+        Donc $\tilde{f_n}$ converge uniformément vers $\tilde{f}$ sur $[a, b[$.
+        
+        Par le théorème \ref{theoreme:continuite}, $\tilde{f}$ est continue en $a$
+        d'où $\tilde{f}(a) = \lim\limits_{x \to a^+} \tilde{f}(x) = \lim\limits_{x \to a^+} \lim\limits_{n \to +\infty} f_n(x)$ et donc $\lim\limits_{x \to a^+} f(x) = l$.
+
+        \item[Le cas de $a = -\infty$]~\par
+        On définit $\funcdef{g_n}{] 0, \dfrac{1}{b}[}{\R}{x}{f_n(\dfrac{1}{x})}$ si $b > 0$
         sinon $\funcdef{g_n}{]\dfrac{1}{b}, 0[}{\R}{x}{f_n(\dfrac{1}{x})}$ et on est ramené au cas précédent.
-    \end{enumerate}
+
+        En effet, on conserve les hypothèses :
+        
+        En posant $\funcdef{g}{] 0, \dfrac{1}{b}[}{\R}{x}{f(\dfrac{1}{x})}$ si $b > 0$
+        sinon $\funcdef{g}{]\dfrac{1}{b}, 0[}{\R}{x}{f(\dfrac{1}{x})}$, on a que
+        \begin{itemize}[label=--]
+            \item $g_n$ converge uniformément vers $g$ sur $]0, \dfrac{1}{b}[$ (resp. $]\dfrac{1}{b}, 0[$)
+            
+            car $\sup_{x \in ]0, \frac{1}{b}[} |g_n(x) - g(x)| = \sup_{x \in ]0, \frac{1}{b}[} |f_n(\frac{1}{x}) - f(\frac{1}{x})| = \sup_{y \in ]a, b[} |f_n(y) - f(y)|$
+            \item pour tout $n \in \N$, $g_n$ admet une limite finie en $0$.
+            
+            car $\lim\limits_{x \to 0^+} g_n(x) = \lim\limits_{x \to -\infty} f_n(x) = l_n$.
+        \end{itemize}
+    \end{description}
 \end{demonstration}
 
 \subsection{Intégrales, primitives}
 
-\begin{theoreme}{Permutation limite intégrale}{}
+\begin{theoreme}{}{}
     Soit $I = [a, b]$ et $(f_n)$ une suite de fonctions continues sur $I$ telles que $f_n$ converge uniformément vers $f$ sur $I$.
 
     On pose $\forall n \in \N, \funcdef{F_n}{I}{\R}{x}{\int_a^x f_n(t) dt}$ et $\funcdef{F}{I}{\R}{x}{\int_a^x f(t) dt}$.
@@ -96,19 +187,26 @@
 \end{theoreme}
 
 \begin{demonstration}
-    On regarde
+    Soit $\varepsilon > 0$, on regarde
     \begin{align*}
         |F_n(x) - F(x)| &= |\int_a^x f_n(t) dt - \int_a^x f(t) dt| \\
         &= |\int_a^x (f_n(t) - f(t)) dt| \\
         &\leq \int_a^x |f_n(t) - f(t)| dt \\
-        &\leq \int_a^b \norm{f_n - f}_{\infty, [a, b]} dt \\
-        &\leq \norm{f_n - f}_{\infty, [a, b]} \int_a^b dt \\
+        &\leq \int_a^x \norm{f_n - f}_{\infty, [a, b]} dt \\
+        &\leq \norm{f_n - f}_{\infty, [a, b]} \int_a^x dt \\
         &= (x - a) \norm{f_n - f}_{\infty, [a, b]} \\
         &\leq (b - a) \norm{f_n - f}_{\infty, [a, b]}
     \end{align*}
-    Comme $f_n$ converge uniformément vers $f$ sur $[a, b]$, il existe $N \in \N$ tel que $\forall n \geq N, \norm{f_n - f}_{\infty, [a, b]} < \dfrac{\varepsilon}{b - a}$.
+    Comme $f_n$ converge uniformément vers $f$ sur $[a, b]$, il existe $N \in \N$ tel que $\forall n \geq N, \norm{f_n - f}_{\infty, [a, b]} \leq \dfrac{\varepsilon}{b - a}$.
 
     Donc pour $n \geq N$, $\forall x \in [a, b], |F_n(x) - F(x)| < \varepsilon$.
 \end{demonstration}
+
+\begin{remarque}
+    On peut interpréter ce théorème comme un déplacement de la limite, c'est-à-dire
+    $$
+    \lim\limits_{n \to +\infty} \left( \int_a^b f_n(t) dt \right) = \int_a^b \left( \lim\limits_{n \to +\infty} f_n(t) \right) dt
+    $$
+\end{remarque}
 
 \end{document}
