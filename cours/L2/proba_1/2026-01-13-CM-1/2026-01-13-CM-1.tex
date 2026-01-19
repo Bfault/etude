@@ -8,4 +8,143 @@
 
 \hotbox{Probabilités 1}{CM 1}{\today}
 
+\section{Bases des Probabilités}
+
+\subsection{Événements et univers}
+
+\begin{definition}
+    Soit $\Omega$ un ensemble non vide.
+    \begin{itemize}[label=--]
+        \item On appelle \textbf{expérience aléatoire sur $\Omega$} le fait de sélectionner un élément $\omega \in \Omega$ de manière incertaine.
+        \item $\omega$ est appelé un \textbf{évenement élémentaire}.
+        \item L'ensemble $\Omega$ est appelé \textbf{univers} de l'expérience aléatoire.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Soit $\Omega$ un univers.
+    On appelle \textbf{événement} une partie de $\Omega$.
+\end{definition}
+
+\begin{definition}
+    Soient $\Omega$ un univers  et $A$ et $B$ deux événements.
+    \begin{itemize}[label=--]
+        \item On dit que $A$ est \textbf{réalisé} si l'élément $\omega$ sélectionné par l'expérience appartient à $A$.
+        \item L'événement \textbf{contraire} de $A$ est l'événement noté $\overline{A}$ défini par $\overline{A} = \{\omega \in \Omega \mid \omega \notin A\}$ (le complémentaire de $A$ dans $\Omega$).
+        \item L'événement "$A$ ou $B$" est l'événement $A \cup B$.
+        \item L'événement "$A$ et $B$" est l'événement $A \cap B$.
+        \item On dit que "$A$ entraine $B$" si $A \subset B$.
+        \item $emptyset$ est appelé l'\textbf{événement impossible} et $\Omega$ l'\textbf{événement certain}.
+        \item $A$ et $B$ sont dits \textbf{incompatibles} si $A \cap B = \emptyset$.
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    Ne pas confondre incompatibilité et indépendance (qui sera vue plus tard).
+\end{remarque}
+
+\begin{definition}
+    Soit $\Omega$ un univers et $\mathcal{P}(\Omega)$ l'ensemble des parties de $\Omega$.
+    On appelle \textbf{tribu} sur $\Omega$ toute partie $\mathcal{T} \subset \mathcal{P}(\Omega)$ telle que :
+    \begin{itemize}[label=--]
+        \item $\Omega \in \mathcal{T}$
+        \item Si $A \in \mathcal{T}$, alors $\overline{A} \in \mathcal{T}$
+        \item Pour toute famille (non nécessairement finie) $(A_i)_{i \in I}$ d'éléments de $\mathcal{T}$, on a :
+        $$
+        \bigcup_{i \in I} A_i \in \mathcal{T}
+        $$
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $\mathcal{T}$ une tribu sur un univers $\Omega$.
+    Alors pour toute famille finie $(A_i)_{i \in I}$ d'éléments de $\mathcal{T}$, on a :
+    $$
+    \bigcap_{i \in I} A_i \in \mathcal{T}
+    $$
+\end{proposition}
+
+\begin{remarque}
+    Ne fonctionne pas dans le cas d'intersection infinie.
+\end{remarque}
+
+\begin{definition}
+    Soit $\Omega$ un univers et $\mathcal{T}$ une tribu sur $\Omega$.
+    On appelle \textbf{espace probabilisable} le couple $(\Omega, \mathcal{T})$.
+\end{definition}
+
+\begin{remarque}
+    Un évenement sera donc un élément de la tribu $\mathcal{T}$.
+\end{remarque}
+
+\subsection{Loi de probabilité sur un espace probabilisable}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T})$ un espace probabilisable.
+    On appelle \textbf{probabilité} sur $(\Omega, \mathcal{T})$ toute application $\mathbb{P} : \mathcal{T} \to [0, 1]$ telle que :
+    \begin{itemize}[label=--]
+        \item $\mathbb{P}(\Omega) = 1$
+        \item Pour toute suite $(A_n)_{n \geq 0}$ d'événements deux à deux incompatibles, on a :
+        $$
+        \mathbb{P}\left(\bigcup\limits_{n = 0}^\infty A_n\right) = \sum\limits_{n = 0}^\infty \mathbb{P}(A_n)
+        $$
+    \end{itemize}
+    Le triplet $(\Omega, \mathcal{T}, \mathbb{P})$ est appelé \textbf{espace probabilisé}.
+\end{definition}
+
+\begin{remarque}
+    La deuxième propriété est appelée \textbf{$\sigma$-additivité}.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé.
+    \begin{enumerate}[label=(\roman*)]
+        \item $\mathbb{P}(\emptyset) = 0$
+        \item Pour toute famille $(A_i)_{i = 1}^n$ d'événements deux à deux incompatibles, on a :
+        $$
+        \mathbb{P}\left(\bigcup\limits_{i = 1}^n A_i\right) = \sum\limits_{i = 1}^n \mathbb{P}(A_i)
+        $$
+        \item Pour tout événement $A$, on a :
+        $$
+        \mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A)
+        $$
+        \item Pour tous événements $A$ et $B$ on a :
+        $$
+        \mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)
+        $$
+        \item Si $A \subset B$, alors :
+        $$
+        \mathbb{P}(A) \leq \mathbb{P}(B)
+        $$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}[label=(\roman*)]
+        \item.
+        \item En notant $A_i = \emptyset$ pour $i > n$, on applique la $\sigma$-additivité.
+        \item On a $\Omega = A \cup \overline{A}$, de plus $A$ et $\overline{A}$ sont incompatibles car $A \cap \overline{A} = \emptyset$.
+        Donc :
+        $$
+        \mathbb{P}(\Omega) = \mathbb{P}(A) + \mathbb{P}(\overline{A}) \implies \mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A)
+        $$
+        \item D'une part, on a $A \cup B = A \cup (B \setminus A)$ et de l'autre $B = (B \setminus A) \cup (A \cap B)$.
+        De plus, les deux unions sont des unions d'événements incompatibles.
+        Donc :
+        \begin{align*}
+            \mathbb{P}(A \cup B) &= \mathbb{P}(A) + \mathbb{P}(B \setminus A) \\
+            \mathbb{P}(B) &= \mathbb{P}(B \setminus A) + \mathbb{P}(A \cap B)
+        \end{align*}
+        En combinant les deux, on obtient le résultat.
+        \item Si $A \subset B$, alors $B = A \cup (B \setminus A)$ et $A$ et $B \setminus A$ sont incompatibles.
+        Donc :
+        $$
+        \mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B \setminus A) \geq \mathbb{P}(A)
+        $$
+    \end{enumerate}
+    \begin{hotwarn}
+        à finir
+    \end{hotwarn}
+\end{demonstration}
+
 \end{document}
