@@ -1,0 +1,56 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{16 January 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 3}{\today}
+
+\begin{proposition}{Dérivabilité}{}
+    Soit $I$ un intervalle bornée de $\R$ et $(f_n)$ une suite de fonctions de $I$ dans $\R$.
+
+    On suppose que $\forall n \in \N, f_n$ est $C^1$ sur $I$ et il existe $g: I \to \R$ telle que
+    \begin{itemize}[label=--]
+        \item $(f_n)$ converge simplement vers $f$ sur $I$;
+        \item $(f_n')$ converge uniformément vers $g$ sur $I$.
+    \end{itemize}
+    Alors $(f_n)$ converge uniformément vers $f$ sur $I$ et $f$ est $C^1$ et $f' = g$.
+\end{proposition}
+
+\begin{demonstration}
+    $a \in I$ et on applique le théorème (???) à $(f_n')$, on a la convergence uniforme de $(f_n')$ vers $g$, $f_n'$ sont continues
+
+    $\forall n \in \N$ on pose $\funcdef{G_n}{I}{\R}{x}{\int_a^x f_n'(t)dt}$ et $\funcdef{G}{I}{\R}{x}{\int_a^x g(t)dt}$.
+
+    $G_n$ converge uniformément vers $G$ sur $I$ (théorème de convergence uniforme des intégrales).
+
+    $G_n(x) = f_n(x) - f_n(a)$ (théorème fondamental de l'analyse).
+
+    donc $f_n(x) = G_n(x) + f_n(a)$.
+
+    Ainsi
+
+    \begin{hotwarn}
+        À finir à la maison
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{exemple}
+    Contre-exemple, la convergence uniforme des $(f_n')$ est nécessaire.
+
+    Si on suppose que la convergence uniforme des $(f_n')$ sur $I$.
+
+    $\funcdef{f_n}{\R}{\R}{x}{\sqrt{x^2 + \dfrac{1}{n + 1}}}$
+
+    Convergence simple, soit $x \in \R, \lim\limits_{n \to +\infty} f_n(x) = \lim\limits_{n \to +\infty} \sqrt{x^2 + \dfrac{1}{n + 1}} = |x|$.
+
+    $|f_n(x) - f(x)| = \left|\sqrt{x^2 + \dfrac{1}{n + 1}} - \sqrt{x^2}\right| \leq \sqrt{x^2 + \dfrac{1}{n + 1} - x^2} = \dfrac{1}{\sqrt{n + 1}}$ 
+
+    $f_n$ dérivable par composition de fonctions dérivables mais $f$ n'est pas dérivable en $0$.
+
+    Donc $f_n$ ne converge pas uniformément vers $f$ sur $\R$.
+\end{exemple}
+
+\end{document}

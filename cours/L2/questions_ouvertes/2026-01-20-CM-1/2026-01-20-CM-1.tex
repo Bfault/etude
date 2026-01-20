@@ -1,0 +1,49 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{20 January 2026}
+
+\begin{document}
+
+\hotbox{Questions ouvertes}{CM 1}{\today}
+
+Programme fait en python pour tester en partant d'un chiffre avec un multiple donné
+\begin{lstlisting}
+def until_turned(first_value, mul, limit=100):
+    value = [first_value]
+    result = []
+    retenu = 0
+    for i in range(limit):
+        if result and retenu == 0 and result[-1] == first_value:
+            break
+        num = (value[-1] * mul + retenu) % 10
+        retenu_tmp = (value[-1] * mul + retenu) // 10
+        result.append(num)
+        value.append(num)
+        retenu = retenu_tmp
+    return (''.join(map(str, value[::-1][1:])), len(value) - 1, ''.join(map(str, result[::-1])), len(result))
+
+mul = 6
+for i in range(1, 10):
+    print(f"pour {i} avec mul = {mul} on a {until_turned(i, mul)}")
+\end{lstlisting}
+
+\begin{remarque}
+    Le nombre de chiffres dépend du chiffre multipliant de départ.
+    \begin{itemize}
+        \item pour 2 on a 18 chiffres
+        \item pour 3 on a 28 chiffres
+        \item pour 4 on a 6 chiffres
+        \item pour 5 on a 42 chiffres sauf 7 x 5
+        \item pour 6 on a 58 chiffres
+        \item pour 7 on a 22 chiffres
+        \item pour 8 on a 13 chiffres
+        \item pour 9 on a 44 chiffres
+        \item pour 10 on a 2 chiffres
+    \end{itemize}
+\end{remarque}
+
+
+
+\end{document}
