@@ -87,8 +87,10 @@ et un point $O \in \E$ tels que $\forall \vec{v} \in \vec{\E}, f(O + \vec{v}) = 
     \end{enumerate}
 \end{demonstration}
 
-Le point $G$ tel que $\L(G) = \vec{0}$ est unique et s'appelle le barycentre de $\mathcal{A} = ((A_1, \lambda_1), \ldots, (A_n, \lambda_n))$
-On le note $G = bar(\mathcal{A})$
+\begin{definition}
+    Le point $G$ tel que $\L(G) = \vec{0}$ est unique et s'appelle le \textbf{barycentre} de $\mathcal{A} = ((A_1, \lambda_1), \ldots, (A_n, \lambda_n))$
+    On le note $G = bar(\mathcal{A})$
+\end{definition}
 
 Ainsi on a
 \begin{align*}
@@ -104,44 +106,45 @@ Ainsi on a
 \end{remarque}
 
 \begin{proposition}{}{}
-    Soit $\mathscr{A} = ((A_1, \lambda_1), \ldots, (A_n, \lambda_n)), \lambda \neq 0$
-    et $G = bar(\mathscr{A})$
-    \begin{enumerate}
+    Soit $\mathcal{A} = ((A_1, \lambda_1), \ldots, (A_n, \lambda_n)), \lambda \neq 0$
+    et $G = bar(\mathcal{A})$
+    \begin{enumerate}[label=\roman*.]
         \item Si on change l'ordre des points pondérés le barycentre ne change pas.
         \item Si on retire les points à poids nuls on ne change pas le barycentre.
         \item Si on multiplie tous les poids par $\alpha \neq 0$ alors le barycentre ne change pas et le poids total est $\alpha \lambda$.
-        \item Pour $1 \leq k \leq n$ et $\mu = \sum_{i=1}^k \lambda_i \neq 0$ on note $H = Bar((A_1, \lambda_1), \ldots, (A_k, \lambda_k))$ alors $G = Bar((H, \mu), (A_{k+1}, \lambda_{k+1}), \ldots, (A_n, \lambda_n))$ c'est l'associativité du barycentre
+        \item Pour $k \in \llbracket 1, n \rrbracket$ et $\mu = \sum_{i=1}^k \lambda_i \neq 0$ on note \text{$H = bar((A_1, \lambda_1), \ldots, (A_k, \lambda_k))$} alors
+        $$
+        G = bar((H, \mu), (A_{k+1}, \lambda_{k+1}), \ldots, (A_n, \lambda_n))
+        $$
+        c'est l'associativité du barycentre.
     \end{enumerate}
 \end{proposition}
 
 \begin{demonstration}
-    \begin{hotwarn}
-        1, 2 et 3 à faire
-    \end{hotwarn}
-    4.
-    On note $G' = bar((H, \mu), (A_{k+1}, \lambda_{k+1}), \ldots, (A_n, \lambda_n))$
-    alors
-    $$
-    \mu \overrightarrow{G'H} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0}
-    $$
-    d'où
-    $$
-    \mu \overrightarrow{G'H} + \sum_{i=1}^k \lambda_i \overrightarrow{HA_i} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0}
-    $$
-    d'où
-    $$
-    \sum_{i=1}^k \lambda_i \overrightarrow{G'H} + \sum_{i=1}^k \lambda_i \overrightarrow{HA_i} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0}
-    $$
-    d'où
-    $$
-    \sum_{i=1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0}
-    $$
-    Or $G$ est l'unique point qui vérifie cette équation, donc $G' = G$.
+    \begin{enumerate}[label=\roman*.]
+        \item.
+        \item.
+        \item Soit $\mu_i = \alpha \lambda_i$ pour $i \in \llbracket 1, n \rrbracket$
+        On a
+        \begin{align*}
+            bar((A_1, \mu_1), \ldots, (A_n, \mu_n)) &\iff \sum_{i=1}^n \mu_i \overrightarrow{G A_i} = \vec{0} \\
+            &\iff \sum_{i=1}^n \alpha \lambda_i \overrightarrow{G A_i} = \vec{0} \\
+            &\iff \alpha \sum_{i=1}^n \lambda_i \overrightarrow{G A_i} = \vec{0} \\
+            &\iff \sum_{i=1}^n \lambda_i \overrightarrow{G A_i} = \vec{0} \\
+        \end{align*}
+        Donc le barycentre ne change pas. Le poids total est bien $\alpha \lambda$.
+        \item 
+        On note $G' = bar((H, \mu), (A_{k+1}, \lambda_{k+1}), \ldots, (A_n, \lambda_n))$
+        ainsi on a
+        \begin{align*}
+            \mu \overrightarrow{G'H} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0} &\iff \sum_{i=1}^k \lambda_i \overrightarrow{G'H} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0} \\
+            &\iff \sum_{i=1}^k \lambda_i \overrightarrow{G' A_i} + \sum_{i=1}^k \lambda_i \overrightarrow{A_i H} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0} \\
+            &\iff \sum_{i=1}^n \lambda_i \overrightarrow{G'A_i} + \sum_{i=1}^k \lambda_i \overrightarrow{A_i H} = \vec{0} \\
+            &\iff \sum_{i=1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0} \\
+        \end{align*}
+        Or $G$ est l'unique point qui vérifie cette équation, donc $G' = G$.
+    \end{enumerate}
 \end{demonstration}
-
-\begin{remarque}
-    Si $\lambda \neq 0$ on peut supposer que $\lambda = \sum_{i=1}^n \lambda_i = 1$
-\end{remarque}
 
 \begin{definition}
     Si tous les poids sont égaux le barycentre s'appelle l'isobarycentre.
