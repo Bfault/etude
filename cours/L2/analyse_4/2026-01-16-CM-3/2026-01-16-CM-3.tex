@@ -9,28 +9,49 @@
 \hotbox{Analyse 4}{CM 3}{\today}
 
 \begin{proposition}{Dérivabilité}{}
-    Soit $I$ un segment de $\R$ et $(f_n)$ une suite de fonctions de $I$ dans $\R$.
+    Soit $I$ un intervalle de $\R$, $(f_n)$ une suite de fonctions de $I$ dans $\R$ et $g: I \to \R$.
 
-    On suppose que $\forall n \in \N, f_n$ est $C^1$ sur $I$ et il existe $g: I \to \R$ telle que
     \begin{itemize}[label=--]
-        \item $(f_n)$ converge simplement vers $f$ sur un point $x_0 \in I$;
-        \item $(f_n')$ converge uniformément vers $g$ sur $I$.
+        \item Pour tout $n \in \N$, $f_n$ est de classe $C^1$ sur $I$
+        \item Il existe un point $x_0 \in I$ tel que $(f_n(x_0))$ converge
+        \item $(f_n')$ converge uniformément vers $g$ sur tout compact de $I$.
     \end{itemize}
-    Alors $(f_n)$ converge uniformément vers $f$ sur $I$ et $f$ est $C^1$ et $f' = g$.
+    Alors $(f_n)$ converge uniformément vers $f$ sur tout compact $J \subset I$, \text{$f$ est $C^1$ et $f' = g$}.
 \end{proposition}
 
 \begin{demonstration}
-    Pour tout $n \in \N$ on pose $\funcdef{G_n}{I}{\R}{x}{\int_{x_0}^x f_n'(t)dt}$ et $\funcdef{G}{I}{\R}{x}{\int_{x_0}^x g(t)dt}$.
+    Soit $y \in I$, on peut construire $J = [a, b] \subset I$ avec $a = \min(x_0, y)$ et $b = \max(x_0, y)$.
 
-    En appliquant le théorème \ref{theoreme:integrale} à $(f_n')$, on obtient que $G_n$ converge uniformément vers $G$ sur $I$.
+    On pose $\funcdef{G_n}{I}{\R}{x}{\int_{x_0}^x f_n'(t)dt}$, $\funcdef{G}{I}{\R}{x}{\int_{x_0}^x g(t)dt}$ et $l := \lim\limits_{n \to +\infty} f_n(x_0)$.
 
-    Par ailleurs, d'après le théorème fondamental de l'analyse, on a d'une part $G_n(x) = f_n(x) - f_n(x_0)$ donc $(f_n - f_n(x_0))$ converge uniformément vers $G$ sur $I$.
-    Par hypothèse, $(f_n(x_0))$ converge simplement et $\lim\limits_{n \to +\infty} f_n(x_0) = f(x_0)$.
-    D'autre part, $f_n(x) = G_n(x) + f_n(x_0)$ donc en passant à la limite, on obtient que $f(x) = G(x) + f(x_0)$.
+    En appliquant le théorème \ref{theoreme:integrale} à $(f_n')$, on obtient que $G_n$ converge uniformément vers $G$ sur $[a, b]$.
 
-    Ainsi, $(f_n)$ converge uniformément vers $f$ sur $I$ par somme de fonctions uniformément convergentes sur $I$.
+    Par ailleurs, d'après le théorème fondamental de l'analyse, on a $G_n(x) = f_n(x) - f_n(x_0)$ et donc $f_n(x) = G_n(x) + f_n(x_0)$.
+    
+    On note $\funcdef{f}{I}{\R}{x}{G(x) + l}$ par passage à la limite ($y$ étant arbitraire dans $I$).
 
-    $g$ est continue par le théorème \ref{theoreme:continuite} (limite uniforme de fonctions continues $f_n'$). Ainsi $G$ est de classe $C^1$ sur $I$ et $f(x_0)$ aussi (constante) donc $f$ est $C^1$ sur $I$ et $f' = g$.
+    $g$ est continue comme limite uniforme de fonctions continues $(f_n')$ sur tout compact de $I$ donc $G$ est de classe $C^1$ sur $I$ donc $f$ aussi (somme de fonctions $C^1$).
+
+    De plus $f'(x) = G'(x) = g(x)$.
+    
+    \vspace{0.5cm}
+
+    Il reste à montrer la convergence uniforme de $(f_n)$ vers $f$ sur $J$.
+
+    Ainsi pour tout $x \in J$, on a
+    \begin{align*}
+        |f_n(x) - f(x)| &= |G_n(x) + f_n(x_0) - G(x) - l| \\
+        &\leq |G_n(x) - G(x)| + |f_n(x_0) - l| \\
+        &= |\int_{x_0}^x (f_n'(t) - g(t)) dt| + |f_n(x_0) - l| \\
+        &\leq |x - x_0| \|f_n' - g\|_{\infty, J} + |f_n(x_0) - l| \\
+        &\leq |b - a| \|f_n' - g\|_{\infty, J} + |f_n(x_0) - l|
+    \end{align*}
+
+    Donc, $\sup\limits_{x \in J} |f_n(x) - f(x)| \leq |b - a| \|f_n' - g\|_{\infty, J} + |f_n(x_0) - l|$.
+
+    Le second membre ne dépend pas de $x$ et par hypothèse tend vers $0$ quand $n$ tend vers $+\infty$.
+
+    On en déduit que $(f_n)$ converge uniformément vers $f$ sur $J$ et comme $y$ était arbitraire dans $I$, la convergence est uniforme sur tout compact de $I$.
 
 \end{demonstration}
 
