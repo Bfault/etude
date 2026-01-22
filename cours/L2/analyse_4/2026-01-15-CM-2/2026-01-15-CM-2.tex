@@ -89,20 +89,20 @@
     Soit $(f_n)$ une suite de fonctions définies sur $I$ dans $\R$ telles que
 
     \begin{itemize}[label=--]
-        \item pour tout $n \in \N$, $f_n$ est continue sur $I$,
-        \item $f_n$ converge uniformément vers $f$ sur tout intervalle $J \subsetneq I$ fermé borné.
+        \item pour tout $n \in \N$, $f_n$ est continue sur $I$
+        \item $f_n$ converge uniformément vers $f$ sur tout compact de $I$.
     \end{itemize}
     Alors $f$ est continue sur $I$.
 \end{proposition}
 
 \begin{demonstration}
-    Pour tout $x_0 \in I$ il existe un intervalle $J \subsetneq I$ fermé borné tel que $x_0 \in J$. Comme $(f_n)$ converge
-    uniformément sur $J$ et par le théorème \ref{theoreme:continuite}, $f$ est continue en $x_0$.
+    Soit $x_0 \in I$ et un compact $J \subset I$ tel que $x_0 \in J$.
+    Comme $(f_n)$ converge uniformément sur $J$ et par le théorème \ref{theoreme:continuite}, $f$ est continue en $x_0$.
     Ainsi $f$ est continue pour tout $x_0 \in I$ donc sur $I$.
 \end{demonstration}
 
 \begin{corollaire}{}{}
-    Soit $(f_n)$ une suite de fonctions définies sur $I := ]a, b[$ dans $\R$ avec \text{$-\infty \leq a < b \leq +\infty$.}
+    Soit $(f_n)$ une suite de fonctions définies sur $I = ]a, b[$ dans $\R$ avec \text{$-\infty \leq a < b \leq +\infty$.}
     
     On suppose que
     \begin{itemize}[label=--]
