@@ -8,6 +8,84 @@
 
 \hotbox{Probabilités 1}{CM 3}{\today}
 
+\begin{theoreme}{Formule des probabilités totales}{}
+    Soit $(B_i)$ une famille exhaustive d'événements sur un espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    
+    Alors, pour tout événement $A \in \mathcal{T}$, on a:
+    $$
+        \mathbb{P}(A) = \sum_{i} \mathbb{P}(A | B_i) \mathbb{P}(B_i)
+    $$
+\end{theoreme}
 
+\begin{demonstration}
+    Soit $A \in \mathcal{T}$. On peut écrire:
+    $$
+        A = A \cap \Omega = A \cap \left( \bigcup_{i} B_i \right) = \bigcup_{i} (A \cap B_i)
+    $$
+    Comme les événements $B_i$ sont disjoints deux à deux, les événements $A \cap B_i$ le sont aussi. Par conséquent, on peut appliquer la propriété de l'additivité des probabilités:
+    $$
+        \mathbb{P}(A) = \mathbb{P}\left( \bigcup_{i} (A \cap B_i) \right) = \sum_{i} \mathbb{P}(A \cap B_i)
+    $$
+    En utilisant la définition de la probabilité conditionnelle, on a:
+    $$
+        \mathbb{P}(A \cap B_i) = \mathbb{P}(A | B_i) \mathbb{P}(B_i)
+    $$
+    En substituant cette expression dans la somme précédente, on obtient:
+    $$
+        \mathbb{P}(A) = \sum_{i} \mathbb{P}(A | B_i) \mathbb{P}(B_i)
+    $$
+\end{demonstration}
+
+\begin{theoreme}{Formule de Bayes}{}
+    Soit $(B_i)_{i \in I}$ une famille exhaustive d'événements sur un espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Soit $A \in \mathcal{T}$ un événement tel que $\mathbb{P}(A) \neq 0$.
+
+    Alors, pour tout $i \in I$, on a:
+    $$
+        \mathbb{P}(B_i | A) = \frac{\mathbb{P}(A | B_i) \mathbb{P}(B_i)}{\sum_{j} \mathbb{P}(A | B_j) \mathbb{P}(B_j)}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $i \in I$. Par la définition de la probabilité conditionnelle, on a:
+    $$
+        \mathbb{P}(B_i | A) = \frac{\mathbb{P}(B_i \cap A)}{\mathbb{P}(A)}
+    $$
+    En utilisant la définition de la probabilité conditionnelle pour $\mathbb{P}(B_i \cap A)$, on obtient:
+    $$
+        \mathbb{P}(B_i \cap A) = \mathbb{P}(A | B_i) \mathbb{P}(B_i)
+    $$
+    En substituant cette expression dans la formule précédente, on a:
+    $$
+        \mathbb{P}(B_i | A) = \frac{\mathbb{P}(A | B_i) \mathbb{P}(B_i)}{\mathbb{P}(A)}
+    $$
+    En utilisant la formule des probabilités totales pour $\mathbb{P}(A)$, on obtient:
+    $$
+        \mathbb{P}(A) = \sum_{j} \mathbb{P}(A | B_j) \mathbb{P}(B_j)
+    $$
+    En substituant cette expression dans le dénominateur, on arrive à:
+    $$
+        \mathbb{P}(B_i | A) = \frac{\mathbb{P}(A | B_i) \mathbb{P}(B_i)}{\sum_{j} \mathbb{P}(A | B_j) \mathbb{P}(B_j)}
+    $$
+\end{demonstration}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $A, B \in \mathcal{T}$ sont dits \textbf{indépendants} si
+        $$
+            \mathbb{P}(A \cap B) = \mathbb{P}(A) \mathbb{P}(B)
+        $$
+        \item Une famille d'événements $(A_i)_{i \in I}$ est dite \textbf{indépendante} si
+        $$
+            \forall J \subseteq I, \quad \mathbb{P}\left( \bigcap_{j \in J} A_j \right) = \prod_{j \in J} \mathbb{P}(A_j)
+        $$
+    \end{enumerate}
+\end{definition}
+
+\begin{remarque}
+    Je n'aime pas le terme "indépendant" car il laisse penser à une disjonction des événements, ce qui n'est pas le cas. Équilibrés ou orthogonaux seraient des termes plus appropriés.
+\end{remarque}
 
 \end{document}
