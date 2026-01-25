@@ -1,0 +1,66 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{21 January 2026}
+
+\begin{document}
+
+\hotbox{Géometrie 2}{CM 2}{\today}
+
+\begin{theoreme}{}{}
+    \begin{enumerate}
+        \item Soit $\F \subset \E$ tel que $\F \neq \emptyset$. Alors $\F$ est un sous-espace affine de $\E$ si et seulement si tout barycentre d'un système de points pondérés de
+        $\F$ est encore un point de $\F$.
+
+        \item Soit $X \in \E$ tel que $X \neq \emptyset$ alors $Aff(X) = A + Vect(\overrightarrow{AM} | M \in X)$ pour un $A \in X$ est l'ensemble
+        des barycentres $bar(\mathcal{A})$ où $\mathcal{A}$ parcourt l'ensemble des points pondérés de $X$.
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item 
+        \begin{description}
+            \item[Sens direct.] 
+            Si $\F$ est un sous-espace affine de $\E$ et si $G = bar(\mathcal{A})$ où $\mathcal{A} = ((A_1, \alpha_1), \ldots, (A_n, \alpha_n))$ et $A_i \in \F$,
+            Alors $\overrightarrow{A_1 G} = \dfrac{1}{\alpha} \sum_{i=1}^n \alpha_i \overrightarrow{A_1 A_i} = \dfrac{1}{\alpha} \sum_{i=2}^n \alpha_i \overrightarrow{A_1 A_i}$
+            d'où $G = A_1 + \sum_{i=2}^n \dfrac{\alpha_i}{\alpha} \overrightarrow{A_1 A_i}$ mais $\overrightarrow{A_1 A_i} \in \overrightarrow{\F}$, $\dfrac{a_i}{\alpha} \in \R$
+            et $\sum_{i=2}^n \dfrac{\alpha_i}{\alpha} \in \overrightarrow{\F}$ donc $G \in \F$ car il s'écrit comme $A_1 + \vec{v}$ avec $A_1 \in \F$ et $\vec{v} \in \overrightarrow{\F}$.
+            \item[Sens réciproque.]
+            On suppose que $\F$ est stable par la prise de barycentre et on veut montrer que $\F$ est un sous-espace affine.
+            Comme $\F \neq \emptyset$, il existe $A \in \F$.
+
+            On considère $\overrightarrow{V} = \{ \overrightarrow{AM} | M \in \F \}$. Montrons que $\overrightarrow{V}$ est un sous-espace vectoriel de $\overrightarrow{E}$.
+            On peut écrire $\overrightarrow{AA} = \overrightarrow{0} \in \overrightarrow{V}$ donc $\overrightarrow{V} \neq \emptyset$.
+            Soient $\overrightarrow{AM}, \overrightarrow{AN} \in \overrightarrow{V}$ et $\lambda\in \R$.
+            On a 
+            \begin{align*}
+                \overrightarrow{AM} + \lambda \overrightarrow{AN} = \overrightarrow{AP} &\iff \overrightarrow{AP} = \overrightarrow{AP} + \overrightarrow{PM} + \lambda (\overrightarrow{AP} + \overrightarrow{PN}) \\
+                &\iff \vec{0} = \overrightarrow{PM} + \lambda \overrightarrow{PN} - \lambda \overrightarrow{PA} \\
+                &\iff P = bar((M, 1), (N, \lambda), (A, -\lambda))
+            \end{align*}
+            où $P = bar((M, \lambda), (N, 1 - \lambda), (A, 0))$.
+            Par hypothèse, $P \in \F$ donc $\overrightarrow{AP} \in \overrightarrow{V}$.
+            Ainsi, $\overrightarrow{V}$ est un sous-espace vectoriel de $\overrightarrow{E}$.
+            $\F = A + Vect(\overrightarrow{AM} | M \in \F)$ est bien un sous-espace affine avec $\overrightarrow{\F} = \overrightarrow{V}$.
+        \end{description}
+    \end{enumerate}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $(A_0, \ldots, A_n)$ un repère affine de $\E$ de dimension $n$. Alors pour tout $M \in \E$, s'écrit de façon unique sous la forme d'un barycentre $bar((A_i, \alpha_i)_{0 \leq i \leq n})$ avec $\sum_{i=0}^n \alpha_i = 1$.
+    Les réels $\alpha_i$ sont appelés les \textbf{coordonnées barycentriques} de $M$.
+\end{proposition}
+
+\begin{methode}
+    \textbf{Passage entre coordonnées barycentriques et coordonnées dans un repère affine}
+    \begin{align*}
+        \sum_{i=0}^n \alpha_i \overrightarrow{M A_i} = \vec{0} &\iff \sum_{i=0}^n \alpha_i (\overrightarrow{MA_0} + \overrightarrow{A_0 A_i}) = \vec{0} \\
+        &\iff \alpha_i \overrightarrow{M A_0} + \sum_{i=0}^n \alpha_i \overrightarrow{A_0 A_i} = \vec{0} \\
+        &\iff \sum_{i=0}^n \alpha_i \overrightarrow{A_0 A_i} = (\sum_{i=0}^n \alpha_i) \overrightarrow{A_0 M} \\
+        &\iff \overrightarrow{A_0 M} = \sum_{i=1}^n \alpha_i \overrightarrow{A_0 A_i}
+    \end{align*}
+\end{methode}
+
+\end{document}
