@@ -8,10 +8,47 @@
 
 \hotbox{Probabilités 1}{CM 2}{\today}
 
+\section{Conditionnement et indépendance}
+
 \begin{definition}
     Soit \((\Omega, \mathcal{F}, P)\) un espace de probabilité. Soit $B \in \mathcal{T}$
     un événement tel que $\mathbb{P}(B) \neq 0$.
-    Pour tout $A \in \mathcal{T}$, la probabilité que $A$ se réalise sachant que $B$ est réalisé est définie.
+    Pour tout $A \in \mathcal{T}$, la probabilité que $A$ se réalise \textbf{sachant} que $B$ est réalisé est définie par
+    $$
+    \mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}.
+    $$
 \end{definition}
+
+\begin{remarque}
+    on peut aussi noter $\mathbb{P}_B(A)$ mais l'autre notation est préférable.
+\end{remarque}
+
+\begin{theoreme}{Formule des probabilités composées}{}
+    Soit \((\Omega, \mathcal{F}, P)\) un espace de probabilité. Soit $A_1, A_2, \ldots, A_n \in \mathcal{T}$ tels que $\mathbb{P}(\bigcap_{i=1}^n A_i) \neq 0$.
+
+    Alors on a
+    $$
+    \mathbb{P}\left(\bigcap_{i=1}^n A_i\right) = \mathbb{P}(A_1) \mathbb{P}(A_2|A_1) \mathbb{P}(A_3|A_1 \cap A_2) \cdots \mathbb{P}\left(A_n | \bigcap_{i=1}^{n-1} A_i\right).
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Il suffit de faire une récurrence, cette démonstration est laissée au lecteur.
+\end{demonstration}
+
+\begin{definition}
+    Soit \((\Omega, \mathcal{F}, P)\) un espace de probabilité. Soit $(A_i)_{i \in I}$ une famille finie ou dénombrable d'événements de $\mathcal{T}$.
+
+    On dit que la famille $(A_i)_{i \in I}$ est \textbf{exhaustive} si
+    \begin{itemize}[label=--]
+        \item $\forall i, j \in I, i \neq j, A_i \cap A_j = \emptyset$
+        \item $\bigcup_{i \in I} A_i = \Omega$
+        \item $\forall i \in I, \mathbb{P}(A_i) \neq 0$
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    La famille exhaustive la plus simple est $\{A, \overline{A}\}$ pour un événement $A$ tel que $\mathbb{P}(A) \neq 0$ et $\mathbb{P}(\bar{A}) \neq 0$.
+\end{remarque}
 
 \end{document}
