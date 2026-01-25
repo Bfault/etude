@@ -114,6 +114,22 @@
   {\begin{quote}\begin{_remarque}}
   {\end{_remarque}\end{quote}}
 
+\newtheoremstyle{commentairecompact}  % nom du style
+  {0pt}    % espace au-dessus (avant)
+  {3pt}    % espace au-dessous (après)
+  {}        % corps de texte (police normale)
+  {}        % indentation
+  {\bfseries} % style du titre
+  {.}       % ponctuation après le titre
+  {0.5em}   % espace après le titre
+  {}        % en-tête du théorème
+
+\theoremstyle{commentairecompact}
+\newtheorem{_commentaire}{Commentaire}[section]
+\newenvironment{commentaire}
+  {\begin{quote}\begin{_commentaire}}
+  {\end{_commentaire}\end{quote}}
+
 \newenvironment{methode}[1][]{
     \begin{tcolorbox}[
         leftrule=-1mm, toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
