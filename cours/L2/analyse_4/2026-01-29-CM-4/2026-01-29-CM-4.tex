@@ -1,0 +1,88 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{29 January 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 4}{\today}
+
+\section{Séries de fonctions}
+
+Dans cette section, nous considérons la suite de fonctions $(f_n)$ définie sur un intervalle $I \subset \mathbb{R}$ à valeurs dans $\R$ (ou $\C$).
+De plus on définit $\funcdef{\theta}{I}{\R}{x}{0}$ la fonction nulle.
+
+\begin{definition}
+    On appelle \textbf{série de fonctions} de terme général $f_n$ notée $\sum_k f_k$, la suite des $(S_n)_{n \in \N}$, appelées \textbf{sommes partielles}, définie par
+    $$
+    S_n(x) = \sum_{k=k_0}^n f_k(x)
+    $$
+\end{definition}
+
+\begin{definition}
+    On dira que la série $\sum_k f_k$ 
+    \begin{itemize}[label=--]
+        \item 
+        \textbf{converge simplement} vers $S$ sur $I$ si $(S_n)$ converge simplement vers $S$ sur $I$.
+        \item 
+        \textbf{converge uniformément} vers $S$ sur $I$ si $(S_n)$ converge uniformément vers $S$ sur $I$.
+    \end{itemize}
+    où $S = \lim\limits_{n \to +\infty} S_n = \sum_{k=k_0}^{+\infty} f_k(x)$.
+
+    On appelle \textbf{reste} d'ordre $n$ de $\sum_k f_k$ la quantité $\funcdef{R_n}{I}{\R}{x}{\sum_{k=n+1}^{+\infty} f_k(x)}$.
+\end{definition}
+
+\begin{exemple}
+    Pour tout $n \in \N$, on définit $\funcdef{f_n}{\R}{\R}{x}{x^n}$.
+
+    On a la somme partielle $S_n(x) = \sum_{k=0}^n x^k = \frac{1-x^{n+1}}{1-x}$ si $x \neq 1$
+
+    \begin{itemize}[label=--]
+        \item si $|x| < 1, \lim\limits_{n \to +\infty} S_n(x) = \frac{1}{1-x} = S(x)$.
+        \item si $x = 1$ $f_n(x) = 1$ et donc $S_n(1) = \sum_{k=0}^n f_n(1) = n + 1 \to +\infty$ donc $S(1)$ n'existe pas.
+        \item si $x = -1$ on a $f_n(-1) = (-1)^n$ et donc \text{$S_n(-1) = \sum_{k=0}^n f_k(-1) = \begin{cases}
+            0 & \text{si } n \text{ est impair}\\
+            1 & \text{si } n \text{ est pair}
+        \end{cases}$}, donc $S(-1)$ n'existe pas.
+        \item si $|x| > 1$, $\lim\limits_{n \to +\infty} S_n(x) = +\infty$.
+    \end{itemize}
+\end{exemple}
+
+\begin{hotwarn}
+    Exercice:
+    Sur $I = ]-1, 1[$, $(S_n)$ ne converge pas uniformément vers $S$ sur $I$.
+\end{hotwarn}
+
+\begin{proposition}{}{}
+    On suppose que $\sum_k f_k$ converge simplement vers $S$ sur $I$.
+
+    Alors la série de fonction $\sum_k f_k$ converge uniformément vers $S$ sur $I$ si et seulement si
+    la suite des restes $(R_n)$ converge uniformément vers $0$ sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{align*}
+        \text{$(S_n)$ converge uniformément vers $S$ sur $I$} &\iff \norm{S_n - S}_{\infty, I} \to 0 \\
+        &\iff \norm{\sum_{k=0}^n f_k - \sum_{k=0}^{+\infty} f_k}_{\infty, I} \to 0 \\
+        &\iff \norm{\sum_{k=n+1}^{+\infty} f_k}_{\infty, I} \to 0 \\
+        &\iff \text{Le reste converge uniformément vers $\theta$}
+    \end{align*}
+\end{demonstration}
+
+\begin{exemple}
+    Pour tout $n \in \N$, on définit $\funcdef{f_n}{[-1, 1]}{\R}{x}{\dfrac{x^2}{n^2}}$ et on étudie $\sum_k f_k$.
+
+    Pour $x \in [-1, 1], |\dfrac{x^2}{n^2}| < \dfrac{1}{n^2} \to 0$ (convergence uniforme de $f_n$ vers $\theta$ sur $[-1, 1]$).
+
+    On a
+    \begin{align*}
+        R_n &= \sum_{k=n+1}^{+\infty} f_k(x) = \sum_{k=n+1}^{+\infty} \dfrac{x^2}{k^2} \\
+        &= x^2 \sum_{k=n+1}^{+\infty} \dfrac{1}{k^2} \\
+        &\leq \sum_{k=n+1}^{+\infty} \dfrac{1}{k^2}
+    \end{align*}
+
+    Or, $\sum_{k=n+1}^{+\infty} \dfrac{1}{k^2}$ est le reste d'une série de Riemann, qui converge donc $\lim_{n \to +\infty} \sum_{k=n+1}^{+\infty} \dfrac{1}{k^2} = 0$.
+\end{exemple}
+
+\end{document}

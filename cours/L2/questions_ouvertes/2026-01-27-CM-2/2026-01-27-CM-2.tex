@@ -1,0 +1,45 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{27 January 2026}
+
+\newtcbtheorem[number within=section]{recherche}{Recherche}%
+{
+    enhanced,
+    colframe=black,
+    coltitle=black, fonttitle=\bfseries,
+    top=5mm,
+    attach boxed title to top left={yshift=-3mm, xshift=6mm},
+    boxed title style={colback=white, arc=2mm, shadow={1mm}{-1mm}{0mm}{black}}
+}{recherche}
+
+\begin{document}
+
+\hotbox{Questions ouvertes}{CM 2}{\today}
+
+amélioration du programme, qui prend maintenant en compte les multipliant supérieurs à 9 et peut afficher plusieurs nombres possibles avec gradient sur les chiffres.
+
+\begin{recherche}{}{}
+    Soit 
+    \begin{enumerate}[label=--]
+        \item $x$ le nombre tournant recherché,
+        \item $d$ le chiffre des unités de $x$,
+        \item $n$ le nombre total de chiffres de $x$,
+        \item $m$ le multipliant.
+    \end{enumerate}
+
+    On pose $y := \dfrac{x - d}{10} \implies x = 10y + d$ le nombre obtenu en retirant le chiffre des unités de $x$ et $x' = d \times 10^{n - 1} + y$ le nombre obtenu en mettant le chiffre des unités de $x$ au début de $x$.
+
+    D'après notre sujet de recherche, on doit trouver $x$ ou $x'$ tel que $x' = m \times x$, donc:
+    \begin{align*}
+        x' = m \times x &\implies d \times 10^{n - 1} + y = m \times (10y + d) \\
+        &\implies y - 10my = md - d \times 10^{n - 1} \\
+        &\implies y(1 - 10m) = d(m - 10^{n - 1}) \\
+        &\implies y = \frac{d(m - 10^{n - 1})}{1 - 10m} \\
+    \end{align*} 
+
+    Sauf qu'on ne connait pas $n$, on essaye de chercher des valeurs de $n$ telles que $y$ soit un entier positif. On en déduit ensuite $x = 10y + d$.
+\end{recherche}
+
+\end{document}

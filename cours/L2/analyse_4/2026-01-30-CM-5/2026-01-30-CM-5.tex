@@ -1,0 +1,192 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{30 January 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 5}{\today}
+
+\begin{definition}
+    On dira que la série $\sum_k f_k$ est uniformément de Cauchy sur $I$ si et seulement si
+    la suite des sommes partielles $(S_n)$ est uniformément de Cauchy sur $I$.
+
+    C'est-à-dire,
+    $$
+    \forall \varepsilon > 0, \exists N \in \N, \forall m,n \geq N, \forall x \in I, \norm{S_n(x) - S_m(x)}_{\infty, I} \leq \varepsilon.
+    $$
+\end{definition}
+
+\begin{remarque}
+    Sans perte de généralité, on peut supposer $m \geq n$, et donc écrire
+    $$
+    \forall \varepsilon > 0, \exists N \in \N, \forall m \geq n \geq N, \forall x \in I, |S_n(x) - S_m(x)| = \left|\sum_{k=n+1}^m f_k(x)\right| \leq \varepsilon.
+    $$
+\end{remarque}
+
+\begin{proposition}{}{}
+    $\sum_k f_k$ converge uniformément sur $I$ si et seulement si 
+    $(S_n)$ converge uniformément vers $S$ sur $I$ si et seulement si
+    $(S_n)$ est uniformément de Cauchy sur $I$ impliquant que
+    en prenant $q = p + 1, \norm{f_{p+1}}_{\infty, I} \to 0$ lorsque $p \to +\infty$.
+\end{proposition}
+
+\begin{remarque}
+    Le côté intéressant est la contraposée, si \text{$\norm{f_k}_{\infty, I} \not\to 0$} lorsque $k \to +\infty$, alors la série ne converge pas uniformément sur $I$.
+\end{remarque}
+
+\begin{definition}[(Convergence normale)]
+    On dira que la série $\sum_k f_k$ converge normalement sur $I$ si et seulement si
+    la série numérique $\sum_k \norm{f_k}_{\infty, I}$ converge.
+\end{definition}
+
+\begin{methode}
+    $\sum_k f_k$ converge normalement sur $I$ si il existe une suite réelle $(\alpha_n)$ telle que
+    $\norm{f_k}_{\infty, I} \leq \alpha_k$ et $\sum_k \alpha_k$ converge.
+\end{methode}
+
+\begin{theoreme}
+    Si $\sum_k f_k$ converge normalement sur $I$, alors elle converge uniformément sur $I$.
+\end{theoreme}
+
+\begin{demonstration}
+    On sait que $\sum_k f_k$ converge normalement sur $I$, à partir d'un certain rang $N$, pour tout $n \geq N$,
+    $\norm{f_n}_{\infty, I} \leq \alpha_n$ avec $\sum_k \alpha_k$ converge.
+
+    Donc $\sum_k \norm{f_k}_{\infty, I}$ converge alors sa suite de sommes partielles est de Cauchy, c'est-à-dire,
+    $$
+    \forall \varepsilon > 0, \exists N \in \N, \forall q \geq p \geq N, \left| \sum_{k=k_0}^p \norm{f_k}_{\infty, I} - \sum_{k=k_0}^q \norm{f_k}_{\infty, I} \right| \leq \varepsilon
+    \iff \left| \sum_{k=p+1}^q \norm{f_k}_{\infty, I} \right| \leq \varepsilon
+    $$
+
+    avec cette $\varepsilon$ et ce $N$, on a
+    $$
+    \left| \sum_{k=p+1}^q f_k(x) \right| \leq \sum_{k=p+1}^q |f_k(x)| \leq \sum_{k=p+1}^q \norm{f_k}_{\infty, I} \leq \varepsilon
+    $$
+    et donc $\sum_k f_k$ est uniformément de Cauchy sur $I$ donc uniformément convergente sur $I$.
+\end{demonstration}
+
+\begin{exemple}
+    Pour tout $n \in \N$, on définit $\funcdef{f_n}{\R}{\R}{x}{\dfrac{(-1)^n}{n + x^2}}$.
+
+    \begin{align*}
+        \norm{f_n}_{\infty, \R} &= \sup_{x \in \R}|f_n(x)| \\
+        &= \sup_{x \in \R} \left| \dfrac{(-1)^n}{n + x^2} \right| \\
+        &= \dfrac{1}{n}
+    \end{align*}
+    or, la série numérique $\sum_n \dfrac{1}{n}$ diverge.
+
+    Soit $x \in \R, |R_n(x)| = \left| \sum_{k=n+1}^\infty \dfrac{(-1)^n}{n + x^2} \right| \leq \dfrac{1}{n + 1 + x^2} \leq \dfrac{1}{n}$.
+
+    Ainsi, la suite de fonctions des restes $(R_n)$ converge uniformément vers $0$ sur $\R$ donc la série de fonctions $\sum_n f_n$ converge uniformément sur $\R$.
+\end{exemple}
+
+\begin{methode}
+    Si la série est alternée, on peut utiliser le critère d'Abel
+\end{methode}
+
+\begin{exemple}
+    Pour tout $n \in \N^*$, on définit $\funcdef{f_n}{\R}{\R}{x}{\dfrac{cos(nx)}{n}}$.
+
+    Il n'y a pas de convergence normale car $\norm{f_n}_{\infty, \R} = \dfrac{1}{n}$ et $\sum_n \dfrac{1}{n}$ diverge.
+
+    Si $x = 2k\pi, k \in \Z, f_n(x) = \dfrac{1}{n}$ donc la série diverge en ces points.
+
+    Si $x \neq 2k\pi, k \in \Z$, on pose $u_n = \dfrac{1}{n}$ et $v_n = \cos(nx)$.
+
+    \begin{align*}
+        \sum_{k=1}^n \cos(kx) &= \sum_{k=1}^n \Re(e^{ikx}) \\
+        &= \Re\left( \sum_{k=1}^n (e^{ix})^k \right) \\
+        &= \Re\left( e^{ix} \dfrac{1 - (e^{ix})^n}{1 - e^{ix}} \right) \\
+        &= \Re\left( e^{ix} \dfrac{e^{i\dfrac{nx}{2}}\left( e^{-i\dfrac{nx}{2}} - e^{i\dfrac{nx}{2}} \right)}{e^{i\dfrac{x}{2}} \left( e^{-i\dfrac{x}{2}} - e^{i\dfrac{x}{2}} \right)} \right) \\
+        &= \Re\left( e^{i\dfrac{(n+1)x}{2}} \dfrac{2i \sin(\dfrac{nx}{2})}{2i \sin(\dfrac{x}{2})} \right) \\
+        &= \dfrac{\cos(\dfrac{n+1}{2}x) \sin(\dfrac{nx}{2})}{\sin(\dfrac{x}{2})}
+    \end{align*}
+    ainsi $ \left| V_n \right| \leq \dfrac{1}{\left| \sin(\dfrac{x}{2}) \right|}$.
+
+    Donc par le critère d'Abel, la série $\sum_n f_n$ converge simplement sur tout intervalle $I$ ne contenant pas de $2k\pi, k \in \Z$.
+
+    et on a $|R_n(x)| \leq \dfrac{2}{n \sin(\dfrac{x}{2})}$.
+
+    Par contre $\forall \varepsilon > 0$ et $\varepsilon < k \pi$, on aura convergence uniforme sur $\R_\varepsilon := \bigcup_{k \in \Z}[2k\pi + \varepsilon, 2(k+1)\pi - \varepsilon]$.
+
+    Ainsi, $\forall x \in \R_\varepsilon, |R_n(x)| \leq \dfrac{2}{n \sin(\dfrac{\varepsilon}{2})} \to 0$ lorsque $n \to +\infty$ et ne dépend pas de $x$.
+
+    Donc la série converge uniformément sur $\R_\varepsilon$.
+\end{exemple}
+
+\begin{methode}
+    \begin{hotwarn}
+        Voir angle moitié et automatisme
+    \end{hotwarn}
+\end{methode}
+
+\begin{proposition}{}{}
+    \begin{hotwarn}
+        à placer dans la section suites de fonctions
+    \end{hotwarn}
+
+    Soit $(f_n)$ une suite de fonctions continues sur $I$ dans $\R$.
+
+    On suppose que $(f_n) \in \mathcal{C}^k(I)$, pour tout $0 \leq j \leq k - 1$,
+
+    on a convergence simple de $(f_n^{(j)})$ vers $f_j$ sur $I$ et convergence uniforme de $(f_n^{(k)})$ vers $f_k$ sur $I$.
+
+    Alors $f$ est $\mathcal{C}^k$ et $f_j = f^{(j)}$
+\end{proposition}
+
+\begin{theoreme}{Theorème d'inversion des limites}{}
+    $\sum_k f_k$ définie sur $I = [a, b]$ et converge uniformément vers $S$ sur $I$.
+
+    On suppose que pour tout $n \in \N$, $f_n(x)$ admet une limite en $b$, notée $\ell_n$.
+
+    Alors $S$ admet une limite en $b$, notée $\ell$ et $(\ell_n)$ converge vers $\ell$ et
+\end{theoreme}
+
+\begin{remarque}
+    On peut écrire
+    $$
+    \lim\limits_{x \to b^-} \left( \lim\limits_{n \to +\infty} S_n(x) \right) = \lim\limits_{n \to +\infty} \left( \lim\limits_{x \to b^-} S_n(x) \right)
+    $$
+\end{remarque}
+
+\begin{theoreme}{Théorème de continuité}{}
+    $\sum_k f_k$ définie sur $I$.
+
+    On suppose que $\forall a \in I$, $f_k$ est continue en $a$ et $\sum_k f_k$ converge uniformément vers $S$ sur $I$.
+
+    Alors $S$ est continue sur $I$.
+\end{theoreme}
+
+\begin{theoreme}{Théorème de dérivation}{}
+    Soit $\sum_k f_k$ définie sur $I$.
+
+    On suppose que pour tout $k \in \N$, $f_k$ est $\mathcal{C}^1$ sur $I$, que $\sum_k f_k$ converge simplement vers $S$ sur $I$ et que $\sum_k f_k'$ converge uniformément sur tout segment de $I$.
+
+    Alors $S$ est $\mathcal{C}^1$ sur $I$ et $S' = \sum_k f_k'$.
+\end{theoreme}
+
+\begin{proposition}{}{}
+    Soit $\sum_k f_k$ définie sur $I$.
+
+    On suppose que les $f_n$ sont de classe $\mathcal{C}^k$ sur $I$ et que
+    \begin{itemize}[label=--]
+        \item Pour tout $0 \leq j \leq k - 1$, la série $\sum_n f_n^{(j)}$ converge simplement sur $I$.
+        \item La série $\sum_n f_n^{(k)}$ converge uniformément vers $S_k$ sur tout segment de $I$.
+    \end{itemize}
+    Alors $S = \sum_{l = l_0}^{+\infty} f_l(x)$ est de classe $\mathcal{C}^k$ sur $I$ et pour tout $0 \leq j \leq k$, on a $S^{(j)} = S_j$.
+\end{proposition}
+
+\begin{theoreme}{Theorème de permutation somme intégrale}{}
+    Soit $\sum_k f_k$ définie sur $I := [a, b]$.
+
+    On suppose que pour tout $n \in \N$, $f_n$ est continue sur $I$ et que $\sum_k f_k$ converge uniformément vers $S$ sur $I$.
+
+    Alors
+    $$
+    \sum_k \int_a^b f_k(t) \ dt = \int_a^b \sum_k f_k(t) \ dt
+    $$
+\end{theoreme}
+
+\end{document}

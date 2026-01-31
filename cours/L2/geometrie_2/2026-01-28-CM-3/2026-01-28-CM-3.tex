@@ -1,0 +1,133 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{28 January 2026}
+
+\begin{document}
+
+\hotbox{Géometrie 2}{CM 3}{\today}
+
+\begin{proposition}
+    Soient $\E$ et $\mathcal{F}$ deux espaces affines. Une application $f: \E \to \mathcal{F}$ est affine si et seulement si,
+    
+    Alors pour tout $\mathcal{A} = ((A_1, \lambda_1), \dots, (A_n, \lambda_n)), \lambda \neq 0,$ système de points pondérés, on a
+    $$
+    f(\mathcal{A}) := ((f(A_1), \lambda_1), \dots, (f(A_n), \lambda_n)), f(bar(\mathcal{A})) = bar(f(\mathcal{A}))
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.] 
+        Si $f$ est affine, alors en notant $G = bar(\mathcal{A})$, montrons que $f(G) = bar((f(A_1), \lambda_1), \dots, (f(A_n), \lambda_n))$. En effet, pour tout
+        $A \in \E$,
+        \begin{align*}
+            f(G) &= f(A + \overrightarrow{AG}) \\
+        &= f(A + \sum_{i=1}^n \lambda_i \overrightarrow{A A_i}) \\
+        &= f(A) + \vec{f}(\sum_{i=1}^n \lambda_i \overrightarrow{A A_i}) \\
+        &= f(A) + \sum_{i=1}^n \lambda_i \vec{f}(\overrightarrow{A A_i}) \\
+        &= f(A) + \sum_{i=1}^n \lambda_i \overrightarrow{f(A) f(A_i)} \\
+        \end{align*}
+        D'où
+        $$
+        \overrightarrow{f(A) f(G)} = \sum_{i=1}^n \lambda_i \overrightarrow{f(A) f(A_i)}
+        $$
+        Ainsi $f(G)$ est le barycentre de $((f(A_1), \lambda_1), \dots, (f(A_n), \lambda_n))$.
+        
+        \item[Sens réciproque.]
+        Soit $A \in \E$ et $A' := f(A)$, Soit $\vec{u} \in \vec{\E}$ on sait que
+        $$
+        f(A + \vec{u}) = A' + \vec{v}
+        $$
+        pour un certain $\vec{v} \in \vec{\mathcal{F}}$. On pose $\vec{f}(\vec{u}) = \vec{v}$.
+
+        Cela donne une application $\funcdef{\vec{f}}{\vec{\E}}{\vec{\mathcal{F}}}{\vec{u}}{\vec{v} = \vec{f}(\vec{u})}$ qui vérifie, pour tout $\vec{u} \in \vec{\E}$,
+        $$
+        f(A + \vec{u}) = f(A) + \vec{f}(\vec{u})
+        $$
+
+        Montrons maintenant que $\vec{f}$ est linéaire. Soit $\lambda \in \R$ et $\vec{u} \in \vec{\E}$.
+        On pose $M = A + \vec{u}$ et on considère
+        $$
+        G = bar((A, 1 - \lambda), (M, \lambda))
+        $$
+        On calcule $\vec{f}(\lambda \vec{u}) = \vec{f}(\lambda \overrightarrow{AM}) = \vec{f}(\overrightarrow{AG})$
+
+        Pourquoi $1 - \lambda$ ?
+        \begin{align*}
+            (1 - \lambda) \overrightarrow{GA} + \lambda \overrightarrow{GM} = \vec{0}
+            &\iff (1 - \lambda) \overrightarrow{GA} + \lambda (\overrightarrow{GA} + \overrightarrow{AM}) &= \vec{0} \\ 
+            &\iff \overrightarrow{AG} = \lambda \overrightarrow{AM}
+        \end{align*}
+
+        De plus, $\vec{f}(\overrightarrow{AG})$ est le vecteur $\vec{v}$ tel que
+        $$
+        f(A) + \vec{v} = f(A + \overrightarrow{AG}) = f(G)
+        $$
+        Ainsi $\vec{f}(\overrightarrow{AG}) = \overrightarrow{f(A) f(G)}$.
+        Or, par hypothèse,
+        $$
+        f(G) = bar((f(A), 1 - \lambda), (f(M), \lambda))
+        $$
+        Donc $\overrightarrow{f(A) f(G)} = \lambda \overrightarrow{f(A) f(M)}$
+    
+        Or par définition de $\vec{f}$,
+        $$
+        \lambda \overrightarrow{f(A) f(M)} = \lambda \vec{f}(\overrightarrow{AM}) = \lambda \vec{f}(\vec{u})
+        $$
+
+        Ainsi
+        \begin{align*}
+            \vec{f}(\lambda \vec{u}) &= \vec{f}(\lambda \overrightarrow{AM}) \\
+            &= \vec{f}(\overrightarrow{AG}) \\
+            &= \overrightarrow{f(A) f(G)} \\
+            &= \lambda \overrightarrow{f(A) f(M)} \\
+            &= \lambda \vec{f}(\overrightarrow{AM}) \\
+            &= \lambda \vec{f}(\vec{u})
+        \end{align*}
+
+        \begin{hotwarn}
+            Petit controle:
+            $$
+            \vec{f}(\vec{u} + \vec{w}) = \vec{f}(\overrightarrow{AB} + \overrightarrow{AC}) = \vec{f}(\overrightarrow{AB}) + \vec{f}(\overrightarrow{AC}) = \vec{f}(\vec{u}) + \vec{f}(\vec{w})
+            $$
+        \end{hotwarn}
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}
+    Soient $\E$ et $\mathcal{F}$ deux espaces affines de dimensions finies $n$.
+
+    Soit $(A_0, \dots, A_n)$ un repère affine/barycentrique de $\E$ et $(B_0, \dots, B_n) \in \mathcal{F}^n$. Alors, il existe une unique application affine $f: \E \to \mathcal{F}$ telle que pour tout $i \in \llbracket 0, n \rrbracket$, $f(A_i) = B_i$.
+
+    Il existe une unique application affine $f: \E \to \mathcal{F}$ telle que $f(A_i) = B_i$ pour tout $i \in \llbracket 0, n \rrbracket$ et $f$ est un isomorphisme si et seulement si
+    $(B_0, \dots, B_n)$ est un repère affine/barycentrique de $\mathcal{F}$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Unicité.] 
+        Soient $f$ et $g$ deux applications affines telles que $f(A_i) = B_i$ et $g(A_i) = B_i$.
+        
+        Calculons, pour $M \in \E$,
+        \begin{align*}
+            f(M) &= f(A_0 + \overrightarrow{A_0 M}) \\
+            &= f\left(A_0 + \sum_{i=1}^n \lambda_i \overrightarrow{A_0 A_i}\right) \\
+            &= f(A_0) + \sum_{i=1}^n \lambda_i \vec{f}(\overrightarrow{A_0 A_i}) \\
+            &= B_0 + \sum_{i=1}^n \lambda_i \overrightarrow{B_0 B_i} \\
+            &= g(A_0) + \sum_{i=1}^n \lambda_i \vec{g}(\overrightarrow{A_0 A_i}) \\
+            &= g\left(A_0 + \sum_{i=1}^n \lambda_i \overrightarrow{A_0 A_i}\right) \\
+            &= g(M)
+        \end{align*}
+        Donc $f = g$ et l'unicité est montrée.
+
+        \item[Bijectivité.]
+        On définit une application affine $g: \mathcal{F} \to \E$ telle que pour tout $i \in \llbracket 0, n \rrbracket$, $g(B_i) = A_i$.
+        \begin{hotwarn}
+            Il faut vérifier que $f \circ g = id_{\mathcal{F}}$ et $g \circ f = id_{\E}$.
+        \end{hotwarn}
+\end{description}
+\end{demonstration}
+
+\end{document}
