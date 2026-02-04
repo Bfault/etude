@@ -48,10 +48,16 @@
     \end{enumerate}
 \end{demonstration}
 
-\begin{proposition}{}{}
-    Soit $(A_0, \ldots, A_n)$ un repère affine de $\E$ de dimension $n$. Alors pour tout $M \in \E$, s'écrit de façon unique sous la forme d'un barycentre $bar((A_i, \alpha_i)_{0 \leq i \leq n})$ avec $\sum_{i=0}^n \alpha_i = 1$.
-    Les réels $\alpha_i$ sont appelés les \textbf{coordonnées barycentriques} de $M$.
-\end{proposition}
+\begin{definition}[(Repère affine)]
+    Soit $\E$ un espace affine de dimension $n$ et de direction $\vec{\E}$. Un \textbf{repère affine} de $\E$ est une famille $(A_0, A_1, \ldots, A_n)$ de points de $\E$ tels que
+    $(\overrightarrow{A_0 A_1}, \ldots, \overrightarrow{A_0 A_n})$ soit une base de $\vec{\E}$.
+
+    Ainsi pour tout $M \in \E$, il existe des réels uniques $(\alpha_1, \ldots, \alpha_n)$ tels que
+    $$
+    \overrightarrow{A_0 M} = \sum_{i=1}^n \alpha_i \overrightarrow{A_0 A_i}
+    $$
+    Les réels $\alpha_i$ sont appelés les \textbf{coordonnées barycentriques} de $M$ dans le repère affine $(A_0, A_1, \ldots, A_n)$.
+\end{definition}
 
 \begin{methode}
     \textbf{Passage entre coordonnées barycentriques et coordonnées dans un repère affine}

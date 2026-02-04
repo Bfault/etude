@@ -9,62 +9,113 @@
 \hotbox{Analyse 4}{CM 5}{\today}
 
 \begin{definition}
-    On dira que la série $\sum_k f_k$ est uniformément de Cauchy sur $I$ si et seulement si
+    On dira que la série $\sum\limits_k f_k$ est uniformément de Cauchy sur $I$ si et seulement si
     la suite des sommes partielles $(S_n)$ est uniformément de Cauchy sur $I$.
 
     C'est-à-dire,
     $$
-    \forall \varepsilon > 0, \exists N \in \N, \forall m,n \geq N, \forall x \in I, \norm{S_n(x) - S_m(x)}_{\infty, I} \leq \varepsilon.
+    \forall \varepsilon > 0, \exists N \in \N, \forall p,q \geq N, \forall x \in I, \norm{S_p - S_q}_{\infty, I} \leq \varepsilon.
     $$
 \end{definition}
 
 \begin{remarque}
-    Sans perte de généralité, on peut supposer $m \geq n$, et donc écrire
+    Sans perte de généralité, on peut supposer \text{$p \geq q$} et écrire
     $$
-    \forall \varepsilon > 0, \exists N \in \N, \forall m \geq n \geq N, \forall x \in I, |S_n(x) - S_m(x)| = \left|\sum_{k=n+1}^m f_k(x)\right| \leq \varepsilon.
+    \forall \varepsilon > 0, \exists N \in \N, \forall p \geq q \geq N, \forall x \in I, |S_p(x) - S_q(x)| = \left|\sum_{k=q+1}^p f_k(x)\right| \leq \varepsilon.
     $$
 \end{remarque}
 
 \begin{proposition}{}{}
-    $\sum_k f_k$ converge uniformément sur $I$ si et seulement si 
-    $(S_n)$ converge uniformément vers $S$ sur $I$ si et seulement si
-    $(S_n)$ est uniformément de Cauchy sur $I$ impliquant que
-    en prenant $q = p + 1, \norm{f_{p+1}}_{\infty, I} \to 0$ lorsque $p \to +\infty$.
+    La série $\sum\limits_k f_k$ converge uniformément sur $I$ si et seulement si elle est uniformément de Cauchy sur $I$.
 \end{proposition}
 
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.] Supposons la série $\sum\limits_k f_k$ uniformément convergente vers $S$ \text{sur $I$}.
+        
+        Soit $\varepsilon > 0$, il existe $N \in \N$ tel que pour tout $n \geq N$,
+        $$
+        \norm{S_n - S}_{\infty, I} \leq \dfrac{\varepsilon}{2}.
+        $$
+        Soit $p, q \geq N$, pour tout $x \in I$,
+        \begin{align*}
+            |S_p(x) - S_q(x)| &= |S_p(x) - S(x) + S(x) - S_q(x)| \\
+            &\leq |S_p(x) - S(x)| + |S(x) - S_q(x)| \\
+            &\leq \norm{S_p - S}_{\infty, I} + \norm{S_q - S}_{\infty, I} \\
+            &\leq \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon.
+        \end{align*}
+        Ainsi, la série $\sum\limits_k f_k$ est uniformément de Cauchy sur $I$.
+
+        \item[Sens réciproque.] Supposons que la série $\sum\limits_k f_k$ est uniformément de Cauchy sur $I$.
+        
+        Soit $x \in I$, la série numérique $\sum\limits_k f_k(x)$ est de Cauchy donc converge simplement vers $S(x)$ (car $\R$ est complet).
+        
+        Soit $\varepsilon > 0$, il existe $N \in \N$ tel que pour tout $p, q \geq N$, pour tout $x \in I$,
+        $$
+        |S_p(x) - S_q(x)| \leq \varepsilon.
+        $$
+        En faisant tendre $q$ vers $+\infty$, on obtient
+        $$
+        |S_p(x) - S(x)| \leq \varepsilon.
+        $$
+        Ainsi, la série $\sum\limits_k f_k$ converge uniformément sur $I$.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Si la série $\sum\limits_k f_k$ converge uniformément sur $I$, alors la suite des termes généraux $(f_k)$ converge uniformément vers $\theta$ sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    Si la série $\sum\limits_k f_k$ converge uniformément sur $I$, alors la série est uniformément de Cauchy sur $I$.
+    
+    Il existe $N \in \N$ tel que pour tout $p, q \geq N$, pour tout $x \in I$,
+    $$
+    \norm{S_p - S_q}_{\infty, I} \underset{p, q \to +\infty}{\to} 0
+    $$
+    En particulier $q = p + 1$, on a
+    $$
+    \norm{S_p - S_q}_{\infty, I} = \norm{S_p - S_{p+1}}_{\infty, I} = \norm{f_{p+1}}_{\infty, I} \underset{p \to +\infty}{\to} 0.
+    $$
+\end{demonstration}
+
 \begin{remarque}
-    Le côté intéressant est la contraposée, si \text{$\norm{f_k}_{\infty, I} \not\to 0$} lorsque $k \to +\infty$, alors la série ne converge pas uniformément sur $I$.
+    Le côté intéressant est la contraposée, si \text{$\norm{f_k}_{\infty, I} \not\to 0$} lorsque $k \to +\infty$, alors la série ne converge pas uniformément \text{sur $I$}.
 \end{remarque}
 
 \begin{definition}[(Convergence normale)]
-    On dira que la série $\sum_k f_k$ converge normalement sur $I$ si et seulement si
-    la série numérique $\sum_k \norm{f_k}_{\infty, I}$ converge.
+    On dira que la série $\sum\limits_k f_k$ converge normalement sur $I$ si et seulement si
+    la série numérique $\sum\limits_k \norm{f_k}_{\infty, I}$ converge.
 \end{definition}
 
 \begin{methode}
-    $\sum_k f_k$ converge normalement sur $I$ si il existe une suite réelle $(\alpha_n)$ telle que
-    $\norm{f_k}_{\infty, I} \leq \alpha_k$ et $\sum_k \alpha_k$ converge.
+    $\sum\limits_k f_k$ converge normalement sur $I$ si il existe une suite réelle $(\alpha_n)$ telle que
+    $\norm{f_k}_{\infty, I} \leq \alpha_k$ et $\sum\limits_k \alpha_k$ converge.
 \end{methode}
 
-\begin{theoreme}
-    Si $\sum_k f_k$ converge normalement sur $I$, alors elle converge uniformément sur $I$.
+\begin{theoreme}{}{}
+    Si $\sum\limits_k f_k$ converge normalement sur $I$, alors elle converge uniformément sur $I$.
 \end{theoreme}
 
 \begin{demonstration}
-    On sait que $\sum_k f_k$ converge normalement sur $I$, à partir d'un certain rang $N$, pour tout $n \geq N$,
-    $\norm{f_n}_{\infty, I} \leq \alpha_n$ avec $\sum_k \alpha_k$ converge.
+    Soit $\varepsilon > 0$.
 
-    Donc $\sum_k \norm{f_k}_{\infty, I}$ converge alors sa suite de sommes partielles est de Cauchy, c'est-à-dire,
+    On sait que $\sum\limits_k f_k$ converge normalement sur $I$, ainsi $\sum\limits_k \norm{f_k}_{\infty, I}$ converge donc la suite de ses sommes partielles est de Cauchy.
+    
+    Donc il existe $N \in \N$ tel que pour tout $p > q \geq N$,
     $$
-    \forall \varepsilon > 0, \exists N \in \N, \forall q \geq p \geq N, \left| \sum_{k=k_0}^p \norm{f_k}_{\infty, I} - \sum_{k=k_0}^q \norm{f_k}_{\infty, I} \right| \leq \varepsilon
-    \iff \left| \sum_{k=p+1}^q \norm{f_k}_{\infty, I} \right| \leq \varepsilon
+    |\sum\limits_{k=k_0}^p \norm{f_k}_{\infty, I} - \sum\limits_{k=k_0}^q \norm{f_k}_{\infty, I}| = \sum\limits_{k=q+1}^p \norm{f_k}_{\infty, I} \leq \varepsilon
     $$
 
-    avec cette $\varepsilon$ et ce $N$, on a
+    De plus, on a,
+
     $$
-    \left| \sum_{k=p+1}^q f_k(x) \right| \leq \sum_{k=p+1}^q |f_k(x)| \leq \sum_{k=p+1}^q \norm{f_k}_{\infty, I} \leq \varepsilon
+    \left| \sum_{k=q+1}^p f_k(x) \right| \leq \sum_{k=q+1}^p |f_k(x)| \leq \sum_{k=q+1}^p \norm{f_k}_{\infty, I} \leq \varepsilon
     $$
-    et donc $\sum_k f_k$ est uniformément de Cauchy sur $I$ donc uniformément convergente sur $I$.
+
+    car pour tout $x \in I$, $|f_k(x)| \leq \sup\limits_{x \in I}(|f_k(x)|) = \norm{f_k}_{\infty, I}$.
+
+    Ainsi, la série $\sum\limits_k f_k$ est uniformément de Cauchy sur $I$ donc converge uniformément sur $I$.
 \end{demonstration}
 
 \begin{exemple}
@@ -79,7 +130,7 @@
 
     Soit $x \in \R, |R_n(x)| = \left| \sum_{k=n+1}^\infty \dfrac{(-1)^n}{n + x^2} \right| \leq \dfrac{1}{n + 1 + x^2} \leq \dfrac{1}{n}$.
 
-    Ainsi, la suite de fonctions des restes $(R_n)$ converge uniformément vers $0$ sur $\R$ donc la série de fonctions $\sum_n f_n$ converge uniformément sur $\R$.
+    Ainsi, la suite de fonctions des restes $(R_n)$ converge uniformément vers $0$ sur $\R$ donc la série de fonctions $\sum\limits_n f_n$ converge uniformément sur $\R$.
 \end{exemple}
 
 \begin{methode}
@@ -89,23 +140,23 @@
 \begin{exemple}
     Pour tout $n \in \N^*$, on définit $\funcdef{f_n}{\R}{\R}{x}{\dfrac{cos(nx)}{n}}$.
 
-    Il n'y a pas de convergence normale car $\norm{f_n}_{\infty, \R} = \dfrac{1}{n}$ et $\sum_n \dfrac{1}{n}$ diverge.
+    Il n'y a pas de convergence normale car $\norm{f_n}_{\infty, \R} = \dfrac{1}{n}$ et $\sum\limits_n \dfrac{1}{n}$ diverge.
 
     Si $x = 2k\pi, k \in \Z, f_n(x) = \dfrac{1}{n}$ donc la série diverge en ces points.
 
     Si $x \neq 2k\pi, k \in \Z$, on pose $u_n = \dfrac{1}{n}$ et $v_n = \cos(nx)$.
 
     \begin{align*}
-        \sum_{k=1}^n \cos(kx) &= \sum_{k=1}^n \Re(e^{ikx}) \\
-        &= \Re\left( \sum_{k=1}^n (e^{ix})^k \right) \\
-        &= \Re\left( e^{ix} \dfrac{1 - (e^{ix})^n}{1 - e^{ix}} \right) \\
-        &= \Re\left( e^{ix} \dfrac{e^{i\dfrac{nx}{2}}\left( e^{-i\dfrac{nx}{2}} - e^{i\dfrac{nx}{2}} \right)}{e^{i\dfrac{x}{2}} \left( e^{-i\dfrac{x}{2}} - e^{i\dfrac{x}{2}} \right)} \right) \\
-        &= \Re\left( e^{i\dfrac{(n+1)x}{2}} \dfrac{2i \sin(\dfrac{nx}{2})}{2i \sin(\dfrac{x}{2})} \right) \\
+        \sum_{k=1}^n \cos(kx) &= \sum_{k=1}^n Re(e^{ikx}) \\
+        &= Re\left( \sum_{k=1}^n (e^{ix})^k \right) \\
+        &= Re\left( e^{ix} \dfrac{1 - (e^{ix})^n}{1 - e^{ix}} \right) \\
+        &= Re\left( e^{ix} \dfrac{e^{i\dfrac{nx}{2}}\left( e^{-i\dfrac{nx}{2}} - e^{i\dfrac{nx}{2}} \right)}{e^{i\dfrac{x}{2}} \left( e^{-i\dfrac{x}{2}} - e^{i\dfrac{x}{2}} \right)} \right) \\
+        &= Re\left( e^{i\dfrac{(n+1)x}{2}} \dfrac{2i \sin(\dfrac{nx}{2})}{2i \sin(\dfrac{x}{2})} \right) \\
         &= \dfrac{\cos(\dfrac{n+1}{2}x) \sin(\dfrac{nx}{2})}{\sin(\dfrac{x}{2})}
     \end{align*}
     ainsi $ \left| V_n \right| \leq \dfrac{1}{\left| \sin(\dfrac{x}{2}) \right|}$.
 
-    Donc par le critère d'Abel, la série $\sum_n f_n$ converge simplement sur tout intervalle $I$ ne contenant pas de $2k\pi, k \in \Z$.
+    Donc par le critère d'Abel, la série $\sum\limits_n f_n$ converge simplement sur tout intervalle $I$ ne contenant pas de $2k\pi, k \in \Z$.
 
     et on a $|R_n(x)| \leq \dfrac{2}{n \sin(\dfrac{x}{2})}$.
 
@@ -117,24 +168,12 @@
 \end{exemple}
 
 \begin{methode}
-    \begin{hotwarn}
-        Voir angle moitié et automatisme
-    \end{hotwarn}
+    On a $1 \pm e^{i\theta} = e^{i\dfrac{\theta}{2}} \left( e^{-i\dfrac{\theta}{2}} \pm e^{i\dfrac{\theta}{2}} \right)$
+
+    donc $1 - e^{i\theta} = 2i \sin(\dfrac{\theta}{2})$ et $1 + e^{i\theta} = 2\cos(\dfrac{\theta}{2})$.
+
+    $\blacktriangle$: Dans le cas où on parle de la phase et le module, si $2\cos(\dfrac{\theta}{2}) < 0$ ou $2i\sin(\dfrac{\theta}{2}) < 0$, il faut ajouter $\pi$ à la phase.
 \end{methode}
-
-\begin{proposition}{}{}
-    \begin{hotwarn}
-        à placer dans la section suites de fonctions
-    \end{hotwarn}
-
-    Soit $(f_n)$ une suite de fonctions continues sur $I$ dans $\R$.
-
-    On suppose que $(f_n) \in \mathcal{C}^k(I)$, pour tout $0 \leq j \leq k - 1$,
-
-    on a convergence simple de $(f_n^{(j)})$ vers $f_j$ sur $I$ et convergence uniforme de $(f_n^{(k)})$ vers $f_k$ sur $I$.
-
-    Alors $f$ est $\mathcal{C}^k$ et $f_j = f^{(j)}$
-\end{proposition}
 
 \begin{theoreme}{Theorème d'inversion des limites}{}
     $\sum_k f_k$ définie sur $I = [a, b]$ et converge uniformément vers $S$ sur $I$.
