@@ -8,6 +8,349 @@
 
 \hotbox{Probabilités 1}{CM 4}{\today}
 
-\section{Variable aléatoire}
+\subsection{Produit fini d'espaces probabilisés}
+
+\begin{definition}[(Pavé mesurable)]
+    Soit pour tout $i \in \llbracket 1, n \rrbracket$, une famille $(\Omega_i, \mathcal{T}_i, \mathbb{P}_i)$ d'espaces probabilisés.
+
+    On appelle \textbf{pavé mesurable} de $\Omega = \Omega_1 \times \Omega_2 \times \cdots \times \Omega_n$ tout ensemble de la forme
+    $$
+    A = A_1 \times A_2 \times \cdots \times A_n
+    $$
+    où pour tout $i \in \llbracket 1, n \rrbracket$, $A_i \in \mathcal{T}_i$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit pour tout $i \in \llbracket 1, n \rrbracket$, une famille $(\Omega_i, \mathcal{T}_i, \mathbb{P}_i)$ d'espaces probabilisés et
+    $\Omega = \Omega_1 \times \cdots \times \Omega_n$.
+
+    \begin{enumerate}
+        \item Il existe une tribu $\mathcal{T}$ appelée \textbf{tribu produit} sur $\Omega$ telle que
+        $$
+        \mathcal{T} = \bigotimes_{i=1}^n \mathcal{T}_i
+        $$
+        contenant les pavés mesurables de $\Omega$.
+
+        \item %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        Il existe une unique mesure de probabilité $\mathbb{P}$ sur $(\Omega, \mathcal{T})$ telle que pour tout pavé mesurable $A = A_1 \times A_2 \times \cdots \times A_n$ avec $A_i \in \mathcal{T}_i$,
+        $$
+        \mathbb{P}(A) = \prod_{i=1}^n \mathbb{P}_i(A_i).
+        $$
+        Elle est appelée \textbf{probabilité produit} et se note
+        $$
+        \mathbb{P} = \bigotimes_{i=1}^n \mathbb{P}_i
+        $$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{exemple}
+    On considère l'expérience de lancer un dé à 6 faces puis un dé à 5 faces. On aimerait connaître la probabilité d'obtenir un chiffre pair au premier lancer et un chiffre impair au second lancer.
+
+    On peut modéliser cette expérience par l'espace $\Omega = \{1, 2, 3, 4, 5, 6\} \times \{1, 2, 3, 4, 5\}$.
+
+    On peut alors définir les événements suivants :
+    \begin{itemize}
+        \item $A_1 = \{2, 4, 6\}$ : l'événement d'obtenir un chiffre pair au premier lancer.
+        \item $A_2 = \{1, 3, 5\}$ : l'événement d'obtenir un chiffre impair au second lancer.
+    \end{itemize}
+    L'événement d'obtenir un chiffre pair au premier lancer et un chiffre impair au second lancer est alors donné par le pavé mesurable
+    $$
+    A = A_1 \times A_2 = \{(2, 1), (2, 3), (2, 5), (4, 1), (4, 3), (4, 5), (6, 1), (6, 3), (6, 5)\}.
+    $$
+
+    En utilisant la probabilité produit, on peut calculer la probabilité de cet événement :
+    \begin{align*}
+    \mathbb{P}(A) &= \mathbb{P}_1(A_1) \cdot \mathbb{P}_2(A_2) \\
+    &= \frac{3}{6} \cdot \frac{3}{5} \\
+    &= \frac{1}{2} \cdot \frac{3}{5} \\
+    &= \frac{3}{10}.
+    \end{align*}
+\end{exemple}
+
+\begin{definition}[(Extension cylindrique)]
+    Soit pour tout $i \in \llbracket 1, n \rrbracket$, une famille $(\Omega_i, \mathcal{T}_i, \mathbb{P}_i)$ d'espaces probabilisés et
+    $\Omega = \Omega_1 \times \cdots \times \Omega_n$.
+
+    Pour tout événement "local" $A_i \in \mathcal{T}_i$, on définit son \textbf{extension cylindrique} dans $\Omega$ par
+    $$
+    \tilde{A}_i = \Omega_1 \times \cdots \times \Omega_{i-1} \times A_i \times \Omega_{i+1} \times \cdots \times \Omega_n.
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Les extensions cylindriques sont mutuellement indépendants.
+\end{proposition}
+
+\begin{demonstration}
+    Soit pour tout $i \in \llbracket 1, n \rrbracket$, une famille $(\Omega_i, \mathcal{T}_i, \mathbb{P}_i)$ d'espaces probabilisés et
+    $\Omega = \Omega_1 \times \cdots \times \Omega_n$.
+
+    Soit $(A_i)_{i=1}^n$ une famille d'événements avec $A_i \in \mathcal{T}_i$ pour tout $i \in \llbracket 1, n \rrbracket$.
+
+    On a alors
+    \begin{align*}
+        \bigcap_{i=1}^n \tilde{A}_i &= (A_1 \times \Omega_2 \times \cdots \times \Omega_n) \cap \ldots \cap (\Omega_1 \times \cdots \times \Omega_{n-1} \times A_n) \\
+        &= A_1 \times A_2 \times \cdots \times A_n \quad \text{(pavé mesurable)} \\
+    \end{align*}
+
+    En utilisant la probabilité produit, on obtient
+    \begin{align*}
+        \mathbb{P}\left( \bigcap_{i=1}^n \tilde{A}_i \right) &= \mathbb{P}(A_1 \times A_2 \times \cdots \times A_n) \\
+        &= \prod_{i=1}^n \mathbb{P}_i(A_i) \\
+        &= \prod_{i=1}^n \left( \prod_{j=0}^{i-1} \mathbb{P}_j(\Omega_j) \mathbb{P}_i(A_i) \prod_{j=i+1}^n \mathbb{P}_j(\Omega_j) \right) \\
+        &= \prod_{i=1}^n \mathbb{P}(\tilde{A_i})
+    \end{align*}
+
+    Donc les extensions cylindriques sont mutuellement indépendantes.
+\end{demonstration}
+
+\subsection{Produit infini d'espaces probabilisés}
+
+On peut s'intéresser au cas où l'on reproduit une \underline{\textbf{même}} expérience un nombre infini de fois.
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé et $\tilde{\Omega} = \bigtimes\limits_{i=1}^\infty \Omega$.
+
+    On appelle \textbf{cylindre} d'un ensemble $A$ de la forme
+    $$
+    A = A_1 \times \cdots \times A_{n_A} \times \bigtimes_{i=n+1}^\infty \Omega
+    $$
+    où $n_A \in \mathbb{N}$ et $A_i \in \mathcal{T}$ pour tout $i \in \llbracket 1, n_A \rrbracket$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé et $\tilde{\Omega} = \bigtimes\limits_{i=1}^\infty \Omega$.
+
+    Il existe une tribu $\tilde{\mathcal{T}}$ sur $\tilde{\Omega}$ appelée \textbf{tribu produit} contenant les cylindres et
+    une probabilité $\tilde{\mathbb{P}}$ sur $(\tilde{\Omega}, \tilde{\mathcal{T}})$ appelée \textbf{probabilité produit} telle que pour tout cylindre $A = A_1 \times \cdots \times A_{n_A} \times \bigotimes_{i=n+1}^\infty \Omega$,
+    $$
+    \tilde{\mathbb{P}}(A) = \prod_{i=1}^{n_A} \mathbb{P}(A_i)
+    $$
+\end{theoreme}
+
+\begin{exemple}
+    On considère l'expérience de lancer un dé à 6 faces une infinité de fois. On aimerait connaître la probabilité d'obtenir un chiffre pair au premier lancer, un chiffre impair au second lancer, un chiffre pair au troisième lancer, etc.
+
+    On peut modéliser cette expérience par l'espace $\tilde{\Omega} = \{1, 2, 3, 4, 5, 6\}^\mathbb{N}$.
+
+    On peut alors définir les événements suivants :
+    \begin{itemize}
+        \item $A_1 = \{2, 4, 6\}$ : l'événement d'obtenir un chiffre pair au premier lancer.
+        \item $A_2 = \{1, 3, 5\}$ : l'événement d'obtenir un chiffre impair au second lancer.
+        \item $A_3 = \{2, 4, 6\}$ : l'événement d'obtenir un chiffre pair au troisième lancer.
+        \item $\ldots$
+    \end{itemize}
+    L'événement d'obtenir un chiffre pair au premier lancer, un chiffre impair au second lancer, un chiffre pair au troisième lancer, etc. est alors donné par le cylindre
+    $$
+    A = A_1 \times A_2 \times A_3 \times \cdots
+    $$
+
+    En utilisant la probabilité produit, on peut calculer la probabilité de cet événement :
+    \begin{align*}
+    \tilde{\mathbb{P}}(A) &= \lim_{n \to \infty} \prod_{i=1}^n \mathbb{P}(A_i) \\
+    &= \lim_{n \to \infty} \left( \frac{3}{6} \right)^n \\
+    &= 0.
+    \end{align*}
+\end{exemple}
+
+\section{Variable aléatoire discrète}
+
+\subsection{Variable aléatoire discrète et lois de probabilité}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé. Soit $I$ un ensemble fini ou dénombrable.
+
+    On appelle \textbf{variable aléatoire discrète} une application
+    $$
+    \funcdef{X}{\Omega}{\{x_i \mid i \in I\} \subset \R}{\omega}{X(\omega)}
+    $$ 
+    telle que pour tout $i \in I, \{ \omega \in \Omega \mid X(\omega) = x_i \} \in \mathcal{T}$.
+
+    On note $\{ X = x_i \}$ cet événement.
+\end{definition}
+
+\begin{remarque}
+    $\{ X = x_i \} \in \mathcal{T}$ est appelé \textbf{condition de mesurabilité} de la variable aléatoire $X$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Les événements $\{ X = x_i \}$ forment une partition de $\Omega$.
+\end{proposition}
+
+\begin{demonstration}
+\end{demonstration}
+
+\begin{definition}
+    On appelle \textbf{loi de probabilité} d'une variable aléatoire discrète $X$, les probabilités
+    $$
+    p_i = \mathbb{P}(\{ X = x_i \}) \quad \text{pour tout } i \in I
+    $$
+\end{definition}
+
+\begin{definition}
+    On appelle \textbf{fonction de répartition} d'une variable aléatoire discrète $X$, la fonction
+    $$
+    F_X : \R \to [0, 1], \quad F_X(x) = \mathbb{P}(\{ X \leq x \}) = \sum_{i \in I, x_i \leq x} p_i
+    $$
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soient $X$, $Y$ deux variables aléatoires discrètes et $\funcdef{f}{\R}{\R}{x}{f(x)}$ et $\funcdef{g}{\R^2}{\R}{(x, y)}{g(x, y)}$ deux fonctions.
+
+    Alors les applications
+    $$
+    f(X): \omega \mapsto f(X(\omega))
+    $$
+    et
+    $$
+    g(X, Y): \omega \mapsto g(X(\omega), Y(\omega))
+    $$
+    sont des variables aléatoires discrètes.
+\end{theoreme}
+
+\begin{demonstration}
+\end{demonstration}
+
+\subsection{Lois discrètes classiques}
+
+\begin{definition}[(Loi de Bernoulli)]
+    Soit un espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Soit $A \in \mathcal{T}$ un événement avec $\mathbb{P}(A) = p$.
+
+    On appelle variable aléatoire de \textbf{loi de Bernoulli} de paramètre $p$ la variable aléatoire discrète $X$ définie par
+    $$
+    X(\omega) = \begin{cases}
+    1 & \text{si } \omega \in A \\
+    0 & \text{sinon}
+    \end{cases}
+    $$
+
+    La loi de probabilité de $X$ est donnée par
+    $$
+    \mathbb{P}(\{ X = 1 \}) = \mathbb{P}(A) = p
+    $$
+    et
+    $$
+    \mathbb{P}(\{ X = 0 \}) = \mathbb{P}(\Omega \setminus A) = 1 - p
+    $$
+
+    On note $X \sim \mathcal{B}(1, p)$ ou encore $X \hookrightarrow \mathcal{B}(1, p)$.
+\end{definition}
+
+\begin{remarque}
+    On utilise cette loi souvent pour modéliser des expériences à deux issues, succès ou échec.
+\end{remarque}
+
+\begin{definition}[(Loi binomiale)]
+    Soit $n \in \mathbb{N}^*$ et $p \in [0, 1]$.
+    Soient $\Omega, \mathcal{T}, \mathbb{P}$ et $(\Omega', \mathcal{T}', \mathbb{P}')$ deux espaces probabilisés tels que $\Omega = \bigotimes_{i=1}^n \Omega'$
+
+    On définit sur $\Omega'$ une variable aléatoire de loi de Bernoulli de paramètre $p$ et on note $X_i$ cette variable aléatoire pour tout $i \in \llbracket 1, n \rrbracket$.
+
+    On définit alors la variable aléatoire $X$ sur $\Omega$ par
+    $$
+    X(\omega_1, \ldots, \omega_n) = \sum_{i=1}^n X_i(\omega_i) \quad \text{pour tout } (\omega_1, \ldots, \omega_n) \in \Omega
+    $$
+
+    On dit que $X$ suit une \textbf{loi binomiale} de paramètres $n$ et $p$ et on note $X \sim \mathcal{B}(n, p)$ (ou encore $X \hookrightarrow \mathcal{B}(n, p)$).
+
+    La loi de probabilité de $X$ est donnée par
+    $$
+    \mathbb{P}(\{ X = k \}) = \binom{n}{k} p^k (1-p)^{n-k} \quad \text{pour tout } k \in \llbracket 0, n \rrbracket
+    $$
+\end{definition}
+
+\begin{remarque}
+    La loi binomiale modélise le nombre de succès dans une séquence de $n$ expériences indépendantes identiques, chacune ayant une probabilité de succès $p$.
+\end{remarque}
+
+\begin{definition}[(Loi de Poisson)]
+    Soit $\lambda > 0$ un paramètre.
+
+    On dit qu'une variable aléatoire $X$ suit une \textbf{loi de Poisson} de paramètre $\lambda$ et on note $X \sim \mathcal{P}(\lambda)$ (ou encore $X \hookrightarrow \mathcal{P}(\lambda)$) si sa loi de probabilité est donnée par
+    $$
+    \mathbb{P}(\{ X = k \}) = e^{-\lambda} \frac{\lambda^k}{k!} \quad \text{pour tout } k \in \mathbb{N}.
+    $$
+\end{definition}
+
+\begin{remarque}
+    La loi de Poisson modélise le nombre d'événements rares qui se produisent dans un intervalle de temps ou d'espace donné, lorsque ces événements sont indépendants et ont une probabilité constante de se produire.
+\end{remarque}
+
+\subsection{Espérance et variance d'une v.a. discrète}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé et $X$ une variable aléatoire discrète prenant les valeurs $x_i$ avec $i \in I \subset \mathbb{N}$.
+
+    On appelle \textbf{espérance} de $X$ la quantité
+    $$
+    \mathbb{E}[X] = \sum_{i \in I} x_i \mathbb{P}(\{ X = x_i \})
+    $$
+
+    \underline{Cette valeur doit être finie pour que l'espérance soit définie.}
+
+    Lorsque $\mathbb{E}[X] = 0$, on dit que $X$ est une \textbf{variable aléatoire centrée}.
+\end{definition}
+
+\begin{remarque}
+    La somme dans la définition de l'espérance ne doit pas dépendre de l'ordre dans lequel on la calcule. Ainsi on doit avoir une convergence absolue.
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Soient $X$, $Y$ deux variables aléatoires discrètes sur le même espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    $X$ et $Y$ possèdent une espérance.
+
+    Alors $X + Y$ en possède une et on a
+    $$
+    \mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y].
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+\end{demonstration}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$ et $\funcdef{f}{\R}{\R}{x}{f(x)}$ une fonction telles que $Y:= f(X)$.
+    $X$ possède une espérance.
+    
+    Alors $Y$ en possède une si et seulement si
+    $$
+    \sum_{i \in I} |f(x_i)| \mathbb{P}(\{ X = x_i \}) < +\infty
+    $$
+    
+    On a alors
+    $$
+    \mathbb{E}[Y] = \sum_{i \in I} f(x_i) \mathbb{P}(\{ X = x_i \})
+    $$
+\end{definition}
+
+\begin{demonstration}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    $X$ possède une espérance.
+
+    Alors pour tout $a, b \in \R$, la variable aléatoire $Y:= aX + b$ possède une espérance et on a
+    $$
+    \mathbb{E}[Y] = a \mathbb{E}[X] + b.
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $X_1, \cdots, X_n$ des variables aléatoires discrètes sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    $X_1, \cdots, X_n$ possèdent une espérance.
+
+    Alors pour tout $\lambda_1, \cdots, \lambda_n \in \R$, la variable aléatoire $Y:= \sum_{i=1}^n \lambda_i X_i$ possède une espérance et on a
+    $$
+    \mathbb{E}[Y] = \sum_{i=1}^n \lambda_i \mathbb{E}[X_i].
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+\end{demonstration}
 
 \end{document}
