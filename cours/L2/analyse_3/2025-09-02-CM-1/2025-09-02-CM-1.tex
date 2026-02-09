@@ -7,13 +7,14 @@
 
 \hotbox{Analyse 3}{CM 1}{\today}
 
-\section{Rappels}
+\subsection{Rappels}
 
 \begin{definition}
-    Soit $\xn{u}$ une suite réelle (ou complexe).\n
-    $(u_n)$ est une \textbf{suite de Cauchy} si:
+    Soit $\xn{u}$ une suite réelle (ou complexe).
+
+    $(u_n)$ est une \textbf{suite de Cauchy} si et seulement si
     $$
-    \forall \epsilon > 0, \exists N \in \N, \forall p, q \geq N, |u_p - u_q| < \eps
+    \forall \varepsilon > 0,\; \exists N \in \N,\; \forall p, q \geq N, \quad |u_p - u_q| < \varepsilon
     $$
 \end{definition}
 
@@ -22,39 +23,44 @@
 \end{proposition}
 
 \begin{demonstration}
-    \begin{itemize}
-        \item $(\implies)$\n
-            Si $\xn{u}$ converge vers $l \in \R$ (ou $\C$), alors:
+    \begin{description}
+        \item[sens direct.]
+            Si $\xn{u}$ converge vers $l \in \R$, on a
             $$
-            \forall \eps > 0, \exists N \in \N, \forall n \geq N, |u_n - l| < \eps
+            \forall \varepsilon > 0,\; \exists N \in \N,\; \forall n \geq N,\quad |u_n - l| < \dfrac{\varepsilon}{2}
             $$
-            Soit $\eta \geq 0$ on pose $\eps = \dfrac{\eta}{2}$, on a $|u_n - l| \lt \dfrac{\eta}{2}$\n
             Donc pour $p, q \geq N$:
             $$
-            |u_p - u_q| = |u_p - l + l - u_q| \leq |u_p - l| + |u_q - l| < \dfrac{\eta}{2} + \dfrac{\eta}{2} = \eta
+            |u_p - u_q| = |u_p - l + l - u_q| \leq |u_p - l| + |u_q - l| < \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon
             $$
 
-        \item
-            \begin{hotwarn}
-                Ce sens est plus compliqué à démontrer.
-            \end{hotwarn}
-    \end{itemize}
+        \item[sens réciproque.]
+            Ce sens est plus compliqué à démontrer.
+    \end{description}
 \end{demonstration}
 
-\section{Chapitre 1 - Série numériques et complexes}
+\section{Série numériques et complexes}
+
+Dans cette section, on considèra que ce qui fonctionne pour $\R$ fonctionne aussi pour $\C$.
 
 \subsection{Définitions et premières propriétés}
 
 \begin{definition}
-    On appelle série numérique (ou complexe) la donnée de deux suite réelles (ou complexes)
+    On appelle série numérique (ou complexe) la donnée de deux suite réelles
     $(u_n, S_n)_{n \in \N}$ telles que $S_n = \sum\limits_{k=0}^{n}u_k$.\n
-    On dit que la série converge si il existe $S \in \R$ (ou $\mathbb{C}$) tel que $S_n \rightarrow S$.\n
+    On dit que la série converge si il existe $S \in \R$ (ou $\mathbb{C}$) tel que $S_n \underset{n \to +\infty}{\rightarrow} S$.\n
     Sinon la série est dite divergente.
 
-    La suite $(S_n)$ est appelée \textbf{suite des sommes partielles}.\n
-    $u_n$ le \textbf{terme général}.\n
-    En cas de convergence $S$ est appelée \textbf{somme de la série}.\n
-    $(S - S_n)_{n \in \N}$ est appelée \textbf{suite des restes}.
+    \begin{itemize}[label=--]
+        \item 
+        La suite $(S_n)$ est appelée \textbf{suite des sommes partielles}.
+        \item
+        $u_n$ est appelé \textbf{terme général}.
+        \item
+        En cas de convergence $S$ est appelée \textbf{somme de la série}.
+        \item
+        $(S - S_n)_{n \in \N}$ est appelée \textbf{suite des restes}.
+    \end{itemize}
 \end{definition}
 
 \begin{remarque}
@@ -67,8 +73,9 @@
 \end{remarque}
 
 \begin{exemple}
-    $(\sum\limits_{n=0}^{+\infty}n)$\n
-    On a $S_n = \dfrac{n(n+1)}{2} \rightarrow +\infty$ donc la série diverge.
+    $(\sum\limits_{n=0}^{+\infty}n)$
+
+    On a $S_n = \sum\limits_{k=0}^{n} k = \dfrac{n(n+1)}{2} \rightarrow +\infty$ donc la série diverge.
 \end{exemple}
 
 \begin{exemple}
@@ -81,7 +88,7 @@
     On a $\dfrac{1}{n(n-1)} = \dfrac{1}{n-1} - \dfrac{1}{n}$ (par décomposition en éléments simples)\n
     ainsi
     \begin{align*}
-        S_n &= \sum\limits_{n=2}^{N}\dfrac{1}{n(n-1)} = \sum\limits_{n=2}^{N}\dfrac{1}{n-1} - \sum\limits_{n=2}^{N}\dfrac{1}{n}\\
+        S_N &= \sum\limits_{n=2}^{N}\dfrac{1}{n(n-1)} = \sum\limits_{n=2}^{N}\dfrac{1}{n-1} - \sum\limits_{n=2}^{N}\dfrac{1}{n}\\
         &= \sum\limits_{n=1}^{N-1}\dfrac{1}{n} - \sum\limits_{n=2}^{N}\dfrac{1}{n} = 1 - \dfrac{1}{N} \rightarrow 1
     \end{align*}
     Donc la série converge.
@@ -137,9 +144,15 @@
     Or on a vu que la série harmonique diverge (vers $+\infty$) et est croissante, donc $S_N^\alpha \rightarrow +\infty$.\n
 \end{demonstration}
 
-\begin{proposition}{}{}
+\begin{theoreme}{}{}
     Si une série converge, alors son terme général tend vers 0.
-\end{proposition}
+\end{theoreme}
+
+\begin{demonstration}
+    Si la série $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ converge,
+    alors la suite des sommes partielles $(S_n)$ converge donc est de Cauchy.\n
+    D'où $S_{n+1} - S_n = u_{n+1} \rightarrow 0$.
+\end{demonstration}
 
 \begin{methode}
     C'est la contraposée qui est utile\n
@@ -147,12 +160,6 @@
 
     C'est le premier critère qu'on utilise pour étudier la nature d'une série.
 \end{methode}
-
-\begin{demonstration}
-    Si la série $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ converge,
-    alors la suite des sommes partielles $(S_n)$ converge donc est de Cauchy.\n
-    D'où $S_{n+1} - S_n = u_{n+1} \rightarrow 0$.
-\end{demonstration}
 
 \begin{remarque}
     La réciproque est fausse.\n
@@ -167,7 +174,7 @@
 
 \subsection{Série géométrique et produit dérivés}
 
-On connait : pour tout $x \in \C, x \neq 1$ et tout $n \in \N$:
+On connait : pour tout $x \in \R, x \neq 1$ et tout $n \in \N$:
 $$
 \sum\limits_{k=0}^{n} x^k = \dfrac{1 - x^{n+1}}{1 - x} = \dfrac{1}{1 - x} - \dfrac{x^{n+1}}{1 - x}
 $$
@@ -183,17 +190,35 @@ Si $|x| \lt 1$, alors $x^{n+1} \rightarrow 0$ donc la série converge et $\sum\l
 \end{proposition}
 
 \begin{demonstration}
-    En dérivant la somme de la série géométrique, on trouve:
+    En dérivant la somme partielle $S_n := \sum\limits_{k=0}^{n} x^k = \dfrac{1 - x^{n+1}}{1 - x}$, on trouve:
+    $$
+    S_n'(x) = \sum\limits_{k=1}^{n}kx^{k-1}
+    $$
+    mais aussi
     \begin{align*}
-        \sum\limits_{n=1}^{+\infty}nx^{n-1} &= \dfrac{1}{(1 - x)^2} - \dfrac{(n+1)x^n(1 - x) + x^{n + 1}}{(1 - x)^2}\\
-        &= \dfrac{1}{(1 - x)^2} - \dfrac{(n+1)x^n}{1 - x} - \dfrac{x^{n + 1}}{(1 - x)^2}\\
+        S_n'(x) &= \dfrac{-(n + 1)x^n(1 - x) + (1 - x^{n+1})}{(1 - x)^2} \\
+        &= \dfrac{1}{(1 - x)^2} - \dfrac{(n+1)x^n(1 - x) + x^{n + 1}}{(1 - x)^2} \\
+        &= \dfrac{1}{(1 - x)^2} - \dfrac{(n+1)x^n}{1 - x} - \dfrac{x^{n + 1}}{(1 - x)^2}
+    \end{align*}
+
+    Ainsi
+    \begin{align*}
+        \sum\limits_{k=1}^{N}kx^{k-1} &= \dfrac{1}{(1 - x)^2} - \dfrac{(n+1)x^n}{1 - x} - \dfrac{x^{n + 1}}{(1 - x)^2}\\
         \implies \sum\limits_{n=1}^{+\infty}nx^{n} &= \dfrac{x}{(1 - x)^2} - \dfrac{(n+1)x^{n+1}}{1 - x} - \dfrac{x^{n + 2}}{(1 - x)^2}
     \end{align*}
-    Si $|x| \lt 1$, alors $x^{n+1} \rightarrow 0$ et $x^{n+2} \rightarrow 0$ donc la série converge et
-    $$
-    \sum\limits_{n=1}^{+\infty}nx^{n} = \dfrac{x}{(1 - x)^2}
-    $$
-    Dans l'autre cas ($|x| \geq 1$), la série diverge.
+
+    \begin{description}
+        \item[Si $|x| < 1$:]
+            $\dfrac{(n+1)x^{n+1}}{1 - x} \underset{n \to +\infty}{\longrightarrow} 0$ et $\dfrac{x^{n + 2}}{(1 - x)^2} \underset{n \to +\infty}{\longrightarrow} 0$ donc la série converge et
+            $$
+            \sum\limits_{n=1}^{+\infty}nx^{n} = \dfrac{x}{(1 - x)^2}
+            $$
+
+        \item[Si $|x| > 1$:]
+            $\dfrac{(n+1)x^{n+1}{1 - x}} \underset{n \to +\infty}{\longrightarrow} +\infty$ et $\dfrac{x^{n + 2}}{(1 - x)^2} \underset{n \to +\infty}{\longrightarrow} +\infty$ donc la série diverge.
+        \item[Si $|x| = 1$:]
+            $S_n'(x) = \sum\limits_{k=1}^{n}k = \dfrac{n(n+1)}{2} \underset{n \to +\infty}{\longrightarrow} +\infty$ donc la série diverge.
+    \end{description}
 \end{demonstration}
 
 \begin{proposition}{Primitive de série géométrique}{}
