@@ -25,7 +25,7 @@
     donc en multipliant par -1 une série à termes négatifs on obtient une série à termes positifs.
 \end{remarque}
 
-\begin{proposition}{Critère de comparaison pour les séries atp}{}
+\begin{theoreme}{Critère de comparaison pour les séries atp}{}
     Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ et $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ deux séries atp telles que
     $$
     \exists N \in \mathbb{N}, \forall n \geq N, u_n \leq v_n
@@ -35,7 +35,7 @@
         \item Si $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ converge alors $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ converge.
         \item Si $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ diverge alors $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ diverge.
     \end{enumerate}
-\end{proposition}
+\end{theoreme}
 
 \begin{demonstration}
     On a par hypothèse $\forall n \in \N, u_n \leq v_n$ (en négligeant les premiers termes).
@@ -59,6 +59,12 @@
     Le critère ne nous dit rien sur la somme de la série, ça nous dit juste si elle converge ou diverge.
 \end{remarque}
 
+\begin{methode}
+    Quand on a une une série à terme général $u_n$ qui tend vers 0, et que le produit par $n^\alpha$ tend vers 0 aussi (par exemple dans le cas d'une croissance comparée avec un exponentielle), alors la série converge.
+
+    En effet, $n^\alpha u_n = \dfrac{u_n}{\frac{1}{n^\alpha}} \underset{n \rightarrow +\infty}{\longrightarrow} 0$ et $\dfrac{1}{n^\alpha}$ est le terme général d'une série de Riemann convergente, donc par le critère de comparaison, la série de terme général $u_n$ converge.
+\end{methode}
+
 \begin{definition}
     Deux suites $\left( u_n \right)$ et $\left( v_n \right)$ sont dites équivalentes si
     $$
@@ -66,17 +72,49 @@
     $$
 \end{definition}
 
-\begin{proposition}{Critère par équivalents pour les séries atp}{}
+\begin{theoreme}{Critère par équivalents pour les séries atp}{}
     Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ et $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ deux séries atp telles que
     $$
     u_n \sim v_n
     $$
     Alors les deux séries sont de même nature (convergentes ou divergentes en même temps).
-\end{proposition}
 
-\begin{hotwarn}
-    Démonstration à faire
-\end{hotwarn}
+    De plus, si les deux séries convergent alors
+    $$
+    \sum\limits_{k=n+1}^{+\infty} u_k \sim \sum\limits_{k=n+1}^{+\infty} v_k
+    $$
+    et si les deux séries divergent alors
+    $$
+    \sum\limits_{k=0}^{n} u_k \sim \sum\limits_{k=0}^{n} v_k
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    On suppose que $u_n \sim v_n$ et que $v_n \geq 0$ pour $n$ assez grand.
+
+    Comme $u_n \sim v_n$, on a aussi $\lim \dfrac{u_n}{v_n} = 1$,
+    donc il existe un $n_0$ tel que pour $n \geq n_0, \quad \frac{1}{2} v_n \leq u_n \leq 2 v_n$.
+
+    \begin{description}
+        \item[Si $v_n$ converge.]
+        Par le critère de comparaison, la série de terme général $u_n$ converge également.
+
+        De plus, $u_n \sim v_n \iff \forall \varepsilon > 0, \exists N \in \N, \forall n \geq N, (1 - \varepsilon) v_n \leq u_n \leq (1 + \varepsilon) v_n$.
+
+        En sommant pour $n$ allant de $N$ à $+\infty$, on a
+        $$
+        (1 - \varepsilon) \sum\limits_{k=n+1}^{+\infty} v_k \leq \sum\limits_{k=n+1}^{+\infty} u_k \leq (1 + \varepsilon) \sum\limits_{k=n+1}^{+\infty} v_k
+        $$
+
+        Donc $\sum\limits_{k=n+1}^{+\infty} u_k \sim \sum\limits_{k=n+1}^{+\infty} v_k$.
+        
+        \item[Si $v_n$ diverge.]
+        Par le critère de comparaison, la série de terme général $u_n$ diverge également.
+        \begin{hotwarn}
+            Trop de calculs à faire, je ne les fais pas.
+        \end{hotwarn}
+    \end{description}
+\end{demonstration}
 
 \begin{exemple}
     Étudier la convergence de la série $\left( \sum\limits_{n=1}^{+\infty} \ln\left( \dfrac{n+1}{n} \right) \right)$.
@@ -85,5 +123,44 @@
     Or la série $\left(\sum\limits_{n=1}^{+\infty} \dfrac{1}{n}\right)$ est la série harmonique qui est divergente.
     Donc par le critère par équivalents, la série $\sum\limits_{n=1}^{+\infty} \ln\left( \dfrac{n+1}{n} \right)$ diverge également.
 \end{exemple}
+
+\begin{theoreme}{Critère de négligeabilité}{}
+    Soit $\left( \sum\limits_{n=0}^{+\infty} u_n \right)$ et $\left( \sum\limits_{n=0}^{+\infty} v_n \right)$ deux séries atp telles que
+    $$
+    u_n = o(v_n)
+    $$
+    Alors,
+
+    \begin{itemize}
+        \item Si $\sum\limits_n v_n$ converge alors $\sum\limits_{n} u_n$ converge et $\sum\limits_{k = n + 1}^{+\infty} u_k = o\left( \sum\limits_{k = n + 1}^{+\infty} v_k \right)$.
+        \item Si $\sum\limits_n v_n$ diverge alors $\sum\limits_{k=0}^{n} u_k = o\left( \sum\limits_{k=0}^{n} v_k \right)$.
+    \end{itemize}
+\end{theoreme}
+
+\begin{demonstration}
+    On suppose que $u_n = o(v_n)$ et que $v_n \geq 0$ pour $n$ assez grand.
+
+    Comme $u_n = o(v_n)$, on a aussi $\lim \dfrac{u_n}{v_n} = 0$,
+    donc il existe un $n_0$ tel que pour $n \geq n_0, \quad u_n \leq v_n$.
+
+    \begin{description}
+        \item[Si $v_n$ converge.]
+        Par le critère de comparaison, la série de terme général $u_n$ converge également.
+
+        De plus, $u_n = o(v_n) \iff \forall \varepsilon > 0, \exists N \in \N, \forall n \geq N, u_n \leq \varepsilon v_n$.
+
+        En sommant pour $n$ allant de $N$ à $+\infty$, on a
+        $$
+        0 \leq \sum\limits_{k=n+1}^{+\infty} u_k \leq \varepsilon \sum\limits_{k=n+1}^{+\infty} v_k
+        $$
+
+        Donc $\sum\limits_{k=n+1}^{+\infty} u_k = o\left( \sum\limits_{k=n+1}^{+\infty} v_k \right)$.
+        
+        \item[Si $v_n$ diverge.]\n
+        \begin{hotwarn}
+            Trop de calculs à faire, je ne les fais pas.
+        \end{hotwarn}
+    \end{description}
+\end{demonstration}
 
 \end{document}

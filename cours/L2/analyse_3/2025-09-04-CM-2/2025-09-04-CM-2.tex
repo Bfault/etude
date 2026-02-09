@@ -87,24 +87,31 @@ On peut fabriquer des séries à partir des formules de Taylor.\n
     \left(\sum\limits_{n=0}^{+\infty} u_n\right) + \left(\sum\limits_{n=0}^{+\infty} v_n\right) = \left(\sum\limits_{n=0}^{+\infty} (u_n + v_n)\right)
     $$
 
-    On définit la multiplication par un scalaire $\lambda \in \K$ par:
+    On définit la multiplication par un scalaire $\lambda \in \R$ par:
     $$
     \lambda \left(\sum\limits_{n=0}^{+\infty} u_n\right) = \left(\sum\limits_{n=0}^{+\infty} \lambda u_n\right)
     $$
 \end{definition}
 
 \begin{proposition}{Espace vectoriel des séries numériques convergentes}{}
-    Soit $E = \left\{ \left(\sum\limits_{n=0}^{+\infty} u_n\right) | u_n \in \K, \left(\sum\limits_{n=0}^{+\infty} u_n\right) \text{ converge} \right\}$.
+    Soit $E = \left\{ \left(\sum\limits_{n=0}^{+\infty} u_n\right) \mid u_n \in \R, \left(\sum\limits_{n=0}^{+\infty} u_n\right) \text{ converge} \right\}$.
 
-    alors $E$ est un $\K$-espace vectoriel (pour $\K = \R$ ou $\C$) et
+    alors $E$ est un $\R$-espace vectoriel et
     $$
-    L: E \rightarrow \K, \left(\sum\limits_{n=0}^{+\infty} u_n\right) \mapsto \sum\limits_{n=0}^{+\infty} u_n
+    L: E \rightarrow \R, \left(\sum\limits_{n=0}^{+\infty} u_n\right) \mapsto \sum\limits_{n=0}^{+\infty} u_n
     $$
     est linéaire.
 \end{proposition}
 
-\begin{hotwarn}
-    Démonstration à faire, mais c'est facile.
-\end{hotwarn}
+\begin{demonstration}
+    Soit $\left(\sum\limits_{n=0}^{+\infty} u_n\right)$ et $\left(\sum\limits_{n=0}^{+\infty} v_n\right)$ deux séries convergentes, alors la série $\left(\sum\limits_{n=0}^{+\infty} (u_n + v_n)\right)$ converge également (car la suite des sommes partielles est la somme de deux suites convergentes) et
+    $$
+    L\left(\left(\sum\limits_{n=0}^{+\infty} u_n\right) + \left(\sum\limits_{n=0}^{+\infty} v_n\right)\right) = L\left(\sum\limits_{n=0}^{+\infty} (u_n + v_n)\right) = \sum\limits_{n=0}^{+\infty} (u_n + v_n) = \sum\limits_{n=0}^{+\infty} u_n + \sum\limits_{n=0}^{+\infty} v_n
+    $$
+    De même, pour $\lambda \in \R$,
+    $$
+    L\left(\lambda \left(\sum\limits_{n=0}^{+\infty} u_n\right)\right) = L\left(\sum\limits_{n=0}^{+\infty} \lambda u_n\right) = \sum\limits_{n=0}^{+\infty} \lambda u_n = \lambda \sum\limits_{n=0}^{+\infty} u_n
+    $$
+\end{demonstration}
 
 \end{document}
