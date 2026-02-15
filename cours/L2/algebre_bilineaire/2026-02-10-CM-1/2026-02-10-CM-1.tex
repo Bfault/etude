@@ -1,0 +1,265 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 February 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 1}{\today}
+
+\section{Formes bilinéaires et formes quadratiques}
+
+Dans cette section, nous ne considérons par $\K$ que les corps commutatifs de caractéristique différente de $2$.
+
+Soit $E$ et $F$ des $\K$-espaces vectoriels. On notera $\mathcal{L}(E, F)$ l'espace des applications linéaires de $E$ dans $F$.
+Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son dual.
+
+\begin{definition}
+    Soit $E$, $F$ et $G$ des $\K$-espaces vectoriels et $\varphi: E \times F \to G$ une application.
+
+    On dit que l'application $\varphi$ est une \textbf{application bilinéaire} lorsque, pour tout $u, u' \in E$, $v, v' \in F$ et $\lambda \in \K$, on a
+    \begin{align*}  
+        \varphi(u + \lambda u', v) = \varphi(u, v) + \lambda \varphi(u', v) \\
+        \varphi(u, v + \lambda v') = \varphi(u, v) + \lambda \varphi(u, v') \\
+    \end{align*}
+\end{definition}
+
+\begin{proposition}{}{}
+    L'application $\varphi: E \times F \to G$ est bilinéaire si et seulement si,
+    $$
+    \forall v \in F, \quad \varphi(\cdot, v) \in \mathcal{L}(E, G) \quad \text{et} \quad \forall u \in E, \quad \varphi(u, \cdot) \in \mathcal{L}(F, G)
+    $$
+    où pour tout $v \in F$,
+    $$
+    \funcdef{\varphi(\cdot, v)}{E}{G}{u}{\varphi(u, v)}
+    $$
+    et pour tout $u \in E$,
+    $$
+    \funcdef{\varphi(u, \cdot)}{F}{G}{v}{\varphi(u, v)}
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    À faire
+\end{demonstration}
+
+\begin{definition}
+    Soit $\varphi: E \times F \to \K$ une application bilinéaire.
+    \begin{itemize}[label=--]
+        \item On dit que $\varphi$ est une \textbf{forme bilinéaire} sur $E \times F$.
+        \item Lorsque, de plus $E = F$ on dit que $\varphi$ est une \textbf{forme bilinéaire} sur $E$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{}
+    Soient $E$ et $F$ deux $\K$-espaces vectoriels et soit $\varphi: E \times F \to \K$ une forme bilinéaire. Alors, les applications
+    $$
+    \funcdef{g_\varphi}{E}{F^*}{u}{\varphi(u, \cdot)} \quad \text{et} \quad \funcdef{d_\varphi}{F}{E^*}{v}{\varphi(\cdot, v)}
+    $$
+    sont linéaires.
+\end{proposition}
+
+\begin{demonstration}
+    On montre la proposition pour $g_\varphi$, la démonstration étant symétrique pour $d_\varphi$.
+
+    Il est calir que $g_\varphi$ associe à tout $u \in E$ une application linéaire de $F$ dans $\K$. De plus
+    $$
+    g_\varphi(u + \lambda v) = \varphi(u + \lambda v, \cdot)
+    $$
+    et donc
+    $$
+    \forall w \in F, \varphi(u + \lambda v, w) = \varphi(u, w) + \lambda \varphi(v, w)
+    $$
+    et donc
+    $$
+    g_\varphi(u + \lambda v) = g_\varphi(u) + \lambda g_\varphi(v)
+    $$
+    Donc $g_\varphi$ est linéaire.
+\end{demonstration}
+
+\subsection{Espace des formes bilinéaires}
+
+\begin{proposition}{}{}
+    L'ensemble des formes bilinéaires sur $E \times F$ est un $\K$-espace vectoriel, noté $\mathcal{L}_2(E, F)$,
+    isomorphe à $\mathcal{L}(E, F^*)$ et à $\mathcal{L}(F, E^*)$.
+\end{proposition}
+
+\begin{demonstration}
+    Si on définit la somme et le produit externe par un scalaire comme suit
+    ($\varphi_1$ et $\varphi_2$ sont des formes bilinéaires, $\alpha \in \R$):
+    \begin{align*}
+        (\varphi_1 + \varphi_2)(x, y) = \varphi_1(x, y) + \varphi_2(x, y) \\
+        (\alpha \varphi_1)(x, y) = \alpha \varphi_1(x, y)
+    \end{align*}
+    Il est aisé de vérifier que ces deux opérations font de $\mathcal{L}_2(E)$ un $\K$-espace vectoriel.
+\end{demonstration}
+
+\subsection{Écriture matricielle des formes bilinéaires}
+
+\begin{remarque}
+    On suppose que $E$ est de dimension finie $p \in \N^*$ et $F$ est de dimension finie $n \in \N^*$.
+
+    Comme $dim \mathcal{L}(E, F^*) = pn$, on a donc donc que $dim \mathcal{L}_2(E, F) = pn$.
+\end{remarque}
+
+\begin{definition}
+    Soit $\mathscr{B} = (e_1, \dots, e_p)$ une base de $E$ et $\mathscr{B'} = (e_1', \dots, e_n')$ une base de $F$.
+    Soit $\varphi$ une forme bilinéaire sur $E \times F$. Soit $M = (\varphi(e_i, e_j'))_{1 \leq i \leq p, 1 \leq j \leq n}$.
+    On dit que cette matrice est la matrice de $\varphi$ dans les bases $\mathscr{B}$ et $\mathscr{B'}$.
+    On note alors $M = Mat_{\varphi; \mathscr{B}, \mathscr{B'}} \in \mathcal{M}_\K(p, n)$
+\end{definition}
+
+En reprenant les mêmes notations que dans la définition précédente,
+soit $u = \sum_{i=1}^p x_i e_i$ et $v = \sum_{j=1}^n y_j e_j'$.
+Soit $\varphi$ une forme bilinéaire sur $E \times F$. Soit $M = Mat_{\varphi; \mathscr{B}, \mathscr{B'}} \in \mathcal{M}_\K(p, n)$
+$X = (x_1, \dots, x_p)^T$ et $Y = (y_1, \dots, y_n)^T$. Les matrices colonnes des coordonnées de $u$ dans $\mathscr{B}$
+et $v$ dans $\mathscr{B'}$, alors on a
+$$
+\varphi(u, v) = X^T M Y = Y^T X^T M
+$$
+en effet
+$$
+\varphi(u, v) = \varphi(\sum_{i=1}^p x_i e_i, \sum_{j=1}^n y_j e_j') \underset{\text{bilinéarité}}{=} \sum_{i=1}^p \sum_{j=1}^n x_i y_j \varphi(e_i, e_j') = \sum_{i=1}^p \sum_{j=1}^n x_i y_j m_{i, j}
+$$
+D'autre part
+\begin{align*}
+    &(X^T M)_j = \sum_{k=1}^p (X^T)_k m_{k, j} = \sum_{k=1}^p x_k m_{k, j} \\
+    \implies &X^T M Y = \sum_{l=1}^n (X^T M)_l y_l = \sum_{k=1}^p \sum_{l=1}^n x_k y_l m_{k, l}
+\end{align*}
+
+De plus, si $B \in \mathcal{M}_\K(p, n)$ vérifie la même égalité $\varphi(x, y) = X^T B Y$, alors pour tout
+couple $(i, j) \in \llbracket 1, p \rrbracket \times \llbracket 1, n \rrbracket$, on a
+$$
+m_{i, j} = \varphi(e_i, e_j') = E_i^T M E_j' 
+$$
+où $E_i = \begin{pmatrix}
+    0 \\
+    \vdots \\
+    1 \quad \leftarrow \text{ i}\\
+    \vdots \\
+    0
+\end{pmatrix}$ et $E_j' = \begin{pmatrix}
+    0 \\
+    \vdots \\
+    1 \quad \leftarrow \text{ j}\\
+    \vdots \\
+    0
+\end{pmatrix}$
+Ainsi
+$$
+\sum_{k=1}^p \sum_{l=1}^n (E_i^T)_k b_{k, l} (E_j')_l = b_{i, j}
+$$
+
+\begin{proposition}{}{}
+    Avec les mêmes hypothèses que ce dessus, les bases $\mathscr{B}$ de $E$ et $\mathscr{B'}$ de $F$.
+
+    L'application de $\mathcal{L}_2(E, F)$ sur $\mathcal{M}_\K(p, n)$ définie par $\varphi \mapsto Mat_{\varphi; \mathscr{B}, \mathscr{B'}}$ est un isomorphisme de $\K$-espaces vectoriels.
+\end{proposition}
+
+Formule de changement de base avec les mêmes notations et mêmes hypothèses que ci-dessus.
+
+Soit $\varphi$ une forme bilinéaire sur $E \times F$. Soient $\mathscr{B}$ et $\mathscr{B'}$ deux bases de $E$,
+soient $\mathscr{B}_1$ et $\mathscr{B'}_1$ deux bases de $F$. En notant $P$ la matrice de changement de base de $\mathscr{B}$ vers $\mathscr{B}_1$ et $Q$ la matrice de changement de base de $\mathscr{B'}$ vers $\mathscr{B'}_1$, alors
+$$
+Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1} = P^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Q
+$$
+
+%%%%%%
+
+Soient $x \in E$ de vecteur colonne de coordonnées $X$ dans la base $\mathscr{B}$ et $X_1$ dans la base $\mathscr{B}_1$
+et $y \in F$ de vecteur colonne de coordonnées $Y$ dans la base $\mathscr{B'}$ et $Y_1$ dans la base $\mathscr{B'}_1$.
+
+On a $X = P X_1$ et $Y = Q Y_1$. Alors on a
+$$
+\varphi(x, y) = X^T A Y = (P X_1)^T A (Q Y_1) = X_1^T P^T A Q Y_1
+$$
+
+\subsection{Rang d'une forme bilinéaire}
+
+\begin{definition}
+    On suppose que $E$ et $F$ sont de dimension finie. Soit $\varphi$ une forme bilinéaire sur $E \times F$. 
+    Alors les applications linéaires $g_\varphi: E \to F^*$ et $d_\varphi: F \to E^*$ sont de même rang, appelé le \textbf{rang} de $\varphi$ et noté $rg(\varphi)$.
+
+    De plus, le rang de $\varphi$ est égal au rang de la matrice de $\varphi$ dans n'importe quelle base de $E$ et n'importe quelle base de $F$.
+\end{definition}
+
+\subsection{Formes bilinéaires non dégénérées}
+
+\begin{definition}
+    Une forme bilinéaire $\varphi$ sur $E \times F$ est dite \textbf{non dégénérée} lorsque les applications linéaires $g_\varphi$ et $d_\varphi$ sont injectives. Une forme bilinéaire $\varphi$ sur $E \times F$ qui n'est pas dégénérée est dit \textbf{dégénérée}.
+\end{definition}
+
+\begin{proposition}{}{}
+    On suppose que les deux espaces vectoriels $E$ et $F$ sont de dimension finie.
+    Soit $\varphi \in \mathcal{L}_2(E, F)$ et $M$ la matrice de $\varphi$ dans une base de $E$ et une base de $F$. Alors, les propriétés suivantes sont équivalentes:
+    \begin{enumerate}
+        \item $\varphi$ est non dégénérée
+        \item $g_\varphi$ est bijective
+        \item $d_\varphi$ est bijective
+        \item pour tout $u \in E$ on a $\varphi(u, v) = 0$ pour tout $v \in F$ alors $u = 0$ et $dim E = dim F$
+        \item pour tout $v \in F$ on a $\varphi(u, v) = 0$ pour tout $u \in E$ alors $v = 0$ et $dim E = dim F$
+        \item $rang(\varphi) = dim E = dim F$
+        \item $dim E = dim F$ et $det(M) \neq 0$
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Applications bilinéaires symétriques et antisymétriques}
+
+\begin{definition}
+    Soit $E$ et $G$ des $\K$-espaces vectoriels et soit $\varphi: E \times E \to G$.
+    \begin{itemize}[label=--]
+        \item $\varphi$ est dite \textbf{symétrique} lorsque, pour tout $(u, v) \in E \times E$, on a $\varphi(u, v) = \varphi(v, u)$.
+        \item $\varphi$ est dite \textbf{antisymétrique} lorsque, pour tout $(u, v) \in E \times E$, on a $\varphi(u, v) = -\varphi(v, u)$.
+        \item $\varphi$ est dite \textbf{alternée} lorsque, pour tout $u \in E$, on a $\varphi(u, u) = 0$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{}
+    Si de plus, $\varphi$ est bilinéaire, alors $\varphi$ est alternée si et seulement si $\varphi$ est antisymétrique.
+    (car la caractéristique de $\K$ est différente de $2$)
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.]
+        Supposons que $\varphi$ est antisymétrique. Soient $x, y \in E$. Alors
+        \begin{hotwarn}
+            À faire
+        \end{hotwarn}
+
+        \item[Sens réciproque.]
+        Supposons que $\varphi$ est alternée. Soient $x, y \in E$. Alors
+        \begin{align*}
+            &\varphi(x + y, x + y) = 0 \\
+            \implies &\varphi(x, x) + \varphi(y, y) + 2\varphi(x, y) = 0 \\
+            \implies &\varphi(x, y) = -\varphi(y, x)
+        \end{align*}
+        Donc $\varphi$ est antisymétrique.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    L'ensemble des formes bilinéaires symétriques (resp. antisymétriques) sur $E$ est un espace vectoriel, noté $\mathcal{C}_2(E)$ (resp. $\mathcal{A}_2(E)$), isomorphe à un sous-espace de $\mathcal{L}(E, E^*)$.
+    donc
+    $$
+    \mathcal{L}_2(E) = \mathscr{S}_2(E) \oplus \mathscr{A}_2(E)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\varphi \in \mathcal{L}_2(E)$.
+
+    $$
+    \varphi(x, y) = \frac{1}{2}(\varphi(x, y) + \varphi(y, x)) + \frac{1}{2}(\varphi(x, y) - \varphi(y, x))
+    $$
+
+    Soit $\varphi_e \in \mathscr{S}_2(E) \cap \mathscr{A}_2(E)$. Alors, pour tout $x, y \in E$, on a
+    \begin{align*}
+        &\varphi_e(x, y) = \varphi_e(y, x) \\
+        &\varphi_e(x, y) = -\varphi_e(y, x)
+    \end{align*}
+    Donc $\varphi_e(x, y) = 0$ pour tout $x, y \in E$ et $\varphi_e$ est la forme bilinéaire nulle.
+\end{demonstration}
+
+\end{document}

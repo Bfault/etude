@@ -1,0 +1,63 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 February 2026}
+
+\begin{document}
+
+\hotbox{Probabilités 1}{CM 5}{\today}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    On dit que $X$ possède \textbf{un moment d'ordre 2} si $\mathbb{E}(X^2)$ existe.
+
+    On appelle \textbf{variance} de $X$ la quantité $\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Si $\mathbb{E}[X^2]$ existe, alors $\mathbb{E}[X]$ existe également.
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Si $X$ possède une variance, alors pour tout $a, b \in \mathbb{R}$, $aX + b$ possède une variance et
+    $$
+    \mathrm{Var}(aX + b) = a^2 \mathrm{Var}(X)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    $\mathbb{E}[aX + b] = a \mathbb{E}[X] + b$ et
+    \begin{align*}
+        \mathrm{Var}(aX + b) &= \sum_{i \in I}\left( a x_i + b - (a \mathbb{E}[X] + b) \right)^2 \mathbb{P}(\{ X = x_i \}) \\
+        &= a^2 \sum_{i \in I} (x_i - \mathbb{E}[X])^2 \mathbb{P}(\{ X = x_i \}) \\
+        &= a^2 \mathrm{Var}(X) 
+    \end{align*}
+\end{demonstration}
+
+\begin{proposition}{Formule de König-Huygens}{}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Si $X$ possède une variance, alors
+    $$
+    \mathrm{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Si $X$ possède une variance, alors $\mathrm{Var}(X) = 0 \iff X \equiv \mathbb{E}[X]$.
+\end{proposition}
+
+\begin{demonstration}
+\end{demonstration}
+
+\end{document}

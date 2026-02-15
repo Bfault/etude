@@ -1,0 +1,244 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{13 February 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 2}{\today}
+
+\subsection{Orthogonalité}
+
+\begin{definition}
+    Soient $E$ et $G$ des espaces vectoriels sur un corps $K$.
+
+    Soit $\varphi: E \times E \to G$ une application bilinéaire symétrique ou antisymétrique.
+
+    Soient $u, v \in E$, on dira que $u$ et $v$ sont \textbf{$\varphi$-orthogonaux} (ou simplement orthogonaux)
+    et on notera $u \perp v$ si $\varphi(u, v) = 0$.
+\end{definition}
+
+\begin{proposition}{}{}
+    $u \perp_\varphi v \iff v \perp_\varphi u$
+\end{proposition}
+
+\begin{definition}
+    Soit $A \subseteq E$ et $\varphi: E \times E \to G$ une application bilinéaire symétrique ou antisymétrique.
+
+    On définit le \textbf{$A$-orthogonal} de $E$ par
+    $$
+    A^\perp = \{ v \in E \mid \forall u \in A, \varphi(u, v) = 0 \}
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    $A^\perp$ est un sous-espace vectoriel de $E$.
+\end{proposition}
+
+\begin{demonstration}
+    $A^\perp \subset E$ et $0_E \in A^\perp$.
+
+    Soient $u, v \in E$
+
+    \begin{align*}
+        \varphi(u, 0_E) &= \varphi(u, 0_E \times v) \\
+        &= 0\varphi(u, v) \\
+        &= 0
+    \end{align*}
+
+    Soient $u, v, w \in A^\perp$ et $\lambda \in K$
+
+    \begin{align*}
+        \varphi(u, v + \lambda w) &= \varphi(u, v) + \lambda \varphi(u, w) \\
+        &= 0_G + \lambda 0_G \\
+        &= 0_G
+    \end{align*}
+
+    Donc $v + \lambda w \in A^\perp$.
+    Donc $A^\perp$ est un sev de $E$.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    $\varphi$ une application bilinéaire symétrique.
+    Soient $A \subseteq E$ et $B \subseteq E$. On a alors
+    \begin{enumerate}
+        \item $(0_E)^\perp = E$
+        \item $A \subset B \implies B^\perp \subset A^\perp$
+        \item $A \subset A^{\perp\perp}$
+        \item $A^\perp = (\text{Vect A})^\perp$
+        \item $(A \cup B)^\perp = A^\perp \cap B^\perp$
+        \item $(A \cap B)^\perp \supset A^\perp \cup B^\perp$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1.]
+        $(0_E)^\perp = \{v \in E, \varphi(v, 0_E) = 0_G\} = E$
+    
+        \item[2.]
+        Soit $u \in B^\perp$, alors $\forall v \in B, \varphi(u, v) = 0_G$.
+        mais comme $A \subset B$, alors $\forall v \in A, \varphi(u, v) = 0_G$.
+        Donc $u \in A^\perp$. et $B^\perp \subset A^\perp$.
+
+        \item[3.]
+        Soit $w \in A$ et $u \in A^\perp$, alors $\varphi(w, u) = 0_G$.
+        Donc $w \in (A^{\perp})^\perp$ donc $A \subset (A^{\perp})^\perp$.
+
+        \item[4.]
+        $A \subset \text{Vect}(A)$, donc $\text{Vect}(A)^\perp \subset A^\perp$.
+
+        Soit $u \in A^\perp$, alors $\forall v \in A, \varphi(u, v) = 0_G$.
+        Soit $w \in \text{Vect}(A)$, alors $w = \sum_{i=1}^n \lambda_i v_i$ avec $v_i \in A$ et $\lambda_i \in K$.
+        Donc $\varphi(u, w) = \sum_{i=1}^n \lambda_i \varphi(u, v_i) = 0_G$.
+        Donc $u \in \text{Vect}(A)^\perp$ et $A^\perp \subset \text{Vect}(A)^\perp$.
+
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $E$ un espace vectoriel de dimension finie $n$ et $\varphi: E \times E \to \K$ une forme bilinéaire symétrique.
+
+    Soit $F$ un sev de $E$ de dimension $p$, alors
+    \begin{enumerate}
+        \item $\dim F + \dim F^\perp \geq \dim E$
+        \item $\text{rang}(\varphi) = \dim E - \dim E^\perp$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1.]
+        On suppose que $\dim F = p < n$.
+
+        Soit $\{e_1, \dots, e_p\}$ une base de $F$.
+        \begin{align*}
+            F^\perp &= \{v \in E \mid \varphi(u, v) = 0_G, \forall u \in F\} \\
+            &= \{v \in E \mid \varphi(e_i, v) = 0_G, \forall i \in \{1, \dots, p\}\}
+        \end{align*}
+
+        $$
+        F^\perp = \{v \in E \mid \begin{pmatrix}
+            \varphi(e_1, v) \\
+            \vdots \\
+            \varphi(e_p, v)
+        \end{pmatrix}
+        \}
+        $$
+        $F^\perp$ est défini par $p$ équations linéaires, donc on aura $F^\perp \geq n - p$,
+        donc $\dim F + \dim F^\perp \geq p + n - p \geq n$.
+
+        \item[2.]
+        $\text{rang}(\varphi) = \text{rang}(g_\varphi)$ et $E^\perp = \{ v \in E \mid \varphi(u, v) = 0_\K, \forall u \in E\} = \ker(g_\varphi)$.
+
+        Par le théorème du rang, on a $\text{rang}(g_\varphi) + \dim \ker(g_\varphi) = \dim E$, donc $\text{rang}(\varphi) = \dim E - \dim E^\perp$.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $E$ un espace vectoriel de dimension finie $n$ et $\varphi: E \times E \to \K$ une forme bilinéaire symétrique et non dégénérée.
+
+    Soit $F$ un sev de $E$ de dimension $p$,
+    Alors
+    \begin{enumerate}
+        \item $\dim F + \dim F^\perp = n$
+        \item $F = (F^\perp)^\perp$
+        \item $(A^\perp)^\perp = A$ pour tout $A \subseteq E$
+        \item $(F \cap G)^\perp = F^\perp + G^\perp$ pour tout $G$ sev de $E$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1.]
+        
+        \item[2.]
+        On applique le 1 à $F^\perp$, on a $\dim F^\perp + \dim (F^\perp)^\perp = n$.
+        et par le 3 du résultat précédent, on a $F \subset (F^\perp)^\perp$.
+        Donc $F = (F^\perp)^\perp$.
+        
+        \item[3.]
+        par 4 du résultat précédent, on a $A^\perp = (\text{Vect}(A))^\perp$
+        
+        \item[4.]
+    \end{description}
+\end{demonstration}
+
+\begin{definition}[(Isotropie)]
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+    
+    On dira que $u \in E$ est \textbf{isotrope} si $\varphi(u, u) = 0_\K$.
+
+    Le sous espace $F$ de $E$ est dit \textbf{isotrope} si l'une des deux conditions suivantes est vérifiée:
+    \begin{itemize}
+        \item $\varphi|_{F \times F}$ est dégénérée
+        \item $F \cap F^\perp \neq \{0_E\}$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+
+    On dira que $F$ est \textbf{non isotrope} si l'une des deux assertions suivantes est vérifiée:
+    \begin{itemize}
+        \item $\varphi|_{F \times F}$ est non dégénérée
+        \item $F \cap F^\perp = \{0_E\}$
+    \end{itemize}
+
+    et si $\dim E < +\infty$, alors $E = F \oplus F^\perp$.
+
+    $F$ sera dit \textbf{totalement isotrope} si l'une des deux assertions suivantes est vérifiée:
+    \begin{itemize}
+        \item $\varphi|_{F \times F} = 0$
+        \item $F \subset F^\perp$
+    \end{itemize}
+\end{definition}
+
+\subsection{Familles orthogonales et orthonormales}
+
+\begin{definition}
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+
+    Soit $\{E_i\}_{i \in I}$ une famille de sev de $E$ et $\{v_i\}_{i \in J}$ une famille d'éléments de $E$.
+
+    On dit que $E$ est \textbf{somme direct $\varphi$-orthogonale} des $E_i$ que l'on note $E = \underset{\bigoplus_{i \in I}}{\perp} E_i$ 
+    si tout élément de $E_i$ est orthogonal à tout élément de $E_j$ pour $i \neq j$.
+
+    On dira que la famille $\{v_i\}_{i \in J}$ est \textbf{$\varphi$-orthogonale} (ou simplement orthogonale) si $\varphi(v_i, v_j) = 0_\K$ pour $i \neq j$.
+
+    On dira que la famille $\{v_i\}_{i \in J}$ est \textbf{$\varphi$-orthonormale} (ou simplement orthonormale) si elle est orthogonale et que $\varphi(v_i, v_i) = 1_\K$ pour tout $i \in J$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+
+    Soit $\{u_i\}_{i \in I}$ une famille orthogonale d'éléments de $E$ dont aucun des éléments n'est isotrope.
+
+    Alors $\{u_i\}_{i \in I}$ est une famille libre.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\{\lambda_i\}_{i \in I}$ une famille d'éléments de $K$.
+
+    $$
+    \sum_{i \in I} \lambda_i u_i = 0_\K
+    $$
+
+    $\forall j \in I$, on a
+    \begin{align*}
+        &\varphi\left(\sum_{i \in I} \lambda_i u_i, u_j\right) = 0_\K \\
+        \iff &\sum_{i \in I} \lambda_i \varphi(u_i, u_j) = 0_\K \\
+        \iff &\lambda_j \varphi(u_j, u_j) = 0 \\
+        \iff &\lambda_j = 0
+    \end{align*}
+    Donc la famille $\{u_i\}_{i \in I}$ est libre.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+
+    Toute famille orthonormale d'éléments de $E$ est libre.
+\end{corollaire}
+
+\end{document}

@@ -307,6 +307,35 @@ On peut s'intéresser au cas où l'on reproduit une \underline{\textbf{même}} e
 \end{theoreme}
 
 \begin{demonstration}
+    % Soit $X$ et $Y$ deux variables aléatoires discrètes sur le même espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+
+    % Pour $x \in X(\Omega)$ et $y \in Y(\Omega)$, on note $A_{x, y} = \{ \omega \in \Omega \mid X(\omega) = x, Y(\omega) = y \}$.
+
+    % Les familles d'événements $(A_{x, y}_{(x, y) \in X(\Omega) \times Y(\Omega)})$ est exhaustive.
+
+    % On a pour tout $x \in X(\Omega)$
+
+    % $$
+    % \{ X = x \} = \bigcup_{y \in Y(\Omega)} A_{x, y}
+    % $$
+
+    % De même, pour tout $y \in Y(\Omega)$
+
+    % $$
+    % \{ Y = y \} = \bigcup_{x \in X(\Omega)} A_{x, y}
+    % $$
+
+    % Ainsi, on a $P(\{X = x\}) = \sum_{y \in Y(\Omega)} P(A_{x, y})$ et $P(\{Y = y\}) = \sum_{x \in X(\Omega)} P(A_{x, y}) = \sum_{x \in X(\Omega)} P(\{X = x\} \cap \{Y = y\})$.
+
+    % Soit $Z = X + Y$. On a alors une variable aléatoire discrète, on a
+    % \begin{enumerate}[label=(\roman*)]
+    %     \item $\mathbb{E}[Z]$ existe si et seulement si $\sum_{z \in Z(\Omega)} |z| \mathbb{P}(\{ Z = z \}) < +\infty$.
+    %     \item $\mathbb{E}[Z] = \sum_{z \in Z(\Omega)} z \mathbb{P}(\{ Z = z \}) = \sum_{(x, y) \in X(\Omega) \times Y(\Omega)} (x + y) \mathbb{P}(A_{x, y}) = \sum \sum (x + y) \mathbb{P}(A_{x, y})$
+    % \end{enumerate}
+
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
 \end{demonstration}
 
 \begin{definition}
@@ -324,9 +353,6 @@ On peut s'intéresser au cas où l'on reproduit une \underline{\textbf{même}} e
     $$
 \end{definition}
 
-\begin{demonstration}
-\end{demonstration}
-
 \begin{corollaire}{}{}
     Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
     $X$ possède une espérance.
@@ -338,6 +364,11 @@ On peut s'intéresser au cas où l'on reproduit une \underline{\textbf{même}} e
 \end{corollaire}
 
 \begin{demonstration}
+    \begin{align*}
+        \mathbb{E}[aX + b] &= \sum_{i \in I} (a x_i + b) \mathbb{P}(\{ X = x_i \}) \\
+        &= a \sum_{i \in I} x_i \mathbb{P}(\{ X = x_i \}) + b \sum_{i \in I} \mathbb{P}(\{ X = x_i \}) \\
+        &= a \mathbb{E}[X] + b
+    \end{align*}
 \end{demonstration}
 
 \begin{corollaire}{}{}
