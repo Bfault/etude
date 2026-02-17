@@ -25,7 +25,7 @@ Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son du
     \end{align*}
 \end{definition}
 
-\begin{proposition}{}{}
+\begin{proposition}{}{bililiniearite}
     L'application $\varphi: E \times F \to G$ est bilinéaire si et seulement si,
     $$
     \forall v \in F, \quad \varphi(\cdot, v) \in \mathcal{L}(E, G) \quad \text{et} \quad \forall u \in E, \quad \varphi(u, \cdot) \in \mathcal{L}(F, G)
@@ -41,7 +41,31 @@ Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son du
 \end{proposition}
 
 \begin{demonstration}
-    À faire
+    \begin{description}
+        \item[Sens direct.]
+        On suppose que $\varphi$ est bilinéaire. Soit $u \in E$. Alors, pour tout $v, v' \in F$ et $\lambda \in \K$, on a
+        \begin{align*}
+            \varphi(u, \cdot)(v + \lambda v') &= \varphi(u, v + \lambda v') \\
+            &\underset{\text{bilinéarité}}{=} \varphi(u, v) + \lambda \varphi(u, v') \\
+            &= \varphi(u, \cdot)(v) + \lambda \varphi(u, \cdot)(v')
+        \end{align*}
+        Donc $\varphi(u, \cdot)$ est linéaire. Même raisonnement pour $\varphi(\cdot, v)$.
+
+        \item[Sens réciproque.]
+        On suppose que pour tout $u \in E$, $v \in F$, $\varphi(\cdot, v) \in \mathcal{L}(E, G)$ et $\varphi(u, \cdot) \in \mathcal{L}(F, G)$. Soient $u, u' \in E$, $v, v' \in F$ et $\lambda \in \K$. Alors
+        \begin{align*}
+            \varphi(u + \lambda u', v) &= \varphi(\cdot, v)(u + \lambda u') \\
+            &= \varphi(\cdot, v)(u) + \lambda \varphi(\cdot, v)(u') \\
+            &= \varphi(u, v) + \lambda \varphi(u', v)
+        \end{align*}
+        et
+        \begin{align*}
+            \varphi(u, v + \lambda v') &= \varphi(u, \cdot)(v + \lambda v') \\
+            &= \varphi(u, \cdot)(v) + \lambda \varphi(u, \cdot)(v') \\
+            &= \varphi(u, v) + \lambda \varphi(u, v')
+        \end{align*}
+        Donc $\varphi$ est bilinéaire.
+    \end{description}
 \end{demonstration}
 
 \begin{definition}
@@ -52,7 +76,7 @@ Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son du
     \end{itemize}
 \end{definition}
 
-\begin{proposition}{}{}
+\begin{proposition}{}{gliniearite}
     Soient $E$ et $F$ deux $\K$-espaces vectoriels et soit $\varphi: E \times F \to \K$ une forme bilinéaire. Alors, les applications
     $$
     \funcdef{g_\varphi}{E}{F^*}{u}{\varphi(u, \cdot)} \quad \text{et} \quad \funcdef{d_\varphi}{F}{E^*}{v}{\varphi(\cdot, v)}
@@ -61,21 +85,15 @@ Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son du
 \end{proposition}
 
 \begin{demonstration}
-    On montre la proposition pour $g_\varphi$, la démonstration étant symétrique pour $d_\varphi$.
+    On suppose que $\varphi$ est une forme bilinéaire sur $E \times F$. Soient $u, u' \in E$, $v, v' \in F$ et $\lambda \in \K$. Alors
+    \begin{align*}
+        g_\varphi(u + \lambda u') &= \varphi(u + \lambda u', \cdot) \\
+        &= \varphi(u, \cdot) + \lambda \varphi(u', \cdot) \quad \text{(*)} \\
+        &= g_\varphi(u) + \lambda g_\varphi(u')
+    \end{align*}
+    (*) est vérifié par la proposition \ref{propal:bililiniearite}.
 
-    Il est calir que $g_\varphi$ associe à tout $u \in E$ une application linéaire de $F$ dans $\K$. De plus
-    $$
-    g_\varphi(u + \lambda v) = \varphi(u + \lambda v, \cdot)
-    $$
-    et donc
-    $$
-    \forall w \in F, \varphi(u + \lambda v, w) = \varphi(u, w) + \lambda \varphi(v, w)
-    $$
-    et donc
-    $$
-    g_\varphi(u + \lambda v) = g_\varphi(u) + \lambda g_\varphi(v)
-    $$
-    Donc $g_\varphi$ est linéaire.
+    Donc $g_\varphi$ est linéaire. Même raisonnement pour $d_\varphi$.
 \end{demonstration}
 
 \subsection{Espace des formes bilinéaires}
@@ -86,13 +104,24 @@ Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son du
 \end{proposition}
 
 \begin{demonstration}
-    Si on définit la somme et le produit externe par un scalaire comme suit
-    ($\varphi_1$ et $\varphi_2$ sont des formes bilinéaires, $\alpha \in \R$):
-    \begin{align*}
-        (\varphi_1 + \varphi_2)(x, y) = \varphi_1(x, y) + \varphi_2(x, y) \\
-        (\alpha \varphi_1)(x, y) = \alpha \varphi_1(x, y)
-    \end{align*}
-    Il est aisé de vérifier que ces deux opérations font de $\mathcal{L}_2(E)$ un $\K$-espace vectoriel.
+    On définie l'application $\funcdef{\Phi}{\mathcal{L}_2(E, F)}{\mathcal{L}(E, F^*)}{\varphi}{g_\varphi}$.
+
+    \begin{enumerate}
+        \item $\Phi$ est bilinéaire, d'après la proposition \ref{propal:bililiniearite} $\varphi(u, \cdot)$ est linéaire pour tout $u \in E$.
+        \item $\Phi$ est bilinéaire, d'après la proposition \ref{propal:gliniearite} $g_\varphi$ est linéaire pour tout $\varphi \in \mathcal{L}_2(E, F)$.
+        
+        \item
+        \begin{align*}
+            \Phi(\varphi) = 0 &\implies \forall u \in E, \quad g_\varphi(u) = 0 \\
+            &\implies \forall (u, v) \in E \times F, \quad \varphi(u, v) = 0 \\
+            &\implies \varphi = 0
+        \end{align*}
+        Donc $\Phi$ est injective.
+        \begin{hotwarn}
+            Faire la surjectivité
+        \end{hotwarn}
+    \end{enumerate}
+    On a donc que $\Phi$ est un isomorphisme de $\K$-espaces vectoriels. De même, on peut construire un isomorphisme de $\mathcal{L}_2(E, F)$ vers $\mathcal{L}(F, E^*)$.
 \end{demonstration}
 
 \subsection{Écriture matricielle des formes bilinéaires}
