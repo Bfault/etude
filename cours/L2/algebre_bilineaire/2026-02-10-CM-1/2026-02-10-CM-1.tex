@@ -98,6 +98,9 @@ Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son du
 
 \subsection{Espace des formes bilinéaires}
 
+Dans cette section, on considère que $E$ et $F$ sont des $\K$-espaces vectoriels de dimension finie $p$ et $n$ respectivement et leurs bases $\mathscr{B} = (e_1, \dots, e_p)$ et $\mathscr{B'} = (e_1', \dots, e_n')$ respectivement.
+\vspace{1cm}
+
 \begin{proposition}{}{}
     L'ensemble des formes bilinéaires sur $E \times F$ est un $\K$-espace vectoriel, noté $\mathcal{L}_2(E, F)$,
     isomorphe à $\mathcal{L}(E, F^*)$ et à $\mathcal{L}(F, E^*)$.
@@ -129,80 +132,99 @@ Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son du
 \begin{remarque}
     On suppose que $E$ est de dimension finie $p \in \N^*$ et $F$ est de dimension finie $n \in \N^*$.
 
-    Comme $dim \mathcal{L}(E, F^*) = pn$, on a donc donc que $dim \mathcal{L}_2(E, F) = pn$.
+    Comme $dim \mathcal{L}(E, F^*) = pn$, on a $dim \mathcal{L}_2(E, F) = pn$.
 \end{remarque}
 
 \begin{definition}
     Soit $\mathscr{B} = (e_1, \dots, e_p)$ une base de $E$ et $\mathscr{B'} = (e_1', \dots, e_n')$ une base de $F$.
-    Soit $\varphi$ une forme bilinéaire sur $E \times F$. Soit $M = (\varphi(e_i, e_j'))_{1 \leq i \leq p, 1 \leq j \leq n}$.
+    Soit $\varphi \in \mathcal{L}_2(E, F)$. Soit $M = (\varphi(e_i, e_j'))_{1 \leq i \leq p, 1 \leq j \leq n}$.
     On dit que cette matrice est la matrice de $\varphi$ dans les bases $\mathscr{B}$ et $\mathscr{B'}$.
     On note alors $M = Mat_{\varphi; \mathscr{B}, \mathscr{B'}} \in \mathcal{M}_\K(p, n)$
+    $$
+    \begin{pmatrix}
+        \varphi(e_1, e_1') & \varphi(e_1, e_2') & \dots & \varphi(e_1, e_n') \\
+        \varphi(e_2, e_1') & \varphi(e_2, e_2') & \dots & \varphi(e_2, e_n') \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \varphi(e_p, e_1') & \varphi(e_p, e_2') & \dots & \varphi(e_p, e_n')
+    \end{pmatrix}
+    $$
 \end{definition}
 
-En reprenant les mêmes notations que dans la définition précédente,
-soit $u = \sum_{i=1}^p x_i e_i$ et $v = \sum_{j=1}^n y_j e_j'$.
-Soit $\varphi$ une forme bilinéaire sur $E \times F$. Soit $M = Mat_{\varphi; \mathscr{B}, \mathscr{B'}} \in \mathcal{M}_\K(p, n)$
-$X = (x_1, \dots, x_p)^T$ et $Y = (y_1, \dots, y_n)^T$. Les matrices colonnes des coordonnées de $u$ dans $\mathscr{B}$
-et $v$ dans $\mathscr{B'}$, alors on a
-$$
-\varphi(u, v) = X^T M Y = Y^T X^T M
-$$
-en effet
-$$
-\varphi(u, v) = \varphi(\sum_{i=1}^p x_i e_i, \sum_{j=1}^n y_j e_j') \underset{\text{bilinéarité}}{=} \sum_{i=1}^p \sum_{j=1}^n x_i y_j \varphi(e_i, e_j') = \sum_{i=1}^p \sum_{j=1}^n x_i y_j m_{i, j}
-$$
-D'autre part
-\begin{align*}
-    &(X^T M)_j = \sum_{k=1}^p (X^T)_k m_{k, j} = \sum_{k=1}^p x_k m_{k, j} \\
-    \implies &X^T M Y = \sum_{l=1}^n (X^T M)_l y_l = \sum_{k=1}^p \sum_{l=1}^n x_k y_l m_{k, l}
-\end{align*}
+\begin{theoreme}{Représentation matricielle}{}
+    Soient $E$ et $F$ deux $\K$-espaces vectoriels de dimension finie $p$ et $n$ respectivement.
+    Soient $\mathscr{B} = (e_1, \dots, e_p)$ une base de $E$ et $\mathscr{B'} = (e_1', \dots, e_n')$ une base de $F$.
 
-De plus, si $B \in \mathcal{M}_\K(p, n)$ vérifie la même égalité $\varphi(x, y) = X^T B Y$, alors pour tout
-couple $(i, j) \in \llbracket 1, p \rrbracket \times \llbracket 1, n \rrbracket$, on a
-$$
-m_{i, j} = \varphi(e_i, e_j') = E_i^T M E_j' 
-$$
-où $E_i = \begin{pmatrix}
-    0 \\
-    \vdots \\
-    1 \quad \leftarrow \text{ i}\\
-    \vdots \\
-    0
-\end{pmatrix}$ et $E_j' = \begin{pmatrix}
-    0 \\
-    \vdots \\
-    1 \quad \leftarrow \text{ j}\\
-    \vdots \\
-    0
-\end{pmatrix}$
-Ainsi
-$$
-\sum_{k=1}^p \sum_{l=1}^n (E_i^T)_k b_{k, l} (E_j')_l = b_{i, j}
-$$
+    Pour toute forme bilinéaire $\varphi \in \mathcal{L}_2(E, F)$, il existe une \textbf{unique} matrice $M \in \mathcal{M}_\K(p, n)$ telle que:
+    \begin{itemize}
+        \item pour tout $i \in \llbracket 1, p \rrbracket$ et $j \in \llbracket 1, n \rrbracket$, on a $m_{i, j} = \varphi(e_i, e_j')$.
+        \item pour tout $u \in E$ et $v \in F$, on a
+        
+        $$\varphi(u, v) = X^T M Y = Y^T X^T M$$
+
+        où $X$ et $Y$ sont les vecteurs colonnes des coordonnées de $u$ dans $\mathscr{B}$ et de $v$ dans $\mathscr{B'}$ respectivement.
+    \end{itemize}
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $\varphi \in \mathcal{L}_2(E, F)$. Soient $\mathscr{B} = (e_1, \dots, e_p)$ une base de $E$ et $\mathscr{B'} = (e_1', \dots, e_n')$ une base de $F$.
+    \begin{description}
+        \item[Existence.] Soient $u \in E$ et $v \in F$. On décompose $u$ et $v$ dans leurs bases respectives, alors
+        $$
+        u = \sum_{i=1}^p x_i e_i \quad \text{et} \quad v = \sum_{j=1}^n y_j e_j'
+        $$
+        Par la bilinéarité de $\varphi$, on a
+        \begin{align*}
+            \varphi(u, v) &= \varphi(\sum_{i=1}^p x_i e_i, \sum_{j=1}^n y_j e_j') \\
+            &= \sum_{i=1}^p \sum_{j=1}^n x_i y_j \varphi(e_i, e_j')
+        \end{align*}
+        En posant $m_{i, j} = \varphi(e_i, e_j')$ pour tout $i \in \llbracket 1, p \rrbracket$ et $j \in \llbracket 1, n \rrbracket$, on a
+        $$
+        \varphi(u, v) = \sum_{i=1}^p x_i \left( \sum_{j=1}^n m_{i, j} y_j \right) = \sum_{i=1}^p x_i (M Y)_i = X^T M Y
+        $$
+
+        \item[Unicité.] Supposons qu'il existe une matrice $B \in \mathcal{M}_\K(p, n)$ telle que pour tout $u \in E$ et $v \in F$, on a $\varphi(u, v) = X^T B Y$.
+        Ainsi, pour tout $i \in \llbracket 1, p \rrbracket$ et $j \in \llbracket 1, n \rrbracket$, on a
+        \begin{align*}
+            m_{i, j} = \varphi(e_i, e_j') &= E_i^T M E_j' \\
+            &= E_i^T B E_j' \\
+            &= b_{i, j}
+        \end{align*}
+        où $E_i$ et $E_j'$ sont les vecteurs colonnes de coordonnées de $e_i$ dans $\mathscr{B}$ et de $e_j'$ dans $\mathscr{B'}$ respectivement. Donc $M = B$.
+    \end{description}
+\end{demonstration}
 
 \begin{proposition}{}{}
-    Avec les mêmes hypothèses que ce dessus, les bases $\mathscr{B}$ de $E$ et $\mathscr{B'}$ de $F$.
-
     L'application de $\mathcal{L}_2(E, F)$ sur $\mathcal{M}_\K(p, n)$ définie par $\varphi \mapsto Mat_{\varphi; \mathscr{B}, \mathscr{B'}}$ est un isomorphisme de $\K$-espaces vectoriels.
 \end{proposition}
 
-Formule de changement de base avec les mêmes notations et mêmes hypothèses que ci-dessus.
+\begin{theoreme}{Formule de changement de base}{}
+    Soit $\varphi$ une forme bilinéaire sur $E \times F$.
+    On considère:
+    \begin{itemize}
+        \item $\mathscr{B}$ et $\mathscr{B'}$ les bases "anciennes" de $E$ et $F$ respectivement
+        \item $\mathscr{B}_1$ et $\mathscr{B'}_1$ les bases "nouvelles" de $E$ et $F$ respectivement
+    \end{itemize}
+    Soient $P$ la matrice de passage de $\mathscr{B}$ vers $\mathscr{B}_1$ et $Q$ la matrice de passage de $\mathscr{B'}$ vers $\mathscr{B'}_1$. Alors
+    $$
+    Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1} = P^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Q
+    $$
+\end{theoreme}
 
-Soit $\varphi$ une forme bilinéaire sur $E \times F$. Soient $\mathscr{B}$ et $\mathscr{B'}$ deux bases de $E$,
-soient $\mathscr{B}_1$ et $\mathscr{B'}_1$ deux bases de $F$. En notant $P$ la matrice de changement de base de $\mathscr{B}$ vers $\mathscr{B}_1$ et $Q$ la matrice de changement de base de $\mathscr{B'}$ vers $\mathscr{B'}_1$, alors
-$$
-Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1} = P^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Q
-$$
+\begin{demonstration}
+    Par définition de $P$ et $Q$, on a $X = P X_1$ et $Y = Q Y_1$.
 
-%%%%%%
-
-Soient $x \in E$ de vecteur colonne de coordonnées $X$ dans la base $\mathscr{B}$ et $X_1$ dans la base $\mathscr{B}_1$
-et $y \in F$ de vecteur colonne de coordonnées $Y$ dans la base $\mathscr{B'}$ et $Y_1$ dans la base $\mathscr{B'}_1$.
-
-On a $X = P X_1$ et $Y = Q Y_1$. Alors on a
-$$
-\varphi(x, y) = X^T A Y = (P X_1)^T A (Q Y_1) = X_1^T P^T A Q Y_1
-$$
+    Par définition de $Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1}$, pour tout $u \in E$ et $v \in F$, on a
+    $$
+    \varphi(u, v) = X_1^T Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1} Y_1
+    $$
+    De plus, par définition de $Mat_{\varphi; \mathscr{B}, \mathscr{B'}}$, pour tout $u \in E$ et $v \in F$, on a
+    \begin{align*}
+    \varphi(u, v) &= X^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Y \\
+    &= (P X_1)^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} (Q Y_1) \\
+    &= X_1^T \left( P^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Q \right) Y_1
+    \end{align*}
+    Donc par unicité de la représentation matricielle, on a $Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1} = P^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Q$.
+\end{demonstration}
 
 \subsection{Rang d'une forme bilinéaire}
 
@@ -226,8 +248,8 @@ $$
         \item $\varphi$ est non dégénérée
         \item $g_\varphi$ est bijective
         \item $d_\varphi$ est bijective
-        \item pour tout $u \in E$ on a $\varphi(u, v) = 0$ pour tout $v \in F$ alors $u = 0$ et $dim E = dim F$
-        \item pour tout $v \in F$ on a $\varphi(u, v) = 0$ pour tout $u \in E$ alors $v = 0$ et $dim E = dim F$
+        \item $\forall u \in E, \left( \forall v \in F, \quad \varphi(u, v) = 0 \implies u = 0 \right)$ et $dim E = dim F$
+        \item $\forall v \in F, \left( \forall u \in E, \quad \varphi(u, v) = 0 \implies v = 0 \right)$ et $dim E = dim F$
         \item $rang(\varphi) = dim E = dim F$
         \item $dim E = dim F$ et $det(M) \neq 0$
     \end{enumerate}
@@ -269,7 +291,7 @@ $$
 \end{demonstration}
 
 \begin{proposition}{}{}
-    L'ensemble des formes bilinéaires symétriques (resp. antisymétriques) sur $E$ est un espace vectoriel, noté $\mathcal{C}_2(E)$ (resp. $\mathcal{A}_2(E)$), isomorphe à un sous-espace de $\mathcal{L}(E, E^*)$.
+    L'ensemble des formes bilinéaires symétriques (resp. antisymétriques) sur $E$ est un espace vectoriel, noté $\mathcal{S}_2(E)$ (resp. $\mathcal{A}_2(E)$), isomorphe à un sous-espace de $\mathcal{L}(E, E^*)$.
     donc
     $$
     \mathcal{L}_2(E) = \mathscr{S}_2(E) \oplus \mathscr{A}_2(E)
