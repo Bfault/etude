@@ -1,0 +1,175 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{24 February 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 3}{\today}
+
+\begin{lemme}{}{}
+    Pour toute forme bilinéaire $\varphi$ non identiquement nulle, il existe un vecteur non isotrope par rapport à $\varphi$.
+\end{lemme}
+
+\begin{demonstration}
+    Supposons que tous les vecteurs soient isotropes.
+    Alors pour tout $u, v \in E$, on a
+    $$
+    \varphi(u, v) = \dfrac{1}{2} \left( \varphi(u + v, u + v) - \varphi(u, u) - \varphi(v, v) \right) = 0 
+    $$
+    donc $\varphi$ est identiquement nulle, ce qui est une contradiction.
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $\varphi$ une forme bilinéaire définie sur un $\K$-espace vectoriel $E$ de dimension fini $n$.
+    Alors il existe une base orthogonale (non forcément orthonormale).
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item 
+        Pour $n = 1$, la base formée d'un vecteur non nul est orthogonale.
+        \item
+        Supposons que le théorème est vrai pour les dimensions inférieures à $n-1$.
+        Soit $u$ un vecteur non isotrope.
+        $\{u\}^\perp$ est un hyperplan de $E$ de dimension $n-1$.
+        \begin{hotwarn}
+            À faire avec $E = \{u\}^\perp \oplus Vect(u)$.
+        \end{hotwarn}
+    \end{enumerate}
+\end{demonstration}
+
+\subsection{Produit scalaire}
+
+\begin{definition}{}{}
+    $E$ un $\K$-espace vectoriel et $\varphi \in \mathcal{L}_2(E)$ est dit \textbf{un produit scalaire} sur $E$ si
+    \begin{itemize}
+        \item $\varphi$ est symétrique
+        \item $\varphi$ est non dégénérée
+        \item $\varphi$ est définie positive, c'est-à-dire que pour tout $u \in E \setminus \{0\}$, $\varphi(u, u) \geq 0$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{Inégalité de Cauchy-Schwarz}{}
+    Soit $E$ un $\K$-espace vectoriel et $\varphi$ un produit scalaire sur $E$.
+    Alors on a l'inégalité suivante
+    $$
+    \forall u, v \in E, \quad \varphi(u, v)^2 \leq \sqrt{\varphi(u, u)} \sqrt{\varphi(v, v)}.
+    $$
+    avec égalité si $u$ et $v$ sont colinéaires et $\varphi(u, u) = 0 \iff u = 0$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À faire avec $P(\lambda) = \varphi(u + \lambda v, u + \lambda v)$ et son discriminant.
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit une forme bilinéaire symétrique sur $E$ un $\K$-espace vectoriel est un produit scalaire
+    si et seulement si $\varphi$ est définie positive ($\forall u \in E, \varphi(u, u) = 0 \iff u = 0$).
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.] On suppose que $\varphi$ est un produit scalaire donc $\varphi$ est non dégénérée donc $d_\varphi$ et $g_\varphi$ sont bijectives
+        \begin{hotwarn}
+            À faire
+        \end{hotwarn}
+        \item[Sens réciproque.]
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $\varphi$ un produit scalaire sur $E$ un $\K$-espace vectoriel.
+    Alors tout sous-espace $F$ de $E$ est non isotrope, et de plus, si $dim E = n < +\infty$ alors $E = F \oplus F^\perp$.
+\end{proposition}
+
+\begin{demonstration}
+    Supposons que $F$ est isotrope, soit $u \in F \cap F^\perp, \varphi(u, u) = 0$, contradiction
+    avec le fait que $\varphi$ est un produit scalaire (le seul $u$ qui marche c'est $u = 0$).
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
+\end{demonstration}
+
+\subsection{Formes quadratiques}
+
+\begin{definition}
+    Soit $E$ un $\K$-espace vectoriel.
+    Une \textbf{forme quadratique} sur $E$ est une application $q : E \to \K$ telle qu'il existe une forme bilinéaire $\varphi$ sur $E$ vérifiant
+    $$
+    \forall u \in E, \quad q(u) = \varphi(u, u).
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $q$ une forme quadratique sur $E$ un $\K$-espace vectoriel.
+    Alors elle vérifie les propriétés suivantes $\forall (u, v) \in E^2$ et $\forall \lambda \in \K$ :
+    \begin{enumerate}
+        \item $q(u + v) = q(u) + q(v) + \varphi(u, v) + \varphi(v, u)$
+        \item $q(\lambda u) = \lambda^2 q(u)$ (homogénéité de degré 2)
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item $q(u + v) = \varphi(u + v, u + v) = q(u) + q(v) + \varphi(u, v) + \varphi(v, u)$
+        \item $q(\lambda u) = \varphi(\lambda u, \lambda u) = \lambda^2 \varphi(u, u) = \lambda^2 q(u)$
+    \end{enumerate}
+\end{demonstration}
+
+\begin{definition}
+    On note $\mathcal{D}(E)$ l'ensemble des formes quadratiques sur $E$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $q$ une forme quadratique sur $E$ un $\K$-espace vectoriel.
+    Alors
+    \begin{enumerate}
+        \item $\mathcal{D}(E)$ est un $\K$-espace vectoriel
+        \item $q \in \mathcal{D}(E)$ si et seulement si
+        \begin{itemize}
+            \item $q(\lambda u) = \lambda^2 q(u)$
+            \item $\funcdef{\varphi}{E \times E}{\K}{(u, v)}{\dfrac{1}{2} \left( q(u + v) - q(u) - q(v) \right)}$ est une forme bilinéaire symétrique sur $E$
+            (On dira que $\varphi$ est la forme polaire de $q$)
+        \end{itemize}
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    $\mathcal{S}_2(E)$ est isomorphe à $\mathcal{D}(E)$ et si $dim E = n$ alors $dim \mathcal{D}(E) = \dfrac{n(n + 1)}{2}$.
+\end{corollaire}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À faire et revoir
+    \end{hotwarn}
+\end{demonstration}
+
+\subsection{Polynômes homogènes de degré 2}
+
+\begin{proposition}{}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $\mathcal{B} = (e_1, \dots, e_n)$ une base de $E$.
+    Soit $q \in \mathcal{D}(E)$ et $\varphi$ sa forme polaire.
+
+    Alors il existe un unique polynôme $P \in \K_2[X_1, \dots, X_n]$ homogènes (pas de terme constant)
+    tel que pour tout $u \in E, u = \sum\limits_{i=1}^n u_i e_i$ on ait
+    $$
+    q(u) = P(u_1, \dots, u_n)
+    $$
+    et le polynôme $P$ est donné par
+    $$
+    P(X_1, \dots, X_n) = \sum\limits_{i=1}^n \varphi(e_i, e_i) X_i^2 + 2 \sum\limits_{1 \leq i < j \leq n} \varphi(e_i, e_j) X_i X_j.
+    $$
+
+\end{proposition}
+
+\end{document}

@@ -1,0 +1,207 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{24 February 2026}
+
+\begin{document}
+
+\hotbox{Probabilités 1}{CM 6}{\today}
+
+\section{Variables aléatoires réelles}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, P)$ un espace probabilisé. On appelle variable aléatoire
+    continue une application $X : \Omega \to \R$ telle que
+    $$
+    \forall x \in \R, -\infty \leq a < b \leq +\infty, X^{-1}(]a, b]) \in \mathcal{T}
+    $$
+\end{definition}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire continue. Soit, pour $a \in \R$ l'événement
+    $$
+    \{X \leq a\} = X^{-1}(]-\infty, a])
+    $$
+    On appelle \textbf{fonction de répartition} de $X$ l'application
+    $$
+    \funcdef{F_X}{\R}{[0, 1]}{a}{P(X \leq a)}
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $X$ une variable aléatoire continue sur un espace probabilisé $(\Omega, \mathcal{T}, P)$.
+    Sa fonction de répartition $F_X$ vérifie les propriétés suivantes :
+    \begin{enumerate}
+        \item $\forall a < b, P(a < X \leq b) = F_X(b) - F_X(a)$
+        \item $F_X$ est croissante
+        \item $F_X$ possède une limite à gauche et à droite en tout point de $\R$
+        \item $F_X$ est continue à droite en tout point de $\R$
+        \item $\lim\limits_{x \to -\infty} F_X(x) = 0$ et $\lim\limits_{x \to +\infty} F_X(x) = 1$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item On a
+        $$
+        X(\omega) \in ]-\infty, b] \iff X(\omega) \leq a \text{ ou } a < X(\omega) \leq b
+        $$
+        c'est à dire
+        $$
+        \{ X \leq b \} = \{ X \leq a \} \cup \{ a < X \leq b \}
+        $$
+        c'est une réunion d'événements incompatibles donc
+        $$
+        P(X \leq b) = P(X \leq a) + P(a < X \leq b)
+        $$
+        c'est à dire
+        $$
+        F_X(b) = F_X(a) + P(a < X \leq b)
+        $$
+        d'où le résultat.
+        \item d'après 1. on a $F_X(b) = F_X(a) + P(a < X \leq b) \geq F_X(a)$ pour tout $a < b$.
+        \item $F_X$ est monotone croissante donc elle admet une limite à gauche et à droite en tout point de $\R$.
+        \item Soit $x \in \R$ et $(x_n)_{n \geq 1}$ une suite strictement décroissante tel que
+        \begin{hotwarn}
+            À faire, trompé d'endroit
+        \end{hotwarn}
+        \begin{enumerate}[label=\roman*.]
+            \item $x_{n+1} < x_n, \forall n \geq 1$
+            \item $x_n > x, \forall n \geq 1$
+            \item $x_n \underset{n \to \infty}{\to} x$
+        \end{enumerate}
+        On pose $B_n = \{x < X \leq x_n\}$, on a $P(B_n) = F_X(x_n) - F_X(x)$
+        on veut montrer que $P(B_n) \underset{n \to \infty}{\to} 0$.
+        Comme $x_{n+1} < x_n, \forall n \geq 1$ on a $x < X \leq x_{n+1} \implies x < X \leq x_n$
+        d'où $B_{n+1} \subset B_n$.
+    \end{enumerate}
+\end{demonstration}
+
+\begin{lemme}{}{}
+    Soit un espace probabilisé $(\Omega, \mathcal{T}, P)$ et $(B_n)_{n \geq 0}$ une famille d'événements telle que
+    \begin{enumerate}
+        \item $B_{n+1} \subset B_n, \forall n \geq 0$
+        \item $\bigcap\limits_{n \geq 0} B_n = \emptyset$
+    \end{enumerate}
+    Alors
+    $$
+    \lim_{n \to \infty} P(B_n) = 0
+    $$
+\end{lemme}
+
+\begin{theoreme}{}{}
+    Soit $X$ une variable aléatoire continue sur un espace probabilisé $(\Omega, \mathcal{T}, P)$.
+    L'ensemble des points de discontinuité de sa fonction de répartition $F_X$ est au plus dénombrable.
+\end{theoreme}
+
+\begin{remarque}
+    Le théorème précédent est vrai pour toute fonction monotone et s'appelle le \textbf{théorème de Froda}.
+\end{remarque}
+
+\begin{demonstration}
+    Soit $X$ une variable aléatoire continue et une fonction de répartition $F_X$ et $E \subset \R$.
+    L'ensemble des points de discontinuité de $F_X$ est
+    $$
+    E = \{x \in \R \mid F_X(x^-) < F_X(x^+)\}
+    $$
+    où $F_X(x^-) = \lim\limits_{t \to x^-} F_X(t)$ et $F_X(x^+) = \lim\limits_{t \to x^+} F_X(t)$.
+    Soit $x \in E$, il existe $q_x \in ]F_X(x^-), F_X(x^+)[ \cap \Q$.
+    On définit une application $\funcdef{\varphi}{E}{\Q}{x}{q_x}$.
+    Montrons que $\varphi$ est injective, soit $x, y \in E$ tels que $y > x$, on a $F_X(x^-) < F_X(x^+) \leq F_X(y^-) < F_X(y^+) \implies ]F_X(x^-), F_X(x^+)[\cap]F_X(y^-), F_X(y^+)[ = \emptyset$.
+    par définition $\varphi(x) < \varphi(y)$, c'est à dire $\varphi$ est injective. L'ensemble $E$ est au plus dénombrable.
+\end{demonstration}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire continue sur un espace probabilisé $(\Omega, \mathcal{T}, P)$.
+    Supposons que sa fonction de répartition $F_X$ est continue de classe $C^1$ par morceaux.
+    On appelle \textbf{densité de probabilité} de $X$ et la dérivée de $F_X$ calculée sur tous les intervalles
+    où elle est définie. on la note $f_X$.
+\end{definition}
+
+\begin{remarque}
+    Au points où $F_X$ n'est pas différentiable, la densité $f_X$ est discontinue mais possède une limite à gauche et à droite.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $X$ une variable aléatoire continue de densité $f_X$ et de fonction de répartition $F_X$. On a
+    \begin{enumerate}
+        \item $\forall x \in \R, f_X(x) \geq 0$
+        \item $f_X$ est intégrable sur $\R$, d'intégrale égale à 1
+        \item pour tout intervalle $]a, b] \subset \R$ on a
+        $$
+        P(a < X \leq b) = \int_a^b f_X(x)dx
+        $$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item $F_X$ est croissante, sa dérivée $f_X$ est positive ou nulle.
+        \item 
+        \begin{align*}
+            \int_a^b f_X(x)dx = [F_X(x)]_a^b &= F_X(b) - F_X(a) \\
+            &= P(X \in ]a, b])
+        \end{align*}
+        \item
+        $$
+        \int_{-M}^M f_X(x)dx = F_X(M) - F_X(-M) \underset{M \to +\infty}{\to} 1
+        $$
+    \end{enumerate}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $X$ une variable aléatoire continue de densité $f_X$ et de fonction de répartition $F_X$. Alors
+    \begin{enumerate}
+        \item $\lim\limits_{x \to +\infty} f_X(x) = 0$
+        \item Soit $A = ]a, b]$ un intervalle de $\R$. Alors
+        $$
+        P(X \in A) = 0 \iff f_X|_A \equiv 0
+        $$
+    \end{enumerate}
+\end{corollaire}
+
+\subsection{Espérance et variance d'une variable aléatoire continue}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire de densité $f_X$.
+    \begin{itemize}
+        \item Lorsque $|x| f_X(x)$ est intégrable sur $\R$, on dit
+        que $X$ possède \textbf{une espérance}, qu'on définit comme
+        $$
+        E(X) = \int_{-\infty}^{+\infty} x f_X(x) dx
+        $$
+        \item De même si $\varphi: \R \to \R$ est une application telle que
+        $|\varphi(x)| f_X(x)$ est intégrable sur $\R$, on définit
+        $$
+        E(\varphi(X)) = \int_{-\infty}^{+\infty} \varphi(x) f_X(x) dx
+        $$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Si $x^2 f_X(x)$ est intégrable sur $\R$, on dit que $X$ possède \textbf{une variance} et on la définit par
+    $$
+    Var(X) = E((X - \mu)^2) = \int_{-\infty}^{+\infty} (x - \mu)^2 f_X(x) dx
+    $$
+    avec $\mu = E(X)$.
+    On a alors la \textbf{formule de König-Huygens}
+    $$
+    Var(X) = E(X^2) - (E(X))^2
+    $$
+\end{definition}
+
+\begin{remarque}
+    Si $E(X^2)$ existe, alors $E(X)$ existe et $Var(X)$ existe.
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Soit $X$ et $Y$ des variables aléatoires continues possèdant une densité, une espérance et une variance. Alors
+    \begin{enumerate}
+        \item $\forall (a, b) \in \R^2, E(aX + b) = aE(X) + b$
+        \item $Var(aX + b) = a^2 Var(X)$
+        \item $E(X + Y) = E(X) + E(Y)$
+    \end{enumerate}
+\end{theoreme}
+
+\end{document}

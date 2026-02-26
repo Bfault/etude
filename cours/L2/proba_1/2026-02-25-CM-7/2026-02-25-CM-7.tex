@@ -1,0 +1,89 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{25 February 2026}
+
+\begin{document}
+
+\hotbox{Probabilités 1}{CM 7}{\today}
+
+\subsection{Quelques lois classiques}
+
+\begin{definition}[(Loi Normale ou de Gauss)]
+    Soit $\mu \in \R$ et $\sigma > 0$. On dit que $X$ suit \textbf{la loi normale} d'espérance $\mu$ et d'écart-type $\sigma$ (ou de variance $\sigma^2$)
+    si la densité de probabilité vaut
+    $$
+    f_X(x) = \dfrac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad \text{pour tout } x \in \R
+    $$
+    On note $X \sim \mathcal{N}(\mu, \sigma^2)$ ou encore $X \hookrightarrow \mathcal{N}(\mu, \sigma^2)$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $X \hookrightarrow \mathcal{N}(\mu, \sigma^2)$ avec $\mu \in \R$ et $\sigma > 0$. Alors
+    \begin{itemize}
+        \item $E(X) = \mu$
+        \item $Var(X) = \sigma^2$
+        \item Soit $a \in \R^*, aX \hookrightarrow \mathcal{N}(a\mu, a^2\sigma^2)$
+        \item Soit $b \in \R, X + b \hookrightarrow \mathcal{N}(\mu + b, \sigma^2)$
+    \end{itemize}
+\end{theoreme}
+
+\begin{corollaire}{}{}
+    Soit $X \hookrightarrow \mathcal{N}(\mu, \sigma^2)$ avec $\mu \in \R$ et $\sigma > 0$. Alors
+    $$
+    Z = \dfrac{X - \mu}{\sigma} \hookrightarrow \mathcal{N}(0, 1).
+    $$
+\end{corollaire}
+
+\begin{remarque}
+    Ce corollaire est fondamental car on ne connait pas la primitive de $f_X$. 
+\end{remarque}
+
+\begin{definition}
+    Soit $Z \hookrightarrow \mathcal{N}(0, 1)$. On note $\phi$ la fonction de répartition de $Z$, c'est à dire
+    $$
+    \phi(x) = P(Z \leq x) = \int_{-\infty}^x \dfrac{1}{\sqrt{2\pi}} e^{-\dfrac{t^2}{2}} dt \quad \text{pour tout } x \in \R
+    $$
+\end{definition}
+
+\begin{definition}
+    Soit $[a, b] \subset \R$ avec $a < b$. On dit que $X$ suit une \textbf{loi uniforme} sur $[a, b]$ si la densité de probabilité vaut
+    $$
+    f_X(x) = \dfrac{1}{b - a} \mathbb{1}_{[a, b]}(x) \quad \text{pour tout } x \in \R
+    $$
+    On note $X \sim \mathcal{U}([a, b])$ ou encore $X \hookrightarrow \mathcal{U}([a, b])$.
+\end{definition}
+
+\begin{remarque}
+    Pour $a \leq x < y \leq b$ on a
+    $$
+    P(x \leq X \leq y) = \dfrac{y - x}{b - a}
+    $$
+    La probabilité que $X$ appartienne à $I \subset [a, b]$ ne dépend que de la longueur de $I$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $X \hookrightarrow \mathcal{U}([a, b])$ avec $a < b$. On a
+    $$
+    E(X) = \dfrac{a + b}{2} \quad \text{et} \quad Var(X) = \dfrac{(b - a)^2}{12}
+    $$
+\end{proposition}
+
+\begin{definition}
+    Soit $\lambda > 0$. On dit que $X$ suit une \textbf{loi exponentielle} de paramètre $\lambda$
+    si sa densité de probabilité vaut
+    $$
+    f_X(x) = \lambda e^{-\lambda x} \mathbb{1}_{\R_+}(x) \quad \text{pour tout } x \in \R.
+    $$
+    On note $X \sim \mathcal{E}(\lambda)$ ou encore $X \hookrightarrow \mathcal{E}(\lambda)$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $\lambda > 0$ et $X \hookrightarrow \mathcal{E}(\lambda)$. On a
+    $$
+    E(X) = \dfrac{1}{\lambda} \quad \text{et} \quad Var(X) = \dfrac{1}{\lambda^2}
+    $$
+\end{proposition}
+
+\end{document}

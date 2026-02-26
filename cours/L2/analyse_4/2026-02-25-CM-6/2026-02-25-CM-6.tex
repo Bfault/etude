@@ -1,0 +1,111 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{25 February 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 6}{\today}
+
+\section{Approximation de Weierstrass}
+
+\subsection{Polynômes de Bernstein}
+
+\begin{definition}
+    Soit $n \in \N$ et $f \in \mathcal{C}^0([0, 1], \R)$. On note $B_n(\cdot, f)$ le
+    n-ième polynôme de Bernstein de $f$ défini par
+    $$
+    B_n(X, f) = \sum_{k=0}^n f\left(\frac{k}{n}\right) \binom{n}{k} X^k (1-X)^{n-k}
+    $$ 
+\end{definition}
+
+\begin{exemple}
+    On prend $B_n(X, x \mapsto 1) = \sum\limits_{k=0}^n 1 \times  \binom{n}{k} X^k (1-X)^{n-k} = (X + (1-X))^n = 1^n = 1$.
+\end{exemple}
+
+\begin{exemple}
+    On prend 
+    \begin{align*}  
+        B_n(X, x \mapsto x) &= \sum\limits_{k=0}^n \frac{k}{n} \times  \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= \sum\limits_{k=0}^n \frac{k}{n} \dfrac{n!}{k!(n-k)!} X^k (1-X)^{n-k} \\
+        &= \sum\limits_{k=0}^n \frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} X^k (1-X)^{(n-1)-(k-1)} \\
+        &= x \sum\limits_{k'=0}^{n-1} \binom{n-1}{k'} X^{k'} (1-X)^{(n-1)-(k')} \quad car k < 0 \implies \binom{n}{k} = 0 \\
+        &= x \sum\limits_{k=0}^{n-1} \binom{n-1}{k} X^k (1-X)^{(n-1)-k} \\
+        &= x (x + (1-x))^{n-1} \\
+        &= x
+    \end{align*}
+\end{exemple}
+
+\begin{exemple}
+    On utilise
+    \begin{align*}
+        B_n(X, x \mapsto x^2) &= \sum\limits_{k=0}^n \left( \frac{k}{n} \right)^2 \binom{n}{k} X^k (1 - X)^{n-k} \\
+    \end{align*}
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
+\end{exemple}
+
+\begin{lemme}{}{}
+    $$
+    \sum_{k=0}^n (k - nX)^2 \binom{n}{k} X^k (1-X)^{n-k} = nX(1-X)
+    $$
+\end{lemme}
+
+\subsection{Théorème de Weierstrass}
+
+\begin{definition}
+    Soient $(X, d_X)$ et $(Y, d_Y)$ deux espaces métriques. Soit $f: X \to Y$ et $\delta > 0$.
+
+    On appelle module de continuité de $f$, à l'échelle $\delta$, noté $\omega(f, \delta)$ la quantité
+    $$
+    \omega(f, \delta) = \sup_{d_X(x, y) \leq \delta} d_Y(f(x), f(y))
+    $$
+\end{definition}
+
+\begin{remarque}
+    \begin{align*}
+        \lim_{\delta \to 0} \omega(f, \delta) = 0 &\iff \forall \varepsilon > 0, \exists \delta > 0, |\omega(f, \delta) - 0| < \varepsilon \\
+        &\iff \forall \varepsilon > 0, \exists \delta > 0, d_X(x, y) \leq \delta \implies d_Y(f(x), f(y)) < \varepsilon \\
+        &\iff \forall \varepsilon > 0, \exists \delta > 0, \forall x, y \in I, |x - y| \leq \delta \implies |f(x) - f(y)| < \varepsilon \\
+        &\iff f \text{ est uniformément continue sur I}
+    \end{align*}
+\end{remarque}
+
+\begin{theoreme}{Weierstrass}{}
+    Soit $f: \mathcal{C}^0([0, 1], \R)$. Alors
+    $B_n(\cdot, f)$ converge uniformément vers $f$ quand $n \to +\infty$ sur $[0, 1]$.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $\varepsilon > 0$, $\delta > 0$ et $x \in [0, 1]$ alors on a
+    \begin{align*}
+        |B_n(x, f) - f(x)| &= \left| \sum_{k=0}^n f\left( \frac{k}{n} \right) \binom{n}{k} x^k (1-x)^{n-k} - f(x) \sum_{k=0}^n \binom{n}{k} x^k (1-x)^{n-k} \right| \\
+        &= \left| \sum_{k=0}^n \binom{n}{k} x^k (1-x)^{n-k} \left( f\left( \frac{k}{n} \right) - f(x) \right) \right| \\
+        &\leq \sum_{k=0}^n \binom{n}{k} x^k (1-x)^{n-k} \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
+        &\leq \sum_{|\frac{k}{n} - x| < \delta} \binom{n}{k} x^k (1-x)^{n-k} \left| f\left( \frac{k}{n} \right) - f(x) \right|\\
+        &\quad + \sum_{|\frac{k}{n} - x| \geq \delta} \binom{n}{k} x^k (1-x)^{n-k} \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
+    \end{align*}
+    On a $\forall x \in [0, 1], \sup_{|\frac{k}{n} - x| < \delta} \left| f\left( \frac{k}{n} \right) - f(x) \right| = \omega(f, \delta)$ donc le premier terme c'est ok.
+
+    Pour le deuxième terme, on va majorer $|f(\frac{k}{n}) - f(x)|$ par $2 \norm{f}_{\infty, [0, 1]}$ et $f$ est continue sur $[0, 1]$ donc elle est fermée bornée (théorème de Heine) alors
+    $f$ est uniformément continue sur $[0, 1]$.
+
+    On a pour la somme
+    $$
+    \left|\dfrac{k}{n} - x \right| \iff \left( \dfrac{k}{n} - x \right)^2 \geq \delta^2
+    $$
+    donc $\dfrac{\left(\frac{k}{n} - x\right)^2}{\delta^2} \geq 1$
+
+    Ainsi
+    \begin{align*}
+        I &= \sum_{\left|\frac{k}{n} - x \right| > \delta^2} \binom{n}{k} x^k (1-x)^{n-k} \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
+        &\leq \sum_{\left|\frac{k}{n} - x \right| > \delta^2} \binom{n}{k} x^k (1-x)^{n-k} 2 \norm{f}_{\infty, [0, 1]} \\
+    \end{align*}
+    \begin{hotwarn}
+        À faire
+    \end{hotwarn}
+\end{demonstration}
+
+\end{document}
