@@ -1,0 +1,174 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{27 February 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 8}{\today}
+
+\subsection{Rayon de convergence}
+
+\begin{definition}
+    On définit $D_r \{z \in \mathbb{C}, |z| < r\}$ avec $r \in \R_+^*$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $r \in \R_+^*$.
+    S'il existe $M > 0$ tel que
+    $$
+    \forall n \in \N, |a_n| r^n \leq M
+    $$
+    Alors pour tout $z \in D_r$, la série entière $\sum_{k = k_0}^{+\infty} a_k z^k$ converge absolument.
+\end{theoreme}
+
+\begin{demonstration}
+    Pour tout $n \in \N$ on a
+    $$
+    |a_n z^n| = |a_n| |z^n| = |a_n| r^n \left|\frac{z}{r}\right|^n \leq M \frac{|z|^n}{r^n}
+    $$
+    donc $\sum\limits_{k \geq k_0} |a_k z^k| \leq M \sum\limits_{k \geq k_0} \left|\frac{z}{r}\right|^k$ une série géométrique de raison $\dfrac{|z|}{r} < 1$.
+\end{demonstration}
+
+\begin{definition}
+    On définit le \textbf{rayon de convergence} d'une série entière $\sum\limits_{k = k_0}^{+\infty} a_k z^k$ comme étant
+    $$
+    R = \sup_{r > 0} \{ r \in \R_+^* | \sum\limits_{k = k_0}^{+\infty} a_k z^k \text{ converge pour tout } z \in D_r\}
+    $$
+\end{definition}
+
+\begin{remarque}
+    Ainsi on a
+    \begin{itemize}
+        \item si $|z| < R$ la série entière converge absolument,
+        \item si $|z| = R$ la série entière peut converger ou diverger,
+        \item si $|z| > R$ la série entière diverge.
+    \end{itemize}
+\end{remarque}
+
+\begin{remarque}
+    Si a partir d'un certain rang $n$ on a $a_n = 0$, alors $R = +\infty$.
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Soit $R$ le rayon de convergence de la série entière $\sum\limits_{k = k_0}^{+\infty} a_k z^k$. Alors
+    $$
+    \frac{1}{R} = \limsup_{n \to +\infty} \sqrt[n]{|a_n|} = \inf_{n_0 \in \N} \sup_{n \geq n_0} \sqrt[n]{|a_n|}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Si $r < R$.] 
+        La série de terme général $|a_n|r^n$ est convergente,
+        à partir d'un certain rang $n_0$ on a
+        $$
+        \forall n > n_0, |a_n| r^n \leq 1 \iff \sqrt[n]{|a_n|} \leq \frac{1}{r}
+        $$
+        On peut passer au sup, d'où $\sup_{n \geq n_0} \sqrt[n]{|a_n|} \leq \frac{1}{r}$
+        puis à la limite $n_0 \to +\infty$ d'où $\limsup_{n \to +\infty} \sqrt[n]{|a_n|} \leq \frac{1}{r}$.
+    
+        \item[Si $r > R$.]
+        On fait pareil
+
+        \item[Si $r = R$.]
+        On ne peut rien dire.
+    \end{description}
+    Ainsi avec $c_n = a_n b^n$ on a
+    $$
+    \sqrt[n]{|c_n|} = \sqrt[n]{|a_n|} r < 1 \iff \sqrt[n]{|a_n|} < \frac{1}{r}
+    $$
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $(a_n)_{n \in \N}$ une suite de nombres réels ou complexes telle que $\dfrac{|a_{n+1}|}{|a_n|}$ converge.
+
+    Alors la série entière $\sum\limits_{k = k_0}^{+\infty} a_k z^k$ admet un rayon de convergence $R$ donné par
+    $$
+    \frac{1}{R} = \lim_{n \to +\infty} \frac{|a_{n+1}|}{|a_n|}.
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+    On pose $c_n = a_n b^n$.
+    Alors
+    \begin{align*}
+        \dfrac{|c_{n+1}|}{|c_n|} = \frac{|a_{n+1}|}{|a_n|} r &\iff \frac{|a_{n+1}|}{|a_n|} < \frac{1}{r} \\
+        &\implies \lim_{n \to +\infty} \frac{|a_{n+1}|}{|a_n|} \leq \frac{1}{r}
+    \end{align*}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $R$ le rayon de convergence de la série entière $\sum\limits_{k = k_0}^{+\infty} a_k z^k$ tel que $R > 0$.
+    Soit $r \in ]0, R[$.
+
+    Alors on a
+    $$
+    \forall \varepsilon > 0, \exists N \in \N, \forall n > N, \forall z \in D_r, \left| \sum_{k = n_0}^n a_k z^k - \sum_{k = n_0}^{+\infty} a_k z^k \right| < \varepsilon
+    $$
+    C'est à dire que le reste de la série entière converge uniformément sur $D_r$.
+    et donc que $z \mapsto \sum\limits_{k = k_0}^{+\infty} a_k z^k$ est continue sur $D_r$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $r' \in ]r, R[$ tel que $|z| < r'$.
+    Pour tout $n > N$ on a
+    $$
+    |a_n z^n| \leq |a_n| r^n \leq |a_n| r'^n \left(\frac{r}{r'}\right)^n 
+    $$
+    Pour tout $z \in D_r$ on a
+    \begin{align*}
+        \left| \sum_{k = n_0}^n a_k z^k - \sum_{k = n_0}^{+\infty} a_k z^k \right| &= \sum_{k = n+1}^{+\infty} |a_k z^k| \\
+        &\leq \sum_{k = n+1}^{+\infty} |a_k| |z|^k \\
+        &\leq \sum_{k = n+1}^{+\infty} M \left(\dfrac{r}{r'}\right)^k \\
+        &\leq M \sum_{k = n+1}^{+\infty} \left(\dfrac{r}{r'}\right)^k \\
+        &\leq M \dfrac{r^{n+1}}{r'^{n+1}} \dfrac{1}{1 - \frac{r}{r'}} \\
+        &\leq \dfrac{Mr'}{r' - r} \left(\dfrac{r}{r'}\right)^{n+1} \quad \text{qui ne dépend plus de z}
+    \end{align*}
+    Donc $\lim_{n \to +\infty} \left(\dfrac{r}{r'}\right)^{n+1} = 0$ d'où le résultat.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $\sum\limits_{k = k_0}^{+\infty} a_k z^k$ et $\sum\limits_{k = k_0}^{+\infty} b_k z^k$ deux séries entières de rayons de convergence respectifs $R_a$ et $R_b$.
+
+    Pour tout $\forall (\alpha, \beta) \in \mathbb{C}^2$ et pour tout $z \in D_{\min(R_a, R_b)}$ on a
+    \begin{enumerate}
+        \item 
+        $$
+        \alpha \sum_{k = k_0}^{+\infty} a_k z^k + \beta \sum_{k = k_0}^{+\infty} b_k z^k = \sum_{k = k_0}^{+\infty} (\alpha a_k + \beta b_k) z^k
+        $$
+
+        \item
+        $$
+        \left(\sum_{k = k_0}^{+\infty} a_k z^k\right) \left(\sum_{k = k_0}^{+\infty} b_k z^k\right) = \sum_{k = k_0}^{+\infty} \left( \sum_{i = k_0}^k a_i b_{k - i} \right) z^k
+        $$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1.]
+        Simple.
+
+        \item[2.]
+        Soit $z \in D_{\min(R_a, R_b)}$.
+        On a
+        \begin{align*}  
+            \sum_{i = i_0}^n |c_i| |z|^i = \sum_{i = i_0}^n \left| \sum_{h + k = i} a_k b_h \right| |z|^i \\
+            &= \sum_{i = i_0}^n \left| \sum_{h + k = i} a_k b_h z^{k + h}\right| \\
+            &= \sum_{i = i_0}^n \left| \sum_{h + k = i} |a_k| |z^k| |b_h| |z^h|\right| \\
+            &\leq \left( \sum_{k = k_0}^n |a_k| |z|^k \right) \left( \sum_{h = k_0}^n |b_h| |z|^h \right) \\
+            &\leq \left( \sum_{k = k_0}^{+\infty} |a_k| |z|^k \right) \left( \sum_{h = k_0}^{+\infty} |b_h| |z|^h \right)
+        \end{align*}
+        Les sommes partielles $\sum\limits_{k = k_0}^n c_k z^k$ sont uniformément bornées et elles sont croissantes donc
+        $\left(\sum\limits_{k = k_0}^n |c_k| |z^k|\right)_n$ est absolument convergente, son reste tend vers 0
+        et donc $\left(\sum\limits_{k = k_0}^{+\infty} c_k z^k\right)_n$ converge absolument. 
+    \end{description}
+\end{demonstration}
+
+\begin{remarque}
+    Le rayon de convergence de la nouvelle série entière peut être plus grand que $\min(R_a, R_b)$.
+\end{remarque}
+
+\end{document}
