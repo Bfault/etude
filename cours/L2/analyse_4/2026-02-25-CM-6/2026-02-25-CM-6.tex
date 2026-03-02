@@ -101,9 +101,9 @@
 \end{remarque}
 
 \begin{theoreme}{Théorème de Weierstrass}{}
-    Soit $f: \mathcal{C}^0([a, b], \mathbb{C})$.
+    Soit $f: \mathcal{C}^0([0, 1], \mathbb{C})$.
     
-    Alors $(B_n(\cdot, f))_{n \in \N}$ converge uniformément vers $f$ sur $[a, b]$.
+    Alors $(B_n(\cdot, f))_{n \in \N}$ converge uniformément vers $f$ sur $[0, 1]$.
 \end{theoreme}
 
 \begin{demonstration}
@@ -141,7 +141,15 @@
     En prenant un $N \in \N$ tel que $\dfrac{2M}{\delta^2 N} < \varepsilon$, on a pour tout $n \geq N$, $|B_n(x, f) - f(x)| < 2\varepsilon$.
 
     Donc $B_n(\cdot, f)$ converge uniformément vers $f$ sur $[0, 1]$.
+\end{demonstration}
 
+\begin{corollaire}{}{}
+    Soit $g \in \mathcal{C}^0([a, b], \mathbb{C})$.
+
+    Alors $g$ est limite uniforme sur $[a, b]$ d'une suite de polynômes.
+\end{corollaire}
+
+\begin{demonstration}
     En posant $\funcdef{\phi}{[0, 1]}{[a, b]}{x}{a + (b - a)x}$, on peut définir $g \in \mathcal{C}^0([0, 1], \R)$ par \text{$f = g \circ \phi$}.
 
     En definissant la fonction $\funcdef{\phi^{-1}}{[a, b]}{[0, 1]}{y}{\frac{y - a}{b - a}}$, on a $g = f \circ \phi^{-1}$.
