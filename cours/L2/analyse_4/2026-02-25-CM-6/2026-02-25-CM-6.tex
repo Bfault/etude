@@ -21,31 +21,46 @@
 \end{definition}
 
 \begin{exemple}
-    On prend $B_n(X, x \mapsto 1) = \sum\limits_{k=0}^n 1 \times  \binom{n}{k} X^k (1-X)^{n-k} = (X + (1-X))^n = 1^n = 1$.
-\end{exemple}
-
-\begin{exemple}
-    On prend 
-    \begin{align*}  
-        B_n(X, x \mapsto x) &= \sum\limits_{k=0}^n \frac{k}{n} \times  \binom{n}{k} X^k (1-X)^{n-k} \\
-        &= \sum\limits_{k=0}^n \frac{k}{n} \dfrac{n!}{k!(n-k)!} X^k (1-X)^{n-k} \\
-        &= \sum\limits_{k=0}^n \frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} X^k (1-X)^{(n-1)-(k-1)} \\
-        &= x \sum\limits_{k'=0}^{n-1} \binom{n-1}{k'} X^{k'} (1-X)^{(n-1)-(k')} \quad car k < 0 \implies \binom{n}{k} = 0 \\
-        &= x \sum\limits_{k=0}^{n-1} \binom{n-1}{k} X^k (1-X)^{(n-1)-k} \\
-        &= x (x + (1-x))^{n-1} \\
-        &= x
+    On prend $B_n(\cdot, x \mapsto 1)$
+    
+    \begin{align*}
+        B_n(X, x \mapsto 1) &= \sum\limits_{k=0}^n 1 \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= (X + (1-X))^n \quad \text{par la formule du binôme}\\
+        &= 1^n = 1
     \end{align*}
 \end{exemple}
 
 \begin{exemple}
-    On utilise
+    On prend $B_n(\cdot, x \mapsto x)$
+
+    \begin{align*}  
+        B_n(X, x \mapsto x) &= \sum\limits_{k=0}^n \frac{k}{n} \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= \sum\limits_{k=1}^n \frac{k}{n} \dfrac{n!}{k!(n-k)!} X^k (1-X)^{n-k} \\
+        &= \sum\limits_{k=1}^n \frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} X^k (1-X)^{(n-1)-(k-1)} \\
+        &= X \sum\limits_{k=0}^{n-1} \binom{n-1}{k} X^k (1-X)^{(n-1)-k} \\
+        &= X (X + (1-X))^{n-1} \\
+        &= X
+    \end{align*}
+\end{exemple}
+
+\begin{exemple}
+    On prend $B_n(\cdot, x \mapsto x^2)$
+
     \begin{align*}
         B_n(X, x \mapsto x^2) &= \sum\limits_{k=0}^n \left( \frac{k}{n} \right)^2 \binom{n}{k} X^k (1 - X)^{n-k} \\
+        &= \sum\limits_{k=0}^n \frac{k^2}{n^2} \binom{n}{k} X^k (1 - X)^{n-k} \\
+        &= \frac{1}{n}\left(\sum\limits_{k=0}^n k(k-1) \frac{1}{n} \binom{n}{k} X^k (1 - X)^{n-k} + \sum\limits_{k=0}^n k \frac{1}{n} \binom{n}{k} X^k (1 - X)^{n-k} \right) \\
+        &= \frac{1}{n}\left(X^2(n-1)\sum\limits_{k=2}^n \dfrac{(n - 2)!}{(k-2)!((n-2)-(k-2))!} X^{k-2} (1 - X)^{(n-2)-(k-2)} + B_n(X, x \mapsto x) \right) \\
+        &= \frac{1}{n}\left(X^2(n-1)(X + (1-X))^{n-2} + X \right) \\
+        &= \dfrac{X(1 - X)}{n} + X^2
     \end{align*}
-    \begin{hotwarn}
-        À faire
-    \end{hotwarn}
 \end{exemple}
+
+\begin{remarque}
+    En considérant la variable aléatoire $Y \hookrightarrow B(n, X)$,
+    il nous suffit de calculer $\frac{1}{n^2}\mathbb{E}[Y^2]$ pour avoir $B_n(\cdot, x \mapsto x^2)$,
+    on pourra alors utiliser la formule de Koenig-Huygens pour calculer $\mathbb{E}[Y^2]$ à partir de la variance et de l'espérance usuellement connue.
+\end{remarque}
 
 \begin{lemme}{}{}
     $$
@@ -53,12 +68,24 @@
     $$
 \end{lemme}
 
+\begin{demonstration}
+    \begin{align*}
+        \sum_{k=0}^n (k - nX)^2 \binom{n}{k} X^k (1-X)^{n-k} &= \sum_{k=0}^n n^2 (\frac{k}{n} - X)^2 \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= n^2 \sum_{k=0}^n (\left(\frac{k}{n}\right)^2 - 2X \frac{k}{n} + X^2) \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= n^2 \left(\sum_{k=0}^n \left(\frac{k}{n}\right)^2 \binom{n}{k} X^k (1-X)^{n-k} - 2X \sum_{k=0}^n \frac{k}{n} \binom{n}{k} X^k (1-X)^{n-k} + X^2 \sum_{k=0}^n \binom{n}{k} X^k (1-X)^{n-k} \right) \\
+        &= n^2 \left( B_n(X, x \mapsto x^2) - 2X B_n(X, x \mapsto x) + X^2 B_n(X, x \mapsto 1) \right) \\
+        &= n^2 \left( \dfrac{X(1 - X)}{n} + X^2 - 2X^2 + X^2 \right) \\
+        &= n^2 \dfrac{X(1 - X)}{n} \\
+        &= nX(1-X)
+    \end{align*}
+\end{demonstration}
+
 \subsection{Théorème de Weierstrass}
 
 \begin{definition}
     Soient $(X, d_X)$ et $(Y, d_Y)$ deux espaces métriques. Soit $f: X \to Y$ et $\delta > 0$.
 
-    On appelle module de continuité de $f$, à l'échelle $\delta$, noté $\omega(f, \delta)$ la quantité
+    On appelle \textbf{module de continuité} de $f$, à l'échelle $\delta$, noté $\omega(f, \delta)$ la quantité
     $$
     \omega(f, \delta) = \sup_{d_X(x, y) \leq \delta} d_Y(f(x), f(y))
     $$
@@ -66,46 +93,60 @@
 
 \begin{remarque}
     \begin{align*}
-        \lim_{\delta \to 0} \omega(f, \delta) = 0 &\iff \forall \varepsilon > 0, \exists \delta > 0, |\omega(f, \delta) - 0| < \varepsilon \\
-        &\iff \forall \varepsilon > 0, \exists \delta > 0, d_X(x, y) \leq \delta \implies d_Y(f(x), f(y)) < \varepsilon \\
-        &\iff \forall \varepsilon > 0, \exists \delta > 0, \forall x, y \in I, |x - y| \leq \delta \implies |f(x) - f(y)| < \varepsilon \\
+        \lim_{\delta \to 0} \omega(f, \delta) = 0 &\iff \forall \varepsilon > 0, \exists \delta > 0, \; |\omega(f, \delta) - 0| < \varepsilon \\
+        &\iff \forall \varepsilon > 0, \exists \delta > 0, \; d_X(x, y) \leq \delta \implies d_Y(f(x), f(y)) < \varepsilon \\
+        &\iff \forall \varepsilon > 0, \exists \delta > 0, \forall x, y \in I, \; |x - y| \leq \delta \implies |f(x) - f(y)| < \varepsilon \\
         &\iff f \text{ est uniformément continue sur I}
     \end{align*}
 \end{remarque}
 
-\begin{theoreme}{Weierstrass}{}
-    Soit $f: \mathcal{C}^0([0, 1], \R)$. Alors
-    $B_n(\cdot, f)$ converge uniformément vers $f$ quand $n \to +\infty$ sur $[0, 1]$.
+\begin{theoreme}{Théorème de Weierstrass}{}
+    Soit $f: \mathcal{C}^0([a, b], \mathbb{C})$.
+    
+    Alors $(B_n(\cdot, f))_{n \in \N}$ converge uniformément vers $f$ sur $[a, b]$.
 \end{theoreme}
 
 \begin{demonstration}
-    Soit $\varepsilon > 0$, $\delta > 0$ et $x \in [0, 1]$ alors on a
+    On pose $b_n^k(x) = \binom{n}{k} x^k (1-x)^{n-k}$.
+    Soit $\varepsilon > 0$, $\delta > 0$ et $x \in [0, 1]$.
+
+    On a
     \begin{align*}
-        |B_n(x, f) - f(x)| &= \left| \sum_{k=0}^n f\left( \frac{k}{n} \right) \binom{n}{k} x^k (1-x)^{n-k} - f(x) \sum_{k=0}^n \binom{n}{k} x^k (1-x)^{n-k} \right| \\
-        &= \left| \sum_{k=0}^n \binom{n}{k} x^k (1-x)^{n-k} \left( f\left( \frac{k}{n} \right) - f(x) \right) \right| \\
-        &\leq \sum_{k=0}^n \binom{n}{k} x^k (1-x)^{n-k} \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
-        &\leq \sum_{|\frac{k}{n} - x| < \delta} \binom{n}{k} x^k (1-x)^{n-k} \left| f\left( \frac{k}{n} \right) - f(x) \right|\\
-        &\quad + \sum_{|\frac{k}{n} - x| \geq \delta} \binom{n}{k} x^k (1-x)^{n-k} \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
+        \sum_{k=0}^n \left(\frac{k}{n} - x \right)^2 b_n^k(x) &= \sum_{k=0}^n \left(\frac{k}{n}\right)^2 b_n^k(x) - 2x \sum_{k=0}^n \frac{k}{n} b_n^k(x) + x^2 \sum_{k=0}^n b_n^k(x) \\
+        &= B_n(x, x \mapsto x^2) - 2x B_n(x, x \mapsto x) + x^2 B_n(x, x \mapsto 1) \\
+        &= \dfrac{x(1-x)}{n} + x^2 - 2x^2 + x^2 \\
+        &= \dfrac{x(1-x)}{n}
     \end{align*}
-    On a $\forall x \in [0, 1], \sup_{|\frac{k}{n} - x| < \delta} \left| f\left( \frac{k}{n} \right) - f(x) \right| = \omega(f, \delta)$ donc le premier terme c'est ok.
 
-    Pour le deuxième terme, on va majorer $|f(\frac{k}{n}) - f(x)|$ par $2 \norm{f}_{\infty, [0, 1]}$ et $f$ est continue sur $[0, 1]$ donc elle est fermée bornée (théorème de Heine) alors
-    $f$ est uniformément continue sur $[0, 1]$.
+    \begin{align*}
+        \sum_{k, |\frac{k}{n} - x| \geq \delta} b_n^k(x) &\leq \sum_{k=0}^n \dfrac{(k/n - x)^2}{\delta^2} b_n^k(x) \\
+        &\leq \dfrac{1}{\delta^2} \sum_{k=0}^n (k/n - x)^2 b_n^k(x) \quad \textbf{car $|k/n - x| \geq \delta \implies \dfrac{(k/n - x)^2}{\delta^2} \geq 1$}\\
+        &= \dfrac{1}{\delta^2} \dfrac{x(1-x)}{n} \\
+        &\leq \dfrac{1}{\delta^2 n} \quad \textbf{car $x(1-x) \leq 1/4 \leq 1$ pour $x \in [0, 1]$} \\
+    \end{align*}
 
-    On a pour la somme
-    $$
-    \left|\dfrac{k}{n} - x \right| \iff \left( \dfrac{k}{n} - x \right)^2 \geq \delta^2
-    $$
-    donc $\dfrac{\left(\frac{k}{n} - x\right)^2}{\delta^2} \geq 1$
-
+    Aussi, $f$ est continue sur $[0, 1]$ donc est uniformément continue sur $[0, 1]$ (théorème de Heine), alors $|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon$ et $f$ est bornée par $M := \norm{f}_{\infty, [0, 1]}$.
     Ainsi
+
     \begin{align*}
-        I &= \sum_{\left|\frac{k}{n} - x \right| > \delta^2} \binom{n}{k} x^k (1-x)^{n-k} \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
-        &\leq \sum_{\left|\frac{k}{n} - x \right| > \delta^2} \binom{n}{k} x^k (1-x)^{n-k} 2 \norm{f}_{\infty, [0, 1]} \\
+        |B_n(x, f) - f(x)| &= \left| \sum_{k=0}^n f\left( \frac{k}{n} \right) b_n^k(x) - f(x) \sum_{k=0}^n b_n^k(x) \right| \\
+        &= \left| \sum_{k=0}^n b_n^k(x) \left( f\left( \frac{k}{n} \right) - f(x) \right) \right| \\
+        &\leq \sum_{k=0}^n b_n^k(x) \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
+        &\leq \sum_{|\frac{k}{n} - x| < \delta} b_n^k(x) \left| f\left( \frac{k}{n} \right) - f(x) \right| + \sum_{|\frac{k}{n} - x| \geq \delta} b_n^k(x) \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
+        &\leq \sum_{|\frac{k}{n} - x| < \delta} b_n^k(x) \varepsilon + \sum_{|\frac{k}{n} - x| \geq \delta} b_n^k(x) 2M \\
+        &\leq \varepsilon \sum_{k=0}^n b_n^k(x) + 2M \sum_{|\frac{k}{n} - x| \geq \delta} b_n^k(x) \\
+        &\leq \varepsilon + \dfrac{2M}{\delta^2 n} \
     \end{align*}
-    \begin{hotwarn}
-        À faire
-    \end{hotwarn}
+
+    En prenant un $N \in \N$ tel que $\dfrac{2M}{\delta^2 N} < \varepsilon$, on a pour tout $n \geq N$, $|B_n(x, f) - f(x)| < 2\varepsilon$.
+
+    Donc $B_n(\cdot, f)$ converge uniformément vers $f$ sur $[0, 1]$.
+
+    En posant $\funcdef{\phi}{[0, 1]}{[a, b]}{x}{a + (b - a)x}$, on peut définir $g \in \mathcal{C}^0([0, 1], \R)$ par \text{$f = g \circ \phi$}.
+
+    En definissant la fonction $\funcdef{\phi^{-1}}{[a, b]}{[0, 1]}{y}{\frac{y - a}{b - a}}$, on a $g = f \circ \phi^{-1}$.
+
+    Ainsi, $B_n(\cdot, g)$ converge uniformément vers $g$ sur $[a, b]$.
 \end{demonstration}
 
 \end{document}
