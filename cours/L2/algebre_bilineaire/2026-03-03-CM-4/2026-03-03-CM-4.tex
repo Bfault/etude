@@ -1,0 +1,59 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{03 March 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 4}{\today}
+
+\subsection{Classification des formes quadratiques}
+
+\begin{definition}
+    Soient $q_1$ et $q_2$ deux formes quadratiques sur $E$ un $\K$-espace vectoriel.
+
+    On dira que $q_1$ et $q_2$ sont \textbf{équivalentes} (ou encore \textbf{congruentes}) s'il existe un automorphisme $f$ de $E$ tel que
+    $$
+    \forall u \in E, \quad q_2(u) = q_1(f(u))
+    $$
+
+    C'est à dire qu'il existe deux bases $\mathcal{B}$ et $\mathcal{B}'$ de $E$ telles que $Mat_{\mathcal{B}}(\varphi_1) = Mat_{\mathcal{B}'}(\varphi_2)$ où $\varphi_1$ et $\varphi_2$ sont les formes polaires de $q_1$ et $q_2$ respectivement.
+\end{definition}
+
+\begin{theoreme}{Classification dans $\mathbb{C}$}{}
+    Soit $E$ un $\mathbb{C}$-espace vectoriel de dimension finie $n$ et $q$ une forme quadratique sur $E$ de forme polaire $\varphi$ telle que $rang(q) = r \leq n$.
+
+    \begin{enumerate}
+        \item
+        Il existe une base $\mathcal{B} = (e_1, \cdots, e_n)$ de $E$ telle que
+        pour tout $u = \sum\limits_{i=1}^n x_i e_i \in E$ on ait
+        $$
+        q(u) = \sum_{i=1}^r x_i^2.
+        $$
+
+        \item Il existe une base $\varphi$-orthogonale de $E$ si $r = n$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    Il existe une base $\mathcal{B} = (e_1, \cdots, e_n)$ de $E$ qui est $\varphi$-orthogonale,
+    dont la matrice $D$ de $\varphi$ est diagonale de la forme
+    $$
+    D = \begin{pmatrix}\lambda_1 & 0 & \cdots & 0 \\
+    0 & \lambda_2 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & \lambda_n
+    \end{pmatrix}
+    $$
+    avec $\lambda_i \in \mathbb{C}^*$ pour tout $i$.
+
+    On sait que le rang de $q$ est égal au rang de $\varphi$, qui est égal à $r$, donc on peut supposer que $\lambda_1, \cdots, \lambda_r$ sont non nuls et que $\lambda_{r+1} = \cdots = \lambda_n = 0$.
+
+    Soit $u = \sum\limits_{i=1}^n x_i e_i \in E$ et $v = (v_1, \cdots, v_n) = (\frac{e_1}{\sqrt{\lambda_1}}, \cdots, \frac{e_r}{\sqrt{\lambda_r}}, e_{r+1}, \cdots, e_n)$.
+
+    On calcule $q(u)$ dans la base $v$ de coordonnées $(x_1' , \cdots, x_n')$
+    D'où $q(u) = \sum\limits_{i=1}^r x_i'^2$.
+\end{demonstration}
+
+\end{document}

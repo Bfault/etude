@@ -172,4 +172,26 @@
 
 \end{proposition}
 
+\begin{demonstration}
+    Soit $q \in \mathcal{D}(E)$ et $\varphi$ sa forme polaire.
+    Soit $u \in E$ et $\mathcal{B} = (e_1, \dots, e_n)$ une base de $E$.
+    
+    \begin{description}
+        \item[Sens direct.] 
+        \begin{align*}
+            q(u) = \varphi(u, u) &= \varphi\left( \sum\limits_{i=1}^n u_i e_i, \sum\limits_{j=1}^n u_j e_j \right) \\
+            &= \sum_{i=1}^n \sum_{j=1}^n x_i x_j \varphi(e_i, e_j) \\
+            &= \sum_{i=1}^n x_i^2 \varphi(e_i, e_i) + \sum_{i=1}^n \sum_{j=1, j \neq i}^n x_i x_j \varphi(e_i, e_j) \\
+            &= \sum_{i=1}^n x_i^2 \varphi(e_i, e_i) + 2 \sum_{1 \leq i < j \leq n} x_i x_j \varphi(e_i, e_j)
+        \end{align*}
+
+        \item[Sens réciproque.]
+        Montrons que $q(u) = \sum_{i=1}^n \varphi(e_i, e_i) x_i^2 + 2 \sum_{1 \leq i < j \leq n} \varphi(e_i, e_j) x_i x_j$ est une forme quadratique.
+
+        \begin{hotwarn}
+            À finir à la maison
+        \end{hotwarn}
+    \end{description}
+\end{demonstration}
+
 \end{document}

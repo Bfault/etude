@@ -1,0 +1,138 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{04 March 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 9}{\today}
+
+\begin{proposition}{Formule de changement de variable}{}
+    On prend la série entière $f(z) := \sum\limits_{n \geq 0} a_n z^n$ de rayon de convergence $R > 0$ et $|z| < R$.
+
+    Alors pour tout $\alpha \in \R$, pour tout $m \in \Z^*$, on a
+    $$
+    \sum_{n \geq 0} a_n \alpha^n z^{nm} = f(\alpha z^m)
+    $$
+    dés que $|\alpha z^m| < R \iff z \leq \sqrt[m]{\dfrac{R}{|\alpha|}}$
+\end{proposition}
+
+\begin{proposition}{}{}
+    Pour tout $z \in \mathbb{C}$, $e^z := \sum_{n \geq 0} \dfrac{z^n}{n!}$.
+
+    Alors
+    $$
+    e^{a + b} = e^a e^b
+    $$
+    pour tout $a, b \in \mathbb{C}$.
+\end{proposition}
+
+\begin{demonstration}
+    On a
+    $$
+    e^a = \sum_{n \geq 0} \dfrac{a^n}{n!} = \sum_{n \geq 0} 1^n \dfrac{a^n}{n!} = (z \mapsto e^{a z})(1)
+    $$
+    pareil pour $e^b$.
+    $$
+    e^b = (z \mapsto e^{b z})(1)
+    $$
+
+    On fait le produit des deux séries
+    $$
+    e^a e^b = \left(\sum_{n \geq 0} 1^n \dfrac{a^n}{n!} \right)\left( \sum_{n \geq 0} 1^n \dfrac{b^n}{n!} \right) = \sum_{n \geq 0} c_n 1^n
+    $$
+    avec
+    \begin{align*}
+        c_n := \sum_{i + j = n} \dfrac{a^i}{i!} \dfrac{b^j}{j!} &= \dfrac{b^n}{n!} + \dfrac{ab^{n-1}}{(n-1)!1!} + \cdots + \dfrac{a^n}{n!} \\
+        &= \sum_{k = 0}^n \dfrac{b^{n-k}a^k}{(n-k)!k!} = \dfrac{1}{n!} \sum_{k = 0}^n \binom{n}{k} a^k b^{n-k} = \dfrac{(a + b)^n}{n!}
+    \end{align*}
+
+    et on a aussi
+
+    $$
+    e^a \times e^b = \sum_{k \geq 0} \dfrac{(a + b)^k}{k!} 1^k = e^{a + b}
+    $$
+\end{demonstration}
+
+\subsection{Développabilité en série entière}
+
+On ne considère que $z \in \R$.
+
+\begin{definition}
+    Soit $z_0 \in \R$, $\bar{\R^+} = \R^+ \cup \{+\infty\}$ et $R \in \bar{\R^+}$.
+
+    $g$ un fonction définie sur $\R$ sera \textbf{dévéloppable} en série entière sur $]z_0 - R, z_0 + R[$ si
+    $$
+    \forall z \in ]z_0 - R, z_0 + R[, \quad g(z) = \sum_{n \geq 0} a_n (z - z_0)^n
+    $$
+    cette somme s'appellera la \textbf{développement en série entière} de $g$ au voisinage de $z_0$.
+\end{definition}
+
+\begin{proposition}{}{}
+    La fonction $g$ est développable en série entière sur $]z_0 - R, z_0 + R[$ si et seulement si
+    la fonction $z \mapsto g(z + z_0)$ est développable en série entière sur $]-R, R[$ en $z = 0$.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Soit $f$ une fonction d.s.e autour de 0 et $R > 0$ son rayon de convergence telle que $\forall z \in ]-R, R[, f(z) = \sum\limits_{n \geq 0} a_n z^n$.
+
+    Alors $f$ est indéfiniment dérivable sur $]-R, R[$ et on dérive terme à terme $f'(z) = \sum\limits_{n \geq 1} n a_n z^{n-1}$.
+
+    Plus généralement
+    $$
+    f^{(l)}(z) = \sum_{n \geq l} \prod_{k = 0}^{l-1} (n - k) a_n z^{n-l}
+    $$
+    et de plus
+    $$
+    \int_0^z f(t) dt = \sum_{n \geq 0} \dfrac{a_n}{n + 1} z^{n + 1}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    On a
+    $$
+    \lim_{n \to +\infty} \sqrt[n]{n} = \lim_{n \to +\infty} n^{\frac{1}{n}} = \lim_{n \to +\infty} e^{\frac{\ln(n)}{n}} = 1
+    $$
+    et donc $\lim_{n \to +\infty} \sup \sqrt[n]{n |a_n|} = \lim_{n \to +\infty} \sup \sqrt[n]{|a_n|}$ donc les deux séries
+    $\sum_{n \geq 0} na_n z^n$ et $\sum_{n \geq 0} a_n z^n$ ont le même rayon de convergence $R$.
+
+    D'apres la proposition ?? on a la convergence uniforme de $\sum_{n \geq 0} a_n z^n$ sur $[-r, r]$ pour tout $r \in ]0, R[$.
+    De même pour $\sum_{n \geq 0} na_n z^n$.
+
+    On peut appliquer le théorème de dérivation d'une série de fonctions pour conclure que $f$ est dérivable et que $f'(z) = \sum\limits_{n \geq 1} n a_n z^{n-1}$.
+
+    \vspace{0.5cm}
+    Par récurrence, on trouve la formule pour $f^{(l)}$.
+    \vspace{0.5cm}
+
+    Pour l'intégrale, on applique le théorème de dérivation à $\int_0^z f(t) dt$.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Si $f$ est d.s.e sur $]-R, R[$ avec $R > 0$.
+
+    Alors
+    $$
+    f(z) = \sum_{n \geq 0} \dfrac{f^{(n)}(0)}{n!} z^n
+    $$
+\end{corollaire}
+
+\begin{remarque}
+    On reconnait un développement de Taylor de $f$ au voisinage de 0.
+\end{remarque}
+
+\begin{demonstration}
+    On fait une récurrence sur $n$
+\end{demonstration}
+
+\begin{definition}
+    Si $f$ est indéfiniment dérivable sur $]-R, R[$, alors le developpement,
+    $$
+    f(z) = \sum_{n \geq 0} \dfrac{f^{(n)}(0)}{n!} z^n
+    $$
+    s'appelle la série de Taylor de $f$ au voisinage de 0.
+\end{definition}
+
+
+\end{document}
