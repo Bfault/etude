@@ -1,0 +1,132 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{05 March 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 10}{\today}
+
+\begin{theoreme}{}{}
+    Soit $f \in \mathcal{C}^{n+1}([-R, R])$ pour un certain $n \in \N$ et $R > 0$.
+
+    Alors on a
+    $$
+    \forall z \in [-R, R], f(z) = \sum_{k = 0}^n \dfrac{f^{(k)}(0)}{k!} z^k + r_n(z)
+    $$
+    avec $r_n(z) = \int_0^z \frac{(z - t)^n}{n!} f^{(n+1)}(t) dt$.
+\end{theoreme}
+
+\begin{proposition}{}{}
+    Si $f$ est $C^\infty$ sur $[-R, R]$ avec $R > 0$ et qu'il existe $M > 0$ et $a > 0$ tels que
+    $$
+    \forall n \in \N, \forall z \in [-R, R], \quad |f^{(n)}(z)| \leq M a^n
+    $$
+
+    Alors $f$ est développable en série entière sur $[-R, R]$.
+\end{proposition}
+
+\begin{demonstration}
+    On a
+    \begin{align*}
+        |r_n(z)| &= \left| \int_0^z \dfrac{(z - t)^n}{n!} f^{(n+1)}(t) dt \right| \\
+        &\leq \int_0^z \dfrac{(z - t)^n}{n!} |f^{(n+1)}(t)| dt \\
+        &\leq M a^{n+1} \int_0^z \dfrac{(z - t)^n}{n!} dt \\
+        &\leq M a^{n+1} z^{n+1} \dfrac{1}{(n+1)!} \\
+        &\leq \dfrac{M (a R)^{n+1}}{(n+1)!} \underset{n \to +\infty}{\longrightarrow} 0
+    \end{align*}
+\end{demonstration}
+
+\begin{remarque}
+    Toutes les fonctions à dérivées bornées sont développables en série entière sur $[-R, R]$.
+\end{remarque}
+
+\subsection{Développement en série entière de fonctions usuelles}
+
+\begin{exemple}
+    Pour $f(z) = (1 + z)^\alpha$ avec $\alpha \in \R$, les dérivées de $f$ sont bornées sur $[-R, R]$.
+\end{exemple}
+
+\begin{exemple}
+    Pour $f(z) = \dfrac{1}{\sqrt{1 - z}}$ pour $z \in [-R, R]$ avec $R < 1$, les dérivées de $f$ sont bornées sur $[-R, R]$.
+\end{exemple}
+
+\begin{proposition}{}{}
+    On prend $f(z) = \dfrac{P(z)}{Q(z)}$ avec $P, Q \in \mathbb{C}[X]$ et $R = \inf\{|z| \mid Q(z) = 0\}$.
+
+    Alors on connait le développement en série entière de $f$ sur $[-R, R]$.
+
+    $$
+    \dfrac{P(z)}{Q(z)} = \sum_{k \in I} \sum_{j = 1}^{n_k} \dfrac{1}{(z - z_k)^j}
+    $$
+    où $n_k$ est la multiplicité de $z_k$.
+
+    Il faut savoir traiter
+    $$
+    \dfrac{1}{(z - z_k)^n} = \dfrac{1}{(-z_k)^n(1 - \frac{z}{z_k})^n} = (-z_k)^{-n} \dfrac{1}{(1 - \frac{z}{z_k})^n}
+    $$
+    \begin{hotwarn}
+        À finir et décomposition en éléments simples à revoir.
+    \end{hotwarn}
+\end{proposition}
+
+\subsection{Applications des séries entières dans $\R$}
+
+\begin{exemple}[Explicitation des termes d'une suite récurrente]
+    Soit $a_0 = 1$ et pour $n \in \N$, $a_{n+1} = 2 a_n + 2^n$.
+
+    Soit $f(z) = \sum_{n \geq 0} a_n z^n$.
+
+    On considère pour $n \geq 0$,
+    \begin{align*}
+        \sum\limits_{n \geq 0} a_{n+1}z^n &= \sum\limits_{n \geq 0} 2 a_n z^n + \sum\limits_{n \geq 0} 2^n z^n \\
+    \end{align*}
+    \begin{align*}
+        \sum\limits_{n \geq 0} a_{n+1}z^n &= \dfrac{1}{z} \sum\limits_{n \geq 0} a_{n + 1} z^{n + 1} \\
+        &= \dfrac{1}{z} \left( \sum\limits_{n \geq 0} a_n z^n - a_0 \right) = \dfrac{f(z) - 1}{z}
+    \end{align*}
+    Donc
+    $$
+    \dfrac{1}{z} (f(z) - 1) = 2 f(z) + \dfrac{1}{1 - 2z} \iff f(z) = \dfrac{1}{1 - 2z} + \dfrac{z}{(1 - 2z)^2}
+    $$
+
+    On reconnait que $z \mapsto \dfrac{1}{(1 - 2z)^2}$ est un-demi fois la dérivée de $z \mapsto \dfrac{1}{1 - 2z}$, on a
+    d'où
+    $$
+    f(z) = \sum_{n \geq 0} 2^n z^n + \dfrac{1}{2}z \sum_{n \geq 1} n2^n z^{n - 1} = 1 + \sum_{n \geq 1} 2^n z^n + \sum_{n \geq 1} n 2^{n - 1} z^n = 1 + \sum_{n \geq 1} (2^n + n 2^{n - 1}) z^n
+    $$ 
+
+    Donc $a_n = 2^n + n2^{n - 1}$
+\end{exemple}
+
+\begin{exemple}[Résolution d'une équation différentielle non triviale]
+    On prend $z^2 y'' - 6 z y' + (12 + z^2) y = 0$ (on peut avoir un second membre si on peut calculer le d.s.e)
+
+    On suppose un $f$ solution telle que $f(z) = \sum_{n \geq 0} a_n z^n$.
+
+    Donc $f'(z) = \sum_{n \geq 1} n a_n z^{n - 1}$ et $f''(z) = \sum_{n \geq 2} n (n - 1) a_n z^{n - 2}$.
+
+    Ainsi on a l'équation
+    \begin{align*}
+        &z^2 \sum_{n \geq 2} n (n - 1) a_n z^{n - 2} - 6 z \sum_{n \geq 1} n a_n z^{n - 1} + (12 + z^2) \sum_{n \geq 0} a_n z^n = 0 \\
+        &\implies \sum_{n \geq 2} n (n - 1) a_n z^n - 6 \sum_{n \geq 1} n a_n z^n + 12 \sum_{n \geq 0} a_n z^n + \sum_{n \geq 0} a_n z^{n + 2} = 0 \\
+        &\implies \sum_{n \geq 2} n (n - 1) a_n z^n - 6 \sum_{n \geq 1} n a_n z^n + 12 \sum_{n \geq 0} a_n z^n + \sum_{n \geq 2} a_{n-2} z^n = 0
+    \end{align*}
+    La combinaison linéaire de ces 5 séries est une série entière nulle, donc les coefficients de $z^n$ sont nuls pour tout $n \in \N$.
+
+    On a
+    \begin{align*}
+        &\text{pour } n = 0, &\quad 12 a_0 = 0 \implies a_0 = 0 \\
+        &\text{pour } n = 1, &\quad -6 a_1 + 12 a_1 = 0 \implies a_1 = 0 \\
+        &\text{pour } n = 2, &\quad 2 a_2 - 12 a_2 + 12 a_2 + a_0 = 0 \implies a_2 = 0 \\
+    \end{align*}
+    Pour $n \geq 3$, on a
+    \begin{align*}
+        &n (n - 1) a_n - 6 n a_n + 12 a_n + a_{n - 2} = 0 \\
+        &\implies a_n(n^2 - 7 n + 12) + a_{n - 2} = 0 \\
+        &\implies a_n(n - 3)(n - 4) + a_{n - 2} = 0 \\
+    \end{align*}
+\end{exemple}
+
+\end{document}

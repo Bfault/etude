@@ -1,0 +1,98 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{09 March 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 6}{\today}
+
+\section{Espaces euclidiens}
+
+\subsection{Définitions}
+
+\begin{definition}
+    Un \textbf{espace euclidien} est un espace vectoriel réel $E$ muni d'un produit scalaire.
+\end{definition}
+
+\begin{remarque}
+    Dans le cas de la dimension infinie, on dit que $E$ est un \textbf{espace préhilbertien}.
+\end{remarque}
+
+\begin{definition}
+    On appelle \textbf{norme euclidienne} la norme associée au produit scalaire, c'est-à-dire la fonction $\norm{x} = \sqrt{\langle x, x \rangle}$.
+\end{definition}
+
+Dans la suite, nous considérerons uniquement la norme euclidienne.
+
+\begin{definition}
+    Les \textbf{identités de polarisation} s'écrivent, pour tous $x, y \in E$,
+    \begin{align*}  
+        \langle x, y \rangle &= \frac{1}{2} \left( \norm{x + y}^2 - \norm{x}^2 - \norm{y}^2 \right) \\
+        &= \frac{1}{2} \left( \norm{x + y}^2 - \norm{x - y}^2 \right)
+    \end{align*}
+\end{definition}
+
+\begin{theoreme}{Inégalité de Cauchy-Schwarz}
+    Pour tous $x, y \in E$, on a
+    $$    
+    |\langle x, y \rangle| \leq \norm{x} \norm{y}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Posons $P(\lambda) = \norm{x + \lambda y}^2$ pour $\lambda \in \R$.
+    \begin{align*}
+        P(\lambda) &= \langle x + \lambda y, x + \lambda y \rangle \\
+        &= \norm{x}^2 + 2\lambda \langle x, y \rangle + \lambda^2 \norm{y}^2
+    \end{align*}
+
+    Comme $P(\lambda) \geq 0$ pour tout $\lambda$, le discriminant de ce polynôme doit être négatif ou nul, c'est-à-dire
+    \begin{align*}
+        4 \langle x, y \rangle^2 - 4 \norm{x}^2 \norm{y}^2 &\leq 0 \\
+        \langle x, y \rangle^2 &\leq \norm{x}^2 \norm{y}^2 \\
+        |\langle x, y \rangle| &\leq \norm{x} \norm{y}
+    \end{align*}
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $x, y \in E$. On a
+    \begin{enumerate}
+        \item $\norm{x + y}^2 + \norm{x - y}^2 = 2(\norm{x}^2 + \norm{y}^2)$ (identité de parallélogramme)
+        \item $\norm{x}^2 - \norm{y}^2 = \langle x + y, x - y \rangle$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{remarque}
+    L'inégalité de Cauchy-Schwarz peut s'écrire $-1 \leq \dfrac{\langle x, y \rangle}{\norm{x} \norm{y}} \leq 1$.
+    On peut interpréter ça comme un "angle".
+\end{remarque}
+
+\begin{remarque}[$\mathbb{C}$ c'est mieux!]
+    Soit $E$ un $\mathbb{C}$-espace vectoriel muni d'une forme sesquilinéaire définit positive $\langle \cdot, \cdot \rangle$.
+    (comparé à un produit scalaire, une forme sesquilinéaire a comme propriété $\langle x, \lambda y \rangle = \bar{\lambda} \langle x, y \rangle$ pour la deuxième coordonnée.)
+\end{remarque}
+
+\subsection{Procédé de Gram-Schmidt}
+
+\begin{theoreme}{}{}
+    Soit $E$ un espace euclidien de dimension finie $n$ et $(v_1, \dots, v_n)$ une base de $E$.
+
+    Alors il existe une unique base orthonormale $(e_1, \dots, e_n)$ de $E$ telle que pour tout $1 \leq j \leq n$, on a
+    \begin{enumerate}
+        \item $\langle e_j, v_j \rangle > 0$
+        \item $Vect(e_1, \dots, e_j) = Vect(v_1, \dots, v_j)$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    On définit les $e_i$ récursivement de la manière suivante :
+\begin{align*}
+    e_1 &= \frac{v_1}{\norm{v_1}} = u_1 \\
+    u_2 &= v_2 - \dfrac{\langle u_1, v_2 \rangle}{\norm{u_1}} u_1, \quad e_2 = \frac{u_2}{\norm{u_2}} \\
+    u_j &= v_j - \sum_{i=1}^{j-1} \dfrac{\langle u_i, v_j \rangle}{\norm{u_i}} u_i, \quad e_j = \frac{u_j}{\norm{u_j}}
+\end{align*}
+\end{demonstration}
+
+\end{document}

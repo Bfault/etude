@@ -1,0 +1,198 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{06 March 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 5}{\today}
+
+\begin{theoreme}{Théorème d'inertie de Sylvester}{}
+    Soit $E$ un $\R$-espace vectoriel de dimension finie $n$.
+
+    Toute forme quadratique $q$ sur $E$ est équivalente à la forme quadratique telle que
+    $$
+    q(u) = \sum_{i=1}^p x_i^2 - \sum_{i=p+1}^{r} x_i^2
+    $$
+    où $r$ est le rang de $q$.
+
+    Le couple $(p, r - p)$ est appelé \textbf{signature} de $q$, est unique et indépendant de la base choisie.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $E$ un $\R$-espace vectoriel de dimension finie $n$.
+    Soit $q$ une forme quadratique sur $E$ de rang $r \leq n$ et $B = (e_1, \ldots, e_n)$ une base de $E$ telle que
+    $Mat_{\varphi,B}$ est une matrice diagonale
+
+    On a $p = |\{i \in \llbracket 1, r \rrbracket \mid \lambda_i > 0\}|$ et $q = |\{i \in \llbracket 1, r \rrbracket \mid \lambda_i < 0\}|$ avec
+    $\lambda_i$ les éléments diagonaux de $Mat_{\varphi, B}$.
+
+    On aura $p + m = r$ quitte à renumeroter les éléments de la base $B$.
+
+    On peut supposer que $\lambda_i > 0$ pour $i \in \llbracket 1, p \rrbracket$ et $\lambda_i < 0$ pour $i \in \llbracket p + 1, p + m \rrbracket$ et $\lambda_i = 0$ pour $i \in \llbracket p + m + 1, n \rrbracket$.
+
+    On fait un changement de base $B' = \{v_1, \ldots, v_n\}$ en faisant
+    \begin{align*}
+        \text{pour } i \in \llbracket 1, p \rrbracket, v_i &= \dfrac{e_i}{\sqrt{\lambda_i}} \\
+        \text{pour } i \in \llbracket p + 1, p + m \rrbracket, v_i &= \dfrac{e_i}{\sqrt{-\lambda_i}} \\
+        \text{pour } i \in \llbracket p + m + 1, n \rrbracket, v_i &= e_i
+    \end{align*}
+
+    Et alors, soit $x \in E$ de coordonnées $(x_1, \ldots, x_n)$ dans la base $B'$,
+    \begin{align*}
+        q(x) &= \varphi(\sum_i^n x_i v_i, \sum_i^n x_i v_i) \\
+        &= \varphi\left(\sum_{i=1}^p x_i \frac{e_i}{\sqrt{\lambda_i}} + \sum_{i=p+1}^{r} x_i \frac{e_i}{\sqrt{-\lambda_i}} + \sum_{i=p+m+1}^n x_i e_i, \sum_{i=1}^p x_i \frac{e_i}{\sqrt{\lambda_i}} + \sum_{i=p+1}^{r} x_i \frac{e_i}{\sqrt{-\lambda_i}} + \sum_{i=p+m+1}^n x_i e_i\right) \\
+        &= \sum_{i=1}^p x_i^2 - \sum_{i=p+1}^{r} x_i^2
+    \end{align*}
+
+    On suppose que $q$ (dans deux bases différentes) a deux signatures $(p, m)$ et $(p', m')$ telles que $p + m = p' + m' = r$.
+
+    On prend $B = (e_1, \ldots, e_n)$ la base de $E$ telle que $q$ a pour signature $(p, m)$ et $B' = (e_1', \ldots, e_n')$ la base de $E$ telle que $q$ a pour signature $(p', m')$.
+
+    Soit $x \in E$ de coordonnées $(x_1, \ldots, x_n)$ dans la base $B$ et de coordonnées $(x_1', \ldots, x_n')$ dans la base $B'$ qu'on aura renuméroté comme en haut.
+
+    On aura
+    $$
+    F = Vect(e_1, \ldots, e_p)
+    G = Vect(e_{p+1}, \ldots, e_{n})
+    F' = Vect(e_1', \ldots, e_{p'}')
+    G' = Vect(e_{p'+1}', \ldots, e_{n'})
+    $$
+
+    Pour tout $u \in F$, $q(u) > 0$ et pour tout $u \in G$, $q(u) \leq 0$.
+    Pareil, pour tout $u' \in F'$, $q(u') > 0$ et pour tout $u' \in G'$, $q(u') \leq 0$.
+
+    On a $F \cap G' = \{0\}$ et $F \oplus G' \subset E$ donc $dim(F) + dim(G') = dim(F + G') \leq dim(E)$.
+    d'où $p + (n - p') \leq n$ et $p \leq p'$.
+    
+    De même pour $F'$ et $G$ on a $p' \leq p$.
+
+    Donc $p = p'$ et $m = m'$.
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Deux formes quadratiques sur $E$ sont équivalentes si et seulement si elles ont même signature.
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Direct.]
+        Soit $q1$ et $q2$ deux formes quadratiques sur $E$ de même signature $(p, m)$.
+        \begin{hotwarn}
+            À faire.
+        \end{hotwarn}
+        \item[Réciproquement.]
+        On suppose que $q1$ et $q2$ sont équivalentes, alors il existe une base de $E$ dans laquelle $q1$ et $q2$ ont même matrice, donc même signature. 
+    \end{description}
+\end{demonstration}
+
+\begin{definition}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $q$ une forme quadratique sur $E$.
+
+    \begin{enumerate}
+        \item 
+        On dit que $q$ est \textbf{positive} (resp. \textbf{négative}) si $q(u) \geq 0$ (resp. $q(u) \leq 0$) pour tout $u \in E$.
+        \item
+        On dit que $q$ est \textbf{définie positive} (resp. \textbf{définie négative}) si $q(u) > 0$ (resp. $q(u) < 0$) pour tout $u \in E \setminus \{0\}$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $E$ un $\R$-espace vectoriel de dimension finie $n$ et $q$ une forme quadratique sur $E$.
+
+    Alors
+    \begin{align*}
+        q \text{ est définie positive} &\iff q \text{ à comme signature } (n, 0) \\
+        q \text{ est définie négative} &\iff q \text{ à comme signature } (0, n) \\
+        q \text{ de rang r est positive} &\iff q \text{ à comme signature } (r, 0) \\
+        q \text{ de rang r est négative} &\iff q \text{ à comme signature } (0, r) \\
+        q \text{ est définie} &\iff q \text{ à comme signature } (n, 0) \text{ ou } (0, n)
+    \end{align*}
+\end{proposition}
+
+\begin{demonstration}
+    On sait qu'il existe une base de $E$ dans laquelle
+    $$
+    \forall x \in \E, q(x) = x_1^2 + \cdots + x_p^2 - x_{p+1}^2 - \cdots - x_r^2
+    $$
+    \begin{hotwarn}
+        À finir.
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $q$ une forme quadratique sur $E$ de rang $r \leq n$.
+
+    \begin{enumerate}
+        \item 
+        Alors il existe $r$ scalaires $\alpha_i$ pour $i \in \llbracket 1, r \rrbracket$ et
+        $r$ formes linéaires $\theta_i$ pour $i \in \llbracket 1, r \rrbracket$ telles que
+        $$
+        q(u) = \sum_{i=1}^r \alpha_i \theta_i(u)^2
+        $$
+
+        \item
+        Si $\K = \R$, $q$ a pour signature $(p, r - p)$ si et seulement si $p$ est le nombre de $\alpha_i > 0$ et $r - p$ le nombre de $\alpha_i < 0$. 
+\end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item
+        Soit $q \in \mathcal{D}(E)$.
+
+        On suppose que pour tout $u \in \E, q(u) = \sum_{i=1}^r \alpha_i \theta_i(u)^2$ avec $\alpha_i$ scalaires et $\theta_i$ formes linéaires.
+
+        On prend $\funcdef{\varphi}{E \times E}{\K}{(u, v)}{\beta(u, v) = \sum_{i=1}^r \alpha_i \theta_i(u) \theta_i(v)}$.
+
+        On a $\beta$ est une forme bilinéaire et $\beta(u, u) = q(u)$ pour tout $u \in E$.
+
+        Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$ et $x \in E$ de coordonnées $(x_1, \ldots, x_n)$ dans la base $\mathcal{B}$.
+
+        On a
+        $$
+        \varphi(u, u) = \sum_{i=1}^r \lambda_{ii} x_i^2 + 2 \sum_{1 \leq i < j \leq n} \lambda_{ij} x_i x_j
+        $$
+
+        On fait une récurrence sur $n$.
+        \begin{description}
+            \item[Initialisation.]
+            Pour $n = 1$, $q = \lambda_{ii} x_i^2$ avec $\lambda_{ii} \neq 0$.
+            \item[Hérédité.]  
+            On suppose que le resultat est vrai pour les espaces de dimension $n-1$.
+
+            Il existe $i \in \llbracket 1, n \rrbracket$ tel que $\lambda_{ii} \neq 0$ quitte à renuméroter la base
+
+            On suppose que $i = 1$. pour $y = x - x_1 e_1$, on a
+            $$
+            q(x) = \varphi(x_1 e_1 + y, x_1 e_1 + y) = \lambda_{11} x_1^2 + 2 \varphi(x_1 e_1, y) + q(y)
+            $$
+
+            \begin{align*}
+                q(x) = \lambda_{11} x_1^2 + 2 x_1 \beta(e_1, y) + q(y) &= \frac{1}{\lambda_{11}} \left( \lambda_{11}^2 x_1^2 + 2 \lambda_{11} x_1 \beta(e_1, y) \right) + q(y) \\
+                &= \frac{1}{\lambda_{11}} \left( \lambda_{11} x_1 + \beta(e_1, y) \right)^2 - \frac{1}{\lambda_{11}} \beta(e_1, y)^2 + q(y)
+            \end{align*}
+            et
+            $$
+            \theta_1(x) = \lambda_{11} x_1 + \beta(e_1, y) = x_1 \varphi(e_1, e_1) + \beta(e_1, y) = \beta(e_1, x_1 e_1) + \beta(e_1, x_1e_1 + y) = \beta(e_1, x)
+            $$
+
+            $q'$ est une forme quadratique de forme polaire $\beta'(u, v) = \beta(u, v) - \dfrac{\beta(e_1, u) \beta(e_1, v)}{\lambda_{11}}$.
+
+            On utilise le fait que
+            $$
+            q'(u) = \sum_{i=2}^r \alpha_i \theta_i'(u)
+            $$
+            reste à voir si ses $r$ formes linéaires sont indépendantes.
+
+            On fait
+            $$
+            \theta_i(x) = \theta_i'(y - x_1 e_1)
+            $$
+            pour $i \in \llbracket 2, r \rrbracket$.
+        \end{description}
+    \end{enumerate}
+\end{demonstration}
+
+\end{document}
