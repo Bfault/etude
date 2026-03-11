@@ -1,0 +1,42 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 March 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 7}{\today}
+
+\begin{lemme}{}{}
+    Soit $(a, b, c) \in \R^* \times \R^2$ et $q(x_1, x_2, x_3) = a x_1 x_2 + b x_1 x_3 + c x_2 x_3$.
+    
+    Alors
+    $$
+    q(x_1, x_2, x_3) = \frac{a}{4}\left((x_1 + x_2 + \frac{c + b}{a}x_3)^2 - (x_1 - x_2 + \frac{c - b}{a}x_3)^2\right) - \frac{b c}{a}x_3^2
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    On suppose qu'il n'existe pas de $i \in \llbracket 1, n \rrbracket$ tel que $\alpha_ii \neq 0$.
+
+    Comme $q$ n'est pas identiquement nul, il existe $i \neq j$ tels que $\alpha_{ij} \neq 0$.
+
+    quitte à permuter les indices, on peut supposer que $\alpha_{12} \neq 0$.
+
+    Ainsi on peut écrire $q$ sous la forme
+    $$
+    q(u) = q(x_1 e_1 + x_2 e_2 + y) = \beta(x_1 e_1 + x_2 e_2 + y, x_1 e_1 + x_2 e_2 + y)
+    $$
+    avec $y$ le reste et $\beta$ la forme polaire de $q$.
+    En développant, on trouve
+    \begin{align*}
+        q(u) &= \beta(x_1 e_1 + x_2 e_2 + y, x_1 e_1 + x_2 e_2 + y) \\
+        &= \alpha_{11} x_1^2 + 2 \alpha_{12} x_1 x_2 + 2 x_1 \beta(e_1, y) + \alpha_{22} x_2^2 + 2 x_2 \beta(e_2, y) + q(y) \\
+        &= 2 \alpha_{12} x_1 x_2 + 2 x_1 \beta(e_1, y) + 2 x_2 \beta(e_2, y) + q(y) \\
+        &= \frac{1}{2 \alpha_{12}}\left((\alpha_{12} x_1 + \alpha_{12} x_2 + \beta(e_1 + e_2, y))^2 - (\alpha_{12} x_1 - \alpha_{12} x_2 + \beta(e_2 - e_1, y))^2\right) \\
+        &\quad + q(y) - 2 \frac{\beta(e_1, y)\beta(e_2, y)}{\alpha_{12}}
+    \end{align*}
+\end{demonstration}
+
+\end{document}
