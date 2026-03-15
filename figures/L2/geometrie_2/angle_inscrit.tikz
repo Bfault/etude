@@ -1,0 +1,51 @@
+\begin{tikzpicture}[>=stealth, scale=1.3]
+
+    % --- Cas 1 : Le centre est à l'intérieur de l'angle ---
+    \begin{scope}[shift={(-2.5,0)}]
+        \coordinate (O1) at (0,0);
+        \draw[thick, gray] (O1) circle (2cm);
+        \fill (O1) circle (1.5pt) node[below] {$\Omega$};
+
+        \coordinate (A1) at (220:2cm);
+        \coordinate (B1) at (320:2cm);
+        \coordinate (M1) at (80:2cm);
+
+        \fill (A1) circle (1.5pt) node[below left] {$A$};
+        \fill (B1) circle (1.5pt) node[below right] {$B$};
+        \fill (M1) circle (1.5pt) node[above] {$M$};
+
+        \draw[->, thick, red!80!black] (M1) -- (A1);
+        \draw[->, thick, red!80!black] (M1) -- (B1);
+        \draw[->, thick, blue!80!black] (O1) -- (A1);
+        \draw[->, thick, blue!80!black] (O1) -- (B1);
+
+        \pic [draw, ->, "\small $\theta$", angle radius=0.9cm, angle eccentricity=1.3, red!80!black, thick] {angle = A1--M1--B1};
+        \pic [draw, ->, "\small $2\theta$", angle radius=0.5cm, angle eccentricity=1.6, blue!80!black, thick] {angle = A1--O1--B1};
+        
+    \end{scope}
+
+    % --- Cas 2 : Le centre est à l'extérieur de l'angle ---
+    \begin{scope}[shift={(2.5,0)}]
+        \coordinate (O2) at (0,0);
+        \draw[thick, gray] (O2) circle (2cm);
+        \fill (O2) circle (1.5pt) node[below left] {$\Omega$};
+
+        % A et B du "même côté" pour que O soit à l'extérieur
+        \coordinate (A2) at (10:2cm);
+        \coordinate (B2) at (70:2cm);
+        \coordinate (M2) at (160:2cm);
+
+        \fill (A2) circle (1.5pt) node[right] {$A$};
+        \fill (B2) circle (1.5pt) node[above right] {$B$};
+        \fill (M2) circle (1.5pt) node[above left] {$M$};
+
+        \draw[->, thick, red!80!black] (M2) -- (A2);
+        \draw[->, thick, red!80!black] (M2) -- (B2);
+        \draw[->, thick, blue!80!black] (O2) -- (A2);
+        \draw[->, thick, blue!80!black] (O2) -- (B2);
+
+        \pic [draw, ->, "\small $\theta$", angle radius=1.3cm, angle eccentricity=1.2, red!80!black, thick] {angle = A2--M2--B2};
+        \pic [draw, ->, "\small $2\theta$", angle radius=0.6cm, angle eccentricity=1.4, blue!80!black, thick] {angle = A2--O2--B2};
+    \end{scope}
+
+\end{tikzpicture}

@@ -1,0 +1,370 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{12 March 2026}
+
+\begin{document}
+
+\hotbox{Géometrie 2}{CM 5}{\today}
+
+\section{Les angles}
+
+\subsection{My name is BOND, James BOND}
+
+\begin{definition}[(Orientation d'un espace vectoriel)]
+    Soit $E$ un $\R$-espace vectoriel de dimension finie.
+
+    \begin{itemize}
+        \item Deux bases $\mathcal{B}$ et $\mathcal{B}'$ de $E$ ont la \textbf{même orientation} si la matrice de passage de $\mathcal{B}$ à $\mathcal{B}'$ a un déterminant strictement positif.
+        \item La relation "avoir la même orientation" est une relation d'équivalence sur l'ensemble des bases de $E$. Il y a exactement deux classes d'équivalence, appelées les \textbf{orientations} de $E$.
+        \item Orienter $E$ consiste à choisir arbitrairement une orientation de $E$, c'est à dire une classe d'équivalence de bases de $E$.
+        Les bases appartenant à l'orientation choisie sont dites \textbf{bases directes}, les autres sont dites \textbf{bases indirectes}.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[(Base orthonormée directe ou BOND)]
+    Soit $E$ un espace euclidien orienté de dimension finie.
+
+    Une base $\mathcal{B}$ de $E$ est une \textbf{base orthonormée directe} (BOND) si elle verifie les conditions
+    \begin{itemize}
+        \item $\mathcal{B}$ est une base orthonormée de $E$.
+        \item $\mathcal{B}$ est une base directe de $E$.
+    \end{itemize}
+\end{definition}
+
+\subsection{Angle de vecteurs}
+
+\begin{theoreme}{}{angle_vecteurs}
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+
+    Soient $u, v \in \mathcal{P}$ tels que $\norm{u} = \norm{v} = 1$.
+
+    \vspace{1cm}
+    En notant $(a, b)$ les coordonnées de $v$ dans la BOND de premier vecteur $u$,
+    il existe un unique $\theta \in \R$ modulo $2\pi$ tel que $a = \cos(\theta)$ et $b = \sin(\theta)$.
+\end{theoreme}
+
+\begin{demonstration}
+    Il existe un unique $u^\perp \in \mathcal{P}$ tel que $\mathcal{B} = (u, u^\perp)$ soit une BOND de $\mathcal{P}$.
+
+    On considère l'unique rotation vectorielle $r$ telle que $r(u) = v$.
+
+    Ainsi on peut écrire
+    $$
+    Mat_{\mathcal{B}}(r) = \begin{pmatrix}
+        a & -b \\
+        b & a
+    \end{pmatrix}
+    $$
+
+    Une rotation vectorielle conserve l'orientation et les distances, donc $det(r) = 1$ et
+    $$
+    a^2 + b^2 = 1
+    $$
+    Il existe un unique $\theta \in \R$ modulo $2\pi$ tel que $a = \cos(\theta)$ et $b = \sin(\theta)$.
+\end{demonstration}
+
+\begin{definition}[(Angle de vecteurs)]
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+
+    Soient $u, v \in \mathcal{P}\setminus\{0\}$.
+
+    On appelle l'\textbf{angle orienté} de $u$ à $v$, noté $(\widehat{\overrightarrow{u}, \overrightarrow{v}})$,
+    le réel $\theta$ défini par le théorème~\ref{theoreme:angle_vecteurs} appliqué à $\frac{u}{\norm{u}}$ et $\frac{v}{\norm{v}}$.
+\end{definition}
+
+\begin{remarque}
+    L'ensemble des angles orientés de vecteurs du plan est isomorphe à $\R / 2\pi\Z$.
+    C'est un groupe abélien pour l'addition.
+\end{remarque}
+
+\subsection{Angle de droites}
+
+\begin{proposition}{}{}
+    Soient $D$ et $D'$ deux droites d'un plan vectoriel euclidien orienté.
+
+    Si $u_1$ et $u_2$ sont deux vecteurs directeurs de $D$, et $v_1$ et $v_2$ sont deux vecteurs directeurs de $D'$, alors
+    $$
+    (\widehat{\overrightarrow{u_1}, \overrightarrow{v_1}}) \equiv (\widehat{\overrightarrow{u_2}, \overrightarrow{v_2}}) \mod \pi
+    $$
+\end{proposition}
+
+\begin{definition}
+    Soient $D$ et $D'$ deux droites d'un plan vectoriel euclidien orienté et $u$ et $v$ des vecteurs directeurs de $D$ et $D'$ respectivement.
+
+    On définit l'\textbf{angle orienté} de $D$ à $D'$ par
+    $$
+    (\widehat{D, D'}) = (\widehat{\overrightarrow{u}, \overrightarrow{v}}) \mod \pi
+    $$
+\end{definition}
+
+\begin{remarque}
+    Par cette définition, on a le resultat peu intuitif de l'égalité $\alpha = \beta$ dans la figure ci-dessous (car $\beta = \alpha + \pi$)
+\end{remarque}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/angle_droite.tikz}
+    }
+\end{figure}
+\tikzexternaldisable
+
+\begin{remarque}
+    L'ensemble des angles orientés de droites d'un plan est isomorphe à $\R / \pi\Z$.
+    C'est un groupe abélien pour l'addition.
+\end{remarque}
+
+\begin{remarque}
+    On peut caractériser les positions relatives des droites
+    \begin{itemize}
+        \item $D$ et $D'$ sont parallèles si et seulement si $(\widehat{D, D'}) = 0$.
+        \item $D$ et $D'$ sont perpendiculaires si et seulement si $(\widehat{D, D'}) = \frac{\pi}{2}$.
+    \end{itemize}
+\end{remarque}
+
+\subsection{Chasles et mesures principales}
+
+\begin{theoreme}{Relation de Chasles}{}
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+    \begin{enumerate}
+        \item Pour tous $u, v, w \in \mathcal{P}\setminus\{0\}$, on a
+        $$
+        (\widehat{\overrightarrow{u}, \overrightarrow{v}}) + (\widehat{\overrightarrow{v}, \overrightarrow{w}}) \equiv (\widehat{\overrightarrow{u}, \overrightarrow{w}}) \mod 2\pi
+        $$
+        \item Pour tous $D, D', D''$ droites d'un plan vectoriel euclidien orienté, on a
+        $$
+        (\widehat{D, D'}) + (\widehat{D', D''}) \equiv (\widehat{D, D''}) \mod \pi
+        $$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    Quitte à normaliser les vecteurs, on peut supposer que $u$, $v$ et $w$ sont unitaire.
+
+    Soit $r_1$ la rotation vectorielle telle que $r_1(u) = v$, d'angle $\theta_1 = (\widehat{\overrightarrow{u}, \overrightarrow{v}})$.
+    
+    Soit $r_2$ la rotation vectorielle telle que $r_2(v) = w$, d'angle $\theta_2 = (\widehat{\overrightarrow{v}, \overrightarrow{w}})$.
+
+    En représentant les rotations vectorielles par des matrices dans la BOND de premier vecteur $u$, on trouve
+    $$
+    Mat_{\mathcal{B}}(r_1) = \begin{pmatrix}
+        \cos(\theta_1) & -\sin(\theta_1) \\
+        \sin(\theta_1) & \cos(\theta_1)
+    \end{pmatrix}
+    $$
+    et
+    $$
+    Mat_{\mathcal{B}}(r_2) = \begin{pmatrix}
+        \cos(\theta_2) & -\sin(\theta_2) \\
+        \sin(\theta_2) & \cos(\theta_2)
+    \end{pmatrix}
+    $$
+    Ainsi
+    $$
+    Mat_{\mathcal{B}}(r_2 \circ r_1) = \begin{pmatrix}
+        \cos(\theta_1 + \theta_2) & -\sin(\theta_1 + \theta_2) \\
+        \sin(\theta_1 + \theta_2) & \cos(\theta_1 + \theta_2)
+    \end{pmatrix}
+    $$
+    Or $r_2 \circ r_1(u) = w$, donc $r_2 \circ r_1$ est la rotation vectorielle d'angle $(\widehat{\overrightarrow{u}, \overrightarrow{w}})$, d'où le résultat sur les vecteurs.
+
+    Le résultat sur les droites s'en déduit en prenant des vecteurs directeurs de ces droites.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Pour tous $u, v \in \mathcal{P}\setminus\{0\}$, on a
+    $$
+    (\widehat{\overrightarrow{u}, \overrightarrow{v}}) \equiv -(\widehat{\overrightarrow{v}, \overrightarrow{u}}) \mod 2\pi
+    $$
+\end{corollaire}
+
+\begin{definition}[(Mesure principale d'un angle)]
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+
+    \begin{itemize}
+        \item Pour tous $u, v \in \mathcal{P}\setminus\{0\}$, on appelle \textbf{mesure principale} de l'angle orienté de $u$ à $v$ l'unique réel $\theta$ dans l'intervalle $]-\pi, \pi]$ tel que $$\theta \equiv (\widehat{\overrightarrow{u}, \overrightarrow{v}}) \mod 2\pi$$
+        \item Pour tous $D, D'$ droites d'un plan vectoriel euclidien orienté, on appelle \textbf{mesure principale} de l'angle orienté de $D$ à $D'$ l'unique réel $\theta$ dans l'intervalle $]-\frac{\pi}{2}, \frac{\pi}{2}]$ tel que $$\theta \equiv (\widehat{D, D'}) \mod \pi$$
+    \end{itemize}
+\end{definition}
+
+\subsection{Expression analytique}
+
+\begin{theoreme}{}{}
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+
+    Soient $u, v \in \mathcal{P}\setminus\{0\}$.
+
+    Alors
+    $$
+    \langle\overrightarrow{u}, \overrightarrow{v}\rangle = \norm{u}\norm{v}\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    $$
+    et
+    $$
+    det(\overrightarrow{u}, \overrightarrow{v}) = \norm{u}\norm{v}\sin((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Posons $i = \dfrac{u}{\norm{u}}$. Il existe un unique $j \in \mathcal{P}$ tel que $\mathcal{B} = (i, j)$ soit une BOND de $\mathcal{P}$.
+
+    Les coordonnées de $u$ dans $\mathcal{B}$ sont $(\norm{u}, 0)$, et $\dfrac{v}{\norm{v}}$ a pour coordonnées $(\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}})), \sin((\widehat{\overrightarrow{u}, \overrightarrow{v}})))$.
+
+    Ainsi $v$ a pour coordonnées $(\norm{v}\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}})), \norm{v}\sin((\widehat{\overrightarrow{u}, \overrightarrow{v}})))$ dans la base $\mathcal{B}$.
+    Par conséquent
+    $$
+    \langle\overrightarrow{u}, \overrightarrow{v}\rangle = \norm{u}\norm{v}\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    $$
+    et
+    $$
+    det(\overrightarrow{u}, \overrightarrow{v}) = \begin{vmatrix}
+        \norm{u} & \norm{v}\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}})) \\
+        0 & \norm{v}\sin((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    \end{vmatrix} = \norm{u}\norm{v}\sin((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    $$
+\end{demonstration}
+
+\subsection{Angle inscrit et cocyclicité}
+
+\begin{lemme}{Angle du triangle isocèle}{}
+    Soit $\Omega M A$ un triangle isocèle en $\Omega$, alors
+    $$
+    2(\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + \pi \mod 2\pi
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    Posons $\theta_1 = (\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}})$
+    et $\theta_2 = (\widehat{\overrightarrow{A \Omega}, \overrightarrow{A M}})$.
+
+    On a
+    \begin{align*}
+        \langle\overrightarrow{MA}, \overrightarrow{M\Omega}\rangle &= \langle\overrightarrow{M\Omega} + \overrightarrow{\Omega A}, \overrightarrow{M\Omega}\rangle \\
+        &= \norm{\overrightarrow{M\Omega}}^2 + \langle\overrightarrow{\Omega A}, \overrightarrow{M\Omega}\rangle
+    \end{align*}
+    et
+    \begin{align*}
+        \langle\overrightarrow{A \Omega}, \overrightarrow{A M}\rangle &= \langle-\overrightarrow{\Omega A}, -\overrightarrow{M A}\rangle \\
+        &= (-1)(-1)\langle\overrightarrow{\Omega A}, \overrightarrow{M A}\rangle \\
+        &= \langle\overrightarrow{\Omega A}, \overrightarrow{M\Omega} + \overrightarrow{\Omega A}\rangle \\
+        &= \langle\overrightarrow{\Omega A}, \overrightarrow{M\Omega}\rangle + \norm{\overrightarrow{\Omega A}}^2
+    \end{align*}
+
+    Or $\norm{\overrightarrow{M\Omega}} = \norm{\overrightarrow{\Omega A}}$ car le triangle est isocèle en $\Omega$, donc $\cos(\theta_1) = \cos(\theta_2)$
+
+    De même pour les déterminants, on trouve $\sin(\theta_1) = \sin(\theta_2)$.
+
+    Ainsi $(\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}}) \equiv (\widehat{\overrightarrow{A \Omega}, \overrightarrow{A M}}) \mod 2\pi$.
+
+    La somme des angles d'un triangle est égale à $\pi$ donc
+    \begin{align*}  
+        &(\widehat{\overrightarrow{M A}, \overrightarrow{M\Omega}}) + (\widehat{\overrightarrow{A \Omega}, \overrightarrow{A M}}) + (\widehat{\overrightarrow{\Omega M}, \overrightarrow{\Omega A}}) \equiv \pi \mod 2\pi \\
+        &\implies (\widehat{\overrightarrow{M A}, \overrightarrow{M\Omega}}) + (\widehat{\overrightarrow{A \Omega}, \overrightarrow{A M}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + \pi \mod 2\pi \\
+        &\implies 2(\widehat{\overrightarrow{M A}, \overrightarrow{M\Omega}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + \pi \mod 2\pi
+    \end{align*}
+\end{demonstration}
+
+\pagebreak
+
+\begin{theoreme}{Théorème de l'angle inscrit au centre}{}
+    Soit $\Gamma$ un cercle de centre $\Omega$.
+
+    Pour tous $A, B, M \in \Gamma$ distincts, on a
+    $$
+    2(\widehat{\overrightarrow{MA}, \overrightarrow{MB}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) \mod 2\pi
+    $$
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.7\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/angle_inscrit.tikz}
+    }
+\end{figure}
+\tikzexternaldisable
+
+\begin{demonstration}
+    On a
+    $$
+    2(\widehat{\overrightarrow{MA}, \overrightarrow{MB}}) \equiv 2(\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}}) + 2(\widehat{\overrightarrow{M\Omega}, \overrightarrow{MB}}) \mod 2\pi
+    $$
+
+    Or $\Omega M A$ et $\Omega M B$ sont des triangles isocèles en $\Omega$ car $A$, $B$ et $M$ sont sur le cercle de centre $\Omega$.
+
+    Ainsi, en appliquant le lemme précédent
+    $$
+    2(\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + \pi \mod 2\pi
+    $$
+    et
+    $$
+    2(\widehat{\overrightarrow{M\Omega}, \overrightarrow{MB}}) \equiv (\widehat{\overrightarrow{\Omega M}, \overrightarrow{\Omega B}}) + \pi \mod 2\pi
+    $$
+
+    Puis par Chasles
+    \begin{align*}
+        2(\widehat{\overrightarrow{MA}, \overrightarrow{MB}}) &\equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + (\widehat{\overrightarrow{\Omega M}, \overrightarrow{\Omega B}}) + 2\pi \mod 2\pi \\
+        &\equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) + 2\pi \mod 2\pi \\
+        &\equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) \mod 2\pi
+    \end{align*}
+\end{demonstration}
+
+\begin{theoreme}{Condition de cocyclicité}{}
+    Soient $A$, $B$, $C$ et $D$ quatre points, trois à trois non alignés, dans un plan vectoriel euclidien orienté.
+
+    Ces quatre points sont cocycliques si et seulement si
+    $$
+    (\widehat{(CA), (CB)}) \equiv (\widehat{(DA), (DB)}) \mod \pi
+    $$
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.9\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/condition_cocyclicite.tikz}
+    }
+\end{figure}
+\tikzexternaldisable
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.]
+        Soit $\Omega$ le centre du cercle passant par $A$, $B$, $C$ et $D$.
+
+        Par le théorème de l'angle inscrit au centre appliqué $A$, $B$, $C$ puis à $A$, $B$, $D$, on trouve
+        $$
+        2(\widehat{\overrightarrow{CA}, \overrightarrow{CB}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) \mod 2\pi
+        $$
+        et
+        $$
+        2(\widehat{\overrightarrow{DA}, \overrightarrow{DB}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) \mod 2\pi
+        $$
+        Ainsi
+        \begin{align*}
+            &2(\widehat{\overrightarrow{CA}, \overrightarrow{CB}}) &\equiv 2(\widehat{\overrightarrow{DA}, \overrightarrow{DB}}) \mod 2\pi \\
+            &\iff (\widehat{\overrightarrow{CA}, \overrightarrow{CB}}) &\equiv (\widehat{\overrightarrow{DA}, \overrightarrow{DB}}) \mod \pi \\
+            &\iff (\widehat{(CA), (CB)}) &\equiv (\widehat{(DA), (DB)}) \mod \pi
+        \end{align*}
+
+        \item[Sens réciproque.]
+        Supposons que $(\widehat{(CA), (CB)}) \equiv (\widehat{(DA), (DB)}) \mod \pi$.
+
+        Il existe un unique cercle passant par $A$, $B$ et $C$, de centre $\Omega$.
+
+        Soit $D'$ le point d'intersection de ce cercle avec la droite $(AD)$.
+
+        Puisque $A$, $B$, $C$ et $D'$ sont cocycliques, on a
+        \begin{align*}
+            &(\widehat{(CA), (CB)}) &\equiv (\widehat{(D'A), (D'B)}) \mod \pi \\
+            &\iff (\widehat{(D'A), (D'B)}) &\equiv (\widehat{(DA), (DB)}) \mod \pi \\
+            &\iff (\widehat{(D'A), (D'B)}) &\equiv (\widehat{(D'A), (DB)}) \mod \pi \\
+            &\iff (\widehat{(D'B), (DB)}) &\equiv 0 \mod \pi \\
+        \end{align*}
+        Donc $(D'B) = (DB)$ et $D \in (D'A)$ donc $D = D'$, ainsi $D$ est sur le cercle de centre $\Omega$ passant par $A$, $B$ et $C$.
+    \end{description}
+\end{demonstration}
+
+\end{document}

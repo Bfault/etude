@@ -1,0 +1,1226 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{utils}
+
+\title{ Analyse 4 }
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Suites et séries de fonctions}
+
+\subsection{Suites de fonctions}
+
+Dans cette section on peut remplacer $\R$ par $\C$.
+Dans la suite $I$ sera un intervalle de $\R$.
+
+\begin{definition}
+    Une \textbf{suite de fonctions} $(f_n)_{n \in \N}$ est définie
+    avec $n_0 \in \N$ fixé, \text{où $\forall n \geq n_0,\quad \funcdef{f_n}{I}{\R}{x}{f_n(x)}$}.
+\end{definition}
+
+\begin{definition}[(convergence simple et uniforme)]
+    Soit $(f_n)_n$ une suite de fonctions de $I$ dans $\R$ et $f$ une fonction de $I$ \text{dans $\R$.}
+
+    \begin{itemize}[label=--]
+        \item $f_n$ \textbf{converge simplement} vers $f$ sur $I$ si et seulement si
+        $$
+        \forall \varepsilon > 0, \forall x \in I, \exists N \in \N, \forall n \geq N, |f_n(x) - f(x)| \leq \varepsilon
+        $$
+        \item $f_n$ \textbf{converge uniformément} vers $f$ sur $I$ si et seulement si
+        $$
+        \forall \varepsilon > 0, \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| \leq \varepsilon
+        $$
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    L'inégalité locale (valable pour un $x \in I$) équivaut à une inégalité globale, c'est-à-dire
+    $$
+    \forall x \in I, |f_n(x) - f(x)| \leq \varepsilon \iff \sup_{x \in I}|f_n(x) - f(x)| \leq \varepsilon
+    $$
+\end{remarque}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \input{figures/L2/analyse_4/convergence_uniforme.tikz}
+    \caption{Visualisation de la convergence uniforme. Pour n assez grand (ici $f_8$), la courbe reste entièrement confinée dans le "tube" de largeur 2$\varepsilon$ centré sur la limite f.}
+\end{figure}
+\tikzexternaldisable
+
+\begin{proposition}{}{}
+    Soit $(f_n)$ une suite de fonctions de $I$ dans $\R$ et $f$ une fonction de $I$ dans $\R$.
+
+    Si $(f_n)$ converge uniformément vers $f$ sur $I$ alors $(f_n)$ converge simplement vers $f$ sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\varepsilon > 0$
+
+    Comme $(f_n)$ converge uniformément vers $f$ sur $I$ alors
+    $$
+    \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| \leq \varepsilon
+    $$
+
+    En particulier pour un $x$ fixé dans $I$ on a
+    $$
+    \exists N \in \N, \forall n \geq N, |f_n(x) - f(x)| \leq \varepsilon
+    $$
+
+    Donc $(f_n)$ converge simplement vers $f$ sur $I$.
+\end{demonstration}
+
+\begin{definition}[(Norme de la convergence uniforme)]
+    On note $\mathcal{B}(I, \R)$ l'ensemble des fonctions bornées de $I$ dans $\R$.
+    
+    Pour $f \in \mathcal{B}(I, \R)$, on définit la \textbf{norme uniforme} par
+    $$
+    \norm{f}_{\infty, I} = \sup_{x \in I} |f(x)|
+    $$
+\end{definition}
+
+\begin{definition}[(caractérisation de la convergence uniforme sur I)]
+    Soit $(f_n)$ une suite de fonctions de $I$ dans $\R$ et $f$ une fonction de $I$ dans $\R$.
+
+    $(f_n)$ converge uniformément vers $f$ sur $I$ si et seulement si
+    $$
+    \lim\limits_{n \to +\infty} \norm{f_n - f}_{\infty, I} = 0
+    $$
+\end{definition}
+
+\vspace{0.5cm}
+
+\begin{methode}
+    Pour montrer la convergence uniforme d'une suite de fonctions $(f_n)$ vers une fonction $f$ sur $I$ :
+    \begin{itemize}[label=--]
+        \item On cherche à majorer $|f_n(x) - f(x)|$ par une expression $M_n$ qui ne dépend pas de $x$.
+        \item On montre que $M_n \to 0$ quand $n \to +\infty$.
+    \end{itemize}
+\end{methode}
+
+\vspace{0.5cm}
+
+\begin{definition}[(Suite de Cauchy uniforme)]
+    Soit $(f_n)$ une suite de fonctions de $I$ dans $\R$.
+
+    $(f_n)$ est \textbf{uniformément de Cauchy} sur $I$ si et seulement si
+    $$
+    \forall \varepsilon > 0, \exists N \in \N, \forall x \in I, \forall n, m \geq N, |f_n(x) - f_m(x)| \leq \varepsilon
+    $$
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $(f_n)$ une suite de fonctions de $I$ dans $\R$.
+
+    $(f_n)$ converge uniformément sur $I$ si et seulement si $(f_n)$ est uniformément de Cauchy sur $I$.
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Condition nécessaire à la convergence uniforme.]~\par
+        On suppose $f_n$ est uniformément convergente sur I, c'est-à-dire
+        $$
+        \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| \leq \dfrac{\varepsilon}{2}
+        $$
+        Soit $p, q \geq N$ et $x \in I$, on a
+        \begin{align*}
+            |f_p(x) - f_q(x)| & = |f_p(x) - f(x) + f(x) - f_q(x)| \\
+            & \leq |f_p(x) - f(x)| + |f_q(x) - f(x)| \\
+            & \leq \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon
+        \end{align*}
+        
+        Donc $(f_n)$ est uniformément de Cauchy sur $I$.
+
+        \item[Condition suffisante.]~\par
+        On suppose que $(f_n)$ est uniformément de Cauchy sur $I$, c'est-à-dire
+        $$
+        \forall \varepsilon > 0, \exists N \in \N, \forall p, q \geq N, \forall x \in I, |f_p(x) - f_q(x)| \leq \varepsilon
+        $$
+        Pour un $x$ dans $I$ et un $p \geq N$ fixés, en prenant la limite en $q$ on a
+        $$
+        \lim\limits_{q \to +\infty} |f_p(x) - f_q(x)| = |f_p(x) - f(x)| \leq \varepsilon
+        $$
+        où $f(x)$ est la limite de la suite numérique $(f_n(x))$, l'existence de $f(x)$ découle du fait que la suite $(f_n(x))$ est de Cauchy dans $\R$.
+
+        Comme $x$ et $p$ sont arbitraires on a
+        $$
+        \forall \varepsilon > 0, \exists N \in \N, \forall p \geq N, \forall x \in I, |f_p(x) - f(x)| \leq \varepsilon
+        $$
+        Donc $(f_n)$ converge uniformément vers $f$ sur $I$.
+        
+    \end{description}
+\end{demonstration}
+
+\begin{remarque}
+    Ce résultat nous est très pratique pour montrer la convergence uniforme d'une suite de fonctions sans connaître la fonction limite.
+\end{remarque}
+
+\clearpage
+
+\begin{proposition}{}{}
+    Soient $(f_n)$ et $(g_n)$ deux suites de fonctions définies sur $I$ dans $\R$ et $\alpha, \beta \in \R$.
+    
+    \vspace{0.4cm}
+    On suppose que $(f_n)$ et $(g_n)$ convergent uniformément vers $f$ et $g$ respectivement sur $I$.
+
+    Alors $(\alpha f_n + \beta g_n)$ converge uniformément vers $\alpha f + \beta g$ sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\varepsilon > 0$, il existe $N_1 \in \N$ tel que
+    $$
+    \forall n \geq N_1, \forall x \in I, |f_n(x) - f(x)| < \dfrac{\varepsilon}{2 \max(|\alpha|, 1)}
+    $$
+    et $N_2 \in \N$ tel que
+    $$
+    \forall n \geq N_2, \forall x \in I, |g_n(x) - g(x)| < \dfrac{\varepsilon}{2 \max(|\beta|, 1)}
+    $$
+    On pose $N = \max(N_1, N_2)$.
+    Pour $n \geq N$ et $x \in I$,
+    \begin{align*}
+        |(\alpha f_n + \beta g_n)(x) - (\alpha f + \beta g)(x)| &\leq |\alpha| |f_n(x) - f(x)| + |\beta| |g_n(x) - g(x)| \\
+        &\leq |\alpha| \dfrac{\varepsilon}{2 \max(|\alpha|, 1)} + |\beta| \dfrac{\varepsilon}{2 \max(|\beta|, 1)} \leq \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon
+    \end{align*}
+\end{demonstration}
+
+\subsection{Continuité}
+
+\begin{theoreme}{}{continuite}
+    Soit $(f_n)$ une suite de fonctions définies sur $I$ dans $\R$ telles que
+
+    \begin{itemize}[label=--]
+        \item $f_n$ converge uniformément vers $f$ sur $I$,
+        \item pour tout $n \in \N$, $f_n$ est continue en $x_0 \in I$.
+    \end{itemize}
+    Alors $f$ est continue en $x_0$.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $x_0 \in I$ et $\varepsilon > 0$, comme $(f_n)$ converge uniformément vers $f$ sur $I$, on a
+    $$
+    \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| < \dfrac{\varepsilon}{3}
+    $$
+    De plus, $f_N$ est continue en $x_0$ donc
+    $$
+    \exists \delta > 0, \forall x \in I, |x - x_0| < \delta \implies |f_N(x) - f_N(x_0)| < \dfrac{\varepsilon}{3}
+    $$
+    Ainsi, pour tout $x$ tel que $|x - x_0| < \delta$, on obtient
+    \begin{align*}
+        |f(x) - f(x_0)| &= |f(x) - f_N(x) + f_N(x) - f_N(x_0) + f_N(x_0) - f(x_0)| \\
+        &\leq |f(x) - f_N(x)| + |f_N(x) - f_N(x_0)| + |f_N(x_0) - f(x_0)| \\
+        &< \dfrac{\varepsilon}{3} + \dfrac{\varepsilon}{3} + \dfrac{\varepsilon}{3} = \varepsilon
+    \end{align*}
+    Donc $f$ est continue en $x_0$.
+\end{demonstration}
+
+\begin{remarque}
+    On peut interpréter ce théorème comme une permutation des limites, c'est-à-dire
+    $$
+    \lim\limits_{n \to +\infty} (\lim\limits_{x \to x_0} f_n(x)) = \lim\limits_{x \to x_0} (\lim\limits_{n \to +\infty} f_n(x))
+    $$
+\end{remarque}
+
+\begin{corollaire}{}{}
+    Soit $(f_n)$ une suite de fonctions définies sur $I$ dans $\R$ telles que
+
+    \begin{itemize}[label=--]
+        \item $f_n$ converge uniformément vers $f$ sur $I$,
+        \item pour tout $n \in \N$, $f_n$ est continue sur $I$.
+    \end{itemize}
+    Alors $f$ est continue sur $I$.
+\end{corollaire}
+
+\begin{remarque}
+    La contraposée est très utile pour prouver qu'une convergence n'est pas uniforme.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $(f_n)$ une suite de fonctions définies sur $I$ dans $\R$ telles que
+
+    \begin{itemize}[label=--]
+        \item pour tout $n \in \N$, $f_n$ est continue sur $I$
+        \item $f_n$ converge uniformément vers $f$ sur tout compact de $I$.
+    \end{itemize}
+    Alors $f$ est continue sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $x_0 \in I$ et un compact $J \subset I$ tel que $x_0 \in J$.
+    Comme $(f_n)$ converge uniformément sur $J$ et par le théorème \ref{theoreme:continuite}, $f$ est continue en $x_0$.
+    Ainsi $f$ est continue pour tout $x_0 \in I$ donc sur $I$.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $(f_n)$ une suite de fonctions définies sur $I = ]a, b[$ dans $\R$ avec \text{$-\infty \leq a < b \leq +\infty$.}
+    
+    On suppose que
+    \begin{itemize}[label=--]
+        \item $(f_n)$ converge uniformément vers $f$ sur $I$
+        \item Pour tout $n \in \N$, $f_n$ admet une limite finie $l_n$ en $a$ (resp. en $b$)
+    \end{itemize}
+    Alors on a
+    \begin{enumerate}
+        \item La suite numétique $(l_n)$ converge vers $l$
+        \item $f$ admet $l$ comme limite en $a$ (resp. en $b$)
+    \end{enumerate}
+\end{corollaire}
+
+\begin{demonstration}
+    \begin{description}
+        \item[On montre que $(l_n)$ est de Cauchy]~\par
+        Soit $\varepsilon > 0$, comme $(f_n)$ converge uniformément vers $f$ sur $I$, on a
+        $$
+        \exists N \in \N, \forall n \geq N, \forall x \in I, |f_n(x) - f(x)| < \dfrac{\varepsilon}{4}
+        $$
+        Soit $p, q \geq N$, par définition de la limite en $a$, on a
+        $$
+        \exists \delta_p > 0, \forall x \in I, |x - a| < \delta_p \implies |f_p(x) - l_p| < \dfrac{\varepsilon}{4}
+        $$
+        de même pour $q$,
+        $$
+        \exists \delta_q > 0, \forall x \in I, |x - a| < \delta_q \implies |f_q(x) - l_q| < \dfrac{\varepsilon}{4}
+        $$
+        On pose $\delta = \min(\delta_p, \delta_q)$.
+        Ainsi, pour tout $x$ tel que $|x - a| < \delta$, on obtient
+        \begin{align*}
+            |l_p - l_q| &= |l_p - f_p(x) + f_p(x) - f(x) + f(x) - f_q(x) + f_q(x) - l_q| \\
+            &\leq |l_p - f_p(x)| + |f_p(x) - f(x)| + |f(x) - f_q(x)| + |f_q(x) - l_q| \\
+            &< \dfrac{\varepsilon}{4} + \dfrac{\varepsilon}{4} + \dfrac{\varepsilon}{4} + \dfrac{\varepsilon}{4} = \varepsilon
+        \end{align*}
+        Donc $(l_n)$ est de Cauchy.
+        
+        \item[Le cas de $a$ fini]~\par
+        Soit $\tilde{f_n}$ le prolongement par continuité de $f_n$ en $a$ défini par $\tilde{f_n}(a) = l_n$.
+
+        Comme $(l_n)$ est de Cauchy, elle converge vers une limite $l$.
+        De plus, on a $\lim\limits_{n \to +\infty} \tilde{f_n}(a) = \lim\limits_{n \to +\infty} l_n = l$.
+
+        Pour un $\varepsilon > 0$ et en prenant $N$ suffisamment grand (qui fonctionne à la fois pour la convergence uniforme de $f_n$ vers $f$ et pour la convergence de $l_n$ vers $l$), on a pour tout $n \geq N$,
+        \begin{align*}
+            \sup_{x \in [a, b[} |\tilde{f_n}(x) - \tilde{f}(x)| &= \max \left( \sup_{x \in ]a, b[} |f_n(x) - f(x)|, |l_n - l| \right) \\
+            &\leq \max \left( \varepsilon, \varepsilon \right) = \varepsilon
+        \end{align*}
+            
+        Donc $\tilde{f_n}$ converge uniformément vers $\tilde{f}$ sur $[a, b[$.
+        
+        Par le théorème \ref{theoreme:continuite}, $\tilde{f}$ est continue en $a$
+        d'où $\tilde{f}(a) = \lim\limits_{x \to a^+} \tilde{f}(x) = \lim\limits_{x \to a^+} \lim\limits_{n \to +\infty} f_n(x)$ et donc $\lim\limits_{x \to a^+} f(x) = l$.
+
+        \item[Le cas de $a = -\infty$]~\par
+        On définit $\funcdef{g_n}{] 0, \dfrac{1}{b}[}{\R}{x}{f_n(\dfrac{1}{x})}$ si $b > 0$
+        sinon $\funcdef{g_n}{]\dfrac{1}{b}, 0[}{\R}{x}{f_n(\dfrac{1}{x})}$ et on est ramené au cas précédent.
+
+        En effet, on conserve les hypothèses :
+        
+        En posant $\funcdef{g}{] 0, \dfrac{1}{b}[}{\R}{x}{f(\dfrac{1}{x})}$ si $b > 0$
+        sinon $\funcdef{g}{]\dfrac{1}{b}, 0[}{\R}{x}{f(\dfrac{1}{x})}$, on a que
+        \begin{itemize}[label=--]
+            \item $g_n$ converge uniformément vers $g$ sur $]0, \dfrac{1}{b}[$ (resp. $]\dfrac{1}{b}, 0[$)
+            
+            car $\sup_{x \in ]0, \frac{1}{b}[} |g_n(x) - g(x)| = \sup_{x \in ]0, \frac{1}{b}[} |f_n(\frac{1}{x}) - f(\frac{1}{x})| = \sup_{y \in ]a, b[} |f_n(y) - f(y)|$
+            \item pour tout $n \in \N$, $g_n$ admet une limite finie en $0$.
+            
+            car $\lim\limits_{x \to 0^+} g_n(x) = \lim\limits_{x \to -\infty} f_n(x) = l_n$.
+        \end{itemize}
+    \end{description}
+\end{demonstration}
+
+\subsection{Intégrales, primitives}
+
+\begin{theoreme}{(théorème de convergence uniforme des intégrales)}{integrale}
+    Soit $I = [a, b]$ et $(f_n)$ une suite de fonctions continues sur $I$ telles que $f_n$ converge uniformément vers $f$ sur $I$.
+
+    On pose $\forall n \in \N, \funcdef{F_n}{I}{\R}{x}{\int_a^x f_n(t) dt}$ et $\funcdef{F}{I}{\R}{x}{\int_a^x f(t) dt}$.
+
+    Alors $F_n$ converge uniformément vers $F$ sur $I$.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $\varepsilon > 0$, on regarde
+    \begin{align*}
+        |F_n(x) - F(x)| &= |\int_a^x f_n(t) dt - \int_a^x f(t) dt| \\
+        &= |\int_a^x (f_n(t) - f(t)) dt| \\
+        &\leq \int_a^x |f_n(t) - f(t)| dt \\
+        &\leq \int_a^x \norm{f_n - f}_{\infty, [a, b]} dt \\
+        &\leq \norm{f_n - f}_{\infty, [a, b]} \int_a^x dt \\
+        &= (x - a) \norm{f_n - f}_{\infty, [a, b]} \\
+        &\leq (b - a) \norm{f_n - f}_{\infty, [a, b]}
+    \end{align*}
+    Comme $f_n$ converge uniformément vers $f$ sur $[a, b]$, il existe $N \in \N$ tel que $\forall n \geq N, \norm{f_n - f}_{\infty, [a, b]} \leq \dfrac{\varepsilon}{b - a}$.
+
+    Donc pour $n \geq N$, $\forall x \in [a, b], |F_n(x) - F(x)| < \varepsilon$.
+\end{demonstration}
+
+\begin{remarque}
+    On peut interpréter ce théorème comme un déplacement de la limite, c'est-à-dire
+    $$
+    \lim\limits_{n \to +\infty} \left( \int_a^b f_n(t) dt \right) = \int_a^b \left( \lim\limits_{n \to +\infty} f_n(t) \right) dt
+    $$
+\end{remarque}
+
+\clearpage
+
+\begin{theoreme}{Dérivabilité}{}
+    Soit $I$ un intervalle de $\R$, $(f_n)$ une suite de fonctions de $I$ dans $\R$ et $g: I \to \R$.
+
+    \begin{itemize}[label=--]
+        \item Pour tout $n \in \N$, $f_n$ est de classe $C^1$ sur $I$
+        \item Il existe un point $x_0 \in I$ tel que $(f_n(x_0))$ converge
+        \item $(f_n')$ converge uniformément vers $g$ sur tout compact de $I$.
+    \end{itemize}
+    Alors $(f_n)$ converge uniformément vers $f$ sur tout compact $J \subset I$, \text{$f$ est $C^1$ et $f' = g$}.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $y \in I$, on peut construire $J = [a, b] \subset I$ avec $a = \min(x_0, y)$ et $b = \max(x_0, y)$.
+
+    On pose $\funcdef{G_n}{I}{\R}{x}{\int_{x_0}^x f_n'(t)dt}$, $\funcdef{G}{I}{\R}{x}{\int_{x_0}^x g(t)dt}$ et $l := \lim\limits_{n \to +\infty} f_n(x_0)$.
+
+    En appliquant le théorème \ref{theoreme:integrale} à $(f_n')$, on obtient que $G_n$ converge uniformément vers $G$ sur $[a, b]$.
+
+    Par ailleurs, d'après le théorème fondamental de l'analyse, on a $G_n(x) = f_n(x) - f_n(x_0)$ et donc $f_n(x) = G_n(x) + f_n(x_0)$.
+    
+    On note $\funcdef{f}{I}{\R}{x}{G(x) + l}$ par passage à la limite ($y$ étant arbitraire dans $I$).
+
+    $g$ est continue comme limite uniforme de fonctions continues $(f_n')$ sur tout compact de $I$ donc $G$ est de classe $C^1$ sur $I$ donc $f$ aussi (somme de fonctions $C^1$).
+
+    De plus $f'(x) = G'(x) = g(x)$.
+    
+    \vspace{0.5cm}
+
+    Il reste à montrer la convergence uniforme de $(f_n)$ vers $f$ sur $J$.
+
+    Ainsi pour tout $x \in J$, on a
+    \begin{align*}
+        |f_n(x) - f(x)| &= |G_n(x) + f_n(x_0) - G(x) - l| \\
+        &\leq |G_n(x) - G(x)| + |f_n(x_0) - l| \\
+        &= |\int_{x_0}^x (f_n'(t) - g(t)) dt| + |f_n(x_0) - l| \\
+        &\leq |x - x_0| \|f_n' - g\|_{\infty, J} + |f_n(x_0) - l| \\
+        &\leq |b - a| \|f_n' - g\|_{\infty, J} + |f_n(x_0) - l|
+    \end{align*}
+
+    Donc, $\sup\limits_{x \in J} |f_n(x) - f(x)| \leq |b - a| \|f_n' - g\|_{\infty, J} + |f_n(x_0) - l|$.
+
+    Le second membre ne dépend pas de $x$ et par hypothèse tend vers $0$ quand $n$ tend vers $+\infty$.
+
+    On en déduit que $(f_n)$ converge uniformément vers $f$ sur $J$ et comme $y$ était arbitraire dans $I$, la convergence est uniforme sur tout compact de $I$.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $(f_n)$ une suite de fonctions continues sur $I$ dans $\R$.
+
+    On suppose que $(f_n) \in \mathcal{C}^k(I)$, pour tout $0 \leq j \leq k - 1$,
+
+    on a convergence simple de $(f_n^{(j)})$ vers $f_j$ sur $I$ et convergence uniforme de $(f_n^{(k)})$ vers $f_k$ sur $I$.
+
+    Alors $f$ est $\mathcal{C}^k$ et $f_j = f^{(j)}$
+\end{proposition}
+
+\clearpage
+
+\section{Séries de fonctions}
+
+Dans cette section, nous considérons la suite de fonctions $(f_n)$ définie sur un intervalle $I \subset \mathbb{R}$ à valeurs dans $\R$ (ou $\C$).
+
+De plus on définit $\funcdef{\theta}{I}{\R}{x}{0}$ la fonction nulle.
+
+\begin{definition}
+    On appelle \textbf{série de fonctions} de terme général $f_n$, notée $\sum\limits_k f_k$, la suite des $(S_n)_{n \in \N}$, appelées \textbf{sommes partielles}, définie par
+    $$
+    S_n(x) = \sum_{k=k_0}^n f_k(x)
+    $$
+\end{definition}
+
+\begin{definition}
+    On dira que la série $\sum\limits_k f_k$ 
+    \begin{itemize}[label=--]
+        \item 
+        \textbf{converge simplement} vers $S$ sur $I$ si $(S_n)$ converge simplement vers $S$ sur $I$.
+        \item 
+        \textbf{converge uniformément} vers $S$ sur $I$ si $(S_n)$ converge uniformément vers $S$ sur $I$.
+    \end{itemize}
+    où $S = \lim\limits_{n \to +\infty} S_n = \sum\limits_{k=k_0}^{+\infty} f_k(x)$.
+
+    On appelle \textbf{reste} d'ordre $n$ de $\sum\limits_k f_k$ la quantité $\funcdef{R_n}{I}{\R}{x}{\sum_{k=n+1}^{+\infty} f_k(x)}$.
+\end{definition}
+
+\begin{exemple}
+    Pour tout $n \in \N$, on définit $\funcdef{f_n}{\R}{\R}{x}{x^n}$.
+
+    On a la somme partielle $S_n(x) = \sum\limits_{k=0}^n x^k = \dfrac{1-x^{n+1}}{1-x}$ si $x \neq 1$
+
+    On peut distinguer plusieurs cas:
+
+    \begin{itemize}[label=--]
+        \item si $|x| < 1, \lim\limits_{n \to +\infty} S_n(x) = \frac{1}{1-x} =: S(x)$.
+        \item si $x = 1$ $f_n(x) = 1$ et donc $S_n(1) = \sum\limits_{k=0}^n f_n(1) = n + 1 \to +\infty$ donc $S(1)$ n'existe pas.
+        \item si $x = -1$ on a $f_n(x) = (-1)^n$ et donc \text{$S_n(-1) = \sum\limits_{k=0}^n f_k(-1) = \begin{cases}
+            0 & \text{si } n \text{ est impair}\\
+            1 & \text{si } n \text{ est pair}
+        \end{cases}$} donc $S(-1)$ n'existe pas.
+        \item si $|x| > 1$, $\lim\limits_{n \to +\infty} S_n(x) = +\infty$.
+    \end{itemize}
+
+    Ainsi $\sum\limits_{k}f_k$ converge simplement vers $\dfrac{1}{1 - x}$ sur $]-1, 1[$
+
+    \vspace{1cm}
+    
+    
+
+    Étudions sa convergence uniforme sur $]-1, 1[$.
+
+    Pour un $n \in \N$ fixé et $x \in ]-1, 1[$, on a
+    $$
+    |S_n(x) - S(x)| = \left|\dfrac{1 - x^{n+1}}{1 - x} - \dfrac{1}{1 - x}\right| = \left|\dfrac{-x^{n+1}}{1 - x}\right| = \dfrac{|x|^{n+1}}{|1 - x|} \underset{x \to 1^-}{\to} +\infty
+    $$
+    car $\lim\limits_{x \to 1^-} |x|^{n+1} = 1$ et $\lim\limits_{x \to 1^-} |1 - x| = 0^+$.
+
+    d'où pour tout $n \in \N$, $\norm{S_n - S}_{\infty, ]-1, 1[} = +\infty \underset{n \to +\infty}{\not\to} 0$ \par donc
+    $(S_n)$ ne converge pas uniformément vers $S$ sur $]-1, 1[$.
+
+    \vspace{1cm}
+
+    Étudions la convergence uniforme sur tout compact \text{$J := [a, b] \subset ]-1, 1[$} avec $-1 < a < b < 1$.
+
+    Pour un $n \in \N$ fixé et $x \in [a, b]$, on a
+    $$
+    |S_n(x) - S(x)| = \left|\dfrac{1-x^{n+1}}{1-x} - \dfrac{1}{1-x}\right| = \left|\dfrac{-x^{n+1}}{1-x}\right| = \dfrac{|x|^{n+1}}{1 - x} \leq \dfrac{K^{n+1}}{1 - b} \underset{n \to +\infty}{\to} 0
+    $$
+    avec $K = \max(|a|, |b|) < 1$
+
+    car
+    $$
+    |x| \leq K < 1 \implies 0 < |x|^{n+1} \leq K^{n+1} < 1
+    $$
+    et
+    $$
+    x < b \implies 1 - x > 1 - b > 0 \implies 0 < \dfrac{1}{1 - x} \leq \dfrac{1}{1 - b}
+    $$
+    et aussi, $\lim\limits_{n \to +\infty} K^{n+1} = 0$.
+
+    Comme $|S_n(x) - S(x)|$ est majoré par une quantité indépendante de $x$ qui tend vers $0$ quand $n$ tend vers $+\infty$, on en déduit que
+    $(S_n)$ converge uniformément vers $S$ sur $J$, c'est-à-dire sur tout compact de $]-1, 1[$.
+\end{exemple}
+
+\begin{proposition}{}{}
+    On suppose que $\sum\limits_k f_k$ converge simplement vers $S$ sur $I$.
+
+    Alors la série de fonction $\sum\limits_k f_k$ converge uniformément vers $S$ sur $I$ si et seulement si
+    la suite des restes $(R_n)$ converge uniformément vers $\theta$ sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    $(S_n)$ converge uniformément vers $S$ sur $I$ si et seulement si $\norm{S_n - S}_{\infty, I} \to 0$.
+
+    Or,
+    \begin{align*}
+        \norm{S_n - S}_{\infty, I} \to 0 &\iff \norm{\sum_{k=0}^n f_k - \sum_{k=0}^{+\infty} f_k}_{\infty, I} \to 0 \\
+        &\iff \norm{\sum_{k=n+1}^{+\infty} f_k}_{\infty, I} = \norm{R_n - \theta}_{\infty, I} \to 0
+    \end{align*}
+\end{demonstration}
+
+\begin{exemple}
+    Pour tout $n \in \N$, on définit $\funcdef{f_n}{[-1, 1]}{\R}{x}{\dfrac{x^2}{n^2}}$ et on étudie $\sum\limits_k f_k$.
+
+    Pour $x \in [-1, 1]$ on a 
+    $$
+    \left|\dfrac{x^2}{n^2} - \theta(x)\right| = \left|\dfrac{x^2}{n^2}\right| < \dfrac{1}{n^2} \to 0
+    $$
+    c'est-à-dire, convergence uniforme de $f_n$ vers $\theta$ sur $[-1, 1]$.
+
+    On a
+    \begin{align*}
+        R_n(x) - \theta(x) = R_n(x) &= \sum_{k=n+1}^{+\infty} f_k(x) \\
+        &= \sum_{k=n+1}^{+\infty} \dfrac{x^2}{k^2} \\
+        &= x^2 \sum_{k=n+1}^{+\infty} \dfrac{1}{k^2} \\
+        &\leq \sum_{k=n+1}^{+\infty} \dfrac{1}{k^2}
+    \end{align*}
+
+    Or, $\sum\limits_{k=n+1}^{+\infty} \dfrac{1}{k^2}$ est le reste d'une série de Riemann, qui converge donc $\lim\limits_{n \to +\infty} \sum\limits_{k=n+1}^{+\infty} \dfrac{1}{k^2} = 0$.
+
+    Donc $R_n$ converge uniformément vers $\theta$ sur $[-1, 1]$, et par conséquent, la série de fonctions $\sum\limits_k f_k$ converge uniformément sur $[-1, 1]$.
+\end{exemple}
+
+\clearpage
+
+\begin{definition}
+    On dira que la série $\sum\limits_k f_k$ est uniformément de Cauchy sur $I$ si et seulement si
+    la suite des sommes partielles $(S_n)$ est uniformément de Cauchy sur $I$.
+
+    C'est-à-dire,
+    $$
+    \forall \varepsilon > 0, \exists N \in \N, \forall p,q \geq N, \forall x \in I, \norm{S_p - S_q}_{\infty, I} \leq \varepsilon.
+    $$
+\end{definition}
+
+\begin{remarque}
+    Sans perte de généralité, on peut supposer \text{$p \geq q$} et écrire
+    $$
+    \forall \varepsilon > 0, \exists N \in \N, \forall p \geq q \geq N, \forall x \in I, |S_p(x) - S_q(x)| = \left|\sum_{k=q+1}^p f_k(x)\right| \leq \varepsilon.
+    $$
+\end{remarque}
+
+\begin{proposition}{}{}
+    La série $\sum\limits_k f_k$ converge uniformément sur $I$ si et seulement si elle est uniformément de Cauchy sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.] Supposons la série $\sum\limits_k f_k$ uniformément convergente vers $S$ \text{sur $I$}.
+        
+        Soit $\varepsilon > 0$, il existe $N \in \N$ tel que pour tout $n \geq N$,
+        $$
+        \norm{S_n - S}_{\infty, I} \leq \dfrac{\varepsilon}{2}.
+        $$
+        Soit $p, q \geq N$, pour tout $x \in I$,
+        \begin{align*}
+            |S_p(x) - S_q(x)| &= |S_p(x) - S(x) + S(x) - S_q(x)| \\
+            &\leq |S_p(x) - S(x)| + |S(x) - S_q(x)| \\
+            &\leq \norm{S_p - S}_{\infty, I} + \norm{S_q - S}_{\infty, I} \\
+            &\leq \dfrac{\varepsilon}{2} + \dfrac{\varepsilon}{2} = \varepsilon.
+        \end{align*}
+        Ainsi, la série $\sum\limits_k f_k$ est uniformément de Cauchy sur $I$.
+
+        \item[Sens réciproque.] Supposons que la série $\sum\limits_k f_k$ est uniformément de Cauchy sur $I$.
+        
+        Soit $x \in I$, la série numérique $\sum\limits_k f_k(x)$ est de Cauchy donc converge simplement vers $S(x)$ (car $\R$ est complet).
+        
+        Soit $\varepsilon > 0$, il existe $N \in \N$ tel que pour tout $p, q \geq N$, pour tout $x \in I$,
+        $$
+        |S_p(x) - S_q(x)| \leq \varepsilon.
+        $$
+        En faisant tendre $q$ vers $+\infty$, on obtient
+        $$
+        |S_p(x) - S(x)| \leq \varepsilon.
+        $$
+        Ainsi, la série $\sum\limits_k f_k$ converge uniformément sur $I$.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Si la série $\sum\limits_k f_k$ converge uniformément sur $I$, alors la suite des termes généraux $(f_k)$ converge uniformément vers $\theta$ sur $I$.
+\end{proposition}
+
+\begin{demonstration}
+    Si la série $\sum\limits_k f_k$ converge uniformément sur $I$, alors la série est uniformément de Cauchy sur $I$.
+    
+    Il existe $N \in \N$ tel que pour tout $p, q \geq N$, pour tout $x \in I$,
+    $$
+    \norm{S_p - S_q}_{\infty, I} \underset{p, q \to +\infty}{\to} 0
+    $$
+    En particulier $q = p + 1$, on a
+    $$
+    \norm{S_p - S_q}_{\infty, I} = \norm{S_p - S_{p+1}}_{\infty, I} = \norm{f_{p+1}}_{\infty, I} \underset{p \to +\infty}{\to} 0.
+    $$
+\end{demonstration}
+
+\begin{remarque}
+    Le côté intéressant est la contraposée, si \text{$\norm{f_k}_{\infty, I} \not\to 0$} lorsque $k \to +\infty$, alors la série ne converge pas uniformément \text{sur $I$}.
+\end{remarque}
+
+\begin{definition}[(Convergence normale)]
+    On dira que la série $\sum\limits_k f_k$ converge normalement sur $I$ si et seulement si
+    la série numérique $\sum\limits_k \norm{f_k}_{\infty, I}$ converge.
+\end{definition}
+
+\begin{methode}
+    $\sum\limits_k f_k$ converge normalement sur $I$ si il existe une suite réelle $(\alpha_n)$ telle que
+    $\norm{f_k}_{\infty, I} \leq \alpha_k$ et $\sum\limits_k \alpha_k$ converge.
+\end{methode}
+
+\begin{theoreme}{}{}
+    Si $\sum\limits_k f_k$ converge normalement sur $I$, alors elle converge uniformément sur $I$.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $\varepsilon > 0$.
+
+    On sait que $\sum\limits_k f_k$ converge normalement sur $I$, ainsi $\sum\limits_k \norm{f_k}_{\infty, I}$ converge donc la suite de ses sommes partielles est de Cauchy.
+    
+    Donc il existe $N \in \N$ tel que pour tout $p > q \geq N$,
+    $$
+    |\sum\limits_{k=k_0}^p \norm{f_k}_{\infty, I} - \sum\limits_{k=k_0}^q \norm{f_k}_{\infty, I}| = \sum\limits_{k=q+1}^p \norm{f_k}_{\infty, I} \leq \varepsilon
+    $$
+
+    De plus, on a,
+
+    $$
+    \left| \sum_{k=q+1}^p f_k(x) \right| \leq \sum_{k=q+1}^p |f_k(x)| \leq \sum_{k=q+1}^p \norm{f_k}_{\infty, I} \leq \varepsilon
+    $$
+
+    car pour tout $x \in I$, $|f_k(x)| \leq \sup\limits_{x \in I}(|f_k(x)|) = \norm{f_k}_{\infty, I}$.
+
+    Ainsi, la série $\sum\limits_k f_k$ est uniformément de Cauchy sur $I$ donc converge uniformément sur $I$.
+\end{demonstration}
+
+\begin{exemple}
+    Pour tout $n \in \N$, on définit $\funcdef{f_n}{\R}{\R}{x}{\dfrac{(-1)^n}{n + x^2}}$.
+
+    \begin{align*}
+        \norm{f_n}_{\infty, \R} &= \sup_{x \in \R}|f_n(x)| \\
+        &= \sup_{x \in \R} \left| \dfrac{(-1)^n}{n + x^2} \right| \\
+        &= \dfrac{1}{n}
+    \end{align*}
+    or, la série numérique $\sum_n \dfrac{1}{n}$ diverge.
+
+    Soit $x \in \R, |R_n(x)| = \left| \sum_{k=n+1}^\infty \dfrac{(-1)^n}{n + x^2} \right| \leq \dfrac{1}{n + 1 + x^2} \leq \dfrac{1}{n}$.
+
+    Ainsi, la suite de fonctions des restes $(R_n)$ converge uniformément vers $0$ sur $\R$ donc la série de fonctions $\sum\limits_n f_n$ converge uniformément sur $\R$.
+\end{exemple}
+
+\begin{methode}
+    Si la série est alternée, on peut utiliser le critère d'Abel
+\end{methode}
+
+\begin{exemple}
+    Pour tout $n \in \N^*$, on définit $\funcdef{f_n}{\R}{\R}{x}{\dfrac{cos(nx)}{n}}$.
+
+    Il n'y a pas de convergence normale car $\norm{f_n}_{\infty, \R} = \dfrac{1}{n}$ et $\sum\limits_n \dfrac{1}{n}$ diverge.
+
+    Si $x = 2k\pi, k \in \Z, f_n(x) = \dfrac{1}{n}$ donc la série diverge en ces points.
+
+    Si $x \neq 2k\pi, k \in \Z$, on pose $u_n = \dfrac{1}{n}$ et $v_n = \cos(nx)$.
+
+    \begin{align*}
+        \sum_{k=1}^n \cos(kx) &= \sum_{k=1}^n Re(e^{ikx}) \\
+        &= Re\left( \sum_{k=1}^n (e^{ix})^k \right) \\
+        &= Re\left( e^{ix} \dfrac{1 - (e^{ix})^n}{1 - e^{ix}} \right) \\
+        &= Re\left( e^{ix} \dfrac{e^{i\dfrac{nx}{2}}\left( e^{-i\dfrac{nx}{2}} - e^{i\dfrac{nx}{2}} \right)}{e^{i\dfrac{x}{2}} \left( e^{-i\dfrac{x}{2}} - e^{i\dfrac{x}{2}} \right)} \right) \\
+        &= Re\left( e^{i\dfrac{(n+1)x}{2}} \dfrac{2i \sin(\dfrac{nx}{2})}{2i \sin(\dfrac{x}{2})} \right) \\
+        &= \dfrac{\cos(\dfrac{n+1}{2}x) \sin(\dfrac{nx}{2})}{\sin(\dfrac{x}{2})}
+    \end{align*}
+    ainsi $ \left| V_n \right| \leq \dfrac{1}{\left| \sin(\dfrac{x}{2}) \right|}$.
+
+    Donc par le critère d'Abel, la série $\sum\limits_n f_n$ converge simplement sur tout intervalle $I$ ne contenant pas de $2k\pi, k \in \Z$.
+
+    et on a $|R_n(x)| \leq \dfrac{2}{n \sin(\dfrac{x}{2})}$.
+
+    Par contre $\forall \varepsilon > 0$ et $\varepsilon < k \pi$, on aura convergence uniforme sur $\R_\varepsilon := \bigcup_{k \in \Z}[2k\pi + \varepsilon, 2(k+1)\pi - \varepsilon]$.
+
+    Ainsi, $\forall x \in \R_\varepsilon, |R_n(x)| \leq \dfrac{2}{n \sin(\dfrac{\varepsilon}{2})} \to 0$ lorsque $n \to +\infty$ et ne dépend pas de $x$.
+
+    Donc la série converge uniformément sur $\R_\varepsilon$.
+\end{exemple}
+
+\begin{methode}
+    On a $1 \pm e^{i\theta} = e^{i\dfrac{\theta}{2}} \left( e^{-i\dfrac{\theta}{2}} \pm e^{i\dfrac{\theta}{2}} \right)$
+
+    donc $1 - e^{i\theta} = 2i \sin(\dfrac{\theta}{2})$ et $1 + e^{i\theta} = 2\cos(\dfrac{\theta}{2})$.
+
+    $\blacktriangle$: Dans le cas où on parle de la phase et le module, si $2\cos(\dfrac{\theta}{2}) < 0$ ou $2i\sin(\dfrac{\theta}{2}) < 0$, il faut ajouter $\pi$ à la phase.
+\end{methode}
+
+\begin{theoreme}{Theorème d'inversion des limites}{}
+    $\sum_k f_k$ définie sur $I = [a, b]$ et converge uniformément vers $S$ sur $I$.
+
+    On suppose que pour tout $n \in \N$, $f_n(x)$ admet une limite en $b$, notée $\ell_n$.
+
+    Alors $S$ admet une limite en $b$, notée $\ell$ et $(\ell_n)$ converge vers $\ell$ et
+\end{theoreme}
+
+\begin{remarque}
+    On peut écrire
+    $$
+    \lim\limits_{x \to b^-} \left( \lim\limits_{n \to +\infty} S_n(x) \right) = \lim\limits_{n \to +\infty} \left( \lim\limits_{x \to b^-} S_n(x) \right)
+    $$
+\end{remarque}
+
+\begin{theoreme}{Théorème de continuité}{}
+    $\sum_k f_k$ définie sur $I$.
+
+    On suppose que $\forall a \in I$, $f_k$ est continue en $a$ et $\sum_k f_k$ converge uniformément vers $S$ sur $I$.
+
+    Alors $S$ est continue sur $I$.
+\end{theoreme}
+
+\begin{theoreme}{Théorème de dérivation}{}
+    Soit $\sum_k f_k$ définie sur $I$.
+
+    On suppose que pour tout $k \in \N$, $f_k$ est $\mathcal{C}^1$ sur $I$, que $\sum_k f_k$ converge simplement vers $S$ sur $I$ et que $\sum_k f_k'$ converge uniformément sur tout segment de $I$.
+
+    Alors $S$ est $\mathcal{C}^1$ sur $I$ et $S' = \sum_k f_k'$.
+\end{theoreme}
+
+\begin{proposition}{}{}
+    Soit $\sum_k f_k$ définie sur $I$.
+
+    On suppose que les $f_n$ sont de classe $\mathcal{C}^k$ sur $I$ et que
+    \begin{itemize}[label=--]
+        \item Pour tout $0 \leq j \leq k - 1$, la série $\sum_n f_n^{(j)}$ converge simplement sur $I$.
+        \item La série $\sum_n f_n^{(k)}$ converge uniformément vers $S_k$ sur tout segment de $I$.
+    \end{itemize}
+    Alors $S = \sum_{l = l_0}^{+\infty} f_l(x)$ est de classe $\mathcal{C}^k$ sur $I$ et pour tout $0 \leq j \leq k$, on a $S^{(j)} = S_j$.
+\end{proposition}
+
+\begin{theoreme}{Theorème de permutation somme intégrale}{}
+    Soit $\sum_k f_k$ définie sur $I := [a, b]$.
+
+    On suppose que pour tout $n \in \N$, $f_n$ est continue sur $I$ et que $\sum_k f_k$ converge uniformément vers $S$ sur $I$.
+
+    Alors
+    $$
+    \sum_k \int_a^b f_k(t) \ dt = \int_a^b \sum_k f_k(t) \ dt
+    $$
+\end{theoreme}
+
+\clearpage
+
+\section{Approximation de Weierstrass}
+
+\subsection{Polynômes de Bernstein}
+
+\begin{definition}
+    Soit $n \in \N$ et $f \in \mathcal{C}^0([0, 1], \R)$. On note $B_n(\cdot, f)$ le
+    n-ième polynôme de Bernstein de $f$ défini par
+    $$
+    B_n(X, f) = \sum_{k=0}^n f\left(\frac{k}{n}\right) \binom{n}{k} X^k (1-X)^{n-k}
+    $$ 
+\end{definition}
+
+\begin{exemple}
+    On prend $B_n(\cdot, x \mapsto 1)$
+    
+    \begin{align*}
+        B_n(X, x \mapsto 1) &= \sum\limits_{k=0}^n 1 \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= (X + (1-X))^n \quad \text{par la formule du binôme}\\
+        &= 1^n = 1
+    \end{align*}
+\end{exemple}
+
+\begin{exemple}
+    On prend $B_n(\cdot, x \mapsto x)$
+
+    \begin{align*}  
+        B_n(X, x \mapsto x) &= \sum\limits_{k=0}^n \frac{k}{n} \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= \sum\limits_{k=1}^n \frac{k}{n} \dfrac{n!}{k!(n-k)!} X^k (1-X)^{n-k} \\
+        &= \sum\limits_{k=1}^n \frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} X^k (1-X)^{(n-1)-(k-1)} \\
+        &= X \sum\limits_{k=0}^{n-1} \binom{n-1}{k} X^k (1-X)^{(n-1)-k} \\
+        &= X (X + (1-X))^{n-1} \\
+        &= X
+    \end{align*}
+\end{exemple}
+
+\begin{exemple}
+    On prend $B_n(\cdot, x \mapsto x^2)$
+
+    \begin{align*}
+        B_n(X, x \mapsto x^2) &= \sum\limits_{k=0}^n \left( \frac{k}{n} \right)^2 \binom{n}{k} X^k (1 - X)^{n-k} \\
+        &= \sum\limits_{k=0}^n \frac{k^2}{n^2} \binom{n}{k} X^k (1 - X)^{n-k} \\
+        &= \frac{1}{n}\left(\sum\limits_{k=0}^n k(k-1) \frac{1}{n} \binom{n}{k} X^k (1 - X)^{n-k} + \sum\limits_{k=0}^n k \frac{1}{n} \binom{n}{k} X^k (1 - X)^{n-k} \right) \\
+        &= \frac{1}{n}\left(X^2(n-1)\sum\limits_{k=2}^n \dfrac{(n - 2)!}{(k-2)!((n-2)-(k-2))!} X^{k-2} (1 - X)^{(n-2)-(k-2)} + B_n(X, x \mapsto x) \right) \\
+        &= \frac{1}{n}\left(X^2(n-1)(X + (1-X))^{n-2} + X \right) \\
+        &= \dfrac{X(1 - X)}{n} + X^2
+    \end{align*}
+\end{exemple}
+
+\begin{remarque}
+    En considérant la variable aléatoire $Y \hookrightarrow B(n, X)$,
+    il nous suffit de calculer $\frac{1}{n^2}\mathbb{E}[Y^2]$ pour avoir $B_n(\cdot, x \mapsto x^2)$,
+    on pourra alors utiliser la formule de Koenig-Huygens pour calculer $\mathbb{E}[Y^2]$ à partir de la variance et de l'espérance usuellement connue.
+\end{remarque}
+
+\begin{lemme}{}{}
+    $$
+    \sum_{k=0}^n (k - nX)^2 \binom{n}{k} X^k (1-X)^{n-k} = nX(1-X)
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    \begin{align*}
+        \sum_{k=0}^n (k - nX)^2 \binom{n}{k} X^k (1-X)^{n-k} &= \sum_{k=0}^n n^2 (\frac{k}{n} - X)^2 \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= n^2 \sum_{k=0}^n (\left(\frac{k}{n}\right)^2 - 2X \frac{k}{n} + X^2) \binom{n}{k} X^k (1-X)^{n-k} \\
+        &= n^2 \left(\sum_{k=0}^n \left(\frac{k}{n}\right)^2 \binom{n}{k} X^k (1-X)^{n-k} - 2X \sum_{k=0}^n \frac{k}{n} \binom{n}{k} X^k (1-X)^{n-k} + X^2 \sum_{k=0}^n \binom{n}{k} X^k (1-X)^{n-k} \right) \\
+        &= n^2 \left( B_n(X, x \mapsto x^2) - 2X B_n(X, x \mapsto x) + X^2 B_n(X, x \mapsto 1) \right) \\
+        &= n^2 \left( \dfrac{X(1 - X)}{n} + X^2 - 2X^2 + X^2 \right) \\
+        &= n^2 \dfrac{X(1 - X)}{n} \\
+        &= nX(1-X)
+    \end{align*}
+\end{demonstration}
+
+\subsection{Théorème de Weierstrass}
+
+\begin{definition}
+    Soient $(X, d_X)$ et $(Y, d_Y)$ deux espaces métriques. Soit $f: X \to Y$ et $\delta > 0$.
+
+    On appelle \textbf{module de continuité} de $f$, à l'échelle $\delta$, noté $\omega(f, \delta)$ la quantité
+    $$
+    \omega(f, \delta) = \sup_{d_X(x, y) \leq \delta} d_Y(f(x), f(y))
+    $$
+\end{definition}
+
+\begin{remarque}
+    \begin{align*}
+        \lim_{\delta \to 0} \omega(f, \delta) = 0 &\iff \forall \varepsilon > 0, \exists \delta > 0, \; |\omega(f, \delta) - 0| < \varepsilon \\
+        &\iff \forall \varepsilon > 0, \exists \delta > 0, \; d_X(x, y) \leq \delta \implies d_Y(f(x), f(y)) < \varepsilon \\
+        &\iff \forall \varepsilon > 0, \exists \delta > 0, \forall x, y \in I, \; |x - y| \leq \delta \implies |f(x) - f(y)| < \varepsilon \\
+        &\iff f \text{ est uniformément continue sur I}
+    \end{align*}
+\end{remarque}
+
+\begin{theoreme}{Théorème de Weierstrass}{}
+    Soit $f: \mathcal{C}^0([0, 1], \mathbb{C})$.
+    
+    Alors $(B_n(\cdot, f))_{n \in \N}$ converge uniformément vers $f$ sur $[0, 1]$.
+\end{theoreme}
+
+\begin{demonstration}
+    On pose $b_n^k(x) = \binom{n}{k} x^k (1-x)^{n-k}$.
+    Soit $\varepsilon > 0$, $\delta > 0$ et $x \in [0, 1]$.
+
+    On a
+    \begin{align*}
+        \sum_{k=0}^n \left(\frac{k}{n} - x \right)^2 b_n^k(x) &= \sum_{k=0}^n \left(\frac{k}{n}\right)^2 b_n^k(x) - 2x \sum_{k=0}^n \frac{k}{n} b_n^k(x) + x^2 \sum_{k=0}^n b_n^k(x) \\
+        &= B_n(x, x \mapsto x^2) - 2x B_n(x, x \mapsto x) + x^2 B_n(x, x \mapsto 1) \\
+        &= \dfrac{x(1-x)}{n} + x^2 - 2x^2 + x^2 \\
+        &= \dfrac{x(1-x)}{n}
+    \end{align*}
+
+    \begin{align*}
+        \sum_{k, |\frac{k}{n} - x| \geq \delta} b_n^k(x) &\leq \sum_{k=0}^n \dfrac{(k/n - x)^2}{\delta^2} b_n^k(x) \\
+        &\leq \dfrac{1}{\delta^2} \sum_{k=0}^n (k/n - x)^2 b_n^k(x) \quad \textbf{car $|k/n - x| \geq \delta \implies \dfrac{(k/n - x)^2}{\delta^2} \geq 1$}\\
+        &= \dfrac{1}{\delta^2} \dfrac{x(1-x)}{n} \\
+        &\leq \dfrac{1}{\delta^2 n} \quad \textbf{car $x(1-x) \leq 1/4 \leq 1$ pour $x \in [0, 1]$} \\
+    \end{align*}
+
+    Aussi, $f$ est continue sur $[0, 1]$ donc est uniformément continue sur $[0, 1]$ (théorème de Heine), alors $|x - y| < \delta \implies |f(x) - f(y)| < \varepsilon$ et $f$ est bornée par $M := \norm{f}_{\infty, [0, 1]}$.
+    Ainsi
+
+    \begin{align*}
+        |B_n(x, f) - f(x)| &= \left| \sum_{k=0}^n f\left( \frac{k}{n} \right) b_n^k(x) - f(x) \sum_{k=0}^n b_n^k(x) \right| \\
+        &= \left| \sum_{k=0}^n b_n^k(x) \left( f\left( \frac{k}{n} \right) - f(x) \right) \right| \\
+        &\leq \sum_{k=0}^n b_n^k(x) \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
+        &\leq \sum_{|\frac{k}{n} - x| < \delta} b_n^k(x) \left| f\left( \frac{k}{n} \right) - f(x) \right| + \sum_{|\frac{k}{n} - x| \geq \delta} b_n^k(x) \left| f\left( \frac{k}{n} \right) - f(x) \right| \\
+        &\leq \sum_{|\frac{k}{n} - x| < \delta} b_n^k(x) \varepsilon + \sum_{|\frac{k}{n} - x| \geq \delta} b_n^k(x) 2M \\
+        &\leq \varepsilon \sum_{k=0}^n b_n^k(x) + 2M \sum_{|\frac{k}{n} - x| \geq \delta} b_n^k(x) \\
+        &\leq \varepsilon + \dfrac{2M}{\delta^2 n} \
+    \end{align*}
+
+    En prenant un $N \in \N$ tel que $\dfrac{2M}{\delta^2 N} < \varepsilon$, on a pour tout $n \geq N$, $|B_n(x, f) - f(x)| < 2\varepsilon$.
+
+    Donc $B_n(\cdot, f)$ converge uniformément vers $f$ sur $[0, 1]$.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $g \in \mathcal{C}^0([a, b], \mathbb{C})$.
+
+    Alors $g$ est limite uniforme sur $[a, b]$ d'une suite de polynômes.
+\end{corollaire}
+
+\begin{demonstration}
+    En posant $\funcdef{\phi}{[0, 1]}{[a, b]}{x}{a + (b - a)x}$, on peut définir $g \in \mathcal{C}^0([0, 1], \R)$ par \text{$f = g \circ \phi$}.
+
+    En definissant la fonction $\funcdef{\phi^{-1}}{[a, b]}{[0, 1]}{y}{\frac{y - a}{b - a}}$, on a $g = f \circ \phi^{-1}$.
+
+    Ainsi, $B_n(\cdot, g)$ converge uniformément vers $g$ sur $[a, b]$.
+\end{demonstration}
+
+\clearpage
+
+\section{Les séries entières}
+
+\begin{definition}
+    Soit $(a_n)_{n \in \N}$ une suite de nombres réels ou complexe.
+    On appelle \textbf{série entière} la série de fonctions de la forme
+    $$
+        \sum_{k = k_0}^{+\infty} a_k z^k
+    $$
+    où $z \in \mathbb{C}$.
+\end{definition}
+
+\clearpage
+
+\subsection{Rayon de convergence}
+
+\begin{definition}
+    On définit $D_r = \{z \in \mathbb{C}, |z| < r\}$ avec $r \in \R_+^*$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $r \in \R_+^*$.
+    S'il existe $M > 0$ tel que
+    $$
+    \forall n \in \N, |a_n| r^n \leq M
+    $$
+    Alors pour tout $z \in D_r$, la série entière $\sum_{k = k_0}^{+\infty} a_k z^k$ converge absolument.
+\end{theoreme}
+
+\begin{demonstration}
+    Pour tout $n \in \N$ on a
+    $$
+    |a_n z^n| = |a_n| |z^n| = |a_n| r^n \left|\frac{z}{r}\right|^n \leq M \frac{|z|^n}{r^n}
+    $$
+    donc $\sum\limits_{k \geq k_0} |a_k z^k| \leq M \sum\limits_{k \geq k_0} \left|\frac{z}{r}\right|^k$ une série géométrique de raison $\dfrac{|z|}{r} < 1$.
+\end{demonstration}
+
+\begin{definition}
+    On définit le \textbf{rayon de convergence} d'une série entière $\sum\limits_{k = k_0}^{+\infty} a_k z^k$ comme étant
+    $$
+    R = \sup_{r > 0} \{ r \in \R_+^* | \sum\limits_{k = k_0}^{+\infty} a_k z^k \text{ converge pour tout } z \in D_r\}
+    $$
+\end{definition}
+
+\begin{remarque}
+    Ainsi on a
+    \begin{itemize}
+        \item si $|z| < R$ la série entière converge absolument,
+        \item si $|z| = R$ la série entière peut converger ou diverger,
+        \item si $|z| > R$ la série entière diverge.
+    \end{itemize}
+\end{remarque}
+
+\begin{remarque}
+    Si a partir d'un certain rang $n$ on a $a_n = 0$, alors $R = +\infty$.
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Soit $R$ le rayon de convergence de la série entière $\sum\limits_{k = k_0}^{+\infty} a_k z^k$. Alors
+    $$
+    \frac{1}{R} = \limsup_{n \to +\infty} \sqrt[n]{|a_n|} = \inf_{n_0 \in \N} \sup_{n \geq n_0} \sqrt[n]{|a_n|}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Si $r < R$.] 
+        La série de terme général $|a_n|r^n$ est convergente,
+        à partir d'un certain rang $n_0$ on a
+        $$
+        \forall n > n_0, |a_n| r^n \leq 1 \iff \sqrt[n]{|a_n|} \leq \frac{1}{r}
+        $$
+        On peut passer au sup, d'où $\sup_{n \geq n_0} \sqrt[n]{|a_n|} \leq \frac{1}{r}$
+        puis à la limite $n_0 \to +\infty$ d'où $\limsup_{n \to +\infty} \sqrt[n]{|a_n|} \leq \frac{1}{r}$.
+    
+        \item[Si $r > R$.]
+        On fait pareil
+
+        \item[Si $r = R$.]
+        On ne peut rien dire.
+    \end{description}
+    Ainsi avec $c_n = a_n b^n$ on a
+    $$
+    \sqrt[n]{|c_n|} = \sqrt[n]{|a_n|} r < 1 \iff \sqrt[n]{|a_n|} < \frac{1}{r}
+    $$
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $(a_n)_{n \in \N}$ une suite de nombres réels ou complexes telle que $\dfrac{|a_{n+1}|}{|a_n|}$ converge.
+
+    Alors la série entière $\sum\limits_{k = k_0}^{+\infty} a_k z^k$ admet un rayon de convergence $R$ donné par
+    $$
+    \frac{1}{R} = \lim_{n \to +\infty} \frac{|a_{n+1}|}{|a_n|}.
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+    On pose $c_n = a_n b^n$.
+    Alors
+    \begin{align*}
+        \dfrac{|c_{n+1}|}{|c_n|} = \frac{|a_{n+1}|}{|a_n|} r &\iff \frac{|a_{n+1}|}{|a_n|} < \frac{1}{r} \\
+        &\implies \lim_{n \to +\infty} \frac{|a_{n+1}|}{|a_n|} \leq \frac{1}{r}
+    \end{align*}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $R$ le rayon de convergence de la série entière $\sum\limits_{k = k_0}^{+\infty} a_k z^k$ tel que $R > 0$.
+    Soit $r \in ]0, R[$.
+
+    Alors on a
+    $$
+    \forall \varepsilon > 0, \exists N \in \N, \forall n > N, \forall z \in D_r, \left| \sum_{k = n_0}^n a_k z^k - \sum_{k = n_0}^{+\infty} a_k z^k \right| < \varepsilon
+    $$
+    C'est à dire que le reste de la série entière converge uniformément sur $D_r$.
+    et donc que $z \mapsto \sum\limits_{k = k_0}^{+\infty} a_k z^k$ est continue sur $D_r$.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $r' \in ]r, R[$ tel que $|z| < r'$.
+    Pour tout $n > N$ on a
+    $$
+    |a_n z^n| \leq |a_n| r^n \leq |a_n| r'^n \left(\frac{r}{r'}\right)^n 
+    $$
+    Pour tout $z \in D_r$ on a
+    \begin{align*}
+        \left| \sum_{k = n_0}^n a_k z^k - \sum_{k = n_0}^{+\infty} a_k z^k \right| &= \sum_{k = n+1}^{+\infty} |a_k z^k| \\
+        &\leq \sum_{k = n+1}^{+\infty} |a_k| |z|^k \\
+        &\leq \sum_{k = n+1}^{+\infty} M \left(\dfrac{r}{r'}\right)^k \\
+        &\leq M \sum_{k = n+1}^{+\infty} \left(\dfrac{r}{r'}\right)^k \\
+        &\leq M \dfrac{r^{n+1}}{r'^{n+1}} \dfrac{1}{1 - \frac{r}{r'}} \\
+        &\leq \dfrac{Mr'}{r' - r} \left(\dfrac{r}{r'}\right)^{n+1} \quad \text{qui ne dépend plus de z}
+    \end{align*}
+    Donc $\lim_{n \to +\infty} \left(\dfrac{r}{r'}\right)^{n+1} = 0$ d'où le résultat.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $\sum\limits_{k = k_0}^{+\infty} a_k z^k$ et $\sum\limits_{k = k_0}^{+\infty} b_k z^k$ deux séries entières de rayons de convergence respectifs $R_a$ et $R_b$.
+
+    Pour tout $\forall (\alpha, \beta) \in \mathbb{C}^2$ et pour tout $z \in D_{\min(R_a, R_b)}$ on a
+    \begin{enumerate}
+        \item 
+        $$
+        \alpha \sum_{k = k_0}^{+\infty} a_k z^k + \beta \sum_{k = k_0}^{+\infty} b_k z^k = \sum_{k = k_0}^{+\infty} (\alpha a_k + \beta b_k) z^k
+        $$
+
+        \item
+        $$
+        \left(\sum_{k = k_0}^{+\infty} a_k z^k\right) \left(\sum_{k = k_0}^{+\infty} b_k z^k\right) = \sum_{k = k_0}^{+\infty} \left( \sum_{i = k_0}^k a_i b_{k - i} \right) z^k
+        $$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1.]
+        Simple.
+
+        \item[2.]
+        Soit $z \in D_{\min(R_a, R_b)}$.
+        On a
+        \begin{align*}  
+            \sum_{i = i_0}^n |c_i| |z|^i = \sum_{i = i_0}^n \left| \sum_{h + k = i} a_k b_h \right| |z|^i \\
+            &= \sum_{i = i_0}^n \left| \sum_{h + k = i} a_k b_h z^{k + h}\right| \\
+            &= \sum_{i = i_0}^n \left| \sum_{h + k = i} |a_k| |z^k| |b_h| |z^h|\right| \\
+            &\leq \left( \sum_{k = k_0}^n |a_k| |z|^k \right) \left( \sum_{h = k_0}^n |b_h| |z|^h \right) \\
+            &\leq \left( \sum_{k = k_0}^{+\infty} |a_k| |z|^k \right) \left( \sum_{h = k_0}^{+\infty} |b_h| |z|^h \right)
+        \end{align*}
+        Les sommes partielles $\sum\limits_{k = k_0}^n c_k z^k$ sont uniformément bornées et elles sont croissantes donc
+        $\left(\sum\limits_{k = k_0}^n |c_k| |z^k|\right)_n$ est absolument convergente, son reste tend vers 0
+        et donc $\left(\sum\limits_{k = k_0}^{+\infty} c_k z^k\right)_n$ converge absolument. 
+    \end{description}
+\end{demonstration}
+
+\begin{remarque}
+    Le rayon de convergence de la nouvelle série entière peut être plus grand que $\min(R_a, R_b)$.
+\end{remarque}
+
+\clearpage
+
+\begin{proposition}{Formule de changement de variable}{}
+    On prend la série entière $f(z) := \sum\limits_{n \geq 0} a_n z^n$ de rayon de convergence $R > 0$ et $|z| < R$.
+
+    Alors pour tout $\alpha \in \R$, pour tout $m \in \Z^*$, on a
+    $$
+    \sum_{n \geq 0} a_n \alpha^n z^{nm} = f(\alpha z^m)
+    $$
+    dés que $|\alpha z^m| < R \iff z \leq \sqrt[m]{\dfrac{R}{|\alpha|}}$
+\end{proposition}
+
+\begin{proposition}{}{}
+    Pour tout $z \in \mathbb{C}$, $e^z := \sum_{n \geq 0} \dfrac{z^n}{n!}$.
+
+    Alors
+    $$
+    e^{a + b} = e^a e^b
+    $$
+    pour tout $a, b \in \mathbb{C}$.
+\end{proposition}
+
+\begin{demonstration}
+    On a
+    $$
+    e^a = \sum_{n \geq 0} \dfrac{a^n}{n!} = \sum_{n \geq 0} 1^n \dfrac{a^n}{n!} = (z \mapsto e^{a z})(1)
+    $$
+    pareil pour $e^b$.
+    $$
+    e^b = (z \mapsto e^{b z})(1)
+    $$
+
+    On fait le produit des deux séries
+    $$
+    e^a e^b = \left(\sum_{n \geq 0} 1^n \dfrac{a^n}{n!} \right)\left( \sum_{n \geq 0} 1^n \dfrac{b^n}{n!} \right) = \sum_{n \geq 0} c_n 1^n
+    $$
+    avec
+    \begin{align*}
+        c_n := \sum_{i + j = n} \dfrac{a^i}{i!} \dfrac{b^j}{j!} &= \dfrac{b^n}{n!} + \dfrac{ab^{n-1}}{(n-1)!1!} + \cdots + \dfrac{a^n}{n!} \\
+        &= \sum_{k = 0}^n \dfrac{b^{n-k}a^k}{(n-k)!k!} = \dfrac{1}{n!} \sum_{k = 0}^n \binom{n}{k} a^k b^{n-k} = \dfrac{(a + b)^n}{n!}
+    \end{align*}
+
+    et on a aussi
+
+    $$
+    e^a \times e^b = \sum_{k \geq 0} \dfrac{(a + b)^k}{k!} 1^k = e^{a + b}
+    $$
+\end{demonstration}
+
+\subsection{Développabilité en série entière}
+
+On ne considère que $z \in \R$.
+
+\begin{definition}
+    Soit $z_0 \in \R$, $\bar{\R^+} = \R^+ \cup \{+\infty\}$ et $R \in \bar{\R^+}$.
+
+    $g$ un fonction définie sur $\R$ sera \textbf{dévéloppable} en série entière sur $]z_0 - R, z_0 + R[$ si
+    $$
+    \forall z \in ]z_0 - R, z_0 + R[, \quad g(z) = \sum_{n \geq 0} a_n (z - z_0)^n
+    $$
+    cette somme s'appellera la \textbf{développement en série entière} de $g$ au voisinage de $z_0$.
+\end{definition}
+
+\begin{proposition}{}{}
+    La fonction $g$ est développable en série entière sur $]z_0 - R, z_0 + R[$ si et seulement si
+    la fonction $z \mapsto g(z + z_0)$ est développable en série entière sur $]-R, R[$ en $z = 0$.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Soit $f$ une fonction d.s.e autour de 0 et $R > 0$ son rayon de convergence telle que $\forall z \in ]-R, R[, f(z) = \sum\limits_{n \geq 0} a_n z^n$.
+
+    Alors $f$ est indéfiniment dérivable sur $]-R, R[$ et on dérive terme à terme $f'(z) = \sum\limits_{n \geq 1} n a_n z^{n-1}$.
+
+    Plus généralement
+    $$
+    f^{(l)}(z) = \sum_{n \geq l} \prod_{k = 0}^{l-1} (n - k) a_n z^{n-l}
+    $$
+    et de plus
+    $$
+    \int_0^z f(t) dt = \sum_{n \geq 0} \dfrac{a_n}{n + 1} z^{n + 1}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    On a
+    $$
+    \lim_{n \to +\infty} \sqrt[n]{n} = \lim_{n \to +\infty} n^{\frac{1}{n}} = \lim_{n \to +\infty} e^{\frac{\ln(n)}{n}} = 1
+    $$
+    et donc $\lim_{n \to +\infty} \sup \sqrt[n]{n |a_n|} = \lim_{n \to +\infty} \sup \sqrt[n]{|a_n|}$ donc les deux séries
+    $\sum_{n \geq 0} na_n z^n$ et $\sum_{n \geq 0} a_n z^n$ ont le même rayon de convergence $R$.
+
+    D'apres la proposition ?? on a la convergence uniforme de $\sum_{n \geq 0} a_n z^n$ sur $[-r, r]$ pour tout $r \in ]0, R[$.
+    De même pour $\sum_{n \geq 0} na_n z^n$.
+
+    On peut appliquer le théorème de dérivation d'une série de fonctions pour conclure que $f$ est dérivable et que $f'(z) = \sum\limits_{n \geq 1} n a_n z^{n-1}$.
+
+    \vspace{0.5cm}
+    Par récurrence, on trouve la formule pour $f^{(l)}$.
+    \vspace{0.5cm}
+
+    Pour l'intégrale, on applique le théorème de dérivation à $\int_0^z f(t) dt$.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Si $f$ est d.s.e sur $]-R, R[$ avec $R > 0$.
+
+    Alors
+    $$
+    f(z) = \sum_{n \geq 0} \dfrac{f^{(n)}(0)}{n!} z^n
+    $$
+\end{corollaire}
+
+\begin{remarque}
+    On reconnait un développement de Taylor de $f$ au voisinage de 0.
+\end{remarque}
+
+\begin{demonstration}
+    On fait une récurrence sur $n$
+\end{demonstration}
+
+\begin{definition}
+    Si $f$ est indéfiniment dérivable sur $]-R, R[$, alors le developpement,
+    $$
+    f(z) = \sum_{n \geq 0} \dfrac{f^{(n)}(0)}{n!} z^n
+    $$
+    s'appelle la série de Taylor de $f$ au voisinage de 0.
+\end{definition}
+
+\end{document}

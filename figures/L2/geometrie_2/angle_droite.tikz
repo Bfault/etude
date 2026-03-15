@@ -1,0 +1,31 @@
+\begin{tikzpicture}[>=stealth, scale=2]
+
+% --- Droites ---
+\coordinate (O) at (0,0);
+\coordinate (A) at (1.5,0);
+\coordinate (B) at (1.5,1.5);
+\coordinate (A_neg) at (-1.5,0);
+\coordinate (B_neg) at (-1.5,-1.5);
+
+% Droite D
+\draw[thick, red] (A_neg) -- (A) node[anchor=east, pos=0.9, fill=white] {$D$};
+% Droite D'
+\draw[thick, blue] (B_neg) -- (B) node[anchor=south west, pos=0.7, fill=white] {$D'$};
+
+% --- Vecteurs directeurs ---
+% Vecteur u sur la demi-droite positive de D
+%\draw[->, ultra thick, red!60!black] (O) -- (1,0) node[pos=0.8, yshift=6pt, scale=1.2] {$\mathbf{u}$};
+% Vecteur -u sur la demi-droite négative de D
+%\draw[->, ultra thick, red!60!black] (O) -- (-1,0) node[pos=0.8, yshift=6pt, scale=1.2] {$-\mathbf{u}$};
+% Vecteur v sur la demi-droite positive de D'
+%\draw[->, ultra thick, blue!60!black] (O) -- (1,1) node[pos=0.8, xshift=6pt, yshift=3pt, scale=1.2] {$\mathbf{v}$};
+
+% --- Angles ---
+% Angle alpha : de u vers v
+\pic [draw, ->, angle radius=1.2cm, "$\alpha$", angle eccentricity=1.2, red!80!black] {angle = A--O--B};
+
+% Angle beta : de -u vers v
+% Nous traçons l'arc géométrique de la droite D' vers la droite D
+\pic [draw, <-, angle radius=1.3cm, "$\beta$", angle eccentricity=1.35, blue!80!black] {angle = B--O--A_neg};
+
+\end{tikzpicture}

@@ -1,0 +1,62 @@
+\begin{tikzpicture}
+
+    % --- Styles robustes pour les marques de segments ---
+    \tikzset{
+        % Permet de dessiner 1, 2 ou 3 petits traits au milieu du segment
+        mark 1/.style={postaction={decorate, decoration={markings, mark=at position 0.5 with {\draw[thick] (0,-3.5pt) -- (0,3.5pt);}}}},
+        mark 2/.style={postaction={decorate, decoration={markings, mark=at position 0.5 with {\draw[thick] (-1.5pt,-3.5pt) -- (-1.5pt,3.5pt); \draw[thick] (1.5pt,-3.5pt) -- (1.5pt,3.5pt);}}}},
+        mark 3/.style={postaction={decorate, decoration={markings, mark=at position 0.5 with {\draw[thick] (-2.5pt,-3.5pt) -- (-2.5pt,3.5pt); \draw[thick] (0,-3.5pt) -- (0,3.5pt); \draw[thick] (2.5pt,-3.5pt) -- (2.5pt,3.5pt);}}}}
+    }
+
+    % --- Définition des sommets du triangle ---
+    \coordinate (A) at (1.5, 5);
+    \coordinate (B) at (0, 0);
+    \coordinate (C) at (7, 0);
+
+    % --- Calcul des milieux des côtés ---
+    \coordinate (Aprime) at ($(B)!0.5!(C)$); % Milieu de BC (opposé à A)
+    \coordinate (Bprime) at ($(A)!0.5!(C)$); % Milieu de AC (opposé à B)
+    \coordinate (Cprime) at ($(A)!0.5!(B)$); % Milieu de AB (opposé à C)
+
+    % --- Calcul du Centre de Gravité (G) ---
+    % TikZ sait calculer les barycentres nativement, c'est parfait pour G !
+    \coordinate (G) at (barycentric cs:A=1,B=1,C=1);
+
+    % --- Tracé du triangle ---
+    \draw[black, very thick] (A) -- (B) -- (C) -- cycle;
+
+    % --- Tracé des médianes ---
+    \draw[blue, thin] (A) -- (Aprime);
+    \draw[blue, thin] (B) -- (Bprime);
+    \draw[blue, thin] (C) -- (Cprime);
+
+    % --- Ajout des marques de segments (équidistance) ---
+    % Côté BC (coupé par A') -> 1 trait
+    \draw[mark 1] (B) -- (Aprime); 
+    \draw[mark 1] (Aprime) -- (C);
+    
+    % Côté AC (coupé par B') -> 2 traits
+    \draw[mark 2] (A) -- (Bprime); 
+    \draw[mark 2] (Bprime) -- (C);
+
+    % Côté AB (coupé par C') -> 3 traits
+    \draw[mark 3] (A) -- (Cprime); 
+    \draw[mark 3] (Cprime) -- (B);
+
+    % --- Ajout des points et labels ---
+    \foreach \p in {A,B,C,G,Aprime,Bprime,Cprime}
+        \filldraw[fill=white, draw=black, thick] (\p) circle (2pt);
+
+    \node[above=3pt] at (A) {A};
+    \node[below left=3pt] at (B) {B};
+    \node[below right=3pt] at (C) {C};
+    
+    % Labels des milieux
+    \node[below=3pt] at (Aprime) {A'};
+    \node[above right=2pt] at (Bprime) {B'};
+    \node[above left=2pt] at (Cprime) {C'};
+
+    % Label du centre de gravité
+    \node[above right=0pt, yshift=2pt] at (G) {G};
+
+\end{tikzpicture}

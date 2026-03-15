@@ -1,0 +1,117 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{11 March 2026}
+
+\begin{document}
+
+\hotbox{Géometrie 2}{CM 4}{\today}
+
+\section{Le triangle}
+
+\subsection{Droites remarquables d'un triangle}
+
+\begin{definition}
+    Soit $ABC$ un triangle non plat. On appelle \textbf{cercle circonscrit} du triangle $ABC$ le cercle qui passe par les trois sommets $A$, $B$ et $C$.
+\end{definition}
+
+\begin{definition}
+    Soit $ABC$ un triangle. On appelle \textbf{mediatrice} du segment $[BC]$ la droite qui est perpendiculaire à la droite $(BC)$ et qui passe par le milieu de $[BC]$.
+\end{definition}
+
+\begin{proposition}{}{}
+    La mediatrice du segment $[BC]$ est l'ensemble des points équidistants de $B$ et de $C$.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Les trois mediatrices d'un triangle sont concourantes. Le point de concours est appelé le \textbf{centre du cercle circonscrit} du triangle.
+    
+    Il est souvent noté $O$.
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.44\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/mediatrice.tikz}
+    }
+    \caption{Cercle circonscrit (en rouge) et médiatrices (en bleu) d'un triangle $ABC$. Les trois médiatrices se coupent en un point $O$ qui est le centre du cercle circonscrit.}
+\end{figure}
+\tikzexternaldisable
+
+\begin{definition}
+    Soit $ABC$ un triangle non plat. On appelle \textbf{cercle inscrit} du triangle $ABC$ le cercle qui est tangent aux trois côtés du triangle.
+\end{definition}
+
+\begin{definition}
+    Soit $ABC$ un triangle. On appelle \textbf{bissectrice} issue de $A$ la droite qui passe par $A$ et qui partage l'angle $\widehat{BAC}$ en deux angles de même mesure.
+\end{definition}
+
+\begin{proposition}{}{}
+    La bissectrice issue de $A$ est l'ensemble des points équidistants des droites $(AB)$ et $(AC)$.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Les trois bissectrices d'un triangle sont concourantes. Le point de concours est appelé le \textbf{centre du cercle inscrit} du triangle.
+    
+    Il est souvent noté $I$.
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/bissectrice.tikz}
+    }
+    \caption{Cercle inscrit (en rouge) et bissectrices (en bleu) d'un triangle $ABC$. Les trois bissectrices se coupent en un point $I$ qui est le centre du cercle inscrit.}
+\end{figure}
+\tikzexternaldisable
+
+\begin{definition}
+    Soit $ABC$ un triangle. On appelle \textbf{médiane} issue de $A$ la droite qui passe par $A$ et par le milieu de $[BC]$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Le centre de gravité d'un triangle est situé à $\frac{2}{3}$ de la médiane issue de chaque sommet à partir du sommet.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Les trois médianes d'un triangle sont concourantes. Le point de concours est appelé le \textbf{centre de gravité} du triangle.
+    
+    Il est souvent noté $G$.
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/mediane.tikz}
+    }
+    \caption{Médianes (en bleu) d'un triangle $ABC$. Les trois médianes se coupent en un point $G$ qui est le centre de gravité du triangle.}
+\end{figure}
+\tikzexternaldisable
+
+\begin{definition}
+    Soit $ABC$ un triangle. On appelle \textbf{hauteur} issue de $A$ la droite qui passe par $A$ et qui est perpendiculaire à la droite $(BC)$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Les trois hauteurs d'un triangle sont concourantes. Le point de concours est appelé l'\textbf{orthocentre} du triangle.
+    
+    Il est souvent noté $H$.
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/hauteur.tikz}
+    }
+    \caption{Hauteurs (en bleu) d'un triangle $ABC$. Les trois hauteurs se coupent en un point $H$ qui est l'orthocentre du triangle.}
+\end{figure}
+\tikzexternaldisable
+
+\subsection{Les propriétés élémentaires}
+
+\end{document}

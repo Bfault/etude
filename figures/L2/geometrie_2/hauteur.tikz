@@ -1,0 +1,51 @@
+\begin{tikzpicture}
+
+    % --- Définition des sommets du triangle ---
+    % On choisit un triangle acutangle (tous les angles < 90°) 
+    % pour que l'orthocentre soit bien à l'intérieur de la figure.
+    \coordinate (A) at (2, 5);
+    \coordinate (B) at (0, 0);
+    \coordinate (C) at (7, 0);
+
+    % --- Calcul des pieds des hauteurs par projection orthogonale ---
+    % La syntaxe magique de TikZ : $(B)!(A)!(C)$ projette le point A sur la droite (BC)
+    \coordinate (Ha) at ($(B)!(A)!(C)$); 
+    \coordinate (Hb) at ($(A)!(B)!(C)$); 
+    \coordinate (Hc) at ($(A)!(C)!(B)$);
+
+    % --- Calcul de l'Orthocentre (H) ---
+    % On le trouve en cherchant l'intersection de deux hauteurs
+    \path[name path=altA] (A) -- (Ha);
+    \path[name path=altB] (B) -- (Hb);
+    \path [name intersections={of=altA and altB, by=H}];
+
+    % --- Tracé du triangle ---
+    \draw[black, very thick] (A) -- (B) -- (C) -- cycle;
+
+    % --- Tracé des hauteurs ---
+    \draw[blue, thin] (A) -- (Ha);
+    \draw[blue, thin] (B) -- (Hb);
+    \draw[blue, thin] (C) -- (Hc);
+
+    % --- Ajout des symboles d'angles droits ---
+    \pic [draw, angle radius=3mm] {right angle = A--Ha--C};
+    \pic [draw, angle radius=3mm] {right angle = B--Hb--C};
+    \pic [draw, angle radius=3mm] {right angle = C--Hc--B};
+
+    % --- Ajout des points et labels ---
+    \foreach \p in {A,B,C,H}
+        \filldraw[fill=white, draw=black, thick] (\p) circle (2pt);
+
+    \node[above=3pt] at (A) {A};
+    \node[below left=3pt] at (B) {B};
+    \node[below right=3pt] at (C) {C};
+    
+    % Labels des pieds des hauteurs
+    \node[below=3pt] at (Ha) {$H_A$};
+    \node[above right=1pt] at (Hb) {$H_B$};
+    \node[above left=1pt] at (Hc) {$H_C$};
+
+    % Label de l'orthocentre
+    \node[above left=1pt, yshift=2pt] at (H) {H};
+
+\end{tikzpicture}

@@ -1,0 +1,1046 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{utils}
+
+\title{ Algèbre bilinéaire }
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Formes bilinéaires et formes quadratiques}
+
+Dans cette section, nous ne considérons par $\K$ que les corps commutatifs de caractéristique différente de $2$.
+
+Soit $E$ et $F$ des $\K$-espaces vectoriels. On notera $\mathcal{L}(E, F)$ l'espace des applications linéaires de $E$ dans $F$.
+Si $E$ est un $\K$-espace vectoriel, on notera $E^* = \mathcal{L}(E, \K)$ son dual.
+
+\begin{definition}
+    Soit $E$, $F$ et $G$ des $\K$-espaces vectoriels et $\varphi: E \times F \to G$ une application.
+
+    On dit que l'application $\varphi$ est une \textbf{application bilinéaire} lorsque, pour tout $u, u' \in E$, $v, v' \in F$ et $\lambda \in \K$, on a
+    \begin{align*}  
+        \varphi(u + \lambda u', v) = \varphi(u, v) + \lambda \varphi(u', v) \\
+        \varphi(u, v + \lambda v') = \varphi(u, v) + \lambda \varphi(u, v') \\
+    \end{align*}
+\end{definition}
+
+\begin{proposition}{}{bililiniearite}
+    L'application $\varphi: E \times F \to G$ est bilinéaire si et seulement si,
+    $$
+    \forall v \in F, \quad \varphi(\cdot, v) \in \mathcal{L}(E, G) \quad \text{et} \quad \forall u \in E, \quad \varphi(u, \cdot) \in \mathcal{L}(F, G)
+    $$
+    où pour tout $v \in F$,
+    $$
+    \funcdef{\varphi(\cdot, v)}{E}{G}{u}{\varphi(u, v)}
+    $$
+    et pour tout $u \in E$,
+    $$
+    \funcdef{\varphi(u, \cdot)}{F}{G}{v}{\varphi(u, v)}
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.]
+        On suppose que $\varphi$ est bilinéaire. Soit $u \in E$. Alors, pour tout $v, v' \in F$ et $\lambda \in \K$, on a
+        \begin{align*}
+            \varphi(u, \cdot)(v + \lambda v') &= \varphi(u, v + \lambda v') \\
+            &\underset{\text{bilinéarité}}{=} \varphi(u, v) + \lambda \varphi(u, v') \\
+            &= \varphi(u, \cdot)(v) + \lambda \varphi(u, \cdot)(v')
+        \end{align*}
+        Donc $\varphi(u, \cdot)$ est linéaire. Même raisonnement pour $\varphi(\cdot, v)$.
+
+        \item[Sens réciproque.]
+        On suppose que pour tout $u \in E$, $v \in F$, $\varphi(\cdot, v) \in \mathcal{L}(E, G)$ et $\varphi(u, \cdot) \in \mathcal{L}(F, G)$. Soient $u, u' \in E$, $v, v' \in F$ et $\lambda \in \K$. Alors
+        \begin{align*}
+            \varphi(u + \lambda u', v) &= \varphi(\cdot, v)(u + \lambda u') \\
+            &= \varphi(\cdot, v)(u) + \lambda \varphi(\cdot, v)(u') \\
+            &= \varphi(u, v) + \lambda \varphi(u', v)
+        \end{align*}
+        et
+        \begin{align*}
+            \varphi(u, v + \lambda v') &= \varphi(u, \cdot)(v + \lambda v') \\
+            &= \varphi(u, \cdot)(v) + \lambda \varphi(u, \cdot)(v') \\
+            &= \varphi(u, v) + \lambda \varphi(u, v')
+        \end{align*}
+        Donc $\varphi$ est bilinéaire.
+    \end{description}
+\end{demonstration}
+
+\begin{definition}
+    Soit $\varphi: E \times F \to \K$ une application bilinéaire.
+    \begin{itemize}[label=--]
+        \item On dit que $\varphi$ est une \textbf{forme bilinéaire} sur $E \times F$.
+        \item Lorsque, de plus $E = F$ on dit que $\varphi$ est une \textbf{forme bilinéaire} sur $E$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{gliniearite}
+    Soient $E$ et $F$ deux $\K$-espaces vectoriels et soit $\varphi: E \times F \to \K$ une forme bilinéaire. Alors, les applications
+    $$
+    \funcdef{g_\varphi}{E}{F^*}{u}{\varphi(u, \cdot)} \quad \text{et} \quad \funcdef{d_\varphi}{F}{E^*}{v}{\varphi(\cdot, v)}
+    $$
+    sont linéaires.
+\end{proposition}
+
+\begin{demonstration}
+    On suppose que $\varphi$ est une forme bilinéaire sur $E \times F$. Soient $u, u' \in E$, $v, v' \in F$ et $\lambda \in \K$. Alors
+    \begin{align*}
+        g_\varphi(u + \lambda u') &= \varphi(u + \lambda u', \cdot) \\
+        &= \varphi(u, \cdot) + \lambda \varphi(u', \cdot) \quad \text{(*)} \\
+        &= g_\varphi(u) + \lambda g_\varphi(u')
+    \end{align*}
+    (*) est vérifié par la proposition \ref{propal:bililiniearite}.
+
+    Donc $g_\varphi$ est linéaire. Même raisonnement pour $d_\varphi$.
+\end{demonstration}
+
+\subsection{Espace des formes bilinéaires}
+
+Dans cette section, on considère que $E$ et $F$ sont des $\K$-espaces vectoriels de dimension finie $p$ et $n$ respectivement et leurs bases $\mathscr{B} = (e_1, \dots, e_p)$ et $\mathscr{B'} = (e_1', \dots, e_n')$ respectivement.
+\vspace{1cm}
+
+\begin{proposition}{}{}
+    L'ensemble des formes bilinéaires sur $E \times F$ est un $\K$-espace vectoriel, noté $\mathcal{L}_2(E, F)$,
+    isomorphe à $\mathcal{L}(E, F^*)$ et à $\mathcal{L}(F, E^*)$.
+\end{proposition}
+
+\begin{demonstration}
+    On définie l'application $\funcdef{\Phi}{\mathcal{L}_2(E, F)}{\mathcal{L}(E, F^*)}{\varphi}{g_\varphi}$.
+
+    \begin{enumerate}
+        \item $\Phi$ est bilinéaire, d'après la proposition \ref{propal:bililiniearite} $\varphi(u, \cdot)$ est linéaire pour tout $u \in E$.
+        \item $\Phi$ est bilinéaire, d'après la proposition \ref{propal:gliniearite} $g_\varphi$ est linéaire pour tout $\varphi \in \mathcal{L}_2(E, F)$.
+        
+        \item
+        \begin{align*}
+            \Phi(\varphi) = 0 &\implies \forall u \in E, \quad g_\varphi(u) = 0 \\
+            &\implies \forall (u, v) \in E \times F, \quad \varphi(u, v) = 0 \\
+            &\implies \varphi = 0
+        \end{align*}
+        Donc $\Phi$ est injective.
+        
+    \end{enumerate}
+    On a donc que $\Phi$ est un isomorphisme de $\K$-espaces vectoriels. De même, on peut construire un isomorphisme de $\mathcal{L}_2(E, F)$ vers $\mathcal{L}(F, E^*)$.
+\end{demonstration}
+
+\subsection{Écriture matricielle des formes bilinéaires}
+
+\begin{remarque}
+    On suppose que $E$ est de dimension finie $p \in \N^*$ et $F$ est de dimension finie $n \in \N^*$.
+
+    Comme $dim \mathcal{L}(E, F^*) = pn$, on a $dim \mathcal{L}_2(E, F) = pn$.
+\end{remarque}
+
+\begin{definition}
+    Soit $\mathscr{B} = (e_1, \dots, e_p)$ une base de $E$ et $\mathscr{B'} = (e_1', \dots, e_n')$ une base de $F$.
+    Soit $\varphi \in \mathcal{L}_2(E, F)$. Soit $M = (\varphi(e_i, e_j'))_{1 \leq i \leq p, 1 \leq j \leq n}$.
+    On dit que cette matrice est la matrice de $\varphi$ dans les bases $\mathscr{B}$ et $\mathscr{B'}$.
+    On note alors $M = Mat_{\varphi; \mathscr{B}, \mathscr{B'}} \in \mathcal{M}_\K(p, n)$
+    $$
+    \begin{pmatrix}
+        \varphi(e_1, e_1') & \varphi(e_1, e_2') & \dots & \varphi(e_1, e_n') \\
+        \varphi(e_2, e_1') & \varphi(e_2, e_2') & \dots & \varphi(e_2, e_n') \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \varphi(e_p, e_1') & \varphi(e_p, e_2') & \dots & \varphi(e_p, e_n')
+    \end{pmatrix}
+    $$
+\end{definition}
+
+\begin{theoreme}{Représentation matricielle}{}
+    Soient $E$ et $F$ deux $\K$-espaces vectoriels de dimension finie $p$ et $n$ respectivement.
+    Soient $\mathscr{B} = (e_1, \dots, e_p)$ une base de $E$ et $\mathscr{B'} = (e_1', \dots, e_n')$ une base de $F$.
+
+    Pour toute forme bilinéaire $\varphi \in \mathcal{L}_2(E, F)$, il existe une \textbf{unique} matrice $M \in \mathcal{M}_\K(p, n)$ telle que:
+    \begin{itemize}
+        \item pour tout $i \in \llbracket 1, p \rrbracket$ et $j \in \llbracket 1, n \rrbracket$, on a $m_{i, j} = \varphi(e_i, e_j')$.
+        \item pour tout $u \in E$ et $v \in F$, on a
+        
+        $$\varphi(u, v) = X^T M Y = Y^T X^T M$$
+
+        où $X$ et $Y$ sont les vecteurs colonnes des coordonnées de $u$ dans $\mathscr{B}$ et de $v$ dans $\mathscr{B'}$ respectivement.
+    \end{itemize}
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $\varphi \in \mathcal{L}_2(E, F)$. Soient $\mathscr{B} = (e_1, \dots, e_p)$ une base de $E$ et $\mathscr{B'} = (e_1', \dots, e_n')$ une base de $F$.
+    \begin{description}
+        \item[Existence.] Soient $u \in E$ et $v \in F$. On décompose $u$ et $v$ dans leurs bases respectives, alors
+        $$
+        u = \sum_{i=1}^p x_i e_i \quad \text{et} \quad v = \sum_{j=1}^n y_j e_j'
+        $$
+        Par la bilinéarité de $\varphi$, on a
+        \begin{align*}
+            \varphi(u, v) &= \varphi(\sum_{i=1}^p x_i e_i, \sum_{j=1}^n y_j e_j') \\
+            &= \sum_{i=1}^p \sum_{j=1}^n x_i y_j \varphi(e_i, e_j')
+        \end{align*}
+        En posant $m_{i, j} = \varphi(e_i, e_j')$ pour tout $i \in \llbracket 1, p \rrbracket$ et $j \in \llbracket 1, n \rrbracket$, on a
+        $$
+        \varphi(u, v) = \sum_{i=1}^p x_i \left( \sum_{j=1}^n m_{i, j} y_j \right) = \sum_{i=1}^p x_i (M Y)_i = X^T M Y
+        $$
+
+        \item[Unicité.] Supposons qu'il existe une matrice $B \in \mathcal{M}_\K(p, n)$ telle que pour tout $u \in E$ et $v \in F$, on a $\varphi(u, v) = X^T B Y$.
+        Ainsi, pour tout $i \in \llbracket 1, p \rrbracket$ et $j \in \llbracket 1, n \rrbracket$, on a
+        \begin{align*}
+            m_{i, j} = \varphi(e_i, e_j') &= E_i^T M E_j' \\
+            &= E_i^T B E_j' \\
+            &= b_{i, j}
+        \end{align*}
+        où $E_i$ et $E_j'$ sont les vecteurs colonnes de coordonnées de $e_i$ dans $\mathscr{B}$ et de $e_j'$ dans $\mathscr{B'}$ respectivement. Donc $M = B$.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    L'application de $\mathcal{L}_2(E, F)$ sur $\mathcal{M}_\K(p, n)$ définie par $\varphi \mapsto Mat_{\varphi; \mathscr{B}, \mathscr{B'}}$ est un isomorphisme de $\K$-espaces vectoriels.
+\end{proposition}
+
+\begin{theoreme}{Formule de changement de base}{}
+    Soit $\varphi$ une forme bilinéaire sur $E \times F$.
+    On considère:
+    \begin{itemize}
+        \item $\mathscr{B}$ et $\mathscr{B'}$ les bases "anciennes" de $E$ et $F$ respectivement
+        \item $\mathscr{B}_1$ et $\mathscr{B'}_1$ les bases "nouvelles" de $E$ et $F$ respectivement
+    \end{itemize}
+    Soient $P$ la matrice de passage de $\mathscr{B}$ vers $\mathscr{B}_1$ et $Q$ la matrice de passage de $\mathscr{B'}$ vers $\mathscr{B'}_1$. Alors
+    $$
+    Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1} = P^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Q
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Par définition de $P$ et $Q$, on a $X = P X_1$ et $Y = Q Y_1$.
+
+    Par définition de $Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1}$, pour tout $u \in E$ et $v \in F$, on a
+    $$
+    \varphi(u, v) = X_1^T Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1} Y_1
+    $$
+    De plus, par définition de $Mat_{\varphi; \mathscr{B}, \mathscr{B'}}$, pour tout $u \in E$ et $v \in F$, on a
+    \begin{align*}
+    \varphi(u, v) &= X^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Y \\
+    &= (P X_1)^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} (Q Y_1) \\
+    &= X_1^T \left( P^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Q \right) Y_1
+    \end{align*}
+    Donc par unicité de la représentation matricielle, on a $Mat_{\varphi; \mathscr{B}_1, \mathscr{B'}_1} = P^T Mat_{\varphi; \mathscr{B}, \mathscr{B'}} Q$.
+\end{demonstration}
+
+\subsection{Rang d'une forme bilinéaire}
+
+\begin{definition}
+    On suppose que $E$ et $F$ sont de dimension finie. Soit $\varphi$ une forme bilinéaire sur $E \times F$. 
+    Alors les applications linéaires $g_\varphi: E \to F^*$ et $d_\varphi: F \to E^*$ sont de même rang, appelé le \textbf{rang} de $\varphi$ et noté $rg(\varphi)$.
+
+    De plus, le rang de $\varphi$ est égal au rang de la matrice de $\varphi$ dans n'importe quelle base de $E$ et n'importe quelle base de $F$.
+\end{definition}
+
+\subsection{Formes bilinéaires non dégénérées}
+
+\begin{definition}
+    Une forme bilinéaire $\varphi$ sur $E \times F$ est dite \textbf{non dégénérée} lorsque les applications linéaires $g_\varphi$ et $d_\varphi$ sont injectives. Une forme bilinéaire $\varphi$ sur $E \times F$ qui n'est pas dégénérée est dit \textbf{dégénérée}.
+\end{definition}
+
+\begin{proposition}{}{}
+    On suppose que les deux espaces vectoriels $E$ et $F$ sont de dimension finie.
+    Soit $\varphi \in \mathcal{L}_2(E, F)$ et $M$ la matrice de $\varphi$ dans une base de $E$ et une base de $F$. Alors, les propriétés suivantes sont équivalentes:
+    \begin{enumerate}
+        \item $\varphi$ est non dégénérée
+        \item $g_\varphi$ est bijective
+        \item $d_\varphi$ est bijective
+        \item $\forall u \in E, \left( \forall v \in F, \quad \varphi(u, v) = 0 \implies u = 0 \right)$ et $dim E = dim F$
+        \item $\forall v \in F, \left( \forall u \in E, \quad \varphi(u, v) = 0 \implies v = 0 \right)$ et $dim E = dim F$
+        \item $rang(\varphi) = dim E = dim F$
+        \item $dim E = dim F$ et $det(M) \neq 0$
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Applications bilinéaires symétriques et antisymétriques}
+
+\begin{definition}
+    Soit $E$ et $G$ des $\K$-espaces vectoriels et soit $\varphi: E \times E \to G$.
+    \begin{itemize}[label=--]
+        \item $\varphi$ est dite \textbf{symétrique} lorsque, pour tout $(u, v) \in E \times E$, on a $\varphi(u, v) = \varphi(v, u)$.
+        \item $\varphi$ est dite \textbf{antisymétrique} lorsque, pour tout $(u, v) \in E \times E$, on a $\varphi(u, v) = -\varphi(v, u)$.
+        \item $\varphi$ est dite \textbf{alternée} lorsque, pour tout $u \in E$, on a $\varphi(u, u) = 0$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{}
+    Si de plus, $\varphi$ est bilinéaire, alors $\varphi$ est alternée si et seulement si $\varphi$ est antisymétrique.
+    (car la caractéristique de $\K$ est différente de $2$)
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.]
+        Supposons que $\varphi$ est antisymétrique. Soient $x, y \in E$. Alors
+        
+
+        \item[Sens réciproque.]
+        Supposons que $\varphi$ est alternée. Soient $x, y \in E$. Alors
+        \begin{align*}
+            &\varphi(x + y, x + y) = 0 \\
+            \implies &\varphi(x, x) + \varphi(y, y) + 2\varphi(x, y) = 0 \\
+            \implies &\varphi(x, y) = -\varphi(y, x)
+        \end{align*}
+        Donc $\varphi$ est antisymétrique.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    L'ensemble des formes bilinéaires symétriques (resp. antisymétriques) sur $E$ est un espace vectoriel, noté $\mathcal{S}_2(E)$ (resp. $\mathcal{A}_2(E)$), isomorphe à un sous-espace de $\mathcal{L}(E, E^*)$.
+    donc
+    $$
+    \mathcal{L}_2(E) = \mathscr{S}_2(E) \oplus \mathscr{A}_2(E)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\varphi \in \mathcal{L}_2(E)$.
+
+    $$
+    \varphi(x, y) = \frac{1}{2}(\varphi(x, y) + \varphi(y, x)) + \frac{1}{2}(\varphi(x, y) - \varphi(y, x))
+    $$
+
+    Soit $\varphi_e \in \mathscr{S}_2(E) \cap \mathscr{A}_2(E)$. Alors, pour tout $x, y \in E$, on a
+    \begin{align*}
+        &\varphi_e(x, y) = \varphi_e(y, x) \\
+        &\varphi_e(x, y) = -\varphi_e(y, x)
+    \end{align*}
+    Donc $\varphi_e(x, y) = 0$ pour tout $x, y \in E$ et $\varphi_e$ est la forme bilinéaire nulle.
+\end{demonstration}
+
+\clearpage
+
+\subsection{Orthogonalité}
+
+\begin{definition}
+    Soient $E$ et $G$ des espaces vectoriels sur un corps $\K$.
+
+    Soit $\varphi: E \times E \to G$ une application bilinéaire symétrique ou antisymétrique.
+
+    Soient $u, v \in E$, on dira que $u$ et $v$ sont \textbf{$\varphi$-orthogonaux} (ou simplement orthogonaux)
+    et on notera $u \perp v$ si $\varphi(u, v) = 0$.
+\end{definition}
+
+\begin{proposition}{}{}
+    $u \perp_\varphi v \iff v \perp_\varphi u$
+\end{proposition}
+
+\begin{definition}
+    Soit $A \subseteq E$ et $\varphi: E \times E \to G$ une application bilinéaire symétrique ou antisymétrique.
+
+    On définit le \textbf{$A$-orthogonal} de $E$ par
+    $$
+    A^\perp = \{ v \in E \mid \forall u \in A, \varphi(u, v) = 0 \}
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    $A^\perp$ est un sous-espace vectoriel de $E$.
+\end{proposition}
+
+\begin{demonstration}
+    $A^\perp \subset E$ et $0_E \in A^\perp$.
+
+    Soient $u, v \in E$
+
+    \begin{align*}
+        \varphi(u, 0_E) &= \varphi(u, 0_E \times v) \\
+        &= 0\varphi(u, v) \\
+        &= 0
+    \end{align*}
+
+    Soient $u, v, w \in A^\perp$ et $\lambda \in K$
+
+    \begin{align*}
+        \varphi(u, v + \lambda w) &= \varphi(u, v) + \lambda \varphi(u, w) \\
+        &= 0_G + \lambda 0_G \\
+        &= 0_G
+    \end{align*}
+
+    Donc $v + \lambda w \in A^\perp$.
+    Donc $A^\perp$ est un sev de $E$.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    $\varphi$ une application bilinéaire symétrique.
+    Soient $A \subseteq E$ et $B \subseteq E$. On a alors
+    \begin{enumerate}
+        \item $(0_E)^\perp = E$
+        \item $A \subset B \implies B^\perp \subset A^\perp$
+        \item $A \subset A^{\perp\perp}$
+        \item $A^\perp = (\text{Vect A})^\perp$
+        \item $(A \cup B)^\perp = A^\perp \cap B^\perp$
+        \item $(A \cap B)^\perp \supset A^\perp \cup B^\perp$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1.]
+        $(0_E)^\perp = \{v \in E, \varphi(v, 0_E) = 0_G\} = E$
+    
+        \item[2.]
+        Soit $u \in B^\perp$, alors $\forall v \in B, \varphi(u, v) = 0_G$.
+        mais comme $A \subset B$, alors $\forall v \in A, \varphi(u, v) = 0_G$.
+        Donc $u \in A^\perp$. et $B^\perp \subset A^\perp$.
+
+        \item[3.]
+        Soit $w \in A$ et $u \in A^\perp$, alors $\varphi(w, u) = 0_G$.
+        Donc $w \in (A^{\perp})^\perp$ donc $A \subset (A^{\perp})^\perp$.
+
+        \item[4.]
+        $A \subset \text{Vect}(A)$, donc $\text{Vect}(A)^\perp \subset A^\perp$.
+
+        Soit $u \in A^\perp$, alors $\forall v \in A, \varphi(u, v) = 0_G$.
+        Soit $w \in \text{Vect}(A)$, alors $w = \sum_{i=1}^n \lambda_i v_i$ avec $v_i \in A$ et $\lambda_i \in K$.
+        Donc $\varphi(u, w) = \sum_{i=1}^n \lambda_i \varphi(u, v_i) = 0_G$.
+        Donc $u \in \text{Vect}(A)^\perp$ et $A^\perp \subset \text{Vect}(A)^\perp$.
+
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $E$ un espace vectoriel de dimension finie $n$ et $\varphi: E \times E \to \K$ une forme bilinéaire symétrique.
+
+    Soit $F$ un sev de $E$ de dimension $p$, alors
+    \begin{enumerate}
+        \item $\dim F + \dim F^\perp \geq \dim E$
+        \item $\text{rang}(\varphi) = \dim E - \dim E^\perp$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1.]
+        On suppose que $\dim F = p < n$.
+
+        Soit $\{e_1, \dots, e_p\}$ une base de $F$.
+        \begin{align*}
+            F^\perp &= \{v \in E \mid \varphi(u, v) = 0_G, \forall u \in F\} \\
+            &= \{v \in E \mid \varphi(e_i, v) = 0_G, \forall i \in \{1, \dots, p\}\}
+        \end{align*}
+
+        $$
+        F^\perp = \{v \in E \mid \begin{pmatrix}
+            \varphi(e_1, v) \\
+            \vdots \\
+            \varphi(e_p, v)
+        \end{pmatrix}
+        \}
+        $$
+        $F^\perp$ est défini par $p$ équations linéaires, donc on aura $F^\perp \geq n - p$,
+        donc $\dim F + \dim F^\perp \geq p + n - p \geq n$.
+
+        \item[2.]
+        $\text{rang}(\varphi) = \text{rang}(g_\varphi)$ et $E^\perp = \{ v \in E \mid \varphi(u, v) = 0_\K, \forall u \in E\} = \ker(g_\varphi)$.
+
+        Par le théorème du rang, on a $\text{rang}(g_\varphi) + \dim \ker(g_\varphi) = \dim E$, donc $\text{rang}(\varphi) = \dim E - \dim E^\perp$.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $E$ un espace vectoriel de dimension finie $n$ et $\varphi: E \times E \to \K$ une forme bilinéaire symétrique et non dégénérée.
+
+    Soit $F$ un sev de $E$ de dimension $p$,
+    Alors
+    \begin{enumerate}
+        \item $\dim F + \dim F^\perp = n$
+        \item $F = (F^\perp)^\perp$
+        \item $(A^\perp)^\perp = A$ pour tout $A \subseteq E$
+        \item $(F \cap G)^\perp = F^\perp + G^\perp$ pour tout $G$ sev de $E$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1.]
+        
+        \item[2.]
+        On applique le 1 à $F^\perp$, on a $\dim F^\perp + \dim (F^\perp)^\perp = n$.
+        et par le 3 du résultat précédent, on a $F \subset (F^\perp)^\perp$.
+        Donc $F = (F^\perp)^\perp$.
+        
+        \item[3.]
+        par 4 du résultat précédent, on a $A^\perp = (\text{Vect}(A))^\perp$
+        
+        \item[4.]
+    \end{description}
+\end{demonstration}
+
+\begin{definition}[(Isotropie)]
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+    
+    On dira que $u \in E$ est \textbf{isotrope} si $\varphi(u, u) = 0_\K$.
+
+    Le sous espace $F$ de $E$ est dit \textbf{isotrope} si l'une des deux conditions suivantes est vérifiée:
+    \begin{itemize}
+        \item $\varphi|_{F \times F}$ est dégénérée
+        \item $F \cap F^\perp \neq \{0_E\}$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+
+    On dira que $F$ est \textbf{non isotrope} si l'une des deux assertions suivantes est vérifiée:
+    \begin{itemize}
+        \item $\varphi|_{F \times F}$ est non dégénérée
+        \item $F \cap F^\perp = \{0_E\}$
+    \end{itemize}
+
+    et si $\dim E < +\infty$, alors $E = F \oplus F^\perp$.
+
+    $F$ sera dit \textbf{totalement isotrope} si l'une des deux assertions suivantes est vérifiée:
+    \begin{itemize}
+        \item $\varphi|_{F \times F} = 0$
+        \item $F \subset F^\perp$
+    \end{itemize}
+\end{definition}
+
+\subsection{Familles orthogonales et orthonormales}
+
+\begin{definition}
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+
+    Soit $\{E_i\}_{i \in I}$ une famille de sev de $E$ et $\{v_i\}_{i \in J}$ une famille d'éléments de $E$.
+
+    On dit que $E$ est \textbf{somme direct $\varphi$-orthogonale} des $E_i$ que l'on note $E = \underset{\bigoplus}{\perp}_{i \in I} E_i$ 
+    si tout élément de $E_i$ est orthogonal à tout élément de $E_j$ pour $i \neq j$.
+
+    On dira que la famille $\{v_i\}_{i \in J}$ est \textbf{$\varphi$-orthogonale} (ou simplement orthogonale) si $\varphi(v_i, v_j) = 0_\K$ pour $i \neq j$.
+
+    On dira que la famille $\{v_i\}_{i \in J}$ est \textbf{$\varphi$-orthonormale} (ou simplement orthonormale) si elle est orthogonale et que $\varphi(v_i, v_i) = 1_\K$ pour tout $i \in J$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+
+    Soit $\{u_i\}_{i \in I}$ une famille orthogonale d'éléments de $E$ dont aucun des éléments n'est isotrope.
+
+    Alors $\{u_i\}_{i \in I}$ est une famille libre.
+\end{proposition}
+
+\begin{demonstration}
+    Soit $\{\lambda_i\}_{i \in I}$ une famille d'éléments de $K$.
+
+    $$
+    \sum_{i \in I} \lambda_i u_i = 0_\K
+    $$
+
+    $\forall j \in I$, on a
+    \begin{align*}
+        &\varphi\left(\sum_{i \in I} \lambda_i u_i, u_j\right) = 0_\K \\
+        \iff &\sum_{i \in I} \lambda_i \varphi(u_i, u_j) = 0_\K \\
+        \iff &\lambda_j \varphi(u_j, u_j) = 0 \\
+        \iff &\lambda_j = 0
+    \end{align*}
+    Donc la famille $\{u_i\}_{i \in I}$ est libre.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $\varphi \in \mathcal{S}(E; \K)$ une forme bilinéaire symétrique.
+
+    Toute famille orthonormale d'éléments de $E$ est libre.
+\end{corollaire}
+
+\clearpage
+
+\begin{lemme}{}{}
+    Pour toute forme bilinéaire $\varphi$ non identiquement nulle, il existe un vecteur non isotrope par rapport à $\varphi$.
+\end{lemme}
+
+\begin{demonstration}
+    Supposons que tous les vecteurs soient isotropes.
+    Alors pour tout $u, v \in E$, on a
+    $$
+    \varphi(u, v) = \dfrac{1}{2} \left( \varphi(u + v, u + v) - \varphi(u, u) - \varphi(v, v) \right) = 0 
+    $$
+    donc $\varphi$ est identiquement nulle, ce qui est une contradiction.
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $\varphi$ une forme bilinéaire définie sur un $\K$-espace vectoriel $E$ de dimension fini $n$.
+    Alors il existe une base orthogonale (non forcément orthonormale).
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item 
+        Pour $n = 1$, la base formée d'un vecteur non nul est orthogonale.
+        \item
+        Supposons que le théorème est vrai pour les dimensions inférieures à $n-1$.
+        Soit $u$ un vecteur non isotrope.
+        $\{u\}^\perp$ est un hyperplan de $E$ de dimension $n-1$.
+        
+    \end{enumerate}
+\end{demonstration}
+
+\subsection{Produit scalaire}
+
+\begin{definition}{}{}
+    $E$ un $\K$-espace vectoriel et $\varphi \in \mathcal{L}_2(E)$ est dit \textbf{un produit scalaire} sur $E$ si
+    \begin{itemize}
+        \item $\varphi$ est symétrique
+        \item $\varphi$ est non dégénérée
+        \item $\varphi$ est définie positive, c'est-à-dire que pour tout $u \in E \setminus \{0\}$, $\varphi(u, u) \geq 0$.
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{Inégalité de Cauchy-Schwarz}{}
+    Soit $E$ un $\K$-espace vectoriel et $\varphi$ un produit scalaire sur $E$.
+    Alors on a l'inégalité suivante
+    $$
+    \forall u, v \in E, \quad \varphi(u, v)^2 \leq \sqrt{\varphi(u, u)} \sqrt{\varphi(v, v)}.
+    $$
+    avec égalité si $u$ et $v$ sont colinéaires et $\varphi(u, u) = 0 \iff u = 0$.
+\end{proposition}
+
+\begin{demonstration}
+    
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit une forme bilinéaire symétrique sur $E$ un $\K$-espace vectoriel est un produit scalaire
+    si et seulement si $\varphi$ est définie positive ($\forall u \in E, \varphi(u, u) = 0 \iff u = 0$).
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.] On suppose que $\varphi$ est un produit scalaire donc $\varphi$ est non dégénérée donc $d_\varphi$ et $g_\varphi$ sont bijectives
+        
+        \item[Sens réciproque.]
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $\varphi$ un produit scalaire sur $E$ un $\K$-espace vectoriel.
+    Alors tout sous-espace $F$ de $E$ est non isotrope, et de plus, si $dim E = n < +\infty$ alors $E = F \oplus F^\perp$.
+\end{proposition}
+
+\begin{demonstration}
+    Supposons que $F$ est isotrope, soit $u \in F \cap F^\perp, \varphi(u, u) = 0$, contradiction
+    avec le fait que $\varphi$ est un produit scalaire (le seul $u$ qui marche c'est $u = 0$).
+    
+\end{demonstration}
+
+\subsection{Formes quadratiques}
+
+\begin{definition}
+    Soit $E$ un $\K$-espace vectoriel.
+    Une \textbf{forme quadratique} sur $E$ est une application $q : E \to \K$ telle qu'il existe une forme bilinéaire $\varphi$ sur $E$ vérifiant
+    $$
+    \forall u \in E, \quad q(u) = \varphi(u, u).
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $q$ une forme quadratique sur $E$ un $\K$-espace vectoriel.
+    Alors elle vérifie les propriétés suivantes $\forall (u, v) \in E^2$ et $\forall \lambda \in \K$ :
+    \begin{enumerate}
+        \item $q(u + v) = q(u) + q(v) + \varphi(u, v) + \varphi(v, u)$
+        \item $q(\lambda u) = \lambda^2 q(u)$ (homogénéité de degré 2)
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item $q(u + v) = \varphi(u + v, u + v) = q(u) + q(v) + \varphi(u, v) + \varphi(v, u)$
+        \item $q(\lambda u) = \varphi(\lambda u, \lambda u) = \lambda^2 \varphi(u, u) = \lambda^2 q(u)$
+    \end{enumerate}
+\end{demonstration}
+
+\begin{definition}
+    On note $\mathcal{D}(E)$ l'ensemble des formes quadratiques sur $E$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $q$ une forme quadratique sur $E$ un $\K$-espace vectoriel.
+    Alors
+    \begin{enumerate}
+        \item $\mathcal{D}(E)$ est un $\K$-espace vectoriel
+        \item $q \in \mathcal{D}(E)$ si et seulement si
+        \begin{itemize}
+            \item $q(\lambda u) = \lambda^2 q(u)$
+            \item $\funcdef{\varphi}{E \times E}{\K}{(u, v)}{\dfrac{1}{2} \left( q(u + v) - q(u) - q(v) \right)}$ est une forme bilinéaire symétrique sur $E$
+            (On dira que $\varphi$ est la forme polaire de $q$)
+        \end{itemize}
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    $\mathcal{S}_2(E)$ est isomorphe à $\mathcal{D}(E)$ et si $dim E = n$ alors $dim \mathcal{D}(E) = \dfrac{n(n + 1)}{2}$.
+\end{corollaire}
+
+\begin{demonstration}
+    
+\end{demonstration}
+
+\subsection{Polynômes homogènes de degré 2}
+
+\begin{proposition}{}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $\mathcal{B} = (e_1, \dots, e_n)$ une base de $E$.
+    Soit $q \in \mathcal{D}(E)$ et $\varphi$ sa forme polaire.
+
+    Alors il existe un unique polynôme $P \in \K_2[X_1, \dots, X_n]$ homogènes (pas de terme constant)
+    tel que pour tout $u \in E, u = \sum\limits_{i=1}^n u_i e_i$ on ait
+    $$
+    q(u) = P(u_1, \dots, u_n)
+    $$
+    et le polynôme $P$ est donné par
+    $$
+    P(X_1, \dots, X_n) = \sum\limits_{i=1}^n \varphi(e_i, e_i) X_i^2 + 2 \sum\limits_{1 \leq i < j \leq n} \varphi(e_i, e_j) X_i X_j.
+    $$
+
+\end{proposition}
+
+\begin{demonstration}
+    Soit $q \in \mathcal{D}(E)$ et $\varphi$ sa forme polaire.
+    Soit $u \in E$ et $\mathcal{B} = (e_1, \dots, e_n)$ une base de $E$.
+    
+    \begin{description}
+        \item[Sens direct.] 
+        \begin{align*}
+            q(u) = \varphi(u, u) &= \varphi\left( \sum\limits_{i=1}^n u_i e_i, \sum\limits_{j=1}^n u_j e_j \right) \\
+            &= \sum_{i=1}^n \sum_{j=1}^n x_i x_j \varphi(e_i, e_j) \\
+            &= \sum_{i=1}^n x_i^2 \varphi(e_i, e_i) + \sum_{i=1}^n \sum_{j=1, j \neq i}^n x_i x_j \varphi(e_i, e_j) \\
+            &= \sum_{i=1}^n x_i^2 \varphi(e_i, e_i) + 2 \sum_{1 \leq i < j \leq n} x_i x_j \varphi(e_i, e_j)
+        \end{align*}
+
+        \item[Sens réciproque.]
+        Montrons que $q(u) = \sum_{i=1}^n \varphi(e_i, e_i) x_i^2 + 2 \sum_{1 \leq i < j \leq n} \varphi(e_i, e_j) x_i x_j$ est une forme quadratique.
+
+        
+    \end{description}
+\end{demonstration}
+
+\clearpage
+
+\subsection{Classification des formes quadratiques}
+
+\begin{definition}
+    Soient $q_1$ et $q_2$ deux formes quadratiques sur $E$ un $\K$-espace vectoriel.
+
+    On dira que $q_1$ et $q_2$ sont \textbf{équivalentes} (ou encore \textbf{congruentes}) s'il existe un automorphisme $f$ de $E$ tel que
+    $$
+    \forall u \in E, \quad q_2(u) = q_1(f(u))
+    $$
+
+    C'est à dire qu'il existe deux bases $\mathcal{B}$ et $\mathcal{B}'$ de $E$ telles que $Mat_{\mathcal{B}}(\varphi_1) = Mat_{\mathcal{B}'}(\varphi_2)$ où $\varphi_1$ et $\varphi_2$ sont les formes polaires de $q_1$ et $q_2$ respectivement.
+\end{definition}
+
+\begin{theoreme}{Classification dans $\mathbb{C}$}{}
+    Soit $E$ un $\mathbb{C}$-espace vectoriel de dimension finie $n$ et $q$ une forme quadratique sur $E$ de forme polaire $\varphi$ telle que $rang(q) = r \leq n$.
+
+    \begin{enumerate}
+        \item
+        Il existe une base $\mathcal{B} = (e_1, \cdots, e_n)$ de $E$ telle que
+        pour tout $u = \sum\limits_{i=1}^n x_i e_i \in E$ on ait
+        $$
+        q(u) = \sum_{i=1}^r x_i^2.
+        $$
+
+        \item Il existe une base $\varphi$-orthogonale de $E$ si $r = n$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    Il existe une base $\mathcal{B} = (e_1, \cdots, e_n)$ de $E$ qui est $\varphi$-orthogonale,
+    dont la matrice $D$ de $\varphi$ est diagonale de la forme
+    $$
+    D = \begin{pmatrix}\lambda_1 & 0 & \cdots & 0 \\
+    0 & \lambda_2 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & \lambda_n
+    \end{pmatrix}
+    $$
+    avec $\lambda_i \in \mathbb{C}^*$ pour tout $i$.
+
+    On sait que le rang de $q$ est égal au rang de $\varphi$, qui est égal à $r$, donc on peut supposer que $\lambda_1, \cdots, \lambda_r$ sont non nuls et que $\lambda_{r+1} = \cdots = \lambda_n = 0$.
+
+    Soit $u = \sum\limits_{i=1}^n x_i e_i \in E$ et $v = (v_1, \cdots, v_n) = (\frac{e_1}{\sqrt{\lambda_1}}, \cdots, \frac{e_r}{\sqrt{\lambda_r}}, e_{r+1}, \cdots, e_n)$.
+
+    On calcule $q(u)$ dans la base $v$ de coordonnées $(x_1' , \cdots, x_n')$
+    D'où $q(u) = \sum\limits_{i=1}^r x_i'^2$.
+\end{demonstration}
+
+\clearpage
+
+\begin{theoreme}{Théorème d'inertie de Sylvester}{}
+    Soit $E$ un $\R$-espace vectoriel de dimension finie $n$.
+
+    Toute forme quadratique $q$ sur $E$ est équivalente à la forme quadratique telle que
+    $$
+    q(u) = \sum_{i=1}^p x_i^2 - \sum_{i=p+1}^{r} x_i^2
+    $$
+    où $r$ est le rang de $q$.
+
+    Le couple $(p, r - p)$ est appelé \textbf{signature} de $q$, est unique et indépendant de la base choisie.
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $E$ un $\R$-espace vectoriel de dimension finie $n$.
+    Soit $q$ une forme quadratique sur $E$ de rang $r \leq n$ et $B = (e_1, \ldots, e_n)$ une base de $E$ telle que
+    $Mat_{\varphi,B}$ est une matrice diagonale
+
+    On a $p = |\{i \in \llbracket 1, r \rrbracket \mid \lambda_i > 0\}|$ et $q = |\{i \in \llbracket 1, r \rrbracket \mid \lambda_i < 0\}|$ avec
+    $\lambda_i$ les éléments diagonaux de $Mat_{\varphi, B}$.
+
+    On aura $p + m = r$ quitte à renumeroter les éléments de la base $B$.
+
+    On peut supposer que $\lambda_i > 0$ pour $i \in \llbracket 1, p \rrbracket$ et $\lambda_i < 0$ pour $i \in \llbracket p + 1, p + m \rrbracket$ et $\lambda_i = 0$ pour $i \in \llbracket p + m + 1, n \rrbracket$.
+
+    On fait un changement de base $B' = \{v_1, \ldots, v_n\}$ en faisant
+    \begin{align*}
+        \text{pour } i \in \llbracket 1, p \rrbracket, v_i &= \dfrac{e_i}{\sqrt{\lambda_i}} \\
+        \text{pour } i \in \llbracket p + 1, p + m \rrbracket, v_i &= \dfrac{e_i}{\sqrt{-\lambda_i}} \\
+        \text{pour } i \in \llbracket p + m + 1, n \rrbracket, v_i &= e_i
+    \end{align*}
+
+    Et alors, soit $x \in E$ de coordonnées $(x_1, \ldots, x_n)$ dans la base $B'$,
+    \begin{align*}
+        q(x) &= \varphi(\sum_i^n x_i v_i, \sum_i^n x_i v_i) \\
+        &= \varphi\left(\sum_{i=1}^p x_i \frac{e_i}{\sqrt{\lambda_i}} + \sum_{i=p+1}^{r} x_i \frac{e_i}{\sqrt{-\lambda_i}} + \sum_{i=p+m+1}^n x_i e_i, \sum_{i=1}^p x_i \frac{e_i}{\sqrt{\lambda_i}} + \sum_{i=p+1}^{r} x_i \frac{e_i}{\sqrt{-\lambda_i}} + \sum_{i=p+m+1}^n x_i e_i\right) \\
+        &= \sum_{i=1}^p x_i^2 - \sum_{i=p+1}^{r} x_i^2
+    \end{align*}
+
+    On suppose que $q$ (dans deux bases différentes) a deux signatures $(p, m)$ et $(p', m')$ telles que $p + m = p' + m' = r$.
+
+    On prend $B = (e_1, \ldots, e_n)$ la base de $E$ telle que $q$ a pour signature $(p, m)$ et $B' = (e_1', \ldots, e_n')$ la base de $E$ telle que $q$ a pour signature $(p', m')$.
+
+    Soit $x \in E$ de coordonnées $(x_1, \ldots, x_n)$ dans la base $B$ et de coordonnées $(x_1', \ldots, x_n')$ dans la base $B'$ qu'on aura renuméroté comme en haut.
+
+    On aura
+    $$
+    F = Vect(e_1, \ldots, e_p)
+    G = Vect(e_{p+1}, \ldots, e_{n})
+    F' = Vect(e_1', \ldots, e_{p'}')
+    G' = Vect(e_{p'+1}', \ldots, e_{n'})
+    $$
+
+    Pour tout $u \in F$, $q(u) > 0$ et pour tout $u \in G$, $q(u) \leq 0$.
+    Pareil, pour tout $u' \in F'$, $q(u') > 0$ et pour tout $u' \in G'$, $q(u') \leq 0$.
+
+    On a $F \cap G' = \{0\}$ et $F \oplus G' \subset E$ donc $dim(F) + dim(G') = dim(F + G') \leq dim(E)$.
+    d'où $p + (n - p') \leq n$ et $p \leq p'$.
+    
+    De même pour $F'$ et $G$ on a $p' \leq p$.
+
+    Donc $p = p'$ et $m = m'$.
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Deux formes quadratiques sur $E$ sont équivalentes si et seulement si elles ont même signature.
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Direct.]
+        Soit $q1$ et $q2$ deux formes quadratiques sur $E$ de même signature $(p, m)$.
+        
+        \item[Réciproquement.]
+        On suppose que $q1$ et $q2$ sont équivalentes, alors il existe une base de $E$ dans laquelle $q1$ et $q2$ ont même matrice, donc même signature. 
+    \end{description}
+\end{demonstration}
+
+\begin{definition}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $q$ une forme quadratique sur $E$.
+
+    \begin{enumerate}
+        \item 
+        On dit que $q$ est \textbf{positive} (resp. \textbf{négative}) si $q(u) \geq 0$ (resp. $q(u) \leq 0$) pour tout $u \in E$.
+        \item
+        On dit que $q$ est \textbf{définie positive} (resp. \textbf{définie négative}) si $q(u) > 0$ (resp. $q(u) < 0$) pour tout $u \in E \setminus \{0\}$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $E$ un $\R$-espace vectoriel de dimension finie $n$ et $q$ une forme quadratique sur $E$.
+
+    Alors
+    \begin{align*}
+        q \text{ est définie positive} &\iff q \text{ à comme signature } (n, 0) \\
+        q \text{ est définie négative} &\iff q \text{ à comme signature } (0, n) \\
+        q \text{ de rang r est positive} &\iff q \text{ à comme signature } (r, 0) \\
+        q \text{ de rang r est négative} &\iff q \text{ à comme signature } (0, r) \\
+        q \text{ est définie} &\iff q \text{ à comme signature } (n, 0) \text{ ou } (0, n)
+    \end{align*}
+\end{proposition}
+
+\begin{demonstration}
+    On sait qu'il existe une base de $E$ dans laquelle
+    $$
+    \forall x \in \E, q(x) = x_1^2 + \cdots + x_p^2 - x_{p+1}^2 - \cdots - x_r^2
+    $$
+    
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $q$ une forme quadratique sur $E$ de rang $r \leq n$.
+
+    \begin{enumerate}
+        \item 
+        Alors il existe $r$ scalaires $\alpha_i$ pour $i \in \llbracket 1, r \rrbracket$ et
+        $r$ formes linéaires $\theta_i$ pour $i \in \llbracket 1, r \rrbracket$ telles que
+        $$
+        q(u) = \sum_{i=1}^r \alpha_i \theta_i(u)^2
+        $$
+
+        \item
+        Si $\K = \R$, $q$ a pour signature $(p, r - p)$ si et seulement si $p$ est le nombre de $\alpha_i > 0$ et $r - p$ le nombre de $\alpha_i < 0$. 
+\end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item
+        Soit $q \in \mathcal{D}(E)$.
+
+        On suppose que pour tout $u \in \E, q(u) = \sum_{i=1}^r \alpha_i \theta_i(u)^2$ avec $\alpha_i$ scalaires et $\theta_i$ formes linéaires.
+
+        On prend $\funcdef{\varphi}{E \times E}{\K}{(u, v)}{\beta(u, v) = \sum_{i=1}^r \alpha_i \theta_i(u) \theta_i(v)}$.
+
+        On a $\beta$ est une forme bilinéaire et $\beta(u, u) = q(u)$ pour tout $u \in E$.
+
+        Soit $\mathcal{B} = (e_1, \ldots, e_n)$ une base de $E$ et $x \in E$ de coordonnées $(x_1, \ldots, x_n)$ dans la base $\mathcal{B}$.
+
+        On a
+        $$
+        \varphi(u, u) = \sum_{i=1}^r \lambda_{ii} x_i^2 + 2 \sum_{1 \leq i < j \leq n} \lambda_{ij} x_i x_j
+        $$
+
+        On fait une récurrence sur $n$.
+        \begin{description}
+            \item[Initialisation.]
+            Pour $n = 1$, $q = \lambda_{ii} x_i^2$ avec $\lambda_{ii} \neq 0$.
+            \item[Hérédité.]  
+            On suppose que le resultat est vrai pour les espaces de dimension $n-1$.
+
+            Il existe $i \in \llbracket 1, n \rrbracket$ tel que $\lambda_{ii} \neq 0$ quitte à renuméroter la base
+
+            On suppose que $i = 1$. pour $y = x - x_1 e_1$, on a
+            $$
+            q(x) = \varphi(x_1 e_1 + y, x_1 e_1 + y) = \lambda_{11} x_1^2 + 2 \varphi(x_1 e_1, y) + q(y)
+            $$
+
+            \begin{align*}
+                q(x) = \lambda_{11} x_1^2 + 2 x_1 \beta(e_1, y) + q(y) &= \frac{1}{\lambda_{11}} \left( \lambda_{11}^2 x_1^2 + 2 \lambda_{11} x_1 \beta(e_1, y) \right) + q(y) \\
+                &= \frac{1}{\lambda_{11}} \left( \lambda_{11} x_1 + \beta(e_1, y) \right)^2 - \frac{1}{\lambda_{11}} \beta(e_1, y)^2 + q(y)
+            \end{align*}
+            et
+            $$
+            \theta_1(x) = \lambda_{11} x_1 + \beta(e_1, y) = x_1 \varphi(e_1, e_1) + \beta(e_1, y) = \beta(e_1, x_1 e_1) + \beta(e_1, x_1e_1 + y) = \beta(e_1, x)
+            $$
+
+            $q'$ est une forme quadratique de forme polaire $\beta'(u, v) = \beta(u, v) - \dfrac{\beta(e_1, u) \beta(e_1, v)}{\lambda_{11}}$.
+
+            On utilise le fait que
+            $$
+            q'(u) = \sum_{i=2}^r \alpha_i \theta_i'(u)
+            $$
+            reste à voir si ses $r$ formes linéaires sont indépendantes.
+
+            On fait
+            $$
+            \theta_i(x) = \theta_i'(y - x_1 e_1)
+            $$
+            pour $i \in \llbracket 2, r \rrbracket$.
+        \end{description}
+    \end{enumerate}
+\end{demonstration}
+
+\clearpage
+
+\section{Espaces euclidiens}
+
+\subsection{Définitions}
+
+\begin{definition}
+    Un \textbf{espace euclidien} est un espace vectoriel réel $E$ muni d'un produit scalaire.
+\end{definition}
+
+\begin{remarque}
+    Dans le cas de la dimension infinie, on dit que $E$ est un \textbf{espace préhilbertien}.
+\end{remarque}
+
+\begin{definition}
+    On appelle \textbf{norme euclidienne} la norme associée au produit scalaire, c'est-à-dire la fonction $\norm{x} = \sqrt{\langle x, x \rangle}$.
+\end{definition}
+
+Dans la suite, nous considérerons uniquement la norme euclidienne.
+
+\begin{definition}
+    Les \textbf{identités de polarisation} s'écrivent, pour tous $x, y \in E$,
+    \begin{align*}  
+        \langle x, y \rangle &= \frac{1}{2} \left( \norm{x + y}^2 - \norm{x}^2 - \norm{y}^2 \right) \\
+        &= \frac{1}{2} \left( \norm{x + y}^2 - \norm{x - y}^2 \right)
+    \end{align*}
+\end{definition}
+
+\begin{theoreme}{Inégalité de Cauchy-Schwarz}
+    Pour tous $x, y \in E$, on a
+    $$    
+    |\langle x, y \rangle| \leq \norm{x} \norm{y}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Posons $P(\lambda) = \norm{x + \lambda y}^2$ pour $\lambda \in \R$.
+    \begin{align*}
+        P(\lambda) &= \langle x + \lambda y, x + \lambda y \rangle \\
+        &= \norm{x}^2 + 2\lambda \langle x, y \rangle + \lambda^2 \norm{y}^2
+    \end{align*}
+
+    Comme $P(\lambda) \geq 0$ pour tout $\lambda$, le discriminant de ce polynôme doit être négatif ou nul, c'est-à-dire
+    \begin{align*}
+        4 \langle x, y \rangle^2 - 4 \norm{x}^2 \norm{y}^2 &\leq 0 \\
+        \langle x, y \rangle^2 &\leq \norm{x}^2 \norm{y}^2 \\
+        |\langle x, y \rangle| &\leq \norm{x} \norm{y}
+    \end{align*}
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $x, y \in E$. On a
+    \begin{enumerate}
+        \item $\norm{x + y}^2 + \norm{x - y}^2 = 2(\norm{x}^2 + \norm{y}^2)$ (identité de parallélogramme)
+        \item $\norm{x}^2 - \norm{y}^2 = \langle x + y, x - y \rangle$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{remarque}
+    L'inégalité de Cauchy-Schwarz peut s'écrire $-1 \leq \dfrac{\langle x, y \rangle}{\norm{x} \norm{y}} \leq 1$.
+    On peut interpréter ça comme un "angle".
+\end{remarque}
+
+\begin{remarque}[$\mathbb{C}$ c'est mieux!]
+    Soit $E$ un $\mathbb{C}$-espace vectoriel muni d'une forme sesquilinéaire définit positive $\langle \cdot, \cdot \rangle$.
+    (comparé à un produit scalaire, une forme sesquilinéaire a comme propriété $\langle x, \lambda y \rangle = \bar{\lambda} \langle x, y \rangle$ pour la deuxième coordonnée.)
+\end{remarque}
+
+\subsection{Procédé de Gram-Schmidt}
+
+\begin{theoreme}{}{}
+    Soit $E$ un espace euclidien de dimension finie $n$ et $(v_1, \dots, v_n)$ une base de $E$.
+
+    Alors il existe une unique base orthonormale $(e_1, \dots, e_n)$ de $E$ telle que pour tout $1 \leq j \leq n$, on a
+    \begin{enumerate}
+        \item $\langle e_j, v_j \rangle > 0$
+        \item $Vect(e_1, \dots, e_j) = Vect(v_1, \dots, v_j)$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    On définit les $e_i$ récursivement de la manière suivante :
+\begin{align*}
+    e_1 &= \frac{v_1}{\norm{v_1}} = u_1 \\
+    u_2 &= v_2 - \dfrac{\langle u_1, v_2 \rangle}{\norm{u_1}} u_1, \quad e_2 = \frac{u_2}{\norm{u_2}} \\
+    u_j &= v_j - \sum_{i=1}^{j-1} \dfrac{\langle u_i, v_j \rangle}{\norm{u_i}} u_i, \quad e_j = \frac{u_j}{\norm{u_j}}
+\end{align*}
+\end{demonstration}
+
+\end{document}

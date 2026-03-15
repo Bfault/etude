@@ -44,6 +44,21 @@
 
 \subsection{Développement en série entière de fonctions usuelles}
 
+\begin{proposition}
+    pour tout $x \in \R$ on a:
+    \begin{enumerate}
+        \item $e^x = \sum\limits_{n \geq 0} \dfrac{x^n}{n!}, \quad R = +\infty$
+        \item $\cos x = \sum\limits_{n \geq 0} (-1)^n \dfrac{x^{2n}}{(2n)!}, \quad R = +\infty$
+        \item $\sin x = \sum\limits_{n \geq 0} (-1)^n \dfrac{x^{2n + 1}}{(2n + 1)!}, \quad R = +\infty$
+        \item $\cosh x = \sum\limits_{n \geq 0} \dfrac{x^{2n}}{(2n)!}, \quad R = +\infty$
+        \item $\sinh x = \sum\limits_{n \geq 0} \dfrac{x^{2n + 1}}{(2n + 1)!}, \quad R = +\infty$
+        \item $\dfrac{1}{1 - x} = \sum\limits_{n \geq 0} x^n, \quad R = 1$
+        \item $\ln(1 + x) = \sum\limits_{n \geq 1} (-1)^{n - 1} \dfrac{x^n}{n}, \quad R = 1$
+        \item $\arctan x = \sum\limits_{n \geq 0} (-1)^n \dfrac{x^{2n + 1}}{2n + 1}, \quad R = 1$
+        \item $(1 + x)^\alpha = \sum\limits_{n \geq 0} \binom{\alpha}{n} x^n, \quad R = 1$
+    \end{enumerate}
+\end{proposition}
+
 \begin{exemple}
     Pour $f(z) = (1 + z)^\alpha$ avec $\alpha \in \R$, les dérivées de $f$ sont bornées sur $[-R, R]$.
 \end{exemple}
