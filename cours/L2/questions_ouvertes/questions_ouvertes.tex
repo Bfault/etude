@@ -1,0 +1,249 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{utils}
+
+\title{ Questions ouvertes }
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{\today}
+
+\subsection{Ce qui à été fait}
+
+Programme fait en python pour tester en partant d'un chiffre avec un multiple donné
+
+(Voir annexe 1)
+
+Le nombre de chiffres dépend du chiffre multipliant de départ.
+\begin{itemize}
+    \item pour 2 on a 18 chiffres
+    \item pour 3 on a 28 chiffres
+    \item pour 4 on a 6 chiffres
+    \item pour 5 on a 42 chiffres sauf 7 x 5
+    \item pour 6 on a 58 chiffres
+    \item pour 7 on a 22 chiffres
+    \item pour 8 on a 13 chiffres
+    \item pour 9 on a 44 chiffres
+    \item pour 10 on a 2 chiffres
+\end{itemize}
+
+\subsection{Les nouvelles questions}
+
+\clearpage
+
+\section{\today}
+
+\subsection{Ce qui à été fait}
+
+amélioration du programme, qui prend maintenant en compte les multipliant supérieurs à 9 et peut afficher plusieurs nombres possibles avec gradient sur les chiffres.
+
+\begin{tcolorbox}[
+        sharp corners,
+        colback=white,
+        colframe=black,
+        leftrule=1mm,
+        toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
+        top=0mm, left=1mm
+    ]
+    Soient 
+    \begin{enumerate}[label=--]
+        \item $x$ le nombre tournant recherché,
+        \item $d$ le chiffre des unités de $x$,
+        \item $n$ le nombre total de chiffres de $x$,
+        \item $m$ le multipliant.
+    \end{enumerate}
+
+    On pose $y := \dfrac{x - d}{10} \implies x = 10y + d$ le nombre obtenu en retirant le chiffre des unités de $x$ et $x' = d \times 10^{n - 1} + y$ le nombre obtenu en mettant le chiffre des unités de $x$ au début de $x$.
+
+    D'après notre sujet de recherche, on doit trouver $x$ ou $x'$ tel que $x' = m \times x$, donc:
+    \begin{align*}
+        x' = m \times x &\implies d \times 10^{n - 1} + y = m \times (10y + d) \\
+        &\implies y - 10my = md - d \times 10^{n - 1} \\
+        &\implies y(1 - 10m) = d(m - 10^{n - 1}) \\
+        &\implies y = \frac{d(m - 10^{n - 1})}{1 - 10m} \\
+    \end{align*} 
+
+    Sauf qu'on ne connait pas $n$, on essaye de chercher des valeurs de $n$ telles que $y$ soit un entier positif. On en déduit ensuite $x = 10y + d$.
+\end{tcolorbox}
+
+
+\subsection{Les nouvelles questions}
+
+\clearpage
+
+\section{\today}
+
+\subsection{Ce qui à été fait}
+
+\begin{lemme}{}{existence}
+    Soit $n, p \in \N$
+
+    Supposons que $p$ est inversible dans $\Z/n\Z$.
+
+    Alors $ord(p)$ existe dans $\Z/n\Z$
+\end{lemme}
+
+\begin{demonstration}
+    Comme $\Z/n\Z$ est fini, on a forcément $\exists k, l \in \N, k > l$ tel que
+    \begin{align*}        
+        p^k \equiv p^l [n] \implies p^k (p^{-1})^l \equiv p^l (p^{-1})^l [n] \implies p^{k-l} \equiv 1 [n]
+    \end{align*}
+\end{demonstration}
+
+\begin{definition}
+    Soit $x, m \in \N$ avec $m \neq 0$.
+    Un nombre $x$ est dit $m$-parasite si $x \times m = d10^{L - 1} + \dfrac{x - d}{10}$ où $d$ est le chiffre des unités de $x$ et $L$ sa taille (nombre de chiffres).
+\end{definition}
+
+\begin{exemple}
+    $$
+    128205 \times 4 = 512820
+    $$
+\end{exemple}
+
+\begin{theoreme}{Caractérisation de la taille d'un nombre $m$-parasite}{}
+    Soit $m \in \N^*$, $x$ un nombre $m$-parasite de chiffre des unités $d$ et $L$ sa taille (nombre de chiffres).
+
+    Alors $L$ peut prendre des valeurs dans $\{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
+\end{theoreme}
+
+\begin{demonstration}
+    On pose $y := \dfrac{x - d}{10}$ le nombre obtenu en retirant le chiffre des unités $d$ de $x$.
+
+    Ainsi, on peut définir $x = 10y + d$.
+
+    par définition d'un nombre $m$-parasite, on a
+    \begin{align*}
+        m \times x = d10^{L - 1} + \dfrac{x - d}{10} &\implies m(10y + d) = d10^{L - 1} + y \\
+        &\implies dm - d 10^{L-1} = y - 10my \\
+        &\implies y(1 - 10m) = d (m - 10^{L-1}) \\
+        &\implies y = d \dfrac{m - 10^{L - 1}}{1 - 10m} = d \dfrac{10^{L - 1} - m}{10m - 1}
+    \end{align*}
+
+    Comme $y$ est un entier, le numérateur doit être divisible par le dénominateur.
+
+    Donc
+    \begin{align*}
+        \exists k \in \N, &d(10^{L - 1} - m) = k(10m - 1) \quad (*) \\
+        \implies& d(10^{L - 1} - m) \equiv 0 [10m - 1] \\
+        \implies& d 10^{L - 1} \equiv dm [10m - 1]
+    \end{align*}
+
+    $d$ est inversible dans $\Z/(10m - 1)\Z$ si et seulement si \text{$pgcd(d, 10m - 1) = 1$}.
+
+    Ainsi on a deux cas :
+    \begin{description}
+        \item[si $pgcd(d, 10m - 1) = 1$ :] on peut simplifier par $d$ et on obtient
+        \begin{align*}
+            &10^{L - 1} \equiv m [10m - 1] \\
+            \implies& 10^L \equiv 10m [10m - 1] \\
+            \implies& 10^L \equiv 1 [10m - 1]
+        \end{align*}
+
+        De plus $m$ est l'inverse de $10$ dans $\Z/(10m - 1)\Z$.
+
+        D'apres le lemme \ref{lemme:existence}, $ord(10)$ ainsi que ses multiples existe bien dans $\Z/(10m - 1)\Z$ et résoud notre équation.
+
+        Donc $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(10m - 1)\Z$.
+    
+        \item[si $pgcd(d, 10m - 1) \neq 1$ :] on peut poser $gcd = pgcd(d, 10m - 1)$,
+        ainsi avec $(*)$ on a
+        
+        \begin{align*}
+            \exists k \in \N, &\dfrac{d(10^{L - 1} - m)}{gcd} = k\dfrac{(10m - 1)}{gcd} \\
+            \implies& \dfrac{d}{gcd} 10^{L - 1} \equiv \dfrac{d}{gcd} m [\dfrac{10m - 1}{gcd}]
+        \end{align*}
+
+        Cette fois $pgcd(\dfrac{d}{gcd}, \dfrac{10m - 1}{gcd}) = 1$ donc $\dfrac{d}{gcd}$ est inversible, d'où
+        \begin{align*}
+            &10^{L - 1} \equiv m [\dfrac{10m - 1}{gcd}] \\
+            \implies& 10^L \equiv 10m [\dfrac{10m - 1}{gcd}] \\
+            \implies& 10^L \equiv 1 [\dfrac{10m - 1}{gcd}]
+        \end{align*}
+
+        car
+        \begin{align*}
+            10m - 1 = gcd \dfrac{10m - 1}{gcd} &\implies 10m - 1 \equiv 0 [\dfrac{10m - 1}{gcd}] \\
+            &\implies 10m \equiv 1 [\dfrac{10m - 1}{gcd}]
+        \end{align*}
+
+        De plus $m$ est l'inverse de $10$ dans $\Z/(\dfrac{10m - 1}{gcd})\Z$
+
+        D'apres le lemme \ref{lemme:existence}, $ord(10)$ ainsi que ses multiples existe bien dans $\Z/(\dfrac{10m - 1}{gcd})\Z$ et résoud notre équation.
+
+        Donc $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(\dfrac{10m - 1}{gcd})\Z$.
+    \end{description}
+
+    Comme dans le premier cas $pgcd(d, 10m - 1) = 1$ on peut rassembler les deux cas en un seul
+
+    $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/\dfrac{10m - 1}{pgcd(d, 10m - 1)}\Z$.
+\end{demonstration}
+
+\subsection{Les nouvelles questions}
+
+\clearpage
+
+\section{\today}
+
+\subsection{Ce qui à été fait}
+
+\begin{itemize}
+    \item Changement de base.
+    \item Est-ce que pour toute longueurs il existe un nombre tournant de cette longueur.
+    \item On a trouvé un nombre qui a des rotations différentes suivant la multiplication : $142 857$
+    \begin{enumerate}
+        \item $142 857 \times 2 = 285 714$
+        \item $142 857 \times 3 = 428 571$
+        \item $142 857 \times 4 = 571 428$
+        \item $142 857 \times 5 = 714 285$
+        \item $142 857 \times 6 = 857 142$
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Les nouvelles questions}
+
+\clearpage
+
+\section{\today}
+
+\subsection{Ce qui à été fait}
+
+\begin{itemize}
+    \item rotation quelconque
+    \item début de préparation oral
+    \item réponse à la question si toute longueur il existe un nombre tournant
+    \item À faire chercher les bases les plus simples
+\end{itemize}
+
+\subsection{Les nouvelles questions}
+
+\clearpage
+
+\section{Annexes}
+
+\subsection{1}
+
+\begin{lstlisting}
+def until_turned(first_value, mul, limit=100):
+    value = [first_value]
+    result = []
+    retenu = 0
+    for i in range(limit):
+        if result and retenu == 0 and result[-1] == first_value:
+            break
+        num = (value[-1] * mul + retenu) % 10
+        retenu_tmp = (value[-1] * mul + retenu) // 10
+        result.append(num)
+        value.append(num)
+        retenu = retenu_tmp
+    return (''.join(map(str, value[::-1][1:])), len(value) - 1, ''.join(map(str, result[::-1])), len(result))
+
+mul = 6
+for i in range(1, 10):
+    print(f"pour {i} avec mul = {mul} on a {until_turned(i, mul)}")
+\end{lstlisting}
+
+\end{document}

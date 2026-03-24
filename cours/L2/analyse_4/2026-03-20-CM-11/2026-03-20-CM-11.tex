@@ -1,0 +1,199 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{20 March 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 11}{\today}
+
+\section{Séries de Fourier}
+
+\subsection{Préliminaires}
+
+\begin{definition}
+    On dira qu'une fonction $f : \R \to \C$ est périodique de période $T > 0$ si pour tout $x \in \R$, on a $f(x + T) = f(x)$.
+\end{definition}
+
+\begin{remarque}
+    Si $f$ est périodique de période $T$, alors pour tout $n \in \Z$, $f$ est périodique de période $nT$.
+
+    Ainsi on parlera de la période de $f$ pour désigner la plus petite période de $f$.
+\end{remarque}
+
+\begin{lemme}{}{}
+    Soit $f : \R \to \C$ une fonction périodique de période $T > 0$ et continue par morceaux.
+
+    Alors $\int_{0}^{T} f(t) \, dt = \int_{a}^{a + T} f(t) \, dt$ pour tout $a \in \R$.
+\end{lemme}
+
+\begin{demonstration}
+    Soit $a \in \R$ et $k$ tel que $a \in [kT, (k + 1)T[$.
+
+    \begin{align*}
+        \int_0^T f(t) \, dt &= \int_0^T f(t + kT) \, dt \\
+        &\underset{u = t + kT}{=} \int_{kT}^{(k + 1)T} f(u) \, du \\
+        &= \int_{kT}^{a} f(u) \, du + \int_{a}^{(k + 1)T} f(u) \, du \\
+        &= \int_{kT}^{a} f(u + T) \, du + \int_{a}^{(k + 1)T} f(u) \, du \\
+        &\underset{v = u + T}{=} \int_{(k + 1)T}^{a + T} f(v) \, dv + \int_{a}^{(k + 1)T} f(u) \, du \\
+        &= \int_{a}^{a + T} f(t) \, dt
+    \end{align*}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $f : \R \to \C$ une fonction périodique de période $T > 0$, intégrable et paire.
+
+    Alors
+    $$
+    \int_0^T f(t) \, dt = \int_{-T/2}^{T/2} f(t) \, dt = 2 \int_0^{T/2} f(t) \, dt
+    $$
+
+    et pour une fonction impaire, on a
+    $$
+    \int_0^T f(t) \, dt = \int_{-T/2}^{T/2} f(t) \, dt = 0.
+    $$
+\end{corollaire}
+
+\begin{theoreme}{Prolongement périodique}{}
+    Soit $L > 0$ et $f : [0, L] \to \C$ qui est la restriction d'une fonction $\tilde{f}$ périodique de période $T > 0$.
+
+    \begin{description}
+        \item[Prolongement non parisé] 
+        On prolonge $f$ en une fonction périodique de période $L$ en posant pour tout $x \in \R$,
+        $$
+        \tilde{f}(x) = f(x - \lfloor \frac{x}{L} \rfloor L) \text{ en effet } x \in \R \text{ d'où } x - \lfloor \frac{x}{L} \rfloor L \in [0, L].
+        $$
+
+        \item[Prolongement paire]
+        On pose
+        $$
+        f_1(x) = \begin{cases}
+            f(x) & \text{si } x \in [0, L] \\
+            f(-x) & \text{si } x \in [-L, 0[
+        \end{cases}
+        $$
+        et on a
+        $$
+        \tilde{f}(x) = f_1(x - \lfloor \frac{x + L}{2L} \rfloor 2L) \text{ en effet } x - \lfloor \frac{x + L}{2L} \rfloor 2L \in [-L, L].
+        $$
+
+        \item[Prolongement impaire]
+        On pose
+        $$
+        f_2(x) = \begin{cases}
+            f(x) & \text{si } x \in [0, L] \\
+            -f(-x) & \text{si } x \in [-L, 0[
+        \end{cases}
+        $$
+        et on a
+        $$
+        \tilde{f}(x) = f_2(x - \lfloor \frac{x + L}{2L} \rfloor 2L) \text{ en effet } x - \lfloor \frac{x + L}{2L} \rfloor 2L \in [-L, L].
+        $$
+    \end{description}
+\end{theoreme}
+
+\subsection{Définition et calcul formel}
+
+\begin{remarque}
+    On prend $g$ qui est $T$ périodique, alors $f(x) = g(\frac{T}{2\pi} x)$ est $2\pi$ périodique.
+\end{remarque}
+
+\begin{definition}
+    Soit $f : \R \to \C$ une fonction $2\pi$ périodique, on la suppose bornée.
+
+    On appellera \textbf{coefficient de Fourier complexe} de $f$ les nombres complexes
+    $$
+    \hat{f_k} = \frac{1}{2\pi} \int_0^{2\pi} f(t) e^{-ikt} \, dt
+    $$
+    pour tout $k \in \Z$.
+\end{definition}
+
+\begin{definition}
+    On appellera \textbf{série de Fourier} de $f$ la série formelle
+    $$
+    S_f(x) = \sum_{k \in \Z} \hat{f_k} e^{ikx}
+    $$
+    et on notera $S_{f,n}(x) = \sum\limits_{k = -n}^{n} \hat{f_k} e^{ikx}$ la somme partielle de $S_f$.
+\end{definition}
+
+\begin{exemple}
+    On prend $f(x) = \cos(x) = \dfrac{e^{ix} + e^{-ix}}{2}$.
+
+    ainsi $\hat{f_k} = \dfrac{1}{2\pi} \int_0^{2\pi} \dfrac{e^{it} + e^{-it}}{2} e^{-ikx} \, dt$
+
+    en remarquant que $\int_0^{2pi} e^{-ikt} dx = \begin{cases}
+        2\pi \text{ si } k = 0 \\
+        0 \text{ sinon}
+    \end{cases}$
+
+    on a
+    $$
+    \hat{f_k} = \dfrac{1}{2\pi} \int_0^{2\pi} \dfrac{e^{it} + e^{-it}}{2} e^{-ikx} \, dt = \dfrac{1}{4\pi} \int_0^{2\pi} e^{i(1 - k)t} + e^{-i(1 + k)t} \, dt = \begin{cases}
+    \frac{1}{2} \text{ si } k = \mp 1\\
+    0 \text{ sinon}
+    \end{cases}
+    $$
+
+    Donc $S_f = $
+\end{exemple}
+
+\begin{remarque}
+    Penser à traiter le cas $k = 0$ à part.
+\end{remarque}
+
+\begin{remarque}
+    On a $\overline{\hat{f_k}} = \hat{\overline{f_{-k}}}$ et si $f$ est réelle, alors $\overline{\hat{f_k}} = f_{-k}$
+\end{remarque}
+
+\begin{theoreme}{}{}
+    En posant
+    $$
+    a_k = \frac{1}{2} \int_0^{2\pi} f(t) \cos(kt) \, dt \text{ et } b_k = \frac{1}{2} \int_0^{2\pi} f(t) \sin(kt) \, dt
+    $$
+
+    Ainsi on a $\hat{f_0} = \frac{1}{2} a_0$
+    \begin{hotwarn}
+        Faire la suite
+    \end{hotwarn}
+
+    $$
+    S_f(t) = \hat{f_0} + \sum_{k \in \N^*} (\hat{f_{-k}} e^{-ikt} + \hat{f_k} e^{ikt})
+    $$
+
+    $$
+    S_f(x) = \frac{1}{2} a_0 + \sum_{k \in \N^*} (a_k \cos(kx) + b_k \sin(kx))
+    $$
+\end{theoreme}
+
+\subsection{Fonctions paires, impaires ou à période quelconque}
+
+\begin{theoreme}{}{}
+    Soit $f : [-\pi, \pi] \to \C$ une fonction prolongée par translation à une fonction $2\pi$ périodique paire.
+
+    $$
+    a_k = \frac{1}{\pi} \int_0^{2\pi} f(t) \cos(kt) \, dt = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(kt) \, dt = \frac{2}{\pi} \int_0^{\pi} f(t) \cos(kt) \, dt
+    $$
+    et
+    $$
+    b_k = \frac{1}{\pi} \int_0^{2\pi} f(t) \sin(kt) \, dt = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(kt) \, dt = 0
+    $$
+
+    Donc $S_f(x) = \frac{1}{2} a_0 + \sum\limits_{k \in \N^*} a_k \cos(kx)$.
+\end{theoreme}
+
+\begin{theoreme}{}{}
+    Soit $f : [-\pi, \pi] \to \C$ une fonction prolongée par translation à une fonction $2\pi$ périodique impaire.
+
+    $$
+    a_k = \frac{1}{\pi} \int_0^{2\pi} f(t) \cos(kt) \, dt = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(kt) \, dt = 0
+    $$
+    et
+    $$
+    b_k = \frac{1}{\pi} \int_0^{2\pi} f(t) \sin(kt) \, dt = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(kt) \, dt = \frac{2}{\pi} \int_0^{\pi} f(t) \sin(kt) \, dt
+    $$
+
+    Donc $S_f(x) = \sum\limits_{k \in \N^*} b_k \sin(kx)$.
+\end{theoreme}
+
+\end{document}

@@ -1,0 +1,826 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{utils}
+
+\title{ Géometrie 2 }
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Théorèmes classiques + barycentre}
+
+\subsection{Les barycentres}
+
+Dans cette section $\E$ est un espace affine réel et $\vec{\E}$ l'espace vectoriel associé.
+
+\vspace{1em}
+On rappelle la définition d'un espace affine.
+
+On a $\funcdef{\theta}{\vec{\E} \times \E}{\E}{(\vec{v}, A)}{A + \vec{v}}$
+une application telle que
+
+\begin{itemize}
+    \item $\forall A, B \in \E, \exists! \vec{v} \in \vec{\E}, B = A + \vec{v}$
+    \item $\forall A \in \E, \forall \vec{u}, \vec{v} \in \vec{\E}, (A + \vec{u}) + \vec{v} = A + (\vec{u} + \vec{v})$
+\end{itemize}
+
+Une application $f: \E \to \F$ est affine s'il existe $\vec{f}: \vec{\E} \to \vec{\F}$ une application linéaire
+et un point $O \in \E$ tels que $\forall \vec{v} \in \vec{\E}, f(O + \vec{v}) = f(O) + \vec{f}(\vec{v})$.
+
+\vspace{1em}
+
+\begin{definition}
+    On considère les systèmes finis de points pondérés de $\E$
+
+    $\mathcal{A} = ((A_1, \lambda_1), (A_2, \lambda_2), \ldots, (A_n, \lambda_n))$
+    avec $(A_i, \lambda_i) \in \E \times \R$
+
+    $\lambda = \sum_{i=1}^n \lambda_i$ est appelé \textbf{le poids total} de $\mathcal{A}$.
+
+    On définit l'application
+    $$\funcdef{\L}{\E}{\vec{\E}}{M}{\sum_{i=1}^n \lambda_i \overrightarrow{M A_i}}$$
+    où $\overrightarrow{M A_i}$ est le vecteur tel que $A_i = M + \overrightarrow{M A_i}$
+
+    Cette fonction s'appelle \textbf{la fonction de Leibniz}.
+\end{definition}
+
+\begin{theoreme}{}{}
+    \begin{enumerate}
+        \item $\lambda = 0 \implies \L$ est constant
+        \item $\lambda \neq 0 \implies \L$ est bijective.
+    \end{enumerate}
+\end{theoreme}
+\break
+\begin{demonstration}
+    \begin{enumerate}
+        \item On calcule pour N et M dans $\E$
+        \begin{align*}
+            \L(M) - \L(N) &= \sum_{i=1}^n \lambda_i \overrightarrow{M A_i} - \sum_{i=1}^n \lambda_i \overrightarrow{N A_i} \\
+            &= \sum_{i=1}^n \lambda_i \overrightarrow{MN} \\
+            &= \lambda \overrightarrow{MN}
+        \end{align*}
+
+        Si $\lambda = 0$ alors $\L$ est constante.
+
+        \item On a de même pour $\lambda \neq 0$
+
+        \begin{align*}
+            \L(M) = \L(N) &\iff \L(M) - \L(N) = \vec{0} \\
+            &\iff \lambda \overrightarrow{MN} = \vec{0} \\
+            &\iff \overrightarrow{MN} = \vec{0} \\
+            &\iff M = N
+        \end{align*}
+
+        Il reste à montrer que $\L$ est surjective.
+
+        Soit $\vec{v} \in \vec{\E}$
+        Soit $O \in \E$ un point quelconque tel que $\L(O) = \vec{v_0}$
+        On cherche $M \in \E$ tel que $\L(M) = \vec{v}$
+        On a
+        \begin{align*}
+            \L(M) - \L(O) = \lambda \overrightarrow{MO} &\iff \vec{v} - \vec{v_0} = \lambda \overrightarrow{MO} \\
+            &\iff \overrightarrow{MO} = \frac{1}{\lambda} (\vec{v} - \vec{v_0}) \\
+            &\iff \overrightarrow{OM} = \frac{1}{\lambda} (\vec{v_0} - \vec{v}) \\
+            &\iff M = O + \frac{1}{\lambda} (\vec{v_0} - \vec{v})
+        \end{align*}
+    \end{enumerate}
+\end{demonstration}
+
+\begin{definition}
+    Le point $G$ tel que $\L(G) = \vec{0}$ est unique et s'appelle le \textbf{barycentre} de $\mathcal{A} = ((A_1, \lambda_1), \ldots, (A_n, \lambda_n))$
+    On le note $G = bar(\mathcal{A})$
+\end{definition}
+
+Ainsi on a
+\begin{align*}
+    G = bar(\mathcal{A}) &\iff \sum_{i=1}^n \lambda_i \overrightarrow{G A_i} = \vec{0} \\
+    &\iff \forall M \in \E, \sum_{i=1}^n \lambda_i (\overrightarrow{G M} + \overrightarrow{M A_i}) = \vec{0} \\
+    &\iff \lambda \overrightarrow{G M} + \sum_{i=1}^n \lambda_i \overrightarrow{M A_i} = \vec{0} \\
+    &\iff \lambda \overrightarrow{M G} = \sum_{i=1}^n \lambda_i \overrightarrow{M A_i} \\
+    &\iff \overrightarrow{MG} = \frac{1}{\lambda} \sum_{i=1}^n \lambda_i \overrightarrow{MA_i}
+\end{align*}
+
+\begin{remarque}
+    On peut écrire tous les points comme barycentres de $((A, \lambda), (B, \mu))$ pour $\lambda, \mu \in \R$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $\mathcal{A} = ((A_1, \lambda_1), \ldots, (A_n, \lambda_n)), \lambda \neq 0$
+    et $G = bar(\mathcal{A})$
+    \begin{enumerate}[label=\roman*.]
+        \item Si on change l'ordre des points pondérés le barycentre ne change pas.
+        \item Si on retire les points à poids nuls on ne change pas le barycentre.
+        \item Si on multiplie tous les poids par $\alpha \neq 0$ alors le barycentre ne change pas et le poids total est $\alpha \lambda$.
+        \item Pour $k \in \llbracket 1, n \rrbracket$ et $\mu = \sum_{i=1}^k \lambda_i \neq 0$ on note \text{$H = bar((A_1, \lambda_1), \ldots, (A_k, \lambda_k))$} alors
+        $$
+        G = bar((H, \mu), (A_{k+1}, \lambda_{k+1}), \ldots, (A_n, \lambda_n))
+        $$
+        c'est l'associativité du barycentre.
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}[label=\roman*.]
+        \item.
+        \item.
+        \item Soit $\mu_i = \alpha \lambda_i$ pour $i \in \llbracket 1, n \rrbracket$
+        On a
+        \begin{align*}
+            bar((A_1, \mu_1), \ldots, (A_n, \mu_n)) &\iff \sum_{i=1}^n \mu_i \overrightarrow{G A_i} = \vec{0} \\
+            &\iff \sum_{i=1}^n \alpha \lambda_i \overrightarrow{G A_i} = \vec{0} \\
+            &\iff \alpha \sum_{i=1}^n \lambda_i \overrightarrow{G A_i} = \vec{0} \\
+            &\iff \sum_{i=1}^n \lambda_i \overrightarrow{G A_i} = \vec{0} \\
+        \end{align*}
+        Donc le barycentre ne change pas. Le poids total est bien $\alpha \lambda$.
+        \item 
+        On note $G' = bar((H, \mu), (A_{k+1}, \lambda_{k+1}), \ldots, (A_n, \lambda_n))$
+        ainsi on a
+        \begin{align*}
+            \mu \overrightarrow{G'H} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0} &\iff \sum_{i=1}^k \lambda_i \overrightarrow{G'H} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0} \\
+            &\iff \sum_{i=1}^k \lambda_i \overrightarrow{G' A_i} + \sum_{i=1}^k \lambda_i \overrightarrow{A_i H} + \sum_{i=k+1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0} \\
+            &\iff \sum_{i=1}^n \lambda_i \overrightarrow{G'A_i} + \sum_{i=1}^k \lambda_i \overrightarrow{A_i H} = \vec{0} \\
+            &\iff \sum_{i=1}^n \lambda_i \overrightarrow{G'A_i} = \vec{0} \\
+        \end{align*}
+        Or $G$ est l'unique point qui vérifie cette équation, donc $G' = G$.
+    \end{enumerate}
+\end{demonstration}
+
+\begin{definition}
+    Si tous les poids sont égaux le barycentre s'appelle l'isobarycentre.
+\end{definition}
+
+\clearpage
+
+\begin{theoreme}{}{}
+    \begin{enumerate}
+        \item Soit $\F \subset \E$ tel que $\F \neq \emptyset$. Alors $\F$ est un sous-espace affine de $\E$ si et seulement si tout barycentre d'un système de points pondérés de
+        $\F$ est encore un point de $\F$.
+
+        \item Soit $X \in \E$ tel que $X \neq \emptyset$ alors $Aff(X) = A + Vect(\overrightarrow{AM} | M \in X)$ pour un $A \in X$ est l'ensemble
+        des barycentres $bar(\mathcal{A})$ où $\mathcal{A}$ parcourt l'ensemble des points pondérés de $X$.
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item 
+        \begin{description}
+            \item[Sens direct.] 
+            Si $\F$ est un sous-espace affine de $\E$ et si $G = bar(\mathcal{A})$ où $\mathcal{A} = ((A_1, \alpha_1), \ldots, (A_n, \alpha_n))$ et $A_i \in \F$,
+            Alors $\overrightarrow{A_1 G} = \dfrac{1}{\alpha} \sum_{i=1}^n \alpha_i \overrightarrow{A_1 A_i} = \dfrac{1}{\alpha} \sum_{i=2}^n \alpha_i \overrightarrow{A_1 A_i}$
+            d'où $G = A_1 + \sum_{i=2}^n \dfrac{\alpha_i}{\alpha} \overrightarrow{A_1 A_i}$ mais $\overrightarrow{A_1 A_i} \in \overrightarrow{\F}$, $\dfrac{a_i}{\alpha} \in \R$
+            et $\sum_{i=2}^n \dfrac{\alpha_i}{\alpha} \in \overrightarrow{\F}$ donc $G \in \F$ car il s'écrit comme $A_1 + \vec{v}$ avec $A_1 \in \F$ et $\vec{v} \in \overrightarrow{\F}$.
+            \item[Sens réciproque.]
+            On suppose que $\F$ est stable par la prise de barycentre et on veut montrer que $\F$ est un sous-espace affine.
+            Comme $\F \neq \emptyset$, il existe $A \in \F$.
+
+            On considère $\overrightarrow{V} = \{ \overrightarrow{AM} | M \in \F \}$. Montrons que $\overrightarrow{V}$ est un sous-espace vectoriel de $\overrightarrow{E}$.
+            On peut écrire $\overrightarrow{AA} = \overrightarrow{0} \in \overrightarrow{V}$ donc $\overrightarrow{V} \neq \emptyset$.
+            Soient $\overrightarrow{AM}, \overrightarrow{AN} \in \overrightarrow{V}$ et $\lambda\in \R$.
+            On a 
+            \begin{align*}
+                \overrightarrow{AM} + \lambda \overrightarrow{AN} = \overrightarrow{AP} &\iff \overrightarrow{AP} = \overrightarrow{AP} + \overrightarrow{PM} + \lambda (\overrightarrow{AP} + \overrightarrow{PN}) \\
+                &\iff \vec{0} = \overrightarrow{PM} + \lambda \overrightarrow{PN} - \lambda \overrightarrow{PA} \\
+                &\iff P = bar((M, 1), (N, \lambda), (A, -\lambda))
+            \end{align*}
+            où $P = bar((M, \lambda), (N, 1 - \lambda), (A, 0))$.
+            Par hypothèse, $P \in \F$ donc $\overrightarrow{AP} \in \overrightarrow{V}$.
+            Ainsi, $\overrightarrow{V}$ est un sous-espace vectoriel de $\overrightarrow{E}$.
+            $\F = A + Vect(\overrightarrow{AM} | M \in \F)$ est bien un sous-espace affine avec $\overrightarrow{\F} = \overrightarrow{V}$.
+        \end{description}
+    \end{enumerate}
+\end{demonstration}
+
+\subsection{Repère barycentrique}
+
+\begin{definition}[(Repère affine)]
+    Soit $\E$ un espace affine de dimension $n$ et de direction $\vec{\E}$. Un \textbf{repère affine} de $\E$ est une famille $(A_0, A_1, \ldots, A_n)$ de points de $\E$ tels que
+    $(\overrightarrow{A_0 A_1}, \ldots, \overrightarrow{A_0 A_n})$ soit une base de $\vec{\E}$.
+
+    Ainsi pour tout $M \in \E$, il existe des réels uniques $(\alpha_1, \ldots, \alpha_n)$ tels que
+    $$
+    \overrightarrow{A_0 M} = \sum_{i=1}^n \alpha_i \overrightarrow{A_0 A_i}
+    $$
+    Les réels $\alpha_i$ sont appelés les \textbf{coordonnées barycentriques} de $M$ dans le repère affine $(A_0, A_1, \ldots, A_n)$.
+\end{definition}
+
+\begin{methode}
+    \textbf{Passage entre coordonnées barycentriques et coordonnées dans un repère affine}
+    \begin{align*}
+        \sum_{i=0}^n \alpha_i \overrightarrow{M A_i} = \vec{0} &\iff \sum_{i=0}^n \alpha_i (\overrightarrow{MA_0} + \overrightarrow{A_0 A_i}) = \vec{0} \\
+        &\iff \alpha_i \overrightarrow{M A_0} + \sum_{i=0}^n \alpha_i \overrightarrow{A_0 A_i} = \vec{0} \\
+        &\iff \sum_{i=0}^n \alpha_i \overrightarrow{A_0 A_i} = (\sum_{i=0}^n \alpha_i) \overrightarrow{A_0 M} \\
+        &\iff \overrightarrow{A_0 M} = \sum_{i=1}^n \alpha_i \overrightarrow{A_0 A_i}
+    \end{align*}
+\end{methode}
+
+\clearpage
+
+\begin{proposition}{}{}
+    Soient $\E$ et $\mathcal{F}$ deux espaces affines. Une application $f: \E \to \mathcal{F}$ est affine si et seulement si elle préserve les barycentres.
+    
+    \vspace{0.5cm}
+    Autrement dit, pour tout système de points pondérés \text{$\mathcal{A} = ((A_1, \lambda_1), \dots, (A_n, \lambda_n))$} avec $\sum_{i=1}^n \lambda_i \neq 0$, on a
+    $$
+    f(bar(\mathcal{A})) = bar(f(\mathcal{A}))
+    $$
+    où $f(\mathcal{A}) := ((f(A_1), \lambda_1), \dots, (f(A_n), \lambda_n))$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.] %%%%%%%%%%%%%%%%%%%%%%%%
+        Supposons $f$ affine, en notant $G = bar(\mathcal{A})$, pour tout $A \in \E$, on a
+        \begin{align*}
+            f(G) &= f(A + \overrightarrow{AG}) \\
+        &= f(A + \sum_{i=1}^n \lambda_i \overrightarrow{A A_i}) \\
+        &= f(A) + \vec{f}(\sum_{i=1}^n \lambda_i \overrightarrow{A A_i}) \\
+        &= f(A) + \sum_{i=1}^n \lambda_i \vec{f}(\overrightarrow{A A_i}) \\
+        &= f(A) + \sum_{i=1}^n \lambda_i \overrightarrow{f(A) f(A_i)} \\
+        \end{align*}
+        D'où
+        $$
+        \overrightarrow{f(A) f(G)} = \sum_{i=1}^n \lambda_i \overrightarrow{f(A) f(A_i)}
+        $$
+        Ainsi $f(G)$ est le barycentre de $((f(A_1), \lambda_1), \dots, (f(A_n), \lambda_n))$.
+        
+        \item[Sens réciproque.] %%%%%%%%%%%%%%%%%%%%%%
+        Supposons que $f$ préserve les barycentres. Montrons que $f$ est affine.
+
+        Soit $A \in \E$ et $A' \in \E$ tels que $A' = f(A)$.
+
+        On fixe un point $O \in \E$ et on définit une application $\funcdef{\vec{f}}{\vec{\E}}{\vec{\mathcal{F}}}{\vec{u} = \overrightarrow{OM}}{\overrightarrow{f(O)f(M)}}$
+
+        Soit $\vec{u} \in \vec{\E}$, il existe un unique $M \in \E$ tel que $\vec{u} = \overrightarrow{OM}$.
+
+        \begin{description}
+            \item[Homogénéité.] %%%%%%%%%%%%%%%%%%%%%%%
+            Soit $P \in \E$ et $\lambda \in \R$ tels que $\overrightarrow{OP} = \lambda \vec{u} = \lambda \overrightarrow{OM}$.
+            
+            On peut voir $P$ comme un barycentre de $(O, \alpha), (M, \beta)$, on peut trouver $\alpha$ et $\beta$ avec
+            \begin{align*}
+                \overrightarrow{OP} &= \dfrac{1}{\alpha + \beta} (\alpha \overrightarrow{OO} + \beta \overrightarrow{OM}) \\
+                &= \dfrac{\beta}{\alpha + \beta} \overrightarrow{OM} \implies \lambda = \dfrac{\beta}{\alpha + \beta} \\
+                &\iff \beta = \lambda (\alpha + \beta) \iff \beta - \lambda \beta = \lambda \alpha \iff \beta (1 - \lambda) = \lambda \alpha \\
+                &\iff \dfrac{\beta}{\alpha} = \dfrac{\lambda}{1 - \lambda} \iff \begin{cases}
+                    \alpha = 1 - \lambda \\
+                    \beta = \lambda
+                \end{cases}
+            \end{align*}
+
+            Ainsi,
+            \begin{align*}
+                \vec{f}(\lambda \vec{u}) &= \vec{f}(\overrightarrow{OP}) \\
+                &= \overrightarrow{f(O) f(P)} \\
+                &= \overrightarrow{f(O) f(bar((O, 1 - \lambda), (M, \lambda)))} \\
+                &= \overrightarrow{f(O) bar((f(O), 1 - \lambda), (f(M), \lambda))} \quad \text{par hypothèse} \\
+                &= \dfrac{1}{(1 - \lambda) + \lambda} ((1 - \lambda) \overrightarrow{f(O) f(O)} + \lambda \overrightarrow{f(O) f(M)}) \\
+                &= \lambda \overrightarrow{f(O) f(M)} \\
+                &= \lambda \vec{f}(\vec{u})
+            \end{align*}
+
+            \item[Linéarité.] %%%%%%%%%%%%%%%%%%%%%%%
+            Soit $\vec{u}, \vec{v} \in \vec{\E}$, il existe $M, N \in \E$ tels que $\vec{u} = \overrightarrow{OM}$ et $\vec{v} = \overrightarrow{ON}$
+
+            Soit $I \in \E$ le barycentre de $(M, 1), (N, 1)$ (le milieu quoi!).
+
+            ainsi on a,
+            $$
+            \overrightarrow{OI} = \dfrac{\overrightarrow{OM} + \overrightarrow{ON}}{2} = \dfrac{\vec{u} + \vec{v}}{2} \implies \vec{f}(\overrightarrow{OI}) = \vec{f}\left(\dfrac{\vec{u} + \vec{v}}{2}\right)
+            $$
+            ainsi,
+            \begin{align*}
+                \vec{f}(\vec{u} + \vec{v}) &= \vec{f}(2 \overrightarrow{OI}) \\
+                &= 2 \vec{f}(\overrightarrow{OI}) \\
+                &= 2 \vec{f}\left(\dfrac{\vec{u} + \vec{v}}{2}\right) \\
+                &= \vec{f}(\vec{u}) + \vec{f}(\vec{v})
+            \end{align*}
+        \end{description}
+        Donc $\vec{f}$ est linéaire et $f$ est affine.
+    \end{description}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soient $\E$ et $\mathcal{F}$ deux espaces affines de dimensions finies $n$.
+
+    Soit $(A_0, \dots, A_n)$ un repère affine/barycentrique de $\E$ et \text{$(B_0, \dots, B_n) \in \mathcal{F}^n$}.
+    
+    \vspace{0.5cm}
+    Alors, il existe une unique application affine $f: \E \to \mathcal{F}$ telle que $f(A_i) = B_i$ pour tout $i \in \llbracket 0, n \rrbracket$ et $f$ est un isomorphisme si et seulement si
+    $(B_0, \dots, B_n)$ est un repère affine/barycentrique de $\mathcal{F}$.
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Unicité.] 
+        Soient $f$ et $g$ deux applications affines telles que $f(A_i) = B_i$ et $g(A_i) = B_i$.
+        
+        Calculons, pour $M \in \E$,
+        \begin{align*}
+            f(M) &= f(A_0 + \overrightarrow{A_0 M}) \\
+            &= f\left(A_0 + \sum_{i=1}^n \lambda_i \overrightarrow{A_0 A_i}\right) \\
+            &= f(A_0) + \sum_{i=1}^n \lambda_i \vec{f}(\overrightarrow{A_0 A_i}) \\
+            &= B_0 + \sum_{i=1}^n \lambda_i \overrightarrow{B_0 B_i} \\
+            &= g(A_0) + \sum_{i=1}^n \lambda_i \vec{g}(\overrightarrow{A_0 A_i}) \\
+            &= g\left(A_0 + \sum_{i=1}^n \lambda_i \overrightarrow{A_0 A_i}\right) \\
+            &= g(M)
+        \end{align*}
+        Donc $f = g$ et l'unicité est montrée.
+
+        \item[Bijectivité.]
+        On définit une application affine $g: \mathcal{F} \to \E$ telle que pour tout $i \in \llbracket 0, n \rrbracket$, $g(B_i) = A_i$.
+        
+        Soit $M \in \E$, on a
+        \begin{align*}
+            g(f(M)) &= g\left(B_0 + \sum_{i=1}^n \lambda_i \overrightarrow{B_0 B_i}\right) \\
+            &= g(B_0) + \sum_{i=1}^n \lambda_i \vec{g}(\overrightarrow{B_0 B_i}) \\
+            &= A_0 + \sum_{i=1}^n \lambda_i \overrightarrow{A_0 A_i} \\
+            &= M
+        \end{align*}
+        Ainsi $g \circ f = id_{\E}$.
+
+        De même, pour $N \in \mathcal{F}$, on a
+        \begin{align*}
+            f(g(N)) &= f\left(A_0 + \sum_{i=1}^n \mu_i \overrightarrow{A_0 A_i}\right) \\
+            &= f(A_0) + \sum_{i=1}^n \mu_i \vec{f}(\overrightarrow{A_0 A_i}) \\
+            &= B_0 + \sum_{i=1}^n \mu_i \overrightarrow{B_0 B_i} \\
+            &= N
+        \end{align*}
+        Ainsi $f \circ g = id_{\mathcal{F}}$.
+
+        Donc $f$ est un isomorphisme.
+\end{description}
+\end{demonstration}
+
+\clearpage
+
+\section{Le triangle}
+
+\subsection{Droites remarquables d'un triangle}
+
+\begin{definition}
+    Soit $ABC$ un triangle non plat. On appelle \textbf{cercle circonscrit} du triangle $ABC$ le cercle qui passe par les trois sommets $A$, $B$ et $C$.
+\end{definition}
+
+\begin{definition}
+    Soit $ABC$ un triangle. On appelle \textbf{mediatrice} du segment $[BC]$ la droite qui est perpendiculaire à la droite $(BC)$ et qui passe par le milieu de $[BC]$.
+\end{definition}
+
+\begin{proposition}{}{}
+    La mediatrice du segment $[BC]$ est l'ensemble des points équidistants de $B$ et de $C$.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Les trois mediatrices d'un triangle sont concourantes. Le point de concours est appelé le \textbf{centre du cercle circonscrit} du triangle.
+    
+    Il est souvent noté $O$.
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.44\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/mediatrice.tikz}
+    }
+    \caption{Cercle circonscrit (en rouge) et médiatrices (en bleu) d'un triangle $ABC$. Les trois médiatrices se coupent en un point $O$ qui est le centre du cercle circonscrit.}
+\end{figure}
+\tikzexternaldisable
+
+\begin{definition}
+    Soit $ABC$ un triangle non plat. On appelle \textbf{cercle inscrit} du triangle $ABC$ le cercle qui est tangent aux trois côtés du triangle.
+\end{definition}
+
+\begin{definition}
+    Soit $ABC$ un triangle. On appelle \textbf{bissectrice} issue de $A$ la droite qui passe par $A$ et qui partage l'angle $\widehat{BAC}$ en deux angles de même mesure.
+\end{definition}
+
+\begin{proposition}{}{}
+    La bissectrice issue de $A$ est l'ensemble des points équidistants des droites $(AB)$ et $(AC)$.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Les trois bissectrices d'un triangle sont concourantes. Le point de concours est appelé le \textbf{centre du cercle inscrit} du triangle.
+    
+    Il est souvent noté $I$.
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/bissectrice.tikz}
+    }
+    \caption{Cercle inscrit (en rouge) et bissectrices (en bleu) d'un triangle $ABC$. Les trois bissectrices se coupent en un point $I$ qui est le centre du cercle inscrit.}
+\end{figure}
+\tikzexternaldisable
+
+\begin{definition}
+    Soit $ABC$ un triangle. On appelle \textbf{médiane} issue de $A$ la droite qui passe par $A$ et par le milieu de $[BC]$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Le centre de gravité d'un triangle est situé à $\frac{2}{3}$ de la médiane issue de chaque sommet à partir du sommet.
+\end{proposition}
+
+\begin{theoreme}{}{}
+    Les trois médianes d'un triangle sont concourantes. Le point de concours est appelé le \textbf{centre de gravité} du triangle.
+    
+    Il est souvent noté $G$.
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/mediane.tikz}
+    }
+    \caption{Médianes (en bleu) d'un triangle $ABC$. Les trois médianes se coupent en un point $G$ qui est le centre de gravité du triangle.}
+\end{figure}
+\tikzexternaldisable
+
+\begin{definition}
+    Soit $ABC$ un triangle. On appelle \textbf{hauteur} issue de $A$ la droite qui passe par $A$ et qui est perpendiculaire à la droite $(BC)$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Les trois hauteurs d'un triangle sont concourantes. Le point de concours est appelé l'\textbf{orthocentre} du triangle.
+    
+    Il est souvent noté $H$.
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/hauteur.tikz}
+    }
+    \caption{Hauteurs (en bleu) d'un triangle $ABC$. Les trois hauteurs se coupent en un point $H$ qui est l'orthocentre du triangle.}
+\end{figure}
+\tikzexternaldisable
+
+\subsection{Les propriétés élémentaires}
+
+\clearpage
+
+\section{Les angles}
+
+\subsection{My name is BOND, James BOND}
+
+\begin{definition}[(Orientation d'un espace vectoriel)]
+    Soit $E$ un $\R$-espace vectoriel de dimension finie.
+
+    \begin{itemize}
+        \item Deux bases $\mathcal{B}$ et $\mathcal{B}'$ de $E$ ont la \textbf{même orientation} si la matrice de passage de $\mathcal{B}$ à $\mathcal{B}'$ a un déterminant strictement positif.
+        \item La relation "avoir la même orientation" est une relation d'équivalence sur l'ensemble des bases de $E$. Il y a exactement deux classes d'équivalence, appelées les \textbf{orientations} de $E$.
+        \item Orienter $E$ consiste à choisir arbitrairement une orientation de $E$, c'est à dire une classe d'équivalence de bases de $E$.
+        Les bases appartenant à l'orientation choisie sont dites \textbf{bases directes}, les autres sont dites \textbf{bases indirectes}.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[(Base orthonormée directe ou BOND)]
+    Soit $E$ un espace euclidien orienté de dimension finie.
+
+    Une base $\mathcal{B}$ de $E$ est une \textbf{base orthonormée directe} (BOND) si elle verifie les conditions
+    \begin{itemize}
+        \item $\mathcal{B}$ est une base orthonormée de $E$.
+        \item $\mathcal{B}$ est une base directe de $E$.
+    \end{itemize}
+\end{definition}
+
+\subsection{Angle de vecteurs}
+
+\begin{theoreme}{}{angle_vecteurs}
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+
+    Soient $u, v \in \mathcal{P}$ tels que $\norm{u} = \norm{v} = 1$.
+
+    \vspace{1cm}
+    En notant $(a, b)$ les coordonnées de $v$ dans la BOND de premier vecteur $u$,
+    il existe un unique $\theta \in \R$ modulo $2\pi$ tel que $a = \cos(\theta)$ et $b = \sin(\theta)$.
+\end{theoreme}
+
+\begin{demonstration}
+    Il existe un unique $u^\perp \in \mathcal{P}$ tel que $\mathcal{B} = (u, u^\perp)$ soit une BOND de $\mathcal{P}$.
+
+    On considère l'unique rotation vectorielle $r$ telle que $r(u) = v$.
+
+    Ainsi on peut écrire
+    $$
+    Mat_{\mathcal{B}}(r) = \begin{pmatrix}
+        a & -b \\
+        b & a
+    \end{pmatrix}
+    $$
+
+    Une rotation vectorielle conserve l'orientation et les distances, donc $det(r) = 1$ et
+    $$
+    a^2 + b^2 = 1
+    $$
+    Il existe un unique $\theta \in \R$ modulo $2\pi$ tel que $a = \cos(\theta)$ et $b = \sin(\theta)$.
+\end{demonstration}
+
+\begin{definition}[(Angle de vecteurs)]
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+
+    Soient $u, v \in \mathcal{P}\setminus\{0\}$.
+
+    On appelle l'\textbf{angle orienté} de $u$ à $v$, noté $(\widehat{\overrightarrow{u}, \overrightarrow{v}})$,
+    le réel $\theta$ défini par le théorème~\ref{theoreme:angle_vecteurs} appliqué à $\frac{u}{\norm{u}}$ et $\frac{v}{\norm{v}}$.
+\end{definition}
+
+\begin{remarque}
+    L'ensemble des angles orientés de vecteurs du plan est isomorphe à $\R / 2\pi\Z$.
+    C'est un groupe abélien pour l'addition.
+\end{remarque}
+
+\subsection{Angle de droites}
+
+\begin{proposition}{}{}
+    Soient $D$ et $D'$ deux droites d'un plan vectoriel euclidien orienté.
+
+    Si $u_1$ et $u_2$ sont deux vecteurs directeurs de $D$, et $v_1$ et $v_2$ sont deux vecteurs directeurs de $D'$, alors
+    $$
+    (\widehat{\overrightarrow{u_1}, \overrightarrow{v_1}}) \equiv (\widehat{\overrightarrow{u_2}, \overrightarrow{v_2}}) \mod \pi
+    $$
+\end{proposition}
+
+\begin{definition}
+    Soient $D$ et $D'$ deux droites d'un plan vectoriel euclidien orienté et $u$ et $v$ des vecteurs directeurs de $D$ et $D'$ respectivement.
+
+    On définit l'\textbf{angle orienté} de $D$ à $D'$ par
+    $$
+    (\widehat{D, D'}) = (\widehat{\overrightarrow{u}, \overrightarrow{v}}) \mod \pi
+    $$
+\end{definition}
+
+\begin{remarque}
+    Par cette définition, on a le resultat peu intuitif de l'égalité $\alpha = \beta$ dans la figure ci-dessous (car $\beta = \alpha + \pi$)
+\end{remarque}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.6\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/angle_droite.tikz}
+    }
+\end{figure}
+\tikzexternaldisable
+
+\begin{remarque}
+    L'ensemble des angles orientés de droites d'un plan est isomorphe à $\R / \pi\Z$.
+    C'est un groupe abélien pour l'addition.
+\end{remarque}
+
+\begin{remarque}
+    On peut caractériser les positions relatives des droites
+    \begin{itemize}
+        \item $D$ et $D'$ sont parallèles si et seulement si $(\widehat{D, D'}) = 0$.
+        \item $D$ et $D'$ sont perpendiculaires si et seulement si $(\widehat{D, D'}) = \frac{\pi}{2}$.
+    \end{itemize}
+\end{remarque}
+
+\subsection{Chasles et mesures principales}
+
+\begin{theoreme}{Relation de Chasles}{}
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+    \begin{enumerate}
+        \item Pour tous $u, v, w \in \mathcal{P}\setminus\{0\}$, on a
+        $$
+        (\widehat{\overrightarrow{u}, \overrightarrow{v}}) + (\widehat{\overrightarrow{v}, \overrightarrow{w}}) \equiv (\widehat{\overrightarrow{u}, \overrightarrow{w}}) \mod 2\pi
+        $$
+        \item Pour tous $D, D', D''$ droites d'un plan vectoriel euclidien orienté, on a
+        $$
+        (\widehat{D, D'}) + (\widehat{D', D''}) \equiv (\widehat{D, D''}) \mod \pi
+        $$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{demonstration}
+    Quitte à normaliser les vecteurs, on peut supposer que $u$, $v$ et $w$ sont unitaire.
+
+    Soit $r_1$ la rotation vectorielle telle que $r_1(u) = v$, d'angle $\theta_1 = (\widehat{\overrightarrow{u}, \overrightarrow{v}})$.
+    
+    Soit $r_2$ la rotation vectorielle telle que $r_2(v) = w$, d'angle $\theta_2 = (\widehat{\overrightarrow{v}, \overrightarrow{w}})$.
+
+    En représentant les rotations vectorielles par des matrices dans la BOND de premier vecteur $u$, on trouve
+    $$
+    Mat_{\mathcal{B}}(r_1) = \begin{pmatrix}
+        \cos(\theta_1) & -\sin(\theta_1) \\
+        \sin(\theta_1) & \cos(\theta_1)
+    \end{pmatrix}
+    $$
+    et
+    $$
+    Mat_{\mathcal{B}}(r_2) = \begin{pmatrix}
+        \cos(\theta_2) & -\sin(\theta_2) \\
+        \sin(\theta_2) & \cos(\theta_2)
+    \end{pmatrix}
+    $$
+    Ainsi
+    $$
+    Mat_{\mathcal{B}}(r_2 \circ r_1) = \begin{pmatrix}
+        \cos(\theta_1 + \theta_2) & -\sin(\theta_1 + \theta_2) \\
+        \sin(\theta_1 + \theta_2) & \cos(\theta_1 + \theta_2)
+    \end{pmatrix}
+    $$
+    Or $r_2 \circ r_1(u) = w$, donc $r_2 \circ r_1$ est la rotation vectorielle d'angle $(\widehat{\overrightarrow{u}, \overrightarrow{w}})$, d'où le résultat sur les vecteurs.
+
+    Le résultat sur les droites s'en déduit en prenant des vecteurs directeurs de ces droites.
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Pour tous $u, v \in \mathcal{P}\setminus\{0\}$, on a
+    $$
+    (\widehat{\overrightarrow{u}, \overrightarrow{v}}) \equiv -(\widehat{\overrightarrow{v}, \overrightarrow{u}}) \mod 2\pi
+    $$
+\end{corollaire}
+
+\begin{definition}[(Mesure principale d'un angle)]
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+
+    \begin{itemize}
+        \item Pour tous $u, v \in \mathcal{P}\setminus\{0\}$, on appelle \textbf{mesure principale} de l'angle orienté de $u$ à $v$ l'unique réel $\theta$ dans l'intervalle $]-\pi, \pi]$ tel que $$\theta \equiv (\widehat{\overrightarrow{u}, \overrightarrow{v}}) \mod 2\pi$$
+        \item Pour tous $D, D'$ droites d'un plan vectoriel euclidien orienté, on appelle \textbf{mesure principale} de l'angle orienté de $D$ à $D'$ l'unique réel $\theta$ dans l'intervalle $]-\frac{\pi}{2}, \frac{\pi}{2}]$ tel que $$\theta \equiv (\widehat{D, D'}) \mod \pi$$
+    \end{itemize}
+\end{definition}
+
+\subsection{Expression analytique}
+
+\begin{theoreme}{}{}
+    Soit $\mathcal{P}$ un plan vectoriel euclidien orienté.
+
+    Soient $u, v \in \mathcal{P}\setminus\{0\}$.
+
+    Alors
+    $$
+    \langle\overrightarrow{u}, \overrightarrow{v}\rangle = \norm{u}\norm{v}\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    $$
+    et
+    $$
+    det(\overrightarrow{u}, \overrightarrow{v}) = \norm{u}\norm{v}\sin((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Posons $i = \dfrac{u}{\norm{u}}$. Il existe un unique $j \in \mathcal{P}$ tel que $\mathcal{B} = (i, j)$ soit une BOND de $\mathcal{P}$.
+
+    Les coordonnées de $u$ dans $\mathcal{B}$ sont $(\norm{u}, 0)$, et $\dfrac{v}{\norm{v}}$ a pour coordonnées $(\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}})), \sin((\widehat{\overrightarrow{u}, \overrightarrow{v}})))$.
+
+    Ainsi $v$ a pour coordonnées $(\norm{v}\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}})), \norm{v}\sin((\widehat{\overrightarrow{u}, \overrightarrow{v}})))$ dans la base $\mathcal{B}$.
+    Par conséquent
+    $$
+    \langle\overrightarrow{u}, \overrightarrow{v}\rangle = \norm{u}\norm{v}\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    $$
+    et
+    $$
+    det(\overrightarrow{u}, \overrightarrow{v}) = \begin{vmatrix}
+        \norm{u} & \norm{v}\cos((\widehat{\overrightarrow{u}, \overrightarrow{v}})) \\
+        0 & \norm{v}\sin((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    \end{vmatrix} = \norm{u}\norm{v}\sin((\widehat{\overrightarrow{u}, \overrightarrow{v}}))
+    $$
+\end{demonstration}
+
+\subsection{Angle inscrit et cocyclicité}
+
+\begin{lemme}{Angle du triangle isocèle}{}
+    Soit $\Omega M A$ un triangle isocèle en $\Omega$, alors
+    $$
+    2(\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + \pi \mod 2\pi
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    Posons $\theta_1 = (\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}})$
+    et $\theta_2 = (\widehat{\overrightarrow{A \Omega}, \overrightarrow{A M}})$.
+
+    On a
+    \begin{align*}
+        \langle\overrightarrow{MA}, \overrightarrow{M\Omega}\rangle &= \langle\overrightarrow{M\Omega} + \overrightarrow{\Omega A}, \overrightarrow{M\Omega}\rangle \\
+        &= \norm{\overrightarrow{M\Omega}}^2 + \langle\overrightarrow{\Omega A}, \overrightarrow{M\Omega}\rangle
+    \end{align*}
+    et
+    \begin{align*}
+        \langle\overrightarrow{A \Omega}, \overrightarrow{A M}\rangle &= \langle-\overrightarrow{\Omega A}, -\overrightarrow{M A}\rangle \\
+        &= (-1)(-1)\langle\overrightarrow{\Omega A}, \overrightarrow{M A}\rangle \\
+        &= \langle\overrightarrow{\Omega A}, \overrightarrow{M\Omega} + \overrightarrow{\Omega A}\rangle \\
+        &= \langle\overrightarrow{\Omega A}, \overrightarrow{M\Omega}\rangle + \norm{\overrightarrow{\Omega A}}^2
+    \end{align*}
+
+    Or $\norm{\overrightarrow{M\Omega}} = \norm{\overrightarrow{\Omega A}}$ car le triangle est isocèle en $\Omega$, donc $\cos(\theta_1) = \cos(\theta_2)$
+
+    De même pour les déterminants, on trouve $\sin(\theta_1) = \sin(\theta_2)$.
+
+    Ainsi $(\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}}) \equiv (\widehat{\overrightarrow{A \Omega}, \overrightarrow{A M}}) \mod 2\pi$.
+
+    La somme des angles d'un triangle est égale à $\pi$ donc
+    \begin{align*}  
+        &(\widehat{\overrightarrow{M A}, \overrightarrow{M\Omega}}) + (\widehat{\overrightarrow{A \Omega}, \overrightarrow{A M}}) + (\widehat{\overrightarrow{\Omega M}, \overrightarrow{\Omega A}}) \equiv \pi \mod 2\pi \\
+        &\implies (\widehat{\overrightarrow{M A}, \overrightarrow{M\Omega}}) + (\widehat{\overrightarrow{A \Omega}, \overrightarrow{A M}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + \pi \mod 2\pi \\
+        &\implies 2(\widehat{\overrightarrow{M A}, \overrightarrow{M\Omega}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + \pi \mod 2\pi
+    \end{align*}
+\end{demonstration}
+
+\pagebreak
+
+\begin{theoreme}{Théorème de l'angle inscrit au centre}{}
+    Soit $\Gamma$ un cercle de centre $\Omega$.
+
+    Pour tous $A, B, M \in \Gamma$ distincts, on a
+    $$
+    2(\widehat{\overrightarrow{MA}, \overrightarrow{MB}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) \mod 2\pi
+    $$
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.7\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/angle_inscrit.tikz}
+    }
+\end{figure}
+\tikzexternaldisable
+
+\begin{demonstration}
+    On a
+    $$
+    2(\widehat{\overrightarrow{MA}, \overrightarrow{MB}}) \equiv 2(\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}}) + 2(\widehat{\overrightarrow{M\Omega}, \overrightarrow{MB}}) \mod 2\pi
+    $$
+
+    Or $\Omega M A$ et $\Omega M B$ sont des triangles isocèles en $\Omega$ car $A$, $B$ et $M$ sont sur le cercle de centre $\Omega$.
+
+    Ainsi, en appliquant le lemme précédent
+    $$
+    2(\widehat{\overrightarrow{MA}, \overrightarrow{M\Omega}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + \pi \mod 2\pi
+    $$
+    et
+    $$
+    2(\widehat{\overrightarrow{M\Omega}, \overrightarrow{MB}}) \equiv (\widehat{\overrightarrow{\Omega M}, \overrightarrow{\Omega B}}) + \pi \mod 2\pi
+    $$
+
+    Puis par Chasles
+    \begin{align*}
+        2(\widehat{\overrightarrow{MA}, \overrightarrow{MB}}) &\equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega M}}) + (\widehat{\overrightarrow{\Omega M}, \overrightarrow{\Omega B}}) + 2\pi \mod 2\pi \\
+        &\equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) + 2\pi \mod 2\pi \\
+        &\equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) \mod 2\pi
+    \end{align*}
+\end{demonstration}
+
+\begin{theoreme}{Condition de cocyclicité}{}
+    Soient $A$, $B$, $C$ et $D$ quatre points, trois à trois non alignés, dans un plan vectoriel euclidien orienté.
+
+    Ces quatre points sont cocycliques si et seulement si
+    $$
+    (\widehat{(CA), (CB)}) \equiv (\widehat{(DA), (DB)}) \mod \pi
+    $$
+\end{theoreme}
+
+\tikzexternalenable
+\begin{figure}[H]
+    \centering
+    \resizebox{0.9\textwidth}{!}{%
+    \input{figures/L2/geometrie_2/condition_cocyclicite.tikz}
+    }
+\end{figure}
+\tikzexternaldisable
+
+\begin{demonstration}
+    \begin{description}
+        \item[Sens direct.]
+        Soit $\Omega$ le centre du cercle passant par $A$, $B$, $C$ et $D$.
+
+        Par le théorème de l'angle inscrit au centre appliqué $A$, $B$, $C$ puis à $A$, $B$, $D$, on trouve
+        $$
+        2(\widehat{\overrightarrow{CA}, \overrightarrow{CB}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) \mod 2\pi
+        $$
+        et
+        $$
+        2(\widehat{\overrightarrow{DA}, \overrightarrow{DB}}) \equiv (\widehat{\overrightarrow{\Omega A}, \overrightarrow{\Omega B}}) \mod 2\pi
+        $$
+        Ainsi
+        \begin{align*}
+            &2(\widehat{\overrightarrow{CA}, \overrightarrow{CB}}) &\equiv 2(\widehat{\overrightarrow{DA}, \overrightarrow{DB}}) \mod 2\pi \\
+            &\iff (\widehat{\overrightarrow{CA}, \overrightarrow{CB}}) &\equiv (\widehat{\overrightarrow{DA}, \overrightarrow{DB}}) \mod \pi \\
+            &\iff (\widehat{(CA), (CB)}) &\equiv (\widehat{(DA), (DB)}) \mod \pi
+        \end{align*}
+
+        \item[Sens réciproque.]
+        Supposons que $(\widehat{(CA), (CB)}) \equiv (\widehat{(DA), (DB)}) \mod \pi$.
+
+        Il existe un unique cercle passant par $A$, $B$ et $C$, de centre $\Omega$.
+
+        Soit $D'$ le point d'intersection de ce cercle avec la droite $(AD)$.
+
+        Puisque $A$, $B$, $C$ et $D'$ sont cocycliques, on a
+        \begin{align*}
+            &(\widehat{(CA), (CB)}) &\equiv (\widehat{(D'A), (D'B)}) \mod \pi \\
+            &\iff (\widehat{(D'A), (D'B)}) &\equiv (\widehat{(DA), (DB)}) \mod \pi \\
+            &\iff (\widehat{(D'A), (D'B)}) &\equiv (\widehat{(D'A), (DB)}) \mod \pi \\
+            &\iff (\widehat{(D'B), (DB)}) &\equiv 0 \mod \pi \\
+        \end{align*}
+        Donc $(D'B) = (DB)$ et $D \in (D'A)$ donc $D = D'$, ainsi $D$ est sur le cercle de centre $\Omega$ passant par $A$, $B$ et $C$.
+    \end{description}
+\end{demonstration}
+
+\end{document}

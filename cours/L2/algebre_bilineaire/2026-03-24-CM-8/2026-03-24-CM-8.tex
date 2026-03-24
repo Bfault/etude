@@ -1,0 +1,245 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{24 March 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 8}{\today}
+
+\subsection{Orthogonalité}
+
+\begin{definition}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien et $V \subset E$ un sev.
+
+    $$
+    V^\perp = \{ x \in E \mid \forall v \in V, \langle x, v \rangle = 0 \}
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien avec $\dim E < +\infty$ et $V \subset E$ un sev.
+    $$
+    E = V \oplus V^\perp
+    $$
+\end{proposition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien avec $\dim E < +\infty$ et $V \subset E$ un sev.
+    \begin{enumerate}
+        \item $(V^\perp)^\perp = V$
+        \item $(V_1 \cap V_2)^\perp = V_1^\perp + V_2^\perp$
+        \item $(V_1 + V_2)^\perp = V_1^\perp \cap V_2^\perp$
+    \end{enumerate}
+\end{proposition}
+
+\subsection{Projections et symétries orthogonales}
+
+\begin{definition}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien avec $\dim E < +\infty$ et $V \subset E$ un sev.
+
+    Soit $(v_1, \dots, v_k)$ une base orthonormée de $V$. Pour tout $x \in E$, on définit la \textbf{projection orthogonale} de $x$ sur $V$ par
+    $$
+    p(x) = \sum_{i=1}^k \langle x, v_i \rangle v_i
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    \begin{enumerate}
+        \item $p(x) - x \in V^\perp$
+        \item $\norm{p(x) - x} = min \{\norm{y - x} \mid y \in V\}$
+        \item $p(x)$ ne dépend pas du choix de la base orthonormée de $V$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item .
+        \item .
+        \item Soit $(u_1, \dots, u_k)$ une autre base orthonormée de $V$.
+        $$
+        p'(x) = \sum_{i=1}^k \langle x, u_i \rangle u_i
+        $$
+        pour tout $x \in E$.
+
+        Ainsi, on a
+        $$
+        p(x) - p'(x) = p(x) - x + x - p'(x) \in V^\perp
+        $$
+        et
+        $$
+        p(x) - p'(x) \in V
+        $$
+        Donc $p(x) - p'(x) = \{0\}$ et $p(x) = p'(x)$
+    \end{enumerate}
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien avec $\dim E < +\infty$ et $V \subset E$ un sev. Pour tout $x \in E$, on définit la \textbf{symétrie orthogonale} de $x$ par
+    $$
+    Im(p) = V \quad \text{et} \quad Ker(p) = V^\perp
+    $$
+\end{proposition}
+
+\begin{remarque}
+    Si on décompose $x$ en $x = x' + x''$ avec $x' \in V$ et $x'' \in V^\perp$, alors $p(x) = x'$
+\end{remarque}
+
+\begin{definition}
+    Soient $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien de dimension finie et $V \subset E$ un sev.
+
+    On définit la \textbf{symétrie orthogonale} de $x$ par
+    $$
+    s(x) = x' - x''
+    $$
+    où $x = x' + x''$ avec $x' \in V$ et $x'' \in V^\perp$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien avec $\dim E < +\infty$ et $V \subset E$ un sev. Pour tout $x \in E$, on définit la \textbf{symétrie orthogonale} de $x$ par
+
+    \begin{enumerate}
+        \item $s = 2p - id_E$
+        \item $s^2 = id_E$
+        \item $Ker(s - id_E) = V$ et $Ker(s + id_E) = V^\perp$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proposition}{}{}
+    Soit $\sigma: E \to E$ une application linéaire telle que
+    \begin{enumerate}
+        \item $\sigma^2 = id_E$
+        \item $Ker(\sigma - id_E) = Ker(\sigma + id_E)^\perp$
+    \end{enumerate}
+    Alors $\sigma$ est une symétrie orthogonale par rapport à $Ker(\sigma - id_E)$
+\end{proposition}
+
+\subsection{Orientation, produit mixte et produit vectoriel}
+
+\begin{definition}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien de dimension finie $n$.
+
+    Soit $(x_1, \dots, x_p) \in E^p$, on pose
+    $$
+    G(x_1, \dots, x_p) = (\langle x_i, x_j \rangle)_{1 \leq i, j \leq p} \in M_{pp}(\R)
+    $$
+    $G$ est appelée la \textbf{matrice de Gram} de $(x_1, \dots, x_p)$ et son déterminant est appelé le \textbf{déterminant de Gram} de $(x_1, \dots, x_p)$
+    $$
+    gram(x_1, \dots, x_p) = det(G(x_1, \dots, x_p))
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien de dimension finie $n$ et $(x_1, \dots, x_p) \in E^p$.
+
+    Notons $C_i$ la $i$-ème colonne de $G(x_1, \dots, x_p)$, alors
+
+    $$
+    \sum_{i=1}^p \lambda_i x_i = 0 \iff \sum_{i=1}^p \lambda_i C_i = 0
+    $$
+    et $(x_1, \dots, x_p)$ est libre si et seulement si $gram(x_1, \dots, x_p) \neq 0$.
+\end{proposition}
+
+\subsection{Orientation}
+
+\begin{definition}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien de dimension finie $n$.
+
+    Soient deux bases de $E$ $\mathcal{B} et \mathcal{B}'$. On dit que $\mathcal{B}$ et $\mathcal{B}'$ ont la même orientation si le déterminant de la matrice de passage de $\mathcal{B}$ à $\mathcal{B}'$ est strictement positif.
+
+    On note $\mathcal{B} \sim \mathcal{B}'$.
+
+    L'orientation de $E$ est la classe d'équivalence de $\sim$.
+
+    On part d'une base $\mathcal{B}$ de référence de $E$ et on dit que les bases de la même orientation que $\mathcal{B}$ sont les bases \textbf{directes} de $E$ et les autres sont les bases \textbf{indirecte} de $E$.
+\end{definition}
+
+\begin{remarque}
+    Toutes surfaces n'est pas obligatoirement orientable. Par exemple, la bouteille de Klein ou le ruban de Möbius.
+\end{remarque}
+
+\begin{definition}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien de dimension finie $n$.
+
+    Soient $(e_1, \dots, e_n)$ une base orthonormée de $E$ et $(x_1, \dots, x_n) \in E^n$. On a pour $1 \leq i \leq n$
+    $$
+    x_i = \sum_{j=1}^n \lambda_{ij} e_j
+    $$
+    On pose $\wedge = (\lambda_{ij})_{1 \leq i, j \leq n}$ alors $\wedge(^t \wedge) = G(x_1, \dots, x_n)$
+\end{definition}
+
+\begin{definition}[(Produit mixte)]
+    Soient $\mathcal{B}$ et $\mathcal{B}'$ deux bases orthonormées direct de $E$.
+    Alors
+    $$
+    det_\mathcal{B}(x_1, \dots, x_n) = det_\mathcal{B'}(x_1, \dots, x_n)
+    $$
+    ce nombre est appelé le \textbf{produit mixte} de $(x_1, \dots, x_n)$ et est noté $[x_1, \dots, x_n]$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien de dimension finie $n$ et $(x_1, \dots, x_n) \in E^n$.
+
+    $$
+    [x_1, \dots, x_n]^2 = gram(x_1, \dots, x_n)
+    $$
+\end{proposition}
+
+\begin{definition}[(produit vectoriel)]
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien de dimension fini $n$.
+
+    Soit $(x_1, \dots, x_{n-1}) \in E^{n-1}$, il existe un unique vecteur $a$ tel que pour tout $x \in E$,
+    $$
+    [x_1, \dots, x_{n-1}, x] = \langle a, x \rangle
+    $$
+    ce vecteur $a$ est appelé le \textbf{produit vectoriel} de $(x_1, \dots, x_{n-1})$ et est noté $x_1 \wedge \dots \wedge x_{n-1}$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace euclidien de dimension finie $n$ et $(x_1, \dots, x_{n-1}) \in E^{n-1}$.
+
+    On a une application linéaire
+    $$
+    \funcdef{f}{E^{n-1}}{E}{(x_1, \dots, x_{n-1})}{x_1 \wedge \dots \wedge x_{n-1}}
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    \begin{description}
+        \item[Unicité]
+        Soit $a'$ tel que
+        $$
+        [x_1, \dots, x_{n-1}, x] = \langle a', x \rangle
+        $$
+        Alors pour tout $x \in E$,
+        $$
+        \langle a - a', x \rangle = 0
+        $$
+        d'où $a = a'$
+
+        \item[Existence]
+        On considère
+        $$
+        \funcdef{\varphi}{E}{\R}{x}{[x_1, \dots, x_{n-1}, x]}
+        $$
+        C'est une forme linéaire sur $E$.
+
+        Soit $\mathcal{B} = (e_1, \dots, e_n)$ une base orthonormée de $E$.
+
+        Alors les formes $\funcdef{e_i^*}{E}{\R}{x}{\langle e_i, x \rangle}$ forment une base de $E^*$.
+
+        Ainsi $\varphi = \sum_{i=1}^n \alpha_i e_i^* \in \E^*$ pour certains $\alpha_i \in \R$.
+
+        Maintenant posons
+        $$
+        a = \sum_{i=1}^n \alpha_i e_i \in E
+        $$
+        On a
+        $$
+        [x_1, \dots, x_{n-1}, x] = \varphi(x) = \sum_{i=1}^n \alpha_i e_i^*(x) = \sum_{i=1}^n \alpha_i \langle e_i, x \rangle = \langle a, x \rangle
+        $$
+    \end{description}
+\end{demonstration}
+
+\end{document}

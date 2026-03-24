@@ -120,9 +120,9 @@
 
         $$
         F^\perp = \{v \in E \mid \begin{pmatrix}
-            \varphi(e_1, v) \\
+            \varphi(e_1, v) = 0 \\
             \vdots \\
-            \varphi(e_p, v)
+            \varphi(e_p, v) = 0
         \end{pmatrix}
         \}
         $$
@@ -152,7 +152,8 @@
 \begin{demonstration}
     \begin{description}
         \item[1.]
-        
+            On reprend le raisonnement de la démonstration précédente, mais comme $\varphi$ est non dégénérée, le système d'équations linéaires qui définit $F^\perp$ est de rang $p$,
+            donc $\dim F^\perp = n - p$ et $\dim F + \dim F^\perp = n$.
         \item[2.]
         On applique le 1 à $F^\perp$, on a $\dim F^\perp + \dim (F^\perp)^\perp = n$.
         et par le 3 du résultat précédent, on a $F \subset (F^\perp)^\perp$.

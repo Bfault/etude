@@ -8,24 +8,13 @@
 
 \hotbox{Questions ouvertes}{CM 3}{\today}
 
-\begin{lemme}{}{existence}
-    Soit $n, p \in \N$
+\section{\today}
 
-    Supposons que $p$ est inversible dans $\Z/n\Z$.
-
-    Alors $ord(p)$ existe dans $\Z/n\Z$
-\end{lemme}
-
-\begin{demonstration}
-    Comme $\Z/n\Z$ est fini, on a forcément $\exists k, l \in \N, k > l$ tel que
-    \begin{align*}        
-        p^k \equiv p^l [n] \implies p^k (p^{-1})^l \equiv p^l (p^{-1})^l [n] \implies p^{k-l} \equiv 1 [n]
-    \end{align*}
-\end{demonstration}
+\subsection{Ce qui à été fait}
 
 \begin{definition}
-    Soit $x, m \in \N$ avec $m \neq 0$.
-    Un nombre $x$ est dit $m$-parasite si $x \times m = d10^{L - 1} + \dfrac{x - d}{10}$ où $d$ est le chiffre des unités de $x$ et $L$ sa taille (nombre de chiffres).
+    Soit $n, m \in \N$ avec $m \neq 0$.
+    Un nombre $n$ est dit $m$-parasite si \text{$n \times m = d10^{L - 1} + \dfrac{n - d}{10}$} où $d$ est le chiffre des unités de $n$ et $L$ sa taille (nombre de chiffres).
 \end{definition}
 
 \begin{exemple}
@@ -34,81 +23,8 @@
     $$
 \end{exemple}
 
-\begin{theoreme}{Caractérisation de la taille d'un nombre $m$-parasite}{}
-    Soit $m \in \N^*$, $x$ un nombre $m$-parasite de chiffre des unités $d$ et $L$ sa taille (nombre de chiffres).
+Voir annexe 3 la démonstration
 
-    Alors $L$ peut prendre des valeurs dans $\{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
-\end{theoreme}
+\subsection{Les nouvelles questions}
 
-\begin{demonstration}
-    On pose $y := \dfrac{x - d}{10}$ le nombre obtenu en retirant le chiffre des unités $d$ de $x$.
-
-    Ainsi, on peut définir $x = 10y + d$.
-
-    par définition d'un nombre $m$-parasite, on a
-    \begin{align*}
-        m \times x = d10^{L - 1} + \dfrac{x - d}{10} &\implies m(10y + d) = d10^{L - 1} + y \\
-        &\implies dm - d 10^{L-1} = y - 10my \\
-        &\implies y(1 - 10m) = d (m - 10^{L-1}) \\
-        &\implies y = d \dfrac{m - 10^{L - 1}}{1 - 10m} = d \dfrac{10^{L - 1} - m}{10m - 1}
-    \end{align*}
-
-    Comme $y$ est un entier, le numérateur doit être divisible par le dénominateur.
-
-    Donc
-    \begin{align*}
-        \exists k \in \N, &d(10^{L - 1} - m) = k(10m - 1) \quad (*) \\
-        \implies& d(10^{L - 1} - m) \equiv 0 [10m - 1] \\
-        \implies& d 10^{L - 1} \equiv dm [10m - 1]
-    \end{align*}
-
-    $d$ est inversible dans $\Z/(10m - 1)\Z$ si et seulement si \text{$pgcd(d, 10m - 1) = 1$}.
-
-    Ainsi on a deux cas :
-    \begin{description}
-        \item[si $pgcd(d, 10m - 1) = 1$ :] on peut simplifier par $d$ et on obtient
-        \begin{align*}
-            &10^{L - 1} \equiv m [10m - 1] \\
-            \implies& 10^L \equiv 10m [10m - 1] \\
-            \implies& 10^L \equiv 1 [10m - 1]
-        \end{align*}
-
-        De plus $m$ est l'inverse de $10$ dans $\Z/(10m - 1)\Z$.
-
-        D'apres le lemme \ref{lemme:existence}, $ord(10)$ ainsi que ses multiples existe bien dans $\Z/(10m - 1)\Z$ et résoud notre équation.
-
-        Donc $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(10m - 1)\Z$.
-    
-        \item[si $pgcd(d, 10m - 1) \neq 1$ :] on peut poser $gcd = pgcd(d, 10m - 1)$,
-        ainsi avec $(*)$ on a
-        
-        \begin{align*}
-            \exists k \in \N, &\dfrac{d(10^{L - 1} - m)}{gcd} = k\dfrac{(10m - 1)}{gcd} \\
-            \implies& \dfrac{d}{gcd} 10^{L - 1} \equiv \dfrac{d}{gcd} m [\dfrac{10m - 1}{gcd}]
-        \end{align*}
-
-        Cette fois $pgcd(\dfrac{d}{gcd}, \dfrac{10m - 1}{gcd}) = 1$ donc $\dfrac{d}{gcd}$ est inversible, d'où
-        \begin{align*}
-            &10^{L - 1} \equiv m [\dfrac{10m - 1}{gcd}] \\
-            \implies& 10^L \equiv 10m [\dfrac{10m - 1}{gcd}] \\
-            \implies& 10^L \equiv 1 [\dfrac{10m - 1}{gcd}]
-        \end{align*}
-
-        car
-        \begin{align*}
-            10m - 1 = gcd \dfrac{10m - 1}{gcd} &\implies 10m - 1 \equiv 0 [\dfrac{10m - 1}{gcd}] \\
-            &\implies 10m \equiv 1 [\dfrac{10m - 1}{gcd}]
-        \end{align*}
-
-        De plus $m$ est l'inverse de $10$ dans $\Z/(\dfrac{10m - 1}{gcd})\Z$
-
-        D'apres le lemme \ref{lemme:existence}, $ord(10)$ ainsi que ses multiples existe bien dans $\Z/(\dfrac{10m - 1}{gcd})\Z$ et résoud notre équation.
-
-        Donc $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(\dfrac{10m - 1}{gcd})\Z$.
-    \end{description}
-
-    Comme dans le premier cas $pgcd(d, 10m - 1) = 1$ on peut rassembler les deux cas en un seul
-
-    $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/\dfrac{10m - 1}{pgcd(d, 10m - 1)}\Z$.
-\end{demonstration}
 \end{document}
