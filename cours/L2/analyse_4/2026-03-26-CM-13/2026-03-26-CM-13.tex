@@ -1,0 +1,81 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{26 March 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 13}{\today}
+
+\begin{lemme}{Riemann-Lebesgue}{}
+    Soit $f : ]a, b[ \to \mathbb{C}$ une fonction intégrable sur $[a, b]$. Alors
+
+    $$
+    \lim_{t \to +\infty} \int_a^b f(x) e^{i t x} \, dx = 0
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    \begin{description}
+        \item[1 $f$ est constante.]
+        On a $f(x) = f_0$ pour tout $x \in ]a, b[$. Alors
+        $$
+        \int_a^b f(x) e^{i t x} \, dx = f_0 \int_a^b e^{i t x} \, dx = f_0 \frac{e^{i t b} - e^{i t a}}{i t}
+        $$
+        Ainsi on a
+        $$
+        \left| \int_a^b f(x) e^{i t x} \, dx \right| = \left| f_0 \frac{e^{i t b} - e^{i t a}}{i t} \right| \leq  \frac{|f_0|}{t} (|e^{i t a}| + |e^{i t b}|) \leq \frac{2 |f_0|}{t}
+        $$
+        et donc
+        $$
+        \lim_{t \to +\infty} \left| \int_a^b f(x) e^{i t x} \, dx \right| = 0
+        $$
+
+        \item[2 $f$ est une fonction en escalier.]
+        Soit $f$ une fonction en escalier sur $]a, b[$. On peut trouver une subdivision $a = x_0 < x_1 < \cdots < x_n = b$ de $[a, b]$ telle que $f$ soit constante sur chaque intervalle $]x_{k-1}, x_k[$ pour $k = 1, \ldots, n$.
+
+        On introduit la fonction d'Heaveside $H_{x_i} : \R \to \R$ définie par
+        $$
+        H_{x_i}(x) = \begin{cases}
+        0 & \text{si } x < x_i \\
+        1 & \text{si } x \geq x_i
+        \end{cases}
+        $$
+        Ainsi on a
+        $$
+        H_{x_i} - H_{x_{i+1}} = \begin{cases}
+            1 & \text{si } x \in [x_i, x_{i+1}[ \\
+            0 & \text{sinon } \\
+        \end{cases} 
+        $$
+
+        Par conséquent, on peut écrire $f$ comme
+        $$
+        f(x) = \sum_{j=0}^{n-1} f_j(H_{x_j}(x) - H_{x_{j+1}}(x))
+        $$
+
+        On a
+        \begin{align*}
+            \int_a^b f(x) e^{i t x} \, dx &= \int_a^b \sum_{j=0}^{n-1} f_j(H_{x_j}(x) - H_{x_{j+1}}(x)) e^{i t x} \, dx \\
+            &= \sum_{j=0}^{n-1} \int_{x_j}^{x_{j+1}} f_j e^{i t x} \, dx
+        \end{align*}
+        Ainsi on a une somme de fonctions du type $f_j e^{i t x}$, et on peut appliquer le cas 1 à chacune de ces fonctions pour conclure que
+        $$
+        \lim_{t \to +\infty} \int_a^b f(x) e^{i t x} \, dx = 0
+        $$
+        \begin{hotwarn}
+        À corrigé vite fait
+        \end{hotwarn}
+
+        \item[3 $f$ est une fonction intégrable sur $]a, b[$.]
+        
+        Par définition de l'intégrabilité, pour tout $\varepsilon > 0$, il existe une subdivision $a = x_0 < x_1 < \cdots < x_n = b$ de $[a, b]$
+        et une fonction $\psi$ compatible avec la subdivision telle que
+        $$
+        \int_a^b |f(x) - \psi(x)| \, dx < \varepsilon
+        $$
+    \end{description}
+\end{demonstration}
+
+\end{document}

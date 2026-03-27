@@ -1,0 +1,234 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{25 March 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 12}{\today}
+
+\subsection{Approximation $L^2$}
+
+\begin{definition}
+    On définit le produit
+    $$
+    \forall f, g \in Cpm([0, 2\pi[, \mathbb{C}), \quad \langle f, g \rangle = \frac{1}{2\pi} \int_0^{2\pi} f(t) \overline{g(t)} \, dt.
+    $$
+
+    On peut définir une norme (dite norme $L^2$) par
+    $$
+    \norm{f}_2 = \sqrt{\langle f, f \rangle} = \sqrt{\frac{1}{2\pi} \int_0^{2\pi} |f(t)|^2 \, dt}.
+    $$
+\end{definition}
+
+\begin{lemme}{Inégalité de Schwarz}{}
+    Soient $f, g \in Cpm([0, 2\pi[, \mathbb{C})$ telles que $\norm{f}_2 \neq 0$ et $\norm{g}_2 \neq 0$. Alors
+    $$
+    |\langle f, g \rangle| \leq \norm{f}_2 \norm{g}_2
+    $$
+\end{lemme}
+
+\begin{proposition}{}{}
+    Soit $f \in Cpm([0, 2\pi[, \mathbb{C})$. Alors
+    $$
+    |\hat{f_k}| \leq \norm{f}_2
+    $$
+    pour tout $k \in \mathbb{Z}$
+\end{proposition}
+
+\begin{demonstration}
+    En a bien
+    $$
+    \hat{f_k} = \langle f, e^{ikt} \rangle \leq \norm{f}_2 \norm{e^{ikt}}_2 = \norm{f}_2
+    $$
+\end{demonstration}
+
+\begin{definition}
+    Soient $f, g \in Cpm([0, 2\pi[, \mathbb{C})$.
+    
+    $f$ et $g$ sont dits orthogonaux si $\langle f, g \rangle = 0$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Pour tout $k \in \Z$ si on note $e_k = e^{-ikx}$, alors la famille $(e_k)_{k \in \Z}$ est orthogonale dans l'espace des fonctions intégrables sur $[0, 2\pi[$.
+\end{theoreme}
+
+\begin{demonstration}
+    Immédiatement, on a
+    $$
+    \langle e_k, e_j \rangle = \frac{1}{2\pi} \int_0^{2\pi} e_k(t) \overline{e_j(t)} \, dt = \frac{1}{2\pi} \int_0^{2\pi} e^{i(j-k)t} \, dt = \begin{cases}
+        1 & \text{si } j = k \\
+        0 & \text{sinon}
+    \end{cases} 
+    $$    
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    La famille $\{ \cos(kx), \sin(kx) \}_{k \in \N}$ est orthogonale dans l'espace des fonctions intégrables sur $[0, 2\pi[$.
+\end{corollaire}
+
+\begin{corollaire}{}{}
+    Si $\tau$ est un polynôme trigonométrique d'ordre $n$ de la forme
+    $$
+    \tau(x) = \sum_{j=-n}^n c_j (e^{ix})^j
+    $$
+    alors $c_j = \hat{\tau_j}$ pour tout $j \in \{-n, \dots, n\}$.
+\end{corollaire}
+
+\begin{demonstration}
+    On a
+    $$
+    \hat{\tau_k} = \frac{1}{2\pi} \int_0^{2\pi} \tau(t) e^{-ikt} \, dt = \frac{1}{2\pi} \int_0^{2\pi} \sum_{j=-n}^n c_j e^{ijt} e^{-ikt} \, dt = \sum_{j=-n}^n c_j \frac{1}{2\pi} \int_0^{2\pi} e^{i(j-k)t} \, dt = c_k
+    $$
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Si $\tau$ est un polynôme trigonométrique d'ordre $n$, alors
+    $$
+    \norm{\tau}_2^2 = \sum_{j=-n}^n |\hat{\tau_j}|^2
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+    On a
+    \begin{align*}
+        \norm{\tau}_2^2 = \langle \tau, \tau \rangle &= \left\langle \sum_{j=-n}^n \hat{\tau_j} e^{ijt}, \sum_{k=-n}^n \hat{\tau_k} e^{ikt} \right\rangle \\
+        &= \frac{1}{2\pi} \int_0^{2\pi} \left( \sum_{j=-n}^n \hat{\tau_j} e^{ijt} \right) \left( \sum_{k=-n}^n \overline{\hat{\tau_k}} e^{-ikt} \right) \, dt \\
+        &= \sum_{j=-n}^n \sum_{k=-n}^n \hat{\tau_j} \overline{\hat{\tau_k}} \frac{1}{2\pi} \int_0^{2\pi} e^{i(j-k)t} \, dt \\
+        &= \sum_{j=-n}^n \hat{\tau_j} \overline{\hat{\tau_j}} \\
+        &= \sum_{j=-n}^n |\hat{\tau_j}|^2
+    \end{align*}
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $f \in Cpm([0, 2\pi[, \mathbb{C})$ bornée.
+
+    $S_{f_n}$ la somme partielle d'ordre $n$ de la série de Fourier de $f$.
+    $$
+    S_{f_n}(t) = \sum_{j=-n}^n \hat{f_j} e^{ijt}
+    $$
+    et soit $\tau$ un polynôme trigonométrique d'ordre $n$. Alors
+    $$
+    \norm{f - S_{f_n}}_2 \leq \norm{f - \tau}_2
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    On a 
+    $$
+    \norm{f - \tau}_2^2 = \langle f - \tau, f - \tau \rangle = \norm{f}_2^2 - \langle f, \tau \rangle - \overline{\langle f, \tau \rangle} + \norm{\tau}_2^2 \\
+    $$
+    on injecte
+    \begin{align*}
+        \langle f, \tau \rangle &= \frac{1}{2\pi} \int_0^{2\pi} f(t) \overline{\tau(t)} \, dt \\
+        &= \frac{1}{2\pi} \int_0^{2\pi} f(t) \sum_{j=-n}^n \overline{\hat{\tau_j}} e^{-ijt} \, dt \\
+        &= \sum_{j=-n}^n \overline{\hat{\tau_j}} \frac{1}{2\pi} \int_0^{2\pi} f(t) e^{-ijt} \, dt \\
+        &= \langle f, S_{f_n} \rangle
+    \end{align*}
+    et donc
+    \begin{align*}  
+        \norm{f - \tau}_2^2 &= \norm{f}_2^2 - \norm{S_n}_2^2 + \norm{S_n}_2^2 - \langle f, S_{f_n} \rangle - \overline{\langle f, S_{f_n} \rangle} + \norm{S_{f_n}}_2^2 \\
+        &= \norm{f}_2^2 - \norm{S_n}_2^2 + \norm{S_n - \tau}_2^2 \\
+        &\geq \norm{f}_2^2 - \norm{S_n}_2^2
+    \end{align*}
+
+    Si on considère $\tau = S_{f_n}$, on a
+    $$
+    \norm{f - S_{f_n}}_2^2 = \norm{f}_2^2 - \langle f, S_{f_n} \rangle - \overline{\langle f, S_{f_n} \rangle} + \norm{S_{f_n}}_2^2
+    $$
+    et
+    $$
+    \langle f, S_{f_n} \rangle = \langle S_{f_n}, S_{f_n} \rangle = \norm{S_{f_n}}_2^2
+    $$
+    donc
+    $$
+    \norm{f - S_{f_n}}_2^2 = \norm{f}_2^2 - \norm{S_{f_n}}_2^2 - \norm{S_{f_n}}_2^2 + \norm{S_{f_n}}_2^2 = \norm{f}_2^2 - \norm{S_{f_n}}_2^2
+    $$
+\end{demonstration}
+
+\begin{corollaire}{Inégalité de Bessel}{}
+    Soit $f: [0, 2\pi[ \to \mathbb{C}$ bornée et intégrable sur $[0, 2\pi[$. Alors
+    $$
+    \sum_{j=-\infty}^{+\infty} |\hat{f_j}|^2 \leq \norm{f}_2^2
+    $$
+    et en particulier
+    $$
+    \lim_{k \to +\infty} |\hat{f_k}| = 0
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+    On sait déjà que $\norm{f - S_{f,n}}_2^2 = \norm{f}_2^2 - \norm{S_{f,n}}_2^2 \geq 0$
+    donc $\norm{S_{f,n}}_2^2 \leq \norm{f}_2^2$ et de plus $\norm{S_{f,n}}_2^2 = \sum_{j=-n}^n |\hat{f_j}|^2$.
+
+    Dans toutes les sommes partielles $S_{f,n}$ sont bornée et $S_{f,n}$ est une série à terme positifs,
+    donc la série est convergente et avec $\sum\limits_{j=-\infty}^{+\infty} |\hat{f_j}|^2 \leq \norm{f}_2^2$, on a $\lim\limits_{k \to +\infty} |\hat{f_k}|^2 = 0$ et donc $\lim\limits_{k \to +\infty} |\hat{f_k}| = 0$.
+\end{demonstration}
+
+\begin{corollaire}{Identité de Parseval}{}
+    Soit $f: [0, 2\pi[ \to \mathbb{C}$ bornée et intégrable sur $[0, 2\pi[$.
+
+    Si pour tout $\varepsilon > 0$, il existe un $N_\varepsilon \geq 0$ et un polynôme trigonométrique d'ordre $N_\varepsilon$ pour lequel $\max\limits_{x \in [0, 2\pi[} |f(x) - \tau(x)| \leq \varepsilon$.
+
+    Alors on a
+    $$
+    \sum_{j=-\infty}^{+\infty} |\hat{f_j}|^2 = \norm{f}_2^2
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+    Soit $\varepsilon > 0$ donné, $N_\varepsilon$ et $\tau$ existent
+    \begin{align*}
+        0 \leq \norm{f - S_{f,N_\varepsilon}}_2^2 &= \norm{f}_2^2 - \norm{S_{f,N_\varepsilon}}_2^2 \\
+        &\leq \norm{f - \tau}_2^2 \\
+        & \leq \frac{1}{2\pi} \int_0^{2\pi} |f(t) - \tau(t)|^2 \, dt \\
+        &\leq \varepsilon^2
+    \end{align*}
+
+    or $\norm{S_{f,N_\varepsilon}}_2^2 = \sum_{j=-N_\varepsilon}^{N_\varepsilon} |\hat{f_j}|^2$, cette série est àtp, croissante et convergente.
+
+    ainsi pour tout $n \geq N_\varepsilon$, on a
+    $$
+    0 \leq \norm{f}_2^2 - \sum_{j=-n}^n |\hat{f_j}|^2 \leq \norm{f}_2^2 - \sum_{j=-N_\varepsilon}^{N_\varepsilon} |\hat{f_j}|^2 \leq \varepsilon^2
+    $$
+
+    On peut passer à la limite quand $n \to +\infty$ et on a le résultat.
+\end{demonstration}
+
+\subsection{Approximations ponctuelles et uniformes}
+
+\begin{definition}[(Le noyau de Dirichlet)]
+    On appelle \textbf{noyau de Dirichlet} d'ordre $k$, noté $D_k$, le polynôme trigonométrique d'ordre $k$ dont tous les coefficients sont égaux à $\frac{1}{2\pi}$, c'est à dire
+    $$
+    D_k(t) = \frac{1}{2\pi} \sum_{j=-k}^k e^{-ijt}
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    $$
+    D_k(t) = \frac{1}{2\pi} \frac{\sin((k + \frac{1}{2})t)}{\sin(\frac{t}{2})} \quad \text{et} \quad \int_{-\pi}^{\pi} D_k(t) \, dt = 1
+    $$
+    et $D_k$ est une fonction paire.
+    \begin{hotwarn}
+        exercice maison
+    \end{hotwarn}
+\end{proposition}
+
+\begin{definition}[(Le noyau de Fejér)]
+    On appelle \textbf{noyau de Fejér} d'ordre $k$, noté $K_n$, la moyenne arithmétique des noyaux de Dirichlet d'ordre inférieur ou égal à $n$, c'est à dire
+    $$
+    K_n(t) = \frac{1}{n + 1} \sum_{k=0}^n D_k(t)
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    $$
+    K_n(t) = \frac{\sin^2(\frac{(n + 1)t}{2})}{2\pi (n + 1) \sin^2(\frac{t}{2})} \quad \text{et} \quad \int_{-\pi}^{\pi} K_n(t) \, dt = 1
+    $$
+    \begin{hotwarn}
+        exercice maison
+    \end{hotwarn}
+\end{proposition}
+
+\end{document}
