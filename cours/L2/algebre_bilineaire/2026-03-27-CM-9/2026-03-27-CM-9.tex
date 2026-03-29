@@ -1,0 +1,48 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+\renewcommand*{\today}{27 March 2026}
+
+\binoppenalty=10000
+\relpenalty=10000
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 9}{\today}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace vectorial euclidien orienté de dimension finie~$n$.
+
+    Soient $x_1, \dots, x_{n-1} \in E$, alors on a
+
+    \begin{enumerate}[label=(\alph*)]
+        \item La famille $(x_1, \dots, x_{n-1})$ est liée si et seulement si $x_1 \wedge \dots \wedge x_{n-1} = 0$.
+        
+        \item Le produit vectoriel est l'unique application linéaire $f : E^{n-1} \to E$ telle que
+        \begin{enumerate}[label=(\roman*)]
+            \raggedright
+            \item $\forall x_1, \dots, x_{n-1} \in E, f(x_1, \dots, x_{n-1}) \in Vect(x_1, \dots, x_{n-1})^\perp$
+            \item $(x_1, \dots, x_{n-1})$ libre implique que $(x_1, \dots, x_{n-1}, f(x_1, \dots, x_{n-1}))$ est une base directe de $E$.
+            \item $\forall x \in E^{n-1}, \norm{f(x)}^2 = gram(x)$
+        \end{enumerate}
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{hotwarn}
+        À revoir
+    \end{hotwarn}
+\end{demonstration}
+
+\begin{methode}
+    Ainsi, étant donné $(x_1, \dots, x_{n-1}) \in E^{n-1}$ et une application linéaire $f : E^{n-1} \to E$.
+
+    On peut vérifier que $f$ est le produit vectoriel en vérifiant les trois propriétés suivantes :
+    \begin{enumerate}[label=(\roman*)]
+        \item $f(x_1, \dots, x_{n-1})$ est orthogonal à tous les vecteurs de la famille $(x_1, \dots, x_{n-1})$.
+        \item $(x_1, \dots, x_{n-1}, f(x_1, \dots, x_{n-1}))$ est une base directe de $E$.
+        \item $gram(x_1, \dots, x_{n-1}) = \norm{f(x_1, \dots, x_{n-1})}^2$.
+    \end{enumerate}
+\end{methode}
+
+\end{document}
