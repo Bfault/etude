@@ -1,0 +1,40 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{17 March 2026}
+
+\begin{document}
+
+\hotbox{Géometrie 2}{CM 6}{\today}
+
+\section{Les droites}
+
+\subsection{Représentation analytique}
+
+\begin{definition}[(Équation (cartésienne) d'une droite dans un plan)]
+    Soit $D$ une droite de $\R^2$. On dit que $D$ admet une \textbf{équation cartésienne} s'il existe $a, b, c \in \R$ où $a$ et $b$ ne sont pas tous les deux nuls, tels que
+    $$
+        D = \{ (x, y) \in \R^2 : ax + by + c = 0 \}
+    $$
+\end{definition}
+
+\begin{definition}[(Équation (cartésienne) d'une droite dans l'espace)]
+    Une droite $D$ de $\R^3$ est définie par l'intersection de deux plans. Par conséquent, $D$ admet une \textbf{équation cartésienne} s'il existe \text{$n_1 := (u_1, v_1, w_1), n_2 := (u_2, v_2, w_2) \in \R^3$} et $d_1, d_2 \in \R$ où 
+    $n_1$ et $n_2$ ne sont pas colinéaires, tels que
+    $$
+        \begin{cases}
+            u_1 x + v_1 y + w_1 z + d_1 = 0 \\
+            u_2 x + v_2 y + w_2 z + d_2 = 0
+        \end{cases}
+    $$
+\end{definition}
+
+\begin{definition}[(Équation paramétrique d'une droite)]
+    Soit $D$ une droite de $\R^2$. On dit que $D$ admet une \textbf{équation paramétrique} s'il existe un point $A = (x_0, y_0) \in D$ et un vecteur directeur $\vec{u} = (u, v) \in \R^2\setminus\{0\}$ où $u$ et $v$ tels que
+    $$
+        D = \{ A + \lambda\vec{u} : \lambda \in \R \}
+    $$
+\end{definition}
+
+\end{document}
