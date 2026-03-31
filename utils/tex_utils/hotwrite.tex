@@ -43,3 +43,48 @@
 }{%
     \end{tcolorbox}%
 }
+
+\newcommand{\stump}[2]{%
+  \makebox[0pt][c]{%
+    \begin{tikzpicture}[overlay]
+      \node[opacity=0.85, rotate=18] at (0,0) {
+        \begin{tikzpicture}
+          \colorlet{stampcolor}{red!75!black}
+
+          % Bordure ondulée extérieure
+          \draw[ultra thick, stampcolor,
+                decorate, decoration={zigzag, segment length=3mm, amplitude=0.35mm}]
+                (0,0) circle (2.1cm);
+
+          % Anneaux
+          \draw[thick, stampcolor] (0,0) circle (1.95cm);
+          \draw[thick, stampcolor] (0,0) circle (1.15cm);
+
+          % Disque central rouge
+          \fill[stampcolor!65] (0,0) circle (1.05cm);
+
+          % Texte courbé (rayon réduit à 1.45 cm)
+          \path[decorate, decoration={
+                text along path, text align=center,
+                text={|\sffamily\bfseries\Large\color{stampcolor}|#2}}]
+                (180:1.45cm) arc (180:0:1.45cm);
+
+          \path[decorate, decoration={
+                text along path, text align=center, reverse path,
+                text={|\sffamily\bfseries\Large\color{stampcolor}|#2}}]
+                (180:1.45cm) arc (180:360:1.45cm);
+
+          % Bande centrale blanche
+          \fill[white] (-2.4,-0.55) rectangle (2.4,0.55);
+
+          % Barres de la bande
+          \draw[ultra thick, stampcolor] (-2.3,0.55) -- (2.3,0.55);
+          \draw[ultra thick, stampcolor] (-2.3,-0.55) -- (2.3,-0.55);
+
+          % Texte central
+          \node[text=stampcolor, font=\sffamily\bfseries\Huge] at (0,0) {#1};
+        \end{tikzpicture}
+      };
+    \end{tikzpicture}%
+  }%
+}
