@@ -1,0 +1,78 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{02 April 2026}
+
+\begin{document}
+
+\hotbox{Analyse 4}{CM 14}{\today}
+
+\subsection{Approximation ponctuelle}
+
+\begin{theoreme}{Théorème de Dirichlet}{}
+    Soit $f: [0, 2\pi[ \to \mathbb{C}$ une fonction $\mathcal{C}^1$ par morceaux, $2\pi$-périodique.
+    Alors pour tout $x \in \R$ on a
+    $$
+    \lim_{n \to +\infty} S_{f,n}(x) = \dfrac{f(x_+) + f(x_-)}{2}
+    $$
+    où $f(x_+)$ et $f(x_-)$ sont respectivement les limites à droite et à gauche de $f$ en $x$.
+\end{theoreme}
+
+\begin{remarque}
+    À l'intérieur d'un intervalle de continuité de $f$, la série de Fourier de $f$ converge vers $f$.
+    
+    Notre théorème nous sert quand on est en présence d'une discontinuité de $f$.
+\end{remarque}
+
+\begin{demonstration}
+    \n
+    \n
+    \n
+    \n
+    \n
+    \n
+    \stump{À faire}{vite!}
+    \n
+    \n
+    \n
+    \n
+    \n
+\end{demonstration}
+
+\begin{definition}
+    On appelle \textbf{moyenne de Cesàro} d'ordre $n$ de la série de Fourier de $f$, le polynome trigonométrique
+    $$
+    \sigma_{f,n} = \frac{1}{n + 1} \sum_{k=0}^n S_{f,k}
+    $$
+\end{definition}
+
+\begin{theoreme}{Théorème de convergence uniforme de Fejér}{}
+    Si $f: \R \to \C$ est $2\pi$-périodique et continue sur $[0, 2\pi]$, alors
+    $$
+    \lim_{n \to +\infty} \norm{\sigma_{f,n} - f}_{\infty, [0, 2\pi]} = 0
+    $$
+    
+    c'est à dire que la moyenne de Cesàro de la série de Fourier de $f$ converge uniformément vers $f$.
+\end{theoreme}
+
+\begin{remarque}
+    Quand c'est le cas on peut alors utiliser l'identité de Parseval
+\end{remarque}
+
+\begin{demonstration}
+    \n
+    \n
+    \n
+    \n
+    \n
+    \n
+    \stump{À faire}{vite!}
+    \n
+    \n
+    \n
+    \n
+    \n
+\end{demonstration}
+
+\end{document}
