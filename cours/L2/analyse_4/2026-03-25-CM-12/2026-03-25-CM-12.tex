@@ -11,26 +11,26 @@
 \subsection{Approximation $L^2$}
 
 \begin{definition}
-    On définit le produit
+    On définit le produit pour tout $f, g: [0, 2\pi[ \to \mathbb{C}$, bornées et intégrables sur $]0, 2\pi[$
     $$
-    \forall f, g \in Cpm([0, 2\pi[, \mathbb{C}), \quad \langle f, g \rangle = \frac{1}{2\pi} \int_0^{2\pi} f(t) \overline{g(t)} \, dt.
+    \langle f, g \rangle = \frac{1}{2\pi} \int_0^{2\pi} f(t) \overline{g(t)} \, dt
     $$
 
     On peut définir une norme (dite norme $L^2$) par
     $$
-    \norm{f}_2 = \sqrt{\langle f, f \rangle} = \sqrt{\frac{1}{2\pi} \int_0^{2\pi} |f(t)|^2 \, dt}.
+    \norm{f}_2 = \sqrt{\langle f, f \rangle} = \sqrt{\frac{1}{2\pi} \int_0^{2\pi} |f(t)|^2 \, dt}
     $$
 \end{definition}
 
-\begin{lemme}{Inégalité de Schwarz}{}
-    Soient $f, g \in Cpm([0, 2\pi[, \mathbb{C})$ telles que $\norm{f}_2 \neq 0$ et $\norm{g}_2 \neq 0$. Alors
+\begin{lemme}{Inégalité de Cauchy-Schwarz}{}
+    Soient $f, g: [0, 2\pi[ \to \mathbb{C}$ bornées et intégrables sur $]0, 2\pi[$, telles que $\norm{f}_2 \neq 0$ et $\norm{g}_2 \neq 0$.
     $$
     |\langle f, g \rangle| \leq \norm{f}_2 \norm{g}_2
     $$
 \end{lemme}
 
 \begin{proposition}{}{}
-    Soit $f \in Cpm([0, 2\pi[, \mathbb{C})$. Alors
+    Soit $f: [0, 2\pi[ \to \mathbb{C}$ bornée et intégrable sur $]0, 2\pi[$.
     $$
     |\hat{f_k}| \leq \norm{f}_2
     $$
@@ -45,13 +45,13 @@
 \end{demonstration}
 
 \begin{definition}
-    Soient $f, g \in Cpm([0, 2\pi[, \mathbb{C})$.
+    Soient $f, g: [0, 2\pi[ \to \mathbb{C}$ bornées et intégrables sur $]0, 2\pi[$.
     
-    $f$ et $g$ sont dits orthogonaux si $\langle f, g \rangle = 0$.
+    $f$ et $g$ sont dits \textbf{orthogonaux} si $\langle f, g \rangle = 0$.
 \end{definition}
 
 \begin{theoreme}{}{}
-    Pour tout $k \in \Z$ si on note $e_k = e^{-ikx}$, alors la famille $(e_k)_{k \in \Z}$ est orthogonale dans l'espace des fonctions intégrables sur $[0, 2\pi[$.
+    Pour tout $k \in \Z$ si on note $e_k = e^{-ikx}$, alors la famille $(e_k)_{k \in \Z}$ est orthogonale dans l'espace des fonctions intégrables sur $]0, 2\pi[$.
 \end{theoreme}
 
 \begin{demonstration}
@@ -65,15 +65,15 @@
 \end{demonstration}
 
 \begin{corollaire}{}{}
-    La famille $\{ \cos(kx), \sin(kx) \}_{k \in \N}$ est orthogonale dans l'espace des fonctions intégrables sur $[0, 2\pi[$.
+    La famille $\{ \cos(kx), \sin(kx) \}_{k \in \N}$ est orthogonale dans l'espace des fonctions intégrables sur $]0, 2\pi[$.
 \end{corollaire}
 
 \begin{corollaire}{}{}
     Si $\tau$ est un polynôme trigonométrique d'ordre $n$ de la forme
     $$
-    \tau(x) = \sum_{j=-n}^n c_j (e^{ix})^j
+    \tau(x) = \sum_{k=-n}^n c_k (e^{ikx})
     $$
-    alors $c_j = \hat{\tau_j}$ pour tout $j \in \{-n, \dots, n\}$.
+    alors $c_k = \hat{\tau_k}$ pour tout $k \in \{-n, \dots, n\}$.
 \end{corollaire}
 
 \begin{demonstration}
@@ -102,17 +102,21 @@
 \end{demonstration}
 
 \begin{theoreme}{}{}
-    Soit $f \in Cpm([0, 2\pi[, \mathbb{C})$ bornée.
+    Soit $f: [0, 2\pi[ \to \mathbb{C}$ bornée et intégrable sur $]0, 2\pi[$.
 
-    $S_{f_n}$ la somme partielle d'ordre $n$ de la série de Fourier de $f$.
+    $S_{f,n}$ la somme partielle d'ordre $n$ de la série de Fourier de $f$.
     $$
-    S_{f_n}(t) = \sum_{j=-n}^n \hat{f_j} e^{ijt}
+    S_{f,n}(x) = \sum_{k=-n}^n \hat{f_k} e^{ikx}
     $$
     et soit $\tau$ un polynôme trigonométrique d'ordre $n$. Alors
     $$
-    \norm{f - S_{f_n}}_2 \leq \norm{f - \tau}_2
+    \norm{f - S_{f,n}}_2 \leq \norm{f - \tau}_2
     $$
 \end{theoreme}
+
+\begin{remarque}
+    Ce résultat signifie que $S_{f,n}$ est la meilleure approximation de $f$ par un polynôme trigonométrique d'ordre $n$ pour la norme $L^2$.
+\end{remarque}
 
 \begin{demonstration}
     On a 
@@ -126,6 +130,7 @@
         &= \sum_{j=-n}^n \overline{\hat{\tau_j}} \frac{1}{2\pi} \int_0^{2\pi} f(t) e^{-ijt} \, dt \\
         &= \langle f, S_{f_n} \rangle
     \end{align*}
+    \stump{À refaire}{NUL}
     et donc
     \begin{align*}  
         \norm{f - \tau}_2^2 &= \norm{f}_2^2 - \norm{S_n}_2^2 + \norm{S_n}_2^2 - \langle f, S_{f_n} \rangle - \overline{\langle f, S_{f_n} \rangle} + \norm{S_{f_n}}_2^2 \\
@@ -148,7 +153,7 @@
 \end{demonstration}
 
 \begin{corollaire}{Inégalité de Bessel}{}
-    Soit $f: [0, 2\pi[ \to \mathbb{C}$ bornée et intégrable sur $[0, 2\pi[$. Alors
+    Soit $f: [0, 2\pi[ \to \mathbb{C}$ bornée et intégrable sur $[0, 2\pi[$.
     $$
     \sum_{j=-\infty}^{+\infty} |\hat{f_j}|^2 \leq \norm{f}_2^2
     $$
@@ -159,19 +164,18 @@
 \end{corollaire}
 
 \begin{demonstration}
+
     On sait déjà que $\norm{f - S_{f,n}}_2^2 = \norm{f}_2^2 - \norm{S_{f,n}}_2^2 \geq 0$
     donc $\norm{S_{f,n}}_2^2 \leq \norm{f}_2^2$ et de plus $\norm{S_{f,n}}_2^2 = \sum_{j=-n}^n |\hat{f_j}|^2$.
+    \stump{À refaire}{NUL}
 
     Dans toutes les sommes partielles $S_{f,n}$ sont bornée et $S_{f,n}$ est une série à terme positifs,
     donc la série est convergente et avec $\sum\limits_{j=-\infty}^{+\infty} |\hat{f_j}|^2 \leq \norm{f}_2^2$, on a $\lim\limits_{k \to +\infty} |\hat{f_k}|^2 = 0$ et donc $\lim\limits_{k \to +\infty} |\hat{f_k}| = 0$.
 \end{demonstration}
 
 \begin{corollaire}{Identité de Parseval}{}
-    Soit $f: [0, 2\pi[ \to \mathbb{C}$ bornée et intégrable sur $[0, 2\pi[$.
+    Soit $f: \R \to \C$ continue par morceaux et sur $[0, 2\pi]$ et $2\pi$-périodique.
 
-    Si pour tout $\varepsilon > 0$, il existe un $N_\varepsilon \geq 0$ et un polynôme trigonométrique d'ordre $N_\varepsilon$ pour lequel $\max\limits_{x \in [0, 2\pi[} |f(x) - \tau(x)| \leq \varepsilon$.
-
-    Alors on a
     $$
     \sum_{j=-\infty}^{+\infty} |\hat{f_j}|^2 = \norm{f}_2^2
     $$
@@ -185,6 +189,7 @@
         & \leq \frac{1}{2\pi} \int_0^{2\pi} |f(t) - \tau(t)|^2 \, dt \\
         &\leq \varepsilon^2
     \end{align*}
+    \stump{À refaire}{NUL}
 
     or $\norm{S_{f,N_\varepsilon}}_2^2 = \sum_{j=-N_\varepsilon}^{N_\varepsilon} |\hat{f_j}|^2$, cette série est àtp, croissante et convergente.
 
@@ -206,13 +211,12 @@
 \end{definition}
 
 \begin{proposition}{}{}
+    Pour tout $k \in \N$, on a
     $$
     D_k(t) = \frac{1}{2\pi} \frac{\sin((k + \frac{1}{2})t)}{\sin(\frac{t}{2})} \quad \text{et} \quad \int_{-\pi}^{\pi} D_k(t) \, dt = 1
     $$
     et $D_k$ est une fonction paire.
-    \begin{hotwarn}
-        exercice maison
-    \end{hotwarn}
+
 \end{proposition}
 
 \begin{definition}[(Le noyau de Fejér)]
@@ -223,12 +227,17 @@
 \end{definition}
 
 \begin{proposition}{}{}
+    Pour tout $n \in \N$, on a
     $$
     K_n(t) = \frac{\sin^2(\frac{(n + 1)t}{2})}{2\pi (n + 1) \sin^2(\frac{t}{2})} \quad \text{et} \quad \int_{-\pi}^{\pi} K_n(t) \, dt = 1
     $$
-    \begin{hotwarn}
-        exercice maison
-    \end{hotwarn}
 \end{proposition}
+
+\begin{lemme}{Lemme de localisation}{}
+    Pour tout $\delta \in ]0, \pi[$, on a
+    $$
+    \lim_{n \to +\infty} \max_{z \in [\delta, \pi]} |K_n(z)| = 0
+    $$
+\end{lemme}
 
 \end{document}

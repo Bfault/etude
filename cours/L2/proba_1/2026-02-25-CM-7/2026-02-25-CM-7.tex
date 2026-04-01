@@ -1,7 +1,6 @@
 \documentclass[a4paper, 12pt]{article}
 
 \usepackage{utils}
-
 \renewcommand*{\today}{25 February 2026}
 
 \begin{document}
@@ -43,14 +42,14 @@
 \begin{definition}
     Soit $Z \hookrightarrow \mathcal{N}(0, 1)$. On note $\phi$ la fonction de répartition de $Z$, c'est à dire
     $$
-    \phi(x) = P(Z \leq x) = \int_{-\infty}^x \dfrac{1}{\sqrt{2\pi}} e^{-\dfrac{t^2}{2}} dt \quad \text{pour tout } x \in \R
+    \phi(x) = P(Z \leq x) = \int_{-\infty}^x \dfrac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt \quad \text{pour tout } x \in \R
     $$
 \end{definition}
 
 \begin{definition}
     Soit $[a, b] \subset \R$ avec $a < b$. On dit que $X$ suit une \textbf{loi uniforme} sur $[a, b]$ si la densité de probabilité vaut
     $$
-    f_X(x) = \dfrac{1}{b - a} \mathbb{1}_{[a, b]}(x) \quad \text{pour tout } x \in \R
+    f_X(x) = \dfrac{1}{b - a} \mathds{1}_{[a, b]}(x) \quad \text{pour tout } x \in \R
     $$
     On note $X \sim \mathcal{U}([a, b])$ ou encore $X \hookrightarrow \mathcal{U}([a, b])$.
 \end{definition}
@@ -74,7 +73,7 @@
     Soit $\lambda > 0$. On dit que $X$ suit une \textbf{loi exponentielle} de paramètre $\lambda$
     si sa densité de probabilité vaut
     $$
-    f_X(x) = \lambda e^{-\lambda x} \mathbb{1}_{\R_+}(x) \quad \text{pour tout } x \in \R.
+    f_X(x) = \lambda e^{-\lambda x} \mathds{1}_{\R_+}(x) \quad \text{pour tout } x \in \R.
     $$
     On note $X \sim \mathcal{E}(\lambda)$ ou encore $X \hookrightarrow \mathcal{E}(\lambda)$.
 \end{definition}
