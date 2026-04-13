@@ -1,0 +1,124 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{10 April 2026}
+
+\begin{document}
+
+\hotbox{Algèbre bilinéaire}{CM 10}{\today}
+
+\section{Groupe orthogonal}
+
+\begin{definition}
+    Soit $(E, \langle \rangle)$ un $\K$-espace euclidien vectoriel de dimension finie. Le \textbf{groupe orthogonal} de $E$ est l'ensemble
+    $$
+        O(E, \langle \rangle) = \{f \in \mathrm{end}(E) \mid \langle f(x), f(y) \rangle = \langle x, y \rangle \text{ pour tous } x, y \in E\}
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \rangle)$ un $\K$-espace euclidien vectoriel de dimension finie et $B$ une base orthonormée de $E$.
+    $$
+    ^t Mat_B(f) Mat_B(f) = I_n \iff f \in O(E)
+    $$
+    ou autrement dit, $M \in \mathcal{M}_n(\K)$ est une matrice orthogonale si et seulement si $^t M M = I_n$.
+    
+    On sait que $det(M) = \pm 1$ pour une matrice orthogonale $M$.
+\end{proposition}
+
+\subsection{Réduction des endomorphismes orthogonaux}
+
+\begin{proposition}{}{}
+    Soit $f \in \mathrm{end}(E)$ un endomorphisme orthogonal d'un $\K$-espace euclidien vectoriel de dimension finie.
+
+    Si $f$ possède une valeur propre réelle $\lambda$, alors $\lambda = \pm 1$ et
+    $$
+    \mathrm{Ker}(f - \lambda id_E) \perp \mathrm{Ker}(f + \lambda id_E)
+    $$
+\end{proposition}
+
+\begin{corollaire}{}{}
+    Si $dim(E) = 1$ alors
+    $$
+    O^+(E) = \{id_E\} \quad \text{ et } \quad O^-(E) = \{-id_E\}
+    $$
+\end{corollaire}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \rangle)$ un $\K$-espace euclidien vectoriel de dimension 2.
+
+    Les éléments de $O^+(E)$ s'appellent les rotations vectorielles.
+
+    $O^+(E)$ est un groupe abélien.
+
+    Si $f \in O^+(E)$ et $\mathcal{B}$ est une base orthonormée de $E$, alors
+    $$
+    Mat_{\mathcal{B}}(f) = \begin{pmatrix}
+        \cos \theta & -\sin \theta \\
+        \sin \theta & \cos \theta
+    \end{pmatrix}
+    $$
+    pour un certain $\theta \in \R \mod 2\pi$.
+
+    La matrice de $f$ est la même dans toute autre base orthonormée de même orientation que $\mathcal{B}$.
+
+    Les éléments de $O^+(E)$ ne sont pas diagonalisables sauf pour $id_E$ et $-id_E$.
+\end{proposition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \rangle)$ un $\K$-espace euclidien vectoriel de dimension 2.
+
+    Les éléments de $O^-(E)$ s'appellent les symétries vectorielles de $E$.
+
+    $O^-(E)$ n'est pas un groupe.
+
+    Si $f \in O^-(E)$ et $\mathcal{B}$ est une base orthonormée de $E$, alors
+    $$
+    Mat_{\mathcal{B}}(f) = \begin{pmatrix}
+        \cos \theta & \sin \theta \\
+        \sin \theta & -\cos \theta
+    \end{pmatrix}
+    $$
+    pour un certain $\theta \in \R \mod 2\pi$.
+
+    La matrice de $f$ est la même dans toute autre base orthonormée de même orientation que $\mathcal{B}$.
+
+    Les éléments de $O^-(E)$ sont diagonalisables.
+\end{proposition}
+
+\begin{lemme}{}{}
+    Soit $(E, \langle \rangle)$ un $\K$-espace euclidien vectoriel de dimension finie et $V \subset E$ un sous-espace vectoriel de $E$.
+    Soit $f \in O(E)$
+    $$
+    f(V) \subset V \implies f(V^\perp) \subset V^\perp
+    $$
+\end{lemme}
+
+\begin{lemme}{}{}
+    Soit $(E, \langle \rangle)$ un $\K$-espace euclidien vectoriel de dimension finie et $f \in \mathrm{end}(E)$ un endomorphisme de $E$.
+
+    $f$ stabilise un sous-espace vectoriel de dimension 1 ou 2 de $E$.
+\end{lemme}
+
+\begin{theoreme}{}{}
+    Soit $(E, \langle \rangle)$ un $\K$-espace euclidien vectoriel de dimension finie et $f \in O(E)$ un endomorphisme orthogonal de $E$.
+
+    Il existe une base orthonormée de $E$ dans laquelle la matrice de $f$ est de la forme
+    $$
+    \begin{pmatrix}
+        -I_p & 0 & 0 & \cdots & 0 \\
+        0 & I_q & 0 & \cdots & 0 \\
+        0 & 0 & R_{\theta_1} & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & 0 & \cdots & R_{\theta_k} \\
+    \end{pmatrix}
+    $$
+    où $R_{\theta_i}$ est une matrice de rotation de l'espace euclidien de dimension 2, $I_p$ est la matrice identité de l'espace euclidien de dimension $p$ et $n = 2k + p + q$.
+
+    De plus, les entiers $p, q, k$ et les angles $\theta_1, \ldots, \theta_k$ sont uniques.
+
+    En particulier, $f \in O^+(E) \iff p \text{ est pair}$
+\end{theoreme}
+
+\end{document}

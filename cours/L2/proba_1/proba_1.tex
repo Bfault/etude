@@ -1,0 +1,1112 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{utils}
+
+\title{ Probabilités 1 }
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\clearpage
+
+\section{Bases des Probabilités}
+
+\subsection{Événements et univers}
+
+\begin{definition}
+    Soit $\Omega$ un ensemble non vide.
+    \begin{itemize}[label=--]
+        \item On appelle \textbf{expérience aléatoire sur $\Omega$} le fait de sélectionner un élément $\omega \in \Omega$ de manière incertaine.
+        \item $\omega$ est appelé un \textbf{évenement élémentaire}.
+        \item L'ensemble $\Omega$ est appelé \textbf{univers} de l'expérience aléatoire.
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Soit $\Omega$ un univers.
+    On appelle \textbf{événement} une partie de $\Omega$.
+\end{definition}
+
+\begin{definition}
+    Soient $\Omega$ un univers  et $A$ et $B$ deux événements.
+    \begin{itemize}[label=--]
+        \item On dit que $A$ est \textbf{réalisé} si l'élément $\omega$ sélectionné par l'expérience appartient à $A$.
+        \item L'événement \textbf{contraire} de $A$ est l'événement noté $\overline{A}$ défini par $\overline{A} = \{\omega \in \Omega \mid \omega \notin A\}$ (le complémentaire de $A$ dans $\Omega$).
+        \item L'événement "$A$ ou $B$" est l'événement $A \cup B$.
+        \item L'événement "$A$ et $B$" est l'événement $A \cap B$.
+        \item On dit que "$A$ entraine $B$" si $A \subset B$.
+        \item $emptyset$ est appelé l'\textbf{événement impossible} et $\Omega$ l'\textbf{événement certain}.
+        \item $A$ et $B$ sont dits \textbf{incompatibles} si $A \cap B = \emptyset$.
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    Ne pas confondre incompatibilité et indépendance (qui sera vue plus tard).
+\end{remarque}
+
+\begin{definition}
+    Soit $\Omega$ un univers et $\mathcal{P}(\Omega)$ l'ensemble des parties de $\Omega$.
+    On appelle \textbf{tribu} sur $\Omega$ toute partie $\mathcal{T} \subset \mathcal{P}(\Omega)$ telle que :
+    \begin{itemize}[label=--]
+        \item $\Omega \in \mathcal{T}$
+        \item Si $A \in \mathcal{T}$, alors $\overline{A} \in \mathcal{T}$
+        \item Pour toute famille (non nécessairement finie) $(A_i)_{i \in I}$ d'éléments de $\mathcal{T}$, on a :
+        $$
+        \bigcup_{i \in I} A_i \in \mathcal{T}
+        $$
+    \end{itemize}
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $\mathcal{T}$ une tribu sur un univers $\Omega$.
+    Alors pour toute famille finie $(A_i)_{i \in I}$ d'éléments de $\mathcal{T}$, on a :
+    $$
+    \bigcap_{i \in I} A_i \in \mathcal{T}
+    $$
+\end{proposition}
+
+\begin{remarque}
+    Ne fonctionne pas dans le cas d'intersection infinie.
+\end{remarque}
+
+\begin{definition}
+    Soit $\Omega$ un univers et $\mathcal{T}$ une tribu sur $\Omega$.
+    On appelle \textbf{espace probabilisable} le couple $(\Omega, \mathcal{T})$.
+\end{definition}
+
+\begin{remarque}
+    Un évenement sera donc un élément de la tribu $\mathcal{T}$.
+\end{remarque}
+
+\subsection{Loi de probabilité sur un espace probabilisable}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T})$ un espace probabilisable.
+    On appelle \textbf{probabilité} sur $(\Omega, \mathcal{T})$ toute application $\mathbb{P} : \mathcal{T} \to [0, 1]$ telle que :
+    \begin{itemize}[label=--]
+        \item $\mathbb{P}(\Omega) = 1$
+        \item Pour toute suite $(A_n)_{n \geq 0}$ d'événements deux à deux incompatibles, on a :
+        $$
+        \mathbb{P}\left(\bigcup\limits_{n = 0}^\infty A_n\right) = \sum\limits_{n = 0}^\infty \mathbb{P}(A_n)
+        $$
+    \end{itemize}
+    Le triplet $(\Omega, \mathcal{T}, \mathbb{P})$ est appelé \textbf{espace probabilisé}.
+\end{definition}
+
+\begin{remarque}
+    La deuxième propriété est appelée \textbf{$\sigma$-additivité}.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé.
+    \begin{enumerate}[label=(\roman*)]
+        \item $\mathbb{P}(\emptyset) = 0$
+        \item Pour toute famille $(A_i)_{i = 1}^n$ d'événements deux à deux incompatibles, on a :
+        $$
+        \mathbb{P}\left(\bigcup\limits_{i = 1}^n A_i\right) = \sum\limits_{i = 1}^n \mathbb{P}(A_i)
+        $$
+        \item Pour tout événement $A$, on a :
+        $$
+        \mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A)
+        $$
+        \item Pour tous événements $A$ et $B$ on a :
+        $$
+        \mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A \cap B)
+        $$
+        \item Si $A \subset B$, alors :
+        $$
+        \mathbb{P}(A) \leq \mathbb{P}(B)
+        $$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}[label=(\roman*)]
+        \item.
+        \item En notant $A_i = \emptyset$ pour $i > n$, on applique la $\sigma$-additivité.
+        \item On a $\Omega = A \cup \overline{A}$, de plus $A$ et $\overline{A}$ sont incompatibles car $A \cap \overline{A} = \emptyset$.
+        Donc :
+        $$
+        \mathbb{P}(\Omega) = \mathbb{P}(A) + \mathbb{P}(\overline{A}) \implies \mathbb{P}(\overline{A}) = 1 - \mathbb{P}(A)
+        $$
+        \item D'une part, on a $A \cup B = A \cup (B \setminus A)$ et de l'autre $B = (B \setminus A) \cup (A \cap B)$.
+        De plus, les deux unions sont des unions d'événements incompatibles.
+        Donc :
+        \begin{align*}
+            \mathbb{P}(A \cup B) &= \mathbb{P}(A) + \mathbb{P}(B \setminus A) \\
+            \mathbb{P}(B) &= \mathbb{P}(B \setminus A) + \mathbb{P}(A \cap B)
+        \end{align*}
+        En combinant les deux, on obtient le résultat.
+        \item Si $A \subset B$, alors $B = A \cup (B \setminus A)$ et $A$ et $B \setminus A$ sont incompatibles.
+        Donc :
+        $$
+        \mathbb{P}(B) = \mathbb{P}(A) + \mathbb{P}(B \setminus A) \geq \mathbb{P}(A)
+        $$
+    \end{enumerate}
+    
+\end{demonstration}
+
+\clearpage
+
+\section{Conditionnement et indépendance}
+
+\begin{definition}
+    Soit \((\Omega, \mathcal{F}, P)\) un espace de probabilité. Soit $B \in \mathcal{T}$
+    un événement tel que $\mathbb{P}(B) \neq 0$.
+    Pour tout $A \in \mathcal{T}$, la probabilité que $A$ se réalise \textbf{sachant} que $B$ est réalisé est définie par
+    $$
+    \mathbb{P}(A|B) = \frac{\mathbb{P}(A \cap B)}{\mathbb{P}(B)}.
+    $$
+\end{definition}
+
+\begin{remarque}
+    on peut aussi noter $\mathbb{P}_B(A)$ mais l'autre notation est préférable.
+\end{remarque}
+
+\begin{theoreme}{Formule des probabilités composées}{}
+    Soit \((\Omega, \mathcal{F}, P)\) un espace de probabilité. Soit $A_1, A_2, \ldots, A_n \in \mathcal{T}$ tels que $\mathbb{P}(\bigcap_{i=1}^n A_i) \neq 0$.
+
+    Alors on a
+    $$
+    \mathbb{P}\left(\bigcap_{i=1}^n A_i\right) = \mathbb{P}(A_1) \mathbb{P}(A_2|A_1) \mathbb{P}(A_3|A_1 \cap A_2) \cdots \mathbb{P}\left(A_n | \bigcap_{i=1}^{n-1} A_i\right).
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Il suffit de faire une récurrence, cette démonstration est laissée au lecteur.
+\end{demonstration}
+
+\begin{definition}
+    Soit \((\Omega, \mathcal{F}, P)\) un espace de probabilité. Soit $(A_i)_{i \in I}$ une famille finie ou dénombrable d'événements de $\mathcal{T}$.
+
+    On dit que la famille $(A_i)_{i \in I}$ est \textbf{exhaustive} si
+    \begin{itemize}[label=--]
+        \item $\forall i, j \in I, i \neq j, A_i \cap A_j = \emptyset$
+        \item $\bigcup_{i \in I} A_i = \Omega$
+        \item $\forall i \in I, \mathbb{P}(A_i) \neq 0$
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    La famille exhaustive la plus simple est $\{A, \overline{A}\}$ pour un événement $A$ tel que $\mathbb{P}(A) \neq 0$ et $\mathbb{P}(\bar{A}) \neq 0$.
+\end{remarque}
+
+\clearpage
+
+\begin{theoreme}{Formule des probabilités totales}{}
+    Soit $(B_i)$ une famille exhaustive d'événements sur un espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    
+    Alors, pour tout événement $A \in \mathcal{T}$, on a:
+    $$
+        \mathbb{P}(A) = \sum_{i} \mathbb{P}(A | B_i) \mathbb{P}(B_i)
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $A \in \mathcal{T}$. On peut écrire:
+    $$
+        A = A \cap \Omega = A \cap \left( \bigcup_{i} B_i \right) = \bigcup_{i} (A \cap B_i)
+    $$
+    Comme les événements $B_i$ sont disjoints deux à deux, les événements $A \cap B_i$ le sont aussi. Par conséquent, on peut appliquer la propriété de l'additivité des probabilités:
+    $$
+        \mathbb{P}(A) = \mathbb{P}\left( \bigcup_{i} (A \cap B_i) \right) = \sum_{i} \mathbb{P}(A \cap B_i)
+    $$
+    En utilisant la définition de la probabilité conditionnelle, on a:
+    $$
+        \mathbb{P}(A \cap B_i) = \mathbb{P}(A | B_i) \mathbb{P}(B_i)
+    $$
+    En substituant cette expression dans la somme précédente, on obtient:
+    $$
+        \mathbb{P}(A) = \sum_{i} \mathbb{P}(A | B_i) \mathbb{P}(B_i)
+    $$
+\end{demonstration}
+
+\begin{theoreme}{Formule de Bayes}{}
+    Soit $(B_i)_{i \in I}$ une famille exhaustive d'événements sur un espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Soit $A \in \mathcal{T}$ un événement tel que $\mathbb{P}(A) \neq 0$.
+
+    Alors, pour tout $i \in I$, on a:
+    $$
+        \mathbb{P}(B_i | A) = \frac{\mathbb{P}(A | B_i) \mathbb{P}(B_i)}{\sum_{j} \mathbb{P}(A | B_j) \mathbb{P}(B_j)}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Soit $i \in I$. Par la définition de la probabilité conditionnelle, on a:
+    $$
+        \mathbb{P}(B_i | A) = \frac{\mathbb{P}(B_i \cap A)}{\mathbb{P}(A)}
+    $$
+    En utilisant la définition de la probabilité conditionnelle pour $\mathbb{P}(B_i \cap A)$, on obtient:
+    $$
+        \mathbb{P}(B_i \cap A) = \mathbb{P}(A | B_i) \mathbb{P}(B_i)
+    $$
+    En substituant cette expression dans la formule précédente, on a:
+    $$
+        \mathbb{P}(B_i | A) = \frac{\mathbb{P}(A | B_i) \mathbb{P}(B_i)}{\mathbb{P}(A)}
+    $$
+    En utilisant la formule des probabilités totales pour $\mathbb{P}(A)$, on obtient:
+    $$
+        \mathbb{P}(A) = \sum_{j} \mathbb{P}(A | B_j) \mathbb{P}(B_j)
+    $$
+    En substituant cette expression dans le dénominateur, on arrive à:
+    $$
+        \mathbb{P}(B_i | A) = \frac{\mathbb{P}(A | B_i) \mathbb{P}(B_i)}{\sum_{j} \mathbb{P}(A | B_j) \mathbb{P}(B_j)}
+    $$
+\end{demonstration}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé.
+
+    \begin{enumerate}[label=(\alph*)]
+        \item $A, B \in \mathcal{T}$ sont dits \textbf{indépendants} si
+        $$
+            \mathbb{P}(A \cap B) = \mathbb{P}(A) \mathbb{P}(B)
+        $$
+        \item Une famille d'événements $(A_i)_{i \in I}$ est dite \textbf{indépendante} si
+        $$
+            \forall J \subseteq I, \quad \mathbb{P}\left( \bigcap_{j \in J} A_j \right) = \prod_{j \in J} \mathbb{P}(A_j)
+        $$
+    \end{enumerate}
+\end{definition}
+
+\begin{commentaire}
+    Je n'aime pas le terme "indépendant" car il laisse penser à une disjonction des événements, ce qui n'est pas le cas. Équilibrés ou orthogonaux seraient des termes plus appropriés.
+\end{commentaire}
+
+\clearpage
+
+\subsection{Produit fini d'espaces probabilisés}
+
+\begin{definition}[(Pavé mesurable)]
+    Soit pour tout $i \in \llbracket 1, n \rrbracket$, une famille $(\Omega_i, \mathcal{T}_i, \mathbb{P}_i)$ d'espaces probabilisés.
+
+    On appelle \textbf{pavé mesurable} de $\Omega = \Omega_1 \times \Omega_2 \times \cdots \times \Omega_n$ tout ensemble de la forme
+    $$
+    A = A_1 \times A_2 \times \cdots \times A_n
+    $$
+    où pour tout $i \in \llbracket 1, n \rrbracket$, $A_i \in \mathcal{T}_i$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit pour tout $i \in \llbracket 1, n \rrbracket$, une famille $(\Omega_i, \mathcal{T}_i, \mathbb{P}_i)$ d'espaces probabilisés et
+    $\Omega = \Omega_1 \times \cdots \times \Omega_n$.
+
+    \begin{enumerate}
+        \item Il existe une tribu $\mathcal{T}$ appelée \textbf{tribu produit} sur $\Omega$ telle que
+        $$
+        \mathcal{T} = \bigotimes_{i=1}^n \mathcal{T}_i
+        $$
+        contenant les pavés mesurables de $\Omega$.
+
+        \item %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        Il existe une unique mesure de probabilité $\mathbb{P}$ sur $(\Omega, \mathcal{T})$ telle que pour tout pavé mesurable $A = A_1 \times A_2 \times \cdots \times A_n$ avec $A_i \in \mathcal{T}_i$,
+        $$
+        \mathbb{P}(A) = \prod_{i=1}^n \mathbb{P}_i(A_i).
+        $$
+        Elle est appelée \textbf{probabilité produit} et se note
+        $$
+        \mathbb{P} = \bigotimes_{i=1}^n \mathbb{P}_i
+        $$
+    \end{enumerate}
+\end{theoreme}
+
+\begin{exemple}
+    On considère l'expérience de lancer un dé à 6 faces puis un dé à 5 faces. On aimerait connaître la probabilité d'obtenir un chiffre pair au premier lancer et un chiffre impair au second lancer.
+
+    On peut modéliser cette expérience par l'espace $\Omega = \{1, 2, 3, 4, 5, 6\} \times \{1, 2, 3, 4, 5\}$.
+
+    On peut alors définir les événements suivants :
+    \begin{itemize}
+        \item $A_1 = \{2, 4, 6\}$ : l'événement d'obtenir un chiffre pair au premier lancer.
+        \item $A_2 = \{1, 3, 5\}$ : l'événement d'obtenir un chiffre impair au second lancer.
+    \end{itemize}
+    L'événement d'obtenir un chiffre pair au premier lancer et un chiffre impair au second lancer est alors donné par le pavé mesurable
+    $$
+    A = A_1 \times A_2 = \{(2, 1), (2, 3), (2, 5), (4, 1), (4, 3), (4, 5), (6, 1), (6, 3), (6, 5)\}.
+    $$
+
+    En utilisant la probabilité produit, on peut calculer la probabilité de cet événement :
+    \begin{align*}
+    \mathbb{P}(A) &= \mathbb{P}_1(A_1) \cdot \mathbb{P}_2(A_2) \\
+    &= \frac{3}{6} \cdot \frac{3}{5} \\
+    &= \frac{1}{2} \cdot \frac{3}{5} \\
+    &= \frac{3}{10}.
+    \end{align*}
+\end{exemple}
+
+\begin{definition}[(Extension cylindrique)]
+    Soit pour tout $i \in \llbracket 1, n \rrbracket$, une famille $(\Omega_i, \mathcal{T}_i, \mathbb{P}_i)$ d'espaces probabilisés et
+    $\Omega = \Omega_1 \times \cdots \times \Omega_n$.
+
+    Pour tout événement "local" $A_i \in \mathcal{T}_i$, on définit son \textbf{extension cylindrique} dans $\Omega$ par
+    $$
+    \tilde{A}_i = \Omega_1 \times \cdots \times \Omega_{i-1} \times A_i \times \Omega_{i+1} \times \cdots \times \Omega_n.
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Les extensions cylindriques sont mutuellement indépendants.
+\end{proposition}
+
+\begin{demonstration}
+    Soit pour tout $i \in \llbracket 1, n \rrbracket$, une famille $(\Omega_i, \mathcal{T}_i, \mathbb{P}_i)$ d'espaces probabilisés et
+    $\Omega = \Omega_1 \times \cdots \times \Omega_n$.
+
+    Soit $(A_i)_{i=1}^n$ une famille d'événements avec $A_i \in \mathcal{T}_i$ pour tout $i \in \llbracket 1, n \rrbracket$.
+
+    On a alors
+    \begin{align*}
+        \bigcap_{i=1}^n \tilde{A}_i &= (A_1 \times \Omega_2 \times \cdots \times \Omega_n) \cap \ldots \cap (\Omega_1 \times \cdots \times \Omega_{n-1} \times A_n) \\
+        &= A_1 \times A_2 \times \cdots \times A_n \quad \text{(pavé mesurable)} \\
+    \end{align*}
+
+    En utilisant la probabilité produit, on obtient
+    \begin{align*}
+        \mathbb{P}\left( \bigcap_{i=1}^n \tilde{A}_i \right) &= \mathbb{P}(A_1 \times A_2 \times \cdots \times A_n) \\
+        &= \prod_{i=1}^n \mathbb{P}_i(A_i) \\
+        &= \prod_{i=1}^n \left( \prod_{j=0}^{i-1} \mathbb{P}_j(\Omega_j) \mathbb{P}_i(A_i) \prod_{j=i+1}^n \mathbb{P}_j(\Omega_j) \right) \\
+        &= \prod_{i=1}^n \mathbb{P}(\tilde{A_i})
+    \end{align*}
+
+    Donc les extensions cylindriques sont mutuellement indépendantes.
+\end{demonstration}
+
+\subsection{Produit infini d'espaces probabilisés}
+
+On peut s'intéresser au cas où l'on reproduit une \underline{\textbf{même}} expérience un nombre infini de fois.
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé et $\tilde{\Omega} = \bigtimes\limits_{i=1}^\infty \Omega$.
+
+    On appelle \textbf{cylindre} d'un ensemble $A$ de la forme
+    $$
+    A = A_1 \times \cdots \times A_{n_A} \times \bigtimes_{i=n+1}^\infty \Omega
+    $$
+    où $n_A \in \mathbb{N}$ et $A_i \in \mathcal{T}$ pour tout $i \in \llbracket 1, n_A \rrbracket$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé et $\tilde{\Omega} = \bigtimes\limits_{i=1}^\infty \Omega$.
+
+    Il existe une tribu $\tilde{\mathcal{T}}$ sur $\tilde{\Omega}$ appelée \textbf{tribu produit} contenant les cylindres et
+    une probabilité $\tilde{\mathbb{P}}$ sur $(\tilde{\Omega}, \tilde{\mathcal{T}})$ appelée \textbf{probabilité produit} telle que pour tout cylindre $A = A_1 \times \cdots \times A_{n_A} \times \bigotimes_{i=n+1}^\infty \Omega$,
+    $$
+    \tilde{\mathbb{P}}(A) = \prod_{i=1}^{n_A} \mathbb{P}(A_i)
+    $$
+\end{theoreme}
+
+\begin{exemple}
+    On considère l'expérience de lancer un dé à 6 faces une infinité de fois. On aimerait connaître la probabilité d'obtenir un chiffre pair au premier lancer, un chiffre impair au second lancer, un chiffre pair au troisième lancer, etc.
+
+    On peut modéliser cette expérience par l'espace $\tilde{\Omega} = \{1, 2, 3, 4, 5, 6\}^\mathbb{N}$.
+
+    On peut alors définir les événements suivants :
+    \begin{itemize}
+        \item $A_1 = \{2, 4, 6\}$ : l'événement d'obtenir un chiffre pair au premier lancer.
+        \item $A_2 = \{1, 3, 5\}$ : l'événement d'obtenir un chiffre impair au second lancer.
+        \item $A_3 = \{2, 4, 6\}$ : l'événement d'obtenir un chiffre pair au troisième lancer.
+        \item $\ldots$
+    \end{itemize}
+    L'événement d'obtenir un chiffre pair au premier lancer, un chiffre impair au second lancer, un chiffre pair au troisième lancer, etc. est alors donné par le cylindre
+    $$
+    A = A_1 \times A_2 \times A_3 \times \cdots
+    $$
+
+    En utilisant la probabilité produit, on peut calculer la probabilité de cet événement :
+    \begin{align*}
+    \tilde{\mathbb{P}}(A) &= \lim_{n \to \infty} \prod_{i=1}^n \mathbb{P}(A_i) \\
+    &= \lim_{n \to \infty} \left( \frac{3}{6} \right)^n \\
+    &= 0.
+    \end{align*}
+\end{exemple}
+
+\section{Variable aléatoire discrète}
+
+\subsection{Variable aléatoire discrète et lois de probabilité}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé. Soit $I$ un ensemble fini ou dénombrable.
+
+    On appelle \textbf{variable aléatoire discrète} une application
+    $$
+    \funcdef{X}{\Omega}{\{x_i \mid i \in I\} \subset \R}{\omega}{X(\omega)}
+    $$ 
+    telle que pour tout $i \in I, \{ \omega \in \Omega \mid X(\omega) = x_i \} \in \mathcal{T}$.
+
+    On note $\{ X = x_i \}$ cet événement.
+\end{definition}
+
+\begin{remarque}
+    $\{ X = x_i \} \in \mathcal{T}$ est appelé \textbf{condition de mesurabilité} de la variable aléatoire $X$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Les événements $\{ X = x_i \}$ forment une partition de $\Omega$.
+\end{proposition}
+
+\begin{demonstration}
+\end{demonstration}
+
+\begin{definition}
+    On appelle \textbf{loi de probabilité} d'une variable aléatoire discrète $X$, les probabilités
+    $$
+    p_i = \mathbb{P}(\{ X = x_i \}) \quad \text{pour tout } i \in I
+    $$
+\end{definition}
+
+\begin{definition}
+    On appelle \textbf{fonction de répartition} d'une variable aléatoire discrète $X$, la fonction
+    $$
+    F_X : \R \to [0, 1], \quad F_X(x) = \mathbb{P}(\{ X \leq x \}) = \sum_{i \in I, x_i \leq x} p_i
+    $$
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soient $X$, $Y$ deux variables aléatoires discrètes et $\funcdef{f}{\R}{\R}{x}{f(x)}$ et $\funcdef{g}{\R^2}{\R}{(x, y)}{g(x, y)}$ deux fonctions.
+
+    Alors les applications
+    $$
+    f(X): \omega \mapsto f(X(\omega))
+    $$
+    et
+    $$
+    g(X, Y): \omega \mapsto g(X(\omega), Y(\omega))
+    $$
+    sont des variables aléatoires discrètes.
+\end{theoreme}
+
+\begin{demonstration}
+\end{demonstration}
+
+\subsection{Lois discrètes classiques}
+
+\begin{definition}[(Loi de Bernoulli)]
+    Soit un espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Soit $A \in \mathcal{T}$ un événement avec $\mathbb{P}(A) = p$.
+
+    On appelle variable aléatoire de \textbf{loi de Bernoulli} de paramètre $p$ la variable aléatoire discrète $X$ définie par
+    $$
+    X(\omega) = \begin{cases}
+    1 & \text{si } \omega \in A \\
+    0 & \text{sinon}
+    \end{cases}
+    $$
+
+    La loi de probabilité de $X$ est donnée par
+    $$
+    \mathbb{P}(\{ X = 1 \}) = \mathbb{P}(A) = p
+    $$
+    et
+    $$
+    \mathbb{P}(\{ X = 0 \}) = \mathbb{P}(\Omega \setminus A) = 1 - p
+    $$
+
+    On note $X \sim \mathcal{B}(1, p)$ ou encore $X \hookrightarrow \mathcal{B}(1, p)$.
+\end{definition}
+
+\begin{remarque}
+    On utilise cette loi souvent pour modéliser des expériences à deux issues, succès ou échec.
+\end{remarque}
+
+\begin{definition}[(Loi binomiale)]
+    Soit $n \in \mathbb{N}^*$ et $p \in [0, 1]$.
+    Soient $\Omega, \mathcal{T}, \mathbb{P}$ et $(\Omega', \mathcal{T}', \mathbb{P}')$ deux espaces probabilisés tels que $\Omega = \bigotimes_{i=1}^n \Omega'$
+
+    On définit sur $\Omega'$ une variable aléatoire de loi de Bernoulli de paramètre $p$ et on note $X_i$ cette variable aléatoire pour tout $i \in \llbracket 1, n \rrbracket$.
+
+    On définit alors la variable aléatoire $X$ sur $\Omega$ par
+    $$
+    X(\omega_1, \ldots, \omega_n) = \sum_{i=1}^n X_i(\omega_i) \quad \text{pour tout } (\omega_1, \ldots, \omega_n) \in \Omega
+    $$
+
+    On dit que $X$ suit une \textbf{loi binomiale} de paramètres $n$ et $p$ et on note $X \sim \mathcal{B}(n, p)$ (ou encore $X \hookrightarrow \mathcal{B}(n, p)$).
+
+    La loi de probabilité de $X$ est donnée par
+    $$
+    \mathbb{P}(\{ X = k \}) = \binom{n}{k} p^k (1-p)^{n-k} \quad \text{pour tout } k \in \llbracket 0, n \rrbracket
+    $$
+\end{definition}
+
+\begin{remarque}
+    La loi binomiale modélise le nombre de succès dans une séquence de $n$ expériences indépendantes identiques, chacune ayant une probabilité de succès $p$.
+\end{remarque}
+
+\begin{definition}[(Loi de Poisson)]
+    Soit $\lambda > 0$ un paramètre.
+
+    On dit qu'une variable aléatoire $X$ suit une \textbf{loi de Poisson} de paramètre $\lambda$ et on note $X \sim \mathcal{P}(\lambda)$ (ou encore $X \hookrightarrow \mathcal{P}(\lambda)$) si sa loi de probabilité est donnée par
+    $$
+    \mathbb{P}(\{ X = k \}) = e^{-\lambda} \frac{\lambda^k}{k!} \quad \text{pour tout } k \in \mathbb{N}.
+    $$
+\end{definition}
+
+\begin{remarque}
+    La loi de Poisson modélise le nombre d'événements rares qui se produisent dans un intervalle de temps ou d'espace donné, lorsque ces événements sont indépendants et ont une probabilité constante de se produire.
+\end{remarque}
+
+\subsection{Espérance et variance d'une v.a. discrète}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, \mathbb{P})$ un espace probabilisé et $X$ une variable aléatoire discrète prenant les valeurs $x_i$ avec $i \in I \subset \mathbb{N}$.
+
+    On appelle \textbf{espérance} de $X$ la quantité
+    $$
+    \mathbb{E}[X] = \sum_{i \in I} x_i \mathbb{P}(\{ X = x_i \})
+    $$
+
+    \underline{Cette valeur doit être finie pour que l'espérance soit définie.}
+
+    Lorsque $\mathbb{E}[X] = 0$, on dit que $X$ est une \textbf{variable aléatoire centrée}.
+\end{definition}
+
+\begin{remarque}
+    La somme dans la définition de l'espérance ne doit pas dépendre de l'ordre dans lequel on la calcule. Ainsi on doit avoir une convergence absolue.
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Soient $X$, $Y$ deux variables aléatoires discrètes sur le même espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    $X$ et $Y$ possèdent une espérance.
+
+    Alors $X + Y$ en possède une et on a
+    $$
+    \mathbb{E}[X + Y] = \mathbb{E}[X] + \mathbb{E}[Y].
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    % Soit $X$ et $Y$ deux variables aléatoires discrètes sur le même espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+
+    % Pour $x \in X(\Omega)$ et $y \in Y(\Omega)$, on note $A_{x, y} = \{ \omega \in \Omega \mid X(\omega) = x, Y(\omega) = y \}$.
+
+    % Les familles d'événements $(A_{x, y}_{(x, y) \in X(\Omega) \times Y(\Omega)})$ est exhaustive.
+
+    % On a pour tout $x \in X(\Omega)$
+
+    % $$
+    % \{ X = x \} = \bigcup_{y \in Y(\Omega)} A_{x, y}
+    % $$
+
+    % De même, pour tout $y \in Y(\Omega)$
+
+    % $$
+    % \{ Y = y \} = \bigcup_{x \in X(\Omega)} A_{x, y}
+    % $$
+
+    % Ainsi, on a $P(\{X = x\}) = \sum_{y \in Y(\Omega)} P(A_{x, y})$ et $P(\{Y = y\}) = \sum_{x \in X(\Omega)} P(A_{x, y}) = \sum_{x \in X(\Omega)} P(\{X = x\} \cap \{Y = y\})$.
+
+    % Soit $Z = X + Y$. On a alors une variable aléatoire discrète, on a
+    % \begin{enumerate}[label=(\roman*)]
+    %     \item $\mathbb{E}[Z]$ existe si et seulement si $\sum_{z \in Z(\Omega)} |z| \mathbb{P}(\{ Z = z \}) < +\infty$.
+    %     \item $\mathbb{E}[Z] = \sum_{z \in Z(\Omega)} z \mathbb{P}(\{ Z = z \}) = \sum_{(x, y) \in X(\Omega) \times Y(\Omega)} (x + y) \mathbb{P}(A_{x, y}) = \sum \sum (x + y) \mathbb{P}(A_{x, y})$
+    % \end{enumerate}
+
+    
+\end{demonstration}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$ et $\funcdef{f}{\R}{\R}{x}{f(x)}$ une fonction telles que $Y:= f(X)$.
+    $X$ possède une espérance.
+    
+    Alors $Y$ en possède une si et seulement si
+    $$
+    \sum_{i \in I} |f(x_i)| \mathbb{P}(\{ X = x_i \}) < +\infty
+    $$
+    
+    On a alors
+    $$
+    \mathbb{E}[Y] = \sum_{i \in I} f(x_i) \mathbb{P}(\{ X = x_i \})
+    $$
+\end{definition}
+
+\begin{corollaire}{}{}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    $X$ possède une espérance.
+
+    Alors pour tout $a, b \in \R$, la variable aléatoire $Y:= aX + b$ possède une espérance et on a
+    $$
+    \mathbb{E}[Y] = a \mathbb{E}[X] + b.
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+    \begin{align*}
+        \mathbb{E}[aX + b] &= \sum_{i \in I} (a x_i + b) \mathbb{P}(\{ X = x_i \}) \\
+        &= a \sum_{i \in I} x_i \mathbb{P}(\{ X = x_i \}) + b \sum_{i \in I} \mathbb{P}(\{ X = x_i \}) \\
+        &= a \mathbb{E}[X] + b
+    \end{align*}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $X_1, \cdots, X_n$ des variables aléatoires discrètes sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    $X_1, \cdots, X_n$ possèdent une espérance.
+
+    Alors pour tout $\lambda_1, \cdots, \lambda_n \in \R$, la variable aléatoire $Y:= \sum_{i=1}^n \lambda_i X_i$ possède une espérance et on a
+    $$
+    \mathbb{E}[Y] = \sum_{i=1}^n \lambda_i \mathbb{E}[X_i].
+    $$
+\end{corollaire}
+
+\begin{demonstration}
+\end{demonstration}
+
+\clearpage
+
+\begin{definition}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    On dit que $X$ possède \textbf{un moment d'ordre 2} si $\mathbb{E}(X^2)$ existe.
+
+    On appelle \textbf{variance} de $X$ la quantité $\mathrm{Var}(X) = \mathbb{E}[(X - \mathbb{E}[X])^2]$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Si $\mathbb{E}[X^2]$ existe, alors $\mathbb{E}[X]$ existe également.
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Si $X$ possède une variance, alors pour tout $a, b \in \mathbb{R}$, $aX + b$ possède une variance et
+    $$
+    \mathrm{Var}(aX + b) = a^2 \mathrm{Var}(X)
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    $\mathbb{E}[aX + b] = a \mathbb{E}[X] + b$ et
+    \begin{align*}
+        \mathrm{Var}(aX + b) &= \sum_{i \in I}\left( a x_i + b - (a \mathbb{E}[X] + b) \right)^2 \mathbb{P}(\{ X = x_i \}) \\
+        &= a^2 \sum_{i \in I} (x_i - \mathbb{E}[X])^2 \mathbb{P}(\{ X = x_i \}) \\
+        &= a^2 \mathrm{Var}(X) 
+    \end{align*}
+\end{demonstration}
+
+\begin{proposition}{Formule de König-Huygens}{}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Si $X$ possède une variance, alors
+    $$
+    \mathrm{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2
+    $$
+\end{proposition}
+
+\begin{demonstration}
+    À faire.
+\end{demonstration}
+
+\begin{proposition}{}{}
+    Soit $X$ une variable aléatoire discrète sur l'espace probabilisé $(\Omega, \mathcal{T}, \mathbb{P})$.
+    Si $X$ possède une variance, alors $\mathrm{Var}(X) = 0 \iff X \equiv \mathbb{E}[X]$.
+\end{proposition}
+
+\begin{demonstration}
+\end{demonstration}
+
+\clearpage
+
+\section{Variables aléatoires réelles}
+
+\begin{definition}
+    Soit $(\Omega, \mathcal{T}, P)$ un espace probabilisé. On appelle variable aléatoire
+    continue une application $X : \Omega \to \R$ telle que
+    $$
+    \forall x \in \R, -\infty \leq a < b \leq +\infty, X^{-1}(]a, b]) \in \mathcal{T}
+    $$
+\end{definition}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire continue. Soit, pour $a \in \R$ l'événement
+    $$
+    \{X \leq a\} = X^{-1}(]-\infty, a])
+    $$
+    On appelle \textbf{fonction de répartition} de $X$ l'application
+    $$
+    \funcdef{F_X}{\R}{[0, 1]}{a}{P(X \leq a)}
+    $$
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $X$ une variable aléatoire continue sur un espace probabilisé $(\Omega, \mathcal{T}, P)$.
+    Sa fonction de répartition $F_X$ vérifie les propriétés suivantes :
+    \begin{enumerate}
+        \item $\forall a < b, P(a < X \leq b) = F_X(b) - F_X(a)$
+        \item $F_X$ est croissante
+        \item $F_X$ possède une limite à gauche et à droite en tout point de $\R$
+        \item $F_X$ est continue à droite en tout point de $\R$
+        \item $\lim\limits_{x \to -\infty} F_X(x) = 0$ et $\lim\limits_{x \to +\infty} F_X(x) = 1$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item On a
+        $$
+        X(\omega) \in ]-\infty, b] \iff X(\omega) \leq a \text{ ou } a < X(\omega) \leq b
+        $$
+        c'est à dire
+        $$
+        \{ X \leq b \} = \{ X \leq a \} \cup \{ a < X \leq b \}
+        $$
+        c'est une réunion d'événements incompatibles donc
+        $$
+        P(X \leq b) = P(X \leq a) + P(a < X \leq b)
+        $$
+        c'est à dire
+        $$
+        F_X(b) = F_X(a) + P(a < X \leq b)
+        $$
+        d'où le résultat.
+        \item d'après 1. on a $F_X(b) = F_X(a) + P(a < X \leq b) \geq F_X(a)$ pour tout $a < b$.
+        \item $F_X$ est monotone croissante donc elle admet une limite à gauche et à droite en tout point de $\R$.
+        \item Soit $x \in \R$ et $(x_n)_{n \geq 1}$ une suite strictement décroissante tel que
+        
+        \begin{enumerate}[label=\roman*.]
+            \item $x_{n+1} < x_n, \forall n \geq 1$
+            \item $x_n > x, \forall n \geq 1$
+            \item $x_n \underset{n \to \infty}{\to} x$
+        \end{enumerate}
+        On pose $B_n = \{x < X \leq x_n\}$, on a $P(B_n) = F_X(x_n) - F_X(x)$
+        on veut montrer que $P(B_n) \underset{n \to \infty}{\to} 0$.
+        Comme $x_{n+1} < x_n, \forall n \geq 1$ on a $x < X \leq x_{n+1} \implies x < X \leq x_n$
+        d'où $B_{n+1} \subset B_n$.
+    \end{enumerate}
+\end{demonstration}
+
+\begin{lemme}{}{}
+    Soit un espace probabilisé $(\Omega, \mathcal{T}, P)$ et $(B_n)_{n \geq 0}$ une famille d'événements telle que
+    \begin{enumerate}
+        \item $B_{n+1} \subset B_n, \forall n \geq 0$
+        \item $\bigcap\limits_{n \geq 0} B_n = \emptyset$
+    \end{enumerate}
+    Alors
+    $$
+    \lim_{n \to \infty} P(B_n) = 0
+    $$
+\end{lemme}
+
+\begin{theoreme}{}{}
+    Soit $X$ une variable aléatoire continue sur un espace probabilisé $(\Omega, \mathcal{T}, P)$.
+    L'ensemble des points de discontinuité de sa fonction de répartition $F_X$ est au plus dénombrable.
+\end{theoreme}
+
+\begin{remarque}
+    Le théorème précédent est vrai pour toute fonction monotone et s'appelle le \textbf{théorème de Froda}.
+\end{remarque}
+
+\begin{demonstration}
+    Soit $X$ une variable aléatoire continue et une fonction de répartition $F_X$ et $E \subset \R$.
+    L'ensemble des points de discontinuité de $F_X$ est
+    $$
+    E = \{x \in \R \mid F_X(x^-) < F_X(x^+)\}
+    $$
+    où $F_X(x^-) = \lim\limits_{t \to x^-} F_X(t)$ et $F_X(x^+) = \lim\limits_{t \to x^+} F_X(t)$.
+    Soit $x \in E$, il existe $q_x \in ]F_X(x^-), F_X(x^+)[ \cap \Q$.
+    On définit une application $\funcdef{\varphi}{E}{\Q}{x}{q_x}$.
+    Montrons que $\varphi$ est injective, soit $x, y \in E$ tels que $y > x$, on a $F_X(x^-) < F_X(x^+) \leq F_X(y^-) < F_X(y^+) \implies ]F_X(x^-), F_X(x^+)[\cap]F_X(y^-), F_X(y^+)[ = \emptyset$.
+    par définition $\varphi(x) < \varphi(y)$, c'est à dire $\varphi$ est injective. L'ensemble $E$ est au plus dénombrable.
+\end{demonstration}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire continue sur un espace probabilisé $(\Omega, \mathcal{T}, P)$.
+    Supposons que sa fonction de répartition $F_X$ est continue de classe $C^1$ par morceaux.
+    On appelle \textbf{densité de probabilité} de $X$ et la dérivée de $F_X$ calculée sur tous les intervalles
+    où elle est définie. on la note $f_X$.
+\end{definition}
+
+\begin{remarque}
+    Au points où $F_X$ n'est pas différentiable, la densité $f_X$ est discontinue mais possède une limite à gauche et à droite.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $X$ une variable aléatoire continue de densité $f_X$ et de fonction de répartition $F_X$. On a
+    \begin{enumerate}
+        \item $\forall x \in \R, f_X(x) \geq 0$
+        \item $f_X$ est intégrable sur $\R$, d'intégrale égale à 1
+        \item pour tout intervalle $]a, b] \subset \R$ on a
+        $$
+        P(a < X \leq b) = \int_a^b f_X(x)dx
+        $$
+    \end{enumerate}
+\end{proposition}
+
+\begin{demonstration}
+    \begin{enumerate}
+        \item $F_X$ est croissante, sa dérivée $f_X$ est positive ou nulle.
+        \item 
+        \begin{align*}
+            \int_a^b f_X(x)dx = [F_X(x)]_a^b &= F_X(b) - F_X(a) \\
+            &= P(X \in ]a, b])
+        \end{align*}
+        \item
+        $$
+        \int_{-M}^M f_X(x)dx = F_X(M) - F_X(-M) \underset{M \to +\infty}{\to} 1
+        $$
+    \end{enumerate}
+\end{demonstration}
+
+\begin{corollaire}{}{}
+    Soit $X$ une variable aléatoire continue de densité $f_X$ et de fonction de répartition $F_X$. Alors
+    \begin{enumerate}
+        \item $\lim\limits_{x \to +\infty} f_X(x) = 0$
+        \item Soit $A = ]a, b]$ un intervalle de $\R$. Alors
+        $$
+        P(X \in A) = 0 \iff f_X|_A \equiv 0
+        $$
+    \end{enumerate}
+\end{corollaire}
+
+\subsection{Espérance et variance d'une variable aléatoire continue}
+
+\begin{definition}
+    Soit $X$ une variable aléatoire de densité $f_X$.
+    \begin{itemize}
+        \item Lorsque $|x| f_X(x)$ est intégrable sur $\R$, on dit
+        que $X$ possède \textbf{une espérance}, qu'on définit comme
+        $$
+        E(X) = \int_{-\infty}^{+\infty} x f_X(x) dx
+        $$
+        \item De même si $\varphi: \R \to \R$ est une application telle que
+        $|\varphi(x)| f_X(x)$ est intégrable sur $\R$, on définit
+        $$
+        E(\varphi(X)) = \int_{-\infty}^{+\infty} \varphi(x) f_X(x) dx
+        $$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Si $x^2 f_X(x)$ est intégrable sur $\R$, on dit que $X$ possède \textbf{une variance} et on la définit par
+    $$
+    Var(X) = E((X - \mu)^2) = \int_{-\infty}^{+\infty} (x - \mu)^2 f_X(x) dx
+    $$
+    avec $\mu = E(X)$.
+    On a alors la \textbf{formule de König-Huygens}
+    $$
+    Var(X) = E(X^2) - (E(X))^2
+    $$
+\end{definition}
+
+\begin{remarque}
+    Si $E(X^2)$ existe, alors $E(X)$ existe et $Var(X)$ existe.
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Soit $X$ et $Y$ des variables aléatoires continues possèdant une densité, une espérance et une variance. Alors
+    \begin{enumerate}
+        \item $\forall (a, b) \in \R^2, E(aX + b) = aE(X) + b$
+        \item $Var(aX + b) = a^2 Var(X)$
+        \item $E(X + Y) = E(X) + E(Y)$
+    \end{enumerate}
+\end{theoreme}
+
+\clearpage
+
+\subsection{Quelques lois classiques}
+
+\begin{definition}[(Loi Normale ou de Gauss)]
+    Soit $\mu \in \R$ et $\sigma > 0$. On dit que $X$ suit \textbf{la loi normale} d'espérance $\mu$ et d'écart-type $\sigma$ (ou de variance $\sigma^2$)
+    si la densité de probabilité vaut
+    $$
+    f_X(x) = \dfrac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad \text{pour tout } x \in \R
+    $$
+    On note $X \sim \mathcal{N}(\mu, \sigma^2)$ ou encore $X \hookrightarrow \mathcal{N}(\mu, \sigma^2)$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $X \hookrightarrow \mathcal{N}(\mu, \sigma^2)$ avec $\mu \in \R$ et $\sigma > 0$. Alors
+    \begin{itemize}
+        \item $E(X) = \mu$
+        \item $Var(X) = \sigma^2$
+        \item Soit $a \in \R^*, aX \hookrightarrow \mathcal{N}(a\mu, a^2\sigma^2)$
+        \item Soit $b \in \R, X + b \hookrightarrow \mathcal{N}(\mu + b, \sigma^2)$
+    \end{itemize}
+\end{theoreme}
+
+\begin{corollaire}{}{}
+    Soit $X \hookrightarrow \mathcal{N}(\mu, \sigma^2)$ avec $\mu \in \R$ et $\sigma > 0$. Alors
+    $$
+    Z = \dfrac{X - \mu}{\sigma} \hookrightarrow \mathcal{N}(0, 1).
+    $$
+\end{corollaire}
+
+\begin{remarque}
+    Ce corollaire est fondamental car on ne connait pas la primitive de $f_X$. 
+\end{remarque}
+
+\begin{definition}
+    Soit $Z \hookrightarrow \mathcal{N}(0, 1)$. On note $\phi$ la fonction de répartition de $Z$, c'est à dire
+    $$
+    \phi(x) = P(Z \leq x) = \int_{-\infty}^x \dfrac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}} dt \quad \text{pour tout } x \in \R
+    $$
+\end{definition}
+
+\begin{definition}
+    Soit $[a, b] \subset \R$ avec $a < b$. On dit que $X$ suit une \textbf{loi uniforme} sur $[a, b]$ si la densité de probabilité vaut
+    $$
+    f_X(x) = \dfrac{1}{b - a} \mathds{1}_{[a, b]}(x) \quad \text{pour tout } x \in \R
+    $$
+    On note $X \sim \mathcal{U}([a, b])$ ou encore $X \hookrightarrow \mathcal{U}([a, b])$.
+\end{definition}
+
+\begin{remarque}
+    Pour $a \leq x < y \leq b$ on a
+    $$
+    P(x \leq X \leq y) = \dfrac{y - x}{b - a}
+    $$
+    La probabilité que $X$ appartienne à $I \subset [a, b]$ ne dépend que de la longueur de $I$.
+\end{remarque}
+
+\begin{proposition}{}{}
+    Soit $X \hookrightarrow \mathcal{U}([a, b])$ avec $a < b$. On a
+    $$
+    E(X) = \dfrac{a + b}{2} \quad \text{et} \quad Var(X) = \dfrac{(b - a)^2}{12}
+    $$
+\end{proposition}
+
+\begin{definition}
+    Soit $\lambda > 0$. On dit que $X$ suit une \textbf{loi exponentielle} de paramètre $\lambda$
+    si sa densité de probabilité vaut
+    $$
+    f_X(x) = \lambda e^{-\lambda x} \mathds{1}_{\R_+}(x) \quad \text{pour tout } x \in \R.
+    $$
+    On note $X \sim \mathcal{E}(\lambda)$ ou encore $X \hookrightarrow \mathcal{E}(\lambda)$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $\lambda > 0$ et $X \hookrightarrow \mathcal{E}(\lambda)$. On a
+    $$
+    E(X) = \dfrac{1}{\lambda} \quad \text{et} \quad Var(X) = \dfrac{1}{\lambda^2}
+    $$
+\end{proposition}
+
+\clearpage
+
+\section{Inégalités et théorème limite}
+
+\subsection{Markov (Inégalité de Markov)}
+
+\begin{lemme}{}{}
+    Soit $X, Y$ deux variables aléatoires de même type, possèdant une espérance telle que
+    $\forall \omega \in \Omega, \; Y(\omega) \leq X(\omega)$. Alors
+    $$
+    E(Y) \leq E(X)
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    Soit $Z = X - Y$, $Z$ est une variable aléatoire positive ou nulle de même type que $X$ et $Y$.
+    C'est à dire que $Z(\Omega) \subset \R_+$
+
+    \stump{mieux écrire}{moche}
+    \begin{description}
+        \item[Cas discret] $E(Z) = E(X) - E(Y)$ d'une part, et d'autre part $E(Z) = \sum_{z \in Z(\Omega)} z \P(Z = z) \geq 0$. Donc $E(X) - E(Y) \geq 0$.
+        \item[Cas continu] $E(Z) = E(X) - E(Y)$ d'une part, et d'autre part $E(Z) = \int_{z \in Z(\Omega)} z f_Z(z) \mathrm{d}z \geq 0$. Donc $E(X) - E(Y) \geq 0$. 
+    \end{description}
+\end{demonstration}
+
+\begin{remarque}
+    En pratique, on peut utiliser ce lemme pour tout type de variables aléatoires, mais
+    il est plus facile de démontrer ce lemme pour des variables aléatoires de même type.
+\end{remarque}
+
+\begin{lemme}{}{}
+    Soit $X$ une variable aléatoire et $A \subset \R$. Soit $Y = \mathds{1}_A(X)$, alors
+    $$
+    E(Y) = P(X \in A)
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    On a $P(Y = 1) = P(X \in A) := p$ et $P(Y = 0) = P(X \notin A) = 1 - p$. 
+
+    Donc $Y \hookrightarrow B(1, p)$ et $E(Y) = p = P(X \in A)$.
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $X$ une variable aléatoire positive ou nulle possédant une espérance.
+    $$
+    \forall M > 0, \quad \P(X \geq M) \leq \frac{E(X)}{M}.
+    $$ 
+\end{theoreme}
+
+\begin{remarque}
+    Ce théorème est indépendant de la loi de $X$, ce qui réduit sa précision.
+\end{remarque}
+
+\begin{demonstration}
+    Soit $Y(\omega) = \begin{cases}
+        M & \text{si } X(\omega) \geq M \\
+        0 & \text{sinon}
+    \end{cases}$
+
+    Alors on a $Y = M \mathds{1}_{[M, +\infty)}(X)$, d'où (d'après le lemme précédent) $E(Y) = M P(X \geq M)$.
+
+    On compare $X$ et $Y$, ainsi on a
+    $$
+    X - Y = \begin{cases}
+        X - M & \text{si } X \geq M \\
+        X & \text{sinon}
+    \end{cases} \; \geq 0
+    $$
+    Ainsi $Y \leq X$, et d'après le premier lemme, $E(Y) \leq E(X)$, c'est à dire
+    $$
+    M P(X \geq M) \leq E(X) \iff P(X \geq M) \leq \frac{E(X)}{M}
+    $$
+\end{demonstration}
+
+\subsection{Inégalité de Bienaymé-Tchebychev}
+
+Le principe est de
+mesurer la dispersion d'une variable aléatoire autour de sa moyenne, et caractériser cette dispersion en terme de variance.
+
+\begin{theoreme}{Théorème de Bienaymé-Tchebychev}{}
+    Soit $X$ une variable aléatoire possèdant une espérance $\mu$ et une variance $\sigma^2$. Alors
+    $$
+    \forall a > 0, \quad P(|X - \mu| \geq a) \leq \frac{\sigma^2}{a^2}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Fixons $a > 0$.
+    Étudions l'événement
+    $$
+    \{|X - \mu| \geq a\} = \{(X - \mu)^2 \geq a^2\}
+    $$
+    Ainsi on a
+    $$
+    P(|X - \mu| \geq a) = P((X - \mu)^2 \geq a^2) \quad \text{et} \quad E((X - \mu)^2) = \sigma^2
+    $$
+
+    Et en utilisant l'inégalité de Markov, on trouve
+    $$
+    P(|X - \mu| \geq a) \leq \frac{E((X - \mu)^2)}{a^2} = \frac{\sigma^2}{a^2}
+    $$
+\end{demonstration}
+
+\subsection{Loi faible des grands nombres}
+
+\begin{theoreme}{}{}
+    Soit $(X_n)_{n \geq 1}$ une suite de variables aléatoires, deux à deux indépendantes, de même loi ("i.i.d" pour "independent and identically distributed"), possédant une espérance $\mu$ et une variance $\sigma^2$.
+
+    Soit la suite $(\overline{X}_n)_{n \geq 1}$ définie par $\overline{X}_n = \frac{1}{n} \sum_{k=1}^n X_k$.
+
+    Alors
+    $$
+    \forall \varepsilon > 0, \quad P(|\overline{X}_n - \mu| \geq \varepsilon) \xrightarrow[n \to +\infty]{} 0
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Fixons $\varepsilon > 0$.
+
+    On a $E(\overline{X}_n) = \mu$ et $\mathrm{Var}(\overline{X}_n) = \frac{\sigma^2}{n}$.
+
+    En utilisant l'inégalité de Bienaymé-Tchebychev, on trouve
+    $$
+    P(|\overline{X}_n - \mu| \geq \varepsilon) \leq \frac{\mathrm{Var}(\overline{X}_n)}{\varepsilon^2} = \frac{\sigma^2}{n \varepsilon^2}
+    $$
+
+    Ainsi $P(|\overline{X}_n - \mu| \geq \varepsilon) \xrightarrow[n \to +\infty]{} 0$.
+\end{demonstration}
+
+\end{document}

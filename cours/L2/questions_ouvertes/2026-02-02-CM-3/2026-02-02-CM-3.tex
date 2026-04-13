@@ -14,7 +14,7 @@
 
 \begin{definition}
     Soit $n, m \in \N$ avec $m \neq 0$.
-    Un nombre $n$ est dit $m$-parasite si \text{$n \times m = d10^{L - 1} + \dfrac{n - d}{10}$} où $d$ est le chiffre des unités de $n$ et $L$ sa taille (nombre de chiffres).
+    Un nombre $n$ est dit $m$-tournant si \text{$n \times m = d10^{l - 1} + \dfrac{n - d}{10}$} où $d$ est le chiffre des unités de $n$ et $l$ sa taille (nombre de chiffres).
 \end{definition}
 
 \begin{exemple}
@@ -23,8 +23,14 @@
     $$
 \end{exemple}
 
-Voir annexe 3 la démonstration
+La longueur minimum d'un nombre $m$-tournant est égale à l'ordre de $10$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
+
+Voir annexe B la démonstration
 
 \subsection{Les nouvelles questions}
+
+Est-ce possible de généraliser à une base $b$ quelconque ? Si oui, comment trouver la longueur d'un nombre tournant à partir de son multipliant $m$, de son chiffre des unités $d$ et de sa base $b$ ?
+
+Est-ce que pour toute longueur il existe un nombre tournant de cette longueur ?
 
 \end{document}

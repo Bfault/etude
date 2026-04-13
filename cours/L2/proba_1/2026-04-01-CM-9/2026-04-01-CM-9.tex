@@ -1,0 +1,139 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage{utils}
+
+\renewcommand*{\today}{01 April 2026}
+
+\begin{document}
+
+\hotbox{Probabilités 1}{CM 9}{\today}
+
+\section{Inégalités et théorème limite}
+
+\subsection{Markov (Inégalité de Markov)}
+
+\begin{lemme}{}{}
+    Soit $X, Y$ deux variables aléatoires de même type, possèdant une espérance telle que
+    $\forall \omega \in \Omega, \; Y(\omega) \leq X(\omega)$. Alors
+    $$
+    E(Y) \leq E(X)
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    Soit $Z = X - Y$, $Z$ est une variable aléatoire positive ou nulle de même type que $X$ et $Y$.
+    C'est à dire que $Z(\Omega) \subset \R_+$
+
+    \stump{mieux écrire}{moche}
+    \begin{description}
+        \item[Cas discret] $E(Z) = E(X) - E(Y)$ d'une part, et d'autre part $E(Z) = \sum_{z \in Z(\Omega)} z \P(Z = z) \geq 0$. Donc $E(X) - E(Y) \geq 0$.
+        \item[Cas continu] $E(Z) = E(X) - E(Y)$ d'une part, et d'autre part $E(Z) = \int_{z \in Z(\Omega)} z f_Z(z) \mathrm{d}z \geq 0$. Donc $E(X) - E(Y) \geq 0$. 
+    \end{description}
+\end{demonstration}
+
+\begin{remarque}
+    En pratique, on peut utiliser ce lemme pour tout type de variables aléatoires, mais
+    il est plus facile de démontrer ce lemme pour des variables aléatoires de même type.
+\end{remarque}
+
+\begin{lemme}{}{}
+    Soit $X$ une variable aléatoire et $A \subset \R$. Soit $Y = \mathds{1}_A(X)$, alors
+    $$
+    E(Y) = P(X \in A)
+    $$
+\end{lemme}
+
+\begin{demonstration}
+    On a $P(Y = 1) = P(X \in A) := p$ et $P(Y = 0) = P(X \notin A) = 1 - p$. 
+
+    Donc $Y \hookrightarrow B(1, p)$ et $E(Y) = p = P(X \in A)$.
+\end{demonstration}
+
+\begin{theoreme}{}{}
+    Soit $X$ une variable aléatoire positive ou nulle possédant une espérance.
+    $$
+    \forall M > 0, \quad \P(X \geq M) \leq \frac{E(X)}{M}.
+    $$ 
+\end{theoreme}
+
+\begin{remarque}
+    Ce théorème est indépendant de la loi de $X$, ce qui réduit sa précision.
+\end{remarque}
+
+\begin{demonstration}
+    Soit $Y(\omega) = \begin{cases}
+        M & \text{si } X(\omega) \geq M \\
+        0 & \text{sinon}
+    \end{cases}$
+
+    Alors on a $Y = M \mathds{1}_{[M, +\infty)}(X)$, d'où (d'après le lemme précédent) $E(Y) = M P(X \geq M)$.
+
+    On compare $X$ et $Y$, ainsi on a
+    $$
+    X - Y = \begin{cases}
+        X - M & \text{si } X \geq M \\
+        X & \text{sinon}
+    \end{cases} \; \geq 0
+    $$
+    Ainsi $Y \leq X$, et d'après le premier lemme, $E(Y) \leq E(X)$, c'est à dire
+    $$
+    M P(X \geq M) \leq E(X) \iff P(X \geq M) \leq \frac{E(X)}{M}
+    $$
+\end{demonstration}
+
+\subsection{Inégalité de Bienaymé-Tchebychev}
+
+Le principe est de
+mesurer la dispersion d'une variable aléatoire autour de sa moyenne, et caractériser cette dispersion en terme de variance.
+
+\begin{theoreme}{Théorème de Bienaymé-Tchebychev}{}
+    Soit $X$ une variable aléatoire possèdant une espérance $\mu$ et une variance $\sigma^2$. Alors
+    $$
+    \forall a > 0, \quad P(|X - \mu| \geq a) \leq \frac{\sigma^2}{a^2}
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Fixons $a > 0$.
+    Étudions l'événement
+    $$
+    \{|X - \mu| \geq a\} = \{(X - \mu)^2 \geq a^2\}
+    $$
+    Ainsi on a
+    $$
+    P(|X - \mu| \geq a) = P((X - \mu)^2 \geq a^2) \quad \text{et} \quad E((X - \mu)^2) = \sigma^2
+    $$
+
+    Et en utilisant l'inégalité de Markov, on trouve
+    $$
+    P(|X - \mu| \geq a) \leq \frac{E((X - \mu)^2)}{a^2} = \frac{\sigma^2}{a^2}
+    $$
+\end{demonstration}
+
+\subsection{Loi faible des grands nombres}
+
+\begin{theoreme}{}{}
+    Soit $(X_n)_{n \geq 1}$ une suite de variables aléatoires, deux à deux indépendantes, de même loi ("i.i.d" pour "independent and identically distributed"), possédant une espérance $\mu$ et une variance $\sigma^2$.
+
+    Soit la suite $(\overline{X}_n)_{n \geq 1}$ définie par $\overline{X}_n = \frac{1}{n} \sum_{k=1}^n X_k$.
+
+    Alors
+    $$
+    \forall \varepsilon > 0, \quad P(|\overline{X}_n - \mu| \geq \varepsilon) \xrightarrow[n \to +\infty]{} 0
+    $$
+\end{theoreme}
+
+\begin{demonstration}
+    Fixons $\varepsilon > 0$.
+
+    On a $E(\overline{X}_n) = \mu$ et $\mathrm{Var}(\overline{X}_n) = \frac{\sigma^2}{n}$.
+
+    En utilisant l'inégalité de Bienaymé-Tchebychev, on trouve
+    $$
+    P(|\overline{X}_n - \mu| \geq \varepsilon) \leq \frac{\mathrm{Var}(\overline{X}_n)}{\varepsilon^2} = \frac{\sigma^2}{n \varepsilon^2}
+    $$
+
+    Ainsi $P(|\overline{X}_n - \mu| \geq \varepsilon) \xrightarrow[n \to +\infty]{} 0$.
+\end{demonstration}
+
+\end{document}

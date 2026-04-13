@@ -36,7 +36,7 @@ amélioration du programme, qui prend maintenant en compte les multipliant supé
     \begin{enumerate}[label=--]
         \item $x$ le nombre tournant recherché,
         \item $d$ le chiffre des unités de $x$,
-        \item $n$ le nombre total de chiffres de $x$,
+        \item $l$ le nombre total de chiffres de $x$,
         \item $m$ le multipliant.
     \end{enumerate}
 
@@ -44,16 +44,18 @@ amélioration du programme, qui prend maintenant en compte les multipliant supé
 
     D'après notre sujet de recherche, on doit trouver $x$ ou $x'$ tel que $x' = m \times x$, donc:
     \begin{align*}
-        x' = m \times x &\implies d \times 10^{n - 1} + y = m \times (10y + d) \\
-        &\implies y - 10my = md - d \times 10^{n - 1} \\
-        &\implies y(1 - 10m) = d(m - 10^{n - 1}) \\
-        &\implies y = \frac{d(m - 10^{n - 1})}{1 - 10m} \\
+        x' = m \times x &\implies d \times 10^{l - 1} + y = m \times (10y + d) \\
+        &\implies y - 10my = md - d \times 10^{l - 1} \\
+        &\implies y(1 - 10m) = d(m - 10^{l - 1}) \\
+        &\implies y = \frac{d(m - 10^{l - 1})}{1 - 10m} \\
     \end{align*} 
 
-    Sauf qu'on ne connait pas $n$, on essaye de chercher des valeurs de $n$ telles que $y$ soit un entier positif. On en déduit ensuite $x = 10y + d$.
+    Sauf qu'on ne connait pas $l$, on essaye de chercher des valeurs de $l$ telles que $y$ soit un entier positif. On en déduit ensuite $x = 10y + d$.
 \end{tcolorbox}
 
 
 \subsection{Les nouvelles questions}
+
+Comment trouver la longueur $l$ d'un nombre tournant à partir de son multipliant $m$ et de son chiffre des unités $d$ ?
 
 \end{document}
