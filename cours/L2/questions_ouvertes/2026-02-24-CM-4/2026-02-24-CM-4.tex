@@ -8,14 +8,15 @@
 
 \hotbox{Questions ouvertes}{CM 4}{\today}
 
-\section{\today}
+\section{24 Février 2026}
 
-\subsection{Ce qui à été fait}
+\subsection*{Travaux réalisés}
 
-\begin{itemize}
-    \item On a trouvé une caractérisation de la taille d'un nombre $m$-tournant d'une base $b$ quelconque à partir de son multipliant $m$ et de son chiffre des unités $d$. (Remplacer $10$ par $b$ dans la démonstration de l'annexe B)
-    \item On a trouvé une solution triviale pour l'existence d'un nombre tournant de toute longueur : $10^{l-1}$ est un nombre tournant de longueur $l$ pour tout $l \in \N^*$. (Voir annexe C)
-    \item On a trouvé un nombre qui a des rotations différentes suivant la multiplication : $142 857$
+\begin{itemize}[label=\textbullet]
+    % \item La démontration de la caractérisation de la longueur d'un nombre $m$-tournant a été formalisée dans un assistant de preuve (Lean4).
+    \item Réponse à \textbf{[Q3]} : On a généralisé la démonstration à une base $b$ quelconque, en remplaçant $10$ par $b$ ça fonctionne.
+    \item Réponse à \textbf{[Q4]} : Solution triviale trouvée pour l'existence. Pour $m=10^{l-1}$, $x=d$ est un nombre tournant de longueur l pour tout $l \in \N^*$. (Voir \textbf{Annexe C})
+    \item Observation : On a trouvé un nombre qui a des rotations différentes suivant la multiplication : $142 857$
     \begin{itemize}
         \item $142 857 \times 2 = 285 714$
         \item $142 857 \times 3 = 428 571$
@@ -25,8 +26,10 @@
     \end{itemize}
 \end{itemize}
 
-\subsection{Les nouvelles questions}
+\subsection*{Nouvelles questions}
 
-Est-ce que peut caractériser la longueur d'un nombre tournant à rotation quelconque ?
+\begin{itemize}[label=\textbullet]
+    \item \textbf{[Q5]} Peut-on généraliser à une rotation $R$ quelconque ?
+\end{itemize}
 
 \end{document}

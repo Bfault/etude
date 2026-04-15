@@ -10,49 +10,59 @@
 
 \section{Annexes}
 
-\subsection*{Annexe A}
+\subsection*{Annexe A: Code python générant des nombres tournants}
 
-\begin{lstlisting}
+\begin{lstlisting}[breaklines=true]
 def until_turned(first_value, mul, limit=100):
     value = [first_value]
     result = []
     retenu = 0
+    
     for i in range(limit):
         if result and retenu == 0 and result[-1] == first_value:
             break
-        num = (value[-1] * mul + retenu) % 10
-        retenu_tmp = (value[-1] * mul + retenu) // 10
+            
+        prod = value[-1] * mul + retenu
+        num = prod % 10
+        retenu_tmp = prod // 10
+        
         result.append(num)
         value.append(num)
         retenu = retenu_tmp
-    return (''.join(map(str, value[::-1][1:])), len(value) - 1, ''.join(map(str, result[::-1])), len(result))
+        
+    original_str = ''.join(map(str, value[::-1][1:]))
+    result_str = ''.join(map(str, result[::-1]))
+    
+    return original_str, len(value) - 1, result_str, len(result)
 
-mul = 6
+mul = 4
 for i in range(1, 10):
     print(f"pour {i} avec mul = {mul} on a {until_turned(i, mul)}")
 \end{lstlisting}
 
-\subsection*{Annexe B}
+\subsection*{Annexe B: Caractérisation de la longueur d'un nombre $m$-tournant}
 
 \begin{lemme}{}{existence}
-    Soit $n, p \in \N$
+    Soit $n \in \N^*$ et $p \in \Z/n\Z$.
 
-    Supposons que $p$ est inversible dans $\Z/n\Z$.
-
-    Alors $ord(p)$ existe dans $\Z/n\Z$
+    Si $p$ est inversible, alors $ord(p)$ existe.
 \end{lemme}
 
 \begin{demonstration}
-    Comme $\Z/n\Z$ est fini, on a forcément $\exists k, l \in \N, k > l$ tel que
+    $\Z/n\Z$ est fini alors $\exists k, l \in \N, k > l$ tel que $p^k \equiv p^l [n]$.
+    
+    Ainsi, on a
     \begin{align*}        
         p^k \equiv p^l [n] \implies p^k (p^{-1})^l \equiv p^l (p^{-1})^l [n] \implies p^{k-l} \equiv 1 [n]
     \end{align*}
+
+    Par conséquent, $ord(p) \leq k - l$
 \end{demonstration}
 
-\begin{theoreme}{Caractérisation de la taille d'un nombre $m$-parasite}{}
-    Soit $m \in \N^*$, $x$ un nombre $m$-parasite de chiffre des unités $d$ et $L$ sa taille (nombre de chiffres).
+\begin{theoreme}{Caractérisation de la longueur d'un nombre $m$-tournant}{}
+    Soit $m \in \N^*$, $x$ le plus petit nombre $m$-tournant de chiffre des unités $d$ et $l$ sa longueur (nombre de chiffres).
 
-    Alors $L$ peut prendre des valeurs dans $\{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
+    Alors $l = ord(10)$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
 \end{theoreme}
 
 \begin{demonstration}
@@ -60,71 +70,66 @@ for i in range(1, 10):
 
     Ainsi, on peut définir $x = 10y + d$.
 
-    par définition d'un nombre $m$-parasite, on a
+    Par définition d'un nombre $m$-tournant, on a
     \begin{align*}
-        m \times x = d10^{L - 1} + \dfrac{x - d}{10} &\implies m(10y + d) = d10^{L - 1} + y \\
-        &\implies dm - d 10^{L-1} = y - 10my \\
-        &\implies y(1 - 10m) = d (m - 10^{L-1}) \\
-        &\implies y = d \dfrac{m - 10^{L - 1}}{1 - 10m} = d \dfrac{10^{L - 1} - m}{10m - 1}
-    \end{align*}
-
-    Comme $y$ est un entier, le numérateur doit être divisible par le dénominateur.
-
-    Donc
-    \begin{align*}
-        \exists k \in \N, &d(10^{L - 1} - m) = k(10m - 1) \quad (*) \\
-        \implies& d(10^{L - 1} - m) \equiv 0 [10m - 1] \\
-        \implies& d 10^{L - 1} \equiv dm [10m - 1]
+        &m \times x = d10^{l - 1} + y \\
+        &\implies m(10y + d) = d10^{l - 1} + y \\
+        &\implies m \times 10y - y = d10^{l - 1} - dm \\
+        &\implies y(10m - 1) = d(10^{l - 1} - m) \\
+        &\implies d(10^{l - 1} - m) \equiv 0 [10m - 1] \\
+        &\implies d 10^{l - 1} \equiv dm [10m - 1]
     \end{align*}
 
     $d$ est inversible dans $\Z/(10m - 1)\Z$ si et seulement si \text{$pgcd(d, 10m - 1) = 1$}.
+    Si $d$ n'est pas inversible, on peut poser $gcd = pgcd(d, 10m - 1)$ et on pourra considérer $d' = \dfrac{d}{gcd}$ et $m' = \dfrac{10m - 1}{gcd}$, ainsi $d'$ est inversible dans $\Z/m'\Z$.
 
-    Ainsi on a deux cas :
-    \begin{description}
-        \item[si $pgcd(d, 10m - 1) = 1$ :] on peut simplifier par $d$ et on obtient
-        \begin{align*}
-            &10^{L - 1} \equiv m [10m - 1] \\
-            \implies& 10^L \equiv 10m [10m - 1] \\
-            \implies& 10^L \equiv 1 [10m - 1]
-        \end{align*}
+    Ainsi, on a
+    \begin{align*}
+        d' 10^{l - 1} \equiv d'm [m'] &\implies 10^{l - 1} \equiv m [m'] \\
+        &\implies 10^l \equiv 10m [m'] \\
+        &\implies 10^l \equiv 1 [m']
+    \end{align*}
 
-        De plus $m$ est l'inverse de $10$ dans $\Z/(10m - 1)\Z$.
+    Donc $l = ord(10)$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
+\end{demonstration}
 
-        D'apres le lemme \ref{lemme:existence}, $ord(10)$ ainsi que ses multiples existe bien dans $\Z/(10m - 1)\Z$ et résoud notre équation.
+\subsection*{Annexe C: Existence d'un nombre tournant de toute longueur}
 
-        Donc $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(10m - 1)\Z$.
-    
-        \item[si $pgcd(d, 10m - 1) \neq 1$ :] on peut poser $gcd = pgcd(d, 10m - 1)$,
-        ainsi avec $(*)$ on a
-        
-        \begin{align*}
-            \exists k \in \N, &\dfrac{d(10^{L - 1} - m)}{gcd} = k\dfrac{(10m - 1)}{gcd} \\
-            \implies& \dfrac{d}{gcd} 10^{L - 1} \equiv \dfrac{d}{gcd} m [\dfrac{10m - 1}{gcd}]
-        \end{align*}
+On se souvient de l'équation $y = \dfrac{d(m - 10^{l - 1})}{1 - 10m}$.
 
-        Cette fois $pgcd(\dfrac{d}{gcd}, \dfrac{10m - 1}{gcd}) = 1$ donc $\dfrac{d}{gcd}$ est inversible, d'où
-        \begin{align*}
-            &10^{L - 1} \equiv m [\dfrac{10m - 1}{gcd}] \\
-            \implies& 10^L \equiv 10m [\dfrac{10m - 1}{gcd}] \\
-            \implies& 10^L \equiv 1 [\dfrac{10m - 1}{gcd}]
-        \end{align*}
+Si on pose $m = 10^{l - 1}$, alors $y = 0$ et $x = d$ est un nombre tournant de longueur $l$ pour tout $l \in \N^*$.
 
-        car
-        \begin{align*}
-            10m - 1 = gcd \dfrac{10m - 1}{gcd} &\implies 10m - 1 \equiv 0 [\dfrac{10m - 1}{gcd}] \\
-            &\implies 10m \equiv 1 [\dfrac{10m - 1}{gcd}]
-        \end{align*}
+\subsection*{Annexe D: Base $b$ et rotation de $R$ quelconque}
 
-        De plus $m$ est l'inverse de $10$ dans $\Z/(\dfrac{10m - 1}{gcd})\Z$
+\begin{theoreme}{}{}
+    Soit $b, m, R \in \N^*$, $x$ le plus petit nombre $m$-$R$-tournant avec $d$ ses $R$ derniers chiffres et $l$ sa longueur.
 
-        D'apres le lemme \ref{lemme:existence}, $ord(10)$ ainsi que ses multiples existe bien dans $\Z/(\dfrac{10m - 1}{gcd})\Z$ et résoud notre équation.
+    Alors $l = ord(b)$ dans $\Z/(\dfrac{b^R m - 1}{pgcd(d, b^R m - 1)})\Z$.
+\end{theoreme}
 
-        Donc $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(\dfrac{10m - 1}{gcd})\Z$.
-    \end{description}
+\begin{demonstration}
+    En reprenant la même démarche que pour une la base $10$ et une rotation de $1$, on pose $y := \dfrac{x - d}{b^R}$ le nombre obtenu en retirant les $R$ derniers chiffres de $x$.
 
-    Comme dans le premier cas $pgcd(d, 10m - 1) = 1$ on peut rassembler les deux cas en un seul
+    Ainsi, on a
+    \begin{align*}
+        m \times x = d b^{l - R} + y &\implies m(b^R y + d) = d b^{l - R} + y \\
+        &\implies m \times b^R y - y = d b^{l - R} - dm \\
+        &\implies y(b^R m - 1) = d(b^{l - R} - m) \\
+        &\implies d(b^{l - R} - m) \equiv 0 [b^R m - 1] \\
+        &\implies d b^{l - R} \equiv dm [b^R m - 1]
+    \end{align*}
 
-    $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/\dfrac{10m - 1}{pgcd(d, 10m - 1)}\Z$.
+    $d$ est inversible dans $\Z/(b^R m - 1)\Z$ si et seulement si \text{$pgcd(d, b^R m - 1) = 1$}.
+    Si $d$ n'est pas inversible, on peut poser $gcd = pgcd(d, b^R m - 1)$ et on pourra considérer $d' = \dfrac{d}{gcd}$ et $m' = \dfrac{b^R m - 1}{gcd}$, ainsi $d'$ est inversible dans $\Z/m'\Z$.
+
+    Ainsi, on a
+    \begin{align*}
+        d' b^{l - R} \equiv d'm [m'] &\implies b^{l - R} \equiv m [m'] \\
+        &\implies b^l \equiv b^R m [m'] \\
+        &\implies b^l \equiv 1 [m']
+    \end{align*}
+
+    Donc $l = ord(b)$ dans $\Z/(\dfrac{b^R m - 1}{pgcd(d, b^R m - 1)})\Z$.
 \end{demonstration}
 
 \end{document}

@@ -8,29 +8,44 @@
 
 \hotbox{Questions ouvertes}{CM 3}{\today}
 
-\section{\today}
+\section{2 Février 2026}
 
-\subsection{Ce qui à été fait}
+\subsection*{Travaux réalisés}
+
+    \begin{itemize}[label=\textbullet]
+        \item On donne une meilleure définition des nombres tournants et de leur longueur.
+        \item Réponse à \textbf{[Q2]} : On a trouvé une formule pour trouver la longueur d'un nombre tournant à partir du couple $(m, d)$ (\textbf{Annexe B}).
+        $$
+        l = \text{ordre de } 10 \text{ dans } \Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z
+        $$
+        \item Réponse à \textbf{[Q1]} : La longueur dépend donc du multipliant et du pgcd du chiffre des unités (d'où certaines exceptions).
+    \end{itemize}
 
 \begin{definition}
-    Soit $n, m \in \N$ avec $m \neq 0$.
-    Un nombre $n$ est dit $m$-tournant si \text{$n \times m = d10^{l - 1} + \dfrac{n - d}{10}$} où $d$ est le chiffre des unités de $n$ et $l$ sa taille (nombre de chiffres).
+    Soit $x, m \in \N^*$.
+    Un nombre $x$ est dit \textbf{$m$-tournant} si \text{$x \times m = d10^{l - 1} + \dfrac{x - d}{10}$} où $d \in \llbracket 0, 9 \rrbracket$ est le chiffre des unités de $x$ et $l$ sa longueur.
 \end{definition}
 
-\begin{exemple}
-    $$
-    128205 \times 4 = 512820
-    $$
-\end{exemple}
+\begin{definition}
+    La longueur d'un nombre $m$-tournant est le nombre de chiffres de ce nombre après rotation.
+\end{definition}
 
-La longueur minimum d'un nombre $m$-tournant est égale à l'ordre de $10$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
+\begin{remarque}
+    Un nombre $m$-tournant peut être répété plusieurs fois et sera toujours un nombre $m$-tournant. Par exemple, $2$ est un nombre $10$-tournant de longueur $2$ et $202$ est aussi un nombre $10$-tournant de longueur $4$.
+    Ainsi on ne s'intéressera qu'aux nombres tournants les plus petits possibles sans répétition.
+\end{remarque}
 
-Voir annexe B la démonstration
+% \begin{exemple}
+%     $$
+%     128205 \times 4 = 512820
+%     $$
+% \end{exemple}
 
-\subsection{Les nouvelles questions}
+\subsection*{Nouvelles questions}
 
-Est-ce possible de généraliser à une base $b$ quelconque ? Si oui, comment trouver la longueur d'un nombre tournant à partir de son multipliant $m$, de son chiffre des unités $d$ et de sa base $b$ ?
-
-Est-ce que pour toute longueur il existe un nombre tournant de cette longueur ?
+\begin{itemize}[label=\textbullet]
+    \item \textbf{[Q3]} Peut-on généraliser à une base $b$ quelconque ?
+    \item \textbf{[Q4]} Est-ce que pour toute longueur l, il existe un nombre tournant de cette longueur ?
+\end{itemize}
 
 \end{document}

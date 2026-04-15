@@ -1,108 +1,135 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{utils}
-
-\title{ Questions ouvertes }
+\title{Questions ouvertes - Les nombres tournants}
 \date{\today}
+\author{Nina Dupin, Lola Samuel, Tom Cosi, Lorenzo Carrascosa}
 
 \begin{document}
-\maketitle
+% \maketitle
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    {\scshape\Large Questions ouvertes \par}
+    \vspace{2cm}
+
+    \rule{\linewidth}{0.5mm} \\[0.4cm]
+    {\huge\bfseries Les nombres tournants \par}
+    \rule{\linewidth}{0.5mm} \\[1.5cm]
+
+    \vspace{2cm}
+
+    {\Large
+    Nina \textsc{Dupin} \quad Lola \textsc{Samuel} \\[0.3cm]
+    Tom \textsc{Cosi} \quad Lorenzo \textsc{Carrascosa} \par}
+
+    \vfill
+\end{titlepage}
+
+\clearpage
 \tableofcontents
 \clearpage
 
-\section{\today}
+\section{Contexte et objectifs}
 
-\subsection{Ce qui à été fait}
+On s'intéresse à une classe de nombres particuliers, appelés \textbf{nombres tournants}, qui présentent des propriétés de rotation intéressantes lorsqu'ils sont multipliés par un certain facteur.
+L'objectif de ce projet est d'explorer ces nombres, de comprendre leur structure et de répondre à des questions ouvertes liées à leur comportement.
 
-Un programme fait en python pour tester en partant d'un chiffre avec un multiple donné \textbf{(Voir annexe 1)}
+Par exemple pour $m = 4$, le nombre $128205$ est un nombre tournant car :
 
-Le nombre de chiffres dépend du chiffre multipliant de départ.
-\begin{itemize}[label=--]
-    \item pour 2 on a 18 chiffres
-    \item pour 3 on a 28 chiffres
-    \item pour 4 on a 6 chiffres
-    \item pour 5 on a 42 chiffres sauf 7 x 5
-    \item pour 6 on a 58 chiffres
-    \item pour 7 on a 22 chiffres
-    \item pour 8 on a 13 chiffres
-    \item pour 9 on a 44 chiffres
-    \item pour 10 on a 2 chiffres
+$$
+128205 \times 4 = 512820
+$$
+
+On peut observer que les chiffres de $128205$ ont effectué une rotation pour former $512820$.
+
+\clearpage
+
+\section{20 Janvier 2026}
+
+\subsection*{Travaux réalisés}
+
+\begin{itemize}[label=\textbullet]
+    \item Création d'un programme python (\textbf{Annexe A}) pour générer des nombres tournants à partir d'un chiffre de départ et d'un multiple donné.
+    \item Observation, le nombre de chiffres d'un nombre tournant à l'air de dépendre du chiffre multipliant de départ.
+    Par exemple pour m=4 on a 6 chiffres, pour m=5 on a 42 chiffres sauf quand on part du chiffre 7.
 \end{itemize}
 
-\subsection{Les nouvelles questions}
+\subsection*{Nouvelles questions}
 
-Pourquoi le nombre de chiffres dépend du chiffre multipliant de départ ?
-
-\clearpage
-
-\section{\today}
-
-\subsection{Ce qui à été fait}
-
-amélioration du programme, qui prend maintenant en compte les multipliant supérieurs à 9 et peut afficher plusieurs nombres possibles avec gradient sur les chiffres.
-
-\begin{tcolorbox}[
-        sharp corners,
-        colback=white,
-        colframe=black,
-        leftrule=1mm,
-        toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
-        top=0mm, left=1mm
-    ]
-    Soient 
-    \begin{enumerate}[label=--]
-        \item $x$ le nombre tournant recherché,
-        \item $d$ le chiffre des unités de $x$,
-        \item $n$ le nombre total de chiffres de $x$,
-        \item $m$ le multipliant.
-    \end{enumerate}
-
-    On pose $y := \dfrac{x - d}{10} \implies x = 10y + d$ le nombre obtenu en retirant le chiffre des unités de $x$ et $x' = d \times 10^{n - 1} + y$ le nombre obtenu en mettant le chiffre des unités de $x$ au début de $x$.
-
-    D'après notre sujet de recherche, on doit trouver $x$ ou $x'$ tel que $x' = m \times x$, donc:
-    \begin{align*}
-        x' = m \times x &\implies d \times 10^{n - 1} + y = m \times (10y + d) \\
-        &\implies y - 10my = md - d \times 10^{n - 1} \\
-        &\implies y(1 - 10m) = d(m - 10^{n - 1}) \\
-        &\implies y = \frac{d(m - 10^{n - 1})}{1 - 10m} \\
-    \end{align*} 
-
-    Sauf qu'on ne connait pas $n$, on essaye de chercher des valeurs de $n$ telles que $y$ soit un entier positif. On en déduit ensuite $x = 10y + d$.
-\end{tcolorbox}
-
-
-\subsection{Les nouvelles questions}
+\begin{itemize}[label=\textbullet]
+    \item \textbf{[Q1]} Pourquoi le nombre de chiffres est le même pour un même multipliant sauf pour certains chiffres de départ ?
+\end{itemize}
 
 \clearpage
 
-\section{\today}
+\section{27 Janvier 2026}
 
-\subsection{Ce qui à été fait}
+\subsection*{Travaux réalisés}
+
+\begin{itemize}[label=\textbullet]
+    \item Amélioration du programme (prise en compte des multipliant supérieurs à 9) (\textbf{Annexe A}).
+    \item Modélisation, en posant $y := \frac{x - d}{10}$ (le nombre tournant sans son chiffre des unités), on obtient l'équation centrale suivante : $y = \frac{d(m - 10^{l - 1})}{1 - 10m}$.
+\end{itemize}
+
+\subsection*{Nouvelles questions}
+
+\begin{itemize}[label=\textbullet]
+    \item \textbf{[Q2]} Comment trouver la longueur $l$ d'un nombre tournant à partir de son multipliant $m$ et de son chiffre des unités $d$ ?
+\end{itemize}
+
+\clearpage
+
+\section{2 Février 2026}
+
+\subsection*{Travaux réalisés}
+
+    \begin{itemize}[label=\textbullet]
+        \item On donne une meilleure définition des nombres tournants et de leur longueur.
+        \item Réponse à \textbf{[Q2]} : On a trouvé une formule pour trouver la longueur d'un nombre tournant à partir du couple $(m, d)$ (\textbf{Annexe B}).
+        $$
+        l = \text{ordre de } 10 \text{ dans } \Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z
+        $$
+        \item Réponse à \textbf{[Q1]} : La longueur dépend donc du multipliant et du pgcd du chiffre des unités (d'où certaines exceptions).
+    \end{itemize}
 
 \begin{definition}
-    Soit $n, m \in \N$ avec $m \neq 0$.
-    Un nombre $n$ est dit $m$-parasite si \text{$n \times m = d10^{L - 1} + \dfrac{n - d}{10}$} où $d$ est le chiffre des unités de $n$ et $L$ sa taille (nombre de chiffres).
+    Soit $x, m \in \N^*$.
+    Un nombre $x$ est dit \textbf{$m$-tournant} si \text{$x \times m = d10^{l - 1} + \dfrac{x - d}{10}$} où $d \in \llbracket 0, 9 \rrbracket$ est le chiffre des unités de $x$ et $l$ sa longueur.
 \end{definition}
 
-\begin{exemple}
-    $$
-    128205 \times 4 = 512820
-    $$
-\end{exemple}
+\begin{definition}
+    La longueur d'un nombre $m$-tournant est le nombre de chiffres de ce nombre après rotation.
+\end{definition}
 
-Voir annexe 3 la démonstration
+\begin{remarque}
+    Un nombre $m$-tournant peut être répété plusieurs fois et sera toujours un nombre $m$-tournant. Par exemple, $2$ est un nombre $10$-tournant de longueur $2$ et $202$ est aussi un nombre $10$-tournant de longueur $4$.
+    Ainsi on ne s'intéressera qu'aux nombres tournants les plus petits possibles sans répétition.
+\end{remarque}
 
-\subsection{Les nouvelles questions}
+% \begin{exemple}
+%     $$
+%     128205 \times 4 = 512820
+%     $$
+% \end{exemple}
+
+\subsection*{Nouvelles questions}
+
+\begin{itemize}[label=\textbullet]
+    \item \textbf{[Q3]} Peut-on généraliser à une base $b$ quelconque ?
+    \item \textbf{[Q4]} Est-ce que pour toute longueur l, il existe un nombre tournant de cette longueur ?
+\end{itemize}
 
 \clearpage
 
-\section{\today}
+\section{24 Février 2026}
 
-\subsection{Ce qui à été fait}
+\subsection*{Travaux réalisés}
 
-\begin{itemize}
-    \item Changement de base.
-    \item Est-ce que pour toute longueurs il existe un nombre tournant de cette longueur.
-    \item On a trouvé un nombre qui a des rotations différentes suivant la multiplication : $142 857$
+\begin{itemize}[label=\textbullet]
+    \item Réponse à \textbf{[Q3]} : On a généralisé la démonstration à une base $b$ quelconque, en remplaçant $10$ par $b$ ça fonctionne.
+    \item Réponse à \textbf{[Q4]} : Solution triviale trouvée pour l'existence. Pour $m=10^{l-1}$, $x=d$ est un nombre tournant de longueur l pour tout $l \in \N^*$. (Voir \textbf{Annexe C})
+    \item Observation : On a trouvé un nombre qui a des rotations différentes suivant la multiplication : $142 857$
     \begin{itemize}
         \item $142 857 \times 2 = 285 714$
         \item $142 857 \times 3 = 428 571$
@@ -112,142 +139,154 @@ Voir annexe 3 la démonstration
     \end{itemize}
 \end{itemize}
 
-\subsection{Les nouvelles questions}
+\subsection*{Nouvelles questions}
+
+\begin{itemize}[label=\textbullet]
+    \item \textbf{[Q5]} Peut-on généraliser à une rotation $R$ quelconque ?
+\end{itemize}
 
 \clearpage
 
-\section{\today}
+\section{17 Mars 2026}
 
-\subsection{Ce qui à été fait}
+\subsection*{Travaux réalisés}
 
-\begin{itemize}
-    \item rotation quelconque
-    \item début de préparation oral
-    \item réponse à la question si toute longueur il existe un nombre tournant
-    \item À faire chercher les bases les plus simples
+\begin{itemize}[label=\textbullet]
+    \item Formalisation de la démonstration pour une base $b$ quelconque dans l'assistant de preuve Lean4 (\href{https://github.com/Bfault/etude/blob/dev/cours/L2/questions_ouvertes/parasite/Parasite.lean}{Lien vers le code}).
+    \item Début de la préparation oral.
+    \item Réponse à \textbf{[Q5]} : On a généralisé à une rotation $R$ quelconque, la démonstration est sensiblement la même que pour les rotations de 1. (\textbf{Annexe D})
 \end{itemize}
 
-\subsection{Les nouvelles questions}
+\subsection*{Nouvelles questions}
+
+\begin{itemize}[label=\textbullet]
+    \item \textbf{[Q6]} Avec des rotations quelconques, on arrive rapidement à des nombres très grands (utilisation de puissances). Peut-on trouver des bases dites "agréables" pour lesquelles on obtient des nombres tournants (de rotation quelconque) de longueur raisonnable ?
+\end{itemize}
 
 \clearpage
 
 \section{Annexes}
 
-\subsection*{1}
+\subsection*{Annexe A: Code python générant des nombres tournants}
 
-\begin{lstlisting}
+\begin{lstlisting}[breaklines=true]
 def until_turned(first_value, mul, limit=100):
     value = [first_value]
     result = []
     retenu = 0
+    
     for i in range(limit):
         if result and retenu == 0 and result[-1] == first_value:
             break
-        num = (value[-1] * mul + retenu) % 10
-        retenu_tmp = (value[-1] * mul + retenu) // 10
+            
+        prod = value[-1] * mul + retenu
+        num = prod % 10
+        retenu_tmp = prod // 10
+        
         result.append(num)
         value.append(num)
         retenu = retenu_tmp
-    return (''.join(map(str, value[::-1][1:])), len(value) - 1, ''.join(map(str, result[::-1])), len(result))
+        
+    original_str = ''.join(map(str, value[::-1][1:]))
+    result_str = ''.join(map(str, result[::-1]))
+    
+    return original_str, len(value) - 1, result_str, len(result)
 
-mul = 6
+mul = 4
 for i in range(1, 10):
     print(f"pour {i} avec mul = {mul} on a {until_turned(i, mul)}")
 \end{lstlisting}
 
-\subsection*{3}
+\subsection*{Annexe B: Caractérisation de la longueur d'un nombre $m$-tournant}
 
 \begin{lemme}{}{existence}
-    Soit $n, p \in \N$
+    Soit $n \in \N^*$ et $p \in \Z/n\Z$.
 
-    Supposons que $p$ est inversible dans $\Z/n\Z$.
-
-    Alors $ord(p)$ existe dans $\Z/n\Z$
+    Si $p$ est inversible, alors $ord(p)$ existe.
 \end{lemme}
 
 \begin{demonstration}
-    Comme $\Z/n\Z$ est fini, on a forcément $\exists k, l \in \N, k > l$ tel que
+    $\Z/n\Z$ est fini alors $\exists k, l \in \N, k > l$ tel que $p^k \equiv p^l [n]$.
+    
+    Ainsi, on a
     \begin{align*}        
         p^k \equiv p^l [n] \implies p^k (p^{-1})^l \equiv p^l (p^{-1})^l [n] \implies p^{k-l} \equiv 1 [n]
     \end{align*}
+
+    Par conséquent, $ord(p) \leq k - l$
 \end{demonstration}
 
-\begin{theoreme}{Caractérisation de la taille d'un nombre $m$-parasite}{}
-    Soit $m \in \N^*$, $x$ un nombre $m$-parasite de chiffre des unités $d$ et $L$ sa taille (nombre de chiffres).
+\begin{theoreme}{Caractérisation de la longueur d'un nombre $m$-tournant}{}
+    Soit $m \in \N^*$, $x$ le plus petit nombre $m$-tournant de chiffre des unités $d$ et $l$ sa longueur (nombre de chiffres).
 
-    Alors $L$ peut prendre des valeurs dans $\{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
+    Alors $l = ord(10)$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
 \end{theoreme}
 
 \begin{demonstration}
-    On pose $y := \dfrac{x - d}{10}$ le nombre obtenu en retirant le chiffre des unités $d$ de $x$.
+    On pose $y := \frac{x - d}{10}$ le nombre obtenu en retirant le chiffre des unités $d$ de $x$.
 
     Ainsi, on peut définir $x = 10y + d$.
 
-    par définition d'un nombre $m$-parasite, on a
+    Par définition d'un nombre $m$-tournant, on a
     \begin{align*}
-        m \times x = d10^{L - 1} + \dfrac{x - d}{10} &\implies m(10y + d) = d10^{L - 1} + y \\
-        &\implies dm - d 10^{L-1} = y - 10my \\
-        &\implies y(1 - 10m) = d (m - 10^{L-1}) \\
-        &\implies y = d \dfrac{m - 10^{L - 1}}{1 - 10m} = d \dfrac{10^{L - 1} - m}{10m - 1}
-    \end{align*}
-
-    Comme $y$ est un entier, le numérateur doit être divisible par le dénominateur.
-
-    Donc
-    \begin{align*}
-        \exists k \in \N, &d(10^{L - 1} - m) = k(10m - 1) \quad (*) \\
-        \implies& d(10^{L - 1} - m) \equiv 0 [10m - 1] \\
-        \implies& d 10^{L - 1} \equiv dm [10m - 1]
+        &m \times x = d10^{l - 1} + y \\
+        &\implies m(10y + d) = d10^{l - 1} + y \\
+        &\implies m \times 10y - y = d10^{l - 1} - dm \\
+        &\implies y(10m - 1) = d(10^{l - 1} - m) \\
+        &\implies d(10^{l - 1} - m) \equiv 0 [10m - 1] \\
+        &\implies d 10^{l - 1} \equiv dm [10m - 1]
     \end{align*}
 
     $d$ est inversible dans $\Z/(10m - 1)\Z$ si et seulement si \text{$pgcd(d, 10m - 1) = 1$}.
+    Si $d$ n'est pas inversible, on peut poser $gcd = pgcd(d, 10m - 1)$ et on pourra considérer $d' = \dfrac{d}{gcd}$ et $m' = \dfrac{10m - 1}{gcd}$, ainsi $d'$ est inversible dans $\Z/m'\Z$.
 
-    Ainsi on a deux cas :
-    \begin{description}
-        \item[si $pgcd(d, 10m - 1) = 1$ :] on peut simplifier par $d$ et on obtient
-        \begin{align*}
-            &10^{L - 1} \equiv m [10m - 1] \\
-            \implies& 10^L \equiv 10m [10m - 1] \\
-            \implies& 10^L \equiv 1 [10m - 1]
-        \end{align*}
+    Ainsi, on a
+    \begin{align*}
+        d' 10^{l - 1} \equiv d'm [m'] &\implies 10^{l - 1} \equiv m [m'] \\
+        &\implies 10^l \equiv 10m [m'] \\
+        &\implies 10^l \equiv 1 [m']
+    \end{align*}
 
-        De plus $m$ est l'inverse de $10$ dans $\Z/(10m - 1)\Z$.
+    Donc $l = ord(10)$ dans $\Z/(\dfrac{10m - 1}{pgcd(d, 10m - 1)})\Z$.
+\end{demonstration}
 
-        D'apres le lemme \ref{lemme:existence}, $ord(10)$ ainsi que ses multiples existe bien dans $\Z/(10m - 1)\Z$ et résoud notre équation.
+\subsection*{Annexe C: Existence d'un nombre tournant de toute longueur}
 
-        Donc $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(10m - 1)\Z$.
-    
-        \item[si $pgcd(d, 10m - 1) \neq 1$ :] on peut poser $gcd = pgcd(d, 10m - 1)$,
-        ainsi avec $(*)$ on a
-        
-        \begin{align*}
-            \exists k \in \N, &\dfrac{d(10^{L - 1} - m)}{gcd} = k\dfrac{(10m - 1)}{gcd} \\
-            \implies& \dfrac{d}{gcd} 10^{L - 1} \equiv \dfrac{d}{gcd} m [\dfrac{10m - 1}{gcd}]
-        \end{align*}
+On se souvient de l'équation $y = \dfrac{d(m - 10^{l - 1})}{1 - 10m}$.
 
-        Cette fois $pgcd(\dfrac{d}{gcd}, \dfrac{10m - 1}{gcd}) = 1$ donc $\dfrac{d}{gcd}$ est inversible, d'où
-        \begin{align*}
-            &10^{L - 1} \equiv m [\dfrac{10m - 1}{gcd}] \\
-            \implies& 10^L \equiv 10m [\dfrac{10m - 1}{gcd}] \\
-            \implies& 10^L \equiv 1 [\dfrac{10m - 1}{gcd}]
-        \end{align*}
+Si on pose $m = 10^{l - 1}$, alors $y = 0$ et $x = d$ est un nombre tournant de longueur $l$ pour tout $l \in \N^*$.
 
-        car
-        \begin{align*}
-            10m - 1 = gcd \dfrac{10m - 1}{gcd} &\implies 10m - 1 \equiv 0 [\dfrac{10m - 1}{gcd}] \\
-            &\implies 10m \equiv 1 [\dfrac{10m - 1}{gcd}]
-        \end{align*}
+\subsection*{Annexe D: Base $b$ et rotation de $R$ quelconque}
 
-        De plus $m$ est l'inverse de $10$ dans $\Z/(\dfrac{10m - 1}{gcd})\Z$
+\begin{theoreme}{}{}
+    Soit $b, m, R \in \N^*$, $x$ le plus petit nombre $m$-$R$-tournant avec $d$ ses $R$ derniers chiffres et $l$ sa longueur.
 
-        D'apres le lemme \ref{lemme:existence}, $ord(10)$ ainsi que ses multiples existe bien dans $\Z/(\dfrac{10m - 1}{gcd})\Z$ et résoud notre équation.
+    Alors $l = ord(b)$ dans $\Z/(\dfrac{b^R m - 1}{pgcd(d, b^R m - 1)})\Z$.
+\end{theoreme}
 
-        Donc $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/(\dfrac{10m - 1}{gcd})\Z$.
-    \end{description}
+\begin{demonstration}
+    En reprenant la même démarche que pour une la base $10$ et une rotation de $1$, on pose $y := \dfrac{x - d}{b^R}$ le nombre obtenu en retirant les $R$ derniers chiffres de $x$.
 
-    Comme dans le premier cas $pgcd(d, 10m - 1) = 1$ on peut rassembler les deux cas en un seul
+    Ainsi, on a
+    \begin{align*}
+        m \times x = d b^{l - R} + y &\implies m(b^R y + d) = d b^{l - R} + y \\
+        &\implies m \times b^R y - y = d b^{l - R} - dm \\
+        &\implies y(b^R m - 1) = d(b^{l - R} - m) \\
+        &\implies d(b^{l - R} - m) \equiv 0 [b^R m - 1] \\
+        &\implies d b^{l - R} \equiv dm [b^R m - 1]
+    \end{align*}
 
-    $L \in \{ord(10) \times k \mid k \in \N^*\}$ dans $\Z/\dfrac{10m - 1}{pgcd(d, 10m - 1)}\Z$.
+    $d$ est inversible dans $\Z/(b^R m - 1)\Z$ si et seulement si \text{$pgcd(d, b^R m - 1) = 1$}.
+    Si $d$ n'est pas inversible, on peut poser $gcd = pgcd(d, b^R m - 1)$ et on pourra considérer $d' = \dfrac{d}{gcd}$ et $m' = \dfrac{b^R m - 1}{gcd}$, ainsi $d'$ est inversible dans $\Z/m'\Z$.
+
+    Ainsi, on a
+    \begin{align*}
+        d' b^{l - R} \equiv d'm [m'] &\implies b^{l - R} \equiv m [m'] \\
+        &\implies b^l \equiv b^R m [m'] \\
+        &\implies b^l \equiv 1 [m']
+    \end{align*}
+
+    Donc $l = ord(b)$ dans $\Z/(\dfrac{b^R m - 1}{pgcd(d, b^R m - 1)})\Z$.
 \end{demonstration}
 
 \end{document}

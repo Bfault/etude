@@ -18,44 +18,19 @@
 
 \hotbox{Questions ouvertes}{CM 2}{\today}
 
-\section{\today}
+\section{27 Janvier 2026}
 
-\subsection{Ce qui à été fait}
+\subsection*{Travaux réalisés}
 
-amélioration du programme, qui prend maintenant en compte les multipliant supérieurs à 9 et peut afficher plusieurs nombres possibles avec gradient sur les chiffres.
+\begin{itemize}[label=\textbullet]
+    \item Amélioration du programme (prise en compte des multipliant supérieurs à 9) (\textbf{Annexe A}).
+    \item Modélisation, en posant $y := \frac{x - d}{10}$ (le nombre tournant sans son chiffre des unités), on obtient l'équation centrale suivante : $y = \frac{d(m - 10^{l - 1})}{1 - 10m}$.
+\end{itemize}
 
-\begin{tcolorbox}[
-        sharp corners,
-        colback=white,
-        colframe=black,
-        leftrule=1mm,
-        toprule=-1mm, bottomrule=-1mm, rightrule=-1mm,
-        top=0mm, left=1mm
-    ]
-    Soient 
-    \begin{enumerate}[label=--]
-        \item $x$ le nombre tournant recherché,
-        \item $d$ le chiffre des unités de $x$,
-        \item $l$ le nombre total de chiffres de $x$,
-        \item $m$ le multipliant.
-    \end{enumerate}
+\subsection*{Nouvelles questions}
 
-    On pose $y := \dfrac{x - d}{10} \implies x = 10y + d$ le nombre obtenu en retirant le chiffre des unités de $x$ et $x' = d \times 10^{n - 1} + y$ le nombre obtenu en mettant le chiffre des unités de $x$ au début de $x$.
-
-    D'après notre sujet de recherche, on doit trouver $x$ ou $x'$ tel que $x' = m \times x$, donc:
-    \begin{align*}
-        x' = m \times x &\implies d \times 10^{l - 1} + y = m \times (10y + d) \\
-        &\implies y - 10my = md - d \times 10^{l - 1} \\
-        &\implies y(1 - 10m) = d(m - 10^{l - 1}) \\
-        &\implies y = \frac{d(m - 10^{l - 1})}{1 - 10m} \\
-    \end{align*} 
-
-    Sauf qu'on ne connait pas $l$, on essaye de chercher des valeurs de $l$ telles que $y$ soit un entier positif. On en déduit ensuite $x = 10y + d$.
-\end{tcolorbox}
-
-
-\subsection{Les nouvelles questions}
-
-Comment trouver la longueur $l$ d'un nombre tournant à partir de son multipliant $m$ et de son chiffre des unités $d$ ?
+\begin{itemize}[label=\textbullet]
+    \item \textbf{[Q2]} Comment trouver la longueur $l$ d'un nombre tournant à partir de son multipliant $m$ et de son chiffre des unités $d$ ?
+\end{itemize}
 
 \end{document}

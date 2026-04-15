@@ -26,18 +26,22 @@
 \end{remarque}
 
 \begin{demonstration}
-    \n
-    \n
-    \n
-    \n
-    \n
-    \n
-    \stump{À faire}{vite!}
-    \n
-    \n
-    \n
-    \n
-    \n
+    La somme partielle de la série de Fourier de $f$ peut se ramener à une convolution de $f$ avec le noyau de Dirichlet $D_n$,
+    en effet, en développant $D_n$ et en faisant un changement de variable, on trouve
+    $$    
+    S_{f,n}(x) = \int_{-\pi}^{\pi} f(x-t) D_n(t) dt
+    $$
+    D'apres la proprosition \ref{propal:noyau_dirichlet}, on a
+    $$
+    1 = \int_{0}^{2\pi} D_n(t) dt = \int_{-\pi}^{\pi} D_n(t) dt = 2\int_{0}^{\pi} D_n(t) dt
+    \implies \int_{0}^{\pi} D_n(t) dt = \frac{1}{2} 
+    $$
+
+    On peut ensuite remplacer $D_n$ par son expression explicite, et chercher à faire tendre vers $0$ l'intégrale
+    $$
+    S_{f,n}(x) - \frac{f(x_+) + f(x_-)}{2}
+    $$
+    en utilisant Riemann-Lebesgue.
 \end{demonstration}
 
 \begin{definition}
