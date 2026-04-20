@@ -8,14 +8,14 @@
 
 \hotbox{Analyse 4}{CM 15}{\today}
 
-\section{Intégrales dépendantes d'un paramètre (ou fonction définie par une intégrales)}
+\section{Fonction définie par une intégrale}
 
 \begin{definition}
-    Soit $I, J$ deux intervalles de $\R$,
+    Soient $I, J$ deux intervalles de $\R$,
     $$
     \funcdef{f}{I}{\R}{x}{\int_J g(x, t) \, dt}
     $$
-    est une fonction définie par une intégrale, ou une intégrale dépendante d'un paramètre.
+    est une fonction définie par une intégrale.
 \end{definition}
 
 \begin{theoreme}{Théorème de la convergence dominée}{}
@@ -37,118 +37,117 @@
     Admis, besoin de l'intégrale de Lebesgue pour le démontrer sur un intervalle non borné.
 \end{demonstration}
 
-\subsection{Continuité sous le signe somme}
+\subsection{Continuité d'une fonction définie par une intégrale}
 
-\begin{theoreme}{Théorème de la continuité d'une fonction définie par une intégrale}{}
-    Soit $I, J$ deux intervalles de $\R$ et $\funcdef{f}{J \times I}{\R}{(x, t)}{f(x, t)}$ une fonction dont on suppose que
+\begin{theoreme}{Continuité d'une fonction définie par une intégrale}{}
+    Soient $I, J$ deux intervalles de $\R$ et $\funcdef{f}{J \times I}{\R}{(x, t)}{f(x, t)}$ une fonction dont on suppose que
     \begin{itemize}
-        \item $\forall x \in J, f(x, \cdot)$ est continue (?) sur $I$,
-        \item $\forall t \in I, f(\cdot, t)$ est continue par morceaux sur $J$,
-        \item il existe une fonction $\varphi$ continue par morceaux et intégrable sur $I$ telles que $\forall (x, t) \in J \times I, |f(x, t)| \leq \varphi(t)$.
+        \item $\forall x \in J, t \mapsto f(x, t)$ est continue par morceaux sur $I$,
+        \item $\forall t \in I, x \mapsto f(x, t)$ est continue sur $J$,
+        \item (Domination locale) Pour tout segment $K \subset J$, il existe une fonction $\varphi_K$ continue par morceaux, positive et intégrable sur $I$ telle que $\forall (x, t) \in K \times I, |f(x, t)| \leq \varphi_K(t)$.
     \end{itemize}
     Alors la fonction $\funcdef{F}{J}{\R}{x}{\int_I f(x, t) \, dt}$ est continue sur $J$.
 \end{theoreme}
 
 \begin{demonstration}
-    On fixe $x \in J$, la fonction $f(x, \cdot)$ est continue par morceaux sur $I$ et majorée par $\varphi$ où $\varphi$ est intégrable et continue par morceaux sur $I$.
+    Soit $x \in J$. Prenons un segment $K \subset J$ contenant un voisinage de $x$.
+    La fonction $t \mapsto f(x, t)$ est continue par morceaux sur $I$ et majorée en valeur absolue par $\varphi_K$ qui est intégrable.
     Donc $F(x) = \int_I f(x, t) \, dt$ est bien définie.
-    $$
-    |F(x)| = \left| \int_I f(x, t) \, dt \right| \leq \int_I |f(x, t)| \, dt \leq \int_I \varphi(t) \, dt < +\infty
-    $$
 
-    Soit $(x_n)_{n \in \N}$ une suite convergeant vers $x$ dans $J$.
+    Soit $(x_n)_{n \in \N}$ une suite de $J$ convergeant vers $x$. À partir d'un certain rang, $x_n \in K$.
     
-    On pose $\forall n \in \N, g_n(t) := f(x_n, t)$, par hypothèse, $\forall t \in I, g_n$ est continue par morceaux sur $I$ et $x \mapsto f(x, t)$ est continue par morceaux sur $J$.
+    On pose $\forall n \in \N, g_n(t) := f(x_n, t)$.
+    Par hypothèse, $g_n$ est continue par morceaux sur $I$ et converge simplement vers $f(x, \cdot)$ sur $I$ (par continuité de la fonction par rapport à sa première variable).
 
-    Donc $f(x_n, t) \xrightarrow[n \to +\infty]{} f(x, t)$ pour tout $t \in I$, ainsi $g_n(t) \xrightarrow[n \to +\infty]{} f(x, t)$ pour tout $t \in I$.
+    De plus, pour tout $n$ assez grand et tout $t \in I$, $|g_n(t)| = |f(x_n, t)| \leq \varphi_K(t)$, et $\varphi_K$ est intégrable sur $I$.
 
-    Donc $g_n$ converge simplement vers $f(x, \cdot)$ sur $I$.
-
-    Et enfin, pour tout $(x, t) \in J \times I$, $|g_n(t)| = |f(x_n, t)| \leq \varphi(t)$, et $\varphi$ est intégrable sur $I$.
-
-    Cela vérifie les hypothèses du théorème de la convergence dominée, et on en déduit que
+    Les hypothèses du théorème de la convergence dominée sont vérifiées, on en déduit que :
     $$
-    \lim_{n \to +\infty} \int_I g_n(t) \, dt = \int_I f(x, t) \, dt \iff \lim_{n \to +\infty} \int_I f(x_n, t) \, dt = \int_I f(x, t) \, dt \iff \lim_{n \to +\infty} F(x_n) = F(x)
+    \lim_{n \to +\infty} \int_I f(x_n, t) \, dt = \int_I f(x, t) \, dt \iff \lim_{n \to +\infty} F(x_n) = F(x)
     $$
-    Donc $F$ est continue en $x$ et comme $x$ est arbitraire, $F$ est continue par morceaux sur $J$.
+    Donc $F$ est continue en $x$. Comme $x$ est arbitraire, $F$ est continue sur $J$.
 \end{demonstration}
 
 \begin{theoreme}{Passage à la limite sous le signe somme}{}
-    Soit $I, J$ deux intervalles de $\R$, $a \in \overline{J}$ (l'adhérence de $J$) et $\funcdef{f}{J \times I}{\R}{(x, t)}{f(x, t)}$ une fonction dont on suppose que
+    Soient $I, J$ deux intervalles de $\R$, $a \in \overline{J}$ (l'adhérence de $J$) et $\funcdef{f}{J \times I}{\R}{(x, t)}{f(x, t)}$ une fonction dont on suppose que
     \begin{itemize}
-        \item $\forall x \in J, f(x, \cdot)$ est continue sur $I$,
-        \item $\forall t \in I, x \mapsto f(x, t)$ a une limite quand $x \to a$,
-        \item il existe une fonction $\varphi$ positives et intégrable sur $I$ telles que $\forall (x, t) \in J \times I, |f(x, t)| \leq \varphi(t)$.
+        \item $\forall x \in J, t \mapsto f(x, t)$ est continue par morceaux sur $I$,
+        \item $\forall t \in I, x \mapsto f(x, t)$ admet une limite quand $x \to a$, notée $l(t)$,
+        \item il existe un voisinage $V$ de $a$ et une fonction $\varphi$ positive et intégrable sur $I$ tels que $\forall x \in J \cap V, \forall t \in I, |f(x, t)| \leq \varphi(t)$.
     \end{itemize}
     Alors la fonction $\funcdef{F}{J}{\R}{x}{\int_I f(x, t) \, dt}$ a une limite quand $x \to a$ et
     $$
-    \lim_{x \to a} F(x) = \int_I \lim_{x \to a} f(x, t) \, dt
+    \lim_{x \to a} F(x) = \int_I \lim_{x \to a} f(x, t) \, dt = \int_I l(t) \, dt
     $$
 \end{theoreme}
 
 \begin{demonstration}
-    On suppose que $a \neq \mp \infty$, sinon, on peut faire un changement de variable pour ramener à ce cas.
-
-    On considère $J \cup \{a\}$, $\forall (x, t) \in (J \cup \{a\}) \times I, g(x, t) := \begin{cases}
-    f(x, t) & \text{si } x \in J \\
-    \lim_{x \to a} f(x, t) & \text{si } x = a
-    \end{cases}$.
-    En faisant des trucs et en utilisant le théorème de la continuité d'une fonction définie par une intégrale,
-    pour $g$ on a bien le résultat $\funcdef{G}{J \cup \{a\}}{\R}{x}{\int_I g(x, t) \, dt}$ est continue en $a$
-    d'où
+    Utilisons la caractérisation séquentielle de la limite.
+    Soit $(x_n)_{n \in \N}$ une suite de $J$ convergeant vers $a$. À partir d'un certain rang, $x_n \in J \cap V$.
+    
+    Posons $g_n(t) := f(x_n, t)$.
+    Pour tout $n$, $g_n$ est continue par morceaux sur $I$.
+    On a $\forall t \in I, \lim_{n \to +\infty} g_n(t) = \lim_{x \to a} f(x, t) = l(t)$.
+    De plus, à partir d'un certain rang, $\forall t \in I, |g_n(t)| \leq \varphi(t)$ avec $\varphi$ intégrable.
+    
+    Par le théorème de convergence dominée,
     $$
-    \lim_{x \to a} \int_I f(x, t) \, dt = \int_I \lim_{x \to a} f(x, t) \, dt
+    \lim_{n \to +\infty} \int_I f(x_n, t) \, dt = \int_I \lim_{x \to a} f(x, t) \, dt
     $$
+    Ceci étant vrai pour toute suite $(x_n)$ tendant vers $a$, on obtient le résultat attendu.
 \end{demonstration}
 
 \begin{theoreme}{Théorème de Leibniz}{}
-    Soit $I, J$ deux intervalles de $\R$, $\funcdef{f}{J \times I}{\R}{(x, t)}{f(x, t)}$ une fonction dont on suppose que 
+    Soient $I, J$ deux intervalles de $\R$, $\funcdef{f}{J \times I}{\R}{(x, t)}{f(x, t)}$ une fonction dont on suppose que 
 
     \begin{itemize}
-        \item $\forall x \in J, f(x, \cdot)$ est continue par morceaux et intégrable sur $I$
-        \item $\forall (x, t) \in J \times I, \frac{\partial f}{\partial x}(x, t)$ existe
-        \item $\forall x \in J, t \mapsto \frac{\partial f}{\partial x}(x, t)$ est continue par morceaux sur $I$
-        \item $\forall t \in I, x \mapsto \frac{\partial f}{\partial x}(x, t)$ est continue sur $J$
-        \item il existe une fonction $\varphi$ définie sur $I$, positive et intégrable sur $I$ telles que $\forall (x, t) \in J \times I, \left| \frac{\partial f}{\partial x}(x, t) \right| \leq \varphi(t)$
+        \item $\forall x \in J, t \mapsto f(x, t)$ est continue par morceaux et intégrable sur $I$,
+        \item $\forall (x, t) \in J \times I, \frac{\partial f}{\partial x}(x, t)$ existe,
+        \item $\forall x \in J, t \mapsto \frac{\partial f}{\partial x}(x, t)$ est continue par morceaux sur $I$,
+        \item $\forall t \in I, x \mapsto \frac{\partial f}{\partial x}(x, t)$ est continue sur $J$,
+        \item (Domination locale) Pour tout segment $K \subset J$, il existe une fonction $\varphi_K$ positive et intégrable sur $I$ telle que $\forall (x, t) \in K \times I, \left| \frac{\partial f}{\partial x}(x, t) \right| \leq \varphi_K(t)$.
     \end{itemize}
-    Alors la fonction $\funcdef{F}{J}{\R}{x}{\int_I f(x, t) \, dt}$ est $C^1$ sur $J$ et $\forall x \in J, F'(x) = \int_I \frac{\partial f}{\partial x}(x, t) \, dt$.
+    Alors la fonction $\funcdef{F}{J}{\R}{x}{\int_I f(x, t) \, dt}$ est de classe $C^1$ sur $J$ et $\forall x \in J, F'(x) = \int_I \frac{\partial f}{\partial x}(x, t) \, dt$.
 \end{theoreme}
 
 \begin{demonstration}
-    Comme $\forall x \in J, t \mapsto f(x, t)$ est intégrable sur $I$ alors $\forall x \in J, F(x)$ est bien définie.
+    Comme $\forall x \in J, t \mapsto f(x, t)$ est intégrable sur $I$, $F(x)$ est bien définie sur $J$.
 
-    $\forall (x, t) \in J \times I, a \in J, g(x, t) := \begin{cases}
-    \frac{f(x, t) - f(a, t)}{x - a} & \text{si } x \neq a \\
-    \frac{\partial f}{\partial x}(a, t) & \text{si } x = a
-    \end{cases}$
-    De sorte que si $x \neq a$, $\frac{F(x) - F(a)}{x - a} = \int_I g(x, t) \, dt$.
+    Soient $a \in J$ et un segment $K \subset J$ contenant un voisinage de $a$.
+    Pour $x \in K \setminus \{a\}$, posons $g(x, t) = \frac{f(x, t) - f(a, t)}{x - a}$.
+    De sorte que $\frac{F(x) - F(a)}{x - a} = \int_I g(x, t) \, dt$.
 
-    Pour $x \in J$, $t \mapsto g(x, t)$ est continue par morceaux sur $I$.
-    Pour $t \in I$, $x \mapsto g(x, t)$ est continue sur $J$ (car $g(x, t)$ est défini comme limite de fonctions continues).
-    On a $|g(x, t)| = \left| \frac{f(x, t) - f(a, t)}{x - a} \right| \leq \sup_{y \in J} \left| \frac{\partial f}{\partial x}(y, t) \right| = \varphi_1(t)$, et $\varphi_1$ est intégrable et positive sur $I$.
+    Pour $x \in K \setminus \{a\}$, $t \mapsto g(x, t)$ est continue par morceaux sur $I$.
+    Pour $t \in I$, $\lim_{x \to a} g(x, t) = \frac{\partial f}{\partial x}(a, t)$.
     
-    On peut appliquer le théorème de passage à la limite sous le signe somme, et on en déduit que
+    L'application $x \mapsto f(x, t)$ étant de classe $C^1$ sur $J$, on peut appliquer l'Inégalité des Accroissements Finis (IAF) entre $x$ et $a$ :
     $$
-    \lim_{x \to a} \frac{F(x) - F(a)}{x - a} = \lim_{x \to a} \int_I g(x, t) \, dt = \int_I \lim_{x \to a} g(x, t) \, dt = \int_I \frac{\partial f}{\partial x}(a, t) \, dt
+    |g(x, t)| = \left| \frac{f(x, t) - f(a, t)}{x - a} \right| \leq \sup_{y \in [x, a]} \left| \frac{\partial f}{\partial x}(y, t) \right| \leq \sup_{y \in K} \left| \frac{\partial f}{\partial x}(y, t) \right| \leq \varphi_K(t)
+    $$
+    avec $\varphi_K$ intégrable sur $I$.
+    
+    D'après le théorème de passage à la limite sous le signe somme :
+    $$
+    \lim_{x \to a} \frac{F(x) - F(a)}{x - a} = \int_I \lim_{x \to a} g(x, t) \, dt = \int_I \frac{\partial f}{\partial x}(a, t) \, dt
     $$
     Donc $F$ est dérivable en $a$ et $F'(a) = \int_I \frac{\partial f}{\partial x}(a, t) \, dt$.
-    Puis en appliquant le théorème de la continuité d'une fonction définie par une intégrale, on en déduit que $F'$ est continue sur $J$, et donc $F$ est de classe $C^1$ sur $J$.
+    Le théorème de continuité appliqué à $\frac{\partial f}{\partial x}$ garantit ensuite que $F'$ est continue sur $J$, donc $F$ est de classe $C^1$.
 \end{demonstration}
 
 \begin{theoreme}{}{}
-    Soit $I, J$ deux intervalles de $\R$, $\funcdef{f}{J \times I}{\R}{(x, t)}{f(x, t)}$ une fonction dont on suppose que
+    Soient $I, J$ deux intervalles de $\R$, $\funcdef{f}{J \times I}{\R}{(x, t)}{f(x, t)}$ une fonction dont on suppose que
     \begin{itemize}
-        \item $\forall x \in J, f(x, \cdot)$ est continue par morceaux et intégrable sur $I$
-        \item $\forall (x, t) \in J \times I, f \text{ admet des dérivées partielles successives jusqu'à l'ordre } n > 1$
-        \item $\forall k \in \llbracket 1, n \rrbracket, \forall x \in J, t \mapsto \frac{\partial^k f}{\partial x^k}(x, t)$ est continue par morceaux sur $I$
-        \item $\forall k \in \llbracket 1, n \rrbracket, \forall t \in I, x \mapsto \frac{\partial^k f}{\partial x^k}(x, t)$ est continue sur $J$
-        \item $\forall k \in \llbracket 1, n \rrbracket, \forall (x, t) \in J \times I, \left| \frac{\partial^k f}{\partial x^k}(x, t) \right| \leq \varphi_k(t)$ où $\varphi_k$ est une fonction positive et intégrable sur $I$
+        \item $\forall x \in J, t \mapsto f(x, t)$ est continue par morceaux et intégrable sur $I$,
+        \item $\forall (x, t) \in J \times I, f$ admet des dérivées partielles successives par rapport à $x$ jusqu'à l'ordre $n \geq 1$,
+        \item $\forall k \in \llbracket 1, n \rrbracket, \forall x \in J, t \mapsto \frac{\partial^k f}{\partial x^k}(x, t)$ est continue par morceaux sur $I$,
+        \item $\forall k \in \llbracket 1, n \rrbracket, \forall t \in I, x \mapsto \frac{\partial^k f}{\partial x^k}(x, t)$ est continue sur $J$,
+        \item (Domination locale) Pour tout segment $K \subset J$ et $\forall k \in \llbracket 1, n \rrbracket, \exists \varphi_{k,K}$ positive et intégrable sur $I$ telle que $\forall (x, t) \in K \times I, \left| \frac{\partial^k f}{\partial x^k}(x, t) \right| \leq \varphi_{k,K}(t)$.
     \end{itemize}
     Alors la fonction $\funcdef{F}{J}{\R}{x}{\int_I f(x, t) \, dt}$ est de classe $C^n$ sur $J$ et $\forall k \in \llbracket 1, n \rrbracket, \forall x \in J, F^{(k)}(x) = \int_I \frac{\partial^k f}{\partial x^k}(x, t) \, dt$.
 \end{theoreme}
 
 \begin{demonstration}
-    Par récurrence sur $n$.
+    Par récurrence sur $n$, en appliquant le théorème de Leibniz pour passer de l'ordre $k$ à l'ordre $k+1$.
 \end{demonstration}
 
 \end{document}
